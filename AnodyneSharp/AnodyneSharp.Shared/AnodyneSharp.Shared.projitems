@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>8c8aa8d0-efb3-4be2-9f9d-3e30d0a6b5d6</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>AnodyneSharp</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AnodyneGame.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Map\MapLoader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Map\Tiles\Tile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Map\Tiles\TileData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Map\TileMap.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\PlayState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\State.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Entities\Player\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Map\Tiles\" />
+  </ItemGroup>
+  <ItemGroup>
+    <MonoGameContentReference Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\APARTMENT_BG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\APARTMENT_BG2.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\APARTMENT_FG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\BEACH_BG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\BEACH_BG2.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\BEACH_FG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\BEDROOM_BG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\BEDROOM_BG2.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\BEDROOM_FG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\BLANK_BG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\BLUE_BG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\BLUE_BG2.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\BLUE_FG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\CIRCUS_BG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\CIRCUS_BG2.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\CIRCUS_FG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\CLIFF_BG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\CLIFF_BG2.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\CROWD_BG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\CROWD_BG2.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\CROWD_FG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\DEBUG_BG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\DEBUG_BG2.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\DEBUG_FG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\DRAWER_BG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\DRAWER_BG2.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\DRAWER_FG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\FIELDS_BG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\FIELDS_BG2.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\FIELDS_FG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\FOREST_BG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\FOREST_BG2.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\FOREST_FG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\GO_BG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\GO_BG2.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\GO_BG2_old.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\GO_FG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\HAPPY_BG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\HAPPY_BG2.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\HAPPY_FG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\HOTEL_BG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\HOTEL_BG2.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\HOTEL_FG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\Minimap_Apartment.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\Minimap_Beach.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\Minimap_Bedroom.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\Minimap_Cell.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\Minimap_Circus.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\Minimap_Cliff.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\Minimap_Crowd.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\Minimap_Fields.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\Minimap_Forest.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\Minimap_Hotel.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\Minimap_Overworld.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\Minimap_Redcave.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\Minimap_Redsea.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\Minimap_Space.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\Minimap_Street.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\Minimap_Suburb.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\Minimap_Terminal.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\NEXUS_BG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\NEXUS_BG2.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\NEXUS_FG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\OVERWORLD_BG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\OVERWORLD_BG2.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\OVERWORLD_FG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\REDCAVE_BG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\REDCAVE_BG2.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\REDCAVE_FG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\REDSEA_BG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\REDSEA_BG2.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\REDSEA_FG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\SPACE_BG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\SPACE_BG2.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\SPACE_FG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\STREET_BG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\STREET_BG2.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\STREET_FG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\SUBURB_BG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\SUBURB_BG2.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\SUBURB_FG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\TERMINAL_BG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\TERMINAL_BG2.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\TERMINAL_FG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\TRAIN_BG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\TRAIN_BG2.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\TRAIN_FG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\WINDMILL_BG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\WINDMILL_BG2.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\WINDMILL_FG.csv" />
+  </ItemGroup>
+</Project>
