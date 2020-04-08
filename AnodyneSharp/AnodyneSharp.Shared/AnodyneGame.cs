@@ -29,15 +29,18 @@ namespace AnodyneSharp
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
+            //graphics.PreferredBackBufferWidth = 1920;
+            //graphics.PreferredBackBufferHeight = 1080;
             //graphics.PreferredBackBufferWidth = 960;
             //graphics.PreferredBackBufferHeight = 1080;
             graphics.PreferredBackBufferWidth = 480;
             graphics.PreferredBackBufferHeight = 540;
+            //graphics.ToggleFullScreen();
             graphics.ApplyChanges();
 
             _camera = new Camera();
             _camera.Initialize(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
-            _camera.Zoom = 2;
+            _camera.Zoom = 3;
 
             _currentState = null;
         }
@@ -52,7 +55,7 @@ namespace AnodyneSharp
         {
             SpriteDrawer.Initialize(graphics.GraphicsDevice);
 
-            _currentState = new PlayState();
+            _currentState = new PlayState(_camera);
 
             base.Initialize();
         }
@@ -62,8 +65,8 @@ namespace AnodyneSharp
         /// all of your content.
         /// </summary>
         protected override void LoadContent()
-        {
-            GlobalState.CURRENT_MAP_NAME = "FIELDS";
+        { 
+            GlobalState.CURRENT_MAP_NAME = "STREET";
 
             TileData.LoadTileMaps(Content);
             _currentState.Create();
@@ -80,27 +83,9 @@ namespace AnodyneSharp
             // TODO: Add your update logic here			
             base.Update(gameTime);
 
+
+
             _camera.Update();
-
-            float camSpeed = KeyInput.IsKeyPressed(Keys.LeftShift) ? 8 : 4;
-
-            if (KeyInput.IsKeyPressed(Keys.Left))
-            {
-                _camera.Move( -camSpeed, 0);
-            }
-            else if (KeyInput.IsKeyPressed(Keys.Right))
-            {
-                _camera.Move(camSpeed, 0);
-            }
-
-            if (KeyInput.IsKeyPressed(Keys.Up))
-            {
-                _camera.Move(0, -camSpeed);
-            }
-            else if (KeyInput.IsKeyPressed(Keys.Down))
-            {
-                _camera.Move(0, camSpeed);
-            }
 
             _currentState.Update();
         }

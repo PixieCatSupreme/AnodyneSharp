@@ -120,7 +120,7 @@ namespace AnodyneSharp.Map
             return collisions;
         }
 
-        public void Draw()
+        public void Draw(float z = 0, bool ignoreEmpty = false)
         {
             //SpriteDrawer.DrawSprite(tiles, tiles.Bounds, null);
             for (int y = 0; y < heightInTiles; y++)
@@ -131,7 +131,12 @@ namespace AnodyneSharp.Map
 
                     if (rect.HasValue)
                     {
-                        SpriteDrawer.DrawSprite(tiles, new Rectangle(x * _tileWidth, y * _tileHeight, _tileWidth, _tileHeight), rect.Value);
+                        int tile = data[x + y * widthInTiles];
+
+                        if (!ignoreEmpty || tile != 0)
+                        {
+                            SpriteDrawer.DrawSprite(tiles, new Rectangle(x * _tileWidth, y * _tileHeight, _tileWidth, _tileHeight), rect.Value, Z: z);
+                        }
                     }
                 }
             }

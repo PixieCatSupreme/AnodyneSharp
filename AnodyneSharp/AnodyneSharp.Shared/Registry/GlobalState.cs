@@ -27,5 +27,15 @@
         /* Grid-local state that needs to be accessed globally for events */
         public static int GRID_ENEMIES_DEAD = 0;
 	    public static int GRID_PUZZLES_DONE = 0;
+
+        //Cool new debug values
+#if DEBUG
+        public static bool DrawBG = true;
+        public static bool DrawBG2 = true;
+        public static bool DrawFG = true;
+
+        public static bool MovingCamera = true;
+        public static bool FreeRoamCamera = false;
+#endif
     }
 }
