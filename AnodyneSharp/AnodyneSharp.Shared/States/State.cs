@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework.Content;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -19,6 +20,10 @@ namespace AnodyneSharp.States
         public virtual void Update()
         {
 
+        }
+
+        public virtual void Draw()
+        {
         }
     }
 }

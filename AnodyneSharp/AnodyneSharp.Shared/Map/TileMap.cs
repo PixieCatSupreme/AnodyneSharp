@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Map.Tiles;
+﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Map.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -19,8 +20,8 @@ namespace AnodyneSharp.Map
     {
         public CollissionDirections allowCollisions;
 
-        public double width;
-		public double height;
+        public float width;
+        public float height;
         private Rectangle?[] _rects;
         protected int heightInTiles;
         protected int widthInTiles;
@@ -31,6 +32,10 @@ namespace AnodyneSharp.Map
         private int _tileWidth;
         private int _tileHeight;
         private Tile[] _tileObjects;
+        /**
+		 * Y position of the upper left corner of this object in world space.
+		 */
+        public float y;
 
         public void LoadMap(string mapData, Texture2D tileMap, int tileWidth = 16, int tileHeight = 16)
         {
@@ -40,6 +45,8 @@ namespace AnodyneSharp.Map
             heightInTiles = rows.Length;
             widthInTiles = 0;
             data = new List<int>();
+
+            tiles = tileMap;
 
             uint row = 0;
             uint column = 0;
@@ -76,7 +83,7 @@ namespace AnodyneSharp.Map
 
 
             //create some tile objects that we'll use for overlap checks (one for each tile)
-            int l = (tiles.Width / _tileWidth) * (tiles.Height / _tileHeight);
+            int l = (tiles?.Width ?? 0 / _tileWidth) * (tiles?.Height ?? 0 / _tileHeight);
 
             _tileObjects = new Tile[l];
 
@@ -95,16 +102,52 @@ namespace AnodyneSharp.Map
             }
         }
 
-        protected void UpdateTile(int Index)
-		{
-			Tile tile = _tileObjects[data[Index]] as Tile;
-			if((tile == null) || !tile.visible)
-			{
-				_rects[Index] = null;
-				return;
-			}
+        public bool[] GetData()
+        {
+            if (_tileObjects.Length == 0)
+            {
+                return new bool[0];
+            }
 
-            int rx = data[Index] * _tileWidth;
+            int lenght = data.Count;
+            bool[] collisions = new bool[lenght];
+
+            for (int i = 0; i < data.Count; i++)
+            {
+                collisions[i] = (_tileObjects[data[i]] as Tile)?.allowCollisions ?? false;
+            }
+
+            return collisions;
+        }
+
+        public void Draw()
+        {
+            //SpriteDrawer.DrawSprite(tiles, tiles.Bounds, null);
+            for (int y = 0; y < heightInTiles; y++)
+            {
+                for (int x = 0; x < widthInTiles; x++)
+                {
+                    Rectangle? rect = _rects[x + y * widthInTiles];
+
+                    if (rect.HasValue)
+                    {
+                        SpriteDrawer.DrawSprite(tiles, new Rectangle(x * _tileWidth, y * _tileHeight, _tileWidth, _tileHeight), rect.Value);
+                    }
+                }
+            }
+        }
+
+        protected void UpdateTile(int Index)
+        {
+            var d = data[Index];
+
+            if (_tileObjects.Length == 0 || (!(_tileObjects[d] is Tile tile)) || !tile.visible)
+            {
+                _rects[Index] = null;
+                return;
+            }
+
+            int rx = d * _tileWidth;
             int ry = 0;
 
             if (rx >= tiles.Width)
@@ -113,6 +156,6 @@ namespace AnodyneSharp.Map
                 rx %= tiles.Width;
             }
             _rects[Index] = new Rectangle(rx, ry, _tileWidth, _tileHeight);
-		}
+        }
     }
 }

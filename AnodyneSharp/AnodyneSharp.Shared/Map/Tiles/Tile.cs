@@ -3,7 +3,7 @@
     internal class Tile
     {
         internal bool visible;
-
+        internal bool allowCollisions;
         private TileMap tileMap;
         private int index;
         private int _tileWidth;
@@ -14,6 +14,7 @@
         public Tile(TileMap tileMap, int i, int tileWidth, int tileHeight, bool v, CollissionDirections collissionDirections)
         {
             visible = true;
+            allowCollisions = false;
             this.tileMap = tileMap;
             index = i;
             _tileWidth = tileWidth;

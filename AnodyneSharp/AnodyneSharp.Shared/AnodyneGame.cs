@@ -1,10 +1,14 @@
 ﻿#region Using Statements
 using System;
+using AnodyneSharp.Drawing;
 using AnodyneSharp.Map;
 using AnodyneSharp.Map.Tiles;
+using AnodyneSharp.Registry;
+using AnodyneSharp.States;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using AnodyneSharp.Input;
 
 #endregion
 
@@ -16,13 +20,26 @@ namespace AnodyneSharp
     public class AnodyneGame : Game
     {
         GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+
+        State _currentState;
+        Camera _camera;
 
         public AnodyneGame()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            //graphics.IsFullScreen = true;
+
+            //graphics.PreferredBackBufferWidth = 960;
+            //graphics.PreferredBackBufferHeight = 1080;
+            graphics.PreferredBackBufferWidth = 480;
+            graphics.PreferredBackBufferHeight = 540;
+            graphics.ApplyChanges();
+
+            _camera = new Camera();
+            _camera.Initialize(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
+            _camera.Zoom = 2;
+
+            _currentState = null;
         }
 
         /// <summary>
@@ -33,7 +50,10 @@ namespace AnodyneSharp
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            SpriteDrawer.Initialize(graphics.GraphicsDevice);
+
+            _currentState = new PlayState();
+
             base.Initialize();
         }
 
@@ -43,17 +63,10 @@ namespace AnodyneSharp
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            GlobalState.CURRENT_MAP_NAME = "FIELDS";
 
             TileData.LoadTileMaps(Content);
-
-            TileMap map = new TileMap();
-
-            TileData.SetTileset("STREET");
-            map.LoadMap(MapLoader.GetMap("STREET"), TileData.Tiles);
-
-            //TODO: use this.Content to load your game content here 
+            _currentState.Create();
         }
 
         /// <summary>
@@ -66,6 +79,30 @@ namespace AnodyneSharp
 
             // TODO: Add your update logic here			
             base.Update(gameTime);
+
+            _camera.Update();
+
+            float camSpeed = KeyInput.IsKeyPressed(Keys.LeftShift) ? 8 : 4;
+
+            if (KeyInput.IsKeyPressed(Keys.Left))
+            {
+                _camera.Move( -camSpeed, 0);
+            }
+            else if (KeyInput.IsKeyPressed(Keys.Right))
+            {
+                _camera.Move(camSpeed, 0);
+            }
+
+            if (KeyInput.IsKeyPressed(Keys.Up))
+            {
+                _camera.Move(0, -camSpeed);
+            }
+            else if (KeyInput.IsKeyPressed(Keys.Down))
+            {
+                _camera.Move(0, camSpeed);
+            }
+
+            _currentState.Update();
         }
 
         /// <summary>
@@ -74,11 +111,13 @@ namespace AnodyneSharp
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            //TODO: Add your drawing code here
-
             base.Draw(gameTime);
+
+            SpriteDrawer.BeginDraw(_camera);
+            _currentState.Draw();
+            SpriteDrawer.EndDraw();
+
+
         }
     }
 }
