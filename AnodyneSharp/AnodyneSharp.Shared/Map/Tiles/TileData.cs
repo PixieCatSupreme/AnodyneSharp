@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Content;
+﻿using AnodyneSharp.Utilities;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,7 +56,7 @@ namespace AnodyneSharp.Map.Tiles
 
             foreach (var path in paths)
             {
-                TileMaps.Add(path.Split('_').First().ToUpper(), LoadTexture(path, content));
+                TileMaps.Add(path.Split('_').First().ToUpper(), TextureUtilities.LoadTexture("tilemaps", path, content));
             }
         }
 
@@ -69,11 +70,6 @@ namespace AnodyneSharp.Map.Tiles
             {
                 Tiles = TileMaps["DEBUG"];
             }
-        }
-
-        private static Texture2D LoadTexture(string path, ContentManager content)
-        {
-            return content.Load<Texture2D>($"tilemaps/{path}");
         }
     }
 }

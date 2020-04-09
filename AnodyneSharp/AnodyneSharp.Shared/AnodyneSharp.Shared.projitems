@@ -12,10 +12,16 @@
     <Compile Include="$(MSBuildThisFileDirectory)AnodyneGame.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Camera.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\SpriteDrawer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Animations\Anim.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Entity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Player\Player.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameTimes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Input\Buttons\PlayerButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Input\Buttons\RebindableKey.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Input\Mouse\MouseButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Input\KeyInput.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Logger\DebugLogger.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Logger\LogLine.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Map\MapLoader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Map\Tiles\Tile.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Map\Tiles\TileData.cs" />
@@ -24,9 +30,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Registry\GlobalState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\PlayState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\State.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\MapUtilities.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\TextureUtilities.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Entities\Player\" />
     <Folder Include="$(MSBuildThisFileDirectory)Map\Tiles\" />
   </ItemGroup>
   <ItemGroup>

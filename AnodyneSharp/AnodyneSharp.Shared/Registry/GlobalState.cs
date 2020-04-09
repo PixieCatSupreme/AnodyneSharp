@@ -28,6 +28,8 @@
         public static int GRID_ENEMIES_DEAD = 0;
 	    public static int GRID_PUZZLES_DONE = 0;
 
+        public static bool FUCK_IT_MODE_ON = false; 
+
         //Cool new debug values
 #if DEBUG
         public static bool DrawBG = true;

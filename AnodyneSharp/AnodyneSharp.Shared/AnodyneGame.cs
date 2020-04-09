@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using AnodyneSharp.Input;
+using AnodyneSharp.Entities.Player;
 
 #endregion
 
@@ -69,6 +70,8 @@ namespace AnodyneSharp
             GlobalState.CURRENT_MAP_NAME = "STREET";
 
             TileData.LoadTileMaps(Content);
+
+            Player.SetSprites(Content);
             _currentState.Create();
         }
 
@@ -82,8 +85,7 @@ namespace AnodyneSharp
 
             // TODO: Add your update logic here			
             base.Update(gameTime);
-
-
+            GameTimes.UpdateTimes(gameTime);
 
             _camera.Update();
 
@@ -97,6 +99,7 @@ namespace AnodyneSharp
         protected override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);
+            GameTimes.UpdateFPS(gameTime);
 
             SpriteDrawer.BeginDraw(_camera);
             _currentState.Draw();

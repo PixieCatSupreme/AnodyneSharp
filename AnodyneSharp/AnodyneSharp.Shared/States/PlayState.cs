@@ -1,9 +1,14 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Player;
 using AnodyneSharp.Input;
 using AnodyneSharp.Map;
 using AnodyneSharp.Map.Tiles;
 using AnodyneSharp.Registry;
+using AnodyneSharp.Utilities;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+
+using static AnodyneSharp.Registry.GameConstants;
 
 namespace AnodyneSharp.States
 {
@@ -16,6 +21,8 @@ namespace AnodyneSharp.States
         private bool[] mapData;
         private bool fg_solid;
 
+        private Player player;
+
         private Camera _camera;
 
         public PlayState(Camera camera)
@@ -25,6 +32,8 @@ namespace AnodyneSharp.States
             map_fg = new TileMap();
 
             _camera = camera;
+
+            player = new Player();
         }
 
         public override void Create()
@@ -38,7 +47,6 @@ namespace AnodyneSharp.States
         {
             base.Draw();
 
-            //Screens are 10x10 probably!
 #if DEBUG
             if (GlobalState.DrawBG)
             {
@@ -58,11 +66,15 @@ namespace AnodyneSharp.States
             map_bg_2.Draw(0.1f, true);
             map_fg.Draw(0.2f, true);
 #endif
+
+            player.Draw();
         }
 
         public override void Update()
         {
             base.Update();
+
+            player.Update();
 
 #if RELEASE
         }
@@ -98,50 +110,29 @@ namespace AnodyneSharp.States
 
             if (GlobalState.MovingCamera)
             {
-                if (!GlobalState.FreeRoamCamera)
+                float camSpeed = !GlobalState.FreeRoamCamera ? SCREEN_WIDTH_IN_PIXELS : KeyInput.IsKeyPressed(Keys.LeftShift) ? 8 : 4;
+
+                if (KeyInput.CanPressKey(Keys.NumPad4))
                 {
-                    float camSpeed = GameConstants.SCREEN_WIDTH_IN_TILES * 16;
-
-                    if (KeyInput.CanPressKey(Keys.Left))
-                    {
-                        _camera.Move(-camSpeed, 0);
-                    }
-                    else if (KeyInput.CanPressKey(Keys.Right))
-                    {
-                        _camera.Move(camSpeed, 0);
-                    }
-
-                    if (KeyInput.CanPressKey(Keys.Up))
-                    {
-                        _camera.Move(0, -camSpeed);
-                    }
-                    else if (KeyInput.CanPressKey(Keys.Down))
-                    {
-                        _camera.Move(0, camSpeed);
-                    }
+                    _camera.Move(-camSpeed, 0);
                 }
-                else
+                else if (KeyInput.CanPressKey(Keys.NumPad6))
                 {
+                    _camera.Move(camSpeed, 0);
+                }
 
-                    float camSpeed = KeyInput.IsKeyPressed(Keys.LeftShift) ? 8 : 4;
+                if (KeyInput.CanPressKey(Keys.NumPad8))
+                {
+                    _camera.Move(0, -camSpeed);
+                }
+                else if (KeyInput.CanPressKey(Keys.NumPad2))
+                {
+                    _camera.Move(0, camSpeed);
+                }
 
-                    if (KeyInput.IsKeyPressed(Keys.Left))
-                    {
-                        _camera.Move(-camSpeed, 0);
-                    }
-                    else if (KeyInput.IsKeyPressed(Keys.Right))
-                    {
-                        _camera.Move(camSpeed, 0);
-                    }
-
-                    if (KeyInput.IsKeyPressed(Keys.Up))
-                    {
-                        _camera.Move(0, -camSpeed);
-                    }
-                    else if (KeyInput.IsKeyPressed(Keys.Down))
-                    {
-                        _camera.Move(0, camSpeed);
-                    }
+                if (KeyInput.CanPressKey(Keys.D1))
+                {
+                    _camera.GoTo(MapUtilities.GetCamRoomPos(new Vector2(1, 5)));
                 }
             }
         }
@@ -150,18 +141,21 @@ namespace AnodyneSharp.States
         private void LoadMap()
         {
             TileData.SetTileset(Registry.GlobalState.CURRENT_MAP_NAME);
-            map.LoadMap(MapLoader.GetMap(Registry.GlobalState.CURRENT_MAP_NAME), TileData.Tiles, 16, 16);
+            map.LoadMap(MapLoader.GetMap(Registry.GlobalState.CURRENT_MAP_NAME), TileData.Tiles);
             mapData = map.GetData();
 
             //map_bg_2.null_buffer(0);
             //map_fg.null_buffer(0);
 
-            map_bg_2.LoadMap(MapLoader.GetMap(Registry.GlobalState.CURRENT_MAP_NAME, 2), TileData.Tiles, 16, 16);
-            map_bg_2.y = Registry.GameConstants.HEADER_HEIGHT;
-            map_fg.LoadMap(MapLoader.GetMap(Registry.GlobalState.CURRENT_MAP_NAME, 3), TileData.Tiles, 16, 16);
-            map_fg.y = Registry.GameConstants.HEADER_HEIGHT;
+            map_bg_2.LoadMap(MapLoader.GetMap(GlobalState.CURRENT_MAP_NAME, 2), TileData.Tiles);
+            map_bg_2.y = HEADER_HEIGHT;
+            map_fg.LoadMap(MapLoader.GetMap(GlobalState.CURRENT_MAP_NAME, 3), TileData.Tiles);
+            map_fg.y = HEADER_HEIGHT;
 
-            _camera.Move(0, -GameConstants.HEADER_HEIGHT - GameConstants.TILE_HEIGHT * 2 + 2);
+            _camera.GoTo(MapUtilities.AddCamOffset(Vector2.Zero));
+
+            player.Position = MapUtilities.GetRoomUpperLeftPos(new Vector2(1, 5));
+            player.Reset();
 
             //Sets tile collission and tile events
             //TileData.set_tile_properties(map_bg_2);
