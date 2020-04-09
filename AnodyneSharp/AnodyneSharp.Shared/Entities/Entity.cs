@@ -22,9 +22,9 @@ namespace AnodyneSharp.Entities
 
         public bool solid;
         public bool visible;
+        public Vector2 velocity;
 
         protected Vector2 offset;
-        protected Vector2 velocity;
         protected Facing facing;
 
         protected int _curFrame;

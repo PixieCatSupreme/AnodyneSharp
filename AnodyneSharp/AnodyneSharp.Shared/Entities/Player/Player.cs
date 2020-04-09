@@ -40,7 +40,9 @@ namespace AnodyneSharp.Entities.Player
         public static Texture2D Player_Mobile_Indicator_Sprite;
 
         public static Texture2D Player_reflection_Sprite;
+        internal float grid_entrance_y;
         public static Texture2D Broom_reflection_sprite;
+        internal bool dontMove;
 
         public static void SetSprites(ContentManager content)
         {
@@ -72,6 +74,8 @@ namespace AnodyneSharp.Entities.Player
         public int DEATH_FRAME;
 
         public PlayerState state;
+        internal bool invincible;
+        internal float grid_entrance_x;
 
         public Player()
             : base(Vector2.Zero, ORIGINAL_WIDTH, ORIGINAL_HEIGHT)
@@ -143,7 +147,15 @@ namespace AnodyneSharp.Entities.Player
                 solid = true;
             }
 
-            Movement();
+            //if (!common_conditions())
+            //{
+            //    return;
+            //}
+
+            if (!dontMove)
+            {
+                Movement();
+            }
 
             base.Update();
         }
@@ -154,14 +166,14 @@ namespace AnodyneSharp.Entities.Player
             {
                 case PlayerState.GROUND:
                     //my_shadow.visible = false;
-                    //if (dontMove)
-                    //{
-                    //    velocity.x = 0; velocity.y = 0;
-                    //}
-                    //else
-                    //{
-                    ground_movement();  //modify player vels
-                    //}
+                    if (dontMove)
+                    {
+                        velocity = Vector2.Zero;
+                    }
+                    else
+                    {
+                        ground_movement();  //modify player vels
+                    }
 
                     //falling_logic();
 

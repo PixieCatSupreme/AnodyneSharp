@@ -40,14 +40,14 @@ namespace AnodyneSharp.Drawing
         {
             _spriteBatch.Draw(texture, rect,
                 crop, color ?? Color.White, rotation,
-                new Vector2(texture.Width / 2, texture.Height / 2), SpriteEffects.None, Z);
+                new Vector2(rect.Width / 2, rect.Height / 2), SpriteEffects.None, Z);
         }
 
         public static void DrawGuiSprite(Texture2D texture, Rectangle rect, Rectangle? crop = null, Color? color = null, float rotation = 0, float Z = 0)
         {
             _guiSpriteBatch.Draw(texture, rect,
                 crop, color ?? Color.White, rotation,
-                new Vector2(texture.Width / 2, texture.Height / 2), SpriteEffects.None, Z);
+                new Vector2(rect.Width / 2, rect.Height / 2), SpriteEffects.None, Z);
         }
 
         public static void EndDraw()

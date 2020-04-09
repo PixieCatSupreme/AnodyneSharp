@@ -1,5 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 
+using static AnodyneSharp.Registry.GameConstants;
+
 namespace AnodyneSharp.Drawing
 {
     /// <summary>
@@ -16,19 +18,11 @@ namespace AnodyneSharp.Drawing
         private float _screenWidth;
         private float _screenHeight;
 
-        public Rectangle ViewArea
-        {
-            get
-            {
-                return new Rectangle((int)(Position.X - _screenWidth / Zoom / 2), (int)(Position.Y - _screenHeight / Zoom / 2), (int)(_screenWidth / Zoom), (int)(_screenHeight / Zoom));
-            }
-        }
-
         public Vector2 Position2D
         {
             get
             {
-                return new Vector2(Position.X, Position.Y);
+                return new Vector2(Position.X,Position.Y) - new Vector2(SCREEN_WIDTH_IN_PIXELS, SCREEN_HEIGHT_IN_PIXELS) / 2 - new Vector2(-8, 2);
             }
         }
 
@@ -92,19 +86,14 @@ namespace AnodyneSharp.Drawing
 
         public void GoTo(float x, float y)
         {
-            Position = new Vector3(x, y, Position.Z);
-            Update();
+            GoTo(new Vector2(x, y));
         }
 
         public void GoTo(Vector2 target)
         {
+            target += new Vector2(SCREEN_WIDTH_IN_PIXELS, SCREEN_HEIGHT_IN_PIXELS) / 2 + new Vector2(-8, -HEADER_HEIGHT + 2);
             Position = new Vector3(target, Position.Z);
             Update();
-        }
-
-        public Vector2 GetRelativePos(Vector2 target)
-        {
-            return target + new Vector2(Position.X - _screenWidth / 2, Position.Y - _screenHeight / 2);
         }
     }
 }

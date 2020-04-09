@@ -16,15 +16,5 @@ namespace AnodyneSharp.Utilities
         {
             return pos * SCREEN_WIDTH_IN_PIXELS;
         }
-
-        public static Vector2 GetCamRoomPos(Vector2 pos)
-        {
-            return AddCamOffset(pos * SCREEN_WIDTH_IN_PIXELS);
-        }
-
-        public static Vector2 AddCamOffset(Vector2 pos)
-        {
-            return new Vector2(pos.X, pos.Y - HEADER_HEIGHT - TILE_HEIGHT * 2 + 2);
-        }
     }
 }
