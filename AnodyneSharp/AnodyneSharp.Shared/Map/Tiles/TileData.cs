@@ -1,4 +1,6 @@
-﻿using AnodyneSharp.Utilities;
+﻿using AnodyneSharp.Entities;
+using AnodyneSharp.Registry;
+using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -6,6 +8,17 @@ using System.Linq;
 
 namespace AnodyneSharp.Map.Tiles
 {
+    public enum CollisionEventType
+    {
+        NONE,
+        CONVEYOR,
+        THIN,
+        HOLE,
+        SLOW,
+        SPIKE,
+        LADDER
+    }
+
     public static class TileData
     {
         private static SortedList<string, Texture2D> TileMaps;
@@ -69,6 +82,14 @@ namespace AnodyneSharp.Map.Tiles
             else
             {
                 Tiles = TileMaps["DEBUG"];
+            }
+        }
+
+        public static void Set_tile_properties(TileMap map)
+        {
+            if (GlobalState.CURRENT_MAP_NAME == "STREET")
+            {
+                map.SetTileProperties(29, Touching.NONE, tileMax: 80);
             }
         }
     }

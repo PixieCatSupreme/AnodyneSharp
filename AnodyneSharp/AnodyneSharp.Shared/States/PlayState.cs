@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities;
 using AnodyneSharp.Entities.Player;
 using AnodyneSharp.Input;
 using AnodyneSharp.Map;
@@ -34,7 +35,6 @@ namespace AnodyneSharp.States
         private TileMap map_bg_2; //on top of the bg map
         private TileMap map_fg; // on top of all sprites but below darkness
 
-        private bool[] mapData;
         private bool fg_solid;
 
         private Player player;
@@ -52,7 +52,7 @@ namespace AnodyneSharp.States
 
             _camera = camera;
 
-            player = new Player();
+            player = new Player(this);
         }
 
         public override void Create()
@@ -77,7 +77,7 @@ namespace AnodyneSharp.States
             }
             if (GlobalState.DrawFG)
             {
-                map_fg.Draw(0.2f, true);
+                map_fg.Draw(0.3f, true);
             }
 
 #else
@@ -93,8 +93,6 @@ namespace AnodyneSharp.States
         {
             base.Update();
 
-            player.Update();
-
             switch (state)
             {
                 case PlayStateState.S_NORMAL:
@@ -103,7 +101,7 @@ namespace AnodyneSharp.States
                 case PlayStateState.S_TRANSITION:
                     //Registry.sound_data.current_song.volume = FlxG.volume * Registry.volume_scale;
                     StateTransition();
-                    //doCollisions();
+                    DoCollisions();
                     return;
                 case PlayStateState.S_PAUSED:
                     break;
@@ -121,10 +119,23 @@ namespace AnodyneSharp.States
                     break;
             }
 
-#if RELEASE
-        }
-#else
+            DoCollisions();
+            player.Update();
+            player.PostUpdate();
+#if DEBUG
             DebugKeyInput();
+#endif
+        }
+
+        public Touching GetTileCollisionFlags(Vector2 position)
+        {
+            return map.GetCollisionData(position) | map_bg_2.GetCollisionData(position);
+        }
+
+        private void DoCollisions()
+        {
+            map.Collide(player, onlyCurrentScreen: true);
+            map_bg_2.Collide(player, onlyCurrentScreen: false);
         }
 
         private void StateNormal()
@@ -168,7 +179,7 @@ namespace AnodyneSharp.States
             //debugText.text += " ub: " + upperBorder.toString() + "leb: " + leftBorder.toString() + "\n camx: " + FlxG.camera.bounds.x.toString() + "camy: " + FlxG.camera.bounds.y.toString() + 
             //"\n x: " + player.x.toFixed(2) + " y: " + player.y.toFixed(2);
 
-            if (state ==  PlayStateState.S_TRANSITION)
+            if (state == PlayStateState.S_TRANSITION)
             {
                 player.grid_entrance_x = player.Position.X;
                 player.grid_entrance_y = player.Position.Y;
@@ -221,7 +232,7 @@ namespace AnodyneSharp.States
         {
             if (_camera.Position2D.X < _gridBorders.X - Scroll_Increment)
             {
-                _camera.Move(Scroll_Increment,0);
+                _camera.Move(Scroll_Increment, 0);
                 return true;
             }
             else if (_camera.Position2D.Y < _gridBorders.Y - Scroll_Increment - HEADER_HEIGHT)
@@ -246,6 +257,7 @@ namespace AnodyneSharp.States
             }
         }
 
+#if DEBUG
         private void DebugKeyInput()
         {
 
@@ -305,7 +317,6 @@ namespace AnodyneSharp.States
         {
             TileData.SetTileset(Registry.GlobalState.CURRENT_MAP_NAME);
             map.LoadMap(MapLoader.GetMap(Registry.GlobalState.CURRENT_MAP_NAME), TileData.Tiles);
-            mapData = map.GetData();
 
             //map_bg_2.null_buffer(0);
             //map_fg.null_buffer(0);
@@ -315,26 +326,22 @@ namespace AnodyneSharp.States
             map_fg.LoadMap(MapLoader.GetMap(GlobalState.CURRENT_MAP_NAME, 3), TileData.Tiles);
             map_fg.y = HEADER_HEIGHT;
 
-            Vector2 gridPos = new Vector2(1,5);
+            Vector2 gridPos = new Vector2(1, 5);
             Vector2 roomPos = MapUtilities.GetRoomUpperLeftPos(gridPos);
 
             GlobalState.CURRENT_GRID_X = (int)gridPos.X;
             GlobalState.CURRENT_GRID_Y = (int)gridPos.Y;
 
 
-            player.Position = roomPos + new Vector2(32,32);
+            player.Position = roomPos + new Vector2(32, 32);
             player.Reset();
 
             _camera.GoTo(roomPos);
             UpdateScreenBorders();
 
             //Sets tile collission and tile events
-            //TileData.set_tile_properties(map_bg_2);
-            //if (Registry.GlobalState.CURRENT_MAP_NAME == "OVERWORLD")
-            //{
-            //    TileData.set_tile_properties(map_fg);
-            //    fg_solid = true;
-            //}
+            TileData.Set_tile_properties(map);
+            TileData.Set_tile_properties(map_bg_2);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using AnodyneSharp.Input;
 using AnodyneSharp.Registry;
+using AnodyneSharp.States;
 using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -44,6 +45,8 @@ namespace AnodyneSharp.Entities.Player
         public static Texture2D Broom_reflection_sprite;
         internal bool dontMove;
 
+
+
         public static void SetSprites(ContentManager content)
         {
             string folder = "sprites";
@@ -76,11 +79,15 @@ namespace AnodyneSharp.Entities.Player
         public PlayerState state;
         internal bool invincible;
         internal float grid_entrance_x;
+        private Vector2 additionalVel;
 
-        public Player()
+        private PlayState parent;
+
+        public Player(PlayState parent)
             : base(Vector2.Zero, ORIGINAL_WIDTH, ORIGINAL_HEIGHT)
         {
             //DEATH_FRAME = 32;
+            this.parent = parent;
 
             AddAnimation("walk_d", CreateAnimFrameArray(1, 0), 6, true);
             AddAnimation("walk_r", CreateAnimFrameArray(2, 3), 8, true);
@@ -157,8 +164,58 @@ namespace AnodyneSharp.Entities.Player
                 Movement();
             }
 
+            additionalVel = Vector2.Zero;
+
             base.Update();
         }
+
+  //      private bool Common_conditions() 
+		//{
+		//	//Registry.CUR_HEALTH = health_bar.cur_health;
+			
+		//	if (parent.state == parent.S_TRANSITION) {
+		//		dontMove = true;
+		//		velocity.X = velocity.Y = 0;
+		//		//if (ON_RAFT) {
+		//		//	raft.x = x - 2;
+		//		//	raft.y = y - 3;
+		//		//	conveyer_fudge_factor = 5; // <_<
+		//		//}
+				
+		//		if (state ==  PlayerState.AIR) {
+		//			my_shadow.x = x + JUMP_SHADOW_X_OFF + 1;
+		//			my_shadow.y = y + JUMP_SHADOW_Y_OFF - 3;
+		//		}
+		//		return false;
+		//	}
+			
+		//	if (parent.SWITCH_MAPS || !alive)
+  //          {
+		//		base.Update();
+		//		return false;
+		//	}
+			
+		//	if (!solid && just_fell)
+  //          {
+		//		solid = true;
+		//		just_fell = false;
+		//	}
+
+		//	if (invincible_timer > 0)
+  //          {
+  //              invincible_timer -= GameTimes.DeltaTime;
+		//	}
+  //          else
+  //          {
+		//		invincible = false;
+		//		if (!GlobalState.FUCK_IT_MODE_ON)
+  //              {
+		//			visible = true;
+		//		}
+		//	}
+			
+		//	return true;
+		//}
 
         private void Movement()
         {
@@ -172,7 +229,7 @@ namespace AnodyneSharp.Entities.Player
                     }
                     else
                     {
-                        ground_movement();  //modify player vels
+                        Ground_movement();  //modify player vels
                     }
 
                     //falling_logic();
@@ -199,7 +256,7 @@ namespace AnodyneSharp.Entities.Player
                     //    update_actions(Registry.keywatch.ACTION_1, Registry.keywatch.JP_ACTION_1, Registry.bound_item_1);
                     //    update_actions(Registry.keywatch.ACTION_2, Registry.keywatch.JP_ACTION_2, Registry.bound_item_2);
                     //}
-                    ground_animation();
+                    Ground_animation();
 
                     //just_landed = false;
                     //dash_logic();
@@ -222,7 +279,7 @@ namespace AnodyneSharp.Entities.Player
             }
         }
 
-        private void ground_animation()
+        private void Ground_animation()
         {
             switch (ANIM_STATE)
             {
@@ -309,7 +366,7 @@ namespace AnodyneSharp.Entities.Player
                     {
                         if (velocity.Y < 0)
                         {
-                            if (facing != Facing.UP || (_curAnim != null && _curAnim.name != "walk_u"))
+                            if (facing != Facing.UP)
                             {
                                 facing = Facing.UP;
                                 Play("walk_u");
@@ -348,21 +405,74 @@ namespace AnodyneSharp.Entities.Player
             }
         }
 
-        private void ground_movement()
+        protected override void AnimationChanged(string name)
         {
-            set_init_vel();
+            switch(name)
+            {
+                case "walk_l":
+                case "attack_left":
+                    offset.X = 4;
+                    break;
+                case "walk_r":
+                case "attack_right":
+                case "walk_d":
+                case "attack_down":
+                case "walk_u":
+                case "attack_up":
+                    offset.X = 3;
+                    break;
+            }
         }
 
-        private void set_init_vel(float mul = 1)
+        private void Ground_movement()
+        {
+            Set_init_vel();
+
+            if (velocity.X != 0 && velocity.Y != 0)
+            {
+                velocity *= .7f;
+            }
+
+            velocity += additionalVel;
+            velocity *= GameTimes.DeltaTime;
+        }
+
+        private void Set_init_vel(float mul = 1)
         {
             if (KeyInput.IsKeyPressed(Keys.Up))
             {
-                velocity.Y = -mul * walkSpeed /* c_vel*/;
+                velocity.Y = -mul;
+                if ((touching & Touching.UP) != 0)
+                {
+                    Touching tl = parent.GetTileCollisionFlags(Position + new Vector2(0,-8));
+                    Touching tr = parent.GetTileCollisionFlags(Position + new Vector2(width,-8));
+                    if ((Position.X + width) % 16 < 6 && (tl & Touching.DOWN) == 0)
+                    {
+                        additionalVel.X = -30;
+                    }
+                    else if ((Position.X % 16) > 9 && (tr & Touching.DOWN) == 0)
+                    {
+                        additionalVel.X = 30;
+                    }
+                }
+
             }
             else if (KeyInput.IsKeyPressed(Keys.Down))
             {
-                velocity.Y = mul * walkSpeed /* c_vel*/;
-
+                velocity.Y = mul;
+                if ((touching & Touching.DOWN) != 0)
+                {
+                    Touching bl = parent.GetTileCollisionFlags(Position + new Vector2(0, height+8));
+                    Touching br = parent.GetTileCollisionFlags(Position + new Vector2(width,height+8));
+                    if ((Position.X + width) % 16 < 6 && (bl & Touching.UP) == 0)
+                    {
+                        additionalVel.X = -30;
+                    }
+                    else if ((Position.X % 16) > 9 && (br & Touching.UP) == 0)
+                    {
+                        additionalVel.X = 30;
+                    }
+                }
             }
             else
             {
@@ -371,19 +481,44 @@ namespace AnodyneSharp.Entities.Player
 
             if (KeyInput.IsKeyPressed(Keys.Left))
             {
-                velocity.X = -mul * walkSpeed /* c_vel*/;
+                velocity.X = -mul;
+                if ((touching & Touching.LEFT) != 0)
+                {
+                    Touching tl2 = parent.GetTileCollisionFlags(Position + new Vector2(-8,0));
+                    Touching bl2 = parent.GetTileCollisionFlags(Position + new Vector2(-8, height));
+                    if ((Position.Y + height) % 16 < 6 && (tl2 & Touching.RIGHT) == 0)
+                    {
+                        additionalVel.Y = -30;
+                    }
+                    else if (Position.Y % 16 > 9 && (bl2 & Touching.RIGHT) == 0)
+                    {
+                        additionalVel.Y = 30;
+                    }
+                }
             }
             else if (KeyInput.IsKeyPressed(Keys.Right))
             {
-                velocity.X = mul * walkSpeed /* c_vel*/;
-
+                velocity.X = mul;
+                if ((touching & Touching.RIGHT) != 0)
+                {
+                    Touching tr2 = parent.GetTileCollisionFlags(Position + new Vector2(width+8, 0));
+                    Touching br2 = parent.GetTileCollisionFlags(Position + new Vector2(width+8, height));
+                    if ((Position.Y + height) % 16 < 6 && (tr2 & Touching.LEFT) == 0)
+                    {
+                        additionalVel.Y = -30;
+                    }
+                    else if (Position.Y % 16 > 9 && (br2 & Touching.LEFT) == 0)
+                    {
+                        additionalVel.Y = 30;
+                    }
+                }
             }
             else
             {
                 velocity.X = 0;
             }
 
-            velocity *= GameTimes.DeltaTime;
+            velocity *= walkSpeed /* c_vel*/;
         }
     }
 }

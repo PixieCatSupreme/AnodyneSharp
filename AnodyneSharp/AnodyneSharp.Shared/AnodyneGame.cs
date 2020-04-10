@@ -68,6 +68,7 @@ namespace AnodyneSharp
         protected override void LoadContent()
         { 
             GlobalState.CURRENT_MAP_NAME = "STREET";
+            GlobalState.FreeRoamCamera = true;
 
             TileData.LoadTileMaps(Content);
 

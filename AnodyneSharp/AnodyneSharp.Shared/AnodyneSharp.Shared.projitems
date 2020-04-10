@@ -14,6 +14,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\SpriteDrawer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Animations\Anim.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Entity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\GameObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Player\Player.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameTimes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Input\Buttons\PlayerButton.cs" />
@@ -31,6 +32,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)States\PlayState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\State.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\MapUtilities.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\MathUtilities.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\TextureUtilities.cs" />
   </ItemGroup>
   <ItemGroup>

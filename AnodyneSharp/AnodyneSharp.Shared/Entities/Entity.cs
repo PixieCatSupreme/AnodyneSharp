@@ -1,6 +1,7 @@
 ﻿using AnodyneSharp.Drawing;
 using AnodyneSharp.Entities.Animations;
 using AnodyneSharp.Logging;
+using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -15,15 +16,15 @@ namespace AnodyneSharp.Entities
         DOWN
     }
 
-    public class Entity
+    public class Entity : GameObject
     {
-        public Vector2 Position;
+
         public Texture2D Texture;
 
         public bool solid;
-        public bool visible;
-        public Vector2 velocity;
 
+        public int frameWidth;
+        public int frameHeight;
         protected Vector2 offset;
         protected Facing facing;
 
@@ -37,12 +38,6 @@ namespace AnodyneSharp.Entities
         private float _frameTimer;
 
         private bool finished;
-
-		public int width;
-		public int height;
-
-        public int frameWidth;
-        public int frameHeight;
 
         private Rectangle spriteRect;
 
@@ -67,6 +62,8 @@ namespace AnodyneSharp.Entities
         {
             _animations.Add(new Anim(name, frames, frameRate, looped));
         }
+
+        protected virtual void AnimationChanged(string name) { }
 
         /**
  * Plays an existing animation (e.g. "run").
@@ -101,22 +98,28 @@ namespace AnodyneSharp.Entities
 
                     _curIndex = _curAnim.frames[_curFrame];
                     dirty = true;
+                    AnimationChanged(AnimName);
                     return;
                 }
             }
             DebugLogger.AddWarning("No animation called \"" + AnimName + "\"");
         }
 
-        public virtual void Update()
+        public override void Update()
         {
-            Position += velocity;
+            base.Update();
+        }
+
+        public override void PostUpdate()
+        {
+            base.PostUpdate();
 
             UpdateAnimation();
         }
 
         public void Draw()
         {
-            SpriteDrawer.DrawSprite(Texture, new Rectangle((int)Position.X, (int)Position.Y, frameWidth, frameHeight), spriteRect);
+            SpriteDrawer.DrawSprite(Texture, MathUtilities.CreateRectangle(Position.X - offset.X, Position.Y - offset.Y, frameWidth, frameHeight), spriteRect, Z: 0.2f);
         }
 
         protected void UpdateAnimation()

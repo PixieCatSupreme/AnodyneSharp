@@ -1,25 +1,16 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities;
+using AnodyneSharp.Entities.Player;
 using AnodyneSharp.Map.Tiles;
+using AnodyneSharp.Registry;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
 
 namespace AnodyneSharp.Map
 {
-    [Flags]
-    public enum CollissionDirections
-    {
-        NONE,
-        LEFT,
-        RIGHT,
-        UP,
-        DOWN
-    }
     public class TileMap
     {
-        public CollissionDirections allowCollisions;
-
         public float width;
         public float height;
         private Rectangle?[] _rects;
@@ -89,7 +80,9 @@ namespace AnodyneSharp.Map
 
             for (int i = 0; i < l; i++)
             {
-                _tileObjects[i] = new Tile(this, i, _tileWidth, _tileHeight, (i >= 1), (i >= 1) ? allowCollisions : CollissionDirections.NONE);
+                //Tile 0 is invisible and has no collision, all others default to being visible and being collidable from all directions.
+                //Default gets overridden by SetTileProperties later on
+                _tileObjects[i] = new Tile(_tileWidth, _tileHeight, (i >= 1), (i >= 1) ? Touching.ANY : Touching.NONE);
             }
 
             //Then go through and create the actual map
@@ -102,22 +95,52 @@ namespace AnodyneSharp.Map
             }
         }
 
-        public bool[] GetData()
+        internal void SetTileProperties(int tileMin, Touching allowCollisions, CollisionEventType collisionEventType = CollisionEventType.NONE, Touching direction = Touching.ANY, int tileMax = 0)
         {
-            if (_tileObjects.Length == 0)
+            if (tileMax == 0)
             {
-                return new bool[0];
+                tileMax = tileMin + 1;
             }
 
-            int lenght = data.Count;
-            bool[] collisions = new bool[lenght];
-
-            for (int i = 0; i < data.Count; i++)
+            for (int i = tileMin; i < tileMax; i++)
             {
-                collisions[i] = (_tileObjects[data[i]] as Tile)?.allowCollisions ?? false;
+                Tile tile = _tileObjects[i];
+
+                tile.allowCollisions = allowCollisions;
+                tile.collisionEventType = collisionEventType;
+            }
+        }
+
+        public void Collide(Entity ent, bool onlyCurrentScreen = false)
+        {
+            Rectangle hitbox = ent.Hitbox;
+            for(int y = hitbox.Top/GameConstants.TILE_WIDTH; y <= hitbox.Bottom/GameConstants.TILE_WIDTH; ++y)
+            {
+                if (y < 0) continue;
+                if (y >= heightInTiles) break;
+                if (onlyCurrentScreen && y / GameConstants.SCREEN_HEIGHT_IN_TILES != GlobalState.CURRENT_GRID_Y) continue;
+                for (int x = hitbox.Left / GameConstants.TILE_WIDTH; x <= hitbox.Right / GameConstants.TILE_WIDTH; ++x)
+                {
+                    if (x < 0) continue;
+                    if (x >= widthInTiles) break;
+                    if (onlyCurrentScreen && x / GameConstants.SCREEN_WIDTH_IN_TILES != GlobalState.CURRENT_GRID_X) continue;
+
+                    Tile t = _tileObjects[data[x + y * widthInTiles]];
+
+                    t.lastPosition.X = t.Position.X = x * GameConstants.TILE_WIDTH;
+                    t.lastPosition.Y = t.Position.Y = y * GameConstants.TILE_HEIGHT;
+
+                    if(t.allowCollisions == Touching.NONE || GameObject.Separate(ent,t))
+                    {
+                        if(t.collisionEventType != CollisionEventType.NONE)
+                        {
+                            //Call event method in TileData
+                        }
+                    }
+
+                }
             }
 
-            return collisions;
         }
 
         public void Draw(float z = 0, bool ignoreEmpty = false)
@@ -140,6 +163,15 @@ namespace AnodyneSharp.Map
                     }
                 }
             }
+        }
+
+        public Touching GetCollisionData(Vector2 position)
+        {
+            position /= GameConstants.TILE_HEIGHT;
+            if (position.X < 0 || position.X >= widthInTiles || position.Y < 0 || position.Y >= heightInTiles)
+                return Touching.NONE;
+
+            return _tileObjects[data[(int)position.X + (int)position.Y * widthInTiles]].allowCollisions;
         }
 
         protected void UpdateTile(int Index)

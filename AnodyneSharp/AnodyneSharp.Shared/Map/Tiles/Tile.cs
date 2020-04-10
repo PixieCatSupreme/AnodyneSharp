@@ -1,26 +1,21 @@
-﻿namespace AnodyneSharp.Map.Tiles
-{
-    internal class Tile
-    {
-        internal bool visible;
-        internal bool allowCollisions;
-        private TileMap tileMap;
-        private int index;
-        private int _tileWidth;
-        private int _tileHeight;
-        private bool v;
-        private CollissionDirections collissionDirections;
+﻿using AnodyneSharp.Entities;
 
-        public Tile(TileMap tileMap, int i, int tileWidth, int tileHeight, bool v, CollissionDirections collissionDirections)
+namespace AnodyneSharp.Map.Tiles
+{
+    public class Tile : GameObject
+    {
+        public CollisionEventType collisionEventType = CollisionEventType.NONE;
+        public Touching direction = Touching.ANY;
+
+        public Tile(int tileWidth, int tileHeight, bool visible, Touching collisionDirections)
         {
-            visible = true;
-            allowCollisions = false;
-            this.tileMap = tileMap;
-            index = i;
-            _tileWidth = tileWidth;
-            _tileHeight = tileHeight;
-            this.v = v;
-            this.collissionDirections = collissionDirections;
+            allowCollisions = collisionDirections;
+            immovable = true;
+            height = tileHeight;
+            width = tileWidth;
+            
+            this.visible = visible;
+
         }
     }
 }
