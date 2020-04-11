@@ -10,6 +10,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using AnodyneSharp.Input;
 using AnodyneSharp.Entities.Player;
+using AnodyneSharp.Entities;
+using System.Collections.Generic;
 
 #endregion
 
@@ -57,6 +59,10 @@ namespace AnodyneSharp
             SpriteDrawer.Initialize(graphics.GraphicsDevice);
 
             _currentState = new PlayState(_camera);
+
+            EntityManager.Initialize();
+
+            EntityManager.GetGridEntities("STREET",new Vector2(0, 4) , out List<EntityPreset> t, out List<EntityPreset> t2);
 
             base.Initialize();
         }

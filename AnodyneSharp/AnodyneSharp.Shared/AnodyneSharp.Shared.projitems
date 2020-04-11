@@ -13,8 +13,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Camera.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\SpriteDrawer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Animations\Anim.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Entities\Entity.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Entities\GameObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\Entity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\EntityPreset.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\GameObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Player\Player.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameTimes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Input\Buttons\PlayerButton.cs" />
@@ -29,6 +30,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Map\TileMap.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Registry\GameConstants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Registry\GlobalState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\EntityManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\PlayState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\State.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\MapUtilities.cs" />
@@ -36,7 +38,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\TextureUtilities.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Entities\Base\" />
     <Folder Include="$(MSBuildThisFileDirectory)Map\Tiles\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Resources\Loading\" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />
@@ -132,5 +136,8 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\WINDMILL_BG.csv" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\WINDMILL_BG2.csv" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\WINDMILL_FG.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Entities.xml" />
   </ItemGroup>
 </Project>
