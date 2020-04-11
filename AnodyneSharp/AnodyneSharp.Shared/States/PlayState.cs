@@ -8,7 +8,7 @@ using AnodyneSharp.Registry;
 using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-
+using System.Collections.Generic;
 using static AnodyneSharp.Registry.GameConstants;
 
 namespace AnodyneSharp.States
@@ -42,11 +42,15 @@ namespace AnodyneSharp.States
 
         private Rectangle _gridBorders;
 
+        private List<Entity> _gridEntities;
+
         public PlayState(Camera camera)
         {
             map = new TileMap();
             map_bg_2 = new TileMap();
             map_fg = new TileMap();
+
+            _gridEntities = new List<Entity>();
 
             _camera = camera;
 

@@ -13,13 +13,11 @@ namespace AnodyneSharp.Entities
     {
         private const string EntityFilePath = "Content.Entities.xml";
 
-        private static Dictionary<string, List<EntityPreset>> stateless;
-        private static Dictionary<string, List<EntityPreset>> stateful;
+        private static Dictionary<string, List<EntityPreset>> _entities;
 
         static EntityManager()
         {
-            stateless = new Dictionary<string, List<EntityPreset>>();
-            stateful = new Dictionary<string, List<EntityPreset>>();
+            _entities = new Dictionary<string, List<EntityPreset>>();
         }
 
         /// <summary>
@@ -44,34 +42,30 @@ namespace AnodyneSharp.Entities
         }
 
 
-        public static bool GetMapEntities(string mapName, out List<EntityPreset> mapStateless, out List<EntityPreset> mapStateful)
+        public static bool GetMapEntities(string mapName, out List<EntityPreset> entities)
         {
-            mapStateless = new List<EntityPreset>();
-            mapStateful = new List<EntityPreset>();
+            entities = new List<EntityPreset>();
 
-            if (!stateless.ContainsKey(mapName) || !stateful.ContainsKey(mapName))
+            if (!_entities.ContainsKey(mapName))
             {
                 return false;
             }
 
-            mapStateless = stateless[mapName];
-            mapStateful = stateful[mapName];
+            entities = _entities[mapName];
 
             return true;
         }
 
-        public static bool GetGridEntities(string mapName, Vector2 grid, out List<EntityPreset> gridStateless, out List<EntityPreset> gridStateful)
+        public static bool GetGridEntities(string mapName, Vector2 grid, out List<EntityPreset> entities)
         {
-            gridStateless = new List<EntityPreset>();
-            gridStateful = new List<EntityPreset>();
+            entities = new List<EntityPreset>();
 
-            if (!GetMapEntities(mapName, out gridStateless, out gridStateful))
+            if (!GetMapEntities(mapName, out entities))
             {
                 return false;
             }
 
-            gridStateless = gridStateless.Where(e => e.GridPosition == grid).ToList();
-            gridStateful = gridStateful.Where(e => e.GridPosition == grid).ToList();
+            entities = entities.Where(e => e.GridPosition == grid).ToList();
 
             return true;
         }
@@ -84,8 +78,6 @@ namespace AnodyneSharp.Entities
 
             XmlNode root = doc.FirstChild;
 
-            DebugLogger.AddInfo(root.Name);
-
             if (root.HasChildNodes)
             {
                 for (int i = 0; i < root.ChildNodes.Count; i++)
@@ -95,7 +87,12 @@ namespace AnodyneSharp.Entities
                     string mapName = map.Attributes.GetNamedItem("name").Value;
                     bool stateLess = map.Attributes.GetNamedItem("type").Value == "Stateless";
 
-                    List<EntityPreset> presets = new List<EntityPreset>();
+                    
+                    if(!_entities.ContainsKey(mapName))
+                    {
+                        _entities.Add(mapName, new List<EntityPreset>());
+                    }
+                    List<EntityPreset> presets = _entities[mapName];
 
                     foreach (XmlNode child in map.ChildNodes)
                     {
@@ -118,17 +115,15 @@ namespace AnodyneSharp.Entities
                                 type = child.Attributes.GetNamedItem("type").Value;
                             }
 
-                            presets.Add(new EntityPreset(child.Name, new Vector2(x, y), id,frame, p, type));
-                        }
-                    }
+                            bool alive = true;
 
-                    if (map.Attributes.GetNamedItem("type").Value == "Stateless")
-                    {
-                        stateless.Add(mapName, presets);
-                    }
-                    else
-                    {
-                        stateful.Add(mapName, presets);
+                            if (child.Attributes.GetNamedItem("alive") != null)
+                            {
+                                alive = bool.Parse(child.Attributes.GetNamedItem("alive").Value);
+                            }
+
+                            presets.Add(new EntityPreset(child.Name, new Vector2(x, y), id,frame, p, type, alive));
+                        }
                     }
                 }
             }

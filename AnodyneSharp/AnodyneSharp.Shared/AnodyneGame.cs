@@ -62,7 +62,7 @@ namespace AnodyneSharp
 
             EntityManager.Initialize();
 
-            EntityManager.GetGridEntities("STREET",new Vector2(0, 4) , out List<EntityPreset> t, out List<EntityPreset> t2);
+            EntityManager.GetGridEntities("STREET",new Vector2(0, 4) , out List<EntityPreset> t);
 
             base.Initialize();
         }

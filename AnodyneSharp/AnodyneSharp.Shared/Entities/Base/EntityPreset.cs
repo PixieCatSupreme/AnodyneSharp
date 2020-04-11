@@ -30,8 +30,9 @@ namespace AnodyneSharp.Entities
         public int Frame { get; private set; }
         public Permanence Permanence {get; set;}
         public string TypeValue { get; private set; }
+        public bool Alive { get; set; }
 
-        public EntityPreset(string name, Vector2 position, Guid entityID, int frame, Permanence permanence = Permanence.GRID_LOCAL, string type = "")
+        public EntityPreset(string name, Vector2 position, Guid entityID, int frame, Permanence permanence = Permanence.GRID_LOCAL, string type = "", bool alive = true)
         {
             Name = name;
             Position = position;
@@ -39,6 +40,7 @@ namespace AnodyneSharp.Entities
             Frame = frame;
             Permanence = permanence;
             TypeValue = type;
+            Alive = alive;
         }
 
         public override string ToString()
