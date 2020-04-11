@@ -35,8 +35,6 @@ namespace AnodyneSharp.States
         private TileMap map_bg_2; //on top of the bg map
         private TileMap map_fg; // on top of all sprites but below darkness
 
-        private bool fg_solid;
-
         private Player player;
 
         private Camera _camera;
