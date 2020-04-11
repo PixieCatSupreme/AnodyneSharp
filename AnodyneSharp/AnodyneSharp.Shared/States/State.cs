@@ -9,7 +9,6 @@ namespace AnodyneSharp.States
     {
         public virtual void Create()
         {
-
         }
 
         public virtual void Initialize()
@@ -23,6 +22,10 @@ namespace AnodyneSharp.States
         }
 
         public virtual void Draw()
+        {
+        }
+
+        public virtual void DrawUI()
         {
         }
     }

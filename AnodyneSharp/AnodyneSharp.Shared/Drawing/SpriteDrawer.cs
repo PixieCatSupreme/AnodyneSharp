@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AnodyneSharp.Utilities;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace AnodyneSharp.Drawing
@@ -11,6 +12,8 @@ namespace AnodyneSharp.Drawing
         private static GraphicsDevice _graphicsDevice;
         private static SpriteBatch _spriteBatch;
         private static SpriteBatch _guiSpriteBatch;
+
+        private static float _uiScale;
 
         public static void Initialize(GraphicsDevice graphicsDevice)
         {
@@ -28,26 +31,26 @@ namespace AnodyneSharp.Drawing
             _spriteBatch.Begin(sortMode: SpriteSortMode.FrontToBack, blendState: BlendState.AlphaBlend, samplerState: SamplerState, transformMatrix: camera.Transform);
         }
 
-        public static void BeginGUIDraw()
+        public static void BeginGUIDraw(float uiScale)
         {
-            _graphicsDevice.Clear(BackColor);
+            _uiScale = uiScale;
             _guiSpriteBatch.Begin(sortMode: SpriteSortMode.FrontToBack, blendState: BlendState.AlphaBlend, samplerState: SamplerState);
         }
 
 
 
-        public static void DrawSprite(Texture2D texture, Rectangle rect, Rectangle? crop = null, Color? color = null, float rotation = 0, float Z = 0)
+        public static void DrawSprite(Texture2D texture, Rectangle rect, Rectangle? sRect = null, Color? color = null, float rotation = 0, float Z = 0)
         {
             _spriteBatch.Draw(texture, rect,
-                crop, color ?? Color.White, rotation,
+                sRect, color ?? Color.White, rotation,
                 new Vector2(rect.Width / 2, rect.Height / 2), SpriteEffects.None, Z);
         }
 
-        public static void DrawGuiSprite(Texture2D texture, Rectangle rect, Rectangle? crop = null, Color? color = null, float rotation = 0, float Z = 0)
+        public static void DrawGuiSprite(Texture2D texture, Vector2 pos, Rectangle? sRect = null, Color? color = null, float rotation = 0, float Z = 0)
         {
-            _guiSpriteBatch.Draw(texture, rect,
-                crop, color ?? Color.White, rotation,
-                new Vector2(rect.Width / 2, rect.Height / 2), SpriteEffects.None, Z);
+            _guiSpriteBatch.Draw(texture, pos * _uiScale,
+                sRect, color ?? Color.White, rotation,
+                new Vector2(0,0), _uiScale, SpriteEffects.None, Z);
         }
 
         public static void EndDraw()

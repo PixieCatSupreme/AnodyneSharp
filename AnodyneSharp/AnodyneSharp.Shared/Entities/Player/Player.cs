@@ -45,8 +45,6 @@ namespace AnodyneSharp.Entities.Player
         public static Texture2D Broom_reflection_sprite;
         internal bool dontMove;
 
-
-
         public static void SetSprites(ContentManager content)
         {
             string folder = "sprites";

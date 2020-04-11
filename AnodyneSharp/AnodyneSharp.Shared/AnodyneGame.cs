@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using AnodyneSharp.Input;
 using AnodyneSharp.Entities.Player;
+using AnodyneSharp.UI;
 
 #endregion
 
@@ -56,9 +57,12 @@ namespace AnodyneSharp
         {
             SpriteDrawer.Initialize(graphics.GraphicsDevice);
 
-            _currentState = new PlayState(_camera);
+            GlobalState.CUR_HEALTH = GlobalState.MAX_HEALTH = 16;
 
             base.Initialize();
+
+            _currentState = new PlayState(_camera);
+            _currentState.Create();
         }
 
         /// <summary>
@@ -68,12 +72,13 @@ namespace AnodyneSharp
         protected override void LoadContent()
         { 
             GlobalState.CURRENT_MAP_NAME = "STREET";
-            GlobalState.FreeRoamCamera = true;
+
+            PlayState.SetSprites(Content);
 
             TileData.LoadTileMaps(Content);
+            HealthBarPiece.SetSprites(Content);
 
             Player.SetSprites(Content);
-            _currentState.Create();
         }
 
         /// <summary>
@@ -106,7 +111,9 @@ namespace AnodyneSharp
             _currentState.Draw();
             SpriteDrawer.EndDraw();
 
-
+            SpriteDrawer.BeginGUIDraw(graphics.PreferredBackBufferWidth / GameConstants.SCREEN_WIDTH_IN_PIXELS);
+            _currentState.DrawUI();
+            SpriteDrawer.EndGUIDraw();
         }
     }
 }

@@ -28,7 +28,7 @@ namespace AnodyneSharp.Entities
         protected Vector2 offset;
         protected Facing facing;
 
-        protected int _curFrame;
+        public int _curFrame;
         protected int _curIndex;
         protected Anim _curAnim;
 
@@ -39,7 +39,7 @@ namespace AnodyneSharp.Entities
 
         private bool finished;
 
-        private Rectangle spriteRect;
+        protected Rectangle spriteRect;
 
         public Entity(Vector2 pos, int frameWidth, int frameHeight)
         {
@@ -117,7 +117,7 @@ namespace AnodyneSharp.Entities
             UpdateAnimation();
         }
 
-        public void Draw()
+        public virtual void Draw()
         {
             SpriteDrawer.DrawSprite(Texture, MathUtilities.CreateRectangle(Position.X - offset.X, Position.Y - offset.Y, frameWidth, frameHeight), spriteRect, Z: 0.2f);
         }
