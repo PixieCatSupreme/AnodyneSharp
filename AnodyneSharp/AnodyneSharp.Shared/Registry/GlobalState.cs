@@ -1,4 +1,6 @@
-﻿namespace AnodyneSharp.Registry
+﻿using AnodyneSharp.Entities.Player;
+
+namespace AnodyneSharp.Registry
 {
     public static class GlobalState
     {
@@ -26,13 +28,19 @@
 
         /* Grid-local state that needs to be accessed globally for events */
         public static int GRID_ENEMIES_DEAD = 0;
-	    public static int GRID_PUZZLES_DONE = 0;
+        public static int GRID_PUZZLES_DONE = 0;
 
         public static bool FUCK_IT_MODE_ON = false;
 
+        //Inventory stuff
+
+        public static BroomType EquippedBroom = BroomType.NONE;
+        //TODO add check for which broom types are picked up
+        public static bool CanJump;
+
         //Health stuff
         public static int CUR_HEALTH;
-	    public static int MAX_HEALTH;
+        public static int MAX_HEALTH;
 
         //Cool new debug values
 #if DEBUG

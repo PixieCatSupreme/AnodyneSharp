@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Input;
+﻿using System;
+using AnodyneSharp.Input;
 using AnodyneSharp.Registry;
 using AnodyneSharp.States;
 using AnodyneSharp.Utilities;
@@ -36,12 +37,17 @@ namespace AnodyneSharp.Entities.Player
 
     public class Player : Entity
     {
-        public static string Player_Sprite = "young_player";
-        public static string Cell_Player_Sprite = "young_player_cell";
-        public static string Player_Mobile_Indicator_Sprite = "player_mobile_indicator";
+        public const string Player_Sprite = "young_player";
+        public const string Cell_Player_Sprite = "young_player_cell";
+        public const string Player_Mobile_Indicator_Sprite = "player_mobile_indicator";
 
-        public static string Player_reflection_Sprite = "young_player_reflection";
-        public static string Broom_reflection_sprite = "broom_reflection";
+        public const string Player_reflection_Sprite = "young_player_reflection";
+        public const string Broom_reflection_sprite = "broom_reflection";
+
+        public const float action_latency_max = 0.24f;
+		public const float ATK_DELAY = 0.2f;
+		public const float WATK_DELAY = 0.35f;
+		public const float LATK_DELAY = 0.4f;
 
         internal bool dontMove;
 
@@ -69,12 +75,18 @@ namespace AnodyneSharp.Entities.Player
         internal float grid_entrance_x;
         private Vector2 additionalVel;
 
+        private float action_latency;
+
+        public Broom broom;
+
         private PlayState parent;
+        private bool hasFallen;
+        private bool actions_disabled;
 
         public Player(PlayState parent)
             : base(Vector2.Zero, ORIGINAL_WIDTH, ORIGINAL_HEIGHT)
         {
-            //DEATH_FRAME = 32;
+            DEATH_FRAME = 32;
             this.parent = parent;
 
             AddAnimation("walk_d", CreateAnimFrameArray(1, 0), 6, true);
@@ -110,6 +122,8 @@ namespace AnodyneSharp.Entities.Player
 
             Play("idle_u");
             ANIM_STATE = PlayerAnimState.as_idle;
+
+            broom = new Broom(this);
         }
 
         public void Reset()
@@ -122,6 +136,13 @@ namespace AnodyneSharp.Entities.Player
             {
                 SetTexture(Player_Sprite);
             }
+        }
+
+        public override void Draw()
+        {
+            base.Draw();
+
+            broom.Draw();
         }
 
         public override void Update()
@@ -225,25 +246,16 @@ namespace AnodyneSharp.Entities.Player
 
                     //update_sentinels();
 
-                    //for each(var t: * in Registry.subgroup_interactives) {
-                    //    if (t != null)
-                    //    {
-                    //        if (t.active_region != null && t.active_region.overlaps(this))
-                    //        {
-                    //            actions_disabled = true;
-                    //            break; // As soon as this is true we can stop checking
-                    //        }
-                    //    }
-                    //}
-                    //if (!hasFallen && !actions_disabled)
-                    //{
-                    //    if (action_latency > 0)
-                    //    {
-                    //        action_latency -= FlxG.elapsed;
-                    //    }
-                    //    update_actions(Registry.keywatch.ACTION_1, Registry.keywatch.JP_ACTION_1, Registry.bound_item_1);
-                    //    update_actions(Registry.keywatch.ACTION_2, Registry.keywatch.JP_ACTION_2, Registry.bound_item_2);
-                    //}
+                    if (!hasFallen && !actions_disabled)
+                    {
+                        if (action_latency > 0)
+                        {
+                            action_latency -= GameTimes.DeltaTime;
+                        }
+                        Update_actions();
+                        broom.Update();
+                        broom.PostUpdate();
+                    }
                     Ground_animation();
 
                     //just_landed = false;
@@ -267,6 +279,39 @@ namespace AnodyneSharp.Entities.Player
             }
         }
 
+        private void Update_actions()
+        {
+            if (action_latency > -1)
+            {
+                action_latency -= GameTimes.DeltaTime;
+            }
+
+            if (action_latency >= 0) //DELAY FOR ATTACK
+            {
+                return;
+            }
+
+            if (KeyInput.CanPressKey(Keys.C))
+            {
+                if (!broom.visible)
+                {
+                    broom.visible_timer = 0;
+                    broom.visible = true;
+                    action_latency = action_latency_max;
+
+                    broom.Play("stab", true);
+
+                    switch (facing)
+                    {
+                        case Facing.LEFT: ANIM_STATE = PlayerAnimState.ANIM_ATK_L; break;
+                        case Facing.UP: ANIM_STATE = PlayerAnimState.ANIM_ATK_U; break;
+                        case Facing.DOWN: ANIM_STATE = PlayerAnimState.ANIM_ATK_D; break;
+                        case Facing.RIGHT: ANIM_STATE = PlayerAnimState.ANIM_ATK_R; break;
+                    }
+                }
+            }
+        }
+
         private void Ground_animation()
         {
             switch (ANIM_STATE)
@@ -275,7 +320,31 @@ namespace AnodyneSharp.Entities.Player
                 case PlayerAnimState.ANIM_ATK_L:
                 case PlayerAnimState.ANIM_ATK_U:
                 case PlayerAnimState.ANIM_ATK_D:
-                    //TODO broom stuff
+                    if (broom.finished)
+                    {
+                        ANIM_STATE =  PlayerAnimState.as_idle;
+                        switch (_curAnim.name)
+                        {
+                            case "attack_right":
+                                Play("idle_r");
+                                break;
+                            case "attack_up":
+                                Play("idle_u");
+                                break;
+                            case "attack_left":
+                                Play("idle_l");
+                                break;
+                            case "attack_down":
+                                Play("idle_d");
+                                break;
+                        }
+                        break;
+                    }
+
+                    if (_curIndex != 8 && ANIM_STATE ==  PlayerAnimState.ANIM_ATK_R) { Play("attack_right"); }
+                    if (_curIndex != 16 && ANIM_STATE == PlayerAnimState.ANIM_ATK_L) { Play("attack_left"); }
+                    if (_curIndex != 12 && ANIM_STATE == PlayerAnimState.ANIM_ATK_U) { Play("attack_up"); }
+                    if (_curIndex != 22 && ANIM_STATE == PlayerAnimState.ANIM_ATK_D) { Play("attack_down"); }
                     break;
                 case PlayerAnimState.ANIM_FALL:
                     Play("fall");
@@ -328,8 +397,8 @@ namespace AnodyneSharp.Entities.Player
                         break;
                     }
                     ANIM_STATE = PlayerAnimState.as_walk;
-                    _curFrame = last_frame[(int)facing];
-                    _curIndex = _curAnim.frames[_curFrame];
+                    _curIndex = last_frame[(int)facing];
+                    _curFrame = _curAnim.frames[_curIndex];
 
                     break;
 
@@ -341,7 +410,7 @@ namespace AnodyneSharp.Entities.Player
                     if (velocity.X == 0 && velocity.Y == 0)
                     {
                         ANIM_STATE = PlayerAnimState.as_idle;
-                        last_frame[(int)facing] = _curFrame;
+                        last_frame[(int)facing] = _curIndex;
                         switch (facing)
                         {
                             case Facing.UP: Play("idle_u"); break;

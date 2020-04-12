@@ -12,6 +12,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)AnodyneGame.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Camera.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\SpriteDrawer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Player\Broom.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Resources\ResourceManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Animations\Anim.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Entity.cs" />

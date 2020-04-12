@@ -61,6 +61,9 @@ namespace AnodyneSharp.States
 
             player = new Player(this);
             healthBar = new HealthBar(new Vector2(155,2));
+
+            GlobalState.EquippedBroom = BroomType.Wide;
+            player.broom.UpdateBroomType();
         }
 
         public override void Create()

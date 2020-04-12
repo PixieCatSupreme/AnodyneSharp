@@ -27,10 +27,11 @@ namespace AnodyneSharp.Entities
         public int frameWidth;
         public int frameHeight;
         protected Vector2 offset;
-        protected Facing facing;
+        public Facing facing;
+        public float rotation;
 
-        public int _curFrame;
         protected int _curIndex;
+        public int _curFrame;
         protected Anim _curAnim;
 
         private List<Anim> _animations;
@@ -38,9 +39,21 @@ namespace AnodyneSharp.Entities
         private bool dirty;
         private float _frameTimer;
 
-        private bool finished;
+        public bool finished;
 
         protected Rectangle spriteRect;
+
+        public Entity(Vector2 pos)
+        {
+            Position = pos;
+
+            _animations = new List<Anim>();
+
+            frameWidth = 0;
+            frameHeight = 0;
+
+            visible = true;
+        }
 
         public Entity(Vector2 pos, int frameWidth, int frameHeight)
         {
@@ -50,6 +63,22 @@ namespace AnodyneSharp.Entities
 
             this.frameWidth = frameWidth;
             this.frameHeight = frameHeight;
+
+            visible = true;
+        }
+
+        public Entity(Vector2 pos, string textureName, int frameWidth, int frameHeight)
+        {
+            Position = pos;
+
+            _animations = new List<Anim>();
+
+            this.frameWidth = frameWidth;
+            this.frameHeight = frameHeight;
+
+            SetTexture(textureName);
+
+            visible = true;
         }
         /**
  * Adds a new animation to the sprite.
@@ -79,8 +108,8 @@ namespace AnodyneSharp.Entities
             {
                 return;
             }
-            _curFrame = 0;
             _curIndex = 0;
+            _curFrame = 0;
             _frameTimer = 0;
 
             for (int i = 0; i < _animations.Count; i++)
@@ -97,7 +126,7 @@ namespace AnodyneSharp.Entities
                         finished = false;
                     }
 
-                    _curIndex = _curAnim.frames[_curFrame];
+                    _curFrame = _curAnim.frames[_curIndex];
                     dirty = true;
                     AnimationChanged(AnimName);
                     return;
@@ -120,7 +149,10 @@ namespace AnodyneSharp.Entities
 
         public virtual void Draw()
         {
-            SpriteDrawer.DrawSprite(Texture, MathUtilities.CreateRectangle(Position.X - offset.X, Position.Y - offset.Y, frameWidth, frameHeight), spriteRect, Z: 0.2f);
+            if (visible)
+            {
+                SpriteDrawer.DrawSprite(Texture, MathUtilities.CreateRectangle(Position.X - offset.X, Position.Y - offset.Y, frameWidth, frameHeight), spriteRect, rotation : rotation, Z: 0.2f);
+            }
         }
 
         protected void UpdateAnimation()
@@ -131,15 +163,15 @@ namespace AnodyneSharp.Entities
                 while (_frameTimer > _curAnim.delay)
                 {
                     _frameTimer = _frameTimer - _curAnim.delay;
-                    if (_curFrame == _curAnim.frames.Length - 1)
+                    if (_curIndex == _curAnim.frames.Length - 1)
                     {
                         if (_curAnim.looped)
-                            _curFrame = 0;
+                            _curIndex = 0;
                         finished = true;
                     }
                     else
-                        _curFrame++;
-                    _curIndex = _curAnim.frames[_curFrame];
+                        _curIndex++;
+                    _curFrame = _curAnim.frames[_curIndex];
                     dirty = true;
                 }
             }
@@ -153,7 +185,7 @@ namespace AnodyneSharp.Entities
 
         protected void UpdateRect()
         {
-            int indexX = _curIndex * frameWidth;
+            int indexX = _curFrame * frameWidth;
             int indexY = 0;
 
             //Handle sprite sheets
