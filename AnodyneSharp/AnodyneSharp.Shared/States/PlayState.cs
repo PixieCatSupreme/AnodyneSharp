@@ -61,9 +61,6 @@ namespace AnodyneSharp.States
 
             player = new Player(this);
             healthBar = new HealthBar(new Vector2(155,2));
-
-            GlobalState.EquippedBroom = BroomType.Wide;
-            player.broom.UpdateBroomType();
         }
 
         public override void Create()
@@ -287,6 +284,27 @@ namespace AnodyneSharp.States
 #if DEBUG
         private void DebugKeyInput()
         {
+            if (KeyInput.CanPressKey(Keys.D1))
+            {
+                GlobalState.EquippedBroom = BroomType.Normal;
+                player.broom.UpdateBroomType();
+            }
+            else if (KeyInput.CanPressKey(Keys.D2))
+            {
+                GlobalState.EquippedBroom = BroomType.Wide;
+                player.broom.UpdateBroomType();
+            }
+            else if (KeyInput.CanPressKey(Keys.D3))
+            {
+                GlobalState.EquippedBroom = BroomType.Long;
+                player.broom.UpdateBroomType();
+            }
+            else if (KeyInput.CanPressKey(Keys.D4))
+            {
+                GlobalState.EquippedBroom = BroomType.NONE;
+                player.broom.UpdateBroomType();
+            }
+
             if (KeyInput.CanPressKey(Keys.Space))
             {
                 GlobalState.CUR_HEALTH -= 3;

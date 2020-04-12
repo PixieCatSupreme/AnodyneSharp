@@ -293,7 +293,7 @@ namespace AnodyneSharp.Entities.Player
 
             if (KeyInput.CanPressKey(Keys.C))
             {
-                if (!broom.visible)
+                if (GlobalState.EquippedBroom != BroomType.NONE && !broom.visible)
                 {
                     broom.visible_timer = 0;
                     broom.visible = true;
@@ -496,6 +496,11 @@ namespace AnodyneSharp.Entities.Player
 
         private void Set_init_vel(float mul = 1)
         {
+            if (broom.visible)
+            {
+                return;
+            }
+
             if (KeyInput.IsKeyPressed(Keys.Up))
             {
                 velocity.Y = -mul;

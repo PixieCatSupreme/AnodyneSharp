@@ -55,7 +55,7 @@ namespace AnodyneSharp.Map.Tiles
                 "nexus_tilemap",
                 "windmill_tilemap",
                 "terminal_tilemap",
-                "cell_tilemap",
+                "train_tilemap",
                 "blackwhite_tilemap",
                 "blue_tilemap",
                 "happy_tilemap",

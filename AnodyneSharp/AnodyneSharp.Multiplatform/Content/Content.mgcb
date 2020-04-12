@@ -5695,18 +5695,6 @@
 /processorParam:TextureFormat=Color
 /build:textures/tilemaps/blue_tilemap.png
 
-#begin textures/tilemaps/cell_tilemap.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:textures/tilemaps/cell_tilemap.png
-
 #begin textures/tilemaps/cell_tilemap_old.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -6126,6 +6114,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:textures/tilemaps/terminal_tilemap.png
+
+#begin textures/tilemaps/train_tilemap.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:textures/tilemaps/train_tilemap.png
 
 #begin textures/tilemaps/train_tiles.png
 /importer:TextureImporter
