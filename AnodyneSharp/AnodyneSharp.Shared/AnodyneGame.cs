@@ -12,6 +12,8 @@ using AnodyneSharp.Input;
 using AnodyneSharp.Entities.Player;
 using AnodyneSharp.Entities;
 using System.Collections.Generic;
+using AnodyneSharp.UI;
+using AnodyneSharp.Resources;
 
 #endregion
 
@@ -58,13 +60,16 @@ namespace AnodyneSharp
         {
             SpriteDrawer.Initialize(graphics.GraphicsDevice);
 
-            _currentState = new PlayState(_camera);
+            GlobalState.CUR_HEALTH = GlobalState.MAX_HEALTH = 16;
 
             EntityManager.Initialize();
 
             EntityManager.GetGridEntities("STREET",new Vector2(0, 4) , out List<EntityPreset> t);
 
             base.Initialize();
+
+            _currentState = new PlayState(_camera);
+            _currentState.Create();
         }
 
         /// <summary>
@@ -74,12 +79,8 @@ namespace AnodyneSharp
         protected override void LoadContent()
         { 
             GlobalState.CURRENT_MAP_NAME = "STREET";
-            GlobalState.FreeRoamCamera = true;
 
-            TileData.LoadTileMaps(Content);
-
-            Player.SetSprites(Content);
-            _currentState.Create();
+            ResourceManager.LoadResources(Content);
         }
 
         /// <summary>
@@ -112,7 +113,9 @@ namespace AnodyneSharp
             _currentState.Draw();
             SpriteDrawer.EndDraw();
 
-
+            SpriteDrawer.BeginGUIDraw(graphics.PreferredBackBufferWidth / GameConstants.SCREEN_WIDTH_IN_PIXELS);
+            _currentState.DrawUI();
+            SpriteDrawer.EndGUIDraw();
         }
     }
 }

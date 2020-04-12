@@ -36,28 +36,16 @@ namespace AnodyneSharp.Entities.Player
 
     public class Player : Entity
     {
-        public static Texture2D Player_Sprite;
-        public static Texture2D Cell_Player_Sprite;
-        public static Texture2D Player_Mobile_Indicator_Sprite;
+        public static string Player_Sprite = "young_player";
+        public static string Cell_Player_Sprite = "young_player_cell";
+        public static string Player_Mobile_Indicator_Sprite = "player_mobile_indicator";
 
-        public static Texture2D Player_reflection_Sprite;
-        internal float grid_entrance_y;
-        public static Texture2D Broom_reflection_sprite;
+        public static string Player_reflection_Sprite = "young_player_reflection";
+        public static string Broom_reflection_sprite = "broom_reflection";
+
         internal bool dontMove;
 
-
-
-        public static void SetSprites(ContentManager content)
-        {
-            string folder = "sprites";
-
-            Player_Sprite = TextureUtilities.LoadTexture(folder, "young_player", content);
-            Cell_Player_Sprite = TextureUtilities.LoadTexture(folder, "young_player_cell", content);
-            Player_Mobile_Indicator_Sprite = TextureUtilities.LoadTexture(folder, "player_mobile_indicator", content);
-
-            Player_reflection_Sprite = TextureUtilities.LoadTexture(folder, "young_player_reflection", content);
-            Broom_reflection_sprite = TextureUtilities.LoadTexture(folder, "broom_reflection", content);
-        }
+        internal float grid_entrance_y;
 
         public const int DEFAULT_Y_OFFSET = 4;
         public const string TRANSITION_IDLE = "idle_u";
@@ -128,11 +116,11 @@ namespace AnodyneSharp.Entities.Player
         {
             if (GlobalState.CURRENT_MAP_NAME == "TRAIN")
             {
-                Texture = Cell_Player_Sprite;
+                SetTexture( Cell_Player_Sprite);
             }
             else
             {
-                Texture = Player_Sprite;
+                SetTexture(Player_Sprite);
             }
         }
 

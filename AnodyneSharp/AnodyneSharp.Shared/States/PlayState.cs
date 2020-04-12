@@ -5,8 +5,12 @@ using AnodyneSharp.Input;
 using AnodyneSharp.Map;
 using AnodyneSharp.Map.Tiles;
 using AnodyneSharp.Registry;
+using AnodyneSharp.Resources;
+using AnodyneSharp.UI;
 using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using static AnodyneSharp.Registry.GameConstants;
@@ -27,6 +31,8 @@ namespace AnodyneSharp.States
 
     public class PlayState : State
     {
+        public const string UiHeader = "header";
+
         public int Scroll_Increment = 4;
 
         private PlayStateState state;
@@ -42,6 +48,9 @@ namespace AnodyneSharp.States
 
         private Rectangle _gridBorders;
 
+        private HealthBar healthBar;
+        private Texture2D _header;
+
         private List<Entity> _gridEntities;
 
         public PlayState(Camera camera)
@@ -55,19 +64,20 @@ namespace AnodyneSharp.States
             _camera = camera;
 
             player = new Player(this);
+            healthBar = new HealthBar(new Vector2(155,2));
         }
 
         public override void Create()
         {
             base.Create();
 
+            _header = ResourceManager.GetTexture(UiHeader);
+
             LoadMap();
         }
 
         public override void Draw()
         {
-            base.Draw();
-
 #if DEBUG
             if (GlobalState.DrawBG)
             {
@@ -89,6 +99,12 @@ namespace AnodyneSharp.States
 #endif
 
             player.Draw();
+        }
+
+        public override void DrawUI()
+        {
+            SpriteDrawer.DrawGuiSprite(_header, Vector2.Zero, Z: 0.1f);
+            healthBar.Draw();
         }
 
         public override void Update()
@@ -124,6 +140,9 @@ namespace AnodyneSharp.States
             DoCollisions();
             player.Update();
             player.PostUpdate();
+
+            healthBar.Update();
+            UpdateHealth();
 #if DEBUG
             DebugKeyInput();
 #endif
@@ -262,6 +281,14 @@ namespace AnodyneSharp.States
 #if DEBUG
         private void DebugKeyInput()
         {
+            if (KeyInput.CanPressKey(Keys.Space))
+            {
+                GlobalState.CUR_HEALTH -= 3;
+            }
+            else if (KeyInput.CanPressKey(Keys.Enter))
+            {
+                GlobalState.CUR_HEALTH += 3;
+            }
 
             if (KeyInput.CanPressKey(Keys.F1))
             {
@@ -314,6 +341,16 @@ namespace AnodyneSharp.States
             }
         }
 #endif
+
+        private void UpdateHealth()
+        {
+            var result = healthBar.UpdateHealth();
+
+            if (result == false)
+            {
+                //DIE
+            }
+        }
 
         private void LoadMap()
         {
