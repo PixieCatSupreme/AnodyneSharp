@@ -149,7 +149,8 @@ namespace AnodyneSharp.States
                     break;
             }
 
-            DoCollisions();
+            if(!justTransitioned)
+                DoCollisions();
             UpdateEntities();
 
 #if DEBUG
@@ -198,13 +199,13 @@ namespace AnodyneSharp.States
             if (player.Position.X < _gridBorders.X)
             {
                 GlobalState.CURRENT_GRID_X--;
-                player.Position.X = _gridBorders.X - player.frameWidth;
+                player.Position.X = _gridBorders.X - player.width;
             }
             else if (player.Position.Y < _gridBorders.Y)
             {
                 GlobalState.CURRENT_GRID_Y--;
 
-                player.Position.Y = _gridBorders.Y - player.frameHeight;
+                player.Position.Y = _gridBorders.Y - player.height;
             }
             else if (player.Position.Y > _gridBorders.Bottom - player.height)
             {
