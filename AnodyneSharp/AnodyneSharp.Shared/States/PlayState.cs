@@ -116,6 +116,7 @@ namespace AnodyneSharp.States
                     //Registry.sound_data.current_song.volume = FlxG.volume * Registry.volume_scale;
                     StateTransition();
                     DoCollisions();
+                    UpdateEntities();
                     return;
                 case PlayStateState.S_PAUSED:
                     break;
@@ -134,11 +135,8 @@ namespace AnodyneSharp.States
             }
 
             DoCollisions();
-            player.Update();
-            player.PostUpdate();
+            UpdateEntities();
 
-            healthBar.Update();
-            UpdateHealth();
 #if DEBUG
             DebugKeyInput();
 #endif
@@ -147,6 +145,15 @@ namespace AnodyneSharp.States
         public Touching GetTileCollisionFlags(Vector2 position)
         {
             return map.GetCollisionData(position) | map_bg_2.GetCollisionData(position);
+        }
+
+        private void UpdateEntities()
+        {
+            player.Update();
+            player.PostUpdate();
+
+            healthBar.Update();
+            UpdateHealth();
         }
 
         private void DoCollisions()
