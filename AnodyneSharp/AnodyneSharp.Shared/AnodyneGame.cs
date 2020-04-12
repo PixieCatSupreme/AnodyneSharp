@@ -10,6 +10,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using AnodyneSharp.Input;
 using AnodyneSharp.Entities.Player;
+using AnodyneSharp.Entities;
+using System.Collections.Generic;
 using AnodyneSharp.UI;
 using AnodyneSharp.Resources;
 
@@ -59,6 +61,10 @@ namespace AnodyneSharp
             SpriteDrawer.Initialize(graphics.GraphicsDevice);
 
             GlobalState.CUR_HEALTH = GlobalState.MAX_HEALTH = 16;
+
+            EntityManager.Initialize();
+
+            EntityManager.GetGridEntities("STREET",new Vector2(0, 4) , out List<EntityPreset> t);
 
             base.Initialize();
 

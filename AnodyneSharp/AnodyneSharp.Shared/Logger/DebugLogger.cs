@@ -12,8 +12,6 @@ namespace AnodyneSharp.Logging
     {
         private static readonly string LogPath = "game.log";
 
-        public static string LoggingFolderPath;
-
         private static Queue<LogLine> DebugLog;
         private static readonly int MaxLogs;
 
@@ -21,8 +19,6 @@ namespace AnodyneSharp.Logging
         {
             DebugLog = new Queue<LogLine>(2);
             MaxLogs = 10;
-
-            LoggingFolderPath = "";
 
             if (File.Exists(LogPath))
             {
@@ -105,7 +101,9 @@ namespace AnodyneSharp.Logging
             Debug.WriteLine(logLine.Message);
 #endif
 
-            using (StreamWriter writer = new StreamWriter(new FileStream($"{LoggingFolderPath}/{LogPath}", FileMode.Append)))
+            var assembly = Assembly.GetCallingAssembly();
+
+            using (StreamWriter writer = new StreamWriter(new FileStream($"{Path.GetDirectoryName( assembly.Location)}/{LogPath}", FileMode.Append)))
             {
                 if (showStack)
                 {

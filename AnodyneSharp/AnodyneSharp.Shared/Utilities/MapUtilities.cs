@@ -9,7 +9,7 @@ namespace AnodyneSharp.Utilities
     {
         public static Vector2 GetRoomCoordinate(Vector2 pos)
         {
-            return pos / SCREEN_WIDTH_IN_PIXELS;
+            return new Vector2((int)(pos.X / SCREEN_WIDTH_IN_PIXELS), (int)(pos.Y / SCREEN_HEIGHT_IN_PIXELS));
         }
 
         public static Vector2 GetRoomUpperLeftPos(Vector2 pos)

@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
+using System.Collections.Generic;
 using static AnodyneSharp.Registry.GameConstants;
 
 namespace AnodyneSharp.States
@@ -51,11 +51,17 @@ namespace AnodyneSharp.States
         private HealthBar healthBar;
         private Texture2D _header;
 
+        private List<Entity> _gridEntities;
+        private List<Entity> _oldEntities;
+
         public PlayState(Camera camera)
         {
             map = new TileMap();
             map_bg_2 = new TileMap();
             map_fg = new TileMap();
+
+            _gridEntities = new List<Entity>();
+            _oldEntities = new List<Entity>();
 
             _camera = camera;
 
@@ -95,6 +101,15 @@ namespace AnodyneSharp.States
 #endif
 
             player.Draw();
+
+            foreach(Entity gridEntity in _gridEntities)
+            {
+                gridEntity.Draw();
+            }
+            foreach(Entity gridEntity in _oldEntities)
+            {
+                gridEntity.Draw();
+            }
         }
 
         public override void DrawUI()
@@ -134,7 +149,8 @@ namespace AnodyneSharp.States
                     break;
             }
 
-            DoCollisions();
+            if(!justTransitioned)
+                DoCollisions();
             UpdateEntities();
 
 #if DEBUG
@@ -151,6 +167,12 @@ namespace AnodyneSharp.States
         {
             player.Update();
             player.PostUpdate();
+
+            foreach (Entity gridEntity in _gridEntities)
+            {
+                gridEntity.Update();
+                gridEntity.PostUpdate();
+            }
 
             healthBar.Update();
             UpdateHealth();
@@ -177,13 +199,13 @@ namespace AnodyneSharp.States
             if (player.Position.X < _gridBorders.X)
             {
                 GlobalState.CURRENT_GRID_X--;
-                player.Position.X = _gridBorders.X - player.frameWidth;
+                player.Position.X = _gridBorders.X - player.width;
             }
             else if (player.Position.Y < _gridBorders.Y)
             {
                 GlobalState.CURRENT_GRID_Y--;
 
-                player.Position.Y = _gridBorders.Y - player.frameHeight;
+                player.Position.Y = _gridBorders.Y - player.height;
             }
             else if (player.Position.Y > _gridBorders.Bottom - player.height)
             {
@@ -223,6 +245,7 @@ namespace AnodyneSharp.States
             {
                 //TODO add enemy, puzzle and tile resetting on grid change
                 UpdateScreenBorders();
+                LoadGridEntities();
 
                 justTransitioned = false;
             }
@@ -231,6 +254,7 @@ namespace AnodyneSharp.States
             {
                 player.invincible = false;
                 //TODO delete old objects
+                _oldEntities.Clear();
 
                 // TODO update miniminimap
 
@@ -389,7 +413,7 @@ namespace AnodyneSharp.States
             map_fg.LoadMap(MapLoader.GetMap(GlobalState.CURRENT_MAP_NAME, 3), TileData.Tiles);
             map_fg.y = HEADER_HEIGHT;
 
-            Vector2 gridPos = new Vector2(1, 5);
+            Vector2 gridPos = new Vector2(1, 4);
             Vector2 roomPos = MapUtilities.GetRoomUpperLeftPos(gridPos);
 
             GlobalState.CURRENT_GRID_X = (int)gridPos.X;
@@ -405,6 +429,16 @@ namespace AnodyneSharp.States
             //Sets tile collission and tile events
             TileData.Set_tile_properties(map);
             TileData.Set_tile_properties(map_bg_2);
+
+            LoadGridEntities();
+        }
+
+        private void LoadGridEntities()
+        {
+            _oldEntities = new List<Entity>(_gridEntities);
+            List<EntityPreset> presets;
+            EntityManager.GetGridEntities(GlobalState.CURRENT_MAP_NAME, new Vector2(GlobalState.CURRENT_GRID_X, GlobalState.CURRENT_GRID_Y), out presets);
+            _gridEntities = presets.ConvertAll<Entity>(preset => preset.Create());
         }
     }
 }
