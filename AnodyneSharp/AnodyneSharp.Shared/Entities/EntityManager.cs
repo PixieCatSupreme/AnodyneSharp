@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Logging;
+﻿using AnodyneSharp.Entities.Enemy;
+using AnodyneSharp.Logging;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,7 @@ namespace AnodyneSharp.Entities
         /// </summary>
         public static void Initialize()
         {
-            var assembly = Assembly.GetCallingAssembly();
+            var assembly = Assembly.GetExecutingAssembly();
 
             string path = $"{assembly.GetName().Name}.{EntityFilePath}";
             string xml = "";
@@ -39,6 +40,7 @@ namespace AnodyneSharp.Entities
             }
 
             ReadEntities(xml);
+
         }
 
 
@@ -72,6 +74,12 @@ namespace AnodyneSharp.Entities
 
         private static void ReadEntities(string xml)
         {
+            var type_lookup = (from t in Assembly.GetExecutingAssembly().GetTypes()
+                               where t.IsDefined(typeof(NamedEntity), false)
+                               select t).ToDictionary(t => t.GetCustomAttribute<NamedEntity>().GetName(t), t => t);
+
+            HashSet<string> missing = new HashSet<string>();
+
             XmlDocument doc = new XmlDocument();
 
             doc.LoadXml(xml);
@@ -85,8 +93,6 @@ namespace AnodyneSharp.Entities
                     var map = root.ChildNodes[i];
 
                     string mapName = map.Attributes.GetNamedItem("name").Value;
-                    bool stateLess = map.Attributes.GetNamedItem("type").Value == "Stateless";
-
                     
                     if(!_entities.ContainsKey(mapName))
                     {
@@ -96,6 +102,15 @@ namespace AnodyneSharp.Entities
 
                     foreach (XmlNode child in map.ChildNodes)
                     {
+                        if(!type_lookup.ContainsKey(child.Name))
+                        {
+                            if (!missing.Contains(child.Name))
+                            {
+                                DebugLogger.AddWarning($"Missing Enitity {child.Name}!");
+                                missing.Add(child.Name);
+                            }
+                            continue;
+                        }
                         if (int.TryParse(child.Attributes.GetNamedItem("x").Value, out int x) &&
                             int.TryParse(child.Attributes.GetNamedItem("y").Value, out int y) &&
                             Guid.TryParse(child.Attributes.GetNamedItem("guid").Value, out Guid id) &&
@@ -122,7 +137,7 @@ namespace AnodyneSharp.Entities
                                 alive = bool.Parse(child.Attributes.GetNamedItem("alive").Value);
                             }
 
-                            presets.Add(new EntityPreset(child.Name, new Vector2(x, y), id,frame, p, type, alive));
+                            presets.Add(new EntityPreset(type_lookup[child.Name], new Vector2(x, y), id,frame, p, type, alive));
                         }
                     }
                 }

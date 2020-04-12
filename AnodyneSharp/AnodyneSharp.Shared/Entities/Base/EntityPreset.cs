@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 
 namespace AnodyneSharp.Entities
@@ -24,7 +25,7 @@ namespace AnodyneSharp.Entities
             }
         }
 
-        public string Name { get; private set; }
+        public Type Type { get; private set; }
         public Vector2 Position { get; private set; }
         public Guid EntityID { get; private set; }
         public int Frame { get; private set; }
@@ -32,9 +33,9 @@ namespace AnodyneSharp.Entities
         public string TypeValue { get; private set; }
         public bool Alive { get; set; }
 
-        public EntityPreset(string name, Vector2 position, Guid entityID, int frame, Permanence permanence = Permanence.GRID_LOCAL, string type = "", bool alive = true)
+        public EntityPreset(Type creation_type, Vector2 position, Guid entityID, int frame, Permanence permanence = Permanence.GRID_LOCAL, string type = "", bool alive = true)
         {
-            Name = name;
+            Type = creation_type;
             Position = position;
             EntityID = entityID;
             Frame = frame;
@@ -45,7 +46,7 @@ namespace AnodyneSharp.Entities
 
         public override string ToString()
         {
-            return $"{Name} ({EntityID.ToString()})";
+            return $"{Type.GetCustomAttribute<NamedEntity>().GetName(Type)} ({EntityID})";
         }
     }
 }
