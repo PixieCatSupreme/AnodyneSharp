@@ -52,6 +52,7 @@ namespace AnodyneSharp.States
         private Texture2D _header;
 
         private List<Entity> _gridEntities;
+        private List<Entity> _oldEntities;
 
         public PlayState(Camera camera)
         {
@@ -60,6 +61,7 @@ namespace AnodyneSharp.States
             map_fg = new TileMap();
 
             _gridEntities = new List<Entity>();
+            _oldEntities = new List<Entity>();
 
             _camera = camera;
 
@@ -99,6 +101,15 @@ namespace AnodyneSharp.States
 #endif
 
             player.Draw();
+
+            foreach(Entity gridEntity in _gridEntities)
+            {
+                gridEntity.Draw();
+            }
+            foreach(Entity gridEntity in _oldEntities)
+            {
+                gridEntity.Draw();
+            }
         }
 
         public override void DrawUI()
@@ -155,6 +166,12 @@ namespace AnodyneSharp.States
         {
             player.Update();
             player.PostUpdate();
+
+            foreach (Entity gridEntity in _gridEntities)
+            {
+                gridEntity.Update();
+                gridEntity.PostUpdate();
+            }
 
             healthBar.Update();
             UpdateHealth();
@@ -227,6 +244,7 @@ namespace AnodyneSharp.States
             {
                 //TODO add enemy, puzzle and tile resetting on grid change
                 UpdateScreenBorders();
+                LoadGridEntities();
 
                 justTransitioned = false;
             }
@@ -235,6 +253,7 @@ namespace AnodyneSharp.States
             {
                 player.invincible = false;
                 //TODO delete old objects
+                _oldEntities.Clear();
 
                 // TODO update miniminimap
 
@@ -372,7 +391,7 @@ namespace AnodyneSharp.States
             map_fg.LoadMap(MapLoader.GetMap(GlobalState.CURRENT_MAP_NAME, 3), TileData.Tiles);
             map_fg.y = HEADER_HEIGHT;
 
-            Vector2 gridPos = new Vector2(1, 5);
+            Vector2 gridPos = new Vector2(1, 4);
             Vector2 roomPos = MapUtilities.GetRoomUpperLeftPos(gridPos);
 
             GlobalState.CURRENT_GRID_X = (int)gridPos.X;
@@ -388,6 +407,16 @@ namespace AnodyneSharp.States
             //Sets tile collission and tile events
             TileData.Set_tile_properties(map);
             TileData.Set_tile_properties(map_bg_2);
+
+            LoadGridEntities();
+        }
+
+        private void LoadGridEntities()
+        {
+            _oldEntities = new List<Entity>(_gridEntities);
+            List<EntityPreset> presets;
+            EntityManager.GetGridEntities(GlobalState.CURRENT_MAP_NAME, new Vector2(GlobalState.CURRENT_GRID_X, GlobalState.CURRENT_GRID_Y), out presets);
+            _gridEntities = presets.ConvertAll<Entity>(preset => preset.Create());
         }
     }
 }

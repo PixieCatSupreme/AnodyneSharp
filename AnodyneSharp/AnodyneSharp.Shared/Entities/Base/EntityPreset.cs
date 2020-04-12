@@ -44,6 +44,11 @@ namespace AnodyneSharp.Entities
             Alive = alive;
         }
 
+        public Entity Create()
+        {
+            return (Entity)Activator.CreateInstance(Type, this);
+        }
+
         public override string ToString()
         {
             return $"{Type.GetCustomAttribute<NamedEntity>().GetName(Type)} ({EntityID})";
