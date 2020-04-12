@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Input;
 using AnodyneSharp.Input;
 using AnodyneSharp.Entities.Player;
 using AnodyneSharp.UI;
+using AnodyneSharp.Resources;
 
 #endregion
 
@@ -73,12 +74,7 @@ namespace AnodyneSharp
         { 
             GlobalState.CURRENT_MAP_NAME = "STREET";
 
-            PlayState.SetSprites(Content);
-
-            TileData.LoadTileMaps(Content);
-            HealthBarPiece.SetSprites(Content);
-
-            Player.SetSprites(Content);
+            ResourceManager.LoadResources(Content);
         }
 
         /// <summary>

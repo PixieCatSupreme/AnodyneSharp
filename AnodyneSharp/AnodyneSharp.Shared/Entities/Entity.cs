@@ -1,6 +1,7 @@
 ﻿using AnodyneSharp.Drawing;
 using AnodyneSharp.Entities.Animations;
 using AnodyneSharp.Logging;
+using AnodyneSharp.Resources;
 using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -171,6 +172,13 @@ namespace AnodyneSharp.Entities
         protected int[] CreateAnimFrameArray(params int[] frames)
         {
             return frames;
+        }
+
+        protected bool SetTexture(string textureName)
+        {
+            Texture = ResourceManager.GetTexture(textureName);
+
+            return Texture != null;
         }
     }
 }

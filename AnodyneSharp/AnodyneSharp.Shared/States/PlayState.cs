@@ -5,6 +5,7 @@ using AnodyneSharp.Input;
 using AnodyneSharp.Map;
 using AnodyneSharp.Map.Tiles;
 using AnodyneSharp.Registry;
+using AnodyneSharp.Resources;
 using AnodyneSharp.UI;
 using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
@@ -30,12 +31,7 @@ namespace AnodyneSharp.States
 
     public class PlayState : State
     {
-        public static Texture2D UiHeader;
-
-        public static void SetSprites(ContentManager content)
-        {
-            UiHeader = TextureUtilities.LoadTexture("sprites/inventory", "header", content);
-        }
+        public const string UiHeader = "header";
 
         public int Scroll_Increment = 4;
 
@@ -53,6 +49,7 @@ namespace AnodyneSharp.States
         private Rectangle _gridBorders;
 
         private HealthBar healthBar;
+        private Texture2D _header;
 
         public PlayState(Camera camera)
         {
@@ -69,6 +66,8 @@ namespace AnodyneSharp.States
         public override void Create()
         {
             base.Create();
+
+            _header = ResourceManager.GetTexture(UiHeader);
 
             LoadMap();
         }
@@ -100,7 +99,7 @@ namespace AnodyneSharp.States
 
         public override void DrawUI()
         {
-            SpriteDrawer.DrawGuiSprite(UiHeader, Vector2.Zero, Z: 0.1f);
+            SpriteDrawer.DrawGuiSprite(_header, Vector2.Zero, Z: 0.1f);
             healthBar.Draw();
         }
 

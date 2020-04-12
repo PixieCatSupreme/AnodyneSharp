@@ -1,6 +1,6 @@
 ﻿using AnodyneSharp.Entities;
 using AnodyneSharp.Registry;
-using AnodyneSharp.Utilities;
+using AnodyneSharp.Resources;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -21,7 +21,7 @@ namespace AnodyneSharp.Map.Tiles
 
     public static class TileData
     {
-        private static SortedList<string, Texture2D> TileMaps;
+        private static SortedList<string, string> TileMaps;
 
         public static int Overworld_Tileset_Width = 10;
         public static int Overworld_Tilemap_Solid_Rows = 4;
@@ -33,11 +33,8 @@ namespace AnodyneSharp.Map.Tiles
 
         static TileData()
         {
-            TileMaps = new SortedList<string, Texture2D>();
-        }
+            TileMaps = new SortedList<string, string>();
 
-        public static void LoadTileMaps(ContentManager content)
-        {
             List<string> paths = new List<string>()
             {
                 "debug_tilemap",
@@ -69,19 +66,20 @@ namespace AnodyneSharp.Map.Tiles
 
             foreach (var path in paths)
             {
-                TileMaps.Add(path.Split('_').First().ToUpper(), TextureUtilities.LoadTexture("tilemaps", path, content));
+                TileMaps.Add(path.Split('_').First().ToUpper(), path);
             }
+
         }
 
         public static void SetTileset(string MapName)
         {
             if (TileMaps.ContainsKey(MapName))
             {
-                Tiles = TileMaps[MapName];
+                Tiles = ResourceManager.GetTexture(TileMaps[MapName]);
             }
             else
             {
-                Tiles = TileMaps["DEBUG"];
+                Tiles = ResourceManager.GetTexture(TileMaps["DEBUG"]);
             }
         }
 
