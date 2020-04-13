@@ -151,6 +151,8 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\BEDROOM.col" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\CROWD.col" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\APARTMENT.col" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\CIRCUS.col" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\HOTEL.col" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\TERMINAL.col" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\STREET.col" />
   </ItemGroup>
