@@ -427,8 +427,7 @@ namespace AnodyneSharp.States
             UpdateScreenBorders();
 
             //Sets tile collission and tile events
-            TileData.Set_tile_properties(map);
-            TileData.Set_tile_properties(map_bg_2);
+            TileData.Set_tile_properties(map, map_bg_2);
 
             LoadGridEntities();
         }
@@ -436,9 +435,8 @@ namespace AnodyneSharp.States
         private void LoadGridEntities()
         {
             _oldEntities = new List<Entity>(_gridEntities);
-            List<EntityPreset> presets;
-            EntityManager.GetGridEntities(GlobalState.CURRENT_MAP_NAME, new Vector2(GlobalState.CURRENT_GRID_X, GlobalState.CURRENT_GRID_Y), out presets);
-            _gridEntities = presets.ConvertAll<Entity>(preset => preset.Create());
+            EntityManager.GetGridEntities(GlobalState.CURRENT_MAP_NAME, new Vector2(GlobalState.CURRENT_GRID_X, GlobalState.CURRENT_GRID_Y), out List<EntityPreset> presets);
+            _gridEntities = presets.ConvertAll(preset => preset.Create());
         }
     }
 }

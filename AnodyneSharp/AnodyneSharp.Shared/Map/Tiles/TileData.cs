@@ -1,10 +1,14 @@
 ﻿using AnodyneSharp.Entities;
+using AnodyneSharp.Logging;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Resources;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 
 namespace AnodyneSharp.Map.Tiles
 {
@@ -21,6 +25,8 @@ namespace AnodyneSharp.Map.Tiles
 
     public static class TileData
     {
+        private const string CollissionFilePath = "Content.tileProperties";
+
         private static SortedList<string, string> TileMaps;
 
         public static int Overworld_Tileset_Width = 10;
@@ -83,12 +89,72 @@ namespace AnodyneSharp.Map.Tiles
             }
         }
 
-        public static void Set_tile_properties(TileMap map)
+        public static void Set_tile_properties(TileMap map, TileMap bg2)
         {
-            if (GlobalState.CURRENT_MAP_NAME == "STREET")
+            List<CollissionData> data = GetColData();
+
+            foreach (var d in data)
             {
-                map.SetTileProperties(29, Touching.NONE, tileMax: 80);
+                if (d.End == null)
+                {
+                    map.SetTileProperties(d.Start, Touching.NONE, d.CollisionEventType);
+                    bg2.SetTileProperties(d.Start, Touching.NONE, d.CollisionEventType);
+                }
+                else
+                {
+                    map.SetTileProperties(d.Start, Touching.NONE, d.CollisionEventType, tileMax: d.End.Value);
+                    bg2.SetTileProperties(d.Start, Touching.NONE, d.CollisionEventType, tileMax: d.End.Value);
+                }
             }
+        }
+
+        private static List<CollissionData> GetColData()
+        {
+            List<CollissionData> data = new List<CollissionData>();
+
+            var assembly = Assembly.GetExecutingAssembly();
+
+            string path = $"{assembly.GetName().Name}.{CollissionFilePath}.{GlobalState.CURRENT_MAP_NAME}.col";
+
+            using (Stream stream = assembly.GetManifestResourceStream(path))
+            {
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    while(!reader.EndOfStream)
+                    {
+                        string[] dataStrings = reader.ReadLine().Split('\t');
+
+                        int min = -1;
+                        int max = -1;
+                        Touching allowedCol = Touching.ANY;
+                        CollisionEventType eventType = CollisionEventType.NONE;
+
+                        if (Enum.TryParse(dataStrings[1], out allowedCol) &&
+                            (dataStrings.Length == 2 || Enum.TryParse(dataStrings[2], out eventType)))
+                        {
+                            if (dataStrings[0].Contains('-'))
+                            {
+                                string[] minMax = dataStrings[0].Split('-');
+
+                                if (int.TryParse(minMax[0], out min) &&
+                                    int.TryParse(minMax[1], out max))
+                                {
+                                    data.Add(new CollissionData(min, max, allowedCol, eventType));
+                                }
+                            }
+                            else
+                            {
+                                if (!int.TryParse(dataStrings[0], out min))
+                                {
+                                    data.Add(new CollissionData(min, allowedCol, eventType));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            return data;
         }
     }
 }

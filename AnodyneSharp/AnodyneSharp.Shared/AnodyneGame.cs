@@ -64,8 +64,6 @@ namespace AnodyneSharp
 
             EntityManager.Initialize();
 
-            EntityManager.GetGridEntities("STREET",new Vector2(0, 4) , out List<EntityPreset> t);
-
             base.Initialize();
 
             _currentState = new PlayState(_camera);
@@ -78,7 +76,7 @@ namespace AnodyneSharp
         /// </summary>
         protected override void LoadContent()
         { 
-            GlobalState.CURRENT_MAP_NAME = "STREET";
+            GlobalState.CURRENT_MAP_NAME = "CLIFF";
 
             ResourceManager.LoadResources(Content);
         }

@@ -15,6 +15,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Player\Broom.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\NamedEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Slime.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Map\Tiles\CollissionData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Resources\ResourceManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Animations\Anim.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\Entity.cs" />
@@ -45,7 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Entities\Base\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Map\Tiles\" />
     <Folder Include="$(MSBuildThisFileDirectory)Resources\Loading\" />
   </ItemGroup>
   <ItemGroup>
@@ -142,8 +142,13 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\WINDMILL_BG.csv" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\WINDMILL_BG2.csv" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\WINDMILL_FG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\CLIFF.col" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\STREET.col" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Entities.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\OVERWORLD.col" />
   </ItemGroup>
 </Project>

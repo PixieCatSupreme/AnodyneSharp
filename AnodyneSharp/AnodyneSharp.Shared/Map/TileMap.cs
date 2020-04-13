@@ -99,10 +99,10 @@ namespace AnodyneSharp.Map
         {
             if (tileMax == 0)
             {
-                tileMax = tileMin + 1;
+                tileMax = tileMin;
             }
 
-            for (int i = tileMin; i < tileMax; i++)
+            for (int i = tileMin; i <= tileMax; i++)
             {
                 Tile tile = _tileObjects[i];
 
