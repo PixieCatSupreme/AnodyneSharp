@@ -63,7 +63,7 @@ namespace AnodyneSharp.Map.Tiles
                 "windmill_tilemap",
                 "terminal_tilemap",
                 "train_tilemap",
-                "blackwhite_tilemap",
+                "drawer_tilemap",
                 "blue_tilemap",
                 "happy_tilemap",
                 "space_tilemap",
@@ -109,6 +109,32 @@ namespace AnodyneSharp.Map.Tiles
             }
         }
 
+#if DEBUG
+        public static string GetNextMapName()
+        {
+            int index = TileMaps.IndexOfKey(GlobalState.CURRENT_MAP_NAME);
+
+            if (index+1 >= TileMaps.Keys.Count)
+            {
+                index = -1;
+            }
+
+            return TileMaps.Keys[index+1];
+        }
+
+        public static string GetPreviousMapName()
+        {
+            int index = TileMaps.IndexOfKey(GlobalState.CURRENT_MAP_NAME);
+
+            if (index == 0)
+            {
+                index = TileMaps.Keys.Count;
+            }
+
+            return TileMaps.Keys[index - 1];
+        }
+#endif
+
         private static List<CollissionData> GetColData()
         {
             List<CollissionData> data = new List<CollissionData>();
@@ -119,6 +145,11 @@ namespace AnodyneSharp.Map.Tiles
 
             using (Stream stream = assembly.GetManifestResourceStream(path))
             {
+                if (stream == null)
+                {
+                    return new List<CollissionData>();
+                }
+
                 using (StreamReader reader = new StreamReader(stream))
                 {
                     while(!reader.EndOfStream)

@@ -5659,18 +5659,6 @@
 /processorParam:TextureFormat=Color
 /build:textures/tilemaps/bedroom_tilemap.png
 
-#begin textures/tilemaps/blackwhite_tilemap.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:textures/tilemaps/blackwhite_tilemap.png
-
 #begin textures/tilemaps/blank_tilemap.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -5790,6 +5778,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:textures/tilemaps/debug_tilemap.png
+
+#begin textures/tilemaps/drawer_tilemap.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:textures/tilemaps/drawer_tilemap.png
 
 #begin textures/tilemaps/fields_tilemap.png
 /importer:TextureImporter

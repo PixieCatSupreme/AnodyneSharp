@@ -308,6 +308,17 @@ namespace AnodyneSharp.States
 #if DEBUG
         private void DebugKeyInput()
         {
+            if (KeyInput.CanPressKey(Keys.M))
+            {
+                GlobalState.CURRENT_MAP_NAME = TileData.GetNextMapName();
+                LoadMap();
+            }
+            else if (KeyInput.CanPressKey(Keys.N))
+            {
+                GlobalState.CURRENT_MAP_NAME = TileData.GetPreviousMapName();
+                LoadMap();
+            }
+
             if (KeyInput.CanPressKey(Keys.D1))
             {
                 GlobalState.EquippedBroom = BroomType.Normal;
@@ -417,7 +428,7 @@ namespace AnodyneSharp.States
 
             //Sets tile collission and tile events
             TileData.Set_tile_properties(map, map_bg_2);
-            player.Position = map.GetFirstWalkable(map_bg_2)*TILE_WIDTH;
+            player.Position = map.GetFirstWalkable(map_bg_2) *TILE_WIDTH;
 
             Vector2 gridPos = MapUtilities.GetRoomCoordinate(player.Position);
             Vector2 roomPos = MapUtilities.GetRoomUpperLeftPos(gridPos);

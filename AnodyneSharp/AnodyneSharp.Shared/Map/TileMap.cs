@@ -6,6 +6,7 @@ using AnodyneSharp.Registry;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AnodyneSharp.Map
 {
@@ -74,7 +75,7 @@ namespace AnodyneSharp.Map
 
 
             //create some tile objects that we'll use for overlap checks (one for each tile)
-            int l = (tiles?.Width ?? 0 / _tileWidth) * (tiles?.Height ?? 0 / _tileHeight);
+            int l = (tiles?.Width ?? 0) / _tileWidth * (tiles?.Height ?? 0) / _tileHeight;
 
             _tileObjects = new Tile[l];
 
@@ -113,15 +114,11 @@ namespace AnodyneSharp.Map
 
         public Vector2 GetFirstWalkable(TileMap layered)
         {
-            for (int i = 0; i < data.Count; i++)
-            {
-                if(data[i] != 0 && _tileObjects[data[i]].allowCollisions == Touching.NONE && layered._tileObjects[layered.data[i]].allowCollisions == Touching.NONE)
-                {
-                    return new Vector2(i % widthInTiles, i / widthInTiles);
-                }
-            }
-
-            return Vector2.Zero;
+            int loc = data.FindIndex(i => i != 0 && _tileObjects[i].allowCollisions == Touching.NONE && layered._tileObjects[i].allowCollisions == Touching.NONE);
+            if (loc == -1)
+                return Vector2.Zero;
+            else
+                return new Vector2(loc % widthInTiles, loc / widthInTiles);
         }
 
         public void Collide(Entity ent, bool onlyCurrentScreen = false)
