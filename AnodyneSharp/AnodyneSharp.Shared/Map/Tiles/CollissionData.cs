@@ -4,8 +4,6 @@ namespace AnodyneSharp.Map.Tiles
 {
     public struct CollissionData
     {
-
-
         public int Start { get; private set; }
         public int? End { get; private set; }
         public Touching AllowedCollisions { get; private set; }

@@ -20,7 +20,8 @@ namespace AnodyneSharp.Map.Tiles
         HOLE,
         SLOW,
         SPIKE,
-        LADDER
+        LADDER,
+        PUDDLE
     }
 
     public static class TileData
