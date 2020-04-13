@@ -95,7 +95,7 @@ namespace AnodyneSharp.Map
             }
         }
 
-        internal void SetTileProperties(int tileMin, Touching allowCollisions, CollisionEventType collisionEventType = CollisionEventType.NONE, Touching direction = Touching.ANY, int tileMax = 0)
+        internal void SetTileProperties(int tileMin, Touching allowCollisions, CollisionEventType collisionEventType, Touching direction, int tileMax = 0)
         {
             if (tileMax == 0)
             {
@@ -109,6 +109,19 @@ namespace AnodyneSharp.Map
                 tile.allowCollisions = allowCollisions;
                 tile.collisionEventType = collisionEventType;
             }
+        }
+
+        public Vector2 GetFirstWalkable(TileMap layered)
+        {
+            for (int i = 0; i < data.Count; i++)
+            {
+                if(data[i] != 0 && _tileObjects[data[i]].allowCollisions == Touching.NONE && layered._tileObjects[layered.data[i]].allowCollisions == Touching.NONE)
+                {
+                    return new Vector2(i % widthInTiles, i / widthInTiles);
+                }
+            }
+
+            return Vector2.Zero;
         }
 
         public void Collide(Entity ent, bool onlyCurrentScreen = false)

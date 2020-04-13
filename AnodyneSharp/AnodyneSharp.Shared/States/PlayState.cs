@@ -413,21 +413,23 @@ namespace AnodyneSharp.States
             map_fg.LoadMap(MapLoader.GetMap(GlobalState.CURRENT_MAP_NAME, 3), TileData.Tiles);
             map_fg.y = HEADER_HEIGHT;
 
-            Vector2 gridPos = new Vector2(1, 4);
+
+
+            //Sets tile collission and tile events
+            TileData.Set_tile_properties(map, map_bg_2);
+            player.Position = map.GetFirstWalkable(map_bg_2)*TILE_WIDTH;
+
+            Vector2 gridPos = MapUtilities.GetRoomCoordinate(player.Position);
             Vector2 roomPos = MapUtilities.GetRoomUpperLeftPos(gridPos);
 
             GlobalState.CURRENT_GRID_X = (int)gridPos.X;
             GlobalState.CURRENT_GRID_Y = (int)gridPos.Y;
 
-
-            player.Position = roomPos + new Vector2(32, 32);
             player.Reset();
 
             _camera.GoTo(roomPos);
-            UpdateScreenBorders();
 
-            //Sets tile collission and tile events
-            TileData.Set_tile_properties(map, map_bg_2);
+            UpdateScreenBorders();
 
             LoadGridEntities();
         }

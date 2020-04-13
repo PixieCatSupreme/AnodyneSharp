@@ -143,6 +143,7 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\WINDMILL_BG2.csv" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\WINDMILL_FG.csv" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\CLIFF.col" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\FOREST.col" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\STREET.col" />
   </ItemGroup>
   <ItemGroup>
