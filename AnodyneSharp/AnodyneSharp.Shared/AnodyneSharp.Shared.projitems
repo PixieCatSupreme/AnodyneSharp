@@ -142,7 +142,15 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\WINDMILL_BG.csv" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\WINDMILL_BG2.csv" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\WINDMILL_FG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\SPACE.col" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\BLUE.col" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\DRAWER.col" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\CLIFF.col" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\GO.col" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\SUBURB.col" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\TRAIN.col" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\WINDMILL.col" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\REDCAVE.col" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\FOREST.col" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\BEACH.col" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\BLANK.col" />
@@ -153,6 +161,9 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\APARTMENT.col" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\CIRCUS.col" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\HOTEL.col" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\DEBUG.col" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\FIELDS.col" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\REDSEA.col" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\TERMINAL.col" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\STREET.col" />
   </ItemGroup>
