@@ -144,6 +144,14 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\WINDMILL_FG.csv" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\CLIFF.col" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\FOREST.col" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\BEACH.col" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\BLANK.col" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\NEXUS.col" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\HAPPY.col" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\BEDROOM.col" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\CROWD.col" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\APARTMENT.col" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\TERMINAL.col" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\STREET.col" />
   </ItemGroup>
   <ItemGroup>

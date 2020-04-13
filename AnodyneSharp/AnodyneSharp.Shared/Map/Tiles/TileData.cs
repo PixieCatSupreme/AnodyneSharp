@@ -98,13 +98,13 @@ namespace AnodyneSharp.Map.Tiles
             {
                 if (d.End == null)
                 {
-                    map.SetTileProperties(d.Start, Touching.NONE, d.CollisionEventType, d.Direction);
-                    bg2.SetTileProperties(d.Start, Touching.NONE, d.CollisionEventType, d.Direction);
+                    map.SetTileProperties(d.Start, d.AllowedCollisions, d.CollisionEventType, d.Direction);
+                    bg2.SetTileProperties(d.Start, d.AllowedCollisions, d.CollisionEventType, d.Direction);
                 }
                 else
                 {
-                    map.SetTileProperties(d.Start, Touching.NONE, d.CollisionEventType,d.Direction, tileMax: d.End.Value);
-                    bg2.SetTileProperties(d.Start, Touching.NONE, d.CollisionEventType, d.Direction, tileMax: d.End.Value);
+                    map.SetTileProperties(d.Start, d.AllowedCollisions, d.CollisionEventType,d.Direction, tileMax: d.End.Value);
+                    bg2.SetTileProperties(d.Start, d.AllowedCollisions, d.CollisionEventType, d.Direction, tileMax: d.End.Value);
                 }
             }
         }
@@ -133,7 +133,7 @@ namespace AnodyneSharp.Map.Tiles
 
                         if (Enum.TryParse(dataStrings[1], out allowedCol) &&
                             (dataStrings.Length == 2 || (Enum.TryParse(dataStrings[2], out eventType) && 
-                            (eventType != CollisionEventType.CONVEYOR || Enum.TryParse(dataStrings[3], out direction)))))
+                            (dataStrings.Length <= 3 || Enum.TryParse(dataStrings[3], out direction)))))
                         {
                             if (dataStrings[0].Contains('-'))
                             {

@@ -76,7 +76,7 @@ namespace AnodyneSharp
         /// </summary>
         protected override void LoadContent()
         { 
-            GlobalState.CURRENT_MAP_NAME = "FOREST";
+            GlobalState.CURRENT_MAP_NAME = "APARTMENT";
 
             ResourceManager.LoadResources(Content);
         }
