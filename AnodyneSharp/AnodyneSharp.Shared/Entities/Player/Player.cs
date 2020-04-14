@@ -314,37 +314,24 @@ namespace AnodyneSharp.Entities.Player
 
         private void Ground_animation()
         {
+            if(broom.finished && broom.visible)
+            {
+                //We just finished an attack
+                ANIM_STATE = PlayerAnimState.as_idle;
+            }
             switch (ANIM_STATE)
             {
-                case PlayerAnimState.ANIM_ATK_R:
-                case PlayerAnimState.ANIM_ATK_L:
-                case PlayerAnimState.ANIM_ATK_U:
                 case PlayerAnimState.ANIM_ATK_D:
-                    if (broom.finished)
-                    {
-                        ANIM_STATE =  PlayerAnimState.as_idle;
-                        switch (_curAnim.name)
-                        {
-                            case "attack_right":
-                                Play("idle_r");
-                                break;
-                            case "attack_up":
-                                Play("idle_u");
-                                break;
-                            case "attack_left":
-                                Play("idle_l");
-                                break;
-                            case "attack_down":
-                                Play("idle_d");
-                                break;
-                        }
-                        break;
-                    }
-
-                    if (_curIndex != 8 && ANIM_STATE ==  PlayerAnimState.ANIM_ATK_R) { Play("attack_right"); }
-                    if (_curIndex != 16 && ANIM_STATE == PlayerAnimState.ANIM_ATK_L) { Play("attack_left"); }
-                    if (_curIndex != 12 && ANIM_STATE == PlayerAnimState.ANIM_ATK_U) { Play("attack_up"); }
-                    if (_curIndex != 22 && ANIM_STATE == PlayerAnimState.ANIM_ATK_D) { Play("attack_down"); }
+                    Play("attack_down");
+                    break;
+                case PlayerAnimState.ANIM_ATK_L:
+                    Play("attack_left");
+                    break;
+                case PlayerAnimState.ANIM_ATK_R:
+                    Play("attack_right");
+                    break;
+                case PlayerAnimState.ANIM_ATK_U:
+                    Play("attack_up");
                     break;
                 case PlayerAnimState.ANIM_FALL:
                     Play("fall");
@@ -355,8 +342,28 @@ namespace AnodyneSharp.Entities.Player
                     if (idle_ticks > 0)
                     {
                         idle_ticks -= 1;
-                        return;
+                        break;
                     }
+                    if(velocity == Vector2.Zero)
+                    {
+                        switch (facing)
+                        {
+                            case Facing.UP:
+                                Play("idle_u");
+                                break;
+                            case Facing.LEFT:
+                                Play("idle_l");
+                                break;
+                            case Facing.DOWN:
+                                Play("idle_d");
+                                break;
+                            case Facing.RIGHT:
+                                Play("idle_r");
+                                break;
+                        }
+                        break;
+                    }
+
                     if (velocity.Y < 0)
                     {
                         facing = Facing.UP;
@@ -377,25 +384,7 @@ namespace AnodyneSharp.Entities.Player
                         facing = Facing.RIGHT;
                         Play("walk_r");
                     }
-                    else
-                    {
-                        switch (facing)
-                        {
-                            case Facing.UP:
-                                Play("idle_u");
-                                break;
-                            case Facing.LEFT:
-                                Play("idle_l");
-                                break;
-                            case Facing.DOWN:
-                                Play("idle_d");
-                                break;
-                            case Facing.RIGHT:
-                                Play("idle_r");
-                                break;
-                        }
-                        break;
-                    }
+
                     ANIM_STATE = PlayerAnimState.as_walk;
                     _curIndex = last_frame[(int)facing];
                     _curFrame = _curAnim.frames[_curIndex];
@@ -407,7 +396,7 @@ namespace AnodyneSharp.Entities.Player
                     {
                         idle_ticks--;
                     }
-                    if (velocity.X == 0 && velocity.Y == 0)
+                    if (velocity == Vector2.Zero)
                     {
                         ANIM_STATE = PlayerAnimState.as_idle;
                         last_frame[(int)facing] = _curIndex;
