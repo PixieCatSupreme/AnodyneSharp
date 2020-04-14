@@ -28,6 +28,7 @@ namespace AnodyneSharp.Entities
         public int frameHeight;
         protected Vector2 offset;
         public Facing facing;
+        public DrawOrder layer;
         public float rotation;
 
         protected int _curIndex;
@@ -43,7 +44,7 @@ namespace AnodyneSharp.Entities
 
         protected Rectangle spriteRect;
 
-        public Entity(Vector2 pos)
+        public Entity(Vector2 pos, DrawOrder layer)
         {
             Position = pos;
 
@@ -53,9 +54,11 @@ namespace AnodyneSharp.Entities
             frameHeight = 0;
 
             visible = true;
+
+            this.layer = layer;
         }
 
-        public Entity(Vector2 pos, int frameWidth, int frameHeight)
+        public Entity(Vector2 pos, int frameWidth, int frameHeight, DrawOrder layer)
         {
             Position = pos;
 
@@ -65,9 +68,11 @@ namespace AnodyneSharp.Entities
             this.frameHeight = frameHeight;
 
             visible = true;
+
+            this.layer = layer;
         }
 
-        public Entity(Vector2 pos, string textureName, int frameWidth, int frameHeight)
+        public Entity(Vector2 pos, string textureName, int frameWidth, int frameHeight, DrawOrder layer)
         {
             Position = pos;
 
@@ -79,6 +84,8 @@ namespace AnodyneSharp.Entities
             SetTexture(textureName);
 
             visible = true;
+
+            this.layer = layer;
         }
         /**
  * Adds a new animation to the sprite.
@@ -151,7 +158,7 @@ namespace AnodyneSharp.Entities
         {
             if (visible)
             {
-                SpriteDrawer.DrawSprite(Texture, MathUtilities.CreateRectangle(Position.X - offset.X, Position.Y - offset.Y, frameWidth, frameHeight), spriteRect, rotation : rotation, Z: 0.2f);
+                SpriteDrawer.DrawSprite(Texture, MathUtilities.CreateRectangle(Position.X - offset.X, Position.Y - offset.Y, frameWidth, frameHeight), spriteRect, rotation : rotation, Z: DrawingUtilities.GetDrawingZ(layer, MapUtilities.GetInGridPosition(Position).Y));
             }
         }
 

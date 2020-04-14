@@ -1,4 +1,6 @@
-﻿using AnodyneSharp.Registry;
+﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Registry;
+using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 
 namespace AnodyneSharp.Entities.Player
@@ -42,7 +44,7 @@ namespace AnodyneSharp.Entities.Player
         private bool is_long;
 
         public Broom(Entity root)
-            : base(new Vector2(root.Position.X - 10, root.Position.Y), 16, 16)
+            : base(new Vector2(root.Position.X - 10, root.Position.Y), 16, 16, Drawing.DrawOrder.ENTITIES)
         {
             _root = root;
             visible = false;
@@ -51,8 +53,8 @@ namespace AnodyneSharp.Entities.Player
 
             AddAnimation("stab", CreateAnimFrameArray(1, 2, 2, 1, 0, 0), 20, false);
 
-            wide_attack = new Entity(Position, Wide_Attack_v, WATK_H, WATK_W);
-            long_attack = new Entity(Position, Long_Attack_v, LATK_H, LATK_W);
+            wide_attack = new Entity(Position, Wide_Attack_v, WATK_H, WATK_W, Drawing.DrawOrder.UNDER_ENTITIES);
+            long_attack = new Entity(Position, Long_Attack_v, LATK_H, LATK_W, Drawing.DrawOrder.UNDER_ENTITIES);
 
             wide_attack.AddAnimation("a", CreateAnimFrameArray(0, 1, 2, 3, 4), 14, false);
             long_attack.AddAnimation("a", CreateAnimFrameArray(0, 1, 2, 3, 4), 14, false);
@@ -61,10 +63,19 @@ namespace AnodyneSharp.Entities.Player
 
         public override void Draw()
         {
-            base.Draw();
+            if (visible)
+            {
+                float draw_y = MapUtilities.GetInGridPosition(Position).Y;
+                if(!is_behind_player)
+                {
+                    float player_y = MapUtilities.GetInGridPosition(_root.Position).Y;
+                    draw_y = player_y + 0.5f;
+                }
+                SpriteDrawer.DrawSprite(Texture, MathUtilities.CreateRectangle(Position.X - offset.X, Position.Y - offset.Y, frameWidth, frameHeight), spriteRect, rotation: rotation, Z: DrawingUtilities.GetDrawingZ(layer, draw_y));
 
-            wide_attack.Draw();
-            long_attack.Draw();
+                wide_attack.Draw();
+                long_attack.Draw();
+            }
         }
 
         public override void Update()
@@ -160,6 +171,7 @@ namespace AnodyneSharp.Entities.Player
                 case Facing.LEFT:
                     rotation = 0;
                     Position = new Vector2(_root.Position.X - 14, _root.Position.Y);
+                    is_behind_player = true;
 
                     if (is_wide)
                     {
@@ -181,6 +193,7 @@ namespace AnodyneSharp.Entities.Player
                 case Facing.RIGHT:
                     rotation = MathHelper.ToRadians(180);
                     Position = new Vector2(_root.Position.X + _root.width, _root.Position.Y - 2);
+                    is_behind_player = false;
 
                     if (is_wide)
                     {
@@ -201,6 +214,7 @@ namespace AnodyneSharp.Entities.Player
                 case Facing.UP:
                     rotation = MathHelper.ToRadians(90);
                     Position = new Vector2(_root.Position.X + -2, _root.Position.Y - 16);
+                    is_behind_player = true;
 
                     if (is_wide)
                     {
@@ -221,6 +235,7 @@ namespace AnodyneSharp.Entities.Player
                 case Facing.DOWN:
                     rotation = MathHelper.ToRadians(270);
                     Position = new Vector2(_root.Position.X + -6, _root.Position.Y + _root.height);
+                    is_behind_player = false;
 
                     if (is_wide)
                     {

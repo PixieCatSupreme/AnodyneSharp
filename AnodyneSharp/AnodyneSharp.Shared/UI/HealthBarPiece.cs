@@ -23,7 +23,7 @@ namespace AnodyneSharp.UI
         public const string Health_Piece_Sprite = "health_piece";
 
         public HealthBarPiece(Vector2 pos)
-            :base(pos, BOX_WIDTH, BOX_HEIGHT)
+            :base(pos, BOX_WIDTH, BOX_HEIGHT, DrawOrder.UI_OBJECTS)
         {
             AddAnimation("flash", CreateAnimFrameArray(0, 2), 7, true);
             AddAnimation("full", CreateAnimFrameArray(0), 0, false);
@@ -37,8 +37,7 @@ namespace AnodyneSharp.UI
 
         public override void Draw()
         {
-            SpriteDrawer.DrawGuiSprite(Texture, Position - offset, spriteRect, Z: 0.2f);
+            SpriteDrawer.DrawGuiSprite(Texture, Position - offset, spriteRect, Z: DrawingUtilities.GetDrawingZ(layer));
         }
-
     }
 }

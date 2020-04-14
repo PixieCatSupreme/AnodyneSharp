@@ -7,7 +7,7 @@ namespace AnodyneSharp.Entities.Enemy
     [NamedEntity]
     public class Slime : Entity
     {
-        public Slime(EntityPreset preset) : base(preset.Position, 16,16)
+        public Slime(EntityPreset preset) : base(preset.Position, 16,16, Drawing.DrawOrder.ENTITIES)
         {
             SetTexture("slime");
 

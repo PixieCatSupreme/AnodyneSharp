@@ -24,12 +24,15 @@ namespace AnodyneSharp.Map
         private int _tileWidth;
         private int _tileHeight;
         private Tile[] _tileObjects;
+
+        private DrawOrder _layer;
+
         /**
 		 * Y position of the upper left corner of this object in world space.
 		 */
         public float y;
 
-        public void LoadMap(string mapData, Texture2D tileMap, int tileWidth = 16, int tileHeight = 16)
+        public void LoadMap(string mapData, Texture2D tileMap, DrawOrder layer)
         {
             //Figure out the map dimensions based on the data string
             string[] columns;
@@ -39,6 +42,8 @@ namespace AnodyneSharp.Map
             data = new List<int>();
 
             tiles = tileMap;
+
+            _layer = layer;
 
             uint row = 0;
             uint column = 0;
@@ -61,13 +66,13 @@ namespace AnodyneSharp.Map
 
             //Figure out the size of the tiles
             tiles = tileMap;
-            _tileWidth = tileWidth;
+            _tileWidth = GameConstants.TILE_WIDTH;
             if (_tileWidth == 0)
             {
                 _tileWidth = tiles.Height;
             }
 
-            _tileHeight = tileHeight;
+            _tileHeight = GameConstants.TILE_HEIGHT;
             if (_tileHeight == 0)
             {
                 _tileHeight = _tileWidth;
@@ -153,9 +158,10 @@ namespace AnodyneSharp.Map
 
         }
 
-        public void Draw(float z = 0, bool ignoreEmpty = false)
+        public void Draw(bool ignoreEmpty = false)
         {
-            //SpriteDrawer.DrawSprite(tiles, tiles.Bounds, null);
+            float z = DrawingUtilities.GetDrawingZ(_layer);
+
             for (int y = 0; y < heightInTiles; y++)
             {
                 for (int x = 0; x < widthInTiles; x++)

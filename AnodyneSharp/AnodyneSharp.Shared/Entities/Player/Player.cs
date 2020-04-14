@@ -84,7 +84,7 @@ namespace AnodyneSharp.Entities.Player
         private bool actions_disabled;
 
         public Player(PlayState parent)
-            : base(Vector2.Zero, ORIGINAL_WIDTH, ORIGINAL_HEIGHT)
+            : base(Vector2.Zero, ORIGINAL_WIDTH, ORIGINAL_HEIGHT, Drawing.DrawOrder.ENTITIES)
         {
             DEATH_FRAME = 32;
             this.parent = parent;

@@ -87,11 +87,11 @@ namespace AnodyneSharp.States
             }
             if (GlobalState.DrawBG2)
             {
-                map_bg_2.Draw(0.1f, true);
+                map_bg_2.Draw(true);
             }
             if (GlobalState.DrawFG)
             {
-                map_fg.Draw(0.3f, true);
+                map_fg.Draw(true);
             }
 
 #else
@@ -114,7 +114,7 @@ namespace AnodyneSharp.States
 
         public override void DrawUI()
         {
-            SpriteDrawer.DrawGuiSprite(_header, Vector2.Zero, Z: 0.1f);
+            SpriteDrawer.DrawGuiSprite(_header, Vector2.Zero, Z: DrawingUtilities.GetDrawingZ(DrawOrder.HEADER));
             healthBar.Draw();
         }
 
@@ -413,15 +413,15 @@ namespace AnodyneSharp.States
 
         private void LoadMap()
         {
-            TileData.SetTileset(Registry.GlobalState.CURRENT_MAP_NAME);
-            map.LoadMap(MapLoader.GetMap(Registry.GlobalState.CURRENT_MAP_NAME), TileData.Tiles);
+            TileData.SetTileset(GlobalState.CURRENT_MAP_NAME);
+            map.LoadMap(MapLoader.GetMap(GlobalState.CURRENT_MAP_NAME), TileData.Tiles, DrawOrder.MAP_BG);
 
             //map_bg_2.null_buffer(0);
             //map_fg.null_buffer(0);
 
-            map_bg_2.LoadMap(MapLoader.GetMap(GlobalState.CURRENT_MAP_NAME, 2), TileData.Tiles);
+            map_bg_2.LoadMap(MapLoader.GetMap(GlobalState.CURRENT_MAP_NAME, 2), TileData.Tiles, DrawOrder.MAP_BG2);
             map_bg_2.y = HEADER_HEIGHT;
-            map_fg.LoadMap(MapLoader.GetMap(GlobalState.CURRENT_MAP_NAME, 3), TileData.Tiles);
+            map_fg.LoadMap(MapLoader.GetMap(GlobalState.CURRENT_MAP_NAME, 3), TileData.Tiles, DrawOrder.MAP_FG);
             map_fg.y = HEADER_HEIGHT;
 
 

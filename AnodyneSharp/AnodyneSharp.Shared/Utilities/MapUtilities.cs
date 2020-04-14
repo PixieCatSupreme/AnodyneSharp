@@ -16,5 +16,10 @@ namespace AnodyneSharp.Utilities
         {
             return pos * SCREEN_WIDTH_IN_PIXELS;
         }
+
+        public static Vector2 GetInGridPosition(Vector2 pos)
+        {
+            return pos - GetRoomUpperLeftPos(GetRoomCoordinate(pos));
+        }
     }
 }
