@@ -44,32 +44,19 @@ namespace AnodyneSharp.Entities
         }
 
 
-        public static bool GetMapEntities(string mapName, out List<EntityPreset> entities)
+        public static List<EntityPreset> GetMapEntities(string mapName)
         {
-            entities = new List<EntityPreset>();
-
             if (!_entities.ContainsKey(mapName))
             {
-                return false;
+                return new List<EntityPreset>();
             }
 
-            entities = _entities[mapName];
-
-            return true;
+            return _entities[mapName];
         }
 
-        public static bool GetGridEntities(string mapName, Vector2 grid, out List<EntityPreset> entities)
+        public static List<EntityPreset> GetGridEntities(string mapName, Vector2 grid)
         {
-            entities = new List<EntityPreset>();
-
-            if (!GetMapEntities(mapName, out entities))
-            {
-                return false;
-            }
-
-            entities = entities.Where(e => e.GridPosition == grid).ToList();
-
-            return true;
+            return GetMapEntities(mapName).Where(e => e.GridPosition == grid).ToList();
         }
 
         private static void ReadEntities(string xml)

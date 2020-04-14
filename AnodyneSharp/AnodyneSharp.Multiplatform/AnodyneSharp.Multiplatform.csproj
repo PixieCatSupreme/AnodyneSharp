@@ -102,6 +102,9 @@
       <Link>MonoGame.Framework.dll.config</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </None>
     <None Include="app.manifest" />
   </ItemGroup>
   <Import Project="..\AnodyneSharp.Shared\AnodyneSharp.Shared.projitems" Label="Shared" />
