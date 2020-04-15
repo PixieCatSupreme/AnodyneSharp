@@ -48,6 +48,7 @@ namespace AnodyneSharp.Entities.Player
         {
             _root = root;
             visible = false;
+            immovable = true;
 
             SetTexture(Broom_Sprite);
 

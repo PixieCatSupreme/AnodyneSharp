@@ -13,6 +13,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Camera.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\DrawingUtilities.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\SpriteDrawer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\CollisionGroups.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Player\Broom.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\NamedEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Slime.cs" />

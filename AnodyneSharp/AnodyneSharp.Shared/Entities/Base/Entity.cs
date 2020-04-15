@@ -154,6 +154,8 @@ namespace AnodyneSharp.Entities
             UpdateAnimation();
         }
 
+        public virtual void Collided(Entity other) { }
+
         public virtual void Draw()
         {
             if (visible)
