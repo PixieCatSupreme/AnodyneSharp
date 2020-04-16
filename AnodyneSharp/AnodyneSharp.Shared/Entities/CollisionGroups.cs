@@ -1,7 +1,7 @@
 ﻿using AnodyneSharp.Map;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Reflection;
 
 namespace AnodyneSharp.Entities
 {
@@ -10,11 +10,35 @@ namespace AnodyneSharp.Entities
     {
         private class Group
         {
+            public Group()
+            {
+                targets = new List<Entity>();
+                colliders = new List<Entity>();
+            }
             public List<Entity> targets;
             public List<Entity> colliders;
         }
         Dictionary<Type, Group> _groups;
         List<Entity> _mapColliders;
+
+        public CollisionGroups()
+        {
+            _groups = new Dictionary<Type, Group>();
+            _mapColliders = new List<Entity>();
+        }
+
+        public void Register(Entity e)
+        {
+            Type t = e.GetType();
+            Get(t).targets.Add(e);
+            CollisionAttribute c = t.GetCustomAttribute<CollisionAttribute>();
+            if (c.MapCollision)
+                _mapColliders.Add(e);
+            foreach(Type target in c.Types)
+            {
+                Get(target).colliders.Add(e);
+            }
+        }
 
         public void DoCollision(TileMap bg, TileMap bg2)
         {
@@ -27,8 +51,10 @@ namespace AnodyneSharp.Entities
             {
                 foreach(Entity collider in g.colliders)
                 {
+                    if (!collider.visible) continue; //visible, exists,... ???
                     foreach(Entity target in g.targets)
                     {
+                        if (!target.visible) continue;
                         if(collider.Hitbox.Intersects(target.Hitbox))
                         {
                             collider.Collided(target);
@@ -36,6 +62,16 @@ namespace AnodyneSharp.Entities
                     }
                 }
             }
+        }
+
+        private Group Get(Type t)
+        {
+            if(!_groups.TryGetValue(t, out Group g))
+            {
+                g = new Group();
+                _groups.Add(t, g);
+            }
+            return g;
         }
     }
 }

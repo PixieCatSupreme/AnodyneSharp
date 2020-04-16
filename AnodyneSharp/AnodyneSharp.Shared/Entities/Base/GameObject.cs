@@ -27,6 +27,21 @@ namespace AnodyneSharp.Entities
             }
         }
 
+        public bool solid
+        {
+            get { return allowCollisions != Touching.NONE; }
+            set
+            {
+                if(value)
+                {
+                    allowCollisions = Touching.ANY;
+                } else
+                {
+                    allowCollisions = Touching.NONE;
+                }
+            }
+        }
+
         public Vector2 Position;
         public Vector2 lastPosition;
         public Vector2 velocity;

@@ -1,6 +1,5 @@
 ﻿using AnodyneSharp.Drawing;
 using AnodyneSharp.Entities;
-using AnodyneSharp.Entities.Player;
 using AnodyneSharp.Input;
 using AnodyneSharp.Map;
 using AnodyneSharp.Map.Tiles;
@@ -50,6 +49,8 @@ namespace AnodyneSharp.States
 
         private HealthBar _healthBar;
         private Texture2D _header;
+
+        private CollisionGroups _groups; //Deals with entity-map and entity-entity collision
 
         private List<Entity> _gridEntities; //Holds entities that stay on the current grid coordinate
         private List<Entity> _oldEntities; //Holds entities that will despawn after a screen transition is complete
@@ -180,8 +181,7 @@ namespace AnodyneSharp.States
 
         private void DoCollisions()
         {
-            _map.Collide(_player, onlyCurrentScreen: true);
-            _map_bg_2.Collide(_player, onlyCurrentScreen: false);
+            _groups.DoCollision(_map, _map_bg_2);
         }
 
         private void StateNormal()
@@ -443,9 +443,17 @@ namespace AnodyneSharp.States
 
         private void LoadGridEntities()
         {
+            _groups = new CollisionGroups();
+            _groups.Register(_player);
+            _groups.Register(_player.broom);
+
             _oldEntities = new List<Entity>(_gridEntities);
             _gridEntities = EntityManager.GetGridEntities(GlobalState.CURRENT_MAP_NAME, new Vector2(GlobalState.CURRENT_GRID_X, GlobalState.CURRENT_GRID_Y))
                 .ConvertAll(preset => preset.Create());
+            foreach(Entity e in _gridEntities)
+            {
+                _groups.Register(e);
+            }
         }
     }
 }

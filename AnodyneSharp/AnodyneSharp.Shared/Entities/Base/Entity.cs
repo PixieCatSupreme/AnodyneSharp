@@ -22,8 +22,6 @@ namespace AnodyneSharp.Entities
 
         public Texture2D Texture;
 
-        public bool solid;
-
         public int frameWidth;
         public int frameHeight;
         protected Vector2 offset;
@@ -32,7 +30,7 @@ namespace AnodyneSharp.Entities
         public float rotation;
 
         protected int _curIndex;
-        public int _curFrame;
+        protected int _curFrame;
         protected Anim _curAnim;
 
         private List<Anim> _animations;
@@ -64,8 +62,8 @@ namespace AnodyneSharp.Entities
 
             _animations = new List<Anim>();
 
-            this.frameWidth = frameWidth;
-            this.frameHeight = frameHeight;
+            width = this.frameWidth = frameWidth;
+            height = this.frameHeight = frameHeight;
 
             visible = true;
 
@@ -78,8 +76,8 @@ namespace AnodyneSharp.Entities
 
             _animations = new List<Anim>();
 
-            this.frameWidth = frameWidth;
-            this.frameHeight = frameHeight;
+            width = this.frameWidth = frameWidth;
+            height = this.frameHeight = frameHeight;
 
             SetTexture(textureName);
 

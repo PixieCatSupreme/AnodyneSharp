@@ -9,7 +9,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using AnodyneSharp.Input;
-using AnodyneSharp.Entities.Player;
 using AnodyneSharp.Entities;
 using System.Collections.Generic;
 using AnodyneSharp.UI;

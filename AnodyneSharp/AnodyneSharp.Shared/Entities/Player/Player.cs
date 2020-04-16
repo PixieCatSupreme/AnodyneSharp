@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace AnodyneSharp.Entities.Player
+namespace AnodyneSharp.Entities
 {
     public enum PlayerState
     {
@@ -35,6 +35,7 @@ namespace AnodyneSharp.Entities.Player
         as_slumped
     }
 
+    [Collision(MapCollision = true)]
     public class Player : Entity
     {
         public const string Player_Sprite = "young_player";

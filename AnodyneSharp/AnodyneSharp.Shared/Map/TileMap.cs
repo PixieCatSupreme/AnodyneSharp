@@ -1,6 +1,5 @@
 ﻿using AnodyneSharp.Drawing;
 using AnodyneSharp.Entities;
-using AnodyneSharp.Entities.Player;
 using AnodyneSharp.Map.Tiles;
 using AnodyneSharp.Registry;
 using Microsoft.Xna.Framework;

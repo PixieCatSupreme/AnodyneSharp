@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Entities.Player;
+﻿
+using AnodyneSharp.Entities;
 
 namespace AnodyneSharp.Registry
 {

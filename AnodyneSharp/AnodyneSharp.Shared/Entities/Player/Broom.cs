@@ -3,7 +3,7 @@ using AnodyneSharp.Registry;
 using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 
-namespace AnodyneSharp.Entities.Player
+namespace AnodyneSharp.Entities
 {
     public enum BroomType
     {
@@ -14,6 +14,7 @@ namespace AnodyneSharp.Entities.Player
         Transformer
     }
 
+    [Collision(MapCollision = false)]
     public class Broom : Entity
     {
         private const int WATK_W = 24;
