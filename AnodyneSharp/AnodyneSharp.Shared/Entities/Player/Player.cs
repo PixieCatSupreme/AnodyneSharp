@@ -44,6 +44,8 @@ namespace AnodyneSharp.Entities.Player
         public const string Player_reflection_Sprite = "young_player_reflection";
         public const string Broom_reflection_sprite = "broom_reflection";
 
+        private const float jump_period = 0.4f*1.15f; //length of jump
+
         public const float action_latency_max = 0.24f;
 		public const float ATK_DELAY = 0.2f;
 		public const float WATK_DELAY = 0.35f;
@@ -62,6 +64,7 @@ namespace AnodyneSharp.Entities.Player
         private const int HITBOX_WIDTH = 10;
 
         private int walkSpeed = 70;
+        private bool anim_air_did_up;
 
         /* Animation state */
         public PlayerAnimState ANIM_STATE;
@@ -82,6 +85,10 @@ namespace AnodyneSharp.Entities.Player
         private PlayState parent;
         private bool hasFallen;
         private bool actions_disabled;
+        private bool just_landed;
+        private bool anim_air_did_down;
+        private float jump_timer;
+        private bool sinking;
 
         public Player(PlayState parent)
             : base(Vector2.Zero, ORIGINAL_WIDTH, ORIGINAL_HEIGHT, Drawing.DrawOrder.ENTITIES)
@@ -258,11 +265,22 @@ namespace AnodyneSharp.Entities.Player
                     }
                     Ground_animation();
 
-                    //just_landed = false;
+                    just_landed = false;
                     //dash_logic();
 
                     break;
                 case PlayerState.AIR:
+                    if (dontMove)
+                    {
+                        velocity = Vector2.Zero;
+                    }
+                    else
+                    {
+                        Air_movement();
+                        Air_animation();
+                    }
+
+                    //dash_logic();
                     break;
                 case PlayerState.RAFT:
                     break;
@@ -291,23 +309,38 @@ namespace AnodyneSharp.Entities.Player
                 return;
             }
 
-            if (KeyInput.CanPressKey(Keys.C))
+            if (state != PlayerState.AIR)
             {
-                if (GlobalState.EquippedBroom != BroomType.NONE && !broom.visible)
+                if (KeyInput.CanPressKey(Keys.C) )
                 {
-                    broom.visible_timer = 0;
-                    broom.visible = true;
-                    action_latency = action_latency_max;
-
-                    broom.Play("stab", true);
-
-                    switch (facing)
+                    if (GlobalState.EquippedBroom != BroomType.NONE && !broom.visible)
                     {
-                        case Facing.LEFT: ANIM_STATE = PlayerAnimState.ANIM_ATK_L; break;
-                        case Facing.UP: ANIM_STATE = PlayerAnimState.ANIM_ATK_U; break;
-                        case Facing.DOWN: ANIM_STATE = PlayerAnimState.ANIM_ATK_D; break;
-                        case Facing.RIGHT: ANIM_STATE = PlayerAnimState.ANIM_ATK_R; break;
+                        broom.visible_timer = 0;
+                        broom.visible = true;
+                        action_latency = action_latency_max;
+
+                        broom.Play("stab", true);
+
+                        switch (facing)
+                        {
+                            case Facing.LEFT: ANIM_STATE = PlayerAnimState.ANIM_ATK_L; break;
+                            case Facing.UP: ANIM_STATE = PlayerAnimState.ANIM_ATK_U; break;
+                            case Facing.DOWN: ANIM_STATE = PlayerAnimState.ANIM_ATK_D; break;
+                            case Facing.RIGHT: ANIM_STATE = PlayerAnimState.ANIM_ATK_R; break;
+                        }
                     }
+                    else if (GlobalState.EquippedBroom == BroomType.Transformer)
+                    {
+                        //TODO transformer stuff
+                    }
+
+                }
+
+                if (KeyInput.CanPressKey(Keys.X) && !sinking)
+                {
+                    state = PlayerState.AIR;
+                    //my_shadow.visible = true;
+                    //my_shadow.x = x; my_shadow.y = y;
                 }
             }
         }
@@ -451,6 +484,66 @@ namespace AnodyneSharp.Entities.Player
             }
         }
 
+        private void Air_animation()
+        {
+            if (!anim_air_did_up)
+            {
+                broom.visible = false;
+                anim_air_did_up = true;
+
+                //if (ON_CONVEYER)
+                //{
+                //    Registry.sound_data.puddle_up.play();
+                //}
+                //else
+                //{
+                //    play_sfx("jump_up");
+                //}
+
+                //my_shadow.play("get_small");
+                ANIM_STATE =  PlayerAnimState.as_idle; // Always land in idle state.
+                switch (facing)
+                { // Play the jump animation
+                    case  Facing.UP:
+                        Play("jump_u");
+                        break;
+                    case Facing.DOWN:
+                        Play("jump_d");
+                        break;
+                    case Facing.LEFT:
+                        Play("jump_l");
+                        break;
+                    case Facing.RIGHT:
+                        Play("jump_r");
+                        break;
+                }
+            }
+
+            //TODO update shadow
+
+            offset.Y = DEFAULT_Y_OFFSET + (((-4 * 24) / (jump_period * jump_period)) * jump_timer * (jump_timer - jump_period));
+            jump_timer += GameTimes.DeltaTime;
+
+            if (jump_timer > jump_period)
+            {
+                jump_timer = 0;
+                //if (ON_CONVEYER)
+                //{
+                //    Registry.sound_data.puddle_down.play();
+                //}
+                //else
+                //{
+                //    play_sfx("jump_down");
+                //}
+                state = PlayerState.GROUND;
+
+                //my_shadow.visible = false;
+                offset.Y = DEFAULT_Y_OFFSET;
+                just_landed = true;
+                anim_air_did_down = anim_air_did_up = false;
+            }
+        }
+
         protected override void AnimationChanged(string name)
         {
             switch(name)
@@ -478,6 +571,28 @@ namespace AnodyneSharp.Entities.Player
             {
                 velocity *= .7f;
             }
+
+            velocity += additionalVel;
+            velocity *= GameTimes.DeltaTime;
+        }
+
+        private void Air_movement()
+        {
+            Set_init_vel(0.83f);
+
+            if (velocity != Vector2.Zero)
+            {
+                velocity *= .7f;
+            }
+
+            //if (ON_RAFT)
+            //{
+            //    if (ON_CONVEYER != NONE)
+            //    {
+            //        raft.x = x - 2;
+            //        raft.y = y - 2;
+            //    }
+            //}
 
             velocity += additionalVel;
             velocity *= GameTimes.DeltaTime;
