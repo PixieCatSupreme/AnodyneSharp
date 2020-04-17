@@ -18,7 +18,7 @@ namespace AnodyneSharp.Drawing
         public static void Initialize(GraphicsDevice graphicsDevice)
         {
             BackColor = Color.Honeydew;
-            SamplerState = SamplerState.PointClamp;
+            SamplerState = SamplerState.PointWrap;
 
             _graphicsDevice = graphicsDevice;
             _spriteBatch = new SpriteBatch(_graphicsDevice);

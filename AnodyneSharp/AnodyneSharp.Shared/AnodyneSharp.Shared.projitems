@@ -39,10 +39,16 @@
     <Compile Include="$(MSBuildThisFileDirectory)Registry\GameConstants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Registry\GlobalState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\EntityManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\DialogueState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\PlayState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\State.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\Font\FontManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\Font\SpriteFont.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\Font\Writing\TextCharacter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\Font\Writing\TextWriter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\HealthBar.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\HealthBarPiece.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\TextBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\MapUtilities.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\MathUtilities.cs" />
   </ItemGroup>
@@ -170,5 +176,8 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\OVERWORLD.col" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)UI\Font\Writing\" />
   </ItemGroup>
 </Project>

@@ -55,6 +55,8 @@ namespace AnodyneSharp.States
         private List<Entity> _gridEntities; //Holds entities that stay on the current grid coordinate
         private List<Entity> _oldEntities; //Holds entities that will despawn after a screen transition is complete
 
+        private State _childState;
+
         public PlayState(Camera camera)
         {
             _map = new TileMap();
@@ -111,12 +113,22 @@ namespace AnodyneSharp.States
             {
                 gridEntity.Draw();
             }
+
+            if (_childState != null)
+            {
+                _childState.Draw();
+            }
         }
 
         public override void DrawUI()
         {
             SpriteDrawer.DrawGuiSprite(_header, Vector2.Zero, Z: DrawingUtilities.GetDrawingZ(DrawOrder.HEADER));
             _healthBar.Draw();
+
+            if (_childState != null)
+            {
+                _childState.DrawUI();
+            }
         }
 
         public override void Update()
@@ -145,6 +157,16 @@ namespace AnodyneSharp.States
                 case PlayStateState.S_CUTSCENE:
                     break;
                 case PlayStateState.S_DIALOGUE:
+                    if (_childState is DialogueState dialogueState)
+                    {
+                        dialogueState.Update();
+
+                        if (GlobalState.cur_dialogue == "")
+                        {
+                            _state = PlayStateState.S_NORMAL;
+                            _childState = null;
+                        }
+                    }
                     break;
                 default:
                     break;
@@ -309,6 +331,13 @@ namespace AnodyneSharp.States
 #if DEBUG
         private void DebugKeyInput()
         {
+            if (KeyInput.CanPressKey(Keys.T))
+            {
+                GlobalState.cur_dialogue = "abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890.:,;'\"(!?)+-*/=[]";
+                _state = PlayStateState.S_DIALOGUE;
+                _childState = new DialogueState();
+            }
+
             if (KeyInput.CanPressKey(Keys.M))
             {
                 GlobalState.CURRENT_MAP_NAME = TileData.GetNextMapName();
