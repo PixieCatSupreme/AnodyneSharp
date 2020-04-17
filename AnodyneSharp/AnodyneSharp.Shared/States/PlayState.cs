@@ -346,10 +346,8 @@ namespace AnodyneSharp.States
             if (KeyInput.CanPressKey(Keys.T))
             {
                 GlobalState.cur_dialogue = "abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890.:,;'\"(!?)+-*/=[]";
-                GlobalState.cur_dialogue = @"Hello^ 
-Yes, this is slime";
+                GlobalState.cur_dialogue = "Hello^\nYes, this is slime";
 
-                GlobalState.cur_dialogue = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec convallis lorem tellus, a gravida odio volutpat gravida. Aenean eu lacinia nisl, non hendrerit magna. Duis id dolor pellentesque, ultrices mauris varius, gravida elit. Nullam at venenatis tellus, sed tincidunt nisl. Donec gravida pellentesque lectus, at rhoncus justo. Maecenas dictum justo sapien, et iaculis diam vestibulum nec. Duis ultricies, turpis nec aliquam ultrices, ipsum nisl tristique massa, a varius augue ipsum sit amet ipsum. Donec egestas ornare consectetur. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse nec mauris dictum, pellentesque erat sit amet, porttitor nisl. Donec sit amet maximus mi, sit amet condimentum libero.";
                 _state = PlayStateState.S_DIALOGUE;
                 _childState = new DialogueState();
             }
