@@ -17,11 +17,20 @@ namespace AnodyneSharp.States
 
     public class DialogueState : State
     {
+        private float bump_timer_max = 0.2f;
+
+
         private DialogueStateState state;
         private TextBox _tb;
 
         private bool _forcedInput;
-        private bool _removedLine;
+
+        private float bump_timer;
+        private int bumpCounter;
+        private bool doBump;
+        private bool skipBump;
+
+        private int normalSpeed;
 
         public DialogueState()
         {
@@ -33,17 +42,28 @@ namespace AnodyneSharp.States
             _tb = new TextBox();
             _tb.Writer.SetSpriteFont(FontManager.InitFont(Color.White));
             _tb.Writer.Text = GlobalState.cur_dialogue;
+
+            normalSpeed = _tb.Writer.Speed;
         }
 
         public override void Update()
         {
+            if (KeyInput.IsKeyPressed(Keys.C) || KeyInput.IsKeyPressed(Keys.X))
+            {
+                _tb.Writer.Speed = normalSpeed * 2;
+            }
+            else
+            {
+                _tb.Writer.Speed = normalSpeed;
+            }
+
             _tb.Update();
 
             switch (state)
             {
                 case DialogueStateState.Writing:
                     //TODO play writing sound
-
+                    
                     if (_tb.Writer.NextCharacter == '^')
                     {
                         _forcedInput = true;
@@ -58,18 +78,50 @@ namespace AnodyneSharp.States
 
                     break;
                 case DialogueStateState.BumpingUp:
-                    if (!_removedLine)
+
+                    if (_tb.Writer.AtEndOfText)
                     {
-                        _tb.Writer.RemoveFirstLine();
-                        _removedLine = true;
+                        state = DialogueStateState.Done;
+                        break;
                     }
 
-                    state = _tb.Writer.PushTextUp() ? DialogueStateState.Writing : DialogueStateState.BumpingUp;
+                    if(_tb.Writer.AtEndOfBox)
+                    {
+                        if (doBump)
+                        {
+                            _tb.Writer.RemoveFirstLine();
+                            doBump = false;
+                            bump_timer = 0;
+                        }
 
+                        bump_timer -= GameTimes.DeltaTime;
+                        if (bump_timer > 0)
+                        {
+                            break;
+                        }
+                        bump_timer = bump_timer_max;
 
+                        if (_tb.Writer.PushTextUp())
+                        {
+                            bumpCounter++;
+
+                            _tb.Writer.ResetCursor();
+
+                            if (bumpCounter == 3)
+                            {
+                                state = DialogueStateState.Writing;
+                                bumpCounter = 0;
+                            }
+                            else
+                            {
+                                doBump = true;
+                            }
+                        }
+
+                    }
                     break;
                 case DialogueStateState.Waiting:
-                    if (KeyInput.CanPressKey(Keys.C))
+                    if (KeyInput.IsKeyPressed(Keys.C) || KeyInput.IsKeyPressed(Keys.X))
                     {
                         //TODO play text bloop
 
@@ -84,7 +136,8 @@ namespace AnodyneSharp.States
                             //Bump up
 
                             state = DialogueStateState.BumpingUp;
-                            _removedLine = false;
+                            bump_timer = 0;
+                            doBump = true;
                         }
                         else if (_forcedInput)
                         {

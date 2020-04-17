@@ -91,7 +91,7 @@ namespace AnodyneSharp.UI
 
             Writer = new TextWriter
             {
-                WriteArea = MathUtilities.CreateRectangle(pos.X + 4, pos.Y + 7, Width - 16, height - 4)
+                WriteArea = MathUtilities.CreateRectangle(pos.X + 4, pos.Y + 5, Width - 16, height - 8)
             };
 
 

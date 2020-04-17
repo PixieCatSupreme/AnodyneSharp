@@ -14,6 +14,14 @@ namespace AnodyneSharp.UI.Font
         public Texture2D texture;
         public Color color;
 
+        public int lineSeparation
+        {
+            get
+            {
+                return lineHeight + 2;
+            }
+        }
+
         private Dictionary<char, Rectangle> _characterRectangles;
 
         public SpriteFont(int lineHeight, int spaceWidth, string textureName, string characterOrder, Color color)
