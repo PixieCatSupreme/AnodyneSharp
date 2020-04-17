@@ -5,9 +5,6 @@ using AnodyneSharp.UI.Text;
 using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace AnodyneSharp.UI
 {
@@ -15,57 +12,92 @@ namespace AnodyneSharp.UI
     {
         private const int Width = 156;
         private const int Height = 44;
+        private const float blinky_box_timer_max = 0.4f;
 
         public TextWriter Writer { get; set; }
-        //Blinky
+        public Texture2D blinky_box;
+
+        public bool PauseWriting;
+
+        private float blinky_box_timer;
+        private bool _drawBlinky;
+
 
         private Texture2D _boxTexture;
+        private Vector2 _blinkyPos;
 
         private Vector2 pos;
 
         public TextBox()
         {
+            blinky_box_timer = blinky_box_timer_max;
             Set_box_position();
 
             _boxTexture = ResourceManager.GetTexture("dialogue_box");
+            blinky_box = ResourceManager.GetTexture("dialogue_blinky_box"); ;
         }
 
-        public void  Update()
+        public void Update()
         {
-            Writer.Update();
+            if (!PauseWriting)
+            {
+                Writer.Update();
+            }
+
+            if (PauseWriting || Writer.AtEndOfBox || Writer.AtEndOfText)
+            {
+                blinky_box_timer -= GameTimes.DeltaTime;
+                if (blinky_box_timer < 0)
+                {
+                    blinky_box_timer = blinky_box_timer_max;
+                    _drawBlinky = !_drawBlinky;
+                }
+            }
+            else
+            {
+                _drawBlinky = false;
+            }
         }
 
         public void DrawUI()
         {
             Writer.Draw();
             SpriteDrawer.DrawGuiSprite(_boxTexture, pos, Z: DrawingUtilities.GetDrawingZ(DrawOrder.TEXTBOX));
+
+            if (_drawBlinky)
+            {
+                SpriteDrawer.DrawGuiSprite(blinky_box, _blinkyPos, Z: DrawingUtilities.GetDrawingZ(DrawOrder.TEXT));
+            }
+
         }
 
-        private void Set_box_position(Touching direction = Touching.DOWN) 
-		{
+        private void Set_box_position(Touching direction = Touching.DOWN)
+        {
             float height = 44;
 
 
-            if (direction ==  Touching.DOWN) {
-                pos.Y = 180 - height;
+            if (direction == Touching.DOWN)
+            {
+                pos.Y = 180 - height - 2;
                 height -= 2;
 
-            } else if (direction == Touching.UP) {
+            }
+            else if (direction == Touching.UP)
+            {
                 pos.Y = 22;
-			}
+            }
 
             pos.X = 2;
 
             Writer = new TextWriter
             {
-                WriteArea = MathUtilities.CreateRectangle(pos.X + 4, pos.Y, Width, height)
+                WriteArea = MathUtilities.CreateRectangle(pos.X + 4, pos.Y + 7, Width - 16, height - 4)
             };
 
 
             //if (DH.isZH()) dialogue.y = dialogue_box.y + 2;
 
-            //blinky_box.x = dialogue_box.x + dialogue_box.width - 10;
-            //blinky_box.y = dialogue_box.y + dialogue_box.height - 10;
+            _blinkyPos = new Vector2( pos.X + Width - 10, pos.Y + Height - 10);
         }
     }
 }

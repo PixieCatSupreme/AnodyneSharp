@@ -9,8 +9,8 @@ namespace AnodyneSharp.UI.Text
 {
     public class TextWriter
     {
-        private const int DefaultTextSpeed = 40;
-        private static char[] LineBreaks = new char[] { '\n', '.', '!', '。', '…', '？', '！', '?' };
+        private const int DefaultTextSpeed = 30;
+        private static char[] LineBreaks = new char[] { '\n', '\r'};
         private static char[] WordBreaks = new char[] { ' ', '¶', '\n' };
 
         public string Text

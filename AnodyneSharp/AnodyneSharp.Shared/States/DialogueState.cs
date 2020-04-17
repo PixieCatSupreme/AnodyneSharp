@@ -37,17 +37,19 @@ namespace AnodyneSharp.States
 
         public override void Update()
         {
+            _tb.Update();
+
             switch (state)
             {
                 case DialogueStateState.Writing:
-                    _tb.Update();
-
                     //TODO play writing sound
 
                     if (_tb.Writer.NextCharacter == '^')
                     {
                         _forcedInput = true;
                         _tb.Writer.SkipCharacter();
+                        _tb.PauseWriting = true;
+                        state = DialogueStateState.Waiting;
                     }
                     else
                     {
@@ -56,7 +58,6 @@ namespace AnodyneSharp.States
 
                     break;
                 case DialogueStateState.BumpingUp:
-
                     if (!_removedLine)
                     {
                         _tb.Writer.RemoveFirstLine();
@@ -78,23 +79,23 @@ namespace AnodyneSharp.States
 
                             state = DialogueStateState.Done;
                         }
-                        else if(_tb.Writer.AtEndOfBox)
+                        else if (_tb.Writer.AtEndOfBox)
                         {
                             //Bump up
 
                             state = DialogueStateState.BumpingUp;
                             _removedLine = false;
                         }
-                        else if(_forcedInput)
+                        else if (_forcedInput)
                         {
                             _forcedInput = false;
+                            _tb.PauseWriting = false;
                             state = DialogueStateState.Writing;
                         }
                     }
                     break;
                 case DialogueStateState.Done:
-                    break;
-                default:
+                    GlobalState.cur_dialogue = "";
                     break;
             }
         }
