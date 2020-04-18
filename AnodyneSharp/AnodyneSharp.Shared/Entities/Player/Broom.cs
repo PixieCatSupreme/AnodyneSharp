@@ -148,7 +148,7 @@ namespace AnodyneSharp.Entities
                 SetTexture(Broom_Sprite);
             }
 
-            switch (GlobalState.EquippedBroom)
+            switch (InventoryState.EquippedBroom)
             {
                 case BroomType.Wide:
                     is_wide = true;

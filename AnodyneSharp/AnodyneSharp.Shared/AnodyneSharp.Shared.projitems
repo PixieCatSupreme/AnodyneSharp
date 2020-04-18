@@ -19,6 +19,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\NamedEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Slime.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Map\Tiles\CollissionData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Registry\InventoryState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Resources\ResourceManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Animations\Anim.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\Entity.cs" />
@@ -49,6 +50,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)UI\HealthBar.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\HealthBarPiece.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\TextBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\UILabel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\MapUtilities.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\MathUtilities.cs" />
   </ItemGroup>

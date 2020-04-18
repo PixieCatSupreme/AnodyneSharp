@@ -314,7 +314,7 @@ namespace AnodyneSharp.Entities
             {
                 if (KeyInput.CanPressKey(Keys.C) )
                 {
-                    if (GlobalState.EquippedBroom != BroomType.NONE && !broom.visible)
+                    if (InventoryState.EquippedBroom != BroomType.NONE && !broom.visible)
                     {
                         broom.visible_timer = 0;
                         broom.visible = true;
@@ -330,7 +330,7 @@ namespace AnodyneSharp.Entities
                             case Facing.RIGHT: ANIM_STATE = PlayerAnimState.ANIM_ATK_R; break;
                         }
                     }
-                    else if (GlobalState.EquippedBroom == BroomType.Transformer)
+                    else if (InventoryState.EquippedBroom == BroomType.Transformer)
                     {
                         //TODO transformer stuff
                     }

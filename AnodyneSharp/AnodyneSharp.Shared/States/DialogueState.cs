@@ -42,8 +42,10 @@ namespace AnodyneSharp.States
             _tb = new TextBox();
             _tb.Writer.SetSpriteFont(FontManager.InitFont(Color.White));
             _tb.Writer.Text = GlobalState.cur_dialogue;
+            _tb.Writer.DrawShadow = true;
 
             normalSpeed = _tb.Writer.Speed;
+
         }
 
         public override void Update()
@@ -63,7 +65,7 @@ namespace AnodyneSharp.States
             {
                 case DialogueStateState.Writing:
                     //TODO play writing sound
-                    
+
                     if (_tb.Writer.NextCharacter == '^')
                     {
                         _forcedInput = true;
@@ -85,7 +87,7 @@ namespace AnodyneSharp.States
                         break;
                     }
 
-                    if(_tb.Writer.AtEndOfBox)
+                    if (_tb.Writer.AtEndOfBox)
                     {
                         if (doBump)
                         {

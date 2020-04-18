@@ -33,12 +33,6 @@ namespace AnodyneSharp.Registry
 
         public static bool FUCK_IT_MODE_ON = false;
 
-        //Inventory stuff
-
-        public static BroomType EquippedBroom = BroomType.NONE;
-        //TODO add check for which broom types are picked up
-        public static bool CanJump;
-
         //Health stuff
         public static int CUR_HEALTH;
         public static int MAX_HEALTH;

@@ -33,7 +33,7 @@ namespace AnodyneSharp.UI
         public void MakeBox(int num)
         {
             Vector2 pos = new Vector2(
-                _pos.X - HealthBarPiece.BOX_WIDTH - 8f * (7f - num % 8f) - 7f * num / 8f,
+                _pos.X - HealthBarPiece.BOX_WIDTH - 8 * (7 - num % 8) - 7 * (num / 8),
                 _pos.Y + num / 8 * (HealthBarPiece.BOX_HEIGHT + 1));
 
             _healthPieces.Add(new HealthBarPiece(pos));

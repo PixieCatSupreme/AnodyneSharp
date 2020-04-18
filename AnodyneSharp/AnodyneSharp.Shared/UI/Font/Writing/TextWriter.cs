@@ -9,9 +9,9 @@ namespace AnodyneSharp.UI.Text
     public class TextWriter
     {
         private const int DefaultTextSpeed = 30;
-        private static char[] LineBreaks = new char[] { '\n', '\r' };
-        private static char[] SoftLinebreak = new char[] { '.', '!', '。', '…', '？', '！', '?' };
-        private static char[] WordBreaks = new char[] { ' ', '¶', '\n' };
+        public static char[] LineBreaks = new char[] { '\n', '\r' };
+        public static char[] SoftLinebreak = new char[] { '.', '!', '。', '…', '？', '！', '?' };
+        public static char[] WordBreaks = new char[] { ' ', '¶', '\n' };
 
         public string Text
         {
@@ -85,10 +85,13 @@ namespace AnodyneSharp.UI.Text
         public int Speed { get; set; }
 
         public bool AtEndOfText { get; private set; }
+
         public bool AtEndOfBox { get; private set; }
         public bool WroteCharacter { get; private set; }
 
         public char LastWrittenCharacter { get; private set; }
+
+        public bool DrawShadow { get; set; }
 
         public Point Position
         {
@@ -164,6 +167,12 @@ namespace AnodyneSharp.UI.Text
         }
 
 
+        public int GetLineHeight()
+        {
+            return spriteFont.lineHeight;
+        }
+
+
         public void Initialize()
         {
             ResetWriteArea();
@@ -202,9 +211,11 @@ namespace AnodyneSharp.UI.Text
             float shadowZ = z - 0.01f;
             foreach (var c in characters)
             {
-                SpriteDrawer.DrawGuiSprite(spriteFont.texture, c.Position, c.Crop, Z: z);
-                SpriteDrawer.DrawGuiSprite(spriteFont.texture, c.Position + new Vector2(0, 1f), c.Crop, color: Color.Black, Z: shadowZ);
-
+                SpriteDrawer.DrawGuiSprite(spriteFont.texture, c.Position, c.Crop, spriteFont.color, Z: z);
+                if (DrawShadow)
+                {
+                    SpriteDrawer.DrawGuiSprite(spriteFont.texture, c.Position + new Vector2(0, 1f), c.Crop, color: Color.Black, Z: shadowZ);
+                }
             }
         }
 
@@ -295,7 +306,20 @@ namespace AnodyneSharp.UI.Text
         {
             if (!AtEndOfBox && !AtEndOfText)
             {
-                AtEndOfText = letterProgress != Text.Length;
+                AtEndOfText = letterProgress == Text.Length;
+
+                if (!AtEndOfText)
+                {
+                    AtEndOfBox = !Write(Text[letterProgress]);
+                }
+            }
+        }
+
+        public void ProgressTextToEnd()
+        {
+            while (!AtEndOfText && !AtEndOfBox)
+            {
+                AtEndOfText = letterProgress == Text.Length;
 
                 if (!AtEndOfText)
                 {

@@ -15,7 +15,6 @@ namespace AnodyneSharp.UI
     {
         public const int BOX_WIDTH = 11;
         public const int BOX_HEIGHT = 6;
-        public const int BOX_SPACING = -3;
 
         public const int FULL_FRAME = 0;
         public const int EMPTY_FRAME = 1;

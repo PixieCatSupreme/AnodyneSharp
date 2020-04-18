@@ -6,9 +6,9 @@ using AnodyneSharp.Map.Tiles;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Resources;
 using AnodyneSharp.UI;
+using AnodyneSharp.UI.Font;
 using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
@@ -58,6 +58,7 @@ namespace AnodyneSharp.States
         private State _childState;
 
         private bool _updateEntities;
+        private UILabel _keyValueLabel;
 
         public PlayState(Camera camera)
         {
@@ -71,9 +72,13 @@ namespace AnodyneSharp.States
             _camera = camera;
 
             _player = new Player(this);
-            _healthBar = new HealthBar(new Vector2(155,2));
+            _healthBar = new HealthBar(new Vector2(155, 2));
 
             _updateEntities = true;
+
+            _keyValueLabel = new UILabel(new Vector2(37, 5));
+            _keyValueLabel.Writer.SetSpriteFont(FontManager.InitFont(new Color(124, 163, 177, 255)));
+            _keyValueLabel.SetText("x0");
         }
 
         public override void Create()
@@ -109,11 +114,11 @@ namespace AnodyneSharp.States
 
             _player.Draw();
 
-            foreach(Entity gridEntity in _gridEntities)
+            foreach (Entity gridEntity in _gridEntities)
             {
                 gridEntity.Draw();
             }
-            foreach(Entity gridEntity in _oldEntities)
+            foreach (Entity gridEntity in _oldEntities)
             {
                 gridEntity.Draw();
             }
@@ -133,6 +138,9 @@ namespace AnodyneSharp.States
             {
                 _childState.DrawUI();
             }
+
+
+            _keyValueLabel.Draw();
         }
 
         public override void Update()
@@ -287,7 +295,7 @@ namespace AnodyneSharp.States
             if (!UpdateCamera())
             {
                 _player.invincible = false;
-                
+
                 //delete old objects
                 _oldEntities.Clear();
 
@@ -352,35 +360,47 @@ namespace AnodyneSharp.States
                 _childState = new DialogueState();
             }
 
+            if (KeyInput.CanPressKey(Keys.F5))
+            {
+                _keyValueLabel.SetText($"x{InventoryState.RemoveCurrentMapKey()}");
+            }
+            else
+            if (KeyInput.CanPressKey(Keys.F6))
+            {
+                _keyValueLabel.SetText($"x{InventoryState.AddCurrentMapKey()}");
+            }
+
             if (KeyInput.CanPressKey(Keys.M))
             {
                 GlobalState.CURRENT_MAP_NAME = TileData.GetNextMapName();
                 LoadMap();
+                StateTransition();
             }
             else if (KeyInput.CanPressKey(Keys.N))
             {
                 GlobalState.CURRENT_MAP_NAME = TileData.GetPreviousMapName();
                 LoadMap();
+                StateTransition();
             }
 
             if (KeyInput.CanPressKey(Keys.D1))
             {
-                GlobalState.EquippedBroom = BroomType.Normal;
+                InventoryState.EquippedBroom = BroomType.Normal;
                 _player.broom.UpdateBroomType();
             }
             else if (KeyInput.CanPressKey(Keys.D2))
             {
-                GlobalState.EquippedBroom = BroomType.Wide;
+                InventoryState.EquippedBroom = BroomType.Wide;
                 _player.broom.UpdateBroomType();
             }
             else if (KeyInput.CanPressKey(Keys.D3))
             {
-                GlobalState.EquippedBroom = BroomType.Long;
+                InventoryState.EquippedBroom = BroomType.Long;
                 _player.broom.UpdateBroomType();
             }
             else if (KeyInput.CanPressKey(Keys.D4))
             {
-                GlobalState.EquippedBroom = BroomType.NONE;
+                InventoryState.EquippedBroom = BroomType.NONE;
                 _player.broom.UpdateBroomType();
             }
 
@@ -467,7 +487,7 @@ namespace AnodyneSharp.States
 
             //Sets tile collission and tile events
             TileData.Set_tile_properties(_map, _map_bg_2);
-            _player.Position = _map.GetFirstWalkable(_map_bg_2) *TILE_WIDTH;
+            _player.Position = _map.GetFirstWalkable(_map_bg_2) * TILE_WIDTH;
 
             Vector2 gridPos = MapUtilities.GetRoomCoordinate(_player.Position);
             Vector2 roomPos = MapUtilities.GetRoomUpperLeftPos(gridPos);
@@ -482,6 +502,8 @@ namespace AnodyneSharp.States
             UpdateScreenBorders();
 
             LoadGridEntities();
+
+            _keyValueLabel.SetText($"x{InventoryState.GetCurrentMapKeys()}");
         }
 
         private void LoadGridEntities()
@@ -493,7 +515,7 @@ namespace AnodyneSharp.States
             _oldEntities = new List<Entity>(_gridEntities);
             _gridEntities = EntityManager.GetGridEntities(GlobalState.CURRENT_MAP_NAME, new Vector2(GlobalState.CURRENT_GRID_X, GlobalState.CURRENT_GRID_Y))
                 .ConvertAll(preset => preset.Create());
-            foreach(Entity e in _gridEntities)
+            foreach (Entity e in _gridEntities)
             {
                 _groups.Register(e);
             }
