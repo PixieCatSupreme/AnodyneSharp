@@ -43,47 +43,38 @@ namespace AnodyneSharp.Entities
         protected Rectangle spriteRect;
 
         public Entity(Vector2 pos, DrawOrder layer)
+            : base(pos)
         {
-            Position = pos;
-
             _animations = new List<Anim>();
 
             frameWidth = 0;
             frameHeight = 0;
 
-            visible = true;
-
             this.layer = layer;
         }
 
         public Entity(Vector2 pos, int frameWidth, int frameHeight, DrawOrder layer)
+            : base(pos, frameWidth, frameHeight)
         {
-            Position = pos;
-
             _animations = new List<Anim>();
 
-            width = this.frameWidth = frameWidth;
-            height = this.frameHeight = frameHeight;
-
-            visible = true;
+            this.frameWidth = frameWidth;
+            this.frameHeight =  frameHeight;
 
             this.layer = layer;
         }
 
         public Entity(Vector2 pos, string textureName, int frameWidth, int frameHeight, DrawOrder layer)
+            : base(pos, frameWidth, frameHeight)
         {
-            Position = pos;
-
             _animations = new List<Anim>();
 
-            width = this.frameWidth = frameWidth;
-            height = this.frameHeight = frameHeight;
-
-            SetTexture(textureName);
-
-            visible = true;
+            this.frameWidth = frameWidth;
+            this.frameHeight = frameHeight;
 
             this.layer = layer;
+
+            SetTexture(textureName);
         }
         /**
  * Adds a new animation to the sprite.
@@ -160,6 +151,13 @@ namespace AnodyneSharp.Entities
             {
                 SpriteDrawer.DrawSprite(Texture, MathUtilities.CreateRectangle(Position.X - offset.X, Position.Y - offset.Y, frameWidth, frameHeight), spriteRect, rotation : rotation, Z: DrawingUtilities.GetDrawingZ(layer, MapUtilities.GetInGridPosition(Position).Y));
             }
+        }
+
+        protected void SetFrame(int frame)
+        {
+            _curFrame = frame;
+
+            UpdateRect();
         }
 
         protected void UpdateAnimation()

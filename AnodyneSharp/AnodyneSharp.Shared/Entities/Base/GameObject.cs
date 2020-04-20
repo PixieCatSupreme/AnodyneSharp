@@ -32,7 +32,7 @@ namespace AnodyneSharp.Entities
             get { return allowCollisions != Touching.NONE; }
             set
             {
-                if(value)
+                if (value)
                 {
                     allowCollisions = Touching.ANY;
                 } else
@@ -54,6 +54,28 @@ namespace AnodyneSharp.Entities
         public Touching touching = Touching.NONE;
         public Touching wasTouching = Touching.NONE;
         public Touching allowCollisions = Touching.ANY;
+
+        public GameObject(Vector2 pos)
+        {
+            Position = pos;
+
+            visible = true;
+        }
+
+        public GameObject(Vector2 pos, int width, int height)
+            :this(pos)
+        {
+            this.width = width;
+            this.height = height;
+        }
+
+        public GameObject(int width, int height)
+        {
+            this.width = width;
+            this.height = height;
+
+            visible = true;
+        }
 
         public virtual void Update()
         {

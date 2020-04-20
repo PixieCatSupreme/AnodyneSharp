@@ -8,14 +8,11 @@ namespace AnodyneSharp.Map.Tiles
         public Touching direction = Touching.ANY;
 
         public Tile(int tileWidth, int tileHeight, bool visible, Touching collisionDirections)
+            :base(tileWidth, tileHeight)
         {
             allowCollisions = collisionDirections;
             immovable = true;
-            height = tileHeight;
-            width = tileWidth;
-            
             this.visible = visible;
-
         }
     }
 }

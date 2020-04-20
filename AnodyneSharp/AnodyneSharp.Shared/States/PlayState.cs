@@ -230,6 +230,8 @@ namespace AnodyneSharp.States
         {
             CheckForTransition();
 
+            _keyValueLabel.SetText($"x{InventoryState.GetCurrentMapKeys()}");
+
             //TODO add  pause check
 
             //TODO check if player is unalive
@@ -513,6 +515,7 @@ namespace AnodyneSharp.States
             _groups.Register(_player.broom);
 
             _oldEntities = new List<Entity>(_gridEntities);
+
             _gridEntities = EntityManager.GetGridEntities(GlobalState.CURRENT_MAP_NAME, new Vector2(GlobalState.CURRENT_GRID_X, GlobalState.CURRENT_GRID_Y))
                 .ConvertAll(preset => preset.Create());
             foreach (Entity e in _gridEntities)

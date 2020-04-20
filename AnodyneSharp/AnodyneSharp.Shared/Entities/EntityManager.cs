@@ -1,5 +1,6 @@
 ﻿using AnodyneSharp.Entities.Enemy;
 using AnodyneSharp.Logging;
+using AnodyneSharp.Registry;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -42,7 +43,6 @@ namespace AnodyneSharp.Entities
             ReadEntities(xml);
 
         }
-
 
         public static List<EntityPreset> GetMapEntities(string mapName)
         {

@@ -14,7 +14,7 @@ namespace AnodyneSharp.Entities
         GLOBAL
     }
 
-    public struct EntityPreset
+    public class EntityPreset
     {
 
         public Vector2 GridPosition
