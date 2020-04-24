@@ -256,10 +256,6 @@ namespace AnodyneSharp.Entities
 
                     if (!hasFallen && !actions_disabled)
                     {
-                        if (action_latency > 0)
-                        {
-                            action_latency -= GameTimes.DeltaTime;
-                        }
                         Update_actions();
                         broom.Update();
                         broom.PostUpdate();
@@ -300,13 +296,9 @@ namespace AnodyneSharp.Entities
 
         private void Update_actions()
         {
-            if (action_latency > -1)
+            if (action_latency > 0)
             {
                 action_latency -= GameTimes.DeltaTime;
-            }
-
-            if (action_latency >= 0) //DELAY FOR ATTACK
-            {
                 return;
             }
 
