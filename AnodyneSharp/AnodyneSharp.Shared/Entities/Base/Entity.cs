@@ -145,6 +145,14 @@ namespace AnodyneSharp.Entities
 
         public virtual void Collided(Entity other) { }
 
+        /**
+         * Sub entities that require collision and updates
+         */
+        public virtual IEnumerable<Entity> SubEntities()
+        {
+            return new List<Entity>();
+        }
+
         public virtual void Draw()
         {
             if (visible)

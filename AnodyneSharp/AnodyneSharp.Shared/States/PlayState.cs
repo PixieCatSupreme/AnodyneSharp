@@ -12,6 +12,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
+using System.Linq;
 using static AnodyneSharp.Registry.GameConstants;
 
 namespace AnodyneSharp.States
@@ -517,7 +518,7 @@ namespace AnodyneSharp.States
             _oldEntities = new List<Entity>(_gridEntities);
 
             _gridEntities = EntityManager.GetGridEntities(GlobalState.CURRENT_MAP_NAME, new Vector2(GlobalState.CURRENT_GRID_X, GlobalState.CURRENT_GRID_Y))
-                .ConvertAll(preset => preset.Create());
+                .ConvertAll(preset => preset.Create()).SelectMany(e => new List<Entity> { e }.Concat(e.SubEntities())).ToList();
             foreach (Entity e in _gridEntities)
             {
                 _groups.Register(e);

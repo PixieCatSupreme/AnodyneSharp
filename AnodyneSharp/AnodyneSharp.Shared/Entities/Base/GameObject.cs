@@ -58,6 +58,7 @@ namespace AnodyneSharp.Entities
         public GameObject(Vector2 pos)
         {
             Position = pos;
+            lastPosition = pos;
 
             visible = true;
         }
