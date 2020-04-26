@@ -225,5 +225,12 @@ namespace AnodyneSharp.Entities
 
             return Texture != null;
         }
+
+        public static Vector2 FacingDirection(Facing f)
+        {
+            return new Vector2(
+                f == Facing.RIGHT ? 1 : (f == Facing.LEFT ? -1 : 0),
+                f == Facing.DOWN ? 1 : (f == Facing.UP ? -1 : 0));
+        }
     }
 }

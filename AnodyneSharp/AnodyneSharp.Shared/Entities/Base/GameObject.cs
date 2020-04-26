@@ -86,7 +86,7 @@ namespace AnodyneSharp.Entities
         public virtual void PostUpdate()
         {
             lastPosition = Position;
-            Position += velocity;
+            Position += velocity * GameTimes.DeltaTime;
 
             wasTouching = touching;
             touching = Touching.NONE;
@@ -251,27 +251,19 @@ namespace AnodyneSharp.Entities
             //Then adjust their positions and velocities accordingly (if there was any overlap)
             if (overlap != 0)
             {
-                float obj1v = Object1.velocity.Y;
-                float obj2v = Object2.velocity.Y;
-
                 if (!obj1immovable && !obj2immovable)
                 {
                     overlap *= 0.5f;
                     Object1.Position.Y -= overlap;
                     Object2.Position.Y += overlap;
-
-                    Object1.velocity.Y = obj2v;
-                    Object2.velocity.Y = obj1v;
                 }
                 else if (!obj1immovable)
                 {
                     Object1.Position.Y -= overlap;
-                    Object1.velocity.Y = obj2v - obj1v;
                 }
                 else if (!obj2immovable)
                 {
-                    Object2.Position.Y += overlap ;
-                    Object2.velocity.Y = obj1v - obj2v;
+                    Object2.Position.Y += overlap;
                 }
                 return true;
             }

@@ -504,6 +504,11 @@ namespace AnodyneSharp.States
 
             UpdateScreenBorders();
 
+            foreach(EntityPreset p in EntityManager.GetMapEntities(GlobalState.CURRENT_MAP_NAME).Where(p=>p.Permanence == Permanence.MAP_LOCAL))
+            {
+                p.Alive = true;
+            }
+
             LoadGridEntities();
 
             _keyValueLabel.SetText($"x{InventoryState.GetCurrentMapKeys()}");
@@ -517,8 +522,14 @@ namespace AnodyneSharp.States
 
             _oldEntities = new List<Entity>(_gridEntities);
 
-            _gridEntities = EntityManager.GetGridEntities(GlobalState.CURRENT_MAP_NAME, new Vector2(GlobalState.CURRENT_GRID_X, GlobalState.CURRENT_GRID_Y))
-                .ConvertAll(preset => preset.Create()).SelectMany(e => new List<Entity> { e }.Concat(e.SubEntities())).ToList();
+            List<EntityPreset> gridPresets = EntityManager.GetGridEntities(GlobalState.CURRENT_MAP_NAME, new Vector2(GlobalState.CURRENT_GRID_X, GlobalState.CURRENT_GRID_Y));
+            foreach (EntityPreset preset in gridPresets.Where(e=>e.Permanence == Permanence.GRID_LOCAL))
+            {
+                preset.Alive = true;
+            }
+
+            _gridEntities = gridPresets.Where(preset => preset.Alive)
+                .Select(preset => preset.Create()).SelectMany(e => new List<Entity> { e }.Concat(e.SubEntities())).ToList();
             foreach (Entity e in _gridEntities)
             {
                 _groups.Register(e);

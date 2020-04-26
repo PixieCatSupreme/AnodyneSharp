@@ -1,5 +1,6 @@
 ﻿
 using AnodyneSharp.Entities;
+using System;
 
 namespace AnodyneSharp.Registry
 {
@@ -36,6 +37,8 @@ namespace AnodyneSharp.Registry
         //Health stuff
         public static int CUR_HEALTH;
         public static int MAX_HEALTH;
+
+        public static Random RNG = new Random();
 
         //Cool new debug values
 #if DEBUG

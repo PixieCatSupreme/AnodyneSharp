@@ -76,6 +76,9 @@ namespace AnodyneSharp.Entities
 
         public PlayerState state;
         internal bool invincible;
+        private const float INVINCIBLE_MAX = 0.5f;
+        private float invincibility_time = 0;
+
         internal float grid_entrance_x;
         private Vector2 additionalVel;
 
@@ -155,6 +158,11 @@ namespace AnodyneSharp.Entities
 
         public override void Update()
         {
+            if(invincibility_time > 0)
+            {
+                invincibility_time -= GameTimes.DeltaTime;
+                if (invincibility_time <= 0) invincible = false;
+            }
             if (GlobalState.FUCK_IT_MODE_ON)
             {
                 solid = false;
@@ -310,6 +318,7 @@ namespace AnodyneSharp.Entities
                     {
                         broom.visible_timer = 0;
                         broom.visible = true;
+                        broom.facing = facing;
                         action_latency = action_latency_max;
 
                         broom.Play("stab", true);
@@ -566,7 +575,6 @@ namespace AnodyneSharp.Entities
             }
 
             velocity += additionalVel;
-            velocity *= GameTimes.DeltaTime;
         }
 
         private void Air_movement()
@@ -588,13 +596,13 @@ namespace AnodyneSharp.Entities
             //}
 
             velocity += additionalVel;
-            velocity *= GameTimes.DeltaTime;
         }
 
         private void Set_init_vel(float mul = 1)
         {
             if (broom.visible)
             {
+                velocity = Vector2.Zero;
                 return;
             }
 
@@ -678,6 +686,16 @@ namespace AnodyneSharp.Entities
             }
 
             velocity *= walkSpeed /* c_vel*/;
+        }
+
+        internal void ReceiveDamage(int amount)
+        {
+            if(!invincible)
+            {
+                GlobalState.CUR_HEALTH -= amount;
+                invincible = true;
+                invincibility_time = INVINCIBLE_MAX;
+            }
         }
     }
 }
