@@ -32,6 +32,7 @@ namespace AnodyneSharp.Entities
         protected int _curIndex;
         protected int _curFrame;
         protected Anim _curAnim;
+        protected float _opacity;
 
         private List<Anim> _animations;
 
@@ -51,6 +52,7 @@ namespace AnodyneSharp.Entities
             frameHeight = 0;
 
             this.layer = layer;
+            _opacity = 1f;
         }
 
         public Entity(Vector2 pos, int frameWidth, int frameHeight, DrawOrder layer)
@@ -59,9 +61,10 @@ namespace AnodyneSharp.Entities
             _animations = new List<Anim>();
 
             this.frameWidth = frameWidth;
-            this.frameHeight =  frameHeight;
+            this.frameHeight = frameHeight;
 
             this.layer = layer;
+            _opacity = 1f;
         }
 
         public Entity(Vector2 pos, string textureName, int frameWidth, int frameHeight, DrawOrder layer)
@@ -73,6 +76,8 @@ namespace AnodyneSharp.Entities
             this.frameHeight = frameHeight;
 
             this.layer = layer;
+
+            _opacity = 1f;
 
             SetTexture(textureName);
         }
@@ -157,7 +162,12 @@ namespace AnodyneSharp.Entities
         {
             if (visible)
             {
-                SpriteDrawer.DrawSprite(Texture, MathUtilities.CreateRectangle(Position.X - offset.X, Position.Y - offset.Y, frameWidth, frameHeight), spriteRect, rotation : rotation, Z: DrawingUtilities.GetDrawingZ(layer, MapUtilities.GetInGridPosition(Position).Y));
+                SpriteDrawer.DrawSprite(Texture, 
+                    MathUtilities.CreateRectangle(Position.X - offset.X, Position.Y - offset.Y, frameWidth, frameHeight), 
+                    spriteRect, 
+                    Color.White * _opacity, 
+                    rotation, 
+                    DrawingUtilities.GetDrawingZ(layer, MapUtilities.GetInGridPosition(Position).Y));
             }
         }
 
