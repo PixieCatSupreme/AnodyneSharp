@@ -1,5 +1,6 @@
 ﻿using AnodyneSharp.Drawing;
 using AnodyneSharp.Entities.Animations;
+using AnodyneSharp.Entities.Base;
 using AnodyneSharp.Logging;
 using AnodyneSharp.Resources;
 using AnodyneSharp.Utilities;
@@ -42,6 +43,8 @@ namespace AnodyneSharp.Entities
         public bool finished;
 
         protected Rectangle spriteRect;
+
+        protected Shadow shadow;
 
         public Entity(Vector2 pos, DrawOrder layer)
             : base(pos)
@@ -134,11 +137,16 @@ namespace AnodyneSharp.Entities
                 }
             }
             DebugLogger.AddWarning("No animation called \"" + AnimName + "\"");
-        }
+        } 
 
         public override void Update()
         {
             base.Update();
+
+            if (shadow != null)
+            {
+                shadow.Update();
+            }
         }
 
         public override void PostUpdate()
@@ -146,6 +154,12 @@ namespace AnodyneSharp.Entities
             base.PostUpdate();
 
             UpdateAnimation();
+
+            if (shadow != null)
+            {
+                shadow.PostUpdate();
+            }
+
         }
 
         public virtual void Collided(Entity other) { }
@@ -168,6 +182,11 @@ namespace AnodyneSharp.Entities
                     Color.White * _opacity, 
                     rotation, 
                     DrawingUtilities.GetDrawingZ(layer, MapUtilities.GetInGridPosition(Position).Y));
+            }
+
+            if (shadow != null)
+            {
+                shadow.Draw();
             }
         }
 

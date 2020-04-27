@@ -1,11 +1,7 @@
-﻿using System;
-using AnodyneSharp.Input;
+﻿using AnodyneSharp.Input;
 using AnodyneSharp.Registry;
 using AnodyneSharp.States;
-using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 namespace AnodyneSharp.Entities
@@ -45,12 +41,12 @@ namespace AnodyneSharp.Entities
         public const string Player_reflection_Sprite = "young_player_reflection";
         public const string Broom_reflection_sprite = "broom_reflection";
 
-        private const float jump_period = 0.4f*1.15f; //length of jump
+        private const float jump_period = 0.4f * 1.15f; //length of jump
 
         public const float action_latency_max = 0.24f;
-		public const float ATK_DELAY = 0.2f;
-		public const float WATK_DELAY = 0.35f;
-		public const float LATK_DELAY = 0.4f;
+        public const float ATK_DELAY = 0.2f;
+        public const float WATK_DELAY = 0.35f;
+        public const float LATK_DELAY = 0.4f;
 
         internal bool dontMove;
 
@@ -128,20 +124,22 @@ namespace AnodyneSharp.Entities
             AddAnimation("climb", CreateAnimFrameArray(34, 35), 8, true);
 
             height = HITBOX_HEIGHT;
-            offset.Y = DEFAULT_Y_OFFSET;
+            offset = new Vector2(3, DEFAULT_Y_OFFSET);
             width = HITBOX_WIDTH;
 
             Play("idle_u");
             ANIM_STATE = PlayerAnimState.as_idle;
+            facing = Facing.UP;
 
             broom = new Broom(this);
+            shadow = new Base.Shadow(this, new Vector2(3, -1), fps: 20);
         }
 
         public void Reset()
         {
             if (GlobalState.CURRENT_MAP_NAME == "TRAIN")
             {
-                SetTexture( Cell_Player_Sprite);
+                SetTexture(Cell_Player_Sprite);
             }
             else
             {
@@ -158,7 +156,7 @@ namespace AnodyneSharp.Entities
 
         public override void Update()
         {
-            if(invincibility_time > 0)
+            if (invincibility_time > 0)
             {
                 invincibility_time -= GameTimes.DeltaTime;
                 if (invincibility_time <= 0) invincible = false;
@@ -194,60 +192,60 @@ namespace AnodyneSharp.Entities
             base.Update();
         }
 
-  //      private bool Common_conditions() 
-		//{
-		//	//Registry.CUR_HEALTH = health_bar.cur_health;
-			
-		//	if (parent.state == parent.S_TRANSITION) {
-		//		dontMove = true;
-		//		velocity.X = velocity.Y = 0;
-		//		//if (ON_RAFT) {
-		//		//	raft.x = x - 2;
-		//		//	raft.y = y - 3;
-		//		//	conveyer_fudge_factor = 5; // <_<
-		//		//}
-				
-		//		if (state ==  PlayerState.AIR) {
-		//			my_shadow.x = x + JUMP_SHADOW_X_OFF + 1;
-		//			my_shadow.y = y + JUMP_SHADOW_Y_OFF - 3;
-		//		}
-		//		return false;
-		//	}
-			
-		//	if (parent.SWITCH_MAPS || !alive)
-  //          {
-		//		base.Update();
-		//		return false;
-		//	}
-			
-		//	if (!solid && just_fell)
-  //          {
-		//		solid = true;
-		//		just_fell = false;
-		//	}
+        //      private bool Common_conditions() 
+        //{
+        //	//Registry.CUR_HEALTH = health_bar.cur_health;
 
-		//	if (invincible_timer > 0)
-  //          {
-  //              invincible_timer -= GameTimes.DeltaTime;
-		//	}
-  //          else
-  //          {
-		//		invincible = false;
-		//		if (!GlobalState.FUCK_IT_MODE_ON)
-  //              {
-		//			visible = true;
-		//		}
-		//	}
-			
-		//	return true;
-		//}
+        //	if (parent.state == parent.S_TRANSITION) {
+        //		dontMove = true;
+        //		velocity.X = velocity.Y = 0;
+        //		//if (ON_RAFT) {
+        //		//	raft.x = x - 2;
+        //		//	raft.y = y - 3;
+        //		//	conveyer_fudge_factor = 5; // <_<
+        //		//}
+
+        //		if (state ==  PlayerState.AIR) {
+        //			my_shadow.x = x + JUMP_SHADOW_X_OFF + 1;
+        //			my_shadow.y = y + JUMP_SHADOW_Y_OFF - 3;
+        //		}
+        //		return false;
+        //	}
+
+        //	if (parent.SWITCH_MAPS || !alive)
+        //          {
+        //		base.Update();
+        //		return false;
+        //	}
+
+        //	if (!solid && just_fell)
+        //          {
+        //		solid = true;
+        //		just_fell = false;
+        //	}
+
+        //	if (invincible_timer > 0)
+        //          {
+        //              invincible_timer -= GameTimes.DeltaTime;
+        //	}
+        //          else
+        //          {
+        //		invincible = false;
+        //		if (!GlobalState.FUCK_IT_MODE_ON)
+        //              {
+        //			visible = true;
+        //		}
+        //	}
+
+        //	return true;
+        //}
 
         private void Movement()
         {
             switch (state)
             {
                 case PlayerState.GROUND:
-                    //my_shadow.visible = false;
+                    shadow.visible = false;
                     if (dontMove)
                     {
                         velocity = Vector2.Zero;
@@ -307,12 +305,11 @@ namespace AnodyneSharp.Entities
             if (action_latency > 0)
             {
                 action_latency -= GameTimes.DeltaTime;
-                return;
             }
 
             if (state != PlayerState.AIR)
             {
-                if (KeyInput.CanPressKey(Keys.C) )
+                if (KeyInput.CanPressKey(Keys.C) && action_latency <= 0)
                 {
                     if (InventoryState.EquippedBroom != BroomType.NONE && !broom.visible)
                     {
@@ -338,18 +335,19 @@ namespace AnodyneSharp.Entities
 
                 }
 
+
                 if (KeyInput.CanPressKey(Keys.X) && !sinking)
                 {
                     state = PlayerState.AIR;
-                    //my_shadow.visible = true;
-                    //my_shadow.x = x; my_shadow.y = y;
+                    shadow.visible = true;
+                    broom.visible = false;
                 }
             }
         }
 
         private void Ground_animation()
         {
-            if(broom.finished && broom.visible)
+            if (broom.finished && broom.visible)
             {
                 //We just finished an attack
                 ANIM_STATE = PlayerAnimState.as_idle;
@@ -379,7 +377,7 @@ namespace AnodyneSharp.Entities
                         idle_ticks -= 1;
                         break;
                     }
-                    if(velocity == Vector2.Zero)
+                    if (velocity == Vector2.Zero)
                     {
                         switch (facing)
                         {
@@ -502,11 +500,11 @@ namespace AnodyneSharp.Entities
                 //    play_sfx("jump_up");
                 //}
 
-                //my_shadow.play("get_small");
-                ANIM_STATE =  PlayerAnimState.as_idle; // Always land in idle state.
+                shadow.Play("get_small");
+                ANIM_STATE = PlayerAnimState.as_idle; // Always land in idle state.
                 switch (facing)
                 { // Play the jump animation
-                    case  Facing.UP:
+                    case Facing.UP:
                         Play("jump_u");
                         break;
                     case Facing.DOWN:
@@ -521,7 +519,11 @@ namespace AnodyneSharp.Entities
                 }
             }
 
-            //TODO update shadow
+            if (!anim_air_did_down && jump_timer > jump_period / 2)
+            {
+                shadow.Play("get_big");
+                anim_air_did_down = true;
+            }
 
             offset.Y = DEFAULT_Y_OFFSET + (((-4 * 24) / (jump_period * jump_period)) * jump_timer * (jump_timer - jump_period));
             jump_timer += GameTimes.DeltaTime;
@@ -548,7 +550,7 @@ namespace AnodyneSharp.Entities
 
         protected override void AnimationChanged(string name)
         {
-            switch(name)
+            switch (name)
             {
                 case "walk_l":
                 case "attack_left":
@@ -611,8 +613,8 @@ namespace AnodyneSharp.Entities
                 velocity.Y = -mul;
                 if ((touching & Touching.UP) != 0)
                 {
-                    Touching tl = parent.GetTileCollisionFlags(Position + new Vector2(0,-8));
-                    Touching tr = parent.GetTileCollisionFlags(Position + new Vector2(width,-8));
+                    Touching tl = parent.GetTileCollisionFlags(Position + new Vector2(0, -8));
+                    Touching tr = parent.GetTileCollisionFlags(Position + new Vector2(width, -8));
                     if ((Position.X + width) % 16 < 6 && (tl & Touching.DOWN) == 0)
                     {
                         additionalVel.X = -30;
@@ -629,8 +631,8 @@ namespace AnodyneSharp.Entities
                 velocity.Y = mul;
                 if ((touching & Touching.DOWN) != 0)
                 {
-                    Touching bl = parent.GetTileCollisionFlags(Position + new Vector2(0, height+8));
-                    Touching br = parent.GetTileCollisionFlags(Position + new Vector2(width,height+8));
+                    Touching bl = parent.GetTileCollisionFlags(Position + new Vector2(0, height + 8));
+                    Touching br = parent.GetTileCollisionFlags(Position + new Vector2(width, height + 8));
                     if ((Position.X + width) % 16 < 6 && (bl & Touching.UP) == 0)
                     {
                         additionalVel.X = -30;
@@ -651,7 +653,7 @@ namespace AnodyneSharp.Entities
                 velocity.X = -mul;
                 if ((touching & Touching.LEFT) != 0)
                 {
-                    Touching tl2 = parent.GetTileCollisionFlags(Position + new Vector2(-8,0));
+                    Touching tl2 = parent.GetTileCollisionFlags(Position + new Vector2(-8, 0));
                     Touching bl2 = parent.GetTileCollisionFlags(Position + new Vector2(-8, height));
                     if ((Position.Y + height) % 16 < 6 && (tl2 & Touching.RIGHT) == 0)
                     {
@@ -668,8 +670,8 @@ namespace AnodyneSharp.Entities
                 velocity.X = mul;
                 if ((touching & Touching.RIGHT) != 0)
                 {
-                    Touching tr2 = parent.GetTileCollisionFlags(Position + new Vector2(width+8, 0));
-                    Touching br2 = parent.GetTileCollisionFlags(Position + new Vector2(width+8, height));
+                    Touching tr2 = parent.GetTileCollisionFlags(Position + new Vector2(width + 8, 0));
+                    Touching br2 = parent.GetTileCollisionFlags(Position + new Vector2(width + 8, height));
                     if ((Position.Y + height) % 16 < 6 && (tr2 & Touching.LEFT) == 0)
                     {
                         additionalVel.Y = -30;
@@ -690,7 +692,7 @@ namespace AnodyneSharp.Entities
 
         internal void ReceiveDamage(int amount)
         {
-            if(!invincible)
+            if (!invincible)
             {
                 GlobalState.CUR_HEALTH -= amount;
                 invincible = true;

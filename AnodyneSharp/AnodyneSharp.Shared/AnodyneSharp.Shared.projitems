@@ -14,6 +14,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\DrawingUtilities.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\SpriteDrawer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\CollisionAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\Shadow.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\CollisionGroups.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Gates\Gate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Gates\SmallKeyGate.cs" />
