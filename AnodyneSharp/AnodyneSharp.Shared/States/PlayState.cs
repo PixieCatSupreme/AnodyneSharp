@@ -212,7 +212,7 @@ namespace AnodyneSharp.States
             _player.Update();
             _player.PostUpdate();
 
-            foreach (Entity gridEntity in _gridEntities)
+            foreach (Entity gridEntity in _gridEntities.Where(e=>e.exists))
             {
                 gridEntity.Update();
                 gridEntity.PostUpdate();

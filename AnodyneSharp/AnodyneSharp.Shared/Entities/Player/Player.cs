@@ -153,7 +153,7 @@ namespace AnodyneSharp.Entities
         public override void Draw()
         {
             base.Draw();
-
+            
             broom.Draw();
         }
 
@@ -314,10 +314,10 @@ namespace AnodyneSharp.Entities
             {
                 if (KeyInput.CanPressKey(Keys.C) && action_latency <= 0)
                 {
-                    if (InventoryState.EquippedBroom != BroomType.NONE && !broom.visible)
+                    if (InventoryState.EquippedBroom != BroomType.NONE && !broom.exists)
                     {
                         broom.visible_timer = 0;
-                        broom.visible = true;
+                        broom.exists = true;
                         broom.facing = facing;
                         action_latency = action_latency_max;
 
@@ -344,14 +344,14 @@ namespace AnodyneSharp.Entities
                 {
                     state = PlayerState.AIR;
                     shadow.visible = true;
-                    broom.visible = false;
+                    broom.exists = false;
                 }
             }
         }
 
         private void Ground_animation()
         {
-            if (broom.finished && broom.visible)
+            if (broom.finished && broom.exists)
             {
                 //We just finished an attack
                 ANIM_STATE = PlayerAnimState.as_idle;
@@ -492,7 +492,7 @@ namespace AnodyneSharp.Entities
         {
             if (!anim_air_did_up)
             {
-                broom.visible = false;
+                broom.exists = false;
                 anim_air_did_up = true;
 
                 if (ON_CONVEYER)
@@ -606,7 +606,7 @@ namespace AnodyneSharp.Entities
 
         private void Set_init_vel(float mul = 1)
         {
-            if (broom.visible)
+            if (broom.exists)
             {
                 velocity = Vector2.Zero;
                 return;

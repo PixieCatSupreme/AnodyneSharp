@@ -47,6 +47,8 @@ namespace AnodyneSharp.Entities
         public Vector2 velocity;
         public bool immovable;
 
+        //exists affects whether this object gets updates/collision/drawn, visible only affects drawing
+        public bool exists = true;
         public bool visible;
 
         public int width;

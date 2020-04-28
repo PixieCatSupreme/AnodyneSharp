@@ -48,7 +48,7 @@ namespace AnodyneSharp.Entities
             : base(new Vector2(root.Position.X - 10, root.Position.Y), 16, 16, Drawing.DrawOrder.ENTITIES)
         {
             _root = root;
-            visible = false;
+            exists = false;
             immovable = true;
 
             SetTexture(Broom_Sprite);
@@ -65,7 +65,7 @@ namespace AnodyneSharp.Entities
 
         public override void Draw()
         {
-            if (visible)
+            if (visible && exists)
             {
                 float draw_y = MapUtilities.GetInGridPosition(Position).Y;
                 if(!is_behind_player)
@@ -82,35 +82,33 @@ namespace AnodyneSharp.Entities
 
         public override void Update()
         {
-            if (visible)
+            if (finished)
             {
-                if (finished)
-                {
-                    visible = false;
+                exists = false;
 
-                    wide_attack.visible = false;
-                    long_attack.visible = false;
-                }
-                else
-                {
-                    UpdatePos();
-                }
-
-                //if (visible)
-                //{
-                //    visible_timer += GameTimes.DeltaTime;
-                //    // needs to be long enough to ensure the broom makes a full anim
-                //    if (visible_timer > 0.4)
-                //    {
-                //        long_attack_h.visible = long_attack_v.visible = visible = false;
-                //        wide_attack_h.visible = wide_attack_v.visible = false;
-                //    }
-                //}
-                //else
-                //{
-                //    visible_timer = 0;
-                //}
+                wide_attack.visible = false;
+                long_attack.visible = false;
             }
+            else
+            {
+                UpdatePos();
+            }
+
+            //if (visible)
+            //{
+            //    visible_timer += GameTimes.DeltaTime;
+            //    // needs to be long enough to ensure the broom makes a full anim
+            //    if (visible_timer > 0.4)
+            //    {
+            //        long_attack_h.visible = long_attack_v.visible = visible = false;
+            //        wide_attack_h.visible = wide_attack_v.visible = false;
+            //    }
+            //}
+            //else
+            //{
+            //    visible_timer = 0;
+            //}
+
             wide_attack.Update();
             long_attack.Update();
 

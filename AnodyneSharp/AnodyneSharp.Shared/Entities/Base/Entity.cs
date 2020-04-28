@@ -174,7 +174,7 @@ namespace AnodyneSharp.Entities
 
         public virtual void Draw()
         {
-            if (visible)
+            if (visible && exists)
             {
                 SpriteDrawer.DrawSprite(Texture, 
                     MathUtilities.CreateRectangle(Position.X - offset.X, Position.Y - offset.Y, frameWidth, frameHeight), 
@@ -182,12 +182,13 @@ namespace AnodyneSharp.Entities
                     Color.White * _opacity, 
                     rotation, 
                     DrawingUtilities.GetDrawingZ(layer, MapUtilities.GetInGridPosition(Position).Y));
+                
+                if (shadow != null)
+                {
+                    shadow.Draw();
+                }
             }
 
-            if (shadow != null)
-            {
-                shadow.Draw();
-            }
         }
 
         protected void SetFrame(int frame)

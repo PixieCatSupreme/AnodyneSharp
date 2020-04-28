@@ -75,9 +75,7 @@ namespace AnodyneSharp.Entities.Enemy
                         _deathTimer -= GameTimes.DeltaTime;
                         if (_deathTimer <= 0)
                         {
-                            //Dead
-                            _preset.Alive = false;
-                            visible = false;
+                            exists = _preset.Alive = false;
                         }
                     }
                     break;

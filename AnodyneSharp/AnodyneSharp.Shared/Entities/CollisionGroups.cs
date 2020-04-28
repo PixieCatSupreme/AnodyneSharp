@@ -1,6 +1,7 @@
 ﻿using AnodyneSharp.Map;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace AnodyneSharp.Entities
@@ -42,19 +43,17 @@ namespace AnodyneSharp.Entities
 
         public void DoCollision(TileMap bg, TileMap bg2)
         {
-            foreach(Entity e in _mapColliders)
+            foreach(Entity e in _mapColliders.Where(e=>e.exists))
             {
                 bg.Collide(e);
                 bg2.Collide(e);
             }
             foreach(Group g in _groups.Values)
             {
-                foreach(Entity collider in g.colliders)
+                foreach(Entity collider in g.colliders.Where(e => e.exists))
                 {
-                    if (!collider.visible) continue; //visible, exists,... ???
-                    foreach(Entity target in g.targets)
+                    foreach(Entity target in g.targets.Where(e => e.exists))
                     {
-                        if (!target.visible) continue;
                         if(collider.Hitbox.Intersects(target.Hitbox))
                         {
                             collider.Collided(target);
