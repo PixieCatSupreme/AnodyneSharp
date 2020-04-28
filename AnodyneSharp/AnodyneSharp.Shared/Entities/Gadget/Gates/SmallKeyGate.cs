@@ -1,9 +1,7 @@
 ﻿using AnodyneSharp.Drawing;
 using AnodyneSharp.Registry;
+using AnodyneSharp.Sounds;
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace AnodyneSharp.Entities.Gadget.Gates
 {
@@ -20,6 +18,7 @@ namespace AnodyneSharp.Entities.Gadget.Gates
             if (InventoryState.GetCurrentMapKeys() > 0)
             {
                 InventoryState.RemoveCurrentMapKey();
+                SoundManager.PlaySoundEffect("unlock");
                 solid = false;
                 return true;
             }

@@ -1,5 +1,6 @@
 ﻿using AnodyneSharp.Input;
 using AnodyneSharp.Registry;
+using AnodyneSharp.Sounds;
 using AnodyneSharp.States;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -89,6 +90,8 @@ namespace AnodyneSharp.Entities
         private bool anim_air_did_down;
         private float jump_timer;
         private bool sinking;
+
+        public bool ON_CONVEYER { get; private set; }
 
         public Player(PlayState parent)
             : base(Vector2.Zero, ORIGINAL_WIDTH, ORIGINAL_HEIGHT, Drawing.DrawOrder.ENTITIES)
@@ -319,6 +322,7 @@ namespace AnodyneSharp.Entities
                         action_latency = action_latency_max;
 
                         broom.Play("stab", true);
+                        SoundManager.PlaySoundEffect("swing_broom_1", "swing_broom_2", "swing_broom_3");
 
                         switch (facing)
                         {
@@ -491,14 +495,14 @@ namespace AnodyneSharp.Entities
                 broom.visible = false;
                 anim_air_did_up = true;
 
-                //if (ON_CONVEYER)
-                //{
-                //    Registry.sound_data.puddle_up.play();
-                //}
-                //else
-                //{
-                //    play_sfx("jump_up");
-                //}
+                if (ON_CONVEYER)
+                {
+                    SoundManager.PlaySoundEffect("puddle_up");
+                }
+                else
+                {
+                    SoundManager.PlaySoundEffect("player_jump_up");
+                }
 
                 shadow.Play("get_small");
                 ANIM_STATE = PlayerAnimState.as_idle; // Always land in idle state.
@@ -531,14 +535,14 @@ namespace AnodyneSharp.Entities
             if (jump_timer > jump_period)
             {
                 jump_timer = 0;
-                //if (ON_CONVEYER)
-                //{
-                //    Registry.sound_data.puddle_down.play();
-                //}
-                //else
-                //{
-                //    play_sfx("jump_down");
-                //}
+                if (ON_CONVEYER)
+                {
+                    SoundManager.PlaySoundEffect("puddle_down");
+                }
+                else
+                {
+                    SoundManager.PlaySoundEffect("player_jump_down");
+                }
                 state = PlayerState.GROUND;
 
                 //my_shadow.visible = false;

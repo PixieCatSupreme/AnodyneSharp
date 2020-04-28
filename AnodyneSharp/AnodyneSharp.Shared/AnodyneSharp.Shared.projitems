@@ -45,6 +45,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Registry\GameConstants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Registry\GlobalState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\EntityManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sounds\SoundManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\DialogueState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\PlayState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\State.cs" />

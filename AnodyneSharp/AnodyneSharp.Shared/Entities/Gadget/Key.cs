@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using AnodyneSharp.Drawing;
 using AnodyneSharp.Registry;
+using AnodyneSharp.Sounds;
 using Microsoft.Xna.Framework;
 
 namespace AnodyneSharp.Entities.Gadget
@@ -27,6 +28,7 @@ namespace AnodyneSharp.Entities.Gadget
             {
                 visible = false;
                 InventoryState.AddCurrentMapKey();
+                SoundManager.PlaySoundEffect("keyget");
                 _preset.Alive = false;
             }
         }

@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Registry;
+using AnodyneSharp.Sounds;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,8 @@ namespace AnodyneSharp.Entities.Enemy
         private float _deathTimer = 0.5f;
         private const float _moveTimerMax = 0.5f;
         private float _moveTimer = _moveTimerMax;
+
+        private bool move_frame_sound_sync = false;
 
         private float _speed = 20f;
 
@@ -37,6 +40,16 @@ namespace AnodyneSharp.Entities.Enemy
             switch(_curAnim.name)
             {
                 case "Move":
+                    if (_curFrame == 1 && !move_frame_sound_sync)
+                    {
+                        move_frame_sound_sync = true;
+                        SoundManager.PlaySoundEffect("slime_walk");
+                    }
+                    else if (_curFrame == 0)
+                    {
+                        move_frame_sound_sync = false;
+                    }
+
                     _moveTimer -= GameTimes.DeltaTime;
                     if(_moveTimer <= 0)
                     {
@@ -81,6 +94,7 @@ namespace AnodyneSharp.Entities.Enemy
             else if(other is Broom b && _curAnim.name == "Move")
             {
                 //TODO: Spawn goo
+                SoundManager.PlaySoundEffect("hit_slime");
 
                 _health -= 1;
                 if(_health == 0)
@@ -91,6 +105,7 @@ namespace AnodyneSharp.Entities.Enemy
                 else
                 {
                     Play("Hurt");
+
                     velocity = FacingDirection(b.facing) * 100;
                 }
             }
