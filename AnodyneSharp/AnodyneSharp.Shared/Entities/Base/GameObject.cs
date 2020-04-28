@@ -161,27 +161,20 @@ namespace AnodyneSharp.Entities
             //Then adjust their positions and velocities accordingly (if there was any overlap)
             if (overlap != 0)
             {
-                float obj1v = Object1.velocity.X;
-                float obj2v = Object2.velocity.X;
 
                 if (!obj1immovable && !obj2immovable)
                 {
                     overlap *= 0.5f;
                     Object1.Position.X -= overlap;
                     Object2.Position.X += overlap;
-
-                    Object1.velocity.X = obj2v;
-                    Object2.velocity.X = obj1v;
                 }
                 else if (!obj1immovable)
                 {
                     Object1.Position.X -= overlap;
-                    Object1.velocity.X = obj2v - obj1v;
                 }
                 else if (!obj2immovable)
                 {
                     Object2.Position.X += overlap;
-                    Object2.velocity.X = obj1v - obj2v;
                 }
                 return true;
             }
@@ -190,13 +183,13 @@ namespace AnodyneSharp.Entities
         }
 
         /**
-* The Y-axis component of the object separation process.
-* 
-* @param	Object1 	Any <code>FlxObject</code>.
-* @param	Object2		Any other <code>FlxObject</code>.
-* 
-* @return	Whether the objects in fact touched and were separated along the Y axis.
-*/
+        * The Y-axis component of the object separation process.
+        * 
+        * @param	Object1 	Any <code>FlxObject</code>.
+        * @param	Object2		Any other <code>FlxObject</code>.
+        * 
+        * @return	Whether the objects in fact touched and were separated along the Y axis.
+        */
         public static bool SeparateY(GameObject Object1, GameObject Object2)
         {
             //can't separate two immovable objects
