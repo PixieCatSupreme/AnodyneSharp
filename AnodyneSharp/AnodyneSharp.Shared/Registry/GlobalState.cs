@@ -49,5 +49,13 @@ namespace AnodyneSharp.Registry
         public static bool MovingCamera = true;
         public static bool FreeRoamCamera = false;
 #endif
+
+        //Song deciding bools
+        public static bool OnRoof;
+        public static bool InDeathRoom;
+        public static bool HappyStarted;
+        public static bool SageDead;
+        public static bool SuburbSoft;
+        public static bool WindmillOpened;
     }
 }

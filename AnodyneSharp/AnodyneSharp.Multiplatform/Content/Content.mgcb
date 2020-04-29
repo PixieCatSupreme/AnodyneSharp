@@ -73,12 +73,6 @@
 /processorParam:Quality=Best
 /build:mp3/briar-fight.mp3
 
-#begin mp3/cell.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:mp3/cell.mp3
-
 #begin mp3/circus.mp3
 /importer:Mp3Importer
 /processor:SongProcessor
@@ -235,23 +229,23 @@
 /processorParam:Quality=Best
 /build:mp3/pre_terminal.mp3
 
-#begin mp3/red_cave.mp3
+#begin mp3/redcave.mp3
 /importer:Mp3Importer
 /processor:SongProcessor
 /processorParam:Quality=Best
-/build:mp3/red_cave.mp3
-
-#begin mp3/red_sea.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:mp3/red_sea.mp3
+/build:mp3/redcave.mp3
 
 #begin mp3/redcave-boss.mp3
 /importer:Mp3Importer
 /processor:SongProcessor
 /processorParam:Quality=Best
 /build:mp3/redcave-boss.mp3
+
+#begin mp3/redsea.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:mp3/redsea.mp3
 
 #begin mp3/roof.mp3
 /importer:Mp3Importer
@@ -306,6 +300,12 @@
 /processor:SongProcessor
 /processorParam:Quality=Best
 /build:mp3/title.mp3
+
+#begin mp3/train.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:mp3/train.mp3
 
 #begin mp3/windmill.mp3
 /importer:Mp3Importer

@@ -53,7 +53,12 @@ namespace AnodyneSharp.Sounds
 
                 return true;
             }
-            return false;
+            else
+            {
+                StopSong();
+                return false;
+            }
+
         }
 
         public static bool PauseSong()

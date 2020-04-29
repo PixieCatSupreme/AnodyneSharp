@@ -46,6 +46,7 @@ namespace AnodyneSharp.Resources
         {
             if (!_textures.ContainsKey(textureName))
             {
+                DebugLogger.AddWarning($"Texture file called {textureName}.png not found!");
                 return null;
             }
 
@@ -56,6 +57,7 @@ namespace AnodyneSharp.Resources
         {
             if (!_music.ContainsKey(musicName))
             {
+                DebugLogger.AddWarning($"Music file called {musicName}.mp3 not found!");
                 return null;
             }
 
@@ -66,6 +68,7 @@ namespace AnodyneSharp.Resources
         {
             if (!_sfx.ContainsKey(sfxName))
             {
+                DebugLogger.AddWarning($"SFX file called {sfxName}.mp3 not found!");
                 return null;
             }
 

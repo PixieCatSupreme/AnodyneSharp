@@ -5,6 +5,7 @@ using AnodyneSharp.Map;
 using AnodyneSharp.Map.Tiles;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Resources;
+using AnodyneSharp.Sounds;
 using AnodyneSharp.UI;
 using AnodyneSharp.UI.Font;
 using AnodyneSharp.Utilities;
@@ -512,6 +513,41 @@ namespace AnodyneSharp.States
             LoadGridEntities();
 
             _keyValueLabel.SetText($"x{InventoryState.GetCurrentMapKeys()}");
+
+            PlayMapMusic();
+        }
+
+        private void PlayMapMusic()
+        {
+            string title = GlobalState.CURRENT_MAP_NAME.ToLower();
+            if (GlobalState.OnRoof)
+            {
+                //TODO maybe BOI or a different easter egg for redcave?
+                title = "roof";
+            }
+            else if (!GlobalState.HappyStarted && title == "happy")
+            {
+                title = "happy-init";
+            }
+            else if (!GlobalState.SageDead && title == "terminal")
+            {
+                title = "pre_terminal";
+            }
+            else if (GlobalState.SuburbSoft && title == "suburb")
+            {
+                title = "soft";
+            }
+            else if (title == "drawer")
+            {
+                title = "suburb";
+            }
+            else if ((!GlobalState.WindmillOpened && title == "windmill") ||GlobalState.InDeathRoom || title == "debug")
+            {
+                SoundManager.StopSong();
+                return;
+            }
+
+            SoundManager.PlaySong(title);
         }
 
         private void LoadGridEntities()
