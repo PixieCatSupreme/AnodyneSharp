@@ -76,6 +76,11 @@ namespace AnodyneSharp.Entities
         private const float INVINCIBLE_MAX = 0.5f;
         private float invincibility_time = 0;
 
+        private bool Do_bump => bump_timer > 0;
+        private const float BUMP_VELOCITY = 50f;
+        private const float BUMP_TIMER_MAX = 0.2f;
+        private float bump_timer = 0;
+
         internal float grid_entrance_x;
         private Vector2 additionalVel;
 
@@ -351,6 +356,9 @@ namespace AnodyneSharp.Entities
 
         private void Ground_animation()
         {
+            //No change in animation during bump
+            if (Do_bump) return;
+
             if (broom.finished && broom.exists)
             {
                 //We just finished an attack
@@ -580,6 +588,15 @@ namespace AnodyneSharp.Entities
                 velocity *= .7f;
             }
 
+            if(Do_bump)
+            {
+                bump_timer -= GameTimes.DeltaTime;
+                if(bump_timer > 0)
+                {
+                    velocity = -FacingDirection(facing) * BUMP_VELOCITY;
+                }
+            }
+
             velocity += additionalVel;
         }
 
@@ -698,9 +715,11 @@ namespace AnodyneSharp.Entities
         {
             if (!invincible)
             {
+                SoundManager.PlaySoundEffect("player_hit_1");
                 GlobalState.CUR_HEALTH -= amount;
                 invincible = true;
                 invincibility_time = INVINCIBLE_MAX;
+                bump_timer = BUMP_TIMER_MAX;
             }
         }
     }
