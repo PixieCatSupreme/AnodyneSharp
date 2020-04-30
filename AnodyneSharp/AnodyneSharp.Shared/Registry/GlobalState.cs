@@ -40,6 +40,13 @@ namespace AnodyneSharp.Registry
 
         public static Random RNG = new Random();
 
+        public static bool ShowFPS =
+#if DEBUG
+            true;
+#else
+            false;
+#endif
+
         //Cool new debug values
 #if DEBUG
         public static bool DrawBG = true;
