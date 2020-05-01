@@ -93,6 +93,8 @@ namespace AnodyneSharp.UI.Text
 
         public bool DrawShadow { get; set; }
 
+        public bool IgnoreSoftLineBreaks { get; set; }
+
         public Point Position
         {
             get
@@ -433,7 +435,7 @@ namespace AnodyneSharp.UI.Text
                 letterProgress++;
                 output = true;
 
-                if (SoftLinebreak.Any(c => c == character))
+                if (!IgnoreSoftLineBreaks && SoftLinebreak.Any(c => c == character))
                 {
                     cursorPos.Y += spriteFont.lineSeparation;
                     cursorPos.X = 0;

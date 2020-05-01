@@ -46,7 +46,7 @@ namespace AnodyneSharp
 
             _currentState = null;
 
-            _fpsLabel = new UILabel(new Vector2(0, GameConstants.HEADER_HEIGHT));
+            _fpsLabel = new UILabel(new Vector2(0, GameConstants.HEADER_HEIGHT), Color.LightBlue, false);
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace AnodyneSharp
             _currentState = new PlayState(_camera);
             _currentState.Create();
 
-            _fpsLabel.Writer.SetSpriteFont(FontManager.InitFont(Color.LightBlue));
+            _fpsLabel.Initialize();
         }
 
         /// <summary>

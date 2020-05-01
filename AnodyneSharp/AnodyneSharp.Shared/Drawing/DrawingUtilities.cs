@@ -22,6 +22,7 @@ namespace AnodyneSharp.Drawing
         HEADER,             //Player UI
         UI_OBJECTS,         //Health, keys, mini mini map
         HEALTH_UPGRADE,     //Health cicida. Needs to be drawn on UI so it can fly over the header
+        PAUSE_BG,           //Background for pause menu. Needs to be drawn over health upgrades.        
         TEXTBOX,            //Textboxes
         TEXT,               //Text in dialogueBoxes
         DEATH_FADEIN,       //A fade-in that happens on player death

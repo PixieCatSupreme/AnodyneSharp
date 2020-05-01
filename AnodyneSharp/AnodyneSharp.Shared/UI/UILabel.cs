@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.UI.Text;
+﻿using AnodyneSharp.UI.Font;
+using AnodyneSharp.UI.Text;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +30,10 @@ namespace AnodyneSharp.UI
         private Vector2 _oldSize;
         private string _oldString;
 
-        public UILabel(Vector2 position)
+        private Color _color;
+        private bool _drawShadow;
+
+        public UILabel(Vector2 position, bool drawShadow)
         {
             this.position = position;
             Writer = new TextWriter((int)position.X, (int)position.Y);
@@ -37,11 +41,31 @@ namespace AnodyneSharp.UI
             _oldString = Writer.Text;
 
             IsVisible = true;
+
+            _color = Color.White;
+            _drawShadow = drawShadow;
         }
+
+        public UILabel(Vector2 position, Color color, bool drawShadow)
+        {
+            this.position = position;
+            Writer = new TextWriter((int)position.X, (int)position.Y);
+            _oldSize = Writer.WriteAreaSize;
+            _oldString = Writer.Text;
+
+            IsVisible = true;
+
+            _color = color;
+            _drawShadow = drawShadow;
+        }
+
 
         public void Initialize()
         {
+            Writer.SetSpriteFont(FontManager.InitFont(_color));
             Writer.Initialize();
+            Writer.IgnoreSoftLineBreaks = true;
+            Writer.DrawShadow = _drawShadow;
         }
 
         public void Update()

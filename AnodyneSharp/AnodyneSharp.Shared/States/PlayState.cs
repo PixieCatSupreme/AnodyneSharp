@@ -78,7 +78,7 @@ namespace AnodyneSharp.States
 
             _updateEntities = true;
 
-            _keyValueLabel = new UILabel(new Vector2(37, 5));
+            _keyValueLabel = new UILabel(new Vector2(37, 5), false);
             _keyValueLabel.Writer.SetSpriteFont(FontManager.InitFont(new Color(124, 163, 177, 255)));
             _keyValueLabel.SetText("x0");
         }
@@ -147,8 +147,6 @@ namespace AnodyneSharp.States
 
         public override void Update()
         {
-            base.Update();
-
             switch (_state)
             {
                 case PlayStateState.S_NORMAL:
@@ -161,6 +159,18 @@ namespace AnodyneSharp.States
                     UpdateEntities();
                     return;
                 case PlayStateState.S_PAUSED:
+                    if (_childState is PauseState pauseState)
+                    {
+                        _player.dontMove = true;
+                        pauseState.Update();
+
+                        //TODO pause finished check
+                        if (pauseState.Exited)
+                        {
+                            _state = PlayStateState.S_NORMAL;
+                            _childState = null;
+                        }
+                    }
                     break;
                 case PlayStateState.S_PLAYER_DIED:
                     break;
@@ -234,7 +244,11 @@ namespace AnodyneSharp.States
 
             _keyValueLabel.SetText($"x{InventoryState.GetCurrentMapKeys()}");
 
-            //TODO add  pause check
+            if (KeyInput.CanPressKey(Keys.Enter))
+            {
+                _childState = new PauseState();
+                _state = PlayStateState.S_PAUSED;
+            }
 
             //TODO check if player is unalive
         }
