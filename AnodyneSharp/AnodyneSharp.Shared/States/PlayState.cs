@@ -169,6 +169,7 @@ namespace AnodyneSharp.States
                         {
                             _state = PlayStateState.S_NORMAL;
                             _childState = null;
+                            _player.dontMove = false;
                         }
                     }
                     break;

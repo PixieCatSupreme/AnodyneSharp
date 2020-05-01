@@ -10,6 +10,7 @@ namespace AnodyneSharp.Registry
         public static BroomType EquippedBroom = BroomType.NONE;
         //TODO add check for which broom types are picked up
         public static bool CanJump;
+        public static bool UnlockedSecretz = true;
 
         private static Dictionary<string, int> _mapKeys;
 

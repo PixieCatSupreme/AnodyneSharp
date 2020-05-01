@@ -3,6 +3,7 @@ using AnodyneSharp.Input;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Resources;
 using AnodyneSharp.UI;
+using AnodyneSharp.UI.PauseMenu;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -14,7 +15,35 @@ namespace AnodyneSharp.States
 {
     public class PauseState : State
     {
+        private enum PauseStateState
+        {
+            Map,
+            Equip,
+            Cards,
+            Save,
+            Settings,
+            Secretz,
+            Cheatz
+        }
+
+        private const int CheatCounterMax =
+#if DEBUG
+            2;
+#else
+            20;
+#endif
+
+        private static PauseStateState _state;
+
         public bool Exited { get; private set; }
+
+        private PauseStateState _lastAllowedState
+        {
+            get
+            {
+                return InventoryState.UnlockedSecretz ? PauseStateState.Secretz : PauseStateState.Settings;
+            }
+        }
 
         private Texture2D _bg;
 
@@ -25,21 +54,35 @@ namespace AnodyneSharp.States
         private UILabel _configLabel;
         private UILabel _secretsLabel;
 
+        private MenuSelector _selector;
+        private PauseStateState _lastState;
+        private int cheat_counter;
 
+        private bool _inChild;
 
         public PauseState()
         {
             _bg = ResourceManager.GetTexture("menu_bg");
+            _selector = new MenuSelector(new Vector2(0, 30 + (int)_state * 16));
+
+            _lastState = _state;
 
             CreateLabels();
         }
 
         public override void Update()
         {
-            if (KeyInput.CanPressKey(Keys.Enter))
+            _selector.Update();
+            _selector.PostUpdate();
+
+            BrowseInput();
+
+            if (_lastState != _state)
             {
-                Exited = true;
+                _lastState = _state;
+                _selector.Position = new Vector2(0, 30 + (int)_state * 16);
             }
+
         }
 
         public override void DrawUI()
@@ -47,6 +90,7 @@ namespace AnodyneSharp.States
             base.DrawUI();
 
             SpriteDrawer.DrawGuiSprite(_bg, new Vector2(0, GameConstants.HEADER_HEIGHT), Z: DrawingUtilities.GetDrawingZ(DrawOrder.PAUSE_BG));
+            _selector.Draw();
 
             _mapLabel.Draw();
             _itemsLabel.Draw();
@@ -54,6 +98,55 @@ namespace AnodyneSharp.States
             _saveLabel.Draw();
             _configLabel.Draw();
             _secretsLabel.Draw();
+        }
+
+        private void BrowseInput()
+        {
+            if (KeyInput.CanPressKey(Keys.Enter))
+            {
+                Exited = true;
+            }
+            else if (!_inChild)
+            {
+                if (KeyInput.CanPressKey(Keys.Up))
+                {
+                    if (_state == PauseStateState.Cheatz)
+                    {
+                        _state = _lastAllowedState;
+                        return;
+                    }
+
+                    if (_state == PauseStateState.Map)
+                    {
+                        return;
+                    }
+
+                    _state--;
+                }
+                else if (KeyInput.CanPressKey(Keys.Down))
+                {
+                    if (_state == PauseStateState.Cheatz)
+                    {
+                        return;
+                    }
+
+                    if (_state == _lastAllowedState)
+                    {
+                        cheat_counter++;
+
+                        if (cheat_counter == CheatCounterMax)
+                        {
+                            cheat_counter = 0;
+                            _state = PauseStateState.Cheatz;
+
+                        }
+
+                        return;
+                    }
+
+                    _state++;
+                }
+            }
         }
 
         private void CreateLabels()
@@ -84,6 +177,8 @@ namespace AnodyneSharp.States
             _saveLabel.SetText("Save");
             _configLabel.SetText("Config");
             _secretsLabel.SetText("???");
+
+            _secretsLabel.IsVisible = InventoryState.UnlockedSecretz;
         }
     }
 }
