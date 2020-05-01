@@ -7,9 +7,22 @@ namespace AnodyneSharp.Registry
     {
         //Inventory stuff
 
-        public static BroomType EquippedBroom = BroomType.NONE;
-        //TODO add check for which broom types are picked up
-        public static bool CanJump;
+        public static bool HasAnyBroom
+        {
+            get
+            {
+                return HasBroom || HasLenghten || HasWiden || HasTransformer;
+            }
+        }
+
+        public static BroomType EquippedBroom = BroomType.Normal;
+
+        public static bool HasBroom = true;
+        public static bool HasLenghten = true;
+        public static bool HasWiden = true;
+        public static bool HasTransformer = true;
+
+        public static bool CanJump = false;
         public static bool UnlockedSecretz = true;
 
         private static Dictionary<string, int> _mapKeys;

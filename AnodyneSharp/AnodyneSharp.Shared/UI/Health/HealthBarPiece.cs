@@ -11,7 +11,7 @@ using System.Text;
 
 namespace AnodyneSharp.UI
 {
-    public class HealthBarPiece : Entity
+    public class HealthBarPiece : UIEntity
     {
         public const int BOX_WIDTH = 11;
         public const int BOX_HEIGHT = 6;
@@ -31,12 +31,6 @@ namespace AnodyneSharp.UI
             Texture = ResourceManager.GetTexture( Health_Piece_Sprite);
 
             Play("full");
-        }
-
-
-        public override void Draw()
-        {
-            SpriteDrawer.DrawGuiSprite(Texture, Position - offset, spriteRect, Z: DrawingUtilities.GetDrawingZ(layer));
         }
     }
 }

@@ -170,6 +170,7 @@ namespace AnodyneSharp.States
                             _state = PlayStateState.S_NORMAL;
                             _childState = null;
                             _player.dontMove = false;
+                            _player.broom.UpdateBroomType();
                         }
                     }
                     break;

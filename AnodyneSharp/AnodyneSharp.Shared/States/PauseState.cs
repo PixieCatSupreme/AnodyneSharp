@@ -2,6 +2,8 @@
 using AnodyneSharp.Input;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Resources;
+using AnodyneSharp.Sounds;
+using AnodyneSharp.States.PauseSubstates;
 using AnodyneSharp.UI;
 using AnodyneSharp.UI.PauseMenu;
 using Microsoft.Xna.Framework;
@@ -54,20 +56,23 @@ namespace AnodyneSharp.States
         private UILabel _configLabel;
         private UILabel _secretsLabel;
 
-        private MenuSelector _selector;
+        private PauseMenuSelector _selector;
         private PauseStateState _lastState;
         private int cheat_counter;
 
-        private bool _inChild;
+        private bool _inSubstate;
+
+        private PauseSubstate _substate;
 
         public PauseState()
         {
             _bg = ResourceManager.GetTexture("menu_bg");
-            _selector = new MenuSelector(new Vector2(0, 30 + (int)_state * 16));
+            _selector = new PauseMenuSelector(new Vector2(0, 30));
 
             _lastState = _state;
 
             CreateLabels();
+            StateChanged();
         }
 
         public override void Update()
@@ -75,12 +80,33 @@ namespace AnodyneSharp.States
             _selector.Update();
             _selector.PostUpdate();
 
-            BrowseInput();
+            if (KeyInput.CanPressKey(Keys.Enter))
+            {
+                Exited = true;
+            }
+            else if (!_inSubstate)
+            {
+                BrowseInput();
+            }
+            else
+            {
+                _substate.HandleInput();
+
+                if (_substate.Exit)
+                {
+                    _inSubstate = false;
+                    _substate.Exit = false;
+                    _selector.Play("flash");
+                }
+            }
+
+
+            _substate.Update();
+
 
             if (_lastState != _state)
             {
-                _lastState = _state;
-                _selector.Position = new Vector2(0, 30 + (int)_state * 16);
+                StateChanged();
             }
 
         }
@@ -98,55 +124,91 @@ namespace AnodyneSharp.States
             _saveLabel.Draw();
             _configLabel.Draw();
             _secretsLabel.Draw();
+
+            _substate.DrawUI();
+        }
+
+        private void StateChanged()
+        {
+            _lastState = _state;
+            _selector.Position = new Vector2(0, 30 + (int)_state * 16);
+
+            switch (_state)
+            {
+                //case PauseStateState.Map:
+                //    break;
+                case PauseStateState.Equip:
+                    _substate = new EquipSubstate();
+                    break;
+                //case PauseStateState.Cards:
+                //    break;
+                //case PauseStateState.Save:
+                //    break;
+                //case PauseStateState.Settings:
+                //    break;
+                //case PauseStateState.Secretz:
+                //    break;
+                //case PauseStateState.Cheatz:
+                //    break;
+                default:
+                    _substate = new PauseSubstate();
+                    break;
+            }
         }
 
         private void BrowseInput()
         {
-            if (KeyInput.CanPressKey(Keys.Enter))
+            if (KeyInput.CanPressKey(Keys.C) || KeyInput.CanPressKey(Keys.Right))
             {
-                Exited = true;
+                SoundManager.PlaySoundEffect("menu_select");
+                _inSubstate = true;
+                _selector.Play("inactive");
+                _substate.GetControl();
             }
-            else if (!_inChild)
+            else if (KeyInput.CanPressKey(Keys.Up))
             {
-                if (KeyInput.CanPressKey(Keys.Up))
+                SoundManager.PlaySoundEffect("menu_move");
+
+                if (_state == PauseStateState.Cheatz)
                 {
-                    if (_state == PauseStateState.Cheatz)
-                    {
-                        _state = _lastAllowedState;
-                        return;
-                    }
-
-                    if (_state == PauseStateState.Map)
-                    {
-                        return;
-                    }
-
-                    _state--;
+                    _state = _lastAllowedState;
+                    return;
                 }
-                else if (KeyInput.CanPressKey(Keys.Down))
+
+                if (_state == PauseStateState.Map)
                 {
-                    if (_state == PauseStateState.Cheatz)
-                    {
-                        return;
-                    }
-
-                    if (_state == _lastAllowedState)
-                    {
-                        cheat_counter++;
-
-                        if (cheat_counter == CheatCounterMax)
-                        {
-                            cheat_counter = 0;
-                            _state = PauseStateState.Cheatz;
-
-                        }
-
-                        return;
-                    }
-
-                    _state++;
+                    return;
                 }
+
+                _state--;
+
             }
+            else if (KeyInput.CanPressKey(Keys.Down))
+            {
+                SoundManager.PlaySoundEffect("menu_move");
+
+                if (_state == PauseStateState.Cheatz)
+                {
+                    return;
+                }
+
+                if (_state == _lastAllowedState)
+                {
+                    cheat_counter++;
+
+                    if (cheat_counter == CheatCounterMax)
+                    {
+                        cheat_counter = 0;
+                        _state = PauseStateState.Cheatz;
+
+                    }
+
+                    return;
+                }
+
+                _state++;
+            }
+
         }
 
         private void CreateLabels()

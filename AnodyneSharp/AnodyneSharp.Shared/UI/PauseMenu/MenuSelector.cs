@@ -8,22 +8,19 @@ using System.Text;
 
 namespace AnodyneSharp.UI.PauseMenu
 {
-    public class MenuSelector : Entity
+    public class MenuSelector : UIEntity
     {
-        public MenuSelector(Vector2 pos) 
-            : base(pos,61,15, DrawOrder.PAUSE_SELECTOR)
+        public MenuSelector(Vector2 pos)
+            : base(pos, 7, 7, DrawOrder.SUBMENU_SELECTOR)
         {
-            AddAnimation("flash", CreateAnimFrameArray(0, 1), 4, true);
-            AddAnimation("inactive", CreateAnimFrameArray(3), 0, false);
+            AddAnimation("disabledLeft", CreateAnimFrameArray(0), 0, false);
+            AddAnimation("disabledRight", CreateAnimFrameArray(2), 0, false);
+            AddAnimation("enabledLeft", CreateAnimFrameArray(0, 1), 6, true);
+            AddAnimation("enabledRight", CreateAnimFrameArray(2, 3), 6, true);
 
-            Texture = ResourceManager.GetTexture("menu_select_active");
+            Texture = ResourceManager.GetTexture("arrows");
 
-            Play("flash");
-        }
-
-        public override void Draw()
-        {
-            SpriteDrawer.DrawGuiSprite(Texture, Position - offset, spriteRect, Z: DrawingUtilities.GetDrawingZ(layer));
+            Play("disabledRight");
         }
     }
 }

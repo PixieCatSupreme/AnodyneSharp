@@ -48,6 +48,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Sounds\SoundManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\DialogueState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\PauseState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\EquipSubstate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\PauseSubstate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\PlayState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\State.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\Font\FontManager.cs" />
@@ -56,8 +58,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)UI\Font\Writing\TextWriter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\Health\HealthBar.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\Health\HealthBarPiece.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\PauseMenu\Equipment.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\PauseMenu\MenuSelector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\PauseMenu\PauseMenuSelector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\TextBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\UIEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\UILabel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\MapUtilities.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\MathUtilities.cs" />

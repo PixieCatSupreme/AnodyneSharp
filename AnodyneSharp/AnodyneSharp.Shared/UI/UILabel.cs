@@ -13,7 +13,7 @@ namespace AnodyneSharp.UI
 
         public float Z { get; set; }
 
-        protected Vector2 position;
+        public Vector2 Position { get; protected set; }
 
         public string Text
         {
@@ -35,7 +35,7 @@ namespace AnodyneSharp.UI
 
         public UILabel(Vector2 position, bool drawShadow)
         {
-            this.position = position;
+            this.Position = position;
             Writer = new TextWriter((int)position.X, (int)position.Y);
             _oldSize = Writer.WriteAreaSize;
             _oldString = Writer.Text;
@@ -48,7 +48,7 @@ namespace AnodyneSharp.UI
 
         public UILabel(Vector2 position, Color color, bool drawShadow)
         {
-            this.position = position;
+            this.Position = position;
             Writer = new TextWriter((int)position.X, (int)position.Y);
             _oldSize = Writer.WriteAreaSize;
             _oldString = Writer.Text;
@@ -96,9 +96,9 @@ namespace AnodyneSharp.UI
 
         public void MoveTo(Vector2 target)
         {
-            position = target;
+            Position = target;
 
-            Writer.Move((int)position.X, (int)position.Y);
+            Writer.Move((int)Position.X, (int)Position.Y);
         }
 
         public virtual void SetText(string text)
