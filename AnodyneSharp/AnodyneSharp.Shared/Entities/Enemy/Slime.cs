@@ -1,5 +1,7 @@
-﻿using AnodyneSharp.Registry;
+﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
+using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -22,6 +24,8 @@ namespace AnodyneSharp.Entities.Enemy
 
         private float _speed = 20f;
 
+        private EntityPool<Goo> goos;
+
 
         public Slime(EntityPreset preset) : base(preset.Position, "slime", 16,16, Drawing.DrawOrder.ENTITIES)
         {
@@ -32,6 +36,8 @@ namespace AnodyneSharp.Entities.Enemy
             AddAnimation("Dying", CreateAnimFrameArray(0, 8, 0, 8, 15, 9, 9), 12, false);
 
             Play("Move");
+
+            goos = new EntityPool<Goo>(8, () => new Goo());
         }
 
         public override void Update()
@@ -91,8 +97,9 @@ namespace AnodyneSharp.Entities.Enemy
             }
             else if(other is Broom b && _curAnim.name == "Move")
             {
-                //TODO: Spawn goo
                 SoundManager.PlaySoundEffect("hit_slime");
+
+                goos.Spawn(g => g.Spawn(this), 2);
 
                 _health -= 1;
                 if(_health == 0)
@@ -105,6 +112,59 @@ namespace AnodyneSharp.Entities.Enemy
                     Play("Hurt");
 
                     velocity = FacingDirection(b.facing) * 100;
+                }
+            }
+        }
+
+        public override IEnumerable<Entity> SubEntities()
+        {
+            return goos.Entities;
+        }
+
+        [Collision(MapCollision = true)]
+        private class Goo : Entity
+        {
+            private float timer;
+
+            public Goo() : base(Vector2.Zero, "slime_goo", 6, 6, DrawOrder.PARTICLES)
+            {
+                AddAnimation("move", CreateAnimFrameArray(0, 1, 2, 3, 1, 3, 1, 2, 1, 0), GlobalState.RNG.Next(5, 10));
+                shadow = new Shadow(this, Vector2.Zero, ShadowType.Tiny);
+
+                //set parabola
+            }
+
+            public void Spawn(Slime parent)
+            {
+                Position = parent.Position;
+                velocity.X = MathUtilities.OneRandomOf(-1, 1) * (10 + 5 * (float)GlobalState.RNG.NextDouble());
+                velocity.Y = MathUtilities.OneRandomOf(-1, 1) * (10 + 5 * (float)GlobalState.RNG.NextDouble());
+                Play("move");
+                shadow.exists = true;
+                timer = 0.8f + 0.3f * (float)GlobalState.RNG.NextDouble();
+                _opacity = 1.0f;
+                //Reset parabola
+
+            }
+
+            public override void Update()
+            {
+                base.Update();
+                if(timer > 0)
+                {
+                    timer -= GameTimes.DeltaTime;
+                    if(timer <= 0)
+                    {
+                        SoundManager.PlaySoundEffect("slime_splash");
+                        shadow.exists = false;
+                        _curAnim = null;
+                        velocity = Vector2.Zero;
+                    }
+                }
+                else
+                {
+                    _opacity -= 0.05f;
+                    if (_opacity <= 0) exists = false;
                 }
             }
         }

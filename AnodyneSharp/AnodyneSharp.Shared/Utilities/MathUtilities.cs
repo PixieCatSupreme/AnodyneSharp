@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AnodyneSharp.Registry;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,6 +16,11 @@ namespace AnodyneSharp.Utilities
         public static Rectangle CreateRectangle(float x, float y, float width, float height)
         {
             return new Rectangle((int)x, (int)y, (int)width, (int)height);
+        }
+
+        public static int OneRandomOf(params int[] p)
+        {
+            return p[GlobalState.RNG.Next(p.Length)];
         }
     }
 }
