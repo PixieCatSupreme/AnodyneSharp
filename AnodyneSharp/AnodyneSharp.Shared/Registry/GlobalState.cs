@@ -8,7 +8,12 @@ namespace AnodyneSharp.Registry
     {
         public static bool BOI = false; // BOI Sprites on in easter egg redcave
         public static bool is_playstate = true;
-        public static double volume_scale = 1.0;
+        public static float volume_scale =
+#if DEBUG
+            0f;
+        #else
+            1.0f;
+#endif
         public static bool pillar_switch_state = false; //Reset when entering a map with differentname
         public static int ENTRANCE_GRID_X;
         public static int ENTRANCE_GRID_Y;

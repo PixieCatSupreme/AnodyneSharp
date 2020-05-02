@@ -144,8 +144,9 @@ namespace AnodyneSharp.States
                 //    break;
                 //case PauseStateState.Save:
                 //    break;
-                //case PauseStateState.Settings:
-                //    break;
+                case PauseStateState.Settings:
+                    _substate = new ConfigSubstate();
+                    break;
                 //case PauseStateState.Secretz:
                 //    break;
                 //case PauseStateState.Cheatz:

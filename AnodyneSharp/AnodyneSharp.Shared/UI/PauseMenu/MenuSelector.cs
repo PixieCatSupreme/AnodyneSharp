@@ -16,7 +16,7 @@ namespace AnodyneSharp.UI.PauseMenu
             AddAnimation("disabledLeft", CreateAnimFrameArray(0), 0, false);
             AddAnimation("disabledRight", CreateAnimFrameArray(2), 0, false);
             AddAnimation("enabledLeft", CreateAnimFrameArray(0, 1), 6, true);
-            AddAnimation("enabledRight", CreateAnimFrameArray(2, 3), 6, true);
+            AddAnimation("enabledRight", CreateAnimFrameArray(3, 2), 6, true);
 
             Texture = ResourceManager.GetTexture("arrows");
 

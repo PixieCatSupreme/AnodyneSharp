@@ -45,7 +45,7 @@ namespace AnodyneSharp.Sounds
             Song song = ResourceManager.GetMusic(name);
             if (song != null)
             {
-                MediaPlayer.Volume = volume;
+                MediaPlayer.Volume = volume * GlobalState.volume_scale;
                 MediaPlayer.IsRepeating = isRepeating;
                 MediaPlayer.Play(song);
                 CurrentSong = song;
@@ -91,6 +91,16 @@ namespace AnodyneSharp.Sounds
             return false;
         }
 
+        public static bool SetSongVolume()
+        {
+            if (CurrentSong != null)
+            {
+                MediaPlayer.Volume *= GlobalState.volume_scale;
+                return true;
+            }
+            return false;
+        }
+
         public static bool StopSong()
         {
             if (CurrentSong != null)
@@ -114,33 +124,6 @@ namespace AnodyneSharp.Sounds
             return CreateSoundInstance(name, volume, pitch);
         }
 
-        public static bool PlaySoundEffect(string name, AudioEmitter emitter)
-        {
-            SoundEffect sfx = ResourceManager.GetSFX(name);
-
-            if (sfx != null)
-            {
-                if (_listener != null)
-                {
-                    SoundEffectInstance instance = sfx.CreateInstance();
-
-                    instance.Apply3D(_listener, emitter);
-                    instance.Play();
-                }
-                else
-                {
-                    DebugLogger.AddError($"No audiolistener added to game!");
-                }
-
-            }
-            return false;
-        }
-
-        public static void SetListener(AudioListener listener)
-        {
-            _listener = listener;
-        }
-
         private static bool CreateSoundInstance(string name, float volume = 1, float pitch = 0)
         {
             SoundEffect sfx = ResourceManager.GetSFX(name);
@@ -149,30 +132,8 @@ namespace AnodyneSharp.Sounds
                 SoundEffectInstance instance = sfx.CreateInstance();
 
                 instance.Pitch = pitch;
-                instance.Volume = volume;
+                instance.Volume = volume * GlobalState.volume_scale;
                 instance.Play();
-            }
-            return false;
-        }
-
-        private static bool CreateSoundInstance(string name, AudioEmitter emitter, float pitch = 0)
-        {
-            SoundEffect sfx = ResourceManager.GetSFX(name);
-            if (sfx != null)
-            {
-                if (_listener != null)
-                {
-                    SoundEffectInstance instance = sfx.CreateInstance();
-
-                    instance.Apply3D(_listener, emitter);
-                    instance.Pitch = pitch;
-                    instance.Play();
-                }
-                else
-                {
-                    DebugLogger.AddError($"No audiolistener added to game!");
-                }
-
             }
             return false;
         }
