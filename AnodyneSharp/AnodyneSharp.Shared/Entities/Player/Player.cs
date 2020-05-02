@@ -140,7 +140,7 @@ namespace AnodyneSharp.Entities
             facing = Facing.UP;
 
             broom = new Broom(this);
-            shadow = new Base.Shadow(this, new Vector2(3, -1), fps: 20);
+            shadow = new Shadow(this, new Vector2(3, -1), fps: 20);
         }
 
         public void Reset()
