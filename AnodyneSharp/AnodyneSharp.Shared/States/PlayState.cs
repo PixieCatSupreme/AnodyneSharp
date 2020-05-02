@@ -171,6 +171,7 @@ namespace AnodyneSharp.States
                             _childState = null;
                             _player.dontMove = false;
                             _player.broom.UpdateBroomType();
+                            _updateEntities = true;
                         }
                     }
                     break;
@@ -250,6 +251,7 @@ namespace AnodyneSharp.States
             {
                 _childState = new PauseState();
                 _state = PlayStateState.S_PAUSED;
+                _updateEntities = false;
             }
 
             //TODO check if player is unalive

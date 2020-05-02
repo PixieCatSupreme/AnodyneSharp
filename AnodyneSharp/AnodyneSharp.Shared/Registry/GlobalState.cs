@@ -8,12 +8,14 @@ namespace AnodyneSharp.Registry
     {
         public static bool BOI = false; // BOI Sprites on in easter egg redcave
         public static bool is_playstate = true;
-        public static float volume_scale =
+        public static float music_volume_scale =
 #if DEBUG
-            0f;
-        #else
+            0.1f;
+#else
             1.0f;
 #endif
+        public static float sfx_volume_scale = 1.0f;
+
         public static bool pillar_switch_state = false; //Reset when entering a map with differentname
         public static int ENTRANCE_GRID_X;
         public static int ENTRANCE_GRID_Y;
@@ -42,6 +44,9 @@ namespace AnodyneSharp.Registry
         //Health stuff
         public static int CUR_HEALTH;
         public static int MAX_HEALTH;
+
+        //Drawing stuff
+        public static float UI_SCALE;
 
         public static Random RNG = new Random();
 

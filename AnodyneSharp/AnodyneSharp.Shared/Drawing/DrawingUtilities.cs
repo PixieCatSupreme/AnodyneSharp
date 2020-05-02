@@ -25,6 +25,9 @@ namespace AnodyneSharp.Drawing
         PAUSE_BG,           //Background for pause menu. Needs to be drawn over health upgrades. 
         EQUIPMENT_ICON,     //The inventory items for the broom types
         EQUIPPED_ICON,      //The small equipped indicator for the broom types
+        AUDIO_SLIDER_BG,    //The black background of the audio slider
+        AUDIO_SLIDER_BAR,   //The red bar to show progress of slider
+        AUDIO_SLIDER,       //The slider itself.
         PAUSE_SELECTOR,     //Pause menu option selector
         TEXTBOX,            //Textboxes
         TEXT,               //Text in dialogueBoxes

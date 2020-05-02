@@ -15,11 +15,14 @@ namespace AnodyneSharp.UI.PauseMenu.Config
 
         public ValueChanged ValueChangedEvent;
 
+        protected Vector2 position;
+
         private MenuSelector _leftArrow;
         private MenuSelector _rightArrow;
 
         public OptionSelector(Vector2 pos, float width)
         {
+            position = pos;
             float y = pos.Y + 2;
 
             _leftArrow = new MenuSelector(new Vector2(pos.X, y));

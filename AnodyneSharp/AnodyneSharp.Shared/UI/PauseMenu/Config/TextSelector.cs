@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AnodyneSharp.Sounds;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -45,6 +46,8 @@ namespace AnodyneSharp.UI.PauseMenu.Config
         {
             startIndex = index;
             ValueChangedEvent?.Invoke(_options[index]);
+
+            SoundManager.PlaySoundEffect("menu_select");
         }
 
         protected override void LeftPressed()
@@ -57,6 +60,8 @@ namespace AnodyneSharp.UI.PauseMenu.Config
             {
                 index--;
             }
+
+            SoundManager.PlaySoundEffect("menu_move");
 
             SetText();
         }
@@ -71,6 +76,8 @@ namespace AnodyneSharp.UI.PauseMenu.Config
             {
                 index++;
             }
+
+            SoundManager.PlaySoundEffect("menu_move");
 
             SetText();
         }

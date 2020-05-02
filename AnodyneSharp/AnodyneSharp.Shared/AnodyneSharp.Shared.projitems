@@ -59,6 +59,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)UI\Font\Writing\TextWriter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\Health\HealthBar.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\Health\HealthBarPiece.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\PauseMenu\Config\AudioSlider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\PauseMenu\Config\OptionSelector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\PauseMenu\Config\TextSelector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\PauseMenu\Equipment.cs" />

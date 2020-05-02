@@ -23,7 +23,7 @@ namespace AnodyneSharp.Registry
         public static bool HasTransformer = true;
 
         public static bool CanJump = false;
-        public static bool UnlockedSecretz = true;
+        public static bool UnlockedSecretz = false;
 
         private static Dictionary<string, int> _mapKeys;
 

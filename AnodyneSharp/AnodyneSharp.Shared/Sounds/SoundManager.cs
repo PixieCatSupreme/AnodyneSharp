@@ -45,7 +45,7 @@ namespace AnodyneSharp.Sounds
             Song song = ResourceManager.GetMusic(name);
             if (song != null)
             {
-                MediaPlayer.Volume = volume * GlobalState.volume_scale;
+                MediaPlayer.Volume = volume * GlobalState.music_volume_scale;
                 MediaPlayer.IsRepeating = isRepeating;
                 MediaPlayer.Play(song);
                 CurrentSong = song;
@@ -95,7 +95,7 @@ namespace AnodyneSharp.Sounds
         {
             if (CurrentSong != null)
             {
-                MediaPlayer.Volume *= GlobalState.volume_scale;
+                MediaPlayer.Volume = GlobalState.music_volume_scale;
                 return true;
             }
             return false;
@@ -132,7 +132,7 @@ namespace AnodyneSharp.Sounds
                 SoundEffectInstance instance = sfx.CreateInstance();
 
                 instance.Pitch = pitch;
-                instance.Volume = volume * GlobalState.volume_scale;
+                instance.Volume = volume * GlobalState.sfx_volume_scale;
                 instance.Play();
             }
             return false;

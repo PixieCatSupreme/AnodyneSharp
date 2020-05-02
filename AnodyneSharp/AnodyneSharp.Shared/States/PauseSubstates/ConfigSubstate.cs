@@ -16,25 +16,23 @@ namespace AnodyneSharp.States.PauseSubstates
     {
         private enum ConfigState
         {
-
             KeybindsLabel,
-            SetVolumeLabel,
+            SetBgmLabel,
+            SetSfxLabel,
             AutosaveLabel,
             ResolutionLabel,
             ScalingLabel,
-            LanguageLabel,
-
-            SettingKeyBinds,
-            SettingAutosave,
-            SettingResolution,
-            SettingScale,
-            SettingLanguage
+            LanguageLabel
         }
 
         private static ConfigState _state;
 
         private UILabel _keybindsLabel;
-        private UILabel _setVolumeLabel;
+
+
+        private UILabel _bgmLabel;
+        private UILabel _sfxLabel;
+
         private UILabel _autosaveLabel;
         private UILabel _resolutionLabel;
         private UILabel _scalingLabel;
@@ -46,8 +44,10 @@ namespace AnodyneSharp.States.PauseSubstates
 
         private ConfigState _lastState;
 
-        private MenuSelector _selector;
+        private AudioSlider _musicSlider;
+        private AudioSlider _sfxSlider;
 
+        private MenuSelector _selector;
 
         public ConfigSubstate()
         {
@@ -55,30 +55,52 @@ namespace AnodyneSharp.States.PauseSubstates
             float y = 28;
 
             _keybindsLabel = new UILabel(new Vector2(x, y), true);
-            _setVolumeLabel = new UILabel(new Vector2(x, _keybindsLabel.Position.Y + GameConstants.FONT_LINE_HEIGHT * 2), true);
-            _autosaveLabel = new UILabel(new Vector2(x, _setVolumeLabel.Position.Y + GameConstants.FONT_LINE_HEIGHT * 3), true);
+
+            _bgmLabel = new UILabel(new Vector2(x, _keybindsLabel.Position.Y + GameConstants.FONT_LINE_HEIGHT * 2), true);
+            _sfxLabel = new UILabel(new Vector2(x, _bgmLabel.Position.Y + GameConstants.FONT_LINE_HEIGHT +4), true);
+
+            _autosaveLabel = new UILabel(new Vector2(x, _sfxLabel.Position.Y + GameConstants.FONT_LINE_HEIGHT * 2), true);
             _resolutionLabel = new UILabel(new Vector2(x, _autosaveLabel.Position.Y + GameConstants.FONT_LINE_HEIGHT * 4), true);
-            _scalingLabel = new UILabel(new Vector2(x, _resolutionLabel.Position.Y + GameConstants.FONT_LINE_HEIGHT * 2), true);
+            _scalingLabel = new UILabel(new Vector2(x, _resolutionLabel.Position.Y + GameConstants.FONT_LINE_HEIGHT * 3), true);
             _languageLabel = new UILabel(new Vector2(x, _scalingLabel.Position.Y + GameConstants.FONT_LINE_HEIGHT * 2), true);
 
             _keybindsLabel.Initialize();
-            _setVolumeLabel.Initialize();
+
+            _bgmLabel.Initialize();
+            _sfxLabel.Initialize();
+
             _autosaveLabel.Initialize();
             _resolutionLabel.Initialize();
             _scalingLabel.Initialize();
             _languageLabel.Initialize();
 
             _keybindsLabel.SetText("Set keybinds");
-            _setVolumeLabel.SetText("Set volume");
+
+            _bgmLabel.SetText("BGM");
+            _sfxLabel.SetText("SFX");
+
             _autosaveLabel.SetText("Autosave at\ncheckpoints:");
             _resolutionLabel.SetText("Resolution:");
             _scalingLabel.SetText("Scaling:");
             _languageLabel.SetText("Language:");
 
+            _musicSlider = new AudioSlider(new Vector2(_bgmLabel.Position.X + _bgmLabel.Writer.WriteArea.Width -5, _bgmLabel.Position.Y), GlobalState.music_volume_scale, 0f, 1f, 0.1f)
+            {
+                ValueChangedEvent = BgmValueChanged
+            };
+
+            _sfxSlider = new AudioSlider(new Vector2(_sfxLabel.Position.X + _sfxLabel.Writer.WriteArea.Width -5, _sfxLabel.Position.Y), GlobalState.sfx_volume_scale, 0f, 1f, 0.1f)
+            {
+                ValueChangedEvent = SfxValueChanged
+            };
+
             _autosaveSetter = new TextSelector(new Vector2(x + 16, _autosaveLabel.Position.Y + GameConstants.FONT_LINE_HEIGHT * 2.5f), 40, GlobalState.autosave_on? 1 : 0, "Off", "On")
             {
                 ValueChangedEvent = AutoSaveValueChanged
             };
+
+
+
 
             _selector = new MenuSelector(Vector2.Zero)
             {
@@ -168,11 +190,18 @@ namespace AnodyneSharp.States.PauseSubstates
         public override void DrawUI()
         {
             _keybindsLabel.Draw();
-            _setVolumeLabel.Draw();
+
+            _bgmLabel.Draw();
+            _sfxLabel.Draw();
+
             _autosaveLabel.Draw();
             _resolutionLabel.Draw();
             _scalingLabel.Draw();
             _languageLabel.Draw();
+
+            _musicSlider.DrawUI();
+            _sfxSlider.DrawUI();
+
 
             _autosaveSetter.DrawUI();
 
@@ -185,12 +214,14 @@ namespace AnodyneSharp.States.PauseSubstates
             {
                 //case ConfigState.KeybindsLabel:
                 //    _state = ConfigState.SettingKeyBinds;
-                    //break;
-                //case ConfigState.SetVolumeLabel:
-                //    _state = ConfigState.SetVolumeLabel;
-                //    break;
+                //break;
+                case ConfigState.SetBgmLabel:
+                    _selectedOption = _musicSlider;
+                    break;
+                case ConfigState.SetSfxLabel:
+                    _selectedOption = _sfxSlider;
+                    break;
                 case ConfigState.AutosaveLabel:
-                    _state = ConfigState.AutosaveLabel;
                     _selectedOption = _autosaveSetter;
                     break;
                 //case ConfigState.ResolutionLabel:
@@ -224,8 +255,11 @@ namespace AnodyneSharp.States.PauseSubstates
                 case ConfigState.KeybindsLabel:
                     _selector.Position = _keybindsLabel.Position;
                     break;
-                case ConfigState.SetVolumeLabel:
-                    _selector.Position = _setVolumeLabel.Position;
+                case ConfigState.SetBgmLabel:
+                    _selector.Position = _bgmLabel.Position;
+                    break;
+                case ConfigState.SetSfxLabel:
+                    _selector.Position = _sfxLabel.Position;
                     break;
                 case ConfigState.AutosaveLabel:
                     _selector.Position = _autosaveLabel.Position;
@@ -239,15 +273,26 @@ namespace AnodyneSharp.States.PauseSubstates
                 case ConfigState.LanguageLabel:
                     _selector.Position = _languageLabel.Position;
                     break;
-                case ConfigState.SettingKeyBinds:
-                case ConfigState.SettingAutosave:
-                case ConfigState.SettingResolution:
-                case ConfigState.SettingScale:
-                    _selector.visible = false;
-                    return;
             }
 
             _selector.Position -= new Vector2(_selector.frameWidth, -2);
+        }
+
+        private void BgmValueChanged(string value)
+        {
+            if (float.TryParse(value, out float volume))
+            {
+                GlobalState.music_volume_scale = volume;
+                SoundManager.SetSongVolume();
+            }
+        }
+
+        private void SfxValueChanged(string value)
+        {
+            if (float.TryParse(value, out float volume))
+            {
+                GlobalState.sfx_volume_scale = volume;
+            }
         }
 
         private void AutoSaveValueChanged(string value)

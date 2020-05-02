@@ -103,6 +103,8 @@ namespace AnodyneSharp
             {
                 GlobalState.ShowFPS = !GlobalState.ShowFPS;
             }
+
+            GlobalState.UI_SCALE = graphics.PreferredBackBufferWidth / GameConstants.SCREEN_WIDTH_IN_PIXELS;
         }
 
         /// <summary>
@@ -119,7 +121,7 @@ namespace AnodyneSharp
             _currentState.Draw();
             SpriteDrawer.EndDraw();
 
-            SpriteDrawer.BeginGUIDraw(graphics.PreferredBackBufferWidth / GameConstants.SCREEN_WIDTH_IN_PIXELS);
+            SpriteDrawer.BeginGUIDraw();
             _currentState.DrawUI();
 
             if (GlobalState.ShowFPS)
