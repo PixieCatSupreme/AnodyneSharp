@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Drawing;
+﻿using AnodyneSharp.Cheatz;
+using AnodyneSharp.Drawing;
 using AnodyneSharp.Entities;
 using AnodyneSharp.Input;
 using AnodyneSharp.Map;
