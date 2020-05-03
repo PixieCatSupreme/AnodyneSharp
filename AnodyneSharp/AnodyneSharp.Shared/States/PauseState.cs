@@ -151,8 +151,9 @@ namespace AnodyneSharp.States
                     break;
                 //case PauseStateState.Cards:
                 //    break;
-                //case PauseStateState.Save:
-                //    break;
+                case PauseStateState.Save:
+                    _substate = new SaveSubstate();
+                    break;
                 case PauseStateState.Settings:
                     _substate = new ConfigSubstate();
                     break;
@@ -177,10 +178,9 @@ namespace AnodyneSharp.States
             }
             else if (KeyInput.CanPressKey(Keys.Up))
             {
-                SoundManager.PlaySoundEffect("menu_move");
-
                 if (_state == PauseStateState.Cheatz)
                 {
+                    SoundManager.PlaySoundEffect("menu_move");
                     _state = _lastAllowedState;
                     return;
                 }
@@ -190,13 +190,12 @@ namespace AnodyneSharp.States
                     return;
                 }
 
+                SoundManager.PlaySoundEffect("menu_move");
                 _state--;
 
             }
             else if (KeyInput.CanPressKey(Keys.Down))
             {
-                SoundManager.PlaySoundEffect("menu_move");
-
                 if (_state == PauseStateState.Cheatz)
                 {
                     return;
@@ -204,18 +203,19 @@ namespace AnodyneSharp.States
 
                 if (_state == _lastAllowedState)
                 {
+                    SoundManager.PlaySoundEffect("menu_move");
                     cheat_counter++;
 
                     if (cheat_counter == CheatCounterMax)
                     {
                         cheat_counter = 0;
                         _state = PauseStateState.Cheatz;
-
                     }
 
                     return;
                 }
 
+                SoundManager.PlaySoundEffect("menu_move");
                 _state++;
             }
 

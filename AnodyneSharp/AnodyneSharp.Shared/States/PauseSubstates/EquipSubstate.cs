@@ -48,7 +48,7 @@ namespace AnodyneSharp.States.PauseSubstates
             _broomWiden = new Equipment(new Vector2(x, y + 24 * 2), "wide_icon", InventoryState.HasWiden ? "Widen" : "-");
             _transformer = new Equipment(new Vector2(x, y + 24 * 3), "transformer_icon", InventoryState.HasTransformer ? "Swap" : "-");
 
-            _selector = new MenuSelector(Vector2.Zero)
+            _selector = new MenuSelector()
             {
                 visible = false
             };

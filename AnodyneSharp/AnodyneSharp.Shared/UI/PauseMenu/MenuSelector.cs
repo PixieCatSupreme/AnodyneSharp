@@ -10,8 +10,8 @@ namespace AnodyneSharp.UI.PauseMenu
 {
     public class MenuSelector : UIEntity
     {
-        public MenuSelector(Vector2 pos)
-            : base(pos, 7, 7, DrawOrder.SUBMENU_SELECTOR)
+        public MenuSelector()
+            : base(Vector2.Zero, 7, 7, DrawOrder.SUBMENU_SELECTOR)
         {
             AddAnimation("disabledLeft", CreateAnimFrameArray(0), 0, false);
             AddAnimation("disabledRight", CreateAnimFrameArray(2), 0, false);

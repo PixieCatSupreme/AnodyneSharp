@@ -52,6 +52,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\EquipSubstate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\MapSubstate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\PauseSubstate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\SaveSubstate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\PlayState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\State.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\Font\FontManager.cs" />

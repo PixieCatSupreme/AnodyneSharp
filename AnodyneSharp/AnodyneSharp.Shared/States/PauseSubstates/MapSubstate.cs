@@ -57,7 +57,7 @@ namespace AnodyneSharp.States.PauseSubstates
             _yesLabel.SetText("Yes");
             _noLabel.SetText("No");
 
-            _selector = new MenuSelector(Vector2.Zero)
+            _selector = new MenuSelector()
             {
                 visible = false
             };

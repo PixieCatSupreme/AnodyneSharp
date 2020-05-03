@@ -25,8 +25,8 @@ namespace AnodyneSharp.UI.PauseMenu.Config
             position = pos;
             float y = pos.Y + 2;
 
-            _leftArrow = new MenuSelector(new Vector2(pos.X, y));
-            _rightArrow = new MenuSelector(new Vector2(pos.X + width, y));
+            _leftArrow = new MenuSelector();
+            _rightArrow = new MenuSelector();
 
             _leftArrow.Play("enabledLeft");
             _rightArrow.Play("enabledRight");
