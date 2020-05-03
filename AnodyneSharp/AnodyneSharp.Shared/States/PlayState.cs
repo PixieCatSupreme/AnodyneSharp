@@ -121,8 +121,8 @@ namespace AnodyneSharp.States
 
 #else
             _map.Draw();
-            _map_bg_2.Draw(0.1f, true);
-            _map_fg.Draw(0.2f, true);
+            _map_bg_2.Draw(true);
+            _map_fg.Draw(true);
 #endif
 
             _player.Draw();

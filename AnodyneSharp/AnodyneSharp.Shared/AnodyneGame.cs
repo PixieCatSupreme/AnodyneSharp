@@ -9,6 +9,7 @@ using AnodyneSharp.UI;
 using AnodyneSharp.UI.Font;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 #endregion
 
@@ -47,6 +48,8 @@ namespace AnodyneSharp
             _currentState = null;
 
             _fpsLabel = new UILabel(new Vector2(0, GameConstants.HEADER_HEIGHT), Color.LightBlue, false);
+
+            GlobalState.START_TIME = DateTime.Now;
         }
 
         /// <summary>

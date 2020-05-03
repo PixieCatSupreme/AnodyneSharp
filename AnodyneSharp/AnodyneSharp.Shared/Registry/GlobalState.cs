@@ -6,6 +6,8 @@ namespace AnodyneSharp.Registry
 {
     public static class GlobalState
     {
+        public static DateTime START_TIME;
+
         public static bool BOI = false; // BOI Sprites on in easter egg redcave
         public static bool is_playstate = true;
         public static float music_volume_scale =

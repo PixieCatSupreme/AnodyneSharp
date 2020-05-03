@@ -56,6 +56,9 @@ namespace AnodyneSharp.States
         private UILabel _configLabel;
         private UILabel _secretsLabel;
 
+        private UILabel _playtimeLabel;
+        private UILabel _inputLabel;
+
         private PauseMenuSelector _selector;
         private PauseStateState _lastState;
         private int cheat_counter;
@@ -77,6 +80,8 @@ namespace AnodyneSharp.States
 
         public override void Update()
         {
+            _playtimeLabel.SetText((DateTime.Now - GlobalState.START_TIME).ToString(@"hh\:mm\:ss"));
+
             _selector.Update();
             _selector.PostUpdate();
 
@@ -124,6 +129,9 @@ namespace AnodyneSharp.States
             _saveLabel.Draw();
             _configLabel.Draw();
             _secretsLabel.Draw();
+
+            _playtimeLabel.Draw();
+            _inputLabel.Draw();
 
             _substate.DrawUI();
         }
@@ -225,6 +233,9 @@ namespace AnodyneSharp.States
             _configLabel = new UILabel(new Vector2(x, startY + yStep * 4), true);
             _secretsLabel = new UILabel(new Vector2(x, startY + yStep * 5), true);
 
+            _playtimeLabel = new UILabel(new Vector2(1, 154), true);
+            _inputLabel = new UILabel(new Vector2(9, 168), new Color(143, 153, 176, 255), false);
+
             _mapLabel.Initialize();
             _itemsLabel.Initialize();
             _cardsLabel.Initialize();
@@ -232,6 +243,8 @@ namespace AnodyneSharp.States
             _configLabel.Initialize();
             _secretsLabel.Initialize();
 
+            _playtimeLabel.Initialize();
+            _inputLabel.Initialize();
 
             //TODO: Localization
             _mapLabel.SetText("Map");
@@ -240,6 +253,9 @@ namespace AnodyneSharp.States
             _saveLabel.SetText("Save");
             _configLabel.SetText("Config");
             _secretsLabel.SetText("???");
+
+            _playtimeLabel.SetText("00:00:00");
+            _inputLabel.SetText(" :Select  :Back");
 
             _secretsLabel.IsVisible = InventoryState.UnlockedSecretz;
         }
