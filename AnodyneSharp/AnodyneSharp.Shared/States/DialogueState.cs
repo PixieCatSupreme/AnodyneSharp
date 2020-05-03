@@ -28,7 +28,6 @@ namespace AnodyneSharp.States
         private float bump_timer;
         private int bumpCounter;
         private bool doBump;
-        private bool skipBump;
 
         private int normalSpeed;
 

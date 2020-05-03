@@ -145,7 +145,7 @@ namespace AnodyneSharp.Entities
 
         public void Reset()
         {
-            if (GlobalState.CURRENT_MAP_NAME == "TRAIN")
+            if (GlobalState.AlwaysCellGraphics || GlobalState.CURRENT_MAP_NAME == "TRAIN")
             {
                 SetTexture(Cell_Player_Sprite);
             }
@@ -153,6 +153,8 @@ namespace AnodyneSharp.Entities
             {
                 SetTexture(Player_Sprite);
             }
+
+            broom.UpdateBroomType();
         }
 
         public override void Draw()
@@ -577,6 +579,12 @@ namespace AnodyneSharp.Entities
                     offset.X = 3;
                     break;
             }
+        }
+
+        public override void ReloadTexture(bool ignoreChaos = false)
+        {
+            base.ReloadTexture();
+            broom.ReloadTexture();
         }
 
         private void Ground_movement()

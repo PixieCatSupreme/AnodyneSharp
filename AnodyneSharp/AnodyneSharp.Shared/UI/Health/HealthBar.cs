@@ -24,19 +24,17 @@ namespace AnodyneSharp.UI
 
             _healthPieces = new List<HealthBarPiece>();
 
+            CreateHealthBoxes();
+        }
+
+        public void CreateHealthBoxes()
+        {
+            _healthPieces.Clear();
+
             for (int i = 0; i < GlobalState.MAX_HEALTH; i++)
             {
                 MakeBox(i);
             }
-        }
-
-        public void MakeBox(int num)
-        {
-            Vector2 pos = new Vector2(
-                _pos.X - HealthBarPiece.BOX_WIDTH - 8 * (7 - num % 8) - 7 * (num / 8),
-                _pos.Y + num / 8 * (HealthBarPiece.BOX_HEIGHT + 1));
-
-            _healthPieces.Add(new HealthBarPiece(pos));
         }
 
         public void Update()
@@ -128,6 +126,15 @@ namespace AnodyneSharp.UI
             }
 
             return false;
+        }
+
+        private void MakeBox(int num)
+        {
+            Vector2 pos = new Vector2(
+                _pos.X - HealthBarPiece.BOX_WIDTH - 8 * (7 - num % 8) - 7 * (num / 8),
+                _pos.Y + num / 8 * (HealthBarPiece.BOX_HEIGHT + 1));
+
+            _healthPieces.Add(new HealthBarPiece(pos));
         }
     }
 }

@@ -9,6 +9,7 @@ using AnodyneSharp.UI;
 using AnodyneSharp.UI.Font;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 #endregion
 
@@ -46,7 +47,9 @@ namespace AnodyneSharp
 
             _currentState = null;
 
-            _fpsLabel = new UILabel(new Vector2(0, GameConstants.HEADER_HEIGHT));
+            _fpsLabel = new UILabel(new Vector2(0, GameConstants.HEADER_HEIGHT), Color.LightBlue, false);
+
+            GlobalState.START_TIME = DateTime.Now;
         }
 
         /// <summary>
@@ -60,8 +63,6 @@ namespace AnodyneSharp
         {
             SpriteDrawer.Initialize(graphics.GraphicsDevice);
 
-            GlobalState.CUR_HEALTH = GlobalState.MAX_HEALTH = 16;
-
             EntityManager.Initialize();
 
             base.Initialize();
@@ -69,7 +70,7 @@ namespace AnodyneSharp
             _currentState = new PlayState(_camera);
             _currentState.Create();
 
-            _fpsLabel.Writer.SetSpriteFont(FontManager.InitFont(Color.LightBlue));
+            _fpsLabel.Initialize();
         }
 
         /// <summary>
@@ -103,6 +104,8 @@ namespace AnodyneSharp
             {
                 GlobalState.ShowFPS = !GlobalState.ShowFPS;
             }
+
+            GlobalState.UI_SCALE = graphics.PreferredBackBufferWidth / GameConstants.SCREEN_WIDTH_IN_PIXELS;
         }
 
         /// <summary>
@@ -119,7 +122,7 @@ namespace AnodyneSharp
             _currentState.Draw();
             SpriteDrawer.EndDraw();
 
-            SpriteDrawer.BeginGUIDraw(graphics.PreferredBackBufferWidth / GameConstants.SCREEN_WIDTH_IN_PIXELS);
+            SpriteDrawer.BeginGUIDraw();
             _currentState.DrawUI();
 
             if (GlobalState.ShowFPS)

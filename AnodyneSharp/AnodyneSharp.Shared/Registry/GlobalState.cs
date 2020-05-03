@@ -4,11 +4,27 @@ using System;
 
 namespace AnodyneSharp.Registry
 {
+    public enum GameMode
+    {
+        Normal,
+        Chaos,
+        EXTREME_CHAOS
+    }
+
     public static class GlobalState
     {
+        public static DateTime START_TIME;
+
         public static bool BOI = false; // BOI Sprites on in easter egg redcave
         public static bool is_playstate = true;
-        public static double volume_scale = 1.0;
+        public static float music_volume_scale =
+#if DEBUG
+            0.1f;
+#else
+            1.0f;
+#endif
+        public static float sfx_volume_scale = 1.0f;
+
         public static bool pillar_switch_state = false; //Reset when entering a map with differentname
         public static int ENTRANCE_GRID_X;
         public static int ENTRANCE_GRID_Y;
@@ -19,6 +35,9 @@ namespace AnodyneSharp.Registry
         public static int CURRENT_GRID_X;
         public static int CURRENT_GRID_Y;
         public static string CURRENT_MAP_NAME;
+
+        public static bool RefreshKeyCount = false;
+        public static bool RefreshMaxHealth = false;
 
         public static bool autosave_on = true;
         //public static var checkpoint:Object = { x: 0, y: 0, area: "" };
@@ -35,8 +54,16 @@ namespace AnodyneSharp.Registry
         public static bool FUCK_IT_MODE_ON = false;
 
         //Health stuff
-        public static int CUR_HEALTH;
-        public static int MAX_HEALTH;
+        public static int CUR_HEALTH = 6;
+        public static int MAX_HEALTH = 6;
+
+        //Drawing stuff
+        public static float UI_SCALE;
+
+        //Cheatz stuff
+        public static bool AlwaysCellGraphics = false;
+        public static GameMode GameMode = GameMode.Normal;
+        public static bool ForceTextureReload = false;
 
         public static Random RNG = new Random();
 
@@ -63,6 +90,5 @@ namespace AnodyneSharp.Registry
         public static bool HappyStarted;
         public static bool SageDead;
         public static bool SuburbSoft;
-        public static bool WindmillOpened;
-    }
+        public static bool WindmillOpened;    }
 }

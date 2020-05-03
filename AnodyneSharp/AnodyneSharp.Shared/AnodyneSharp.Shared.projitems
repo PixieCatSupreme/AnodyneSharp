@@ -10,6 +10,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)AnodyneGame.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Cheatz\CheatAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Cheatz\CheatzManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Camera.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\DrawingUtilities.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\SpriteDrawer.cs" />
@@ -49,15 +51,29 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\EntityManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sounds\SoundManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\DialogueState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\PauseState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\CheatzSubstate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\ConfigSubstate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\EquipSubstate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\MapSubstate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\PauseSubstate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\SaveSubstate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\PlayState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\State.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\Font\FontManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\Font\SpriteFont.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\Font\Writing\TextCharacter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\Font\Writing\TextWriter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)UI\HealthBar.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)UI\HealthBarPiece.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\Health\HealthBar.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\Health\HealthBarPiece.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\PauseMenu\Config\AudioSlider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\PauseMenu\Config\OptionSelector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\PauseMenu\Config\TextSelector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\PauseMenu\Equipment.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\PauseMenu\MenuSelector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\PauseMenu\PauseMenuSelector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\TextBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\UIEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\UILabel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\MapUtilities.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\MathUtilities.cs" />
@@ -189,5 +205,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)UI\Font\Writing\" />
+    <Folder Include="$(MSBuildThisFileDirectory)UI\Health\" />
   </ItemGroup>
 </Project>

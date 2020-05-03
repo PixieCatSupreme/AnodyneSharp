@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Drawing;
+﻿using AnodyneSharp.Cheatz;
+using AnodyneSharp.Drawing;
 using AnodyneSharp.Entities;
 using AnodyneSharp.Input;
 using AnodyneSharp.Map;
@@ -62,6 +63,13 @@ namespace AnodyneSharp.States
         private bool _updateEntities;
         private UILabel _keyValueLabel;
 
+        private Texture2D _equippedBroomBorder;
+        private Texture2D _equippedBroomIcon;
+
+        private Vector2 _iconPos;
+
+        private float _texRandomTimer;
+
         public PlayState(Camera camera)
         {
             _map = new TileMap();
@@ -78,18 +86,24 @@ namespace AnodyneSharp.States
 
             _updateEntities = true;
 
-            _keyValueLabel = new UILabel(new Vector2(37, 5));
+            _keyValueLabel = new UILabel(new Vector2(37, 5), false);
             _keyValueLabel.Writer.SetSpriteFont(FontManager.InitFont(new Color(124, 163, 177, 255)));
             _keyValueLabel.SetText("x0");
+
+            _iconPos = new Vector2(2, 3);
         }
 
         public override void Create()
         {
             base.Create();
 
-            _header = ResourceManager.GetTexture(UiHeader);
+            _header = ResourceManager.GetTexture(UiHeader, true);
+
+            _equippedBroomBorder = ResourceManager.GetTexture("frame_icon", true);
 
             LoadMap();
+
+            UpdateBroomIcon();
         }
 
         public override void Draw()
@@ -110,8 +124,8 @@ namespace AnodyneSharp.States
 
 #else
             _map.Draw();
-            _map_bg_2.Draw(0.1f, true);
-            _map_fg.Draw(0.2f, true);
+            _map_bg_2.Draw(true);
+            _map_fg.Draw(true);
 #endif
 
             _player.Draw();
@@ -134,6 +148,16 @@ namespace AnodyneSharp.States
         public override void DrawUI()
         {
             SpriteDrawer.DrawGuiSprite(_header, Vector2.Zero, Z: DrawingUtilities.GetDrawingZ(DrawOrder.HEADER));
+
+
+            if (InventoryState.EquippedBroom != BroomType.NONE)
+            {
+                SpriteDrawer.DrawGuiSprite(_equippedBroomIcon, _iconPos, scale: 0.80f, Z: DrawingUtilities.GetDrawingZ(DrawOrder.UI_OBJECTS));
+            }
+
+            SpriteDrawer.DrawGuiSprite(_equippedBroomBorder, _iconPos, scale: 0.80f, Z: DrawingUtilities.GetDrawingZ(DrawOrder.EQUIPPED_BORDER));
+
+
             _healthBar.Draw();
 
             if (_childState != null)
@@ -147,8 +171,6 @@ namespace AnodyneSharp.States
 
         public override void Update()
         {
-            base.Update();
-
             switch (_state)
             {
                 case PlayStateState.S_NORMAL:
@@ -161,6 +183,20 @@ namespace AnodyneSharp.States
                     UpdateEntities();
                     return;
                 case PlayStateState.S_PAUSED:
+                    if (_childState is PauseState pauseState)
+                    {
+                        _player.dontMove = true;
+                        pauseState.Update();
+
+                        if (pauseState.Exited)
+                        {
+                            _state = PlayStateState.S_NORMAL;
+                            _childState = null;
+                            _player.dontMove = false;
+                            _player.broom.UpdateBroomType();
+                            _updateEntities = true;
+                        }
+                    }
                     break;
                 case PlayStateState.S_PLAYER_DIED:
                     break;
@@ -198,9 +234,18 @@ namespace AnodyneSharp.States
                 UpdateEntities();
             }
 
+            if (InventoryState.EquippedBroomChanged)
+            {
+                InventoryState.EquippedBroomChanged = false;
+
+                UpdateBroomIcon();
+            }
+
 #if DEBUG
             DebugKeyInput();
 #endif
+
+            Refreshes();
         }
 
         public Touching GetTileCollisionFlags(Vector2 position)
@@ -208,19 +253,60 @@ namespace AnodyneSharp.States
             return _map.GetCollisionData(position) | _map_bg_2.GetCollisionData(position);
         }
 
+        private void Refreshes()
+        {
+            if (GlobalState.RefreshMaxHealth)
+            {
+                GlobalState.RefreshMaxHealth = false;
+                _healthBar.CreateHealthBoxes();
+            }
+
+            UpdateHealth();
+            _healthBar.Update();
+
+            if (GlobalState.RefreshKeyCount)
+            {
+                GlobalState.RefreshKeyCount = false;
+                _keyValueLabel.SetText($"x{InventoryState.GetCurrentMapKeys()}");
+            }
+
+            if (GlobalState.GameMode == GameMode.EXTREME_CHAOS)
+            {
+                _texRandomTimer += GameTimes.DeltaTime;
+
+                if (_texRandomTimer >= 0.8f)
+                {
+                    GlobalState.ForceTextureReload = true;
+                    _texRandomTimer = 0f;
+                }
+            }
+
+            if (GlobalState.ForceTextureReload)
+            {
+                GlobalState.ForceTextureReload = false;
+
+                _player.Reset();
+                _player.ReloadTexture();
+                ReloadMapTextures();
+
+                foreach (var item in _gridEntities)
+                {
+                    item.ReloadTexture();
+                }
+
+            }
+        }
+
         private void UpdateEntities()
         {
             _player.Update();
             _player.PostUpdate();
 
-            foreach (Entity gridEntity in _gridEntities.Where(e=>e.exists))
+            foreach (Entity gridEntity in _gridEntities.Where(e => e.exists))
             {
                 gridEntity.Update();
                 gridEntity.PostUpdate();
             }
-
-            _healthBar.Update();
-            UpdateHealth();
         }
 
         private void DoCollisions()
@@ -232,9 +318,12 @@ namespace AnodyneSharp.States
         {
             CheckForTransition();
 
-            _keyValueLabel.SetText($"x{InventoryState.GetCurrentMapKeys()}");
-
-            //TODO add  pause check
+            if (KeyInput.CanPressKey(Keys.Enter))
+            {
+                _childState = new PauseState();
+                _state = PlayStateState.S_PAUSED;
+                _updateEntities = false;
+            }
 
             //TODO check if player is unalive
         }
@@ -363,15 +452,10 @@ namespace AnodyneSharp.States
                 _state = PlayStateState.S_DIALOGUE;
                 _childState = new DialogueState();
             }
-
-            if (KeyInput.CanPressKey(Keys.F5))
-            {
-                _keyValueLabel.SetText($"x{InventoryState.RemoveCurrentMapKey()}");
-            }
-            else
+            
             if (KeyInput.CanPressKey(Keys.F6))
             {
-                _keyValueLabel.SetText($"x{InventoryState.AddCurrentMapKey()}");
+                Cheatz.Cheatz.GiveKey();
             }
 
             if (KeyInput.CanPressKey(Keys.M))
@@ -479,6 +563,35 @@ namespace AnodyneSharp.States
             }
         }
 
+        private void UpdateBroomIcon()
+        {
+            if (InventoryState.EquippedBroom == BroomType.NONE)
+            {
+                return;
+            }
+
+            string tex = "";
+
+            switch (InventoryState.EquippedBroom)
+            {
+                case BroomType.Normal:
+                    tex = "none";
+                    break;
+                case BroomType.Wide:
+                    tex = "wide";
+                    break;
+                case BroomType.Long:
+                    tex = "long";
+                    break;
+                case BroomType.Transformer:
+                    tex = "transformer";
+                    break;
+            }
+
+            _equippedBroomIcon = ResourceManager.GetTexture(tex + "_icon", true);
+        }
+
+
         private void LoadMap()
         {
             TileData.SetTileset(GlobalState.CURRENT_MAP_NAME);
@@ -505,7 +618,7 @@ namespace AnodyneSharp.States
 
             UpdateScreenBorders();
 
-            foreach(EntityPreset p in EntityManager.GetMapEntities(GlobalState.CURRENT_MAP_NAME).Where(p=>p.Permanence == Permanence.MAP_LOCAL))
+            foreach (EntityPreset p in EntityManager.GetMapEntities(GlobalState.CURRENT_MAP_NAME).Where(p => p.Permanence == Permanence.MAP_LOCAL))
             {
                 p.Alive = true;
             }
@@ -515,6 +628,19 @@ namespace AnodyneSharp.States
             _keyValueLabel.SetText($"x{InventoryState.GetCurrentMapKeys()}");
 
             PlayMapMusic();
+
+
+            if (GlobalState.GameMode != GameMode.Normal)
+            {
+                ReloadMapTextures();
+            }
+        }
+
+        private void ReloadMapTextures()
+        {
+            _map.ReloadTexture();
+            _map_bg_2.ReloadTexture();
+            _map_fg.ReloadTexture();
         }
 
         private void PlayMapMusic()
@@ -541,7 +667,7 @@ namespace AnodyneSharp.States
             {
                 title = "suburb";
             }
-            else if ((!GlobalState.WindmillOpened && title == "windmill") ||GlobalState.InDeathRoom || title == "debug")
+            else if ((!GlobalState.WindmillOpened && title == "windmill") || GlobalState.InDeathRoom || title == "debug")
             {
                 SoundManager.StopSong();
                 return;
@@ -559,7 +685,7 @@ namespace AnodyneSharp.States
             _oldEntities = new List<Entity>(_gridEntities);
 
             List<EntityPreset> gridPresets = EntityManager.GetGridEntities(GlobalState.CURRENT_MAP_NAME, new Vector2(GlobalState.CURRENT_GRID_X, GlobalState.CURRENT_GRID_Y));
-            foreach (EntityPreset preset in gridPresets.Where(e=>e.Permanence == Permanence.GRID_LOCAL))
+            foreach (EntityPreset preset in gridPresets.Where(e => e.Permanence == Permanence.GRID_LOCAL))
             {
                 preset.Alive = true;
             }

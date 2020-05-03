@@ -9,6 +9,7 @@
         public const int SCREEN_HEIGHT_IN_TILES = 10;
         public const int TILE_WIDTH = 16;
         public const int TILE_HEIGHT = 16;
+        public const int FONT_LINE_HEIGHT = 8;
         public const int SCREEN_WIDTH_IN_PIXELS = 160;
         public const int SCREEN_HEIGHT_IN_PIXELS = 160;
         public const int HEADER_HEIGHT = 20; //Height of header. Needed in screen scrolling 

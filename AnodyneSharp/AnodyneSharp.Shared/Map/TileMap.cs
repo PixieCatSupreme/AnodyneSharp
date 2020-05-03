@@ -2,6 +2,7 @@
 using AnodyneSharp.Entities;
 using AnodyneSharp.Map.Tiles;
 using AnodyneSharp.Registry;
+using AnodyneSharp.Resources;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -25,6 +26,7 @@ namespace AnodyneSharp.Map
         private Tile[] _tileObjects;
 
         private DrawOrder _layer;
+        private string textureName;
 
         /**
 		 * Y position of the upper left corner of this object in world space.
@@ -33,6 +35,8 @@ namespace AnodyneSharp.Map
 
         public void LoadMap(string mapData, Texture2D tileMap, DrawOrder layer)
         {
+            textureName = tileMap.Name.Split('/').Last();
+
             //Figure out the map dimensions based on the data string
             string[] columns;
             string[] rows = mapData.Split('\n');
@@ -187,6 +191,11 @@ namespace AnodyneSharp.Map
                 return Touching.NONE;
 
             return _tileObjects[data[(int)position.X + (int)position.Y * widthInTiles]].allowCollisions;
+        }
+
+        public void ReloadTexture()
+        {
+            tiles = ResourceManager.GetTexture(textureName);
         }
 
         protected void UpdateTile(int Index)

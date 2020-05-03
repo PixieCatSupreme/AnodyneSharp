@@ -129,7 +129,7 @@ namespace AnodyneSharp.Entities
             width = height = 16;
             offset = Vector2.Zero;
 
-            if (GlobalState.CURRENT_MAP_NAME == "TRAIN")
+            if (GlobalState.AlwaysCellGraphics || GlobalState.CURRENT_MAP_NAME == "TRAIN")
             {
                 SetTexture(Cell_Sprite);
                 is_wide = is_long = false;
@@ -162,6 +162,13 @@ namespace AnodyneSharp.Entities
                     is_wide = is_long = false;
                     break;
             }
+        }
+
+        public override void ReloadTexture(bool ignoreChaos = false)
+        {
+            base.ReloadTexture();
+            long_attack.ReloadTexture();
+            wide_attack.ReloadTexture();
         }
 
         private void UpdatePos()

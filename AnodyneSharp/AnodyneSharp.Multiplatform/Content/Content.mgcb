@@ -4783,6 +4783,18 @@
 /processorParam:TextureFormat=Color
 /build:textures/sprites/menu/equipped_icon.png
 
+#begin textures/sprites/menu/frame_icon.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:textures/sprites/menu/frame_icon.png
+
 #begin textures/sprites/menu/long_icon.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -4986,6 +4998,30 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:textures/sprites/menu/volume_bar.png
+
+#begin textures/sprites/menu/volume_bar_bg.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:textures/sprites/menu/volume_bar_bg.png
+
+#begin textures/sprites/menu/volume_bar_inside.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:textures/sprites/menu/volume_bar_inside.png
 
 #begin textures/sprites/menu/wide_icon.png
 /importer:TextureImporter

@@ -19,7 +19,6 @@ namespace AnodyneSharp.Entities
 
     public class Entity : GameObject
     {
-
         public Texture2D Texture;
 
         public int frameWidth;
@@ -35,6 +34,7 @@ namespace AnodyneSharp.Entities
         protected float _opacity;
 
         private List<Anim> _animations;
+        private string textureName;
 
         private bool dirty;
         private float _frameTimer;
@@ -248,11 +248,17 @@ namespace AnodyneSharp.Entities
             return frames;
         }
 
-        protected bool SetTexture(string textureName)
+        protected virtual bool SetTexture(string textureName, bool ignoreChaos = false)
         {
-            Texture = ResourceManager.GetTexture(textureName);
+            this.textureName = textureName;
+            Texture = ResourceManager.GetTexture(textureName, ignoreChaos);
 
             return Texture != null;
+        }
+
+        public virtual void ReloadTexture(bool ignoreChaos = false)
+        {
+            Texture = ResourceManager.GetTexture(textureName, ignoreChaos);
         }
 
         public static Vector2 FacingDirection(Facing f)
