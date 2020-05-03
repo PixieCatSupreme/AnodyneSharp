@@ -33,9 +33,9 @@ namespace AnodyneSharp.UI.PauseMenu.Config
             this.current = current;
             start = current;
 
-            _slider = ResourceManager.GetTexture("volume_bar");
-            _sliderInside = ResourceManager.GetTexture("volume_bar_inside");
-            _sliderBg = ResourceManager.GetTexture("volume_bar_bg");
+            _slider = ResourceManager.GetTexture("volume_bar", true);
+            _sliderInside = ResourceManager.GetTexture("volume_bar_inside", true);
+            _sliderBg = ResourceManager.GetTexture("volume_bar_bg", true);
         }
 
         public override void ResetValue()

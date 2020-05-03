@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Registry;
+using AnodyneSharp.Sounds;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,7 @@ namespace AnodyneSharp.Cheatz
         public static void Default()
         {
             GlobalState.CUR_HEALTH -= 2;
+            SoundManager.PlaySoundEffect("sb_hurt");
         }
 
     }
@@ -44,17 +46,73 @@ namespace AnodyneSharp.Cheatz
         [Cheat("UUDDLRLR21")]
         public static void KonamiCode()
         {
+            SoundManager.PlaySoundEffect("unlock");
+
+            GlobalState.MAX_HEALTH = 16;
             GlobalState.CUR_HEALTH = GlobalState.MAX_HEALTH;
+
+            GlobalState.RefreshMaxHealth = true;
+
+            InventoryState.HasBroom = true;
+            InventoryState.HasLenghten = true;
+            InventoryState.HasWiden = true;
+            InventoryState.HasTransformer = true;
+            InventoryState.CanJump = true;
+            InventoryState.UnlockedSecretz = true;
+
+            InventoryState.EquippedBroom = InventoryState.EquippedBroom == Entities.BroomType.NONE ? Entities.BroomType.Normal : InventoryState.EquippedBroom;
         }
 
         [Cheat("URLDURLD11")]
-        public static void ToggleForceCellSprite()
+        public static void ToggleAlwaysCellGraphics()
         {
+            GlobalState.AlwaysCellGraphics = !GlobalState.AlwaysCellGraphics;
+            GlobalState.ForceTextureReload = true;
+        }
+
+        [Cheat("12UULLRRDD")]
+        public static void GiveKey()
+        {
+            InventoryState.AddCurrentMapKey();
+            SoundManager.PlaySoundEffect("keyget");
+            GlobalState.RefreshKeyCount = true;
+        }
+
+        [Cheat("ULRDDLRU12")]
+        public static void ResetMap()
+        {
+            InventoryState.AddCurrentMapKey();
+            SoundManager.PlaySoundEffect("keyget");
+            GlobalState.RefreshKeyCount = true;
         }
 
         [Cheat("URDLURDLUR")]
         public static void ToggleChaosMode()
         {
+            GlobalState.GameMode = GlobalState.GameMode == GameMode.Chaos ? GameMode.Normal : GameMode.Chaos;
+            GlobalState.ForceTextureReload = true;
+
+            if (GlobalState.GameMode == GameMode.Chaos)
+            {
+                SoundManager.PlaySoundEffect("shieldy-hit");
+                SoundManager.PlaySoundEffect("small_wave");
+                SoundManager.PlaySoundEffect("big_door_locked");
+            }
+        }
+
+        [Cheat("ULDRULDRUL")]
+        public static void ToggleExtremeChaosMode()
+        {
+            GlobalState.GameMode = GlobalState.GameMode == GameMode.EXTREME_CHAOS ? GameMode.Normal : GameMode.EXTREME_CHAOS;
+
+            GlobalState.ForceTextureReload = true;
+
+            if (GlobalState.GameMode == GameMode.EXTREME_CHAOS)
+            {
+                SoundManager.PlaySoundEffect("shieldy-hit");
+                SoundManager.PlaySoundEffect("small_wave");
+                SoundManager.PlaySoundEffect("big_door_locked");
+            }
         }
     }
 }

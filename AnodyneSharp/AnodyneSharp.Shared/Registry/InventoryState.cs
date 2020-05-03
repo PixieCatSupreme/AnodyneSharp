@@ -28,10 +28,10 @@ namespace AnodyneSharp.Registry
             }
         }
 
-        public static bool HasBroom = true;
-        public static bool HasLenghten = true;
-        public static bool HasWiden = true;
-        public static bool HasTransformer = true;
+        public static bool HasBroom = false;
+        public static bool HasLenghten = false;
+        public static bool HasWiden = false;
+        public static bool HasTransformer = false;
 
         public static bool CanJump = false;
         public static bool UnlockedSecretz = false;
@@ -39,7 +39,7 @@ namespace AnodyneSharp.Registry
         public static bool EquippedBroomChanged = false;
 
         private static Dictionary<string, int> _mapKeys;
-        private static BroomType _equippedBroom = BroomType.Normal;
+        private static BroomType _equippedBroom = BroomType.NONE;
 
         static InventoryState()
         {

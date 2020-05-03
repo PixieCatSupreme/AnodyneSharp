@@ -50,6 +50,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Sounds\SoundManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\DialogueState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\PauseState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\CheatzSubstate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\ConfigSubstate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\EquipSubstate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\MapSubstate.cs" />

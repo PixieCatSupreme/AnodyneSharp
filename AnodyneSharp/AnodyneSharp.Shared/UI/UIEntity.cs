@@ -28,5 +28,15 @@ namespace AnodyneSharp.UI
                 SpriteDrawer.DrawGuiSprite(Texture, Position - offset, spriteRect, Z: DrawingUtilities.GetDrawingZ(layer));
             }
         }
+
+        protected override bool SetTexture(string textureName, bool ignoreChaos = false)
+        {
+            return base.SetTexture(textureName, true);
+        }
+
+        public override void ReloadTexture(bool ignoreChaos = false)
+        {
+            base.ReloadTexture(true);
+        }
     }
 }

@@ -63,8 +63,6 @@ namespace AnodyneSharp
         {
             SpriteDrawer.Initialize(graphics.GraphicsDevice);
 
-            GlobalState.CUR_HEALTH = GlobalState.MAX_HEALTH = 16;
-
             EntityManager.Initialize();
 
             base.Initialize();

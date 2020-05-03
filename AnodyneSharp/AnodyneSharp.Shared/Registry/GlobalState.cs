@@ -4,6 +4,13 @@ using System;
 
 namespace AnodyneSharp.Registry
 {
+    public enum GameMode
+    {
+        Normal,
+        Chaos,
+        EXTREME_CHAOS
+    }
+
     public static class GlobalState
     {
         public static DateTime START_TIME;
@@ -29,6 +36,9 @@ namespace AnodyneSharp.Registry
         public static int CURRENT_GRID_Y;
         public static string CURRENT_MAP_NAME;
 
+        public static bool RefreshKeyCount = false;
+        public static bool RefreshMaxHealth = false;
+
         public static bool autosave_on = true;
         //public static var checkpoint:Object = { x: 0, y: 0, area: "" };
         public static string cur_dialogue;
@@ -44,11 +54,16 @@ namespace AnodyneSharp.Registry
         public static bool FUCK_IT_MODE_ON = false;
 
         //Health stuff
-        public static int CUR_HEALTH;
-        public static int MAX_HEALTH;
+        public static int CUR_HEALTH = 6;
+        public static int MAX_HEALTH = 6;
 
         //Drawing stuff
         public static float UI_SCALE;
+
+        //Cheatz stuff
+        public static bool AlwaysCellGraphics = false;
+        public static GameMode GameMode = GameMode.Normal;
+        public static bool ForceTextureReload = false;
 
         public static Random RNG = new Random();
 
@@ -75,6 +90,5 @@ namespace AnodyneSharp.Registry
         public static bool HappyStarted;
         public static bool SageDead;
         public static bool SuburbSoft;
-        public static bool WindmillOpened;
-    }
+        public static bool WindmillOpened;    }
 }

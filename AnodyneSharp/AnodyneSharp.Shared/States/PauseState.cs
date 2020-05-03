@@ -69,7 +69,7 @@ namespace AnodyneSharp.States
 
         public PauseState()
         {
-            _bg = ResourceManager.GetTexture("menu_bg");
+            _bg = ResourceManager.GetTexture("menu_bg", true);
             _selector = new PauseMenuSelector(new Vector2(0, 30));
 
             _lastState = _state;
@@ -159,8 +159,9 @@ namespace AnodyneSharp.States
                     break;
                 //case PauseStateState.Secretz:
                 //    break;
-                //case PauseStateState.Cheatz:
-                //    break;
+                case PauseStateState.Cheatz:
+                    _substate = new CheatzSubstate();
+                    break;
                 default:
                     _substate = new PauseSubstate();
                     break;

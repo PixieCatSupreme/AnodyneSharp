@@ -82,11 +82,11 @@ namespace AnodyneSharp.Map.Tiles
         {
             if (TileMaps.ContainsKey(MapName))
             {
-                Tiles = ResourceManager.GetTexture(TileMaps[MapName]);
+                Tiles = ResourceManager.GetTexture(TileMaps[MapName], true);
             }
             else
             {
-                Tiles = ResourceManager.GetTexture(TileMaps["DEBUG"]);
+                Tiles = ResourceManager.GetTexture(TileMaps["DEBUG"], true);
             }
         }
 

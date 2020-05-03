@@ -16,7 +16,7 @@ namespace AnodyneSharp.UI.PauseMenu
             AddAnimation("flash", CreateAnimFrameArray(0, 1), 4, true);
             AddAnimation("inactive", CreateAnimFrameArray(2), 0, false);
 
-            Texture = ResourceManager.GetTexture("menu_select_active");
+            SetTexture("menu_select_active");
 
             Play("flash");
         }

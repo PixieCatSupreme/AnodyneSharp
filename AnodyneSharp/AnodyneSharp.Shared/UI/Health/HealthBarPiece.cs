@@ -28,7 +28,7 @@ namespace AnodyneSharp.UI
             AddAnimation("full", CreateAnimFrameArray(0), 0, false);
             AddAnimation("empty", CreateAnimFrameArray(1), 0, false);
 
-            Texture = ResourceManager.GetTexture( Health_Piece_Sprite);
+            SetTexture( Health_Piece_Sprite, true);
 
             Play("full");
         }

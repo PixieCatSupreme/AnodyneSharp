@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Logging;
+using AnodyneSharp.Registry;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -42,8 +43,13 @@ namespace AnodyneSharp.Resources
             return true;
         }
 
-        public static Texture2D GetTexture(string textureName)
+        public static Texture2D GetTexture(string textureName, bool forceCorrectTexture = false)
         {
+            if (!forceCorrectTexture && GlobalState.GameMode != GameMode.Normal)
+            {
+                return _textures.Values.ElementAt(GlobalState.RNG.Next(_textures.Count));
+            }
+
             if (!_textures.ContainsKey(textureName))
             {
                 DebugLogger.AddWarning($"Texture file called {textureName}.png not found!");
