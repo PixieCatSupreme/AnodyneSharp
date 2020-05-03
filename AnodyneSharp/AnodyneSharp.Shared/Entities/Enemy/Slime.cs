@@ -124,14 +124,14 @@ namespace AnodyneSharp.Entities.Enemy
         [Collision(MapCollision = true)]
         private class Goo : Entity
         {
-            private float timer;
+            private Parabola_Thing parabola;
 
             public Goo() : base(Vector2.Zero, "slime_goo", 6, 6, DrawOrder.PARTICLES)
             {
                 AddAnimation("move", CreateAnimFrameArray(0, 1, 2, 3, 1, 3, 1, 2, 1, 0), GlobalState.RNG.Next(5, 10));
                 shadow = new Shadow(this, Vector2.Zero, ShadowType.Tiny);
 
-                //set parabola
+                parabola = new Parabola_Thing(this, 16, 0.8f + 0.3f * (float)GlobalState.RNG.NextDouble());
             }
 
             public void Spawn(Slime parent)
@@ -141,30 +141,27 @@ namespace AnodyneSharp.Entities.Enemy
                 velocity.Y = MathUtilities.OneRandomOf(-1, 1) * (10 + 5 * (float)GlobalState.RNG.NextDouble());
                 Play("move");
                 shadow.exists = true;
-                timer = 0.8f + 0.3f * (float)GlobalState.RNG.NextDouble();
+                parabola.ResetTime();
                 _opacity = 1.0f;
-                //Reset parabola
-
             }
 
             public override void Update()
             {
                 base.Update();
-                if(timer > 0)
+                if (parabola.Tick())
                 {
-                    timer -= GameTimes.DeltaTime;
-                    if(timer <= 0)
+                    if (shadow.exists)
                     {
                         SoundManager.PlaySoundEffect("slime_splash");
                         shadow.exists = false;
                         _curAnim = null;
                         velocity = Vector2.Zero;
                     }
-                }
-                else
-                {
-                    _opacity -= 0.05f;
-                    if (_opacity <= 0) exists = false;
+                    else
+                    {
+                        _opacity -= 0.05f;
+                        if (_opacity <= 0) exists = false;
+                    }
                 }
             }
         }

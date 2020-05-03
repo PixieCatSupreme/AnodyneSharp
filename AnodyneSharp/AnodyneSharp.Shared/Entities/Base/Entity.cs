@@ -24,7 +24,7 @@ namespace AnodyneSharp.Entities
 
         public int frameWidth;
         public int frameHeight;
-        protected Vector2 offset;
+        public Vector2 offset;
         public Facing facing;
         public DrawOrder layer;
         public float rotation;
