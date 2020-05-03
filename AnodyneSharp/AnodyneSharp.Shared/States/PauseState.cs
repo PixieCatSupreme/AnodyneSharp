@@ -143,8 +143,9 @@ namespace AnodyneSharp.States
 
             switch (_state)
             {
-                //case PauseStateState.Map:
-                //    break;
+                case PauseStateState.Map:
+                    _substate = new MapSubstate();
+                    break;
                 case PauseStateState.Equip:
                     _substate = new EquipSubstate();
                     break;
