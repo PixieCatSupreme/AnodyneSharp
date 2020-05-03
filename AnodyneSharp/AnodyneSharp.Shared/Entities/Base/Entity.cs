@@ -1,6 +1,5 @@
 ﻿using AnodyneSharp.Drawing;
 using AnodyneSharp.Entities.Animations;
-using AnodyneSharp.Entities.Base;
 using AnodyneSharp.Logging;
 using AnodyneSharp.Resources;
 using AnodyneSharp.Utilities;

@@ -55,8 +55,8 @@ namespace AnodyneSharp.Entities
 
             AddAnimation("stab", CreateAnimFrameArray(1, 2, 2, 1, 0, 0), 20, false);
 
-            wide_attack = new Entity(Position, Wide_Attack_v, WATK_H, WATK_W, Drawing.DrawOrder.UNDER_ENTITIES);
-            long_attack = new Entity(Position, Long_Attack_v, LATK_H, LATK_W, Drawing.DrawOrder.UNDER_ENTITIES);
+            wide_attack = new Entity(Position, Wide_Attack_v, WATK_H, WATK_W, Drawing.DrawOrder.PARTICLES);
+            long_attack = new Entity(Position, Long_Attack_v, LATK_H, LATK_W, Drawing.DrawOrder.PARTICLES);
 
             wide_attack.AddAnimation("a", CreateAnimFrameArray(0, 1, 2, 3, 4), 14, false);
             long_attack.AddAnimation("a", CreateAnimFrameArray(0, 1, 2, 3, 4), 14, false);

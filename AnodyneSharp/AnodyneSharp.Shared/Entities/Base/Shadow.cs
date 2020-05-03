@@ -1,7 +1,7 @@
 ﻿using AnodyneSharp.Drawing;
 using Microsoft.Xna.Framework;
 
-namespace AnodyneSharp.Entities.Base
+namespace AnodyneSharp.Entities
 {
     public enum ShadowType
     {
@@ -17,7 +17,7 @@ namespace AnodyneSharp.Entities.Base
         private Entity _parent;
 
         public Shadow(Entity parent, Vector2 offset, ShadowType type = ShadowType.Normal, float fps = 8)
-            : base(parent.Position, DrawOrder.UNDER_ENTITIES)
+            : base(parent.Position, DrawOrder.SHADOWS)
         {
             _parent = parent;
             this.offset = offset;
