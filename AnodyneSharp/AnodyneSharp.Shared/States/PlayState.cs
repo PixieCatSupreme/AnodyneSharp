@@ -62,6 +62,11 @@ namespace AnodyneSharp.States
         private bool _updateEntities;
         private UILabel _keyValueLabel;
 
+        private Texture2D _equippedBroomBorder;
+        private Texture2D _equippedBroomIcon;
+
+        private Vector2 _iconPos;
+
         public PlayState(Camera camera)
         {
             _map = new TileMap();
@@ -81,6 +86,8 @@ namespace AnodyneSharp.States
             _keyValueLabel = new UILabel(new Vector2(37, 5), false);
             _keyValueLabel.Writer.SetSpriteFont(FontManager.InitFont(new Color(124, 163, 177, 255)));
             _keyValueLabel.SetText("x0");
+
+            _iconPos = new Vector2(2, 3);
         }
 
         public override void Create()
@@ -89,7 +96,11 @@ namespace AnodyneSharp.States
 
             _header = ResourceManager.GetTexture(UiHeader);
 
+            _equippedBroomBorder = ResourceManager.GetTexture("frame_icon");
+
             LoadMap();
+
+            UpdateBroomIcon();
         }
 
         public override void Draw()
@@ -134,6 +145,16 @@ namespace AnodyneSharp.States
         public override void DrawUI()
         {
             SpriteDrawer.DrawGuiSprite(_header, Vector2.Zero, Z: DrawingUtilities.GetDrawingZ(DrawOrder.HEADER));
+
+
+            if (InventoryState.EquippedBroom != BroomType.NONE)
+            {
+                SpriteDrawer.DrawGuiSprite(_equippedBroomIcon, _iconPos, scale: 0.80f, Z: DrawingUtilities.GetDrawingZ(DrawOrder.UI_OBJECTS));
+            }
+
+            SpriteDrawer.DrawGuiSprite(_equippedBroomBorder, _iconPos, scale: 0.80f, Z: DrawingUtilities.GetDrawingZ(DrawOrder.EQUIPPED_BORDER));
+
+
             _healthBar.Draw();
 
             if (_childState != null)
@@ -164,7 +185,6 @@ namespace AnodyneSharp.States
                         _player.dontMove = true;
                         pauseState.Update();
 
-                        //TODO pause finished check
                         if (pauseState.Exited)
                         {
                             _state = PlayStateState.S_NORMAL;
@@ -209,6 +229,13 @@ namespace AnodyneSharp.States
                 }
 
                 UpdateEntities();
+            }
+
+            if (InventoryState.EquippedBroomChanged)
+            {
+                InventoryState.EquippedBroomChanged = false;
+
+                UpdateBroomIcon();
             }
 
 #if DEBUG
@@ -496,6 +523,35 @@ namespace AnodyneSharp.States
                 //DIE
             }
         }
+
+        private void UpdateBroomIcon()
+        {
+            if (InventoryState.EquippedBroom == BroomType.NONE)
+            {
+                return;
+            }
+
+            string tex = "";
+
+            switch (InventoryState.EquippedBroom)
+            {
+                case BroomType.Normal:
+                    tex = "none";
+                    break;
+                case BroomType.Wide:
+                    tex = "wide";
+                    break;
+                case BroomType.Long:
+                    tex = "long";
+                    break;
+                case BroomType.Transformer:
+                    tex = "transformer";
+                    break;
+            }
+
+            _equippedBroomIcon = ResourceManager.GetTexture(tex + "_icon");
+        }
+
 
         private void LoadMap()
         {

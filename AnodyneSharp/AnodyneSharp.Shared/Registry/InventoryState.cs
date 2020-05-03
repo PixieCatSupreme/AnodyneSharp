@@ -15,7 +15,18 @@ namespace AnodyneSharp.Registry
             }
         }
 
-        public static BroomType EquippedBroom = BroomType.Normal;
+        public static BroomType EquippedBroom
+        {
+            get
+            {
+                return _equippedBroom;
+            }
+            set
+            {
+                _equippedBroom = value;
+                EquippedBroomChanged = true;
+            }
+        }
 
         public static bool HasBroom = true;
         public static bool HasLenghten = true;
@@ -25,7 +36,10 @@ namespace AnodyneSharp.Registry
         public static bool CanJump = false;
         public static bool UnlockedSecretz = false;
 
+        public static bool EquippedBroomChanged = false;
+
         private static Dictionary<string, int> _mapKeys;
+        private static BroomType _equippedBroom = BroomType.Normal;
 
         static InventoryState()
         {
