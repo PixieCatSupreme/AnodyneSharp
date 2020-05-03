@@ -114,5 +114,17 @@ namespace AnodyneSharp.Cheatz
                 SoundManager.PlaySoundEffect("big_door_locked");
             }
         }
+
+        [Cheat("1212121212")]
+        public static void Meow()
+        {
+            SoundManager.PlaySoundEffect("meow");
+        }
+
+        [Cheat("2121212121")]
+        public static void Woof()
+        {
+            SoundManager.PlaySoundEffect("woof");
+        }
     }
 }
