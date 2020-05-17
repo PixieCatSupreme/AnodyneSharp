@@ -121,21 +121,26 @@ namespace AnodyneSharp.Entities.Gadget
 
             switch (_treasureType)
             {
-                //case TreasureType.BROOM:
-                //    break;
+                case TreasureType.BROOM:
+                    _treasure = new BroomTreasure("broom-icon", Position, BroomType.Normal);
+                    break;
                 case TreasureType.KEY:
                     _treasure = new KeyTreasure(Position);
                     break;
                 //case TreasureType.GROWTH:
                 //    break;
-                //case TreasureType.JUMP:
-                //    break;
-                //case TreasureType.WIDE:
-                //    break;
-                //case TreasureType.LONG:
-                //    break;
-                //case TreasureType.SWAP:
-                //    break;
+                case TreasureType.JUMP:
+                    _treasure = new BootsTreasure(Position);
+                    break;
+                case TreasureType.WIDE:
+                    _treasure = new BroomTreasure("item_wide_attack", Position, BroomType.Wide);
+                    break;
+                case TreasureType.LONG:
+                    _treasure = new BroomTreasure("item_long_attack", Position, BroomType.Long);
+                    break;
+                case TreasureType.SWAP:
+                    _treasure = new BroomTreasure("item_tranformer", Position, BroomType.Transformer);
+                    break;
                 case TreasureType.SECRET:
                     _treasure = new Treasure("secret_trophies", Position, _preset.Frame -7, _preset.Frame == 10 ? 9 : -1);
                     break;

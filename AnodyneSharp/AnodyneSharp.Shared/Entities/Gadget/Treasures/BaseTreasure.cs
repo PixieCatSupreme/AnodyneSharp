@@ -21,6 +21,14 @@ namespace AnodyneSharp.Entities.Gadget.Treasures
         private Texture2D _texture;
         private Rectangle _texSourceRect;
 
+        public BaseTreasure()
+        {
+            _dialogueID = -1;
+
+            _texRect = new Rectangle(0,0,16,16);
+        }
+
+
         public BaseTreasure(string textureName, Vector2 pos, int frame, int dialogueID = -1)
         {
             _dialogueID = dialogueID;

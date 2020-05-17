@@ -47,7 +47,6 @@ namespace AnodyneSharp.Entities.Gadget.Treasures
 
             _flickering = true;
             _flickerTimer = 1;
-
         }
 
         private void Flicker()
