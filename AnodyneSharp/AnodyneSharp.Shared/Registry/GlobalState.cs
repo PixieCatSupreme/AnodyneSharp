@@ -15,6 +15,21 @@ namespace AnodyneSharp.Registry
     {
         public static DateTime START_TIME;
 
+        public static string Dialogue
+        {
+            get
+            {
+                return _dialogue;
+            }
+            set
+            {
+                _dialogue = value;
+                SetDialogueMode = value != "";
+            }
+        }
+
+        public static bool SetDialogueMode = false;
+
         public static bool BOI = false; // BOI Sprites on in easter egg redcave
         public static bool is_playstate = true;
         public static float music_volume_scale =
@@ -41,7 +56,7 @@ namespace AnodyneSharp.Registry
 
         public static bool autosave_on = true;
         //public static var checkpoint:Object = { x: 0, y: 0, area: "" };
-        public static string cur_dialogue;
+
         /**
          * Used for disabling the menu during an event because you could potentially break the game  otherwise
          */
@@ -90,5 +105,8 @@ namespace AnodyneSharp.Registry
         public static bool HappyStarted;
         public static bool SageDead;
         public static bool SuburbSoft;
-        public static bool WindmillOpened;    }
+        public static bool WindmillOpened;
+
+        private static string _dialogue;
+    }
 }

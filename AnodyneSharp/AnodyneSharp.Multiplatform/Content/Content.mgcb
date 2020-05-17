@@ -5467,6 +5467,18 @@
 /processorParam:TextureFormat=Color
 /build:textures/sprites/npcs/npc.png
 
+#begin textures/sprites/npcs/PixieCatSupreme.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:textures/sprites/npcs/PixieCatSupreme.png
+
 #begin textures/sprites/npcs/redsea_npcs.png
 /importer:TextureImporter
 /processor:TextureProcessor

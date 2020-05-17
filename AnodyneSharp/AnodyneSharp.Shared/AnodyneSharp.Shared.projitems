@@ -24,6 +24,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Gates\SmallKeyGate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Key.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\KeyBlock.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\TreasureChest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Treasures\BaseTreasure.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Treasures\CardTreasure.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Treasures\KeyTreasure.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Treasures\Treasure.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Player\Broom.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\NamedEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Slime.cs" />

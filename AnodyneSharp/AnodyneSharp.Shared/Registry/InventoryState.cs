@@ -73,6 +73,8 @@ namespace AnodyneSharp.Registry
 
         public static int AddMapKey(string mapName, int addition)
         {
+            GlobalState.RefreshKeyCount = true;
+
             if (!_mapKeys.ContainsKey(mapName))
             {
                 _mapKeys.Add(mapName, addition);

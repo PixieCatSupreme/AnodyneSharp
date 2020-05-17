@@ -28,7 +28,7 @@ namespace AnodyneSharp.Entities
         public Type Type { get; private set; }
         public Vector2 Position { get; private set; }
         public Guid EntityID { get; private set; }
-        public int Frame { get; private set; }
+        public int Frame { get; set; }
         public Permanence Permanence {get; set;}
         public string TypeValue { get; private set; }
         public bool Alive { get; set; }

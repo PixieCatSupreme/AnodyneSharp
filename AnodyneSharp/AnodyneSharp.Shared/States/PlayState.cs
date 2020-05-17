@@ -212,7 +212,7 @@ namespace AnodyneSharp.States
                         _player.dontMove = true;
                         dialogueState.Update();
 
-                        if (GlobalState.cur_dialogue == "")
+                        if (GlobalState.Dialogue == "")
                         {
                             _state = PlayStateState.S_NORMAL;
                             _childState = null;
@@ -316,6 +316,13 @@ namespace AnodyneSharp.States
 
         private void StateNormal()
         {
+            if (GlobalState.SetDialogueMode)
+            {
+                _state = PlayStateState.S_DIALOGUE;
+                _childState = new DialogueState();
+                return;
+            }
+
             CheckForTransition();
 
             if (KeyInput.CanPressKey(Keys.Enter))
@@ -446,11 +453,8 @@ namespace AnodyneSharp.States
         {
             if (KeyInput.CanPressKey(Keys.T))
             {
-                GlobalState.cur_dialogue = "abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890.:,;'\"(!?)+-*/=[]";
-                GlobalState.cur_dialogue = "Hello^\nYes, this is slime";
-
-                _state = PlayStateState.S_DIALOGUE;
-                _childState = new DialogueState();
+                GlobalState.Dialogue = "abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890.:,;'\"(!?)+-*/=[]";
+                GlobalState.Dialogue = "Hello^\nYes, this is slime";
             }
             
             if (KeyInput.CanPressKey(Keys.F6))
@@ -608,7 +612,8 @@ namespace AnodyneSharp.States
 
             //Sets tile collission and tile events
             TileData.Set_tile_properties(_map, _map_bg_2);
-            _player.Position = _map.GetFirstWalkable(_map_bg_2) * TILE_WIDTH;
+            //_player.Position = _map.GetFirstWalkable(_map_bg_2) * TILE_WIDTH;
+            _player.Position = new Vector2(16 ,672);
 
             Vector2 gridPos = MapUtilities.GetRoomCoordinate(_player.Position);
             Vector2 roomPos = MapUtilities.GetRoomUpperLeftPos(gridPos);
