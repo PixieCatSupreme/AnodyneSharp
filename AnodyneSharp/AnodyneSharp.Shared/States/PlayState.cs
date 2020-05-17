@@ -468,7 +468,7 @@ namespace AnodyneSharp.States
                 Cheatz.Cheatz.GiveKey();
             }
 
-            if (KeyInput.CanPressKey(Keys.F12))
+            if (KeyInput.CanPressKey(Keys.F11))
             {
                 Cheatz.Cheatz.ToggleFuckItMode();
             }
