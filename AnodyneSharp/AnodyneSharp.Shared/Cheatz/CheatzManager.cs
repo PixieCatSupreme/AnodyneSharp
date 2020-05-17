@@ -41,6 +41,7 @@ namespace AnodyneSharp.Cheatz
         public static void ToggleFuckItMode()
         {
             GlobalState.FUCK_IT_MODE_ON = !GlobalState.FUCK_IT_MODE_ON;
+            InventoryState.AchievementsDisabled = true;
         }
 
         [Cheat("UUDDLRLR21")]
@@ -58,6 +59,8 @@ namespace AnodyneSharp.Cheatz
             InventoryState.HasWiden = true;
             InventoryState.HasTransformer = true;
             InventoryState.CanJump = true;
+
+            InventoryState.AchievementsDisabled = true;
 
             for (int i = 0; i < InventoryState.CardStatus.Length; i++)
             {
@@ -85,14 +88,14 @@ namespace AnodyneSharp.Cheatz
             InventoryState.AddCurrentMapKey();
             SoundManager.PlaySoundEffect("keyget");
             GlobalState.RefreshKeyCount = true;
+
+            InventoryState.AchievementsDisabled = true;
         }
 
         [Cheat("ULRDDLRU12")]
         public static void ResetMap()
         {
-            InventoryState.AddCurrentMapKey();
-            SoundManager.PlaySoundEffect("keyget");
-            GlobalState.RefreshKeyCount = true;
+            //TODO
         }
 
         [Cheat("URDLURDLUR")]
@@ -121,6 +124,7 @@ namespace AnodyneSharp.Cheatz
                 SoundManager.PlaySoundEffect("shieldy-hit");
                 SoundManager.PlaySoundEffect("small_wave");
                 SoundManager.PlaySoundEffect("big_door_locked");
+                SoundManager.PlaySoundEffect("fall_in_hole");
             }
         }
 

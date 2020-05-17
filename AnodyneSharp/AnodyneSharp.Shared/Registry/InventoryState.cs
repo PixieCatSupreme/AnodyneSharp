@@ -70,6 +70,7 @@ namespace AnodyneSharp.Registry
         }
 
         public static bool EquippedBroomChanged = false;
+        public static bool AchievementsDisabled = false;
 
         public static bool HasBroom = false;
         public static bool HasLenghten = false;
@@ -99,6 +100,8 @@ namespace AnodyneSharp.Registry
             CardStatus = Enumerable.Repeat(false, 49).ToArray();
             SecretStatus = Enumerable.Repeat(false, 13).ToArray();
             AchievementStatus = Enumerable.Repeat(false, 18).ToArray();
+
+            AchievementsDisabled = false;
 
             HasBroom = false;
             HasLenghten = false;
