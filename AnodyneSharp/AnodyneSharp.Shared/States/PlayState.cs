@@ -473,23 +473,20 @@ namespace AnodyneSharp.States
 
             if (KeyInput.CanPressKey(Keys.D1))
             {
-                InventoryState.EquippedBroom = BroomType.Normal;
-                _player.broom.UpdateBroomType();
+                DebugSetBroom(BroomType.Normal);
+
             }
             else if (KeyInput.CanPressKey(Keys.D2))
             {
-                InventoryState.EquippedBroom = BroomType.Wide;
-                _player.broom.UpdateBroomType();
+                DebugSetBroom(BroomType.Wide);
             }
             else if (KeyInput.CanPressKey(Keys.D3))
             {
                 InventoryState.EquippedBroom = BroomType.Long;
-                _player.broom.UpdateBroomType();
             }
             else if (KeyInput.CanPressKey(Keys.D4))
             {
-                InventoryState.EquippedBroom = BroomType.NONE;
-                _player.broom.UpdateBroomType();
+                DebugSetBroom(BroomType.NONE);
             }
 
             if (KeyInput.CanPressKey(Keys.Space))
@@ -550,6 +547,13 @@ namespace AnodyneSharp.States
                     _camera.GoTo(MapUtilities.GetRoomUpperLeftPos(new Vector2(1, 5)));
                 }
             }
+        }
+
+        private void DebugSetBroom(BroomType broom)
+        {
+            InventoryState.EquippedBroom = broom;
+            UpdateBroomIcon();
+            _player.broom.UpdateBroomType();
         }
 #endif
 
