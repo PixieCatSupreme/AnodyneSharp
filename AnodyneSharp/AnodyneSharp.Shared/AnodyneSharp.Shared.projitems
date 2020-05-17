@@ -25,12 +25,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Key.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\KeyBlock.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\TreasureChest.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Treasures\BaseTreasure.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Treasures\Base\BaseTreasure.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Treasures\BroomTreasure.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Treasures\CardTreasure.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Treasures\BootsTreasure.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Treasures\KeyTreasure.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Treasures\Treasure.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Treasures\Base\Treasure.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Treasures\SecretTreasure.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Player\Broom.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\NamedEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Slime.cs" />
@@ -211,6 +212,7 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\OVERWORLD.col" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Entities\Gadget\Treasures\Base\" />
     <Folder Include="$(MSBuildThisFileDirectory)UI\Font\Writing\" />
     <Folder Include="$(MSBuildThisFileDirectory)UI\Health\" />
   </ItemGroup>

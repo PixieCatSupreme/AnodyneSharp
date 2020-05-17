@@ -421,6 +421,12 @@ namespace AnodyneSharp.States
 
         private bool UpdateCamera()
         {
+            if (GlobalState.FUCK_IT_MODE_ON)
+            {
+                _camera.GoTo(_gridBorders.X, _gridBorders.Y);
+                return false;
+            }
+
             if (_camera.Position2D.X < _gridBorders.X - Scroll_Increment)
             {
                 _camera.Move(Scroll_Increment, 0);
@@ -460,6 +466,11 @@ namespace AnodyneSharp.States
             if (KeyInput.CanPressKey(Keys.F6))
             {
                 Cheatz.Cheatz.GiveKey();
+            }
+
+            if (KeyInput.CanPressKey(Keys.F12))
+            {
+                Cheatz.Cheatz.ToggleFuckItMode();
             }
 
             if (KeyInput.CanPressKey(Keys.M))
@@ -612,8 +623,7 @@ namespace AnodyneSharp.States
 
             //Sets tile collission and tile events
             TileData.Set_tile_properties(_map, _map_bg_2);
-            //_player.Position = _map.GetFirstWalkable(_map_bg_2) * TILE_WIDTH;
-            _player.Position = new Vector2(16 ,672);
+            _player.Position = _map.GetFirstWalkable(_map_bg_2) * TILE_WIDTH;
 
             Vector2 gridPos = MapUtilities.GetRoomCoordinate(_player.Position);
             Vector2 roomPos = MapUtilities.GetRoomUpperLeftPos(gridPos);

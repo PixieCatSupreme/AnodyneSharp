@@ -47,6 +47,7 @@ namespace AnodyneSharp.Entities.Gadget
             if (preset.Frame == -1)
             {
                 frame++;
+                opened = true;
             }
             else
             {
@@ -69,7 +70,7 @@ namespace AnodyneSharp.Entities.Gadget
                 _preset.Frame = -1;
             }
 
-            if (opened)
+            if (opened && _treasure != null)
             {
                 _treasure.Update();
             }
@@ -79,7 +80,7 @@ namespace AnodyneSharp.Entities.Gadget
         {
             base.Draw();
 
-            if (opened)
+            if (opened && _treasure != null)
             {
                 _treasure.Draw();
             }
@@ -142,7 +143,7 @@ namespace AnodyneSharp.Entities.Gadget
                     _treasure = new BroomTreasure("item_tranformer", Position, BroomType.Transformer);
                     break;
                 case TreasureType.SECRET:
-                    _treasure = new Treasure("secret_trophies", Position, _preset.Frame -7, _preset.Frame == 10 ? 9 : -1);
+                    _treasure = new SecretTreasure(Position, _preset.Frame -7, _preset.Frame == 10 ? 9 : -1);
                     break;
                 default:
                     _treasure = new Treasure("PixieCatSupreme", Position, 0, -2);

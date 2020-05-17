@@ -31,9 +31,6 @@ namespace AnodyneSharp.Sounds
             }
         }
 
-
-        private static AudioListener _listener;
-
         static SoundManager()
         {
 

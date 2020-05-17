@@ -58,7 +58,16 @@ namespace AnodyneSharp.Cheatz
             InventoryState.HasWiden = true;
             InventoryState.HasTransformer = true;
             InventoryState.CanJump = true;
-            InventoryState.UnlockedSecretz = true;
+
+            for (int i = 0; i < InventoryState.CardStatus.Length; i++)
+            {
+                InventoryState.CardStatus[i] = true;
+            }
+
+            for (int i = 0; i < InventoryState.SecretStatus.Length; i++)
+            {
+                InventoryState.SecretStatus[i] = true;
+            }
 
             InventoryState.EquippedBroom = InventoryState.EquippedBroom == Entities.BroomType.NONE ? Entities.BroomType.Normal : InventoryState.EquippedBroom;
         }
