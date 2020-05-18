@@ -86,11 +86,6 @@ namespace AnodyneSharp.Registry
         private static Dictionary<string, int> _mapKeys;
         private static BroomType _equippedBroom = BroomType.NONE;
 
-        static InventoryState()
-        {
-            ResetValues();
-        }
-
         public static void ResetValues()
         {
             DebugLogger.AddInfo("Setting inventory progress to default");

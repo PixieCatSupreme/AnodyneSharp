@@ -133,7 +133,17 @@ namespace AnodyneSharp.Entities.Gadget
                     _treasure = new KeyTreasure(Position);
                     break;
                 case TreasureType.GROWTH:
-                    _treasure = new CardTreasure(Position, CardDataManager.GetCardId());
+                    int id = CardDataManager.GetCardId();
+
+                    if (id != -1)
+                    {
+                        _treasure = new CardTreasure(Position, id);
+                    }
+                    else
+                    {
+                        FailsafeTreasure();
+                    }
+
                     break;
                 case TreasureType.JUMP:
                     _treasure = new BootsTreasure(Position);
@@ -151,9 +161,14 @@ namespace AnodyneSharp.Entities.Gadget
                     _treasure = new SecretTreasure(Position, _preset.Frame - 7, _preset.Frame == 10 ? 9 : -1);
                     break;
                 default:
-                    _treasure = new Treasure("PixieCatSupreme", Position, 0, -2);
+                    FailsafeTreasure();
                     break;
             }
+        }
+
+        private void FailsafeTreasure()
+        {
+            _treasure = new Treasure("PixieCatSupreme", Position, 0, -2);
         }
     }
 }
