@@ -31,6 +31,7 @@ namespace AnodyneSharp.Drawing
         AUDIO_SLIDER_BAR,   //The red bar to show progress of slider
         AUDIO_SLIDER,       //The slider itself.
         PAUSE_SELECTOR,     //Pause menu option selector
+        MENUTEXT,           //Text in pause menu
         TEXTBOX,            //Textboxes
         TEXT,               //Text in dialogueBoxes
         SUBMENU_SELECTOR,   //Equipment selector, config selector and card selector

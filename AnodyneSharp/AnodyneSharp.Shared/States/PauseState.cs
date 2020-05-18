@@ -24,6 +24,7 @@ namespace AnodyneSharp.States
             Cards,
             Save,
             Settings,
+            Achievements,
             Secretz,
             Cheatz
         }
@@ -43,7 +44,7 @@ namespace AnodyneSharp.States
         {
             get
             {
-                return InventoryState.UnlockedSecretz ? PauseStateState.Secretz : PauseStateState.Settings;
+                return InventoryState.UnlockedSecretz ? PauseStateState.Secretz : InventoryState.UnlockedFeats ? PauseStateState.Achievements : PauseStateState.Settings;
             }
         }
 
@@ -54,6 +55,7 @@ namespace AnodyneSharp.States
         private UILabel _cardsLabel;
         private UILabel _saveLabel;
         private UILabel _configLabel;
+        private UILabel _achievementsLabel;
         private UILabel _secretsLabel;
 
         private UILabel _playtimeLabel;
@@ -128,6 +130,7 @@ namespace AnodyneSharp.States
             _cardsLabel.Draw();
             _saveLabel.Draw();
             _configLabel.Draw();
+            _achievementsLabel.Draw();
             _secretsLabel.Draw();
 
             _playtimeLabel.Draw();
@@ -149,14 +152,18 @@ namespace AnodyneSharp.States
                 case PauseStateState.Equip:
                     _substate = new EquipSubstate();
                     break;
-                //case PauseStateState.Cards:
-                //    break;
+                case PauseStateState.Cards:
+                    _substate = new CardSubstate();
+                    break;
                 case PauseStateState.Save:
                     _substate = new SaveSubstate();
                     break;
                 case PauseStateState.Settings:
                     _substate = new ConfigSubstate();
                     break;
+                //case PauseStateState.Achievements:
+                //    _substate = new ConfigSubstate();
+                //    break;
                 //case PauseStateState.Secretz:
                 //    break;
                 case PauseStateState.Cheatz:
@@ -233,7 +240,8 @@ namespace AnodyneSharp.States
             _cardsLabel = new UILabel(new Vector2(x, startY + yStep * 2), true);
             _saveLabel = new UILabel(new Vector2(x, startY + yStep * 3), true);
             _configLabel = new UILabel(new Vector2(x, startY + yStep * 4), true);
-            _secretsLabel = new UILabel(new Vector2(x, startY + yStep * 5), true);
+            _achievementsLabel = new UILabel(new Vector2(x, startY + yStep * 5), true);
+            _secretsLabel = new UILabel(new Vector2(x, startY + yStep * 6), true);
 
             _playtimeLabel = new UILabel(new Vector2(1, 154), true);
             _inputLabel = new UILabel(new Vector2(9, 168), new Color(143, 153, 176, 255), false);
@@ -243,6 +251,7 @@ namespace AnodyneSharp.States
             _cardsLabel.Initialize();
             _saveLabel.Initialize();
             _configLabel.Initialize();
+            _achievementsLabel.Initialize();
             _secretsLabel.Initialize();
 
             _playtimeLabel.Initialize();
@@ -254,11 +263,13 @@ namespace AnodyneSharp.States
             _cardsLabel.SetText("Cards");
             _saveLabel.SetText("Save");
             _configLabel.SetText("Config");
+            _achievementsLabel.SetText("!!!");
             _secretsLabel.SetText("???");
 
             _playtimeLabel.SetText("00:00:00");
             _inputLabel.SetText(" :Select  :Back");
 
+            _achievementsLabel.IsVisible = InventoryState.UnlockedFeats;
             _secretsLabel.IsVisible = InventoryState.UnlockedSecretz;
         }
     }

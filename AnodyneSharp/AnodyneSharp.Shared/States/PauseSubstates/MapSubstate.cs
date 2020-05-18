@@ -26,8 +26,6 @@ namespace AnodyneSharp.States.PauseSubstates
         private UILabel _yesLabel;
         private UILabel _noLabel;
 
-        private MenuSelector _selector;
-
         private MapState _state;
         private MapState _lastState;
 
@@ -56,26 +54,14 @@ namespace AnodyneSharp.States.PauseSubstates
             _returnLabel.SetText("Return to\nNexus");
             _yesLabel.SetText("Yes");
             _noLabel.SetText("No");
-
-            _selector = new MenuSelector()
-            {
-                visible = false
-            };
         }
 
         public override void GetControl()
         {
-            _selector.visible = true;
-            _selector.Play("enabledRight");
+            base.GetControl();
             _state = MapState.ReturnToNexusLabel;
 
             SetSelectorPos();
-        }
-
-        protected override void ExitSubState()
-        {
-            base.ExitSubState();
-            _selector.visible = false;
         }
 
         public override void Update()
@@ -86,8 +72,7 @@ namespace AnodyneSharp.States.PauseSubstates
                 SetSelectorPos();
             }
 
-            _selector.Update();
-            _selector.PostUpdate();
+            base.Update();
         }
 
         public override void HandleInput()

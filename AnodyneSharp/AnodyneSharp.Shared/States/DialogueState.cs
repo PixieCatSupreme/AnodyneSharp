@@ -1,5 +1,6 @@
 ﻿using AnodyneSharp.Input;
 using AnodyneSharp.Registry;
+using AnodyneSharp.Sounds;
 using AnodyneSharp.UI;
 using AnodyneSharp.UI.Font;
 using Microsoft.Xna.Framework;
@@ -31,20 +32,14 @@ namespace AnodyneSharp.States
 
         private int normalSpeed;
 
-        public DialogueState()
+        public DialogueState(bool useMenuBox = false)
         {
-            Create();
-        }
-
-        public override void Create()
-        {
-            _tb = new TextBox();
+            _tb = new TextBox(useMenuBox);
             _tb.Writer.SetSpriteFont(FontManager.InitFont(Color.White));
             _tb.Writer.Text = GlobalState.Dialogue;
             _tb.Writer.DrawShadow = true;
 
             normalSpeed = _tb.Writer.Speed;
-
         }
 
         public override void Update()
@@ -63,7 +58,7 @@ namespace AnodyneSharp.States
             switch (state)
             {
                 case DialogueStateState.Writing:
-                    //TODO play writing sound
+                    SoundManager.PlaySoundEffect("dialogue_blip");
 
                     if (_tb.Writer.NextCharacter == '^')
                     {
@@ -124,7 +119,7 @@ namespace AnodyneSharp.States
                 case DialogueStateState.Waiting:
                     if (KeyInput.IsKeyPressed(Keys.C) || KeyInput.IsKeyPressed(Keys.X))
                     {
-                        //TODO play text bloop
+                        SoundManager.PlaySoundEffect("dialogue_bloop");
 
                         if (_tb.Writer.AtEndOfText)
                         {

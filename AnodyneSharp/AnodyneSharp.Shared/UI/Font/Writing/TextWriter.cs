@@ -95,6 +95,8 @@ namespace AnodyneSharp.UI.Text
 
         public bool IgnoreSoftLineBreaks { get; set; }
 
+        public DrawOrder drawLayer;
+
         public Point Position
         {
             get
@@ -131,6 +133,8 @@ namespace AnodyneSharp.UI.Text
             WriteArea = new Rectangle(0, 0, 200, 200);
 
             characters = new List<TextCharacter>();
+
+            drawLayer = DrawOrder.TEXT;
         }
 
         public TextWriter(int x, int y)
@@ -146,6 +150,8 @@ namespace AnodyneSharp.UI.Text
             WriteArea = new Rectangle(x, y, 1, 1);
 
             characters = new List<TextCharacter>();
+
+            drawLayer = DrawOrder.TEXT;
         }
 
         public TextWriter(int x, int y, int width, int height)
@@ -161,6 +167,8 @@ namespace AnodyneSharp.UI.Text
             characters = new List<TextCharacter>();
 
             WriteArea = new Rectangle(x, y, width, height);
+
+            drawLayer = DrawOrder.TEXT;
         }
 
         public void SetSpriteFont(SpriteFont font)
@@ -209,7 +217,7 @@ namespace AnodyneSharp.UI.Text
 
         public void Draw()
         {
-            float z = DrawingUtilities.GetDrawingZ(DrawOrder.TEXT);
+            float z = DrawingUtilities.GetDrawingZ(drawLayer);
             float shadowZ = z - 0.01f;
             foreach (var c in characters)
             {

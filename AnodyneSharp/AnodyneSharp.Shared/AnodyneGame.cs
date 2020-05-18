@@ -63,6 +63,8 @@ namespace AnodyneSharp
         {
             SpriteDrawer.Initialize(graphics.GraphicsDevice);
 
+            InventoryState.ResetValues();
+
             EntityManager.Initialize();
 
             base.Initialize();

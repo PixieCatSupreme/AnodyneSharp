@@ -33,8 +33,6 @@ namespace AnodyneSharp.States.PauseSubstates
         private Equipment _broomWiden;
         private Equipment _transformer;
 
-        private MenuSelector _selector;
-
         private EquipState _state;
         private EquipState _lastState;
 
@@ -48,10 +46,6 @@ namespace AnodyneSharp.States.PauseSubstates
             _broomWiden = new Equipment(new Vector2(x, y + 24 * 2), "wide_icon", InventoryState.HasWiden ? "Widen" : "-");
             _transformer = new Equipment(new Vector2(x, y + 24 * 3), "transformer_icon", InventoryState.HasTransformer ? "Swap" : "-");
 
-            _selector = new MenuSelector()
-            {
-                visible = false
-            };
 
             SetEquipped();
         }
@@ -64,8 +58,7 @@ namespace AnodyneSharp.States.PauseSubstates
                 return;
             }
 
-            _selector.visible = true;
-            _selector.Play("enabledRight");
+            base.GetControl();
             _state = EquipState.Broom;
             _lastState = _state;
 
@@ -81,8 +74,7 @@ namespace AnodyneSharp.States.PauseSubstates
                 SoundManager.PlaySoundEffect("menu_move");
             }
 
-            _selector.Update();
-            _selector.PostUpdate();
+            base.Update();
         }
 
         public override void DrawUI()
@@ -93,12 +85,6 @@ namespace AnodyneSharp.States.PauseSubstates
             _transformer.Draw();
 
             _selector.Draw();
-        }
-
-        protected override void ExitSubState()
-        {
-            base.ExitSubState();
-            _selector.visible = false;
         }
 
         public override void HandleInput()

@@ -69,6 +69,14 @@ namespace AnodyneSharp.Registry
             }
         }
 
+        public static bool UnlockedFeats
+        {
+            get
+            {
+                return AchievementStatus.Any(s => s);
+            }
+        }
+
         public static bool EquippedBroomChanged = false;
         public static bool AchievementsDisabled = false;
 

@@ -35,8 +35,13 @@ namespace AnodyneSharp.UI
 
         public UILabel(Vector2 position, bool drawShadow)
         {
-            this.Position = position;
-            Writer = new TextWriter((int)position.X, (int)position.Y);
+            Position = position;
+
+            Writer = new TextWriter((int)position.X, (int)position.Y)
+            {
+                drawLayer = Drawing.DrawOrder.MENUTEXT
+            };
+
             _oldSize = Writer.WriteAreaSize;
             _oldString = Writer.Text;
 
@@ -48,8 +53,13 @@ namespace AnodyneSharp.UI
 
         public UILabel(Vector2 position, Color color, bool drawShadow)
         {
-            this.Position = position;
-            Writer = new TextWriter((int)position.X, (int)position.Y);
+            Position = position;
+
+            Writer = new TextWriter((int)position.X, (int)position.Y)
+            {
+                drawLayer = Drawing.DrawOrder.MENUTEXT
+            };
+
             _oldSize = Writer.WriteAreaSize;
             _oldString = Writer.Text;
 

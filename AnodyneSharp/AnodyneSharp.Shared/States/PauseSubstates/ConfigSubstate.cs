@@ -47,8 +47,6 @@ namespace AnodyneSharp.States.PauseSubstates
         private AudioSlider _musicSlider;
         private AudioSlider _sfxSlider;
 
-        private MenuSelector _selector;
-
         public ConfigSubstate()
         {
             float x = 69;
@@ -98,28 +96,14 @@ namespace AnodyneSharp.States.PauseSubstates
             {
                 ValueChangedEvent = AutoSaveValueChanged
             };
-
-            _selector = new MenuSelector()
-            {
-                visible = false
-            };
-
-
         }
 
         public override void GetControl()
         {
-            _selector.visible = true;
-            _selector.Play("enabledRight");
+            base.GetControl();
             _lastState = _state;
 
             SetSelectorPos();
-        }
-
-        protected override void ExitSubState()
-        {
-            base.ExitSubState();
-            _selector.visible = false;
         }
 
         public override void Update()
@@ -131,8 +115,7 @@ namespace AnodyneSharp.States.PauseSubstates
                 SoundManager.PlaySoundEffect("menu_move");
             }
 
-            _selector.Update();
-            _selector.PostUpdate();
+            base.Update();
         }
 
         public override void HandleInput()
@@ -242,6 +225,8 @@ namespace AnodyneSharp.States.PauseSubstates
                 _selectedOption.Enabled = true;
             }
 
+            SoundManager.PlaySoundEffect("menu_select");
+
             SetSelectorPos();
         }
 
@@ -275,7 +260,7 @@ namespace AnodyneSharp.States.PauseSubstates
             _selector.Position -= new Vector2(_selector.frameWidth, -2);
         }
 
-        private void BgmValueChanged(string value)
+        private void BgmValueChanged(string value, int index)
         {
             if (float.TryParse(value, out float volume))
             {
@@ -284,7 +269,7 @@ namespace AnodyneSharp.States.PauseSubstates
             }
         }
 
-        private void SfxValueChanged(string value)
+        private void SfxValueChanged(string value, int index)
         {
             if (float.TryParse(value, out float volume))
             {
@@ -292,7 +277,7 @@ namespace AnodyneSharp.States.PauseSubstates
             }
         }
 
-        private void AutoSaveValueChanged(string value)
+        private void AutoSaveValueChanged(string value, int index)
         {
             //TODO localization
 

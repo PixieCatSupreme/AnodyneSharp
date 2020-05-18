@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Input;
+using AnodyneSharp.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -7,7 +8,7 @@ using System.Text;
 
 namespace AnodyneSharp.UI.PauseMenu.Config
 {
-    public delegate void ValueChanged(string newValue);
+    public delegate void ValueChanged(string newValue, int index);
     public abstract class OptionSelector
     {
         public bool Enabled;
@@ -27,6 +28,9 @@ namespace AnodyneSharp.UI.PauseMenu.Config
 
             _leftArrow = new MenuSelector();
             _rightArrow = new MenuSelector();
+
+            _leftArrow.Position = new Vector2(pos.X, y);
+            _rightArrow.Position = new Vector2(pos.X + width, y);
 
             _leftArrow.Play("enabledLeft");
             _rightArrow.Play("enabledRight");

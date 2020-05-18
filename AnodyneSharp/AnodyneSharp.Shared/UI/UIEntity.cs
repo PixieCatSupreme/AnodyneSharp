@@ -21,6 +21,12 @@ namespace AnodyneSharp.UI
             : base(pos, textureName, frameWidth, frameHeight, layer)
         { }
 
+        public UIEntity(Vector2 pos, string textureName, int frame, int frameWidth, int frameHeight, DrawOrder layer)
+            : base(pos, textureName, frameWidth, frameHeight, layer)
+        {
+            SetFrame(frame);
+        }
+
         public override void Draw()
         {
             if (visible)

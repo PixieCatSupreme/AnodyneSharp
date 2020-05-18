@@ -41,7 +41,8 @@ namespace AnodyneSharp.UI.PauseMenu.Config
         public override void ResetValue()
         {
             current = start;
-            ValueChangedEvent?.Invoke(current.ToString());
+            ValueChangedEvent?.Invoke(current.ToString(), -1);
+            SoundManager.PlaySoundEffect("menu_select");
         }
 
         public override void SetValue()
@@ -61,7 +62,7 @@ namespace AnodyneSharp.UI.PauseMenu.Config
 
             SoundManager.PlaySoundEffect("menu_move");
 
-            ValueChangedEvent?.Invoke(current.ToString());
+            ValueChangedEvent?.Invoke(current.ToString(), -1);
         }
 
         protected override void RightPressed()
@@ -75,7 +76,7 @@ namespace AnodyneSharp.UI.PauseMenu.Config
 
             SoundManager.PlaySoundEffect("menu_move");
 
-            ValueChangedEvent?.Invoke(current.ToString());
+            ValueChangedEvent?.Invoke(current.ToString(), -1);
         }
 
         public override void DrawUI()

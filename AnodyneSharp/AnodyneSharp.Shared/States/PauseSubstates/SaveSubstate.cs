@@ -28,8 +28,6 @@ namespace AnodyneSharp.States.PauseSubstates
 
         private UILabel _deathsLabel;
 
-        private MenuSelector _selector;
-
         private SaveState _state;
         private SaveState _lastState;
 
@@ -58,25 +56,14 @@ namespace AnodyneSharp.States.PauseSubstates
             _quitLabel.SetText("Quit");
             _deathsLabel.SetText("Deaths: " + "0");
 
-            _selector = new MenuSelector()
-            {
-                visible = false
-            };
         }
 
         public override void GetControl()
         {
-            _selector.visible = true;
-            _selector.Play("enabledRight");
+            base.GetControl();
             _state = SaveState.SaveLabel;
 
             SetSelectorPos();
-        }
-
-        protected override void ExitSubState()
-        {
-            base.ExitSubState();
-            _selector.visible = false;
         }
 
         public override void HandleInput()
@@ -119,8 +106,7 @@ namespace AnodyneSharp.States.PauseSubstates
                 SetSelectorPos();
             }
 
-            _selector.Update();
-            _selector.PostUpdate();
+            base.Update();
         }
 
         public override void DrawUI()

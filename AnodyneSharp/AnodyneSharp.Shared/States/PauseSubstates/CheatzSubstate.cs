@@ -15,18 +15,12 @@ namespace AnodyneSharp.States.PauseSubstates
     public class CheatzSubstate : PauseSubstate
     {
         private UILabel _cheatLabel;
-        private MenuSelector _selector;
 
         public CheatzSubstate()
         {
             _cheatLabel = new UILabel(new Vector2(69, 28 + GameConstants.FONT_LINE_HEIGHT * 2), true);
             _cheatLabel.Initialize();
             _cheatLabel.SetText("");
-
-            _selector = new MenuSelector()
-            {
-                visible = false
-            };
 
             _selector.Position = _cheatLabel.Position - new Vector2(_selector.frameWidth, -2);
         }
@@ -39,14 +33,7 @@ namespace AnodyneSharp.States.PauseSubstates
 
         public override void GetControl()
         {
-            _selector.visible = true;
-            _selector.Play("enabledRight");
-        }
-
-        public override void Update()
-        {
-            _selector.Update();
-            _selector.PostUpdate();
+            base.GetControl();
         }
 
         public override void HandleInput()
@@ -82,12 +69,6 @@ namespace AnodyneSharp.States.PauseSubstates
                 _cheatLabel.SetText("");
                 ExitSubState();
             }
-        }
-
-        protected override void ExitSubState()
-        {
-            Exit = true;
-            _selector.visible = false;
         }
 
         private void AddChar(char c)

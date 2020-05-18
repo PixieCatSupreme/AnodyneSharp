@@ -8,6 +8,9 @@ namespace AnodyneSharp.UI.PauseMenu.Config
 {
     public class TextSelector : OptionSelector
     {
+        public bool noConfirm;
+        public bool noLoop;
+
         private string[] _options;
         private int index;
         private int startIndex;
@@ -38,27 +41,46 @@ namespace AnodyneSharp.UI.PauseMenu.Config
         public override void ResetValue()
         {
             index = startIndex;
-            ValueChangedEvent?.Invoke(_options[startIndex]);
+            ValueChangedEvent?.Invoke(_options[startIndex], startIndex);
             SetText();
         }
 
         public override void SetValue()
         {
             startIndex = index;
-            ValueChangedEvent?.Invoke(_options[index]);
+            ValueChangedEvent?.Invoke(_options[index], index);
 
-            SoundManager.PlaySoundEffect("menu_select");
+            if (!noConfirm)
+            {
+                SoundManager.PlaySoundEffect("menu_select");
+            }
+        }
+
+        public void SetValue(int i)
+        {
+            index = i;
+            startIndex = index;
+            SetText();
         }
 
         protected override void LeftPressed()
         {
             if (index == 0)
             {
+                if (noLoop)
+                {
+                    return;
+                }
                 index = _options.Length - 1;
             }
             else
             {
                 index--;
+            }
+
+            if (noConfirm)
+            {
+                SetValue();
             }
 
             SoundManager.PlaySoundEffect("menu_move");
@@ -70,11 +92,20 @@ namespace AnodyneSharp.UI.PauseMenu.Config
         {
             if (index == _options.Length - 1)
             {
+                if (noLoop)
+                {
+                    return;
+                }
                 index = 0;
             }
             else
             {
                 index++;
+            }
+
+            if (noConfirm)
+            {
+                SetValue();
             }
 
             SoundManager.PlaySoundEffect("menu_move");

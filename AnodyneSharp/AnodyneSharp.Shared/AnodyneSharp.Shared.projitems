@@ -61,11 +61,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)Sounds\SoundManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\DialogueState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\PauseState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\CardSubstate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\CheatzSubstate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\ConfigSubstate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\BaseSubstates\DialogueSubstate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\EquipSubstate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\MapSubstate.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\PauseSubstate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\BaseSubstates\PauseSubstate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\SaveSubstate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\PlayState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\State.cs" />
@@ -214,6 +216,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Entities\Gadget\Treasures\Base\" />
+    <Folder Include="$(MSBuildThisFileDirectory)States\PauseSubstates\BaseSubstates\" />
     <Folder Include="$(MSBuildThisFileDirectory)UI\Font\Writing\" />
     <Folder Include="$(MSBuildThisFileDirectory)UI\Health\" />
   </ItemGroup>

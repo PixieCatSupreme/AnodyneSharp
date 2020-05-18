@@ -28,13 +28,13 @@ namespace AnodyneSharp.UI
 
         private Vector2 pos;
 
-        public TextBox()
+        public TextBox(bool useMenuBox)
         {
             blinky_box_timer = blinky_box_timer_max;
             Set_box_position();
 
-            _boxTexture = ResourceManager.GetTexture("dialogue_box");
-            blinky_box = ResourceManager.GetTexture("dialogue_blinky_box"); ;
+            _boxTexture = ResourceManager.GetTexture(!useMenuBox ? "dialogue_box" : "menudialogue_box");
+            blinky_box = ResourceManager.GetTexture("dialogue_blinky_box");
         }
 
         public void Update()
