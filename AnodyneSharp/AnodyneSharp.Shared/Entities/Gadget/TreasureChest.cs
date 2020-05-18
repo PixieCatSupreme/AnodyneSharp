@@ -26,7 +26,7 @@ namespace AnodyneSharp.Entities.Gadget
         }
 
         EntityPreset _preset;
-        Treasure _treasure;
+        BaseTreasure _treasure;
         TreasureType _treasureType;
 
         public bool opened;
@@ -106,6 +106,9 @@ namespace AnodyneSharp.Entities.Gadget
                 case 1:
                     _treasureType = TreasureType.KEY;
                     break;
+                case 2:
+                    _treasureType = TreasureType.GROWTH;
+                    break;
                 default:
                     if (_preset.Frame >= 8 && _preset.Frame <= 20)
                     {
@@ -128,8 +131,9 @@ namespace AnodyneSharp.Entities.Gadget
                 case TreasureType.KEY:
                     _treasure = new KeyTreasure(Position);
                     break;
-                //case TreasureType.GROWTH:
-                //    break;
+                case TreasureType.GROWTH:
+                    _treasure = new CardTreasure(Position, 46);
+                    break;
                 case TreasureType.JUMP:
                     _treasure = new BootsTreasure(Position);
                     break;
@@ -143,7 +147,7 @@ namespace AnodyneSharp.Entities.Gadget
                     _treasure = new BroomTreasure("item_tranformer", Position, BroomType.Transformer);
                     break;
                 case TreasureType.SECRET:
-                    _treasure = new SecretTreasure(Position, _preset.Frame -7, _preset.Frame == 10 ? 9 : -1);
+                    _treasure = new SecretTreasure(Position, _preset.Frame - 7, _preset.Frame == 10 ? 9 : -1);
                     break;
                 default:
                     _treasure = new Treasure("PixieCatSupreme", Position, 0, -2);

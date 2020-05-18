@@ -10,34 +10,21 @@ using System.Text;
 
 namespace AnodyneSharp.Entities.Gadget.Treasures
 {
-    public abstract class BaseTreasure
+    public abstract class BaseTreasure : Entity
     {
-        public bool visible;
-        public bool finished;
+        protected int _dialogueID;
 
-        protected Rectangle _texRect;
-
-        protected  int _dialogueID;
-        private Texture2D _texture;
-        private Rectangle _texSourceRect;
-
-        public BaseTreasure()
-        {
-            _dialogueID = -1;
-
-            _texRect = new Rectangle(0,0,16,16);
-        }
-
-
-        public BaseTreasure(string textureName, Vector2 pos, int frame, int dialogueID = -1)
+        public BaseTreasure(string textureName, Vector2 pos, int frameWidth, int frameHeight, int frame, int dialogueID = -1)
+            : base(pos, textureName, frameWidth, frameHeight, DrawOrder.FG_SPRITES)
         {
             _dialogueID = dialogueID;
 
-            _texRect = new Rectangle((int)pos.X, (int)pos.Y, 16,16);
-
-            _texture = ResourceManager.GetTexture(textureName);
-            UpdateRect(frame);
+            SetFrame(frame);
         }
+
+        public BaseTreasure(string textureName, Vector2 pos, int frame, int dialogueID = -1)
+            : this(textureName, pos, 16, 16, frame, dialogueID)
+        { }
 
         public virtual void GetTreasure()
         {
@@ -55,31 +42,6 @@ namespace AnodyneSharp.Entities.Gadget.Treasures
                     GlobalState.Dialogue = $"This person broke everything.";
                 }
             }
-        }
-
-        public abstract void Update();
-        public virtual void Draw()
-        {
-            if (!finished && visible)
-            {
-                SpriteDrawer.DrawSprite(_texture, _texRect, _texSourceRect, Z: DrawingUtilities.GetDrawingZ(DrawOrder.FG_SPRITES));
-            }
-        }
-
-        private void UpdateRect(int frame)
-        {
-            int indexX = frame * 16;
-            int indexY = 0;
-
-            //Handle sprite sheets
-            int texWidth = _texture.Bounds.Width;
-            if (indexX >= texWidth)
-            {
-                indexY = indexX / texWidth * 16;
-                indexX %= texWidth;
-            }
-
-            _texSourceRect = new Rectangle(indexX, indexY, 16, 16);
         }
     }
 }

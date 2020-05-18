@@ -95,7 +95,7 @@ namespace AnodyneSharp.Cheatz
         [Cheat("ULRDDLRU12")]
         public static void ResetMap()
         {
-            //TODO
+            //TODO reset map cheat
         }
 
         [Cheat("URDLURDLUR")]

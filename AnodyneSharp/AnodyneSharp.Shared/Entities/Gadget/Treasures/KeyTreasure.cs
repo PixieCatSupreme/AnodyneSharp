@@ -8,7 +8,7 @@ namespace AnodyneSharp.Entities.Gadget.Treasures
 {
     public class KeyTreasure : Treasure
     {
-        public KeyTreasure(Vector2 pos) 
+        public KeyTreasure(Vector2 pos)
             : base("key", pos, 0, GlobalState.CURRENT_MAP_NAME == "STREET" ? 3 : -1)
         {
         }

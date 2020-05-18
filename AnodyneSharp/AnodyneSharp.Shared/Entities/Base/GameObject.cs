@@ -45,7 +45,13 @@ namespace AnodyneSharp.Entities
         public Vector2 Position;
         public Vector2 lastPosition;
         public Vector2 velocity;
+        public Vector2 acceleration;
+
         public bool immovable;
+
+        public float rotation;
+        public float angularVelocity;
+        public float angularAcceleration;
 
         //exists affects whether this object gets updates/collision/drawn, visible only affects drawing
         public bool exists = true;
@@ -89,6 +95,11 @@ namespace AnodyneSharp.Entities
         {
             lastPosition = Position;
             Position += velocity * GameTimes.DeltaTime;
+            velocity += acceleration * GameTimes.DeltaTime;
+
+            rotation += angularVelocity * GameTimes.DeltaTime;
+
+            angularVelocity += angularAcceleration *GameTimes.DeltaTime;
 
             wasTouching = touching;
             touching = Touching.NONE;

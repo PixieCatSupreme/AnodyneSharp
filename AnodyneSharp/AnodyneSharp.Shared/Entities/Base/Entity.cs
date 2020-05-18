@@ -19,6 +19,8 @@ namespace AnodyneSharp.Entities
 
     public class Entity : GameObject
     {
+        private const float FlickerLength = 0.05f;
+
         public Texture2D Texture;
 
         public int frameWidth;
@@ -26,12 +28,20 @@ namespace AnodyneSharp.Entities
         public Vector2 offset;
         public Facing facing;
         public DrawOrder layer;
-        public float rotation;
+
+
+        public bool finished;
 
         protected int _curIndex;
         protected int _curFrame;
         protected Anim _curAnim;
         protected float _opacity;
+
+        protected Rectangle spriteRect;
+
+        protected Shadow shadow;
+
+        protected float scale;
 
         private List<Anim> _animations;
         private string textureName;
@@ -39,11 +49,11 @@ namespace AnodyneSharp.Entities
         private bool dirty;
         private float _frameTimer;
 
-        public bool finished;
+        protected bool _flickering;
+        private float _flickerTimer;
+        private float _flickerFreq = 0;
 
-        protected Rectangle spriteRect;
-
-        protected Shadow shadow;
+        private float _lastScale;
 
         public Entity(Vector2 pos, DrawOrder layer)
             : base(pos)
@@ -55,6 +65,9 @@ namespace AnodyneSharp.Entities
 
             this.layer = layer;
             _opacity = 1f;
+
+            scale = 1;
+            _lastScale = scale;
         }
 
         public Entity(Vector2 pos, int frameWidth, int frameHeight, DrawOrder layer)
@@ -67,6 +80,9 @@ namespace AnodyneSharp.Entities
 
             this.layer = layer;
             _opacity = 1f;
+
+            scale = 1;
+            _lastScale = scale;
         }
 
         public Entity(Vector2 pos, string textureName, int frameWidth, int frameHeight, DrawOrder layer)
@@ -80,6 +96,9 @@ namespace AnodyneSharp.Entities
             this.layer = layer;
 
             _opacity = 1f;
+
+            scale = 1;
+            _lastScale = scale;
 
             SetTexture(textureName);
         }
@@ -146,6 +165,11 @@ namespace AnodyneSharp.Entities
             {
                 shadow.Update();
             }
+
+            if (_flickering)
+            {
+                DoFlicker();
+            }
         }
 
         public override void PostUpdate()
@@ -176,9 +200,9 @@ namespace AnodyneSharp.Entities
             if (visible && exists)
             {
                 SpriteDrawer.DrawSprite(Texture, 
-                    MathUtilities.CreateRectangle(Position.X - offset.X, Position.Y - offset.Y, frameWidth, frameHeight), 
+                    MathUtilities.CreateRectangle(Position.X - offset.X*scale, Position.Y - offset.Y*scale, frameWidth*scale, frameHeight*scale), 
                     spriteRect, 
-                    Color.White * _opacity, 
+                    Color.White * _opacity,
                     rotation, 
                     DrawingUtilities.GetDrawingZ(layer, MapUtilities.GetInGridPosition(Position).Y));
                 
@@ -204,7 +228,7 @@ namespace AnodyneSharp.Entities
                 _frameTimer += GameTimes.DeltaTime;
                 while (_frameTimer > _curAnim.delay)
                 {
-                    _frameTimer = _frameTimer - _curAnim.delay;
+                    _frameTimer -= _curAnim.delay;
                     if (_curIndex == _curAnim.frames.Length - 1)
                     {
                         if (_curAnim.looped)
@@ -266,6 +290,31 @@ namespace AnodyneSharp.Entities
             return new Vector2(
                 f == Facing.RIGHT ? 1 : (f == Facing.LEFT ? -1 : 0),
                 f == Facing.DOWN ? 1 : (f == Facing.UP ? -1 : 0));
+        }
+
+        protected void Flicker(float duration)
+        {
+            _flickering = true;
+            _flickerTimer = duration;
+        }
+
+        private void DoFlicker()
+        {
+            if (_flickerTimer > 0)
+            {
+                _flickerTimer -= GameTimes.DeltaTime;
+                _flickerFreq -= GameTimes.DeltaTime;
+                if (_flickerFreq <= 0)
+                {
+                    _flickerFreq = FlickerLength;
+                    visible = !visible;
+                }
+            }
+            else
+            {
+                _flickering = false;
+                visible = true;
+            }
         }
     }
 }

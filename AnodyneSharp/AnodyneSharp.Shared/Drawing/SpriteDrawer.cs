@@ -41,7 +41,7 @@ namespace AnodyneSharp.Drawing
         {
             _spriteBatch.Draw(texture, rect,
                 sRect, color ?? Color.White, rotation,
-                new Vector2(rect.Width / 2, rect.Height / 2), SpriteEffects.None, Z);
+                new Vector2((sRect?? texture.Bounds).Width / 2, (sRect ?? texture.Bounds).Height / 2), SpriteEffects.None, Z);
         }
 
         public static void DrawGuiSprite(Texture2D texture, Vector2 pos, Rectangle? sRect = null, Color? color = null, float rotation = 0, float scale = 1f, float Z = 0)
