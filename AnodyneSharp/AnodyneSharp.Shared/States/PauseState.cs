@@ -201,6 +201,11 @@ namespace AnodyneSharp.States
                 SoundManager.PlaySoundEffect("menu_move");
                 _state--;
 
+                if (_state == PauseStateState.Achievements && InventoryState.AchievementsDisabled)
+                {
+                    _state--;
+                }
+
             }
             else if (KeyInput.CanPressKey(Keys.Down))
             {
@@ -225,6 +230,11 @@ namespace AnodyneSharp.States
 
                 SoundManager.PlaySoundEffect("menu_move");
                 _state++;
+
+                if (_state == PauseStateState.Achievements && InventoryState.AchievementsDisabled)
+                {
+                    _state++;
+                }
             }
 
         }
