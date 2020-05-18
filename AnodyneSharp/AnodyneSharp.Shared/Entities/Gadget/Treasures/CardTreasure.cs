@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Registry;
+﻿using AnodyneSharp.Logging;
+using AnodyneSharp.Registry;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,14 @@ namespace AnodyneSharp.Entities.Gadget.Treasures
             scale = 0.5f;
         }
 
+        public override void GetTreasure()
+        {
+            base.GetTreasure();
+
+            InventoryState.CardStatus[_curFrame] = true;
+
+            DebugLogger.AddInfo($"Got card {_curFrame}");
+        }
 
         public override void Update()
         {

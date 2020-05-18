@@ -1,6 +1,7 @@
 ﻿using AnodyneSharp.Entities.Gadget.Treasures;
 using AnodyneSharp.Input;
 using AnodyneSharp.Registry;
+using AnodyneSharp.Resources;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -132,7 +133,7 @@ namespace AnodyneSharp.Entities.Gadget
                     _treasure = new KeyTreasure(Position);
                     break;
                 case TreasureType.GROWTH:
-                    _treasure = new CardTreasure(Position, 46);
+                    _treasure = new CardTreasure(Position, CardDataManager.GetCardId());
                     break;
                 case TreasureType.JUMP:
                     _treasure = new BootsTreasure(Position);

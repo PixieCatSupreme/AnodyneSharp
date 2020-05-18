@@ -82,6 +82,7 @@ namespace AnodyneSharp
             GlobalState.CURRENT_MAP_NAME = "STREET";
 
             ResourceManager.LoadResources(Content);
+            CardDataManager.ReadCardData();
         }
 
         /// <summary>

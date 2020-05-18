@@ -37,6 +37,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Slime.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Map\Tiles\CollissionData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Registry\InventoryState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Resources\CardDataManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Resources\ResourceManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Animations\Anim.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\Entity.cs" />
@@ -215,5 +216,8 @@
     <Folder Include="$(MSBuildThisFileDirectory)Entities\Gadget\Treasures\Base\" />
     <Folder Include="$(MSBuildThisFileDirectory)UI\Font\Writing\" />
     <Folder Include="$(MSBuildThisFileDirectory)UI\Health\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\CardLookup.card" />
   </ItemGroup>
 </Project>

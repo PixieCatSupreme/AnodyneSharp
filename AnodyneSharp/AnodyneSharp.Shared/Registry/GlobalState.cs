@@ -1,5 +1,6 @@
 ﻿
 using AnodyneSharp.Entities;
+using Microsoft.Xna.Framework;
 using System;
 
 namespace AnodyneSharp.Registry
@@ -25,6 +26,14 @@ namespace AnodyneSharp.Registry
             {
                 _dialogue = value;
                 SetDialogueMode = value != "";
+            }
+        }
+
+        public static Vector2 CurrentMapGrid
+        {
+            get
+            {
+                return new Vector2(CURRENT_GRID_X, CURRENT_GRID_Y);
             }
         }
 
