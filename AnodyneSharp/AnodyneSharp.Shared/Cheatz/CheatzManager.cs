@@ -132,6 +132,13 @@ namespace AnodyneSharp.Cheatz
         public static void Meow()
         {
             SoundManager.PlaySoundEffect("meow");
+
+#if DEBUG
+            for (int i = 0; i < InventoryState.AchievementStatus.Length; i++)
+            {
+                InventoryState.AchievementStatus[i] = true;
+            }
+#endif
         }
 
         [Cheat("2121212121")]

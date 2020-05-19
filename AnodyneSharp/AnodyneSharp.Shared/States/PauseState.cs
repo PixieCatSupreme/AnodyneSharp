@@ -44,7 +44,7 @@ namespace AnodyneSharp.States
         {
             get
             {
-                return InventoryState.UnlockedSecretz ? PauseStateState.Secretz : InventoryState.UnlockedFeats ? PauseStateState.Achievements : PauseStateState.Settings;
+                return InventoryState.UnlockedSecretz ? PauseStateState.Secretz : PauseStateState.Achievements;
             }
         }
 
@@ -161,11 +161,12 @@ namespace AnodyneSharp.States
                 case PauseStateState.Settings:
                     _substate = new ConfigSubstate();
                     break;
-                //case PauseStateState.Achievements:
-                //    _substate = new ConfigSubstate();
-                //    break;
-                //case PauseStateState.Secretz:
-                //    break;
+                case PauseStateState.Achievements:
+                    _substate = new AchievementsSubstate();
+                    break;
+                case PauseStateState.Secretz:
+                    _substate = new SecretSubstate();
+                    break;
                 case PauseStateState.Cheatz:
                     _substate = new CheatzSubstate();
                     break;
@@ -230,11 +231,6 @@ namespace AnodyneSharp.States
 
                 SoundManager.PlaySoundEffect("menu_move");
                 _state++;
-
-                if (_state == PauseStateState.Achievements && InventoryState.AchievementsDisabled)
-                {
-                    _state++;
-                }
             }
 
         }
@@ -273,13 +269,12 @@ namespace AnodyneSharp.States
             _cardsLabel.SetText("Cards");
             _saveLabel.SetText("Save");
             _configLabel.SetText("Config");
-            _achievementsLabel.SetText("!!!");
+            _achievementsLabel.SetText("Feats");
             _secretsLabel.SetText("???");
 
             _playtimeLabel.SetText("00:00:00");
             _inputLabel.SetText(" :Select  :Back");
 
-            _achievementsLabel.IsVisible = InventoryState.UnlockedFeats;
             _secretsLabel.IsVisible = InventoryState.UnlockedSecretz;
         }
     }

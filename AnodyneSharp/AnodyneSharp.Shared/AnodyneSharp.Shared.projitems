@@ -61,6 +61,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Sounds\SoundManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\DialogueState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\PauseState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\BaseSubstates\GridSubstate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\AchievementsSubstate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\SecretSubstate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\CardSubstate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\CheatzSubstate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\ConfigSubstate.cs" />
@@ -216,7 +219,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Entities\Gadget\Treasures\Base\" />
-    <Folder Include="$(MSBuildThisFileDirectory)States\PauseSubstates\BaseSubstates\" />
     <Folder Include="$(MSBuildThisFileDirectory)UI\Font\Writing\" />
     <Folder Include="$(MSBuildThisFileDirectory)UI\Health\" />
   </ItemGroup>

@@ -24,7 +24,7 @@ namespace AnodyneSharp.Registry
         Cubes,              //"Got all the cubes! That's all five of them."
         Cards48,            //"Got 48 cards! That's quite the collection."
         Cards49,            //"Got the 49th card! That's all Folks!"
-        Sub15MinutesEnd,    //"Beat the Briar under 15 minutes! As teased in the DEBUG WORLD."
+        Sub15MinutesEnd,    //"Beat the Briar under 15 minutes! Wiggle your way to success."
         Sub3Hour100Percent  //"100% the game under 3 hours. You 100%'d and finished the game in under 3 hours!"
     }
 
@@ -66,14 +66,6 @@ namespace AnodyneSharp.Registry
             get
             {
                 return SecretStatus.Any(s => s);
-            }
-        }
-
-        public static bool UnlockedFeats
-        {
-            get
-            {
-                return AchievementStatus.Any(s => s);
             }
         }
 
