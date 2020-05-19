@@ -499,20 +499,11 @@ namespace AnodyneSharp.States
             }
             else if (KeyInput.JustPressedKey(Keys.D3))
             {
-                InventoryManager.EquippedBroom = BroomType.Long;
+                DebugSetBroom(BroomType.Long);
             }
             else if (KeyInput.JustPressedKey(Keys.D4))
             {
                 DebugSetBroom(BroomType.NONE);
-            }
-
-            if (KeyInput.JustPressedKey(Keys.Space))
-            {
-                GlobalState.CUR_HEALTH -= 3;
-            }
-            else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Pause))
-            {
-                GlobalState.CUR_HEALTH += 3;
             }
 
             if (KeyInput.JustPressedKey(Keys.F1))

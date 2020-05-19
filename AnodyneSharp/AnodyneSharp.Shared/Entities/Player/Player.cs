@@ -160,7 +160,7 @@ namespace AnodyneSharp.Entities
         public override void Draw()
         {
             base.Draw();
-            
+
             broom.Draw();
         }
 
@@ -176,7 +176,7 @@ namespace AnodyneSharp.Entities
                 solid = false;
                 walkSpeed = 200;
 
-                if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept))
+                if (KeyInput.JustPressedKey(Keys.V))
                 {
                     visible = !visible;
                 }
@@ -596,10 +596,10 @@ namespace AnodyneSharp.Entities
                 velocity *= .7f;
             }
 
-            if(Do_bump)
+            if (Do_bump)
             {
                 bump_timer -= GameTimes.DeltaTime;
-                if(bump_timer > 0)
+                if (bump_timer > 0)
                 {
                     velocity = -FacingDirection(facing) * BUMP_VELOCITY;
                 }
