@@ -38,27 +38,27 @@ namespace AnodyneSharp.States.PauseSubstates
 
         public override void HandleInput()
         {
-            if (KeyInput.CanPressKey(Keys.Up))
+            if (KeyInput.JustPressedKey(Keys.Up))
             {
                 AddChar('U');
             }
-            else if (KeyInput.CanPressKey(Keys.Right))
+            else if (KeyInput.JustPressedKey(Keys.Right))
             {
                 AddChar('R');
             }
-            else if (KeyInput.CanPressKey(Keys.Down))
+            else if (KeyInput.JustPressedKey(Keys.Down))
             {
                 AddChar('D');
             }
-            else if (KeyInput.CanPressKey(Keys.Left))
+            else if (KeyInput.JustPressedKey(Keys.Left))
             {
                 AddChar('L');
             }
-            else if (KeyInput.CanPressKey(Keys.C))
+            else if (KeyInput.JustPressedKey(Keys.C))
             {
                 AddChar('1');
             }
-            else if (KeyInput.CanPressKey(Keys.X))
+            else if (KeyInput.JustPressedKey(Keys.X))
             {
                 AddChar('2');
             }

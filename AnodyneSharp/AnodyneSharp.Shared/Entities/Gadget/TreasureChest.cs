@@ -62,7 +62,7 @@ namespace AnodyneSharp.Entities.Gadget
         {
             base.Update();
 
-            if (!opened && touching == Touching.DOWN && KeyInput.CanPressKey(Keys.V))
+            if (!opened && touching == Touching.DOWN && KeyInput.JustPressedKey(Keys.V))
             {
                 opened = true;
                 _treasure.GetTreasure();

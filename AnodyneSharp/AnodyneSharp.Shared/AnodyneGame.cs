@@ -97,12 +97,13 @@ namespace AnodyneSharp
         {
             base.Update(gameTime);
             GameTimes.UpdateTimes(gameTime);
+            KeyInput.Update();
 
             _camera.Update();
 
             _currentState.Update();
 
-            if (KeyInput.CanPressKey(Keys.F12))
+            if (KeyInput.JustPressedKey(Keys.F12))
             {
                 GlobalState.ShowFPS = !GlobalState.ShowFPS;
             }

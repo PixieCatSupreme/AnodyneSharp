@@ -43,20 +43,20 @@ namespace AnodyneSharp.UI.PauseMenu.Config
             _rightArrow.Update();
             _rightArrow.PostUpdate();
 
-            if (KeyInput.CanPressKey(Keys.Left))
+            if (KeyInput.JustPressedKey(Keys.Left))
             {
                 LeftPressed();
             }
-            else if (KeyInput.CanPressKey(Keys.Right))
+            else if (KeyInput.JustPressedKey(Keys.Right))
             {
                 RightPressed();
             }
-            else if (KeyInput.CanPressKey(Keys.C))
+            else if (KeyInput.JustPressedKey(Keys.C))
             {
                 SetValue();
                 Exit = true;
             }
-            else if (KeyInput.CanPressKey(Keys.X))
+            else if (KeyInput.JustPressedKey(Keys.X))
             {
                 ResetValue();
                 Exit = true;

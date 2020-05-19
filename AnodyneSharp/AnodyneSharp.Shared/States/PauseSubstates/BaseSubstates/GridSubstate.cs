@@ -40,7 +40,7 @@ namespace AnodyneSharp.States.PauseSubstates.BaseSubstates
             bool moved = false;
 
 
-            if (KeyInput.CanPressKey(Keys.Right))
+            if (KeyInput.JustPressedKey(Keys.Right))
             {
                 if (_selectedID % 4 == 3)
                 {
@@ -55,7 +55,7 @@ namespace AnodyneSharp.States.PauseSubstates.BaseSubstates
 
                 moved = true;
             }
-            else if (KeyInput.CanPressKey(Keys.Left))
+            else if (KeyInput.JustPressedKey(Keys.Left))
             {
                 if (_selectedID % 4 == 0)
                 {
@@ -69,7 +69,7 @@ namespace AnodyneSharp.States.PauseSubstates.BaseSubstates
 
                 moved = true;
             }
-            else if (KeyInput.CanPressKey(Keys.Up))
+            else if (KeyInput.JustPressedKey(Keys.Up))
             {
                 if (_selectedID < 4)
                 {
@@ -80,7 +80,7 @@ namespace AnodyneSharp.States.PauseSubstates.BaseSubstates
 
                 moved = true;
             }
-            else if (KeyInput.CanPressKey(Keys.Down))
+            else if (KeyInput.JustPressedKey(Keys.Down))
             {
 
                 if (_selectedID > _items.Length - 5)
@@ -94,11 +94,11 @@ namespace AnodyneSharp.States.PauseSubstates.BaseSubstates
 
                 moved = true;
             }
-            else if (KeyInput.CanPressKey(Keys.X))
+            else if (KeyInput.JustPressedKey(Keys.X))
             {
                 ExitSubState();
             }
-            else if (KeyInput.CanPressKey(Keys.C))
+            else if (KeyInput.JustPressedKey(Keys.C))
             {
                 if (_collectedStats[_selectedID])
                 {

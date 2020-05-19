@@ -58,7 +58,7 @@ namespace AnodyneSharp.States.PauseSubstates
 
             if (_pageSetter.Enabled)
             {
-                if (KeyInput.CanPressKey(Keys.Up))
+                if (KeyInput.JustPressedKey(Keys.Up))
                 {
                     _pageSetter.Enabled = false;
                     _selector.visible = true;
@@ -69,7 +69,7 @@ namespace AnodyneSharp.States.PauseSubstates
                 _pageSetter.Update();
             }
 
-            if (KeyInput.CanPressKey(Keys.Right))
+            if (KeyInput.JustPressedKey(Keys.Right))
             {
                 if (selectedID % 3 == 2)
                 {
@@ -90,7 +90,7 @@ namespace AnodyneSharp.States.PauseSubstates
 
                 moved = true;
             }
-            else if (KeyInput.CanPressKey(Keys.Left))
+            else if (KeyInput.JustPressedKey(Keys.Left))
             {
                 if (selectedID % 3 == 0)
                 {
@@ -111,7 +111,7 @@ namespace AnodyneSharp.States.PauseSubstates
 
                 moved = true;
             }
-            else if (KeyInput.CanPressKey(Keys.Up))
+            else if (KeyInput.JustPressedKey(Keys.Up))
             {
                 if (selectedID < 3)
                 {
@@ -122,7 +122,7 @@ namespace AnodyneSharp.States.PauseSubstates
 
                 moved = true;
             }
-            else if (KeyInput.CanPressKey(Keys.Down))
+            else if (KeyInput.JustPressedKey(Keys.Down))
             {
 
                 if (selectedID > 8)
@@ -140,11 +140,11 @@ namespace AnodyneSharp.States.PauseSubstates
 
                 moved = true;
             }
-            else if (KeyInput.CanPressKey(Keys.X))
+            else if (KeyInput.JustPressedKey(Keys.X))
             {
                 ExitSubState();
             }
-            else if (KeyInput.CanPressKey(Keys.C))
+            else if (KeyInput.JustPressedKey(Keys.C))
             {
                 int cardID = page * 12 + selectedID;
                 if (InventoryManager.CardStatus[cardID])

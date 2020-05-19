@@ -87,7 +87,7 @@ namespace AnodyneSharp.States
             _selector.Update();
             _selector.PostUpdate();
 
-            if (KeyInput.CanPressKey(Keys.Enter))
+            if (KeyInput.JustPressedKey(Keys.Enter))
             {
                 Exited = true;
             }
@@ -178,14 +178,14 @@ namespace AnodyneSharp.States
 
         private void BrowseInput()
         {
-            if (KeyInput.CanPressKey(Keys.C) || KeyInput.CanPressKey(Keys.Right))
+            if (KeyInput.JustPressedKey(Keys.C) || KeyInput.JustPressedKey(Keys.Right))
             {
                 SoundManager.PlaySoundEffect("menu_select");
                 _inSubstate = true;
                 _selector.Play("inactive");
                 _substate.GetControl();
             }
-            else if (KeyInput.CanPressKey(Keys.Up))
+            else if (KeyInput.JustPressedKey(Keys.Up))
             {
                 if (_state == PauseStateState.Cheatz)
                 {
@@ -202,7 +202,7 @@ namespace AnodyneSharp.States
                 SoundManager.PlaySoundEffect("menu_move");
                 _state--;
             }
-            else if (KeyInput.CanPressKey(Keys.Down))
+            else if (KeyInput.JustPressedKey(Keys.Down))
             {
                 if (_state == PauseStateState.Cheatz)
                 {

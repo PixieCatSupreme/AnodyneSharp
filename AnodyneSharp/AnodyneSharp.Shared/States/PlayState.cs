@@ -325,7 +325,7 @@ namespace AnodyneSharp.States
 
             CheckForTransition();
 
-            if (KeyInput.CanPressKey(Keys.Enter))
+            if (KeyInput.JustPressedKey(Keys.Enter))
             {
                 _childState = new PauseState();
                 _state = PlayStateState.S_PAUSED;
@@ -457,80 +457,80 @@ namespace AnodyneSharp.States
 #if DEBUG
         private void DebugKeyInput()
         {
-            if (KeyInput.CanPressKey(Keys.T))
+            if (KeyInput.JustPressedKey(Keys.T))
             {
                 GlobalState.Dialogue = "abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890.:,;'\"(!?)+-*/=[]";
                 GlobalState.Dialogue = "Hello^\nYes, this is slime";
             }
             
-            if (KeyInput.CanPressKey(Keys.F6))
+            if (KeyInput.JustPressedKey(Keys.F6))
             {
                 Cheatz.Cheatz.GiveKey();
             }
 
-            if (KeyInput.CanPressKey(Keys.F11))
+            if (KeyInput.JustPressedKey(Keys.F11))
             {
                 Cheatz.Cheatz.ToggleFuckItMode();
             }
 
-            if (KeyInput.CanPressKey(Keys.M))
+            if (KeyInput.JustPressedKey(Keys.M))
             {
                 GlobalState.CURRENT_MAP_NAME = TileData.GetNextMapName();
                 LoadMap();
                 StateTransition();
             }
-            else if (KeyInput.CanPressKey(Keys.N))
+            else if (KeyInput.JustPressedKey(Keys.N))
             {
                 GlobalState.CURRENT_MAP_NAME = TileData.GetPreviousMapName();
                 LoadMap();
                 StateTransition();
             }
 
-            if (KeyInput.CanPressKey(Keys.D1))
+            if (KeyInput.JustPressedKey(Keys.D1))
             {
                 DebugSetBroom(BroomType.Normal);
 
             }
-            else if (KeyInput.CanPressKey(Keys.D2))
+            else if (KeyInput.JustPressedKey(Keys.D2))
             {
                 DebugSetBroom(BroomType.Wide);
             }
-            else if (KeyInput.CanPressKey(Keys.D3))
+            else if (KeyInput.JustPressedKey(Keys.D3))
             {
                 InventoryManager.EquippedBroom = BroomType.Long;
             }
-            else if (KeyInput.CanPressKey(Keys.D4))
+            else if (KeyInput.JustPressedKey(Keys.D4))
             {
                 DebugSetBroom(BroomType.NONE);
             }
 
-            if (KeyInput.CanPressKey(Keys.Space))
+            if (KeyInput.JustPressedKey(Keys.Space))
             {
                 GlobalState.CUR_HEALTH -= 3;
             }
-            else if (KeyInput.CanPressKey(Keys.Enter))
+            else if (KeyInput.JustPressedKey(Keys.Enter))
             {
                 GlobalState.CUR_HEALTH += 3;
             }
 
-            if (KeyInput.CanPressKey(Keys.F1))
+            if (KeyInput.JustPressedKey(Keys.F1))
             {
                 GlobalState.DrawBG = !GlobalState.DrawBG;
             }
-            if (KeyInput.CanPressKey(Keys.F2))
+            if (KeyInput.JustPressedKey(Keys.F2))
             {
                 GlobalState.DrawBG2 = !GlobalState.DrawBG2;
             }
-            if (KeyInput.CanPressKey(Keys.F3))
+            if (KeyInput.JustPressedKey(Keys.F3))
             {
                 GlobalState.DrawFG = !GlobalState.DrawFG;
             }
 
-            if (KeyInput.CanPressKey(Keys.OemPlus))
+            if (KeyInput.JustPressedKey(Keys.OemPlus))
             {
                 _camera.Zoom += 0.1f;
             }
-            else if (KeyInput.CanPressKey(Keys.OemMinus) && _camera.Zoom > 0)
+            else if (KeyInput.JustPressedKey(Keys.OemMinus) && _camera.Zoom > 0)
             {
                 _camera.Zoom -= 0.1f;
             }
@@ -539,25 +539,25 @@ namespace AnodyneSharp.States
             {
                 float camSpeed = !GlobalState.FreeRoamCamera ? SCREEN_WIDTH_IN_PIXELS : KeyInput.IsKeyPressed(Keys.LeftShift) ? 8 : 4;
 
-                if (KeyInput.CanPressKey(Keys.NumPad4))
+                if (KeyInput.JustPressedKey(Keys.NumPad4))
                 {
                     _camera.Move(-camSpeed, 0);
                 }
-                else if (KeyInput.CanPressKey(Keys.NumPad6))
+                else if (KeyInput.JustPressedKey(Keys.NumPad6))
                 {
                     _camera.Move(camSpeed, 0);
                 }
 
-                if (KeyInput.CanPressKey(Keys.NumPad8))
+                if (KeyInput.JustPressedKey(Keys.NumPad8))
                 {
                     _camera.Move(0, -camSpeed);
                 }
-                else if (KeyInput.CanPressKey(Keys.NumPad2))
+                else if (KeyInput.JustPressedKey(Keys.NumPad2))
                 {
                     _camera.Move(0, camSpeed);
                 }
 
-                if (KeyInput.CanPressKey(Keys.D1))
+                if (KeyInput.JustPressedKey(Keys.D1))
                 {
                     _camera.GoTo(MapUtilities.GetRoomUpperLeftPos(new Vector2(1, 5)));
                 }

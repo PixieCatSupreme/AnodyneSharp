@@ -176,7 +176,7 @@ namespace AnodyneSharp.Entities
                 solid = false;
                 walkSpeed = 200;
 
-                if (KeyInput.CanPressKey(Keys.V))
+                if (KeyInput.JustPressedKey(Keys.V))
                 {
                     visible = !visible;
                 }
@@ -319,7 +319,7 @@ namespace AnodyneSharp.Entities
 
             if (state != PlayerState.AIR)
             {
-                if (KeyInput.CanPressKey(Keys.C) && action_latency <= 0)
+                if (KeyInput.JustPressedKey(Keys.C) && action_latency <= 0)
                 {
                     if (InventoryManager.EquippedBroom != BroomType.NONE && !broom.exists)
                     {
@@ -347,7 +347,7 @@ namespace AnodyneSharp.Entities
                 }
 
 
-                if (KeyInput.CanPressKey(Keys.X) && !sinking)
+                if (KeyInput.JustPressedKey(Keys.X) && !sinking)
                 {
                     state = PlayerState.AIR;
                     shadow.visible = true;

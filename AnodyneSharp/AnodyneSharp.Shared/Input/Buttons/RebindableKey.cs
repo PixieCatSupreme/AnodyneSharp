@@ -16,7 +16,6 @@ namespace AnodyneSharp.Input
             }
         }
 
-        public Enum FunctionName { get; private set; }
         public List<Keys> Keys;
         public List<Buttons> Buttons;
         public List<MouseButton> MouseButtons;
@@ -24,9 +23,8 @@ namespace AnodyneSharp.Input
 
         public PlayerIndex? GamePadPlayerIndex;
 
-        public RebindableKey(Enum function, Keys key)
+        public RebindableKey(Keys key)
         {
-            FunctionName = function;
             Keys = new List<Keys>() { key };
             Buttons = new List<Buttons>();
             MouseButtons = new List<MouseButton>();
@@ -35,9 +33,8 @@ namespace AnodyneSharp.Input
             GamePadPlayerIndex = null;
         }
 
-        public RebindableKey(Enum function, Buttons button)
+        public RebindableKey(Buttons button)
         {
-            FunctionName = function;
             Keys = new List<Keys>();
             Buttons = new List<Buttons>() { button };
             MouseButtons = new List<MouseButton>();
@@ -46,9 +43,8 @@ namespace AnodyneSharp.Input
             GamePadPlayerIndex = PlayerIndex.One;
         }
 
-        public RebindableKey(Enum function, Buttons button, PlayerIndex playerIndex)
+        public RebindableKey(Buttons button, PlayerIndex playerIndex)
         {
-            FunctionName = function;
             Keys = new List<Keys>();
             Buttons = new List<Buttons>() { button };
             MouseButtons = new List<MouseButton>();
@@ -57,9 +53,8 @@ namespace AnodyneSharp.Input
             GamePadPlayerIndex = playerIndex;
         }
 
-        public RebindableKey(Enum function, MouseButton mouseButton)
+        public RebindableKey(MouseButton mouseButton)
         {
-            FunctionName = function;
             Keys = new List<Keys>();
             Buttons = new List<Buttons>();
             GamePadPlayerIndex = PlayerIndex.One;
@@ -68,9 +63,8 @@ namespace AnodyneSharp.Input
             MouseButtons = new List<MouseButton>() { mouseButton };
         }
 
-        public RebindableKey(Enum function, Keys key, Buttons button)
+        public RebindableKey(Keys key, Buttons button)
         {
-            FunctionName = function;
             Keys = new List<Keys>() { key };
             Buttons = new List<Buttons>() { button };
             GamePadPlayerIndex = PlayerIndex.One;
@@ -79,9 +73,8 @@ namespace AnodyneSharp.Input
             MouseButtons = new List<MouseButton>();
         }
 
-        public RebindableKey(Enum function, Keys key, Buttons button, PlayerIndex playerIndex)
+        public RebindableKey(Keys key, Buttons button, PlayerIndex playerIndex)
         {
-            FunctionName = function;
             Keys = new List<Keys>() { key };
             Buttons = new List<Buttons>() { button };
             GamePadPlayerIndex = playerIndex;
@@ -90,9 +83,8 @@ namespace AnodyneSharp.Input
             MouseButtons = new List<MouseButton>();
         }
 
-        public RebindableKey(Enum function, Keys key, Buttons button, MouseButton mouseButton)
+        public RebindableKey(Keys key, Buttons button, MouseButton mouseButton)
         {
-            FunctionName = function;
             Keys = new List<Keys>() { key };
             Buttons = new List<Buttons>() { button };
             GamePadPlayerIndex = PlayerIndex.One;
@@ -101,9 +93,8 @@ namespace AnodyneSharp.Input
             MouseButtons = new List<MouseButton>() { mouseButton };
         }
 
-        public RebindableKey(Enum function, Keys key, Buttons button, PlayerIndex playerIndex, MouseButton mouseButton)
+        public RebindableKey(Keys key, Buttons button, PlayerIndex playerIndex, MouseButton mouseButton)
         {
-            FunctionName = function;
             Keys = new List<Keys>() { key };
             Buttons = new List<Buttons>() { button };
             GamePadPlayerIndex = playerIndex;
@@ -111,9 +102,8 @@ namespace AnodyneSharp.Input
 
             MouseButtons = new List<MouseButton>() { mouseButton };
         }
-        public RebindableKey(Enum function, List<Keys> keys)
+        public RebindableKey(List<Keys> keys)
         {
-            FunctionName = function;
             Keys = keys;
             Buttons = new List<Buttons>();
             GamePadPlayerIndex = PlayerIndex.One;
@@ -121,9 +111,8 @@ namespace AnodyneSharp.Input
 
             MouseButtons = new List<MouseButton>();
         }
-        public RebindableKey(Enum function, List<Buttons> buttons)
+        public RebindableKey(List<Buttons> buttons)
         {
-            FunctionName = function;
             Keys = new List<Keys>();
             Buttons = buttons;
             GamePadPlayerIndex = PlayerIndex.One;
@@ -132,9 +121,8 @@ namespace AnodyneSharp.Input
             MouseButtons = new List<MouseButton>();
         }
 
-        public RebindableKey(Enum function, List<MouseButton> mouseButtons)
+        public RebindableKey(List<MouseButton> mouseButtons)
         {
-            FunctionName = function;
             Keys = new List<Keys>();
             Buttons = new List<Buttons>();
             GamePadPlayerIndex = PlayerIndex.One;
@@ -143,9 +131,8 @@ namespace AnodyneSharp.Input
             MouseButtons = mouseButtons;
         }
 
-        public RebindableKey(Enum function, List<MouseButton> mouseButtons, List<GestureType> gestureTypes)
+        public RebindableKey(List<MouseButton> mouseButtons, List<GestureType> gestureTypes)
         {
-            FunctionName = function;
             Keys = new List<Keys>();
             Buttons = new List<Buttons>();
             GamePadPlayerIndex = PlayerIndex.One;
@@ -154,9 +141,8 @@ namespace AnodyneSharp.Input
             MouseButtons = mouseButtons;
         }
 
-        public RebindableKey(Enum function, List<Keys> keys, List<Buttons> buttons)
+        public RebindableKey(List<Keys> keys, List<Buttons> buttons)
         {
-            FunctionName = function;
             Keys = keys;
             Buttons = buttons;
             GamePadPlayerIndex = PlayerIndex.One;
@@ -165,9 +151,8 @@ namespace AnodyneSharp.Input
             MouseButtons = new List<MouseButton>();
         }
 
-        public RebindableKey(Enum function, List<Keys> keys, List<Buttons> buttons, List<MouseButton> mouseButtons)
+        public RebindableKey(List<Keys> keys, List<Buttons> buttons, List<MouseButton> mouseButtons)
         {
-            FunctionName = function;
             Keys = keys;
             Buttons = buttons;
             GamePadPlayerIndex = PlayerIndex.One;
@@ -177,9 +162,8 @@ namespace AnodyneSharp.Input
         }
 
 
-        public RebindableKey(Enum function, List<Keys> keys, List<Buttons> buttons, List<MouseButton> mouseButtons, List<GestureType> gestureTypes)
+        public RebindableKey(List<Keys> keys, List<Buttons> buttons, List<MouseButton> mouseButtons, List<GestureType> gestureTypes)
         {
-            FunctionName = function;
             Keys = keys;
             Buttons = buttons;
             GamePadPlayerIndex = PlayerIndex.One;
@@ -188,9 +172,8 @@ namespace AnodyneSharp.Input
             MouseButtons = mouseButtons;
         }
 
-        public RebindableKey(Enum function, List<Keys> keys, List<Buttons> buttons, PlayerIndex playerIndex)
+        public RebindableKey(List<Keys> keys, List<Buttons> buttons, PlayerIndex playerIndex)
         {
-            FunctionName = function;
             Keys = keys;
             Buttons = buttons;
             GamePadPlayerIndex = playerIndex;
@@ -199,9 +182,8 @@ namespace AnodyneSharp.Input
             MouseButtons = new List<MouseButton>();
         }
 
-        public RebindableKey(Enum function, List<Keys> keys, List<Buttons> buttons, List<MouseButton> mouseButtons, PlayerIndex playerIndex)
+        public RebindableKey(List<Keys> keys, List<Buttons> buttons, List<MouseButton> mouseButtons, PlayerIndex playerIndex)
         {
-            FunctionName = function;
             Keys = keys;
             Buttons = buttons;
             GamePadPlayerIndex = playerIndex;
