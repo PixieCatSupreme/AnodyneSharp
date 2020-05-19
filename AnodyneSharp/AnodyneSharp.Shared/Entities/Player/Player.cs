@@ -176,7 +176,7 @@ namespace AnodyneSharp.Entities
                 solid = false;
                 walkSpeed = 200;
 
-                if (KeyInput.JustPressedKey(Keys.V))
+                if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept))
                 {
                     visible = !visible;
                 }
@@ -319,7 +319,7 @@ namespace AnodyneSharp.Entities
 
             if (state != PlayerState.AIR)
             {
-                if (KeyInput.JustPressedKey(Keys.C) && action_latency <= 0)
+                if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept) && action_latency <= 0)
                 {
                     if (InventoryManager.EquippedBroom != BroomType.NONE && !broom.exists)
                     {
@@ -347,7 +347,7 @@ namespace AnodyneSharp.Entities
                 }
 
 
-                if (KeyInput.JustPressedKey(Keys.X) && !sinking)
+                if (KeyInput.JustPressedRebindableKey(KeyFunctions.Cancel) && !sinking)
                 {
                     state = PlayerState.AIR;
                     shadow.visible = true;
@@ -637,7 +637,7 @@ namespace AnodyneSharp.Entities
                 return;
             }
 
-            if (KeyInput.IsKeyPressed(Keys.Up))
+            if (KeyInput.IsRebindableKeyPressed(KeyFunctions.Up))
             {
                 velocity.Y = -mul;
                 if ((touching & Touching.UP) != 0)
@@ -655,7 +655,7 @@ namespace AnodyneSharp.Entities
                 }
 
             }
-            else if (KeyInput.IsKeyPressed(Keys.Down))
+            else if (KeyInput.IsRebindableKeyPressed(KeyFunctions.Down))
             {
                 velocity.Y = mul;
                 if ((touching & Touching.DOWN) != 0)
@@ -677,7 +677,7 @@ namespace AnodyneSharp.Entities
                 velocity.Y = 0;
             }
 
-            if (KeyInput.IsKeyPressed(Keys.Left))
+            if (KeyInput.IsRebindableKeyPressed(KeyFunctions.Left))
             {
                 velocity.X = -mul;
                 if ((touching & Touching.LEFT) != 0)
@@ -694,7 +694,7 @@ namespace AnodyneSharp.Entities
                     }
                 }
             }
-            else if (KeyInput.IsKeyPressed(Keys.Right))
+            else if (KeyInput.IsRebindableKeyPressed(KeyFunctions.Right))
             {
                 velocity.X = mul;
                 if ((touching & Touching.RIGHT) != 0)

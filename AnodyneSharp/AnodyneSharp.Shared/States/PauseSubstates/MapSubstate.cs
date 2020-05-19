@@ -80,7 +80,7 @@ namespace AnodyneSharp.States.PauseSubstates
             switch (_state)
             {
                 case MapState.ReturnToNexusLabel:
-                    if (KeyInput.JustPressedKey(Keys.C))
+                    if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept))
                     {
                         _state = MapState.NoLabel;
                         SoundManager.PlaySoundEffect("menu_select");
@@ -91,42 +91,42 @@ namespace AnodyneSharp.States.PauseSubstates
                     }
                     break;
                 case MapState.NoLabel:
-                    if (KeyInput.JustPressedKey(Keys.C))
+                    if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept))
                     {
                         _state = MapState.ReturnToNexusLabel;
                         SoundManager.PlaySoundEffect("menu_select");
                     }
-                    else if (KeyInput.JustPressedKey(Keys.X))
+                    else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Cancel))
                     {
                         _state = MapState.ReturnToNexusLabel;
                         SoundManager.PlaySoundEffect("menu_select");
                     }
-                    else if (KeyInput.JustPressedKey(Keys.Left))
+                    else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Left))
                     {
                         _state = MapState.YesLabel;
                         SoundManager.PlaySoundEffect("menu_move");
                     }
-                    else if (KeyInput.JustPressedKey(Keys.Right))
+                    else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Right))
                     {
                         SoundManager.PlaySoundEffect("menu_move");
                     }
                     break;
                 case MapState.YesLabel:
-                    if (KeyInput.JustPressedKey(Keys.C))
+                    if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept))
                     {
                         SoundManager.PlaySoundEffect("menu_select");
                         //TODO return to nexus
                     }
-                    else if (KeyInput.JustPressedKey(Keys.X))
+                    else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Cancel))
                     {
                         _state = MapState.ReturnToNexusLabel;
                         SoundManager.PlaySoundEffect("menu_select");
                     }
-                    else if (KeyInput.JustPressedKey(Keys.Left))
+                    else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Left))
                     {
                         SoundManager.PlaySoundEffect("menu_move");
                     }
-                    else if (KeyInput.JustPressedKey(Keys.Right))
+                    else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Right))
                     {
                         _state = MapState.NoLabel;
                         SoundManager.PlaySoundEffect("menu_move");

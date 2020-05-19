@@ -39,7 +39,7 @@ namespace AnodyneSharp.States.PauseSubstates
 
         public virtual void HandleInput()
         {
-            if (KeyInput.JustPressedKey(Keys.X) || KeyInput.JustPressedKey(Keys.Left))
+            if (KeyInput.JustPressedRebindableKey(KeyFunctions.Cancel) || KeyInput.JustPressedRebindableKey(KeyFunctions.Left))
             {
                 ExitSubState();
             }

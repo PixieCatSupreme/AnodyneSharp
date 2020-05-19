@@ -195,6 +195,7 @@ namespace AnodyneSharp.States
                             _player.dontMove = false;
                             _player.broom.UpdateBroomType();
                             _updateEntities = true;
+                            return;
                         }
                     }
                     break;
@@ -325,11 +326,12 @@ namespace AnodyneSharp.States
 
             CheckForTransition();
 
-            if (KeyInput.JustPressedKey(Keys.Enter))
+            if (KeyInput.JustPressedRebindableKey(KeyFunctions.Pause))
             {
                 _childState = new PauseState();
                 _state = PlayStateState.S_PAUSED;
                 _updateEntities = false;
+                SoundManager.PlaySoundEffect("pause_sound");
             }
 
             //TODO check if player is unalive
@@ -508,7 +510,7 @@ namespace AnodyneSharp.States
             {
                 GlobalState.CUR_HEALTH -= 3;
             }
-            else if (KeyInput.JustPressedKey(Keys.Enter))
+            else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Pause))
             {
                 GlobalState.CUR_HEALTH += 3;
             }
@@ -555,11 +557,6 @@ namespace AnodyneSharp.States
                 else if (KeyInput.JustPressedKey(Keys.NumPad2))
                 {
                     _camera.Move(0, camSpeed);
-                }
-
-                if (KeyInput.JustPressedKey(Keys.D1))
-                {
-                    _camera.GoTo(MapUtilities.GetRoomUpperLeftPos(new Vector2(1, 5)));
                 }
             }
         }

@@ -89,7 +89,7 @@ namespace AnodyneSharp.States.PauseSubstates
 
         public override void HandleInput()
         {
-            if (KeyInput.JustPressedKey(Keys.Up))
+            if (KeyInput.JustPressedRebindableKey(KeyFunctions.Up))
             {
                 if (_state == EquipState.Broom)
                 {
@@ -104,7 +104,7 @@ namespace AnodyneSharp.States.PauseSubstates
 
                 _state--;
             }
-            else if (KeyInput.JustPressedKey(Keys.Down))
+            else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Down))
             {
                 if (_state >= EquipState.Item)
                 {
@@ -113,7 +113,7 @@ namespace AnodyneSharp.States.PauseSubstates
 
                 _state++;
             }
-            else if (_state >= EquipState.Shoes && KeyInput.JustPressedKey(Keys.Right))
+            else if (_state >= EquipState.Shoes && KeyInput.JustPressedRebindableKey(KeyFunctions.Right))
             {
                 if (_state == EquipState.Key3)
                 {
@@ -122,11 +122,11 @@ namespace AnodyneSharp.States.PauseSubstates
 
                 _state++;
             }
-            else if (_state > EquipState.Shoes && KeyInput.JustPressedKey(Keys.Left))
+            else if (_state > EquipState.Shoes && KeyInput.JustPressedRebindableKey(KeyFunctions.Left))
             {
                 _state--;
             }
-            else if (KeyInput.JustPressedKey(Keys.C))
+            else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept))
             {
                 UseItem();
             }

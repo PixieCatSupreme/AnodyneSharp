@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,58 +15,51 @@ namespace AnodyneSharp.Input
         Accept,
         Cancel,
         Pause,
-        ToggleFPS,
-        Screenshot
+        PreviousPage,
+        NextPage
     }
-
-#if DEBUG
-    public enum DebugKeyFunctions
-    {
-        ShowState = 1000,
-        HardReset,
-        SmallResolution,
-        DefaultResolution,
-        PreviousSong,
-        NextSong,
-        StopSong
-    }
-#endif
 
     /// <summary>
     /// An easy handler to keep track of pressed keys and mouse buttons and has some methods to check if the are pressed or not.
     /// </summary>
     public static class KeyInput
     {
-        private enum ButtonState
+        private enum InputState
         {
             NONE,
             HELD,
             PRESSED
         };
 
-        private static ButtonState UpdateButton(ButtonState current, bool pressed)
+        private static InputState UpdateInput(InputState current, bool pressed)
         {
-            if(!pressed)
+            if (!pressed)
             {
-                return ButtonState.NONE;
+                return InputState.NONE;
             }
-            if(current == ButtonState.NONE)
+            if (current == InputState.NONE)
             {
-                return ButtonState.PRESSED;
+                return InputState.PRESSED;
             }
-            return ButtonState.HELD;
+            return InputState.HELD;
         }
 
-        public static Dictionary<Enum,RebindableKey> RebindableKeys;
+        public static Dictionary<KeyFunctions, RebindableKey> RebindableKeys;
 
-        private static Dictionary<Keys, ButtonState> KeyState;
-        private static Dictionary<Buttons, ButtonState> ControllerState;
+        private static Dictionary<Keys, InputState> KeyState;
+        private static Dictionary<Buttons, InputState>[] ControllerState;
 
         static KeyInput()
         {
-            RebindableKeys = new Dictionary<Enum, RebindableKey>();
+            RebindableKeys = new Dictionary<KeyFunctions, RebindableKey>();
+            ControllerState = new Dictionary<Buttons, InputState>[4];
 
-            KeyState = Enumerable.ToDictionary(Enum.GetValues(typeof(Keys)) as IEnumerable<Keys>, k => k, k => ButtonState.NONE);
+            KeyState = Enumerable.ToDictionary(Enum.GetValues(typeof(Keys)) as IEnumerable<Keys>, k => k, k => InputState.NONE);
+
+            for (int i = 0; i < ControllerState.Length; i++)
+            {
+                ControllerState[i] = Enumerable.ToDictionary(Enum.GetValues(typeof(Buttons)) as IEnumerable<Buttons>, k => k, k => InputState.NONE);
+            }
         }
 
         /// <summary>
@@ -74,19 +68,35 @@ namespace AnodyneSharp.Input
         public static void Update()
         {
             KeyboardState s = Keyboard.GetState();
-            
+
             foreach (Keys key in Enum.GetValues(typeof(Keys)))
             {
-                KeyState[key] = UpdateButton(KeyState[key], s.IsKeyDown(key));
+                KeyState[key] = UpdateInput(KeyState[key], s.IsKeyDown(key));
+            }
+
+            for (int i = 0; i < ControllerState.Length; i++)
+            {
+                GamePadState g = GamePad.GetState(i);
+                var dic = ControllerState[i];
+
+                foreach (Buttons button in Enum.GetValues(typeof(Buttons)))
+                {
+                    dic[button] = UpdateInput(dic[button], g.IsButtonDown(button));
+                }
             }
         }
 
-        private static ButtonState GetRebindableKeyState(Enum name)
+        private static InputState GetRebindableKeyState(KeyFunctions name)
         {
-            ButtonState state = ButtonState.NONE;
+            InputState state = InputState.NONE;
             if (RebindableKeys.TryGetValue(name, out RebindableKey key))
             {
-                state = Enumerable.Max(key.Keys, k => KeyState[k]);
+                var states = Enumerable.Select(key.Keys, k => KeyState[k]);
+                if (key.GamePadPlayerIndex != null)
+                {
+                    states = states.Concat(Enumerable.Select(key.Buttons, k => ControllerState[(int)key.GamePadPlayerIndex][k]));
+                }
+                state = states.Max();
             }
             return state;
         }
@@ -96,9 +106,9 @@ namespace AnodyneSharp.Input
         /// </summary>
         /// <param name="functionName"></param>
         /// <returns></returns>
-        public static bool IsRebindableKeyPressed(Enum functionName)
+        public static bool IsRebindableKeyPressed(KeyFunctions functionName)
         {
-            return GetRebindableKeyState(functionName) != ButtonState.NONE;
+            return GetRebindableKeyState(functionName) != InputState.NONE;
         }
 
         /// <summary>
@@ -106,9 +116,9 @@ namespace AnodyneSharp.Input
         /// </summary>
         /// <param name="functionName"></param>
         /// <returns></returns>
-        public static bool JustPressedRebindableKey(Enum functionName)
+        public static bool JustPressedRebindableKey(KeyFunctions functionName)
         {
-            return GetRebindableKeyState(functionName) == ButtonState.PRESSED;
+            return GetRebindableKeyState(functionName) == InputState.PRESSED;
         }
 
         /// <summary>
@@ -118,7 +128,7 @@ namespace AnodyneSharp.Input
         /// <returns></returns>
         public static bool IsKeyPressed(Keys key)
         {
-            return KeyState[key] != ButtonState.NONE;
+            return KeyState[key] != InputState.NONE;
         }
 
         /// <summary>
@@ -145,21 +155,7 @@ namespace AnodyneSharp.Input
         /// <returns></returns>
         public static bool JustPressedKey(Keys key)
         {
-            return KeyState[key] == ButtonState.PRESSED;
-        }
-
-        /// <summary>
-        /// Compares two key function names.
-        /// </summary>
-        /// <param name="functionName1"></param>
-        /// <param name="functionName2"></param>
-        /// <returns></returns>
-        private static bool CompareFunctionNames(Enum functionName1, Enum functionName2)
-        {
-            KeyFunctions function1 = (KeyFunctions)functionName1;
-            KeyFunctions function2 = (KeyFunctions)functionName2;
-
-            return function1 == function2;
+            return KeyState[key] == InputState.PRESSED;
         }
     }
 }

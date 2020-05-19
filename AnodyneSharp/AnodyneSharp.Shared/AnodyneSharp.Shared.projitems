@@ -39,6 +39,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Registry\AchievementManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Registry\InventoryManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Resources\CardDataManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Resources\ContentLoader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Resources\ContentWriter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Resources\Loading\InputConfigLoader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Resources\ResourceManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Animations\Anim.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\Entity.cs" />
@@ -59,6 +62,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Registry\GameConstants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Registry\GlobalState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\EntityManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Resources\Writing\InputConfigWriter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sounds\SoundManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\DialogueState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\PauseState.cs" />

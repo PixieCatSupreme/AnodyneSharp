@@ -68,7 +68,7 @@ namespace AnodyneSharp.States.PauseSubstates
 
         public override void HandleInput()
         {
-            if (KeyInput.JustPressedKey(Keys.Up))
+            if (KeyInput.JustPressedRebindableKey(KeyFunctions.Up))
             {
                 if (_state == SaveState.SaveLabel)
                 {
@@ -77,7 +77,7 @@ namespace AnodyneSharp.States.PauseSubstates
 
                 _state--;
             }
-            else if (KeyInput.JustPressedKey(Keys.Down))
+            else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Down))
             {
                 if (_state >= SaveState.QuitLabel)
                 {
@@ -86,7 +86,7 @@ namespace AnodyneSharp.States.PauseSubstates
 
                 _state++;
             }
-            else if (KeyInput.JustPressedKey(Keys.C))
+            else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept))
             {
                 SoundManager.PlaySoundEffect("menu_select");
                 //TODO Saving

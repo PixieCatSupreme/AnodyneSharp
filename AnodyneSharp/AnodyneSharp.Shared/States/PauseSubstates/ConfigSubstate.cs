@@ -96,6 +96,8 @@ namespace AnodyneSharp.States.PauseSubstates
             {
                 ValueChangedEvent = AutoSaveValueChanged
             };
+
+            _state = _lastState;
         }
 
         public override void GetControl()
@@ -137,7 +139,7 @@ namespace AnodyneSharp.States.PauseSubstates
             }
             else
             {
-                if (KeyInput.JustPressedKey(Keys.Up))
+                if (KeyInput.JustPressedRebindableKey(KeyFunctions.Up))
                 {
                     if (_state == ConfigState.KeybindsLabel)
                     {
@@ -146,7 +148,7 @@ namespace AnodyneSharp.States.PauseSubstates
 
                     _state--;
                 }
-                else if (KeyInput.JustPressedKey(Keys.Down))
+                else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Down))
                 {
                     if (_state >= ConfigState.LanguageLabel)
                     {
@@ -155,7 +157,7 @@ namespace AnodyneSharp.States.PauseSubstates
 
                     _state++;
                 }
-                else if (KeyInput.JustPressedKey(Keys.C))
+                else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept))
                 {
                     SetSettingsState();
                 }

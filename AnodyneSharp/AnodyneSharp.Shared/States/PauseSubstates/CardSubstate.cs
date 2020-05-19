@@ -58,7 +58,7 @@ namespace AnodyneSharp.States.PauseSubstates
 
             if (_pageSetter.Enabled)
             {
-                if (KeyInput.JustPressedKey(Keys.Up))
+                if (KeyInput.JustPressedRebindableKey(KeyFunctions.Up))
                 {
                     _pageSetter.Enabled = false;
                     _selector.visible = true;
@@ -69,7 +69,7 @@ namespace AnodyneSharp.States.PauseSubstates
                 _pageSetter.Update();
             }
 
-            if (KeyInput.JustPressedKey(Keys.Right))
+            if (KeyInput.JustPressedRebindableKey(KeyFunctions.Right))
             {
                 if (selectedID % 3 == 2)
                 {
@@ -90,7 +90,7 @@ namespace AnodyneSharp.States.PauseSubstates
 
                 moved = true;
             }
-            else if (KeyInput.JustPressedKey(Keys.Left))
+            else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Left))
             {
                 if (selectedID % 3 == 0)
                 {
@@ -111,7 +111,7 @@ namespace AnodyneSharp.States.PauseSubstates
 
                 moved = true;
             }
-            else if (KeyInput.JustPressedKey(Keys.Up))
+            else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Up))
             {
                 if (selectedID < 3)
                 {
@@ -122,7 +122,7 @@ namespace AnodyneSharp.States.PauseSubstates
 
                 moved = true;
             }
-            else if (KeyInput.JustPressedKey(Keys.Down))
+            else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Down))
             {
 
                 if (selectedID > 8)
@@ -140,18 +140,41 @@ namespace AnodyneSharp.States.PauseSubstates
 
                 moved = true;
             }
-            else if (KeyInput.JustPressedKey(Keys.X))
+            else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Cancel))
             {
                 ExitSubState();
             }
-            else if (KeyInput.JustPressedKey(Keys.C))
+            else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept))
             {
                 int cardID = page * 12 + selectedID;
                 if (InventoryManager.CardStatus[cardID])
                 {
                     SetDialogue($"card text {cardID}");
                 }
+            }
+            if (KeyInput.JustPressedRebindableKey(KeyFunctions.NextPage))
+            {
+                if (page == 3)
+                {
+                    return;
+                }
 
+                page++;
+                SetCardPage();
+
+                moved = true;
+            }
+            else if (KeyInput.JustPressedRebindableKey(KeyFunctions.PreviousPage))
+            {
+                if (page == 0)
+                {
+                    return;
+                }
+
+                page--;
+                SetCardPage();
+
+                moved = true;
             }
 
             if (moved)

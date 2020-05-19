@@ -44,7 +44,7 @@ namespace AnodyneSharp.States
 
         public override void Update()
         {
-            if (KeyInput.IsKeyPressed(Keys.C) || KeyInput.IsKeyPressed(Keys.X))
+            if (KeyInput.IsRebindableKeyPressed(KeyFunctions.Accept) || KeyInput.IsRebindableKeyPressed(KeyFunctions.Cancel))
             {
                 _tb.Writer.Speed = normalSpeed * 2;
             }
@@ -117,7 +117,7 @@ namespace AnodyneSharp.States
                     }
                     break;
                 case DialogueStateState.Waiting:
-                    if (KeyInput.IsKeyPressed(Keys.C) || KeyInput.IsKeyPressed(Keys.X))
+                    if (KeyInput.IsRebindableKeyPressed(KeyFunctions.Accept) || KeyInput.IsRebindableKeyPressed(KeyFunctions.Cancel))
                     {
                         SoundManager.PlaySoundEffect("dialogue_bloop");
 

@@ -40,7 +40,7 @@ namespace AnodyneSharp.States.PauseSubstates.BaseSubstates
             bool moved = false;
 
 
-            if (KeyInput.JustPressedKey(Keys.Right))
+            if (KeyInput.JustPressedRebindableKey(KeyFunctions.Right))
             {
                 if (_selectedID % 4 == 3)
                 {
@@ -55,7 +55,7 @@ namespace AnodyneSharp.States.PauseSubstates.BaseSubstates
 
                 moved = true;
             }
-            else if (KeyInput.JustPressedKey(Keys.Left))
+            else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Left))
             {
                 if (_selectedID % 4 == 0)
                 {
@@ -69,7 +69,7 @@ namespace AnodyneSharp.States.PauseSubstates.BaseSubstates
 
                 moved = true;
             }
-            else if (KeyInput.JustPressedKey(Keys.Up))
+            else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Up))
             {
                 if (_selectedID < 4)
                 {
@@ -80,7 +80,7 @@ namespace AnodyneSharp.States.PauseSubstates.BaseSubstates
 
                 moved = true;
             }
-            else if (KeyInput.JustPressedKey(Keys.Down))
+            else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Down))
             {
 
                 if (_selectedID > _items.Length - 5)
@@ -94,11 +94,11 @@ namespace AnodyneSharp.States.PauseSubstates.BaseSubstates
 
                 moved = true;
             }
-            else if (KeyInput.JustPressedKey(Keys.X))
+            else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Cancel))
             {
                 ExitSubState();
             }
-            else if (KeyInput.JustPressedKey(Keys.C))
+            else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept))
             {
                 if (_collectedStats[_selectedID])
                 {

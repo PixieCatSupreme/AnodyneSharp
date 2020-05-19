@@ -1,15 +1,20 @@
 ﻿#region Using Statements
 using AnodyneSharp.Drawing;
 using AnodyneSharp.Entities;
+using AnodyneSharp.Entities.Gadget;
 using AnodyneSharp.Input;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Resources;
+using AnodyneSharp.Resources.Loading;
+using AnodyneSharp.Resources.Writing;
 using AnodyneSharp.States;
 using AnodyneSharp.UI;
 using AnodyneSharp.UI.Font;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Collections.Generic;
+using System.IO;
 
 #endregion
 
@@ -26,6 +31,8 @@ namespace AnodyneSharp
         Camera _camera;
 
         private UILabel _fpsLabel;
+
+        private string _baseFolder;
 
         public AnodyneGame()
         {
@@ -50,6 +57,10 @@ namespace AnodyneSharp
             _fpsLabel = new UILabel(new Vector2(0, GameConstants.HEADER_HEIGHT), Color.LightBlue, false);
 
             GlobalState.START_TIME = DateTime.Now;
+
+            //_baseFolder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            _baseFolder = "";
+
         }
 
         /// <summary>
@@ -86,6 +97,22 @@ namespace AnodyneSharp
 
             ResourceManager.LoadResources(Content);
             CardDataManager.ReadCardData();
+
+            if (File.Exists("InputConfig.dat"))
+            {
+                using (InputConfigLoader inputConfigWriter = new InputConfigLoader($"{_baseFolder}InputConfig.dat"))
+                {
+                    inputConfigWriter.LoadInputConfig();
+                }
+            }
+            else
+            {
+                SetDefaultKeys();
+                using (InputConfigWriter inputConfigWriter = new InputConfigWriter($"{_baseFolder}InputConfig.dat"))
+                {
+                    inputConfigWriter.WriteInputConfig();
+                }
+            }
         }
 
         /// <summary>
@@ -134,6 +161,49 @@ namespace AnodyneSharp
             }
 
             SpriteDrawer.EndGUIDraw();
+        }
+
+        private void SetDefaultKeys()
+        {
+            KeyInput.RebindableKeys = new Dictionary<KeyFunctions, RebindableKey>()
+            {
+                [KeyFunctions.Up] = new RebindableKey(
+                    new List<Keys> { Keys.Up },
+                    new List<Buttons> { Buttons.DPadUp, Buttons.LeftThumbstickUp }
+                    ),
+                [KeyFunctions.Right] = new RebindableKey(
+                    new List<Keys> { Keys.Right },
+                    new List<Buttons> { Buttons.DPadRight, Buttons.LeftThumbstickRight }
+                    ),
+                [KeyFunctions.Down] = new RebindableKey(
+                    new List<Keys> { Keys.Down },
+                    new List<Buttons> { Buttons.DPadDown, Buttons.LeftThumbstickDown }
+                    ),
+                [KeyFunctions.Left] = new RebindableKey(
+                    new List<Keys> { Keys.Left },
+                    new List<Buttons> { Buttons.DPadLeft, Buttons.LeftThumbstickLeft }
+                    ),
+                [KeyFunctions.Accept] = new RebindableKey(
+                    new List<Keys> { Keys.C },
+                    new List<Buttons> { Buttons.A }
+                    ),
+                [KeyFunctions.Cancel] = new RebindableKey(
+                    new List<Keys> { Keys.X },
+                    new List<Buttons> { Buttons.B }
+                    ),
+                [KeyFunctions.Pause] = new RebindableKey(
+                    new List<Keys> { Keys.Enter, Keys.Escape },
+                    new List<Buttons> { Buttons.Start, Buttons.Back }
+                    ),
+                [KeyFunctions.PreviousPage] = new RebindableKey(
+                    new List<Keys> { Keys.PageDown },
+                    new List<Buttons> { Buttons.LeftShoulder, Buttons.LeftTrigger }
+                    ),
+                [KeyFunctions.NextPage] = new RebindableKey(
+                    new List<Keys> { Keys.PageUp },
+                    new List<Buttons> { Buttons.RightShoulder, Buttons.RightTrigger }
+                    )
+            };
         }
     }
 }
