@@ -41,7 +41,10 @@ namespace AnodyneSharp.Cheatz
         public static void ToggleFuckItMode()
         {
             GlobalState.FUCK_IT_MODE_ON = !GlobalState.FUCK_IT_MODE_ON;
-            InventoryState.AchievementsDisabled = true;
+
+#if RELEASE
+            AchievementManager.AchievementsDisabled = true;
+#endif
         }
 
         [Cheat("UUDDLRLR21")]
@@ -54,25 +57,27 @@ namespace AnodyneSharp.Cheatz
 
             GlobalState.RefreshMaxHealth = true;
 
-            InventoryState.HasBroom = true;
-            InventoryState.HasLenghten = true;
-            InventoryState.HasWiden = true;
-            InventoryState.HasTransformer = true;
-            InventoryState.CanJump = true;
+            InventoryManager.HasBroom = true;
+            InventoryManager.HasLenghten = true;
+            InventoryManager.HasWiden = true;
+            InventoryManager.HasTransformer = true;
+            InventoryManager.CanJump = true;
 
-            InventoryState.AchievementsDisabled = true;
+#if RELEASE
+            AchievementManager.AchievementsDisabled = true;
+#endif
 
-            for (int i = 0; i < InventoryState.CardStatus.Length; i++)
+            for (int i = 0; i < InventoryManager.CardStatus.Length; i++)
             {
-                InventoryState.CardStatus[i] = true;
+                InventoryManager.CardStatus[i] = true;
             }
 
-            for (int i = 0; i < InventoryState.SecretStatus.Length; i++)
+            for (int i = 0; i < InventoryManager.SecretStatus.Length; i++)
             {
-                InventoryState.SecretStatus[i] = true;
+                InventoryManager.SecretStatus[i] = true;
             }
 
-            InventoryState.EquippedBroom = InventoryState.EquippedBroom == Entities.BroomType.NONE ? Entities.BroomType.Normal : InventoryState.EquippedBroom;
+            InventoryManager.EquippedBroom = InventoryManager.EquippedBroom == Entities.BroomType.NONE ? Entities.BroomType.Normal : InventoryManager.EquippedBroom;
         }
 
         [Cheat("URLDURLD11")]
@@ -85,11 +90,11 @@ namespace AnodyneSharp.Cheatz
         [Cheat("12UULLRRDD")]
         public static void GiveKey()
         {
-            InventoryState.AddCurrentMapKey();
+            InventoryManager.AddCurrentMapKey();
             SoundManager.PlaySoundEffect("keyget");
             GlobalState.RefreshKeyCount = true;
 
-            InventoryState.AchievementsDisabled = true;
+            AchievementManager.AchievementsDisabled = true;
         }
 
         [Cheat("ULRDDLRU12")]
@@ -134,9 +139,9 @@ namespace AnodyneSharp.Cheatz
             SoundManager.PlaySoundEffect("meow");
 
 #if DEBUG
-            for (int i = 0; i < InventoryState.AchievementStatus.Length; i++)
+            for (int i = 0; i < AchievementManager.AchievementStatus.Length; i++)
             {
-                InventoryState.AchievementStatus[i] = true;
+                AchievementManager.AchievementStatus[i] = true;
             }
 #endif
         }

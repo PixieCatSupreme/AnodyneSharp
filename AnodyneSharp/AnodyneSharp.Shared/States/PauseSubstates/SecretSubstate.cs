@@ -19,7 +19,7 @@ namespace AnodyneSharp.States.PauseSubstates
     public class SecretSubstate : GridSubstate
     {
         public SecretSubstate()
-            :base("secrets", "secret_trophies", InventoryState.SecretStatus)
+            :base("secrets", "secret_trophies", InventoryManager.SecretStatus)
         {
 
         }

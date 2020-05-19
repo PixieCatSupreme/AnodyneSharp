@@ -321,7 +321,7 @@ namespace AnodyneSharp.Entities
             {
                 if (KeyInput.CanPressKey(Keys.C) && action_latency <= 0)
                 {
-                    if (InventoryState.EquippedBroom != BroomType.NONE && !broom.exists)
+                    if (InventoryManager.EquippedBroom != BroomType.NONE && !broom.exists)
                     {
                         broom.visible_timer = 0;
                         broom.exists = true;
@@ -339,7 +339,7 @@ namespace AnodyneSharp.Entities
                             case Facing.RIGHT: ANIM_STATE = PlayerAnimState.ANIM_ATK_R; break;
                         }
                     }
-                    else if (InventoryState.EquippedBroom == BroomType.Transformer)
+                    else if (InventoryManager.EquippedBroom == BroomType.Transformer)
                     {
                         //TODO transformer stuff
                     }

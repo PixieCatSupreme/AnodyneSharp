@@ -15,9 +15,9 @@ namespace AnodyneSharp.Entities.Gadget.Gates
 
         public override bool TryUnlock()
         {
-            if (InventoryState.GetCurrentMapKeys() > 0)
+            if (InventoryManager.GetCurrentMapKeys() > 0)
             {
-                InventoryState.RemoveCurrentMapKey();
+                InventoryManager.RemoveCurrentMapKey();
                 SoundManager.PlaySoundEffect("unlock");
                 solid = false;
                 return true;

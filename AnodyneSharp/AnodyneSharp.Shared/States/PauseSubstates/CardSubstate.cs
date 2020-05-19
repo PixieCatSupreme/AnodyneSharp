@@ -35,7 +35,7 @@ namespace AnodyneSharp.States.PauseSubstates
 
             cardsLabel = new UILabel(new Vector2(70, 146), true);
             cardsLabel.Initialize();
-            cardsLabel.SetText($"{InventoryState.CardCount} cards");
+            cardsLabel.SetText($"{InventoryManager.CardCount} cards");
 
             _pageSetter = new TextSelector(new Vector2(91, 156), 32, 0, "1/4", "2/4", "3/4", "4/4")
             {
@@ -147,7 +147,7 @@ namespace AnodyneSharp.States.PauseSubstates
             else if (KeyInput.CanPressKey(Keys.C))
             {
                 int cardID = page * 12 + selectedID;
-                if (InventoryState.CardStatus[cardID])
+                if (InventoryManager.CardStatus[cardID])
                 {
                     SetDialogue($"card text {cardID}");
                 }
@@ -198,7 +198,7 @@ namespace AnodyneSharp.States.PauseSubstates
             for (int i = 0; i < 12; i++)
             {
                 int cardnum = page * 12 + i;
-                int frame = InventoryState.CardStatus[cardnum] ? cardnum : 49;
+                int frame = InventoryManager.CardStatus[cardnum] ? cardnum : 49;
                 cards[i] = new UIEntity(startPos + new Vector2(i % 3, i / 3) * cardSize, "card_sheet", frame, 24, 24, DrawOrder.EQUIPMENT_ICON);
             }
 

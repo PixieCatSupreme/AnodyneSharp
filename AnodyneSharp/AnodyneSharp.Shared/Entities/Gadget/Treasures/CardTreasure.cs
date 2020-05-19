@@ -31,9 +31,11 @@ namespace AnodyneSharp.Entities.Gadget.Treasures
         {
             base.GetTreasure();
 
-            InventoryState.CardStatus[_curFrame] = true;
+            InventoryManager.CardStatus[_curFrame] = true;
 
             DebugLogger.AddInfo($"Got card {_curFrame}");
+
+            AchievementManager.CheckCardAchievements();
         }
 
         public override void Update()

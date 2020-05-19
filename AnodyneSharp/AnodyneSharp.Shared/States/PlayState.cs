@@ -150,7 +150,7 @@ namespace AnodyneSharp.States
             SpriteDrawer.DrawGuiSprite(_header, Vector2.Zero, Z: DrawingUtilities.GetDrawingZ(DrawOrder.HEADER));
 
 
-            if (InventoryState.EquippedBroom != BroomType.NONE)
+            if (InventoryManager.EquippedBroom != BroomType.NONE)
             {
                 SpriteDrawer.DrawGuiSprite(_equippedBroomIcon, _iconPos, scale: 0.80f, Z: DrawingUtilities.GetDrawingZ(DrawOrder.UI_OBJECTS));
             }
@@ -234,9 +234,9 @@ namespace AnodyneSharp.States
                 UpdateEntities();
             }
 
-            if (InventoryState.EquippedBroomChanged)
+            if (InventoryManager.EquippedBroomChanged)
             {
-                InventoryState.EquippedBroomChanged = false;
+                InventoryManager.EquippedBroomChanged = false;
 
                 UpdateBroomIcon();
             }
@@ -267,7 +267,7 @@ namespace AnodyneSharp.States
             if (GlobalState.RefreshKeyCount)
             {
                 GlobalState.RefreshKeyCount = false;
-                _keyValueLabel.SetText($"x{InventoryState.GetCurrentMapKeys()}");
+                _keyValueLabel.SetText($"x{InventoryManager.GetCurrentMapKeys()}");
             }
 
             if (GlobalState.GameMode == GameMode.EXTREME_CHAOS)
@@ -497,7 +497,7 @@ namespace AnodyneSharp.States
             }
             else if (KeyInput.CanPressKey(Keys.D3))
             {
-                InventoryState.EquippedBroom = BroomType.Long;
+                InventoryManager.EquippedBroom = BroomType.Long;
             }
             else if (KeyInput.CanPressKey(Keys.D4))
             {
@@ -566,7 +566,7 @@ namespace AnodyneSharp.States
 
         private void DebugSetBroom(BroomType broom)
         {
-            InventoryState.EquippedBroom = broom;
+            InventoryManager.EquippedBroom = broom;
             UpdateBroomIcon();
             _player.broom.UpdateBroomType();
         }
@@ -584,14 +584,14 @@ namespace AnodyneSharp.States
 
         private void UpdateBroomIcon()
         {
-            if (InventoryState.EquippedBroom == BroomType.NONE)
+            if (InventoryManager.EquippedBroom == BroomType.NONE)
             {
                 return;
             }
 
             string tex = "";
 
-            switch (InventoryState.EquippedBroom)
+            switch (InventoryManager.EquippedBroom)
             {
                 case BroomType.Normal:
                     tex = "none";
@@ -644,7 +644,7 @@ namespace AnodyneSharp.States
 
             LoadGridEntities();
 
-            _keyValueLabel.SetText($"x{InventoryState.GetCurrentMapKeys()}");
+            _keyValueLabel.SetText($"x{InventoryManager.GetCurrentMapKeys()}");
 
             PlayMapMusic();
 

@@ -41,10 +41,10 @@ namespace AnodyneSharp.States.PauseSubstates
             float x = 65;
             float y = 25;
 
-            _broom = new Equipment(new Vector2(x, y), "none_icon", InventoryState.HasBroom ? "Normal" : "-");
-            _broomExtend = new Equipment(new Vector2(x, y + 24), "long_icon", InventoryState.HasLenghten ? "Extend" : "-");
-            _broomWiden = new Equipment(new Vector2(x, y + 24 * 2), "wide_icon", InventoryState.HasWiden ? "Widen" : "-");
-            _transformer = new Equipment(new Vector2(x, y + 24 * 3), "transformer_icon", InventoryState.HasTransformer ? "Swap" : "-");
+            _broom = new Equipment(new Vector2(x, y), "none_icon", InventoryManager.HasBroom ? "Normal" : "-");
+            _broomExtend = new Equipment(new Vector2(x, y + 24), "long_icon", InventoryManager.HasLenghten ? "Extend" : "-");
+            _broomWiden = new Equipment(new Vector2(x, y + 24 * 2), "wide_icon", InventoryManager.HasWiden ? "Widen" : "-");
+            _transformer = new Equipment(new Vector2(x, y + 24 * 3), "transformer_icon", InventoryManager.HasTransformer ? "Swap" : "-");
 
 
             SetEquipped();
@@ -52,7 +52,7 @@ namespace AnodyneSharp.States.PauseSubstates
 
         public override void GetControl()
         {
-            if (!InventoryState.HasAnyBroom)
+            if (!InventoryManager.HasAnyBroom)
             {
                 Exit = true;
                 return;
@@ -167,7 +167,7 @@ namespace AnodyneSharp.States.PauseSubstates
 
         private void EquipBroom(BroomType broomType)
         {
-            InventoryState.EquippedBroom = broomType;
+            InventoryManager.EquippedBroom = broomType;
             SetEquipped();
             ExitSubState();
         }
@@ -210,7 +210,7 @@ namespace AnodyneSharp.States.PauseSubstates
             _broomWiden.equipped = false;
             _transformer.equipped = false;
 
-            switch (InventoryState.EquippedBroom)
+            switch (InventoryManager.EquippedBroom)
             {
                 case BroomType.Normal:
                     _broom.equipped = true;

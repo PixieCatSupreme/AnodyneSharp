@@ -44,7 +44,7 @@ namespace AnodyneSharp.States
         {
             get
             {
-                return InventoryState.UnlockedSecretz ? PauseStateState.Secretz : PauseStateState.Achievements;
+                return InventoryManager.UnlockedSecretz ? PauseStateState.Secretz : PauseStateState.Achievements;
             }
         }
 
@@ -201,12 +201,6 @@ namespace AnodyneSharp.States
 
                 SoundManager.PlaySoundEffect("menu_move");
                 _state--;
-
-                if (_state == PauseStateState.Achievements && InventoryState.AchievementsDisabled)
-                {
-                    _state--;
-                }
-
             }
             else if (KeyInput.CanPressKey(Keys.Down))
             {
@@ -275,7 +269,7 @@ namespace AnodyneSharp.States
             _playtimeLabel.SetText("00:00:00");
             _inputLabel.SetText(" :Select  :Back");
 
-            _secretsLabel.IsVisible = InventoryState.UnlockedSecretz;
+            _secretsLabel.IsVisible = InventoryManager.UnlockedSecretz;
         }
     }
 }

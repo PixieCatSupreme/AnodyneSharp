@@ -19,7 +19,7 @@ namespace AnodyneSharp.States.PauseSubstates
     public class AchievementsSubstate : GridSubstate
     {
         public AchievementsSubstate()
-            :base("achievements", "achievements", InventoryState.AchievementStatus)
+            :base("achievements", "achievements", AchievementManager.AchievementStatus)
         {
 
         }
