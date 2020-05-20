@@ -53,7 +53,7 @@ namespace AnodyneSharp.Input
 
         static KeyInput()
         {
-            IsNintendoController = GamePad.GetCapabilities(PlayerIndex.One).DisplayName.Contains("Nintendo");
+            IsNintendoController = (GamePad.GetCapabilities(PlayerIndex.One).DisplayName ?? "").Contains("Nintendo");
 
             RebindableKeys = new Dictionary<KeyFunctions, RebindableKey>();
             ControllerState = new Dictionary<Buttons, InputState>[4];
