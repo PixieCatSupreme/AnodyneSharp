@@ -113,6 +113,11 @@ namespace AnodyneSharp
                     inputConfigWriter.WriteInputConfig();
                 }
             }
+
+            if (KeyInput.IsNintendoController)
+            {
+                KeyInput.SwapFaceButtons();
+            }
         }
 
         /// <summary>

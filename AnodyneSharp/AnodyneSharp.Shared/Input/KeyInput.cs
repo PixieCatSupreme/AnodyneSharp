@@ -46,11 +46,15 @@ namespace AnodyneSharp.Input
 
         public static Dictionary<KeyFunctions, RebindableKey> RebindableKeys;
 
+        public static readonly bool IsNintendoController;
+
         private static Dictionary<Keys, InputState> KeyState;
         private static Dictionary<Buttons, InputState>[] ControllerState;
 
         static KeyInput()
         {
+            IsNintendoController = GamePad.GetCapabilities(PlayerIndex.One).DisplayName.Contains("Nintendo");
+
             RebindableKeys = new Dictionary<KeyFunctions, RebindableKey>();
             ControllerState = new Dictionary<Buttons, InputState>[4];
 
@@ -77,6 +81,7 @@ namespace AnodyneSharp.Input
             for (int i = 0; i < ControllerState.Length; i++)
             {
                 GamePadState g = GamePad.GetState(i);
+
                 var dic = ControllerState[i];
 
                 foreach (Buttons button in Enum.GetValues(typeof(Buttons)))
@@ -156,6 +161,38 @@ namespace AnodyneSharp.Input
         public static bool JustPressedKey(Keys key)
         {
             return KeyState[key] == InputState.PRESSED;
+        }
+
+        public static void SwapFaceButtons()
+        {
+            var aList = RebindableKeys.Where(k => k.Value.Buttons.Contains(Buttons.A)).ToList();
+            var bList = RebindableKeys.Where(k => k.Value.Buttons.Contains(Buttons.B)).ToList();
+            var xList = RebindableKeys.Where(k => k.Value.Buttons.Contains(Buttons.X)).ToList();
+            var yList = RebindableKeys.Where(k => k.Value.Buttons.Contains(Buttons.Y)).ToList();
+
+            foreach (var item in aList)
+            {
+                item.Value.Buttons.Remove(Buttons.A);
+                item.Value.Buttons.Add(Buttons.B);
+            }
+
+            foreach (var item in bList)
+            {
+                item.Value.Buttons.Remove(Buttons.B);
+                item.Value.Buttons.Add(Buttons.A);
+            }
+
+            foreach (var item in xList)
+            {
+                item.Value.Buttons.Remove(Buttons.X);
+                item.Value.Buttons.Add(Buttons.Y);
+            }
+
+            foreach (var item in yList)
+            {
+                item.Value.Buttons.Remove(Buttons.Y);
+                item.Value.Buttons.Add(Buttons.X);
+            }
         }
     }
 }

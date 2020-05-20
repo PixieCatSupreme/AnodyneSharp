@@ -334,6 +334,19 @@ namespace AnodyneSharp.States
                 SoundManager.PlaySoundEffect("pause_sound");
             }
 
+            if (!_player.broom.exists)
+            {
+                if (KeyInput.JustPressedRebindableKey(KeyFunctions.NextPage))
+                {
+                    SwitchBroom(true);
+                }
+                else if (KeyInput.JustPressedRebindableKey(KeyFunctions.PreviousPage))
+                {
+                    SwitchBroom(false);
+                }
+            }
+
+
             //TODO check if player is unalive
         }
 
@@ -490,20 +503,20 @@ namespace AnodyneSharp.States
 
             if (KeyInput.JustPressedKey(Keys.D1))
             {
-                DebugSetBroom(BroomType.Normal);
+                SetBroom(BroomType.Normal);
 
             }
             else if (KeyInput.JustPressedKey(Keys.D2))
             {
-                DebugSetBroom(BroomType.Wide);
+                SetBroom(BroomType.Wide);
             }
             else if (KeyInput.JustPressedKey(Keys.D3))
             {
-                DebugSetBroom(BroomType.Long);
+                SetBroom(BroomType.Long);
             }
             else if (KeyInput.JustPressedKey(Keys.D4))
             {
-                DebugSetBroom(BroomType.NONE);
+                SetBroom(BroomType.NONE);
             }
 
             if (KeyInput.JustPressedKey(Keys.F1))
@@ -551,14 +564,60 @@ namespace AnodyneSharp.States
                 }
             }
         }
+#endif
+        private void SwitchBroom(bool nextBroom)
+        {
+            if (!InventoryManager.HasBroom)
+            {
+                return;
+            }
 
-        private void DebugSetBroom(BroomType broom)
+            bool allowedBroom;
+
+            BroomType broomType = InventoryManager.EquippedBroom;
+
+            do
+            {
+                broomType += nextBroom ? 1 : -1;
+                if (broomType < 0 || broomType > BroomType.Transformer)
+                {
+                    broomType = (BroomType)(((int)broomType + (int)BroomType.Transformer+1) % ((int)BroomType.Transformer+1));
+                }
+
+                switch (broomType)
+                {
+                    case BroomType.Normal:
+                        allowedBroom = true;
+                        break;
+                    case BroomType.Wide:
+                        allowedBroom = InventoryManager.HasWiden;
+                        break;
+                    case BroomType.Long:
+                        allowedBroom = InventoryManager.HasLenghten;
+                        break;
+                    case BroomType.Transformer:
+                        allowedBroom = InventoryManager.HasTransformer;
+                        break;
+                    default:
+                        allowedBroom = false;
+                        break;
+                }
+            } while (!allowedBroom);
+
+            if (broomType != InventoryManager.EquippedBroom)
+            {
+                SoundManager.PlaySoundEffect("menu_move");
+                SetBroom(broomType);
+            }
+
+        }
+
+        private void SetBroom(BroomType broom)
         {
             InventoryManager.EquippedBroom = broom;
             UpdateBroomIcon();
             _player.broom.UpdateBroomType();
         }
-#endif
 
         private void UpdateHealth()
         {
