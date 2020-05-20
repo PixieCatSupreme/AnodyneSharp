@@ -17,6 +17,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\SpriteDrawer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\CollisionAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\EntityPool.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\Interactable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\Parabola_Thing.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\Shadow.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\CollisionGroups.cs" />

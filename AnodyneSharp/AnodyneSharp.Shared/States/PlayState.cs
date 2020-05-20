@@ -13,6 +13,7 @@ using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using static AnodyneSharp.Registry.GameConstants;
@@ -300,6 +301,10 @@ namespace AnodyneSharp.States
 
         private void UpdateEntities()
         {
+            if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept) && CheckInteraction())
+            {
+                _player.skipBroom = true;
+            }
             _player.Update();
             _player.PostUpdate();
 
@@ -308,6 +313,22 @@ namespace AnodyneSharp.States
                 gridEntity.Update();
                 gridEntity.PostUpdate();
             }
+        }
+
+        private bool CheckInteraction()
+        {
+            Rectangle InteractHitbox(Entity e)
+            {
+                Rectangle ret = e.Hitbox;
+                Vector2 facing_vec = -Entity.FacingDirection(_player.facing);
+                //Increase size in the correct dimension by 2 pixels
+                ret.Inflate(Math.Abs(facing_vec.X),Math.Abs(facing_vec.Y));
+                //Move rectangle to have the two pixel buffer on the correct side.
+                ret.Offset(facing_vec.X, facing_vec.Y);
+                return ret;
+            }
+
+            return _gridEntities.OfType<Interactable>().Any(i => (InteractHitbox((Entity)i).Intersects(_player.Hitbox) && i.PlayerInteraction(_player.facing)));
         }
 
         private void DoCollisions()

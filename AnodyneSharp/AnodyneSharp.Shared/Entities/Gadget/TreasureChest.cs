@@ -11,7 +11,7 @@ using System.Text;
 namespace AnodyneSharp.Entities.Gadget
 {
     [NamedEntity("Treasure"), Collision(typeof(Player))]
-    public class TreasureChest : Entity
+    public class TreasureChest : Entity, Interactable
     {
         private enum TreasureType
         {
@@ -62,19 +62,24 @@ namespace AnodyneSharp.Entities.Gadget
         {
             base.Update();
 
-            if (!opened && touching == Touching.DOWN && KeyInput.JustPressedRebindableKey( KeyFunctions.Accept))
-            {
-                opened = true;
-                _treasure.GetTreasure();
-
-                SetFrame(_curFrame + 1);
-                _preset.Frame = -1;
-            }
-
             if (opened && _treasure != null)
             {
                 _treasure.Update();
             }
+        }
+
+        public bool PlayerInteraction(Facing player_direction)
+        {
+            if(opened || player_direction != Facing.UP)
+            {
+                return false;
+            }
+            opened = true;
+            _treasure.GetTreasure();
+
+            SetFrame(_curFrame + 1);
+            _preset.Frame = -1;
+            return true;
         }
 
         public override void Draw()

@@ -91,6 +91,7 @@ namespace AnodyneSharp.Entities
         private PlayState parent;
         private bool hasFallen;
         private bool actions_disabled;
+        public bool skipBroom;
         private bool just_landed;
         private bool anim_air_did_down;
         private float jump_timer;
@@ -319,7 +320,7 @@ namespace AnodyneSharp.Entities
 
             if (state != PlayerState.AIR)
             {
-                if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept) && action_latency <= 0)
+                if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept) && action_latency <= 0 && !skipBroom)
                 {
                     if (InventoryManager.EquippedBroom != BroomType.NONE && !broom.exists)
                     {
@@ -345,6 +346,7 @@ namespace AnodyneSharp.Entities
                     }
 
                 }
+                skipBroom = false;
 
 
                 if (KeyInput.JustPressedRebindableKey(KeyFunctions.Cancel) && !sinking)
