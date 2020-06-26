@@ -1,4 +1,5 @@
 ﻿#region Using Statements
+using AnodyneSharp.Dialogue;
 using AnodyneSharp.Drawing;
 using AnodyneSharp.Entities;
 using AnodyneSharp.Entities.Gadget;
@@ -118,6 +119,10 @@ namespace AnodyneSharp
             {
                 KeyInput.SwapFaceButtons();
             }
+
+            DialogueManager.LoadDialogue( Language.EN);
+
+            string test = DialogueManager.GetDialogue("sage", "GO", "posthappy_mitra", 1);
         }
 
         /// <summary>
