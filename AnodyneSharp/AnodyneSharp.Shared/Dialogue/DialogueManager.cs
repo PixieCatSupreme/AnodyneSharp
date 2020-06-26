@@ -1,4 +1,6 @@
 ﻿using AnodyneSharp.Entities;
+using AnodyneSharp.Input;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -64,7 +66,33 @@ namespace AnodyneSharp.Dialogue
                 return $"Missing scene {scene}";
             }
 
-            return s.GetDialogue(id);
+            return ReplaceKeys(s.GetDialogue(id));
+        }
+
+        private static string ReplaceKeys(string line)
+        {
+            //TODO controller mode check
+            //if ()
+            //{
+            //
+            //}
+            //else
+            //{
+
+            Keys t = 0;
+
+            line = line
+                .Replace("[SOMEKEY-X]", Enum.GetName(t.GetType(), KeyInput.RebindableKeys[KeyFunctions.Cancel].Keys.First()))
+                .Replace("[SOMEKEY-C]", Enum.GetName(t.GetType(), KeyInput.RebindableKeys[KeyFunctions.Accept].Keys.First()))
+                .Replace("[SOMEKEY-LEFT]", Enum.GetName(t.GetType(), KeyInput.RebindableKeys[KeyFunctions.Left].Keys.First()))
+                .Replace("[SOMEKEY-UP]", Enum.GetName(t.GetType(), KeyInput.RebindableKeys[KeyFunctions.Up].Keys.First()))
+                .Replace("[SOMEKEY-RIGHT]", Enum.GetName(t.GetType(), KeyInput.RebindableKeys[KeyFunctions.Right].Keys.First()))
+                .Replace("[SOMEKEY-DOWN]", Enum.GetName(t.GetType(), KeyInput.RebindableKeys[KeyFunctions.Down].Keys.First()))
+                .Replace("[SOMEKEY-ENTER]", Enum.GetName(t.GetType(), KeyInput.RebindableKeys[KeyFunctions.Pause].Keys.First()))
+                ;
+            //}
+
+            return line;
         }
 
         private static void ReadFile()

@@ -495,8 +495,8 @@ namespace AnodyneSharp.States
         {
             if (KeyInput.JustPressedKey(Keys.T))
             {
-                GlobalState.Dialogue = "abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890.:,;'\"(!?)+-*/=[]";
-                GlobalState.Dialogue = "Hello^\nYes, this is slime";
+                GlobalState.Dialogue = FontManager.LanguageString;
+                //GlobalState.Dialogue = "Hello^\nYes, this is slime";
             }
             
             if (KeyInput.JustPressedKey(Keys.F6))

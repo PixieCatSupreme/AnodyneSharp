@@ -8,6 +8,26 @@ namespace AnodyneSharp.UI.Font
 {
     public static class FontManager
     {
+        public static string LanguageString
+        {
+            get
+            {
+                switch (DialogueManager.CurrentLanguage)
+                {
+                    case Language.ES:
+                        return es_string;
+                    case Language.ZHS:
+                        return zhs_string;
+                    case Language.KR:
+                        return ko_string;
+                    case Language.JP:
+                        return jp_string;
+                    default:
+                        return en_string;
+                }
+            }
+        }
+
         //Language string stuff
         private const string en_string = "abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ’1234567890.:,;\'\"(!?)+-*/=$]";
         private const string es_string = "ªÂâàÀáÁãÃçÇéÉêÊÍíóôÓÔõúÚüÜÑñabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ’1234567890.:,; \' \"(!?)+-   */=$]¡¿ŒœËëÈèÎîÏïùÙìò";
@@ -19,27 +39,42 @@ namespace AnodyneSharp.UI.Font
         public static SpriteFont InitFont(Color color)
         {
             string lString;
+            string fileName;
+
+            int width = 0;
+            int height = 8;
 
             switch (DialogueManager.CurrentLanguage)
             {
                 case  Language.ES:
                     lString = es_string;
+                    fileName = "es_white";
+                    width = 6;
                     break;
                 case Language.ZHS:
                     lString = zhs_string;
+                    fileName = "11x12_ZHS";
+                    width = 11;
+                    height = 12;
                     break;
                 case Language.KR:
                     lString = ko_string;
+                    fileName = "kr_white";
+                    width = 8;
                     break;
                 case Language.JP:
                     lString = jp_string;
+                    fileName = "jp_white";
+                    width = 8;
                     break;
                 default:
                     lString = en_string;
+                    fileName = "font-white-apple-7x8";
+                    width = 7;
                     break;
             }
 
-            return new SpriteFont(8, 7, "font-white-apple-7x8", lString, color);
+            return new SpriteFont(height, width, fileName, lString, color);
         }
     }
 }

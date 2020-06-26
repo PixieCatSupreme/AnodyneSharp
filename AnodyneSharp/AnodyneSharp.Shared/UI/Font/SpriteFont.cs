@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Resources;
+﻿using AnodyneSharp.Logging;
+using AnodyneSharp.Resources;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -51,21 +52,25 @@ namespace AnodyneSharp.UI.Font
         {
             var d = new Dictionary<char, Rectangle>();
             int texWidth = texture.Bounds.Width;
+            int charsPerLine = texWidth / spaceWidth;
 
             for (int i = 0; i < characterOrder.Length; i++)
             {
                 char c = characterOrder[i];
-
-                int indexX = i * spaceWidth;
-                int indexY = 0;
-
-                if (indexX >= texWidth)
+                if (c == ' ' || d.ContainsKey(c))
                 {
-                    indexY = indexX / texWidth * lineHeight;
-                    indexX %= texWidth;
+                    continue;
                 }
 
+                int indexX = i%charsPerLine * spaceWidth;
+                int indexY = i/charsPerLine * lineHeight;
+
                 d.Add(characterOrder[i], new Rectangle(indexX, indexY, spaceWidth,lineHeight));
+
+#if DEBUG
+                DebugLogger.AddInfo($"{c}, {i}; {indexX}, {indexY}");
+#endif
+
             }
 
             return d;

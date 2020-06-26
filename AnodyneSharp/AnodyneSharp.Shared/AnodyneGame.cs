@@ -120,9 +120,7 @@ namespace AnodyneSharp
                 KeyInput.SwapFaceButtons();
             }
 
-            DialogueManager.LoadDialogue( Language.EN);
-
-            string test = DialogueManager.GetDialogue("sage", "GO", "posthappy_mitra", 1);
+            DialogueManager.LoadDialogue( Language.KR);
         }
 
         /// <summary>
