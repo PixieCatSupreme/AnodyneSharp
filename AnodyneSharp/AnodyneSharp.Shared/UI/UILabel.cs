@@ -3,6 +3,7 @@ using AnodyneSharp.UI.Text;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace AnodyneSharp.UI
 {
@@ -121,6 +122,8 @@ namespace AnodyneSharp.UI
             Writer.Text = text;
 
             int lines = 2 + text.Count(c => TextWriter.LineBreaks.Any(character => character == c));
+
+            lines += Regex.Matches(text, @"\\n").Count;
 
             Writer.SetWriteArea((int)Writer.GetTextLenght(), Writer.GetLineHeight() * lines);
             Writer.ProgressTextToEnd();

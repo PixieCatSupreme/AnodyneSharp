@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Input;
+﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.Input;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 using AnodyneSharp.UI;
@@ -49,12 +50,14 @@ namespace AnodyneSharp.States.PauseSubstates
             _deathsLabel.Initialize();
 
 
-            //TODO localization
-            _saveLabel.SetText("Save");
-            _saveTitleLable.SetText("Save and go\nto title");
-            _saveQuitLabel.SetText("Save and quit");
-            _quitLabel.SetText("Quit");
-            _deathsLabel.SetText("Deaths: " + "0");
+
+            _saveLabel.SetText(DialogueManager.GetDialogue("misc", "any", "save", 0));
+            _saveTitleLable.SetText(DialogueManager.GetDialogue("misc", "any", "save", 3));
+            _saveQuitLabel.SetText(DialogueManager.GetDialogue("misc", "any", "save", 5));
+            _quitLabel.SetText(DialogueManager.GetDialogue("misc", "any", "save", 6));
+
+            //TODO Add death count
+            _deathsLabel.SetText(DialogueManager.GetDialogue("misc", "any", "save", 7) + "0");
 
         }
 

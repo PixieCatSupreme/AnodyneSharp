@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Input;
+﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.Input;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 using AnodyneSharp.UI;
@@ -49,11 +50,11 @@ namespace AnodyneSharp.States.PauseSubstates
             _noLabel.Initialize();
 
 
-            //TODO add localization
-            _noMapLabel.SetText("No Map");
-            _returnLabel.SetText("Return to\nNexus");
-            _yesLabel.SetText("Yes");
-            _noLabel.SetText("No");
+            _noMapLabel.SetText(DialogueManager.GetDialogue("misc","any","map", 3));
+            _returnLabel.SetText(DialogueManager.GetDialogue("misc", "any", "map", 4));
+
+            _yesLabel.SetText(DialogueManager.GetDialogue("misc","any", "checkpoint", 1));
+            _noLabel.SetText(DialogueManager.GetDialogue("misc","any", "checkpoint", 2));
         }
 
         public override void GetControl()

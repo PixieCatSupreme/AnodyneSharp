@@ -406,7 +406,7 @@ namespace AnodyneSharp.UI.Text
         protected virtual bool Write(char character)
         {
             bool output = false;
-
+            
             if (character == ' ')
             {
                 _newWord = true;
@@ -415,8 +415,12 @@ namespace AnodyneSharp.UI.Text
                 letterProgress++;
                 output = true;
             }
-            else if (LineBreaks.Any(c => c == character))
+            else if ((character == '\\' && Text[letterProgress+1] == 'n') || LineBreaks.Any(c => c == character))
             {
+                if (character == '\\')
+                {
+                    letterProgress++;
+                }
                 letterProgress++;
 
                 cursorPos.Y += spriteFont.lineSeparation;
@@ -443,14 +447,14 @@ namespace AnodyneSharp.UI.Text
                 letterProgress++;
                 output = true;
 
-                if (!IgnoreSoftLineBreaks && SoftLinebreak.Any(c => c == character))
-                {
-                    cursorPos.Y += spriteFont.lineSeparation;
-                    cursorPos.X = 0;
-                    _newLine = true;
+                //if (!IgnoreSoftLineBreaks && SoftLinebreak.Any(c => c == character))
+                //{
+                //    cursorPos.Y += spriteFont.lineSeparation;
+                //    cursorPos.X = 0;
+                //    _newLine = true;
 
-                    output = cursorPos.Y + spriteFont.lineSeparation < writeArea.Height;
-                }
+                //    output = cursorPos.Y + spriteFont.lineSeparation < writeArea.Height;
+                //}
             }
 
             if (output)
@@ -513,14 +517,6 @@ namespace AnodyneSharp.UI.Text
             }
 
             cursorPos.X += spriteFont.spaceWidth;
-        }
-
-        private Rectangle GetCenteredDrawingArea()
-        {
-            float textWidth = GetTextLenght();
-            int width = WriteArea.Width;
-            int height = WriteArea.Height;
-            return new Rectangle((int)(WriteArea.X + width / 2 - textWidth / 2), WriteArea.Y + height / 2 - (spriteFont != null ? spriteFont.lineSeparation / 2 : 0), writeArea.Width, writeArea.Height);
         }
     }
 }

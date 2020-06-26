@@ -77,7 +77,7 @@ namespace AnodyneSharp.States
 
                     if (_tb.Writer.AtEndOfText)
                     {
-                        state = DialogueStateState.Done;
+                        state = DialogueStateState.Waiting;
                         break;
                     }
 
@@ -117,7 +117,7 @@ namespace AnodyneSharp.States
                     }
                     break;
                 case DialogueStateState.Waiting:
-                    if (KeyInput.IsRebindableKeyPressed(KeyFunctions.Accept) || KeyInput.IsRebindableKeyPressed(KeyFunctions.Cancel))
+                    if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept) || KeyInput.JustPressedRebindableKey(KeyFunctions.Cancel))
                     {
                         SoundManager.PlaySoundEffect("dialogue_bloop");
 

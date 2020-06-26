@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Input;
+﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.Input;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 using AnodyneSharp.UI;
@@ -281,9 +282,7 @@ namespace AnodyneSharp.States.PauseSubstates
 
         private void AutoSaveValueChanged(string value, int index)
         {
-            //TODO localization
-
-            GlobalState.autosave_on = value == "On";
+            GlobalState.autosave_on = value == DialogueManager.GetDialogue("misc", "any", "config", 4);
         }
     }
 }

@@ -32,11 +32,9 @@ namespace AnodyneSharp.Entities.Gadget.Treasures
 
             if (_dialogueID != -1)
             {
-                //TODO localization and such
                 if (_dialogueID != -2)
                 {
                     GlobalState.Dialogue = Dialogue.DialogueManager.GetDialogue("misc", "any", "treasure", _dialogueID);
-                    //GlobalState.Dialogue = $"test treasure dialogue {_dialogueID}";
                 }
                 else
                 {

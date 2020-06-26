@@ -1640,7 +1640,9 @@ Your broom is now full of dust!  Attack again to place it.
 		end scene
 		
 		scene checkpoint
-Save game?\n  Yes\n  No
+Save game?
+Yes
+No
 While standing on a checkpoint, press [SOMEKEY-C] to save your progress and set it as your respawn point if you die.
 		end scene
 		

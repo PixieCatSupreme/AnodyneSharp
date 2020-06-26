@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Drawing;
+﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.Drawing;
 using AnodyneSharp.Input;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Resources;
@@ -35,7 +36,7 @@ namespace AnodyneSharp.States.PauseSubstates
 
             cardsLabel = new UILabel(new Vector2(70, 146), true);
             cardsLabel.Initialize();
-            cardsLabel.SetText($"{InventoryManager.CardCount} cards");
+            cardsLabel.SetText($"{InventoryManager.CardCount} {DialogueManager.GetDialogue("misc", "any", "cards", 1)}");
 
             _pageSetter = new TextSelector(new Vector2(91, 156), 32, 0, "1/4", "2/4", "3/4", "4/4")
             {
@@ -149,7 +150,7 @@ namespace AnodyneSharp.States.PauseSubstates
                 int cardID = page * 12 + selectedID;
                 if (InventoryManager.CardStatus[cardID])
                 {
-                    SetDialogue($"card text {cardID}");
+                    SetDialogue(DialogueManager.GetDialogue("card", "ETC", "one", cardID));
                 }
             }
             if (KeyInput.JustPressedRebindableKey(KeyFunctions.NextPage))

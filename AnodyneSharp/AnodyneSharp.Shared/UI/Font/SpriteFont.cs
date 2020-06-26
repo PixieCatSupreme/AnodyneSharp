@@ -66,11 +66,6 @@ namespace AnodyneSharp.UI.Font
                 int indexY = i/charsPerLine * lineHeight;
 
                 d.Add(characterOrder[i], new Rectangle(indexX, indexY, spaceWidth,lineHeight));
-
-#if DEBUG
-                DebugLogger.AddInfo($"{c}, {i}; {indexX}, {indexY}");
-#endif
-
             }
 
             return d;

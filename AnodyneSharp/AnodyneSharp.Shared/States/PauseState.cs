@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Drawing;
+﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.Drawing;
 using AnodyneSharp.Input;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Resources;
@@ -258,17 +259,16 @@ namespace AnodyneSharp.States
             _playtimeLabel.Initialize();
             _inputLabel.Initialize();
 
-            //TODO: Localization
-            _mapLabel.SetText("Map");
-            _itemsLabel.SetText("Items");
-            _cardsLabel.SetText("Cards");
-            _saveLabel.SetText("Save");
-            _configLabel.SetText("Config");
+            _mapLabel.SetText(DialogueManager.GetDialogue("misc", "any", "map", 0));
+            _itemsLabel.SetText(DialogueManager.GetDialogue("misc", "any", "items", 0));
+            _cardsLabel.SetText(DialogueManager.GetDialogue("misc", "any", "cards", 0));
+            _saveLabel.SetText(DialogueManager.GetDialogue("misc", "any", "save", 0));
+            _configLabel.SetText(DialogueManager.GetDialogue("misc", "any", "config", 0));
             _achievementsLabel.SetText("Feats");
             _secretsLabel.SetText("???");
 
             _playtimeLabel.SetText("00:00:00");
-            _inputLabel.SetText(" :Select  :Back");
+            _inputLabel.SetText($"{DialogueManager.GetDialogue("misc", "any", "secrets", 13)} {DialogueManager.GetDialogue("misc", "any", "secrets", 14)}");
 
             _secretsLabel.IsVisible = InventoryManager.UnlockedSecretz;
         }

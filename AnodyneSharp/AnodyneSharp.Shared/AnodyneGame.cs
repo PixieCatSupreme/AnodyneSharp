@@ -120,7 +120,7 @@ namespace AnodyneSharp
                 KeyInput.SwapFaceButtons();
             }
 
-            DialogueManager.LoadDialogue( Language.KR);
+            DialogueManager.LoadDialogue( Language.EN);
         }
 
         /// <summary>

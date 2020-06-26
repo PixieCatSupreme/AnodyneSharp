@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Drawing;
+﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.Drawing;
 using AnodyneSharp.Input;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
@@ -102,7 +103,7 @@ namespace AnodyneSharp.States.PauseSubstates.BaseSubstates
             {
                 if (_collectedStats[_selectedID])
                 {
-                    SetDialogue($"{_dialogueName} text {_selectedID}");
+                    SetDialogue(DialogueManager.GetDialogue("misc", "any", _dialogueName, _selectedID));
                 }
 
             }
