@@ -234,8 +234,8 @@ namespace AnodyneSharp.States
         private void CreateLabels()
         {
             float x = 10f;
-            float startY = GameConstants.HEADER_HEIGHT + 11;
-            float yStep = GameConstants.FONT_LINE_HEIGHT * 2;
+            float startY = GameConstants.HEADER_HEIGHT - GameConstants.LineOffset + 11 + (GlobalState.CurrentLanguage == Language.ZHS ? 1 : 0) ;
+            float yStep = (GameConstants.FONT_LINE_HEIGHT - GameConstants.LineOffset ) * 2;
 
             _mapLabel = new UILabel(new Vector2(x, startY), true);
             _itemsLabel = new UILabel(new Vector2(x, startY + yStep), true);
@@ -256,7 +256,7 @@ namespace AnodyneSharp.States
             _achievementsLabel.Initialize();
             _secretsLabel.Initialize();
 
-            _playtimeLabel.Initialize();
+            _playtimeLabel.Initialize(true);
             _inputLabel.Initialize();
 
             _mapLabel.SetText(DialogueManager.GetDialogue("misc", "any", "map", 0));

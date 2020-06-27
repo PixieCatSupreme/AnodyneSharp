@@ -73,15 +73,15 @@ namespace AnodyneSharp.States.PauseSubstates
             _scalingLabel.Initialize();
             _languageLabel.Initialize();
 
-            _keybindsLabel.SetText("Set keybinds");
+            _keybindsLabel.SetText(DialogueManager.GetDialogue("misc", "any", "config", 1));
 
             _bgmLabel.SetText("BGM");
             _sfxLabel.SetText("SFX");
 
-            _autosaveLabel.SetText("Autosave at\ncheckpoints:");
-            _resolutionLabel.SetText("Resolution:");
-            _scalingLabel.SetText("Scaling:");
-            _languageLabel.SetText("Language:");
+            _autosaveLabel.SetText(DialogueManager.GetDialogue("misc", "any", "config", 3));
+            _resolutionLabel.SetText(DialogueManager.GetDialogue("misc", "any", "config", 6));
+            _scalingLabel.SetText(DialogueManager.GetDialogue("misc", "any", "config", 16));
+            _languageLabel.SetText(DialogueManager.GetDialogue("misc", "any", "config", 17));
 
             _musicSlider = new AudioSlider(new Vector2(_bgmLabel.Position.X + _bgmLabel.Writer.WriteArea.Width -5, _bgmLabel.Position.Y), GlobalState.music_volume_scale, 0f, 1f, 0.1f)
             {
@@ -93,7 +93,7 @@ namespace AnodyneSharp.States.PauseSubstates
                 ValueChangedEvent = SfxValueChanged
             };
 
-            _autosaveSetter = new TextSelector(new Vector2(x + 16, _autosaveLabel.Position.Y + GameConstants.FONT_LINE_HEIGHT * 2.5f), 40, GlobalState.autosave_on? 1 : 0, "Off", "On")
+            _autosaveSetter = new TextSelector(new Vector2(x + 16, _autosaveLabel.Position.Y + GameConstants.FONT_LINE_HEIGHT * 2.5f), 40, GlobalState.autosave_on? 1 : 0, DialogueManager.GetDialogue("misc", "any", "config", 4), DialogueManager.GetDialogue("misc", "any", "config", 5))
             {
                 ValueChangedEvent = AutoSaveValueChanged
             };

@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Entities;
+﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.Entities;
 using AnodyneSharp.Input;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
@@ -41,10 +42,10 @@ namespace AnodyneSharp.States.PauseSubstates
             float x = 65;
             float y = 25;
 
-            _broom = new Equipment(new Vector2(x, y), "none_icon", InventoryManager.HasBroom ? "Normal" : "-");
-            _broomExtend = new Equipment(new Vector2(x, y + 24), "long_icon", InventoryManager.HasLenghten ? "Extend" : "-");
-            _broomWiden = new Equipment(new Vector2(x, y + 24 * 2), "wide_icon", InventoryManager.HasWiden ? "Widen" : "-");
-            _transformer = new Equipment(new Vector2(x, y + 24 * 3), "transformer_icon", InventoryManager.HasTransformer ? "Swap" : "-");
+            _broom = new Equipment(new Vector2(x, y), "none_icon", InventoryManager.HasBroom ? DialogueManager.GetDialogue("misc", "any", "items", 1) : "-");
+            _broomExtend = new Equipment(new Vector2(x, y + 24), "long_icon", InventoryManager.HasLenghten ? DialogueManager.GetDialogue("misc", "any", "items", 3) : "-");
+            _broomWiden = new Equipment(new Vector2(x, y + 24 * 2), "wide_icon", InventoryManager.HasWiden ? DialogueManager.GetDialogue("misc", "any", "items", 4) : "-");
+            _transformer = new Equipment(new Vector2(x, y + 24 * 3), "transformer_icon", InventoryManager.HasTransformer ? DialogueManager.GetDialogue("misc", "any", "items", 2) : "-");
 
 
             SetEquipped();

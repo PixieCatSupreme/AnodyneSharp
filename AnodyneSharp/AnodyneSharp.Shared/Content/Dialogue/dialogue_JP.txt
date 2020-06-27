@@ -92,14 +92,14 @@ npc sage
 #Mysterious voice:Hello? ...Young? ^HEY! ... oh, you can hear me? Good, now listen. You are about to wake up. You will use the arrow keys to move around.
 
 # Note, these next two lines should be assumed to have the keybinding between them when translated (hence the single quotes)
-人と話したりモノを使ったりするには \'
-#You will press the \'
-\' キーを押すように
-#\' key to interact with objects and people around you.
-それからメニューを開くには \'
-#And you will press the \'
-\' キーだ ここでは自分や世界についての情報が見られる
-#\' key to access the menu, which will provide you with information about yourself and your surroundings. 
+人と話したりモノを使ったりするには '
+#You will press the '
+' キーを押すように
+#' key to interact with objects and people around you.
+それからメニューを開くには '
+#And you will press the '
+' キーだ ここでは自分や世界についての情報が見られる
+#' key to access the menu, which will provide you with information about yourself and your surroundings. 
  end scene
  end area
 	area GO
@@ -155,7 +155,7 @@ TOP
 #Mitra:Look, mysterious hooded character, I don’t know who you think you are, but why don’t you just leave us alone?
 賢者:きさまがヤングの友だちだと? ヤングは本当は完ぺきで 最後には何もかもうまくいくとウソをつくことが友だちだとでも? そうか いいだろう それがお前の望みだというのなら 勝手にすればいい さっさと失せるがいい
 #Sage:You think you’re Young’s friend because you’ll lie to him and tell him that deep down he’s just perfect and everything will work out. Well, if that’s what you want, FINE. Get out of my face, Young.
-賢者:\"友だち\"と話せばよかろう
+賢者:"友だち"と話せばよかろう
 #Sage:Go talk to your friend.
 ミトラ:わたしたちはただベストを尽くしてるだけなのに...
 #Mitra:We're just doing the best we can...
@@ -166,7 +166,7 @@ TOP
 
 
 TOP
-フードをかぶった男:さてと そろそろ時間かな ええと...^その...^ やあヤング! 私は賢者 まあ村の長老だ 君に来てもらったのは他でもない 実はセカイに広まった\"クラヤミ\"が 伝説のブライアをさがしているのだ その力を邪悪なことに使うためにね キミにはクラヤミよりも先にブライアを見つけて 守ってほしい
+フードをかぶった男:さてと そろそろ時間かな ええと...^その...^ やあヤング! 私は賢者 まあ村の長老だ 君に来てもらったのは他でもない 実はセカイに広まった"クラヤミ"が 伝説のブライアをさがしているのだ その力を邪悪なことに使うためにね キミにはクラヤミよりも先にブライアを見つけて 守ってほしい
 #Cloaked Man:Well, it’s about time. Er...^I mean...^ Greetings, Young! I am Sage, the Village Elder. You have been summoned here because The Darkness has spread across The Land. The Darkness seeks The Legendary Briar, to use The Briar’s power for evil. You must reach it first. You must protect The Briar.	
 さあ 左に使えるようになったポータルがある そこから冒険に出かけなさい
 #Enter the active portal on your left to begin your quest.
@@ -188,13 +188,13 @@ LOOP
 		scene after_bed
 いいぞ ヤング そのようなカギは 他にもあるはず すべてさがし出すんだ
 #Continue on, Young. That key you have found, there may be others like it - seek them out.
-さあヤング この世界を歩きつくすのだ \"クラヤミ\"を止めるにはそれしかないのだから
+さあヤング この世界を歩きつくすのだ "クラヤミ"を止めるにはそれしかないのだから
 #Travel to the far reaches of The Land, Young. This is the only way to stop The Darkness.
 		end scene
 	
 # After finishing first 3 dungeons
 		scene before_windmill
-その3つのカギがあれば \"ザ ランド\"のさらに おくまで 歩みを進められるだろう
+その3つのカギがあれば "ザ ランド"のさらに おくまで 歩みを進められるだろう
 #Take those three keys, Young, and unlock the way to the deeper realms of The Land.
 		end scene
 
@@ -232,7 +232,7 @@ LOOP
 # Sage fades into room.	
 賢者:キミはまだ とてもよわい クラヤミからブライアを守るには 己の恐怖を克服しなければならん そこのハコに入っているようなカードは キミの成長のあかしだ たびの間は できるだけ集めるようにしなさい
 #Sage:At this point, you are still weak. If you hope to protect The Briar from The Darkness, you must face your fears. The card you will find in this chest, and others like it, are symbols of your growth, so acquiring them is absolutely vital to your quest.
-それからカギ これも大事だ カギは他にもあるから よくさがしなさい ああ それからメニューの\"マップ\"からは寺院の入り口までテレポートできる さあ先をいそぎなさい
+それからカギ これも大事だ カギは他にもあるから よくさがしなさい ああ それからメニューの"マップ"からは寺院の入り口までテレポートできる さあ先をいそぎなさい
 #That key will also play an important role in your quest. You must seek out other keys, as well. Select the map on the menu screen to teleport back to the temple's entrance, and continue your heroic quest.
 寺院庭園の東と南にすすめば カギがやくだつ 場所があるだろう
 #Travel East and South through the temple grounds... you will find a use for that key.
@@ -254,7 +254,7 @@ LOOP
 		scene entrance
 賢者:やあ ヤングよ キミがよりつよく よりかしこくなったとき ブライアへとつづくこの道は開かれるだろう
 #Sage:Hello, Young. When you have become a stronger and wiser individual, this path will lead you to The Briar.
-賢者:だが今はまだ早い まずは\"ザ ランド\"にのこる試練を のりこえねばな
+賢者:だが今はまだ早い まずは"ザ ランド"にのこる試練を のりこえねばな
 #Sage:You’re not ready Young, first you must face more trials in The Land.
 賢者:ずいぶん成長したな ヤングよ しかしこの門をくぐるには カードが36枚はひつようだぞ
 #Sage:You have made progress, Young, but you must collect at least 36 cards to pass this gate.
@@ -313,7 +313,7 @@ end npc
 npc happy_npc
 	area HAPPY
 		scene beautiful
-やったわね ヤング! ついに\"クラヤミ\"をたおしたのね! ほら見てこの場所 本当にうつくしいわ!
+やったわね ヤング! ついに"クラヤミ"をたおしたのね! ほら見てこの場所 本当にうつくしいわ!
 #You did it, Young! You defeated The Darkness! Look at this place! It’s beautiful!
 本当に美しいわ...
 #So beautiful...
@@ -609,7 +609,7 @@ end npc
 npc sun_guy
 	area BEDROOM
 		scene before_fight
-おお ヤング なんとかわいらしい えいゆうごっこかね だがね 私はキミが\"ザ ランド\"に来てからの行ないをすべて知っている それから...この世界で私以上に正直なものはいない だれを信頼するのか よく考えることだね
+おお ヤング なんとかわいらしい えいゆうごっこかね だがね 私はキミが"ザ ランド"に来てからの行ないをすべて知っている それから...この世界で私以上に正直なものはいない だれを信頼するのか よく考えることだね
 #Oh, isn’t it cute? Precious little Young, playing the hero. But I have witnessed every step you have taken in "The Land", and let me tell you, Young, not everyone here is as honest as me. Be careful who you trust!
 		end scene
 		scene after_fight
@@ -800,18 +800,18 @@ npc rock
 		end scene
 		scene two
 
-青い石像が動く時\n新たな道が開ける\nガケを抜けてきみょうな次元へ\nその先にはホテルがある\n\n\n\"見守る者とは誰だ?\"ぼくはたずねる\n\"この場所を取り仕切っているのは?\"\nこれほど人の魂に囲まれているのに\nぼくはこどくを感じる
-#When the blue stone statue shifted\nThere a new path was revealed\nPast the cliffs, through strange dimensions\nStands a travelers' hotel\n\n\n\"Who is the guardian?\" I ask,\n\"Who rules this crowded business place?\"\nDespite the many human souls\nI still feel alone.
+青い石像が動く時\n新たな道が開ける\nガケを抜けてきみょうな次元へ\nその先にはホテルがある\n\n\n"見守る者とは誰だ?"ぼくはたずねる\n"この場所を取り仕切っているのは?"\nこれほど人の魂に囲まれているのに\nぼくはこどくを感じる
+#When the blue stone statue shifted\nThere a new path was revealed\nPast the cliffs, through strange dimensions\nStands a travelers' hotel\n\n\n"Who is the guardian?" I ask,\n"Who rules this crowded business place?"\nDespite the many human souls\nI still feel alone.
 		end scene
 		scene three
 
-赤くさびた像が動いた\nおくへと つづく道が開く\nその先には迷路のようなダンジョンがある\nそしてサーカスへ\n\n\n\"見守る者とは誰だ?\"ぼくはたずねる\n\"この場所から逃げるために 命をすてたのは誰だ?\"\nぼくはいたみを恐れる 他の人と同じように\nでも それよりも 死が怖い
-#The red and rusty statue moved\nAnd paved the way to deeper pits\nA labyrinthine dungeon follows\nThen a big-top circus tent\n\n\n\"Who are the guardians?\" I ask,\n\"Who gave up life to flee this place?\"\nI fear the pain, the same as they\nBut fear it more to die.
+赤くさびた像が動いた\nおくへと つづく道が開く\nその先には迷路のようなダンジョンがある\nそしてサーカスへ\n\n\n"見守る者とは誰だ?"ぼくはたずねる\n"この場所から逃げるために 命をすてたのは誰だ?"\nぼくはいたみを恐れる 他の人と同じように\nでも それよりも 死が怖い
+#The red and rusty statue moved\nAnd paved the way to deeper pits\nA labyrinthine dungeon follows\nThen a big-top circus tent\n\n\n"Who are the guardians?" I ask,\n"Who gave up life to flee this place?"\nI fear the pain, the same as they\nBut fear it more to die.
 		end scene
 		scene four
 
-にぶいかがやきを放つ緑色の像が動いた\nさらにおくへと進む\nこぢんまりとした町を抜けて\nとある住宅へ\n\n\n\"見守る者とは誰だ?\"ぼくはたずねる\n\"星になぐさめを求めるのは誰だ?\"\n誰かに見られている気がする\nそしてそれは やさしい星々のそれではない
-#The green, metallic statue shifted\nOpening a deeper trail\nSuburban homes and sidewalks form\nA path to an apartment.\n\n\n\"Who is the guardian?\" I ask,\n\"Who looks for comfort in the stars?\"\nAlone, I feel like I am watched\nAnd not by friendly starlight.
+にぶいかがやきを放つ緑色の像が動いた\nさらにおくへと進む\nこぢんまりとした町を抜けて\nとある住宅へ\n\n\n"見守る者とは誰だ?"ぼくはたずねる\n"星になぐさめを求めるのは誰だ?"\n誰かに見られている気がする\nそしてそれは やさしい星々のそれではない
+#The green, metallic statue shifted\nOpening a deeper trail\nSuburban homes and sidewalks form\nA path to an apartment.\n\n\n"Who is the guardian?" I ask,\n"Who looks for comfort in the stars?"\nAlone, I feel like I am watched\nAnd not by friendly starlight.
 		end scene
 		end area
 	area BLANK
@@ -874,8 +874,8 @@ npc rock
 #Rock:Oh!...?
 		end scene
 		scene five
-コンピューターたんまつには メールが開かれている 画面が一部こわれているので一部のテキストは よめない メールの中身は...\" やあ ヤング!どうやら [...] 15番目のカード [...] から さけたほうが [...] 考えてみてほしい さて じゅんびはいいかい? 起きてくれ\"
-#The computer terminal has an e-mail open. Parts of the screen are broken, so only parts of the message are visible in between black blotches. The e-mail reads:\"Hello, Young! It seems that [...] fiftieth card [...] maybe you shouldn't... [...] worth thinking about! Do you think you're ready? Wake up...\" 
+コンピューターたんまつには メールが開かれている 画面が一部こわれているので一部のテキストは よめない メールの中身は..." やあ ヤング!どうやら [...] 15番目のカード [...] から さけたほうが [...] 考えてみてほしい さて じゅんびはいいかい? 起きてくれ"
+#The computer terminal has an e-mail open. Parts of the screen are broken, so only parts of the message are visible in between black blotches. The e-mail reads:"Hello, Young! It seems that [...] fiftieth card [...] maybe you shouldn't... [...] worth thinking about! Do you think you're ready? Wake up..." 
 		end scene
 	end area
 	area OVERWORLD
@@ -942,7 +942,7 @@ npc rock
 	area SPACE
 #middle
 		scene one
-油性マジックらしきもので書いてある:\"空間\"と\"時間\"の旅人よ かんげいします あなたが足を踏み入れたのは次元の裂け目 りんせつする\"ヤング\"の世界からはるか はなれた場所 いわばあなたは\"海\"をひとつふたつ こえてきたわけです この場所はいろいろ\"ちがい\"ますが恐れないでください あなたはすぐに元の世界にもどるのですから \"不吉\"あるいは\"危険\"に見えるかもしれませんが恐れないでください ここの住民はみなとても\"フレンドリー\"ですので\n -- MGMT
+油性マジックらしきもので書いてある:"空間"と"時間"の旅人よ かんげいします あなたが足を踏み入れたのは次元の裂け目 りんせつする"ヤング"の世界からはるか はなれた場所 いわばあなたは"海"をひとつふたつ こえてきたわけです この場所はいろいろ"ちがい"ますが恐れないでください あなたはすぐに元の世界にもどるのですから "不吉"あるいは"危険"に見えるかもしれませんが恐れないでください ここの住民はみなとても"フレンドリー"ですので\n -- MGMT
 #Scribbled in what appears to be permanent marker:Greetings, fellow traveler of SPACE and TIME. You have stepped into a rift far away from the juxtaposing area of YOUNG. You've crossed an OCEAN or two, so to speak. Don't worry about the CONTRAST, you can return to your normal adventure shortly. Do not FEAR this place, though it appears FORBODING and DANGEROUS you will find its denizens to be quite FRIENDLY.\n -- The MGMT
 			(メッセージの下には文字が刻まれている)森で迷った ____(よめない)ここに眠る
 #(Below the message, an engraving:) Here lies ____ (unreadable). He got lost in the woods.
@@ -1026,7 +1026,7 @@ npc rock
 	end area
 	area WINDMILL
 		scene one
-かんこうスポット:\"双子の塔\"しばらく前にけんせつされたこの塔からは 遠くの山々まで見渡すことができます 第一の塔は はそんして以来 別の目的に使われるようになりました 第二の塔は いまだ東にあり 天高くそびえています なお東の塔へ続く道は 安全上の理由から 現在ふうさされています
+かんこうスポット:"双子の塔"しばらく前にけんせつされたこの塔からは 遠くの山々まで見渡すことができます 第一の塔は はそんして以来 別の目的に使われるようになりました 第二の塔は いまだ東にあり 天高くそびえています なお東の塔へ続く道は 安全上の理由から 現在ふうさされています
 #SCENIC LANDMARK:Partner Towers. Built some time ago, the Partner Towers overlook the distant mountains. The first tower was damaged a while ago and has since been repurposed. The second still stands to the east, reaching into the sky. Due to safety concerns, the path to the tower has been cut off until further notice.
 		end scene
 		scene two
@@ -1105,7 +1105,7 @@ LOOP
 #Though, when I am ruler, it feels slightly strange...I somewhat feel isolated, wanting to be avoidant of others...
 ...ああ 孤立ってのはちょっと ちがうかな 部分的には合ってるんだけどね じっさい孤立はしてないし 他人も苦手なわけじゃないんだ 僕らはみんな友だちだと思ってるし でもさー みんなココに来ないし 来ても二言三言しか話さないし そういう点では孤立してるなあって思うよね
 #...but isolation is not the right word, though it covers parts of the feeling. I'm not isolated, and I don't dislike the others. We consider ourselves all friends, but you know, no one really comes up here except to say a few words. So I have to think about things or I might go crazy! Maybe that's part of the isolation. 
-まあ そういう\"どうしてこの空間に僕らが存在してるか\"みたいな話よりさ どうして僕らが友だちなのかのほうが気になるよ
+まあ そういう"どうしてこの空間に僕らが存在してるか"みたいな話よりさ どうして僕らが友だちなのかのほうが気になるよ
 #Outside of those inane questions about *why* we're here occupying this space, I'm curious as to why we're even friends.
 まあ今の空間のなりたちでは 僕が支配者やるのがベストってことで なりたちが新しく変わるまでは みんな僕が支配者でいられるように気をつかってくれるし... 物理的にそこに存在してくれる事とかね そういうのは はげみになるよね
 #I like to think that whenever we're under the interpretations that I'm best to rule, that they give me comfort in being able to hold this position for as long as it takes to reach the next interpretation. You know, encouragement and the like, their physical presence, those are comforting.
@@ -1339,7 +1339,7 @@ npc generic_npc
 		scene one
 同情はいらねえよ ヤング
 #I don’t need your pity, Young.
-そうかい そうやって幸せな世界の中で生きてりゃいいよ\"選ばれし者\"さんよ...
+そうかい そうやって幸せな世界の中で生きてりゃいいよ"選ばれし者"さんよ...
 #Right, just go on living in your happy little world, "Chosen One"...
 なあ ヤング 友情なんてさ みんなが自分をだましてるから成立するんだぜ オレたちはみんなクソヤローだし 最後にはみんな一人なんだ
 #You know, Young, friendship is just a trick people play on themselves. We’re all assholes, and in the end, we’re all alone. 
@@ -1386,7 +1386,7 @@ npc generic_npc
 	scene quest_normal
 ゴーレム:来るとちゅう でっかい岩が降ってきたりしなかった? イライラするとどうしても岩投げちゃうんだよねえ 当たったらゴメンね
 #Golem:Did you get hit by a boulder on your way up? Sometimes I throw boulders when I’m angry. I’m sorry if I hit you.
-ゴーレム:よく母さんに\"そんな事してたら そのうち山がなくなっちまうよ\"って言われたよ まさかポッキリいっちまうなんてなあ
+ゴーレム:よく母さんに"そんな事してたら そのうち山がなくなっちまうよ"って言われたよ まさかポッキリいっちまうなんてなあ
 #Golem:My mother always said that if I kept doing it, I’d run out of mountain to throw. Back before she was fracked.
 		end scene
 		scene second
@@ -1417,7 +1417,7 @@ LOOP
 #Hews:A crowded beach is robbed of its grace.
 		end scene
 		scene second
-ヒュウズ:シャコって知ってるかい? シャコには\"じゅようたい\"が16コもあって しがいせんも見えるらしいんだ たくさん色が見えるってどんなだろうね?
+ヒュウズ:シャコって知ってるかい? シャコには"じゅようたい"が16コもあって しがいせんも見えるらしいんだ たくさん色が見えるってどんなだろうね?
 #Hews:Have you heard of the mantis shrimp? It has 16 photoreceptors that allow it to perceive ultraviolet light. Can you imagine seeing a wider range of colors?
 ヒュウズ:きっと美しいんだろうな でも色がちがうだけで憎しみ合う今の世界を考えれば そうシンプルなハナシでもないのかね
 #Hews:Maybe it would be beautiful. Then again, we’ve found plenty of ways to hate each other with just the colors we have.
@@ -1581,12 +1581,12 @@ Aって何かって? ? ? ぼくの地元だよ . . . 古い友だちに会いに
 あれ 今...あれ? うん まあ おみごと...!
 #You actually were...uh, ah. Well done.
 LOOP
-つるりとした岩が部屋の明かりを反射している 表面に何か刻んである:\"手短に すぐに出発することになるから(どんどん明るくなってきている いつものことだ)青い森の北西で 別の寺院の入り口を見た 北に森を抜けた先だ スイッチが自由に押せたらいいのだが... おそらく次にこの世界を訪れたときにでも\"
-#The shiny rock reflects only a bit of the light from the room. There is writing etched into it:\"Quickly, before I have to leave again (It is getting very light in here, this always happens) - the northwest part of the blue forest - I saw another temple entrance just to the north, past those trees - if only I could switch things at will to get through there...maybe I'll do this the next time I revisit this world.\"
+つるりとした岩が部屋の明かりを反射している 表面に何か刻んである:"手短に すぐに出発することになるから(どんどん明るくなってきている いつものことだ)青い森の北西で 別の寺院の入り口を見た 北に森を抜けた先だ スイッチが自由に押せたらいいのだが... おそらく次にこの世界を訪れたときにでも"
+#The shiny rock reflects only a bit of the light from the room. There is writing etched into it:"Quickly, before I have to leave again (It is getting very light in here, this always happens) - the northwest part of the blue forest - I saw another temple entrance just to the north, past those trees - if only I could switch things at will to get through there...maybe I'll do this the next time I revisit this world."
 		end scene
 		scene quest_event
-つるりとした岩が部屋の明かりを反射している 表面に何か刻んである:\"手短に すぐに出発することになるから(どんどん明るくなってきている いつものことだ)青い森の北西で 別の寺院の入り口を見た 北に森を抜けた先だ スイッチが自由に押せたらいいのだが... おそらく次にこの世界を訪れたときにでも\"
-#The shiny rock reflects only a bit of the light from the room. There is writing etched into it:\"Quickly, before I have to leave again (It is getting very light in here, this always happens) - the northwest part of the blue forest - I saw another temple entrance just to the north, past those trees - if only I could switch things at will to get through there...maybe I'll do this the next time I revisit this world.\"
+つるりとした岩が部屋の明かりを反射している 表面に何か刻んである:"手短に すぐに出発することになるから(どんどん明るくなってきている いつものことだ)青い森の北西で 別の寺院の入り口を見た 北に森を抜けた先だ スイッチが自由に押せたらいいのだが... おそらく次にこの世界を訪れたときにでも"
+#The shiny rock reflects only a bit of the light from the room. There is writing etched into it:"Quickly, before I have to leave again (It is getting very light in here, this always happens) - the northwest part of the blue forest - I saw another temple entrance just to the north, past those trees - if only I could switch things at will to get through there...maybe I'll do this the next time I revisit this world."
 		end scene
 	end area
 end npc
@@ -1622,7 +1622,7 @@ zzz... ムニャ...
 #NO?^...^DAMN!
 		end scene
 		scene color1
-キューブにはもう会った? すごくクールなんだよ! 聞いた話じゃあ\n ガケぎりぎりの場所に12びょう近く立っていられるとか!ハンパないよね!\n\"ガケぎり立ちリーグ\"のメンバーならそのスゴさが分かると思うけど! え?\n 分かんない? うーん スゲエってことさ!
+キューブにはもう会った? すごくクールなんだよ! 聞いた話じゃあ\n ガケぎりぎりの場所に12びょう近く立っていられるとか!ハンパないよね!\n"ガケぎり立ちリーグ"のメンバーならそのスゴさが分かると思うけど! え?\n 分かんない? うーん スゲエってことさ!
 #Have you met CUBE? It does such cool things! I heard once it stood on an edge for nearly twelve seconds. Oh man! Do you know what that means for the League of Edge Standers? No? Well, a lot!
 		end scene
 		scene color2
@@ -1742,7 +1742,7 @@ npc suburb_walker
 		end scene
 		scene older_kid
 # inside of a house, olderkid
-友だちはみんなレイヘッドの\"ノー・サプライズ\"って曲が好きなんだ この町の文句を言ってる歌なんだけど そりゃあ ここは天国じゃないけどさ 感謝くらいすべきだよ! それか自分で変えようとしなきゃ! みんなときたら... あ スミマセン ついアツくなっちゃいました
+友だちはみんなレイヘッドの"ノー・サプライズ"って曲が好きなんだ この町の文句を言ってる歌なんだけど そりゃあ ここは天国じゃないけどさ 感謝くらいすべきだよ! それか自分で変えようとしなきゃ! みんなときたら... あ スミマセン ついアツくなっちゃいました
 #My friends like to listen to that 'None Surprises' song by 'Rayhead' and complain about this place. Sure, it's a bit of a bubble, but hell, at least show some gratitude! Or do something about it! They're all just...oh, sorry. I tend to do that sometimes..
 これは自分のブログに書くことにします
 #I guess I'll just go write in my blog.
@@ -1754,8 +1754,8 @@ npc suburb_walker
 		
 #inside of hanged man house 74
 		scene hanged
-死体の上にメモがある\"これで危険から はなれられる\"
-#A note on the corpse:\"Placing myself in danger no more.\"
+死体の上にメモがある"これで危険から はなれられる"
+#A note on the corpse:"Placing myself in danger no more."
 		end scene
 		scene festive
 
@@ -1854,7 +1854,7 @@ npc card
 本当にすみません 本能なんです
 #I am sorry. It is my nature.
 #15 Top of Cliff
-\"ただの岩じゃん\"ってどういうこと!? 岩だってカードになるよ!いいじゃん!
+"ただの岩じゃん"ってどういうこと!? 岩だってカードになるよ!いいじゃん!
 #What do you mean, 'Only a rock'?? Rocks can be on cards too, you know!
 #16 Western end of BEACH past spikes
 男に魚を一匹やれば一日食いつなぐが,魚の取り方を教えてやれば息子の\n ジミーとの父子のじかんプライスレス
@@ -1878,7 +1878,7 @@ npc card
 リョーリの鉄人に出るのが夢だったんだよねえ
 #I've always wanted to be on Iron Chef.
 #23 CONTORT circus - contort + firepillar room in SW chunk
-母さんにはよく\"背中曲げてると ずっとその形になっちゃうよ!\"って言われてたなあ
+母さんにはよく"背中曲げてると ずっとその形になっちゃうよ!"って言われてたなあ
 #My mom always told me, 'If you do that arch long enough, your spine will stay that way!'
 #24 LION circus - end of northern gauntlet bordering boss room
 お楽しみいただけましたでしょうか
@@ -1896,7 +1896,7 @@ npc card
 #Oh, you collect cards, too? Real classy, Ying.
 #29 end of grey end of space, for grey cube king
 たまにはコンピューターやめなさい! 友だちできないよ!ってよく言われたなあ
-#They always said, \"Get off the computer! Or you'll never make friends!\"
+#They always said, "Get off the computer! Or you'll never make friends!"
 #30 end of colorful end of SPACE, for color cube king
 今んとこ支配者やってます
 #I'm only the ruler for the extent of a conversation.
@@ -1957,13 +1957,12 @@ end npc
 npc misc
 	area any
 	scene controls 
-操作設定をするには
+操作設定をするには [SOMEKEY-LEFT] を,キャンセルするには
 #Press
 # [SOMEKEY-LEFT]
-を,キャンセルするには
 #to set controls. 
 # [SOMEKEY-ENTER]
-を押してください
+[SOMEKEY-ENTER] を押してください
 #to cancel.
 上
 #Up
@@ -1982,17 +1981,17 @@ npc misc
 しゅうりょうするには
 #Press
 # [SOMEKEY-ENTER]
-を,操作設定をするには
+[SOMEKEY-ENTER] を,操作設定をするには
 #to exit
 # [SOMEKEY-LEFT]
-を押してください
+[SOMEKEY-LEFT] を押してください
 #to set controls.
 		end scene 
 		scene title
 黒いエリアが見えなくなるまで\n矢印キーをつかって\nウィンドウの大きさを調節してください\nおわったら
 #Please use the arrow keys to resize the window until you cannot see any black around the borders. Press
 # [SOMEKEY-C]
-を押してください
+[SOMEKEY-C] を押してください
 #when done.
 ANODYNE
 #This is intentionally left in English
@@ -2000,9 +1999,8 @@ Melos Han-Tani\nMarina Kittaka
 #This is intentionally left in English 
 any key
 #This is intentionally left in English, as these strings usually stay in English in Japanese games as well.
-Press
+Press [SOMEKEY-C] to start
 # [SOMEKEY-C]
-to start
 バージョン
 #Version 1.508
 つづきから
@@ -2019,7 +2017,7 @@ to start
 #0 deaths 
 枚カードを集めました
 #0 cards
-Anodyneは\nコントローラー\nに対応しています\n\n使用しますか?はい いいえ\n\n使用する場合は\n接続してください\n\n矢印キーで移動\nC / スペース / Enterで決定\n\n自動で\"はい\"に設定:
+Anodyneは\nコントローラー\nに対応しています\n\n使用しますか?はい いいえ\n\n使用する場合は\n接続してください\n\n矢印キーで移動\nC / スペース / Enterで決定\n\n自動で"はい"に設定:
 #Anodyne supports\nmost controllers.\n\nWill you use one?\n\nYes No\n\nIf so, connect it now.\n\nMove with arrow keys\n\nSelect with\nC, SPACE, or ENTER\n\nDefaulting to yes in\n
 注意\n\n入力にラグが\nある場合は\n一度ホームに\n戻ってください\n\nCで次に進みます
 #NOTE\n\nIf you have input\nlag during gameplay,\nreturn to your\nhome screen and\nre-enter Anodyne.\n\nPRESS C TO CONTINUE
@@ -2069,10 +2067,10 @@ menu=enter
 #Extend
 はばひろ
 #Widen
-バネが仕込まれたクツ。
+バネが仕込まれたクツ。[SOMEKEY-X] を押すとジャンプ!
 #A pair of spring-loaded shoes - press 
 # [SOMEKEY-X]
-を押すとジャンプ!
+
 #to jump!
 じてんしゃ用シューズ
 #A pair of shoes for biking.
@@ -2161,7 +2159,7 @@ en
 		end scene
 		scene secrets
 まいて まいてー!
-#You\'re rolling in it!
+#You're rolling in it!
 しおづけのおにくのかんづめ すききらいがわかれる
 #Once the property of a famous Bubble Mage.
 グラフィックがおかしいときは パキモンずかんでチェックしてみよう!
@@ -2169,7 +2167,7 @@ en
 このハートには特に名前はない
 #This heart has no name.
 きみもデラモンワールドにおいでよ!
-#Please visit the electric monsters\' world.
+#Please visit the electric monsters' world.
 こねこの像 かわいいけど役には立たない
 #A kitty statue. Cute, but useless.
 ウワーーー! 見つかった!
@@ -2177,20 +2175,20 @@ en
 ヤベー! 見つかった!
 #Oh no!!!!
 黒色だ
-#It\'s black.
+#It's black.
 赤色だ
-#It\'s red.
+#It's red.
 緑色だ
-#It\'s green.
+#It's green.
 青色だ
-#It\'s blue.
+#It's blue.
 白色だ
-#It\'s white.
-#SOMEKEY-C
-:決定
+#It's white.
+#[SOMEKEY-C]
+[SOMEKEY-C] :決定
 #:Select
-#SOMEKEY-X
-:戻る
+#[SOMEKEY-X]
+[SOMEKEY-X] :戻る
 #:Back
 		end scene
 		scene swap
@@ -2208,24 +2206,22 @@ en
 		scene treasure
 なぞの力により 宝箱はふういんされている
 #Some strange force stops this treasure box from being opened.
-ホウキの取っ手に文字がきざまれている\"
+ホウキの取っ手に文字がきざまれている"[SOMEKEY-C]を押すとホウキを 振るいます"
 #An engraving on the broom handle reads:Press
-#SOMEKEY-C
-を押すとホウキを 振るいます\"
+#[SOMEKEY-C]
 #to sweep.
 このカギは一回使うとこわれてしまうようだ
 #This key may be used a single time to open up a locked barrier.
-ナゾのブーツ。ブランド名は\"
-#A mysterious pair of boots has nothing but the branding on it, which says \"Press
-#SOMEKEY-X
-ヲ オスト ジャンプ\"
-#\".
-ホウキのアタッチメントに何か書いてある\"メニューで\"はばひろ\"をえらぶと ホウキの左右にほこりが広がり こうげきはんいが広くなる\"
-#A few words on the broom extension read \"Equip the WIDEN upgrade in the menu to have the broom release harmful dust to the left and right.\"
-ホウキのアタッチメントに何か書いてある\"メニューで\"えんちょう\"をえらぶと ホウキの前方にほこりが広がり こうげきはんいが広くなる\"
-#A few words on the broom extension read \"Equip the EXTEND upgrade in the menu for the broom to release harmful dust in front of the broom's normal reach.\"
-ホウキのアタッチメントに何か書いてある\"やあ ヤング \"いれかえ\"アタッチメントは2つのものを入れ替えられる どこでも使えるわけじゃないけど とりあえずは 役に立つはず\"
-#A note next to the broom extension:\"Hello, Young. Use this SWAP upgrade on two tiles to switch their places. It may be a while before you can use this everywhere, but it should serve you well for the time being.\"
+ナゾのブーツ。ブランド名は"[SOMEKEY-X] ヲ オスト ジャンプ"
+#A mysterious pair of boots has nothing but the branding on it, which says "Press
+#[SOMEKEY-X]
+#".
+ホウキのアタッチメントに何か書いてある"メニューで"はばひろ"をえらぶと ホウキの左右にほこりが広がり こうげきはんいが広くなる"
+#A few words on the broom extension read "Equip the WIDEN upgrade in the menu to have the broom release harmful dust to the left and right."
+ホウキのアタッチメントに何か書いてある"メニューで"えんちょう"をえらぶと ホウキの前方にほこりが広がり こうげきはんいが広くなる"
+#A few words on the broom extension read "Equip the EXTEND upgrade in the menu for the broom to release harmful dust in front of the broom's normal reach."
+ホウキのアタッチメントに何か書いてある"やあ ヤング "いれかえ"アタッチメントは2つのものを入れ替えられる どこでも使えるわけじゃないけど とりあえずは 役に立つはず"
+#A note next to the broom extension:"Hello, Young. Use this SWAP upgrade on two tiles to switch their places. It may be a while before you can use this everywhere, but it should serve you well for the time being."
 ハートを見つけた!最大体力がゼロぞうかした!
 #YOU FOUND A HEART!!! Maximum Health increased by...zero.
 ゴールドマン:ええ? ない?! きっとあの商人がぬすんだんだ!
@@ -2236,12 +2232,13 @@ en
 #Your broom is now full of dust! Attack again to place it.
 		end scene
 		scene checkpoint
-セーブする?\n はい\n いいえ
+セーブする?
+はい
+いいえ
 #Save game?\n Yes\n No
-チェックポイントの上で
+チェックポイントの上で [SOMEKEY-C] を押すとセーブされ そこが復活ポイントに設定されます
 #While standing on a checkpoint, press
-#SOMEKEY-C
-を押すとセーブされ そこが復活ポイントに設定されます
+#[SOMEKEY-C]
 #to save your progress and set it as your respawn point if you die.
 		end scene
 		scene rock
@@ -2280,15 +2277,13 @@ en
 		scene mitra
 あっ ヤング!
 #Hey, Young!
-え この自転車用シューズ わたしに? スゴい!ありがとうヤング!ウェアズのペダルには固定金具がついてるから ちょうどソレに合うクツを買おうかなって思ってたの じゃあ代わりに このクツあげるよ!バネがついててね すごく高くジャンプできるんだよ 
-#Are those bike shoes for me? Wow! Thanks, Young! I\'ve been thinking about getting these, since Wares has those pedals where you can clip in bike shoes. Here, Young, take my boots in exchange! They have these cool springs that let you jump really high! You press 
+え この自転車用シューズ わたしに? スゴい!ありがとうヤング!ウェアズのペダルには固定金具がついてるから ちょうどソレに合うクツを買おうかなって思ってたの じゃあ代わりに このクツあげるよ!バネがついててね すごく高くジャンプできるんだよ [SOMEKEY-X] を押せばジャンプできるよ!
+#Are those bike shoes for me? Wow! Thanks, Young! I've been thinking about getting these, since Wares has those pedals where you can clip in bike shoes. Here, Young, take my boots in exchange! They have these cool springs that let you jump really high! You press 
 #[SOMEKEY-X] 
-を押せばジャンプできるよ!
 #to jump with them on!
-やっほ ヤング!何か気づくコトない...?^... ^...正解は じゃーん! クツが新しくなってる でしたー! 見て見て ウェアズのペダルにカチッとはまるの! それでね 前のクツはいらなくなっちゃったから キミにあげるよ! バネがついててね すごく高くジャンプできるんだよ
+やっほ ヤング!何か気づくコトない...?^... ^...正解は じゃーん! クツが新しくなってる でしたー! 見て見て ウェアズのペダルにカチッとはまるの! それでね 前のクツはいらなくなっちゃったから キミにあげるよ! バネがついててね すごく高くジャンプできるんだよ [SOMEKEY-X] を押せばジャンプできるよ!
 #Hi Young! Notice anything new? ^... ^... Oh, well, I got new biking shoes, see! They clip into Wares' pedals. Since I'll no longer be needing my old boots, I want you to have them, Young! They have these cool springs that let you jump really high! You press 
 #[SOMEKEY-X] 
-を押せばジャンプできるよ!
 #to jump with them on!
 オッケ!そんじゃね!
 #Alright, take care!
@@ -2296,14 +2291,12 @@ en
 #Go on, try them out! ...They're not THAT smelly.
 ね? よくない?
 #Cool, huh?
-わわっ! それってフィンティのお店にあった自転車シューズじゃない? えっ!? わたしに? ヤング ありがとうー! すごくうれしい! そうだ お礼にわたしのクツあげるよ すごく便利なんだよ えーっとねブランドは...\"
-#Wow, are those the biking shoes from Finty's shop? You're giving them to me? Thanks, Young, I really appreciate it! Here, try out my old shoes in return--I think you'll find them really useful! There's an engraving on the shoes that says \"Press 
-#somekey-x
-ヲ オスト ジャンプ\"だって。イミわかんないよね クツのどこにも
-#to jump\". I've never understood that, though, because there's no \"
-#somekey-x
-ボタンなんか ついてないし!
-#\" anywhere on the shoes...
+わわっ! それってフィンティのお店にあった自転車シューズじゃない? えっ!? わたしに? ヤング ありがとうー! すごくうれしい! そうだ お礼にわたしのクツあげるよ すごく便利なんだよ えーっとねブランドは..."[SOMEKEY-X] ヲ オスト ジャンプ"だって。イミわかんないよね クツのどこにも [SOMEKEY-X] ボタンなんか ついてないし!
+#Wow, are those the biking shoes from Finty's shop? You're giving them to me? Thanks, Young, I really appreciate it! Here, try out my old shoes in return--I think you'll find them really useful! There's an engraving on the shoes that says "Press 
+#[SOMEKEY-X]
+#to jump". I've never understood that, though, because there's no "
+#[SOMEKEY-X]
+#" anywhere on the shoes...
 		end scene
 		scene tradenpc
 フィンティ:いやあ よく来たネ ヤング あなた 私のトモダチ!ワタシは プラサンドフ・フィンティ・プラサンドフ! さあ見ていってネ いい品イッパイよ
@@ -2356,8 +2349,8 @@ Melos からの謝辞:\n\n父と母へ - ずっと\n支えてくれてありが�
 #Melos would like\nto thank:\n\nMom and Dad, for\ntheir constant support\nin this endeavor.\n\nS\n\nMany TIGSourcers and\nother devs met\nalong the way!\n\nMarina, for making\nthis game possible,\nand improving it in\ncountless ways.
 Adobe,Adam Saltsman氏\nFlashDevelop の人たち\nREAPER の人たち\nDAME 開発者さん\nDesura,Gamersgate,\nIndieDB,TIGSource\n\n\nそれから友だちみんな\n支えてくれて ホントに\nありがとう\n\nさいごに... 親友の\nTina Chen へ\n\nいつも 支えてくれて\nそして Marina を紹介して\nくれて ありがとう
 #Adobe, Adam Saltsman,\nFlashDevelop devs,\nREAPER devs,\nDAME creator,\nDesura, Gamersgate,\nIndieDB, TIGSource\n\n\nAnd my other friends\nwho have shown their\nsupport. (Thanks!)\n\nAnd last, but\nnot least,\nTina Chen,\nlongtime friend,\nfor both support and\nintroducing me to Marina.
-Marina からの謝辞:\n\nColin Meloy へ\n僕の表現力を高めて\nくれて ありがとう\n\nTsugumo へ\n\"え,オマエ ドット絵\nアーティストやるの?\"\n\n家族のみんな\n支えてくれて \nご飯食わせてくれて\nありがとうでした\n\nDaniel へ\n小さな頃から\n僕と一緒に\n\"インディー開発者\"\nでいてくれてありがとう
-#Marina would like\nto thank...\n\nColin Meloy, for\nexpanding\nmy vocabulary\n\nTsugumo, for\n\"So You Want to\nBe a Pixel Artist?\"\n\nMy family,\nfor support and food.\n\nDaniel, for being an\n\"indie game dev\"\nwith me growing up.
+Marina からの謝辞:\n\nColin Meloy へ\n僕の表現力を高めて\nくれて ありがとう\n\nTsugumo へ\n"え,オマエ ドット絵\nアーティストやるの?"\n\n家族のみんな\n支えてくれて \nご飯食わせてくれて\nありがとうでした\n\nDaniel へ\n小さな頃から\n僕と一緒に\n"インディー開発者"\nでいてくれてありがとう
+#Marina would like\nto thank...\n\nColin Meloy, for\nexpanding\nmy vocabulary\n\nTsugumo, for\n"So You Want to\nBe a Pixel Artist?"\n\nMy family,\nfor support and food.\n\nDaniel, for being an\n"indie game dev"\nwith me growing up.
 Molly へ\n信じてくれてありがとう\n\nTina へ\nMelos を紹介してくれて\n本当にありがとう\n\nMelos へ\n一緒にゲームを作って\nくれて そして僕を\nしんらい してくれて\nありがとう
 #Molly, for believing\n in me.\n\nTina, for introducing\nme\nto Melos.\n\nMelos, for making\na game\nand trusting me to\nbe a big part of it.
 出演\n----\n\n\nスライム\n\n\nじゃまなアレ\n\n\nポウポウ\n\n\nシールディ\n\n\n見通せし者

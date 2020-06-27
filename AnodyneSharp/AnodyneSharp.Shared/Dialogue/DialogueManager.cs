@@ -1,5 +1,6 @@
 ﻿using AnodyneSharp.Entities;
 using AnodyneSharp.Input;
+using AnodyneSharp.Registry;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -32,13 +33,11 @@ namespace AnodyneSharp.Dialogue
 
         private const string DialogueFilePath = "Content.Dialogue.dialogue";
 
-        public static Language CurrentLanguage { get; private set; }
-
         private static Dictionary<string, DialogueNPC> _sceneTree;
 
         public static void LoadDialogue(Language lang)
         {
-            CurrentLanguage = lang;
+            GlobalState.CurrentLanguage = lang;
 
             ReadFile();
         }
@@ -99,7 +98,7 @@ namespace AnodyneSharp.Dialogue
         {
             var assembly = Assembly.GetExecutingAssembly();
 
-            string path = $"{assembly.GetName().Name}.{DialogueFilePath}_{Enum.GetName(CurrentLanguage.GetType(), CurrentLanguage)}.txt";
+            string path = $"{assembly.GetName().Name}.{DialogueFilePath}_{Enum.GetName(GlobalState.CurrentLanguage.GetType(), GlobalState.CurrentLanguage)}.txt";
 
             ParseState state = ParseState.START;
 
@@ -171,6 +170,11 @@ namespace AnodyneSharp.Dialogue
                                 }
                                 break;
                             case ParseState.SCENE:
+                                if (string.IsNullOrWhiteSpace(line))
+                                {
+                                    continue;
+                                }
+
                                 if (line == "TOP")
                                 {
                                     alignTop = true;

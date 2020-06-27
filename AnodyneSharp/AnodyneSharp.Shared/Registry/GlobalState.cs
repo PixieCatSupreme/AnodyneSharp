@@ -1,4 +1,5 @@
 ﻿
+using AnodyneSharp.Dialogue;
 using AnodyneSharp.Entities;
 using Microsoft.Xna.Framework;
 using System;
@@ -36,6 +37,8 @@ namespace AnodyneSharp.Registry
                 return new Vector2(CURRENT_GRID_X, CURRENT_GRID_Y);
             }
         }
+
+        public static Language CurrentLanguage { get; set; }
 
         public static bool SetDialogueMode = false;
 

@@ -92,14 +92,14 @@ Voz Misteriosa: Olá? ...Young? ^EI! ... ah, você pode me ouvir? Bom, agora esc
 #Mysterious voice:Hello? ...Young? ^HEY! ... oh, you can hear me? Good, now listen. You are about to wake up. You will use the arrow keys to move around.
 
 # Note, these next two lines should be assumed to have the keybinding between them when translated (hence the single quotes)
-Você usará a tecla \'
-#You will press the \'
-\' para interagir com objetos e pessoas ao seu redor.
-#\' key to interact with objects and people around you.
-E você usará a tecla \'
-#And you will press the \'
-\' para acessar o menu, que fornecerá informações sobre você e os seus arredores.
-#\' key to access the menu, which will provide you with information about yourself and your surroundings. 
+Você usará a tecla '
+#You will press the '
+' para interagir com objetos e pessoas ao seu redor.
+#' key to interact with objects and people around you.
+E você usará a tecla '
+#And you will press the '
+' para acessar o menu, que fornecerá informações sobre você e os seus arredores.
+#' key to access the menu, which will provide you with information about yourself and your surroundings. 
  end scene
  end area
 	area GO
@@ -802,18 +802,18 @@ O caminho se abrirá quando as peças dos guardiões sombrios forem substituída
 		end scene
 		scene two
 
-Quando a pedra azul se locomoveu\nLá um novo caminho se revelou\nPassando dos penhascos, através de dimensões\nExiste um hotel para viajantes\n\n\n\"Quem é o guardião?\"Eu pergunto,\n\"Quem comanda esse abarrotado local de negócios ?\"\nApesar de todas as almas humanas\nEu ainda me sinto só.
-#When the blue stone statue shifted\nThere a new path was revealed\nPast the cliffs, through strange dimensions\nStands a travelers' hotel\n\n\n\"Who is the guardian?\" I ask,\n\"Who rules this crowded business place?\"\nDespite the many human souls\nI still feel alone.
+Quando a pedra azul se locomoveu\nLá um novo caminho se revelou\nPassando dos penhascos, através de dimensões\nExiste um hotel para viajantes\n\n\n"Quem é o guardião?"Eu pergunto,\n"Quem comanda esse abarrotado local de negócios ?"\nApesar de todas as almas humanas\nEu ainda me sinto só.
+#When the blue stone statue shifted\nThere a new path was revealed\nPast the cliffs, through strange dimensions\nStands a travelers' hotel\n\n\n"Who is the guardian?" I ask,\n"Who rules this crowded business place?"\nDespite the many human souls\nI still feel alone.
 		end scene
 		scene three
 
-A vermelha e enferrujada estátua se moveu\nE abriu caminho para poços profundos\nUm labiríntico calabouço seguiu\nLogo após, uma grande tenda de circo\n\n\n\"Quem são os guardiões?\"Eu pergunto\n\"Quem deu a vida para salvar este local?\"\nEu temo a dor, assim como eles\nMas o que realmente temo, é a morte.
-#The red and rusty statue moved\nAnd paved the way to deeper pits\nA labyrinthine dungeon follows\nThen a big-top circus tent\n\n\n\"Who are the guardians?\" I ask,\n\"Who gave up life to flee this place?\"\nI fear the pain, the same as they\nBut fear it more to die.
+A vermelha e enferrujada estátua se moveu\nE abriu caminho para poços profundos\nUm labiríntico calabouço seguiu\nLogo após, uma grande tenda de circo\n\n\n"Quem são os guardiões?"Eu pergunto\n"Quem deu a vida para salvar este local?"\nEu temo a dor, assim como eles\nMas o que realmente temo, é a morte.
+#The red and rusty statue moved\nAnd paved the way to deeper pits\nA labyrinthine dungeon follows\nThen a big-top circus tent\n\n\n"Who are the guardians?" I ask,\n"Who gave up life to flee this place?"\nI fear the pain, the same as they\nBut fear it more to die.
 		end scene
 		scene four
 
-A verde, metálica estátua se deslocou\nDando caminho a uma trilha profunda\nCasas suburbanas e calçadas se formam\nO caminho para um apartamento\n\n\n\"Quem é o guardião?\"Eu pergunto\n\"Quem procura conforto nas estrelas?\"\nSozinho, eu me sinto vigiado.\nNão pela amigável luz das estrelas.
-#The green, metallic statue shifted\nOpening a deeper trail\nSuburban homes and sidewalks form\nA path to an apartment.\n\n\n\"Who is the guardian?\" I ask,\n\"Who looks for comfort in the stars?\"\nAlone, I feel like I am watched\nAnd not by friendly starlight.
+A verde, metálica estátua se deslocou\nDando caminho a uma trilha profunda\nCasas suburbanas e calçadas se formam\nO caminho para um apartamento\n\n\n"Quem é o guardião?"Eu pergunto\n"Quem procura conforto nas estrelas?"\nSozinho, eu me sinto vigiado.\nNão pela amigável luz das estrelas.
+#The green, metallic statue shifted\nOpening a deeper trail\nSuburban homes and sidewalks form\nA path to an apartment.\n\n\n"Who is the guardian?" I ask,\n"Who looks for comfort in the stars?"\nAlone, I feel like I am watched\nAnd not by friendly starlight.
 		end scene
 		end area
 	area BLANK
@@ -876,8 +876,8 @@ Pedra:Ah!...?
 #Rock:Oh!...?
 		end scene
 		scene five
-O terminal do computador tem um e-mail aberto. Partes da tela estão quebradas, assim apenas partes da mensagem estão visíveis entre as manchas pretas\" Olá, Young! Parece que [...] quinquagésima carta [...] talvez você não deva [...] vale a pena considerar! Acha que está pronto? Acorde...\"
-#The computer terminal has an e-mail open. Parts of the screen are broken, so only parts of the message are visible in between black blotches. The e-mail reads:\"Hello, Young! It seems that [...] fiftieth card [...] maybe you shouldn't... [...] worth thinking about! Do you think you're ready? Wake up...\" 
+O terminal do computador tem um e-mail aberto. Partes da tela estão quebradas, assim apenas partes da mensagem estão visíveis entre as manchas pretas" Olá, Young! Parece que [...] quinquagésima carta [...] talvez você não deva [...] vale a pena considerar! Acha que está pronto? Acorde..."
+#The computer terminal has an e-mail open. Parts of the screen are broken, so only parts of the message are visible in between black blotches. The e-mail reads:"Hello, Young! It seems that [...] fiftieth card [...] maybe you shouldn't... [...] worth thinking about! Do you think you're ready? Wake up..." 
 		end scene
 	end area
 	area OVERWORLD
@@ -1342,7 +1342,7 @@ Falo sério... me deixe em paz.
 		scene one
 Não preciso da sua piedade, Young.
 #I don’t need your pity, Young.
-Certo, vá viver no seu mundinho feliz, \"Escolhido\"...
+Certo, vá viver no seu mundinho feliz, "Escolhido"...
 #Right, just go on living in your happy little world, "Chosen One"...
 Young, amizade é só um truque que as pessoas aplicam em si. Somos todos babacas, e no fim, estamos todos sós.
 #You know, Young, friendship is just a trick people play on themselves. We’re all assholes, and in the end, we’re all alone. 
@@ -1584,12 +1584,12 @@ AHH - - - PROCURANDO POR OUTRO HUMANO - - - ENTENDO . ^ DEIXE-ME ACESSAR MINHA M
 Você estava... ah, um. Bom trabalho.
 #You actually were...uh, ah. Well done.
 LOOP
-A reluzente pedra reflete um pouco da luz vinda da sala. Nela há a inscrição:\"Rápido, antes que eu tenha que sair de novo (Estava ficando muito claro aqui, isso sempre acontece) - a parte noroeste da floresta azul - Eu vi outra entrada do templo um pouco mais ao norte, depois dessas árvores - se eu pudesse mover as coisas com o pensamento eu poderia chegar lá...talvez eu faça isso na próxima vez em que eu for visitar esse mundo.\"
-#The shiny rock reflects only a bit of the light from the room. There is writing etched into it:\"Quickly, before I have to leave again (It is getting very light in here, this always happens) - the northwest part of the blue forest - I saw another temple entrance just to the north, past those trees - if only I could switch things at will to get through there...maybe I'll do this the next time I revisit this world.\"
+A reluzente pedra reflete um pouco da luz vinda da sala. Nela há a inscrição:"Rápido, antes que eu tenha que sair de novo (Estava ficando muito claro aqui, isso sempre acontece) - a parte noroeste da floresta azul - Eu vi outra entrada do templo um pouco mais ao norte, depois dessas árvores - se eu pudesse mover as coisas com o pensamento eu poderia chegar lá...talvez eu faça isso na próxima vez em que eu for visitar esse mundo."
+#The shiny rock reflects only a bit of the light from the room. There is writing etched into it:"Quickly, before I have to leave again (It is getting very light in here, this always happens) - the northwest part of the blue forest - I saw another temple entrance just to the north, past those trees - if only I could switch things at will to get through there...maybe I'll do this the next time I revisit this world."
 		end scene
 		scene quest_event
-A reluzente pedra reflete um pouco da luz vinda da sala. Nela há a inscrição:\"Rápido, antes que eu tenha de sair de novo (Estava ficando muito claro aqui, isso sempre acontece) - a parte noroeste da floresta azul - Eu vi outra entrada do templo um pouco mais ao norte, depois dessas árvores - se eu pudesse mover as coisas com o pensamento eu poderia chegar lá...talvez eu faça isso na próxima vez em que eu for visitar esse mundo.\"
-#The shiny rock reflects only a bit of the light from the room. There is writing etched into it:\"Quickly, before I have to leave again (It is getting very light in here, this always happens) - the northwest part of the blue forest - I saw another temple entrance just to the north, past those trees - if only I could switch things at will to get through there...maybe I'll do this the next time I revisit this world.\"
+A reluzente pedra reflete um pouco da luz vinda da sala. Nela há a inscrição:"Rápido, antes que eu tenha de sair de novo (Estava ficando muito claro aqui, isso sempre acontece) - a parte noroeste da floresta azul - Eu vi outra entrada do templo um pouco mais ao norte, depois dessas árvores - se eu pudesse mover as coisas com o pensamento eu poderia chegar lá...talvez eu faça isso na próxima vez em que eu for visitar esse mundo."
+#The shiny rock reflects only a bit of the light from the room. There is writing etched into it:"Quickly, before I have to leave again (It is getting very light in here, this always happens) - the northwest part of the blue forest - I saw another temple entrance just to the north, past those trees - if only I could switch things at will to get through there...maybe I'll do this the next time I revisit this world."
 		end scene
 	end area
 end npc
@@ -1757,8 +1757,8 @@ Eu tenho problemas para ouvir meus pensamentos quando esportes e coisas do tipo 
 		
 #inside of hanged man house 74
 		scene hanged
-Uma anotação no corpo:\"Colocando-me em perigo não mais.\"
-#A note on the corpse:\"Placing myself in danger no more.\"
+Uma anotação no corpo:"Colocando-me em perigo não mais."
+#A note on the corpse:"Placing myself in danger no more."
 		end scene
 		scene festive
 
@@ -1857,7 +1857,7 @@ Cuidado com os cogumelos florestais...
 Me desculpe. Essa é minha natureza.
 #I am sorry. It is my nature.
 #15 Top of Cliff
-O que você quer dizer com \"só uma pedra\"?? Pedras podem ser cartas também!
+O que você quer dizer com "só uma pedra"?? Pedras podem ser cartas também!
 #What do you mean, 'Only a rock'?? Rocks can be on cards too, you know!
 #16 Western end of BEACH past spikes
 Dê um peixe para um homem e ele terá comida por um dia. Ensine um homem a pescar, e ele terá bons momentos com seu filho, Jimmy.
@@ -1898,8 +1898,8 @@ HAHAHAHA! É! Eu sei!
 Ah, você coleciona cartas também? Que crescido, Ying.
 #Oh, you collect cards, too? Real classy, Ying.
 #29 end of grey end of space, for grey cube king
-Todos vivem dizendo, \"Saia do computador! Ou você nunca vai fazer amigos!\"
-#They always said, \"Get off the computer! Or you'll never make friends!\"
+Todos vivem dizendo, "Saia do computador! Ou você nunca vai fazer amigos!"
+#They always said, "Get off the computer! Or you'll never make friends!"
 #30 end of colorful end of SPACE, for color cube king
 Eu sou o governante apenas pela duração dessa conversa.
 #I'm only the ruler for the extent of a conversation.
@@ -1960,13 +1960,12 @@ end npc
 npc misc
 	area any
 	scene controls 
-Pressione
+Pressione [SOMEKEY-LEFT] para configurar\nos controles.
 #Press
 # [SOMEKEY-LEFT]
-para configurar\nos controles.
 #to set controls. 
 # [SOMEKEY-ENTER]
-para cancelar.
+[SOMEKEY-ENTER] para cancelar.
 #to cancel.
 Cima
 #Up
@@ -1982,20 +1981,18 @@ Ataque
 #Attack
 Menu
 #Menu
-Pressione
+Pressione [SOMEKEY-ENTER] para sair
 #Press
 # [SOMEKEY-ENTER]
-para sair
 #to exit
 # [SOMEKEY-LEFT]
-para configurar os controles.
+[SOMEKEY-LEFT] para configurar os controles.
 #to set controls.
 		end scene 
 		scene title
-Por favor use as setas para redimensionar a janela até que não seja possível visualizar áreas pretas ao redor das bordas. Pressione
+Por favor use as setas para redimensionar a janela até que não seja possível visualizar áreas pretas ao redor das bordas. Pressione [SOMEKEY-C] para finalizar.
 #Please use the arrow keys to resize the window until you cannot see any black around the borders. Press
 # [SOMEKEY-C]
-para finalizar.
 #when done.
 ANODYNE
 #This is intentionally left in English
@@ -2003,9 +2000,8 @@ Melos Han-Tani\nMarina Kittaka
 #This is intentionally left in English 
 any key
 #This is intentionally left in English, as these strings usually stay in English in Japanese games as well.
-Pressione
+Pressione [SOMEKEY-C] para iniciar
 # [SOMEKEY-C]
-para iniciar
 Versão
 #Version 1.508
 Continuar
@@ -2022,7 +2018,7 @@ mortes
 #0 deaths 
 cartas
 #0 cards
-Anodyne suporta\na maioria dos controles.\n\nDeseja usar um?\n\nSim Não\n\nSe sim, conecte-o agora.\n\nMova com as setas\n\nEscolha com\nC, ESPAÇO, ou ENTER\n\nEscolhendo \"sim\" em\n
+Anodyne suporta\na maioria dos controles.\n\nDeseja usar um?\n\nSim Não\n\nSe sim, conecte-o agora.\n\nMova com as setas\n\nEscolha com\nC, ESPAÇO, ou ENTER\n\nEscolhendo "sim" em\n
 #Anodyne supports\nmost controllers.\n\nWill you use one?\n\nYes No\n\nIf so, connect it now.\n\nMove with arrow keys\n\nSelect with\nC, SPACE, or ENTER\n\nDefaulting to yes in\n
 AVISO\n\nSe estiver sofrendo atraso dos comandos durante o jogo,\nfeche e\nabra Anodyne novamente.\n\nPRESSIONE C PARA CONTINUAR
 #NOTE\n\nIf you have input\nlag during gameplay,\nreturn to your\nhome screen and\nre-enter Anodyne.\n\nPRESS C TO CONTINUE
@@ -2073,9 +2069,8 @@ Extensão
 Ampliação
 #Widen
 Um par de sapatos com mola - pressione
-#A pair of spring-loaded shoes - press 
+#A pair of spring-loaded shoes - press [SOMEKEY-X] para pular!
 # [SOMEKEY-X]
-para pular!
 #to jump!
 Um par de sapatos de ciclismo.
 #A pair of shoes for biking.
@@ -2126,7 +2121,7 @@ Ligado
 # 5
 Desligado
 #Off
-Mudar Resolução:
+Mudar\nResolução:
 #Change Resolution
 Configurar UI
 #Config UI
@@ -2165,7 +2160,7 @@ Configurar controle
 		end scene
 		scene secrets
 Você está mandando brasa!
-#You\'re rolling in it!
+#You're rolling in it!
 Antiga propriedade do Mago das Bolhas.
 #Once the property of a famous Bubble Mage.
 Se os gráficos ficarem estranhos, procure pela descrição oficial do Pokedex sobre algum Pokemon.
@@ -2173,7 +2168,7 @@ Se os gráficos ficarem estranhos, procure pela descrição oficial do Pokedex s
 esse coração não tem nome
 #This heart has no name.
 Por favor visite o mundo dos monstros eletrônicos.
-#Please visit the electric monsters\' world.
+#Please visit the electric monsters' world.
 Uma estátua de um gato. Fofo, mas inútil.
 #A kitty statue. Cute, but useless.
 Aí meu deus!!!!
@@ -2181,20 +2176,20 @@ Aí meu deus!!!!
 Ah não!!!
 #Oh no!!!!
 É preto.
-#It\'s black.
+#It's black.
 É vermelho.
-#It\'s red.
+#It's red.
 É verde.
-#It\'s green.
+#It's green.
 É azul.
-#It\'s blue.
+#It's blue.
 É branco.
-#It\'s white.
-#SOMEKEY-C
-:Selecionar
+#It's white.
+#[SOMEKEY-C]
+[SOMEKEY-C] :Selecionar
 #:Select
-#SOMEKEY-X
-:Voltar
+#[SOMEKEY-X]
+[SOMEKEY-X] :Voltar
 #:Back
 		end scene
 		scene swap
@@ -2212,23 +2207,21 @@ Esta porta está trancada.
 		scene treasure
 Alguma força estranha impede que este baú se abra.
 #Some strange force stops this treasure box from being opened.
-No cabo da vassoura está escrito:Pressione\"
+No cabo da vassoura está escrito:Pressione"[SOMEKEY-C] para varrer."
 #An engraving on the broom handle reads:Press
-#SOMEKEY-C
-para varrer.\"
+#[SOMEKEY-C]
 #to sweep.
 Essa chave pode ser usada uma única vez para abrir uma barreira trancada.
 #This key may be used a single time to open up a locked barrier.
-Um misterioso par de sapatos, nele está escrito uma única coisa\"Pressione
-#A mysterious pair of boots has nothing but the branding on it, which says \"Press
-#SOMEKEY-X
-\".
-As poucas palavras gravadas nesse artefato dizem: \"Equipe o acessório de AMPLIAÇÃO para fazer com que a vassoura solte poeira nociva para a esquerda e direita.\"
-#A few words on the broom extension read \"Equip the WIDEN upgrade in the menu to have the broom release harmful dust to the left and right.\"
-As poucas palavras gravadas nesse artefato dizem: \"Equipe o acessório de EXTENÇÃO para fazer com que a vassoura solte poeira nociva para frente.\"
-#A few words on the broom extension read \"Equip the EXTEND upgrade in the menu for the broom to release harmful dust in front of the broom's normal reach.\"
-As poucas palavras gravadas nesse artefato dizem: \"Olá, Young. Use esse aparelho de TROCA em dois objetos para trocá-los de posição. Ainda está longe do seu alcance poder usar isto em qualquer lugar, mas por hora irá lhe servir bem.\"
-#A note next to the broom extension:\"Hello, Young. Use this SWAP upgrade on two tiles to switch their places. It may be a while before you can use this everywhere, but it should serve you well for the time being.\"
+Um misterioso par de sapatos, nele está escrito uma única coisa"Pressione [SOMEKEY-X]".
+#A mysterious pair of boots has nothing but the branding on it, which says "Press
+#[SOMEKEY-X]
+As poucas palavras gravadas nesse artefato dizem: "Equipe o acessório de AMPLIAÇÃO para fazer com que a vassoura solte poeira nociva para a esquerda e direita."
+#A few words on the broom extension read "Equip the WIDEN upgrade in the menu to have the broom release harmful dust to the left and right."
+As poucas palavras gravadas nesse artefato dizem: "Equipe o acessório de EXTENÇÃO para fazer com que a vassoura solte poeira nociva para frente."
+#A few words on the broom extension read "Equip the EXTEND upgrade in the menu for the broom to release harmful dust in front of the broom's normal reach."
+As poucas palavras gravadas nesse artefato dizem: "Olá, Young. Use esse aparelho de TROCA em dois objetos para trocá-los de posição. Ainda está longe do seu alcance poder usar isto em qualquer lugar, mas por hora irá lhe servir bem."
+#A note next to the broom extension:"Hello, Young. Use this SWAP upgrade on two tiles to switch their places. It may be a while before you can use this everywhere, but it should serve you well for the time being."
 VOCÊ ACHOU UM CORAÇÃO!!! Saúde aumentou em...zero.
 #YOU FOUND A HEART!!! Maximum Health increased by...zero.
 Ourudo:O que? Não está aqui? Aquele vendedor deve ter roubado!
@@ -2239,12 +2232,13 @@ Sua vassoura está cheia de poeira! Ataque novamente para colocá-la.
 #Your broom is now full of dust! Attack again to place it.
 		end scene
 		scene checkpoint
-Salvar jogo?\n Sim\n Não
+Salvar jogo?
+Sim
+Não
 #Save game?\n Yes\n No
-Quando estiver em um checkpoint, pressione
+Quando estiver em um checkpoint, pressione [SOMEKEY-C] para salvar e marcá-lo como ponto para continuar caso você morra.
 #While standing on a checkpoint, press
-#SOMEKEY-C
-para salvar e marcá-lo como ponto para continuar caso você morra.
+#[SOMEKEY-C]
 #to save your progress and set it as your respawn point if you die.
 		end scene
 		scene rock
@@ -2284,15 +2278,13 @@ A as palavras desta placa estão muito desbotadas.
 		scene mitra
 Ei, young!
 #Hey, Young!
-Esses sapatos de ciclismo são para mim? Poxa! Obrigado, Young! Eu estava querendo um desses para usar com o Wares. Aqui, Young, tome meus sapatos em troca. Eles tem molas que permitem você pular bem alto! Você pressiona
-#Are those bike shoes for me? Wow! Thanks, Young! I\'ve been thinking about getting these, since Wares has those pedals where you can clip in bike shoes. Here, Young, take my boots in exchange! They have these cool springs that let you jump really high! You press 
+Esses sapatos de ciclismo são para mim? Poxa! Obrigado, Young! Eu estava querendo um desses para usar com o Wares. Aqui, Young, tome meus sapatos em troca. Eles tem molas que permitem você pular bem alto! Você pressiona [SOMEKEY-X] para pular com eles!
+#Are those bike shoes for me? Wow! Thanks, Young! I've been thinking about getting these, since Wares has those pedals where you can clip in bike shoes. Here, Young, take my boots in exchange! They have these cool springs that let you jump really high! You press 
 #[SOMEKEY-X] 
-para pular com eles!
 #to jump with them on!
-Oi Young! Notou algo de diferente? ^... ^... Ah, bem, eu comprei um novo par de sapatos de ciclismo! Eles encaixam perfeitamente nos pedáis do Wares. Já que não vou mais precisar dos meus sapatos antigos, quero que você os tenha, Young! Eles tem molas que permitem você pular bem alto! Você pressiona
+Oi Young! Notou algo de diferente? ^... ^... Ah, bem, eu comprei um novo par de sapatos de ciclismo! Eles encaixam perfeitamente nos pedáis do Wares. Já que não vou mais precisar dos meus sapatos antigos, quero que você os tenha, Young! Eles tem molas que permitem você pular bem alto! Você pressiona [SOMEKEY-X] para pular com eles!
 #Hi Young! Notice anything new? ^... ^... Oh, well, I got new biking shoes, see! They clip into Wares' pedals. Since I'll no longer be needing my old boots, I want you to have them, Young! They have these cool springs that let you jump really high! You press 
 #[SOMEKEY-X] 
-para pular com eles!
 #to jump with them on!
 Enfim, tome cuidado!
 #Alright, take care!
@@ -2300,14 +2292,12 @@ Vá em frente, experimente-os! ...Eles não fedem TANTO assim.
 #Go on, try them out! ...They're not THAT smelly.
 Maneiros, né?
 #Cool, huh?
-Uau, esses são os sapatos de ciclismo da loja do Finty? Você está dando eles para mim? Obrigada, Young, de verdade! Aqui, tome meus sapatos antigos--Acho que eles serão bem úteis para você. Há uma inscrição neles que diz: \"Pressione
-#Wow, are those the biking shoes from Finty's shop? You're giving them to me? Thanks, Young, I really appreciate it! Here, try out my old shoes in return--I think you'll find them really useful! There's an engraving on the shoes that says \"Press 
-#somekey-x
-para pular\". Nunca entendi o significado, porque não há um\"
-#to jump\". I've never understood that, though, because there's no \"
-#somekey-x
-\" em lugar nenhum neles...
-#\" anywhere on the shoes...
+Uau, esses são os sapatos de ciclismo da loja do Finty? Você está dando eles para mim? Obrigada, Young, de verdade! Aqui, tome meus sapatos antigos--Acho que eles serão bem úteis para você. Há uma inscrição neles que diz: "Pressione [SOMEKEY-X] para pular". Nunca entendi o significado, porque não há um"[SOMEKEY-X]" em lugar nenhum neles...
+#Wow, are those the biking shoes from Finty's shop? You're giving them to me? Thanks, Young, I really appreciate it! Here, try out my old shoes in return--I think you'll find them really useful! There's an engraving on the shoes that says "Press 
+#[SOMEKEY-X]
+#to jump". I've never understood that, though, because there's no "
+#[SOMEKEY-X]
+#" anywhere on the shoes...
 		end scene
 		scene tradenpc
 Finty:Bem vindo, bem vindo, meu amigo Young! Meu nome é Prasandhoff--Finty Prasandhoff! Dê uma olhada pela minha loja e veja se algo lhe interessa.
@@ -2350,7 +2340,7 @@ Um grande obrigado\npara nossos testers\nque sofreram\npor você!\n-------------
 O - valeu,\nmana!\n\nRunnan, Nick Reineke,\nEmmett, Poe, AD1337,\n Dennis, Andrew,\nAndrew MM\n Carl, Max, Amidos,\nLyndsey, Nathan\n
 Melos gostaria de\nagradecer a:\n\nMãe e Pai, pelo\nsuporte contínuo\nnessa empreitada.\n\nS\n\nMuitos TIGSourcers\ne outros devs\nconhecidos pelo\ncaminho!\n\nMarina, por tornar\nesse jogo possível,\ne por melhora-lo\nde formas incontáveis.
 Adobe, Adam Saltsman,\ndevs do FlashDevelop,\ndevs do REAPER,\ncriador do DAME,\nDesura, Gamersgate,\nIndieDB, TIGSource\n\n\nE meus outros\namigos\nque mostraram\nseu apoio.\n(Obrigado!)\n\nE por último, mas\nnão menos\nimportante,\nTina Chen,\namiga de longa\ndata, pelo suporte\ne por me apresentar\nao Marina.
-Marina gostaria de\nagradecer...\n\nColin Meloy, por\nexpandir\nmeu vocabulário\n\nTsugumo, por\n\"So You Want to\nBe a Pixel Artist?\"\n\nMinha família,\npelo apoio e comida.\n\nDaniel, por ser um\n\"indie game dev\"\ncomigo no passado.
+Marina gostaria de\nagradecer...\n\nColin Meloy, por\nexpandir\nmeu vocabulário\n\nTsugumo, por\n"So You Want to\nBe a Pixel Artist?"\n\nMinha família,\npelo apoio e comida.\n\nDaniel, por ser um\n"indie game dev"\ncomigo no passado.
 Mo, por acreditar\n em mim.\n\nTina, por me\napresentar ao Melos.\n\nMelos, por fazer\num jogo\ne confiar em mim\ncomo grande parte\ndo processo.
 ELENCO\n----\n\n\nGosma\n\n\nChato\n\n\nPei Pei\n\n\nEscudito\n\n\nVisionário
 Movedor\n\n\nLiga Desliga\n\n\nQuatro Tiros\n\n\nCortador\n\n\nRogue\n

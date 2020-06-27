@@ -32,7 +32,7 @@
 #
 # 4. SPECIAL CHARACTERS IN DIALOGUE TO BE TRANSLATED
 # -----------------------------------------------
-# \" and \' are for escaping the quotation characters. You can leave them like that. 
+# " and ' are for escaping the quotation characters. You can leave them like that. 
 #
 # ^  Denotes the player will have to press the progress-dialogue-button again to continue the dialogue - you can leave it there (or move it around as needed in the translated sentence)
 # \n denotes newline, you can leave it there.
@@ -117,14 +117,14 @@ npc sage
 #Mysterious voice: Hello? ...Young?  ^HEY!  ... oh, you can hear me?  Good, now listen.  You are about to wake up.  You will use the arrow keys to move around.
 神秘的声音：喂？…扬？ ^嘿！…噢，你能听到我的声音吗？ 太好了，听着，你马上就要醒过来了。 你可以使用方向键四周围移动。
 # Note, these next two lines should be assumed to have the keybinding between them when translated (hence the single quotes)
-#You will press the \'
-你需要按下\'
-#\' key to interact with objects and people around you.
-\'键来与周围的物体和他人互动。
-#And you will press the \'
-同时，你需要按下\'
-#\' key to access the menu, which will provide you with information about yourself and your surroundings.
-\'键调出菜单，那里将会提供有关你自身以及周围环境的相关信息。
+#You will press the '
+你需要按下'
+#' key to interact with objects and people around you.
+'键来与周围的物体和他人互动。
+#And you will press the '
+同时，你需要按下'
+#' key to access the menu, which will provide you with information about yourself and your surroundings.
+'键调出菜单，那里将会提供有关你自身以及周围环境的相关信息。
         end scene
     end area
 	
@@ -177,8 +177,8 @@ TOP
 麦卓：瞧瞧，神秘的蒙面人，你觉得自己是何等角色？ 你就不能让我们静静待一会吗？
 #Sage: You think you’re Young’s friend because you’ll lie to him and tell him that deep down he’s just perfect and everything will work out.  Well, if that’s what you want, FINE.  Get out of my face, Young.
 贤者：你之所以觉得自己是扬的朋友，那是因为你会对他撒谎。 你会对他说，他是完美的。 一切都会得到解决。 好吧，如果你是这样想的话，算了。 从我面前消失吧，扬。
-#Sage: Go talk to your \"friend\".
-贤者：去和你的\"amiga\"说话。
+#Sage: Go talk to your "friend".
+贤者：去和你的"amiga"说话。
 #Mitra: We're just doing the best we can...
 麦卓：我们只是在尽力而为…
 		end scene
@@ -770,8 +770,8 @@ npc rock
 		end scene
 		
 		scene five
-#Welcome to the DEBUG WORLD! You've stepped outside of \"The Land\", so consider this world (90 PER-CENT) \"Non-canon\". Anyways.
-欢迎来到“调试世界”！现在，你已经走出了\"大地\"，所以这个世界可以说（至少有90%）都是\"非正式\"内容。
+#Welcome to the DEBUG WORLD! You've stepped outside of "The Land", so consider this world (90 PER-CENT) "Non-canon". Anyways.
+欢迎来到“调试世界”！现在，你已经走出了"大地"，所以这个世界可以说（至少有90%）都是"非正式"内容。
 #Before there were tilesets for many of the areas I used silly tiles like these to mark where doors went. In fact, every dungeon was mocked up in this area's tileset, and then Marina tiled over them with his tilesets.
 在使用大量地图素材之前，我用了一些很傻的素材来标记出大门的位置。实际上每个地牢都是用这里的地图素材勾勒出大概的。然后Marina再用他的素材去精细构建。
 		end scene
@@ -841,18 +841,18 @@ fille
 		end scene
 		
 		scene two
-#When the blue stone statue shifted\nThere a new path was revealed\nPast the cliffs, through strange dimensions\nStands a travelers' hotel\n\n\n\"Who is the guardian?\" I ask,\n\"Who rules this crowded business place?\"\nDespite the many human souls\nI still feel alone.
-当蓝色石像移动\n新的路径将会出现\n翻过峭壁，穿过奇怪的区域\n你将会看到一间旅行者旅店\n\n\n\"谁是守卫？\" 我问道，\n\"谁掌管这个繁忙的地方？\"\n尽管这里有许多人类的灵魂\n我依旧感到很孤单。
+#When the blue stone statue shifted\nThere a new path was revealed\nPast the cliffs, through strange dimensions\nStands a travelers' hotel\n\n\n"Who is the guardian?" I ask,\n"Who rules this crowded business place?"\nDespite the many human souls\nI still feel alone.
+当蓝色石像移动\n新的路径将会出现\n翻过峭壁，穿过奇怪的区域\n你将会看到一间旅行者旅店\n\n\n"谁是守卫？" 我问道，\n"谁掌管这个繁忙的地方？"\n尽管这里有许多人类的灵魂\n我依旧感到很孤单。
 		end scene
 		
 		scene three
-#The red and rusty statue moved\nAnd paved the way to deeper pits\nA labyrinthine dungeon follows\nThen a big-top circus tent\n\n\n\"Who are the guardians?\" I ask,\n\"Who gave up life to flee this place?\"\nI fear the pain, the same as they\nBut fear it more to die.
-锈蚀的红色雕像移动了\n这是在为更深处铺路\n伴随而来的是迷宫般的地牢\n然后是马戏团的大帐篷\n\n\n\"谁是守卫？\"我问道，\n\"谁放弃了生命，逃到这样一个地方来？\"\n我如他们一样害怕痛苦\n但更害怕死亡。
+#The red and rusty statue moved\nAnd paved the way to deeper pits\nA labyrinthine dungeon follows\nThen a big-top circus tent\n\n\n"Who are the guardians?" I ask,\n"Who gave up life to flee this place?"\nI fear the pain, the same as they\nBut fear it more to die.
+锈蚀的红色雕像移动了\n这是在为更深处铺路\n伴随而来的是迷宫般的地牢\n然后是马戏团的大帐篷\n\n\n"谁是守卫？"我问道，\n"谁放弃了生命，逃到这样一个地方来？"\n我如他们一样害怕痛苦\n但更害怕死亡。
 		end scene
 		
 		scene four
-#The green, metallic statue shifted\nOpening a deeper trail\nSuburban homes and sidewalks form\nA path to an apartment.\n\n\n\"Who is the guardian?\" I ask,\n\"Who looks for comfort in the stars?\"\nAlone, I feel like I am watched\nAnd not by friendly starlight.
-绿色的金属雕像移动了\n更深的道路开启了\n郊外的房屋和道路慢慢形成\n那是通往公寓的道路。\n\n\n\"谁是守卫？\"我问道，\n\"谁在星辰之中找寻慰藉？\"\n虽然孤身一人，但却感觉被人注视\n注视我的定然不是那友好的星光。
+#The green, metallic statue shifted\nOpening a deeper trail\nSuburban homes and sidewalks form\nA path to an apartment.\n\n\n"Who is the guardian?" I ask,\n"Who looks for comfort in the stars?"\nAlone, I feel like I am watched\nAnd not by friendly starlight.
+绿色的金属雕像移动了\n更深的道路开启了\n郊外的房屋和道路慢慢形成\n那是通往公寓的道路。\n\n\n"谁是守卫？"我问道，\n"谁在星辰之中找寻慰藉？"\n虽然孤身一人，但却感觉被人注视\n注视我的定然不是那友好的星光。
 		end scene
 		
 
@@ -910,8 +910,8 @@ fille
 石头：噢！…？
 		end scene
 		scene five
-#The computer terminal has an e-mail open. Parts of the screen are broken, so only parts of the message are visible in between black blotches. The e-mail reads: \"Hello, Young! It seems that [...] fiftieth card [...] maybe you shouldn't... [...] worth thinking about! Do you think you're ready? Wake up...\" 
-电脑终端打开了一封电子邮件。由于部分显示屏已经坏掉，所以只能看见信息的一部分。电子邮件写到：\"你好，扬！似乎[...]第五十张卡片[...]也许你不该…[...]值得思考！你觉得自己已经准备好了吗？醒醒吧…\"
+#The computer terminal has an e-mail open. Parts of the screen are broken, so only parts of the message are visible in between black blotches. The e-mail reads: "Hello, Young! It seems that [...] fiftieth card [...] maybe you shouldn't... [...] worth thinking about! Do you think you're ready? Wake up..." 
+电脑终端打开了一封电子邮件。由于部分显示屏已经坏掉，所以只能看见信息的一部分。电子邮件写到："你好，扬！似乎[...]第五十张卡片[...]也许你不该…[...]值得思考！你觉得自己已经准备好了吗？醒醒吧…"
 		end scene
 	end area
 	
@@ -1432,7 +1432,7 @@ npc generic_npc
 我不需要你的同情，扬。
 
 #Right, just go on living in your happy little world, "Chosen One"...
-嗯，你就这样在你的快乐小世界中一直生活下去吧，\"天选之人\"…
+嗯，你就这样在你的快乐小世界中一直生活下去吧，"天选之人"…
 
 #You know, Young, friendship is just a trick people play on themselves.  We’re all assholes, and in the end, we’re all alone.  
 你知道的，扬，友情只是人们相互之间的小把戏罢了。 我们都是混蛋，人生之路走到最后，我们都只是孤身一人。
@@ -1734,12 +1734,12 @@ LOOP
 #You actually were...uh, ah. Well done.
 你真的是…啊，呃。很棒。
 LOOP
-#The shiny rock reflects only a bit of the light from the room. There is writing etched into it: \"Quickly, before I have to leave again (It is getting very light in here, this always happens) - the northwest part of the blue forest - I saw another temple entrance just to the north, past those trees - if only I could switch things at will to get through there...maybe I'll do this the next time I revisit this world.\"
-发光的石头反射出房间里的一点点光芒。石头上蚀刻着：\"快点，在我再次离开之前（这里将变得非常明亮，这样的事情总是不断发生着）——蓝色森林的西北部——我看见另一座神殿的入口，入口就在穿过那些树木的北边——要是我能有转换事物的能力该有多好，我就能到达那里…也许下一次当我重新造访这个世界的时候可以一试。\"
+#The shiny rock reflects only a bit of the light from the room. There is writing etched into it: "Quickly, before I have to leave again (It is getting very light in here, this always happens) - the northwest part of the blue forest - I saw another temple entrance just to the north, past those trees - if only I could switch things at will to get through there...maybe I'll do this the next time I revisit this world."
+发光的石头反射出房间里的一点点光芒。石头上蚀刻着："快点，在我再次离开之前（这里将变得非常明亮，这样的事情总是不断发生着）——蓝色森林的西北部——我看见另一座神殿的入口，入口就在穿过那些树木的北边——要是我能有转换事物的能力该有多好，我就能到达那里…也许下一次当我重新造访这个世界的时候可以一试。"
 		end scene
 		scene quest_event
-#The shiny rock reflects only a bit of the light from the room. There is writing etched into it: \"Quickly, before I have to leave again (It is getting very light in here, this always happens) - the northwest part of the blue forest - I saw another temple entrance just to the north, past those trees - if only I could switch things at will to get through there...maybe I'll do this the next time I revisit this world.\"
-发光的石头反射出房间里的一点点光芒。石头上蚀刻着：\"快点，在我再次离开之前（这里将变得非常明亮，这样的事情总是不断发生着）——蓝色森林的西北部——我看见另一座神殿的入口，入口就在穿过那些树木的北边——要是我能有转换事物的能力该有多好，我就能到达那里…也许下一次当我重新造访这个世界的时候可以一试。\"
+#The shiny rock reflects only a bit of the light from the room. There is writing etched into it: "Quickly, before I have to leave again (It is getting very light in here, this always happens) - the northwest part of the blue forest - I saw another temple entrance just to the north, past those trees - if only I could switch things at will to get through there...maybe I'll do this the next time I revisit this world."
+发光的石头反射出房间里的一点点光芒。石头上蚀刻着："快点，在我再次离开之前（这里将变得非常明亮，这样的事情总是不断发生着）——蓝色森林的西北部——我看见另一座神殿的入口，入口就在穿过那些树木的北边——要是我能有转换事物的能力该有多好，我就能到达那里…也许下一次当我重新造访这个世界的时候可以一试。"
 		end scene
 	end area
 end npc
@@ -1936,8 +1936,8 @@ npc suburb_walker
 		
 #inside of hanged man house 74
 		scene hanged
-#A note on the corpse: \"Placing myself in danger no more.\"
-尸体上有行字：\"将自己置身危险之中。\"
+#A note on the corpse: "Placing myself in danger no more."
+尸体上有行字："将自己置身危险之中。"
 		end scene
 		
 		scene festive
@@ -1964,7 +1964,7 @@ npc suburb_walker
 #The body of this woman has been beaten to death by a blunt weapon.
 从尸体上看来，这名女性是被人用钝器殴打致死的。
 
-# --> Spanish translator's note: if a pun were intended here, no way has been found in order to emulate the relation of both expressions \"blunt weapon\" and \"to put it bluntly\" in Spanish since they share completely different words in all their sayings.
+# --> Spanish translator's note: if a pun were intended here, no way has been found in order to emulate the relation of both expressions "blunt weapon" and "to put it bluntly" in Spanish since they share completely different words in all their sayings.
 #The man, to put it bluntly, well...
 伙计，坦白讲，好吧…
 		end scene
@@ -2112,8 +2112,8 @@ npc card
 哦，你也在收集卡牌吗？ 真棒啊，英。
 
 #29 end of grey end of space, for grey cube king
-#They always said, \"Get off the computer! Or you'll never make friends!\"
-他们总是说：\"离开你的电脑！否则你永远交不到朋友！\"
+#They always said, "Get off the computer! Or you'll never make friends!"
+他们总是说："离开你的电脑！否则你永远交不到朋友！"
 
 #30 end of colorful end of SPACE, for color cube king
 #I'm only the ruler for the extent of a conversation.
@@ -2195,13 +2195,12 @@ npc misc
 	
 		scene controls 
 #Press
-按下
+按下 [SOMEKEY-LEFT] 以设置控制选项。
 # [SOMEKEY-LEFT]
 #to set controls. 
-以设置控制选项。
 # [SOMEKEY-ENTER]
 #to cancel.
-以取消。
+[SOMEKEY-ENTER] 以取消。
 #Up
 上
 #Down
@@ -2219,31 +2218,28 @@ npc misc
 菜单
 #10
 #Press
-按下
+按下 [SOMEKEY-ENTER] 以退出
 # [SOMEKEY-ENTER]
 #to exit
-以退出
 # [SOMEKEY-LEFT]
 #to set controls.
-以设置控制选项。
+[SOMEKEY-LEFT] 以设置控制选项。
 		end scene 
 		
 		scene title
 #Please use the\narrow keys to resize\nthe window until\nyou cannot see\nany black around\n the borders.\n\nPress
-请使用\n方向键来调整\n窗口大小\n直至你无法看见\n黑框\n\n按下
+请使用\n方向键来调整\n窗口大小\n直至你无法看见\n黑框\n\n按下 [SOMEKEY-C] 当完成之后。
 # [SOMEKEY-C]
 #when done.
-当完成之后。
 ANODYNE 镇痛
 Melos Han-Tani\nMarina Kittaka 
 #any key
 任意键
 #5
 #Press
-按下
+按下 [SOMEKEY-C] 以开始
 # [SOMEKEY-C]
 #to start
-以开始
 #Version
 版本
 #Continue 
@@ -2309,10 +2305,9 @@ Melos Han-Tani\nMarina Kittaka
 宽度
 #5
 #A pair of spring-loaded shoes - press 
-一双弹力鞋——按下
+一双弹力鞋——按下 [SOMEKEY-X] 以跳跃！
 # [SOMEKEY-X]
 #to jump!
-以跳跃！
 #A pair of shoes for biking.
 一双自行车鞋。
 #An empty cardboard box.
@@ -2406,7 +2401,7 @@ ko
 		end scene
 		
 		scene secrets
-#You\'re rolling in it!
+#You're rolling in it!
 你正在前往中！
 #Once the property of a famous Bubble Mage.
 曾经是一位著名的泡泡魔法师的财物。
@@ -2414,7 +2409,7 @@ ko
 如果你的图像受到了干扰，就去看看官方口袋妖怪图鉴。
 #This heart has no name.
 这颗心没有名字。
-#Please visit the electric monsters\' world.
+#Please visit the electric monsters' world.
 请参观电子怪兽的世界。
 #5
 #A kitty statue. Cute, but useless.
@@ -2423,23 +2418,23 @@ ko
 噢天啊！！！！
 #Oh no!!!!
 噢不！！！！
-#It\'s black.
+#It's black.
 这是黑色的。
-#It\'s red.
+#It's red.
 这是红色的。
 #10
-#It\'s green.
+#It's green.
 这是绿色的。
-#It\'s blue.
+#It's blue.
 这是蓝色的。
-#It\'s white.
+#It's white.
 这是白色的。
-#SOMEKEY-C
+#[SOMEKEY-C]
 #:Select
-：选择
-#SOMEKEY-X
+[SOMEKEY-C]：选择
+#[SOMEKEY-X]
 #:Back
-：返回
+[SOMEKEY-X]：返回
 		end scene
 		
 		scene swap
@@ -2461,25 +2456,23 @@ ko
 #Some strange force stops this treasure box from being opened.
 某种神秘力量阻止了这个宝箱被人打开。
 #An engraving on the broom handle reads: Press
-扫帚的把手上雕刻着：按下
-#SOMEKEY-C
+扫帚的把手上雕刻着：按下 [SOMEKEY-C] 来扫动。
+#[SOMEKEY-C]
 #to sweep.
-来扫动。
 #This key may be used a single time to open up a locked barrier.
 这把一次性使用的钥匙可以开启一个锁住的障碍物。
-#A mysterious pair of boots has nothing but the branding on it, which says \"Press
-一双神秘的靴子，没什么特别的，不过上面写着\"按下
-#SOMEKEY-X
+#A mysterious pair of boots has nothing but the branding on it, which says "Press
+一双神秘的靴子，没什么特别的，不过上面写着"按下 [SOMEKEY-X]"
+#[SOMEKEY-X]
 #5
-\"。
-#A few words on the broom extension read \"Equip the WIDEN upgrade in the menu to have the broom release harmful dust to the left and right.\"
-扫帚的延伸处上写着\"装备菜单里的宽度升级可以使扫帚朝左右方向释放有害灰尘。\"
+#A few words on the broom extension read "Equip the WIDEN upgrade in the menu to have the broom release harmful dust to the left and right."
+扫帚的延伸处上写着"装备菜单里的宽度升级可以使扫帚朝左右方向释放有害灰尘。"
 
-#A few words on the broom extension read \"Equip the EXTEND upgrade in the menu for the broom to release harmful dust in front of the broom's normal reach.\"
-扫帚的延伸处上写着\"装备菜单里的延伸升级可以使扫帚朝前方释放有害灰尘。\"
+#A few words on the broom extension read "Equip the EXTEND upgrade in the menu for the broom to release harmful dust in front of the broom's normal reach."
+扫帚的延伸处上写着"装备菜单里的延伸升级可以使扫帚朝前方释放有害灰尘。"
 
-#A note next to the broom extension: \"Hello, Young. Use this SWAP upgrade on two tiles to switch their places. It may be a while before you can use this everywhere, but it should serve you well for the time being.\"
-扫帚的延伸出上写着：\"你好，扬。使用调换升级可以改变两块砖的位置。你可能还需要好一阵才能到处使用此功能，但是它会对你大有帮助。\"
+#A note next to the broom extension: "Hello, Young. Use this SWAP upgrade on two tiles to switch their places. It may be a while before you can use this everywhere, but it should serve you well for the time being."
+扫帚的延伸出上写着："你好，扬。使用调换升级可以改变两块砖的位置。你可能还需要好一阵才能到处使用此功能，但是它会对你大有帮助。"
 
 #YOU FOUND A HEART!!! Maximum Health increased by...zero.
 你找到了一颗心！！！最大生命值增长了…零。
@@ -2494,13 +2487,14 @@ ko
 		end scene
 		
 		scene checkpoint
-#Save game?\n  Yes\n  No
-保存游戏？\n  是\n  否
+#Save game?Yes\n  No
+保存游戏？
+是
+否
 #While standing on a checkpoint, press
-站在检查点上，按下
-#SOMEKEY-C
+站在检查点上，按下 [SOMEKEY-C] 以储存你的游戏进度。如若死亡，此处将为你的重生点。
+#[SOMEKEY-C]
 #to save your progress and set it as your respawn point if you die.
-以储存你的游戏进度。如若死亡，此处将为你的重生点。
 		end scene
 		
 		scene rock
@@ -2546,13 +2540,10 @@ ko
 #Hey, Young!
 嘿，扬！
 
-#Are those bike shoes for me?  Wow!  Thanks, Young!  I\'ve been thinking about getting these, since Wares has those pedals where you can clip in bike shoes.  Here, Young, take my boots in exchange!  They have these cool springs that let you jump really high! You press
-这双自行车鞋是给我的吗？ 哇哦！ 谢谢你，扬！ 我一直想要这个呢，这样踩在东西的踏板上就更搭配啦。 这儿，扬，我用我的鞋子和你交换！ 它们可以让你跳得很高！只要你按下
-
+#Are those bike shoes for me?  Wow!  Thanks, Young!  I've been thinking about getting these, since Wares has those pedals where you can clip in bike shoes.  Here, Young, take my boots in exchange!  They have these cool springs that let you jump really high! You press
+这双自行车鞋是给我的吗？ 哇哦！ 谢谢你，扬！ 我一直想要这个呢，这样踩在东西的踏板上就更搭配啦。 这儿，扬，我用我的鞋子和你交换！ 它们可以让你跳得很高！只要你按下 [SOMEKEY-X] 就可以使用它们跳起来了！
 #[SOMEKEY-X] 
 #to jump with them on!
-就可以使用它们跳起来了！
-
 #Hi Young!  Notice anything new? ^... ^... Oh, well, I got new biking shoes, see!  They clip into Wares' pedals.  Since I'll no longer be needing my old boots, I want you to have them, Young!  They have these cool springs that let you jump really high! You press 
 你好，扬！ 你注意到我有什么不同了吗？^… ^… 哦，好吧，我有一双新的自行车鞋了，你看！ 它们可以卡入东西的踏板里面。因为我已经不需要旧的鞋子了，我想把它们送给你！它们可以让你跳得很高！只要你按下
 
@@ -2567,15 +2558,14 @@ ko
 来吧，试试它们！ …它们没什么味儿的。
 #Cool, huh?
 很酷吧？
-#Wow, are those the biking shoes from Finty's shop?  You're giving them to me?  Thanks, Young, I really appreciate it!  Here, try out my old shoes in return--I think you'll find them really useful!  There's an engraving on the shoes that says \"Press
-哇哦，这双自行车鞋是从芬缇的店里买来的吗？ 你准备把它们送给我？ 谢谢你，扬，太感谢你了！ 这儿，我把我的旧鞋子给你作为回报吧——我想它们会对你很有帮助的！ 鞋子上面写着\"按下
-#somekey-x
-#to jump\".  I've never understood that, though, because there's no \"
-以跳跃\"。 我完全不明白这是什么意思，因为鞋子上面根本没有\"
-#somekey-x
+#Wow, are those the biking shoes from Finty's shop?  You're giving them to me?  Thanks, Young, I really appreciate it!  Here, try out my old shoes in return--I think you'll find them really useful!  There's an engraving on the shoes that says "Press
+哇哦，这双自行车鞋是从芬缇的店里买来的吗？ 你准备把它们送给我？ 谢谢你，扬，太感谢你了！ 这儿，我把我的旧鞋子给你作为回报吧——我想它们会对你很有帮助的！ 鞋子上面写着"按下 [SOMEKEY-X] 以跳跃"。 我完全不明白这是什么意思，因为鞋子上面根本没有"[SOMEKEY-X]"键啊…
+#[SOMEKEY-X]
+#to jump".  I've never understood that, though, because there's no "
+
+#[SOMEKEY-X]
 #10
-#\" anywhere on the shoes...
-\"键啊…
+#" anywhere on the shoes...
 		end scene
 		
 		scene tradenpc
@@ -2630,7 +2620,7 @@ Anodyne 镇痛\n-------\n\n\n\n游戏由\n\nMelos Han-Tani\n\n和\n\nMarina Kitt
 O——\n谢谢你，姐姐！\n\nRunnan、Nick\nReineke、\nEmmett、Poe、\nAD1337、\n Dennis、Andrew、\nAndrew MM\n Carl、Max、Amidos、\nLyndsey、Nathan\n
 Melos想感谢：\n\n母亲和父亲的长期支持。\n\nSandy\n\n许多TIGSourcers以及\n其他与我们交流过的开发者！\n\nMarina，\n为整个游戏的开发作出了\n不可估量的付出。
 Adobe、Adam\nSaltsman、\nFlashDevelop开发者、\nREAPER开发者、\nDAME制作者\nDesura、\nGamersgate\nIndieDB、\nTIGSource\n\n\n以及其他支持我的朋友们\n感谢你们！！\n\n最后，我想感谢\nTina Chen\n我一直以来的朋友\n她不仅给予我长期支持\n还介绍我与Marina相识。
-Marina想感谢\n\nColin Meloy，\n扩展了我的词汇量\n\nTsugumo，问我\n“你想要成为一位像素艺术家吗”？\n\n我的家人，\n给予我支持与食物。\n\nDaniel，作为一名\n\"独立游戏开发者\"\n，一直伴随着我成长。
+Marina想感谢\n\nColin Meloy，\n扩展了我的词汇量\n\nTsugumo，问我\n“你想要成为一位像素艺术家吗”？\n\n我的家人，\n给予我支持与食物。\n\nDaniel，作为一名\n"独立游戏开发者"\n，一直伴随着我成长。
 Mo，给予我充分的信任。\n\nTina，\n介绍我与Melos认识。\n\nMelos，和我一同制作游戏\n并且给予我信任。
 演员表\n----\n\n\n史莱姆\n\n\n烦恼之物\n\n\n呼呼\n\n\n谢尔迪\n\n\n希尔
 搬运者\n\n\n开开关关\n\n\n四射\n\n\砍伐者\n\n\n流氓\n

@@ -1478,7 +1478,8 @@ npc misc
 	area any
 	
 		scene controls 
-Press [SOMEKEY-LEFT] to set controls. \n[SOMEKEY-ENTER] to cancel.
+Press [SOMEKEY-LEFT] to set controls. 
+[SOMEKEY-ENTER] to cancel.
 Up
 Down
 #5

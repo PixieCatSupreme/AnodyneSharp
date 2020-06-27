@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Cheatz;
+using AnodyneSharp.Dialogue;
 using AnodyneSharp.Drawing;
 using AnodyneSharp.Entities;
 using AnodyneSharp.Input;
@@ -87,7 +88,7 @@ namespace AnodyneSharp.States
 
             _updateEntities = true;
 
-            _keyValueLabel = new UILabel(new Vector2(37, 5), false);
+            _keyValueLabel = new UILabel(new Vector2(37, 5 - LineOffset + (GlobalState.CurrentLanguage == Language.ZHS ? 1 : 0)), false);
             _keyValueLabel.Writer.SetSpriteFont(FontManager.InitFont(new Color(124, 163, 177, 255)));
             _keyValueLabel.SetText("x0");
 
@@ -322,7 +323,7 @@ namespace AnodyneSharp.States
                 Rectangle ret = e.Hitbox;
                 Vector2 facing_vec = -Entity.FacingDirection(_player.facing);
                 //Increase size in the correct dimension by 2 pixels
-                ret.Inflate(Math.Abs(facing_vec.X),Math.Abs(facing_vec.Y));
+                ret.Inflate(Math.Abs(facing_vec.X), Math.Abs(facing_vec.Y));
                 //Move rectangle to have the two pixel buffer on the correct side.
                 ret.Offset(facing_vec.X, facing_vec.Y);
                 return ret;
@@ -498,7 +499,7 @@ namespace AnodyneSharp.States
                 GlobalState.Dialogue = FontManager.LanguageString;
                 //GlobalState.Dialogue = "Hello^\nYes, this is slime";
             }
-            
+
             if (KeyInput.JustPressedKey(Keys.F6))
             {
                 Cheatz.Cheatz.GiveKey();
@@ -602,7 +603,7 @@ namespace AnodyneSharp.States
                 broomType += nextBroom ? 1 : -1;
                 if (broomType < 0 || broomType > BroomType.Transformer)
                 {
-                    broomType = (BroomType)(((int)broomType + (int)BroomType.Transformer+1) % ((int)BroomType.Transformer+1));
+                    broomType = (BroomType)(((int)broomType + (int)BroomType.Transformer + 1) % ((int)BroomType.Transformer + 1));
                 }
 
                 switch (broomType)

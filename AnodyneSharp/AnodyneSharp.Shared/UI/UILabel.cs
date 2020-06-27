@@ -71,9 +71,9 @@ namespace AnodyneSharp.UI
         }
 
 
-        public void Initialize()
+        public void Initialize(bool forceEnglish = false)
         {
-            Writer.SetSpriteFont(FontManager.InitFont(_color));
+            Writer.SetSpriteFont(FontManager.InitFont(_color, forceEnglish));
             Writer.Initialize();
             Writer.IgnoreSoftLineBreaks = true;
             Writer.DrawShadow = _drawShadow;
