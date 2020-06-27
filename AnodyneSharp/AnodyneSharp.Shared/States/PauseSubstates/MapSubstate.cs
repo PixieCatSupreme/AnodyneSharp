@@ -33,7 +33,7 @@ namespace AnodyneSharp.States.PauseSubstates
         public MapSubstate()
         {
             float x = 73;
-            float y = 144;
+            float y = 144 - GameConstants.LineOffset - (GlobalState.CurrentLanguage == Language.ZHS ? 1 : 0);
 
             _noMapLabel = new UILabel(new Vector2(x + 14, GameConstants.HEADER_HEIGHT + 11), true);
 
@@ -167,7 +167,7 @@ namespace AnodyneSharp.States.PauseSubstates
                     break;
             }
 
-            _selector.Position -= new Vector2(_selector.frameWidth, -2);
+            _selector.Position -= new Vector2(_selector.frameWidth, -2 - CursorOffset);
         }
     }
 }

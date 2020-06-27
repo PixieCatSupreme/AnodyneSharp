@@ -175,6 +175,7 @@ namespace AnodyneSharp.States.PauseSubstates
 
         private void SetSelectorPos()
         {
+            bool ignoreOffset = false;
             switch (_state)
             {
                 case EquipState.Broom:
@@ -190,18 +191,28 @@ namespace AnodyneSharp.States.PauseSubstates
                     _selector.Position = _transformer.LabelPos;
                     break;
                 case EquipState.Shoes:
+                    ignoreOffset = true;
                     break;
                 case EquipState.Item:
+                    ignoreOffset = true;
                     break;
                 case EquipState.Key1:
+                    ignoreOffset = true;
                     break;
                 case EquipState.Key2:
+                    ignoreOffset = true;
                     break;
                 case EquipState.Key3:
+                    ignoreOffset = true;
                     break;
             }
 
             _selector.Position -= new Vector2(_selector.frameWidth, -2);
+
+            if (!ignoreOffset)
+            {
+                _selector.Position.Y += CursorOffset;
+            }
         }
 
         private void SetEquipped()

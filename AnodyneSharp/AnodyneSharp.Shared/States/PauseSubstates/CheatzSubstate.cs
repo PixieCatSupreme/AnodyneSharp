@@ -19,7 +19,7 @@ namespace AnodyneSharp.States.PauseSubstates
         public CheatzSubstate()
         {
             _cheatLabel = new UILabel(new Vector2(69, 28 + GameConstants.FONT_LINE_HEIGHT * 2), true);
-            _cheatLabel.Initialize();
+            _cheatLabel.Initialize(true);
             _cheatLabel.SetText("");
 
             _selector.Position = _cheatLabel.Position - new Vector2(_selector.frameWidth, -2);

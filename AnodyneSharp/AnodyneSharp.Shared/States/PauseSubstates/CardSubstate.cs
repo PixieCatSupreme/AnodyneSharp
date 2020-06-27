@@ -34,7 +34,7 @@ namespace AnodyneSharp.States.PauseSubstates
             page = 0;
             selectedID = 0;
 
-            cardsLabel = new UILabel(new Vector2(70, 146), true);
+            cardsLabel = new UILabel(new Vector2(70, 146 - GameConstants.LineOffset - (GlobalState.CurrentLanguage == Language.ZHS ? 1 : 0)), true);
             cardsLabel.Initialize();
             cardsLabel.SetText($"{InventoryManager.CardCount} {DialogueManager.GetDialogue("misc", "any", "cards", 1)}");
 

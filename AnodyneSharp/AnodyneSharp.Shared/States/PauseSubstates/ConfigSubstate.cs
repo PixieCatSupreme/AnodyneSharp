@@ -50,55 +50,7 @@ namespace AnodyneSharp.States.PauseSubstates
 
         public ConfigSubstate()
         {
-            float x = 69;
-            float y = 28;
-
-            _keybindsLabel = new UILabel(new Vector2(x, y), true);
-
-            _bgmLabel = new UILabel(new Vector2(x, _keybindsLabel.Position.Y + GameConstants.FONT_LINE_HEIGHT * 2), true);
-            _sfxLabel = new UILabel(new Vector2(x, _bgmLabel.Position.Y + GameConstants.FONT_LINE_HEIGHT +4), true);
-
-            _autosaveLabel = new UILabel(new Vector2(x, _sfxLabel.Position.Y + GameConstants.FONT_LINE_HEIGHT * 2), true);
-            _resolutionLabel = new UILabel(new Vector2(x, _autosaveLabel.Position.Y + GameConstants.FONT_LINE_HEIGHT * 4), true);
-            _scalingLabel = new UILabel(new Vector2(x, _resolutionLabel.Position.Y + GameConstants.FONT_LINE_HEIGHT * 3), true);
-            _languageLabel = new UILabel(new Vector2(x, _scalingLabel.Position.Y + GameConstants.FONT_LINE_HEIGHT * 2), true);
-
-            _keybindsLabel.Initialize();
-
-            _bgmLabel.Initialize();
-            _sfxLabel.Initialize();
-
-            _autosaveLabel.Initialize();
-            _resolutionLabel.Initialize();
-            _scalingLabel.Initialize();
-            _languageLabel.Initialize();
-
-            _keybindsLabel.SetText(DialogueManager.GetDialogue("misc", "any", "config", 1));
-
-            _bgmLabel.SetText("BGM");
-            _sfxLabel.SetText("SFX");
-
-            _autosaveLabel.SetText(DialogueManager.GetDialogue("misc", "any", "config", 3));
-            _resolutionLabel.SetText(DialogueManager.GetDialogue("misc", "any", "config", 6));
-            _scalingLabel.SetText(DialogueManager.GetDialogue("misc", "any", "config", 16));
-            _languageLabel.SetText(DialogueManager.GetDialogue("misc", "any", "config", 17));
-
-            _musicSlider = new AudioSlider(new Vector2(_bgmLabel.Position.X + _bgmLabel.Writer.WriteArea.Width -5, _bgmLabel.Position.Y), GlobalState.music_volume_scale, 0f, 1f, 0.1f)
-            {
-                ValueChangedEvent = BgmValueChanged
-            };
-
-            _sfxSlider = new AudioSlider(new Vector2(_sfxLabel.Position.X + _sfxLabel.Writer.WriteArea.Width -5, _sfxLabel.Position.Y), GlobalState.sfx_volume_scale, 0f, 1f, 0.1f)
-            {
-                ValueChangedEvent = SfxValueChanged
-            };
-
-            _autosaveSetter = new TextSelector(new Vector2(x + 16, _autosaveLabel.Position.Y + GameConstants.FONT_LINE_HEIGHT * 2.5f), 40, GlobalState.autosave_on? 1 : 0, DialogueManager.GetDialogue("misc", "any", "config", 4), DialogueManager.GetDialogue("misc", "any", "config", 5))
-            {
-                ValueChangedEvent = AutoSaveValueChanged
-            };
-
-            _state = _lastState;
+            SetLabels();
         }
 
         public override void GetControl()
@@ -191,6 +143,71 @@ namespace AnodyneSharp.States.PauseSubstates
             _selector.Draw();
         }
 
+        private void SetLabels()
+        {
+            float x = 69;
+            float y = 28 - GameConstants.LineOffset - (GlobalState.CurrentLanguage == Language.ZHS ? 1 : 0);
+            float yStep = GameConstants.FONT_LINE_HEIGHT - GameConstants.LineOffset;
+
+            _keybindsLabel = new UILabel(new Vector2(x, y), true);
+
+            _bgmLabel = new UILabel(new Vector2(x, _keybindsLabel.Position.Y + yStep * 2), true);
+            _sfxLabel = new UILabel(new Vector2(x, _bgmLabel.Position.Y + 12), true);
+
+            _autosaveLabel = new UILabel(new Vector2(x, _sfxLabel.Position.Y + yStep * 2), true);
+            _resolutionLabel = new UILabel(new Vector2(x, _autosaveLabel.Position.Y + yStep * 4), true);
+            _scalingLabel = new UILabel(new Vector2(x, _resolutionLabel.Position.Y + yStep * 3), true);
+            _languageLabel = new UILabel(new Vector2(x, _scalingLabel.Position.Y + yStep * 2), true);
+
+            _keybindsLabel.Initialize();
+
+            _bgmLabel.Initialize(true);
+            _sfxLabel.Initialize(true);
+
+            _autosaveLabel.Initialize();
+            _resolutionLabel.Initialize();
+            _scalingLabel.Initialize();
+            _languageLabel.Initialize();
+
+            _keybindsLabel.SetText(DialogueManager.GetDialogue("misc", "any", "config", 1));
+
+            _bgmLabel.SetText("BGM");
+            _sfxLabel.SetText("SFX");
+
+            _autosaveLabel.SetText(DialogueManager.GetDialogue("misc", "any", "config", 3));
+            _resolutionLabel.SetText(DialogueManager.GetDialogue("misc", "any", "config", 6));
+            _scalingLabel.SetText(DialogueManager.GetDialogue("misc", "any", "config", 16));
+            _languageLabel.SetText(DialogueManager.GetDialogue("misc", "any", "config", 17));
+
+            _musicSlider = new AudioSlider(new Vector2(_bgmLabel.Position.X + _bgmLabel.Writer.WriteArea.Width - 5, _bgmLabel.Position.Y), GlobalState.music_volume_scale, 0f, 1f, 0.1f)
+            {
+                ValueChangedEvent = BgmValueChanged
+            };
+
+            _sfxSlider = new AudioSlider(new Vector2(_sfxLabel.Position.X + _sfxLabel.Writer.WriteArea.Width - 5, _sfxLabel.Position.Y), GlobalState.sfx_volume_scale, 0f, 1f, 0.1f)
+            {
+                ValueChangedEvent = SfxValueChanged
+            };
+
+            Vector2 autosavePos = Vector2.Zero;
+
+            if (GlobalState.CurrentLanguage == Language.ZHS)
+            {
+                autosavePos = new Vector2(x + 44, _autosaveLabel.Position.Y + GameConstants.FONT_LINE_HEIGHT + 5);
+            }
+            else
+            {
+                autosavePos = new Vector2(x + 16, _autosaveLabel.Position.Y + GameConstants.FONT_LINE_HEIGHT * 2.5f);
+            }
+
+            _autosaveSetter = new TextSelector(autosavePos, 40, GlobalState.autosave_on ? 1 : 0, DialogueManager.GetDialogue("misc", "any", "config", 4), DialogueManager.GetDialogue("misc", "any", "config", 5))
+            {
+                ValueChangedEvent = AutoSaveValueChanged
+            };
+
+            _state = _lastState;
+        }
+
         private void SetSettingsState()
         {
             switch (_state)
@@ -235,6 +252,8 @@ namespace AnodyneSharp.States.PauseSubstates
 
         private void SetSelectorPos()
         {
+            bool ignoreOffset = false;
+
             switch (_state)
             {
                 case ConfigState.KeybindsLabel:
@@ -242,9 +261,12 @@ namespace AnodyneSharp.States.PauseSubstates
                     break;
                 case ConfigState.SetBgmLabel:
                     _selector.Position = _bgmLabel.Position;
+                    ignoreOffset = true;
                     break;
                 case ConfigState.SetSfxLabel:
                     _selector.Position = _sfxLabel.Position;
+                    ignoreOffset = true;
+
                     break;
                 case ConfigState.AutosaveLabel:
                     _selector.Position = _autosaveLabel.Position;
@@ -261,6 +283,11 @@ namespace AnodyneSharp.States.PauseSubstates
             }
 
             _selector.Position -= new Vector2(_selector.frameWidth, -2);
+
+            if (!ignoreOffset)
+            {
+                _selector.Position.Y += CursorOffset;
+            }
         }
 
         private void BgmValueChanged(string value, int index)

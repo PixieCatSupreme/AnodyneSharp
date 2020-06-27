@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Input;
+using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 using AnodyneSharp.UI.PauseMenu;
 using Microsoft.Xna.Framework.Input;
@@ -10,6 +11,20 @@ namespace AnodyneSharp.States.PauseSubstates
 {
     public class PauseSubstate : State
     {
+        protected int CursorOffset
+        {
+            get
+            {
+                if (GlobalState.CurrentLanguage == Dialogue.Language.ZHS )
+                {
+                    return GameConstants.LineOffset-1;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+        }
         public bool Exit { get; set; }
 
         protected MenuSelector _selector;

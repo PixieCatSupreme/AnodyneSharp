@@ -35,13 +35,14 @@ namespace AnodyneSharp.States.PauseSubstates
         public SaveSubstate()
         {
             float x = 69;
-            float y = 28;
+            float y = 28 - GameConstants.LineOffset - (GlobalState.CurrentLanguage == Language.ZHS ? 1 : 0);
+            float yStep = GameConstants.FONT_LINE_HEIGHT;
 
             _saveLabel = new UILabel(new Vector2(x, y), true);
-            _saveTitleLable= new UILabel(new Vector2(x, _saveLabel.Position.Y + GameConstants.FONT_LINE_HEIGHT * 2-4), true);
-            _saveQuitLabel= new UILabel(new Vector2(x, _saveTitleLable.Position.Y + GameConstants.FONT_LINE_HEIGHT * 3 - 2), true);
-            _quitLabel= new UILabel(new Vector2(x, _saveQuitLabel.Position.Y + GameConstants.FONT_LINE_HEIGHT * 2 - 2), true);
-            _deathsLabel= new UILabel(new Vector2(x, _quitLabel.Position.Y + GameConstants.FONT_LINE_HEIGHT * 4 - 2), true);
+            _saveTitleLable= new UILabel(new Vector2(x, _saveLabel.Position.Y + yStep * 2-4), true);
+            _saveQuitLabel= new UILabel(new Vector2(x, _saveTitleLable.Position.Y + yStep * 3 - 2), true);
+            _quitLabel= new UILabel(new Vector2(x, _saveQuitLabel.Position.Y + yStep * 2 - 2), true);
+            _deathsLabel= new UILabel(new Vector2(x, _quitLabel.Position.Y + yStep * 4 - 2), true);
 
             _saveLabel.Initialize();
             _saveTitleLable.Initialize();
@@ -141,7 +142,7 @@ namespace AnodyneSharp.States.PauseSubstates
                     break;
             }
 
-            _selector.Position -= new Vector2(_selector.frameWidth, -2);
+            _selector.Position -= new Vector2(_selector.frameWidth, -2 - CursorOffset);
         }
 
     }
