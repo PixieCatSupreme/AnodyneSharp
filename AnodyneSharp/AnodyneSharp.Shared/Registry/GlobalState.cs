@@ -65,6 +65,7 @@ namespace AnodyneSharp.Registry
 
         public static bool RefreshKeyCount = false;
         public static bool RefreshMaxHealth = false;
+        public static bool RefreshLabels = false;
 
         public static bool autosave_on = true;
         //public static var checkpoint:Object = { x: 0, y: 0, area: "" };

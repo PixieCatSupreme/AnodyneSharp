@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace AnodyneSharp.States.PauseSubstates
@@ -40,6 +41,8 @@ namespace AnodyneSharp.States.PauseSubstates
         private UILabel _languageLabel;
 
         private TextSelector _autosaveSetter;
+
+        private TextSelector _languageSetter;
 
         private OptionSelector _selectedOption;
 
@@ -140,13 +143,15 @@ namespace AnodyneSharp.States.PauseSubstates
 
             _autosaveSetter.DrawUI();
 
+            _languageSetter.DrawUI();
+
             _selector.Draw();
         }
 
         private void SetLabels()
         {
             float x = 69;
-            float y = 28 - GameConstants.LineOffset - (GlobalState.CurrentLanguage == Language.ZHS ? 1 : 0);
+            float y = 28 - GameConstants.LineOffset - (GlobalState.CurrentLanguage == Language.ZH_CN ? 1 : 0);
             float yStep = GameConstants.FONT_LINE_HEIGHT - GameConstants.LineOffset;
 
             _keybindsLabel = new UILabel(new Vector2(x, y), true);
@@ -191,7 +196,7 @@ namespace AnodyneSharp.States.PauseSubstates
 
             Vector2 autosavePos = Vector2.Zero;
 
-            if (GlobalState.CurrentLanguage == Language.ZHS)
+            if (GlobalState.CurrentLanguage == Language.ZH_CN)
             {
                 autosavePos = new Vector2(x + 44, _autosaveLabel.Position.Y + GameConstants.FONT_LINE_HEIGHT + 5);
             }
@@ -203,6 +208,11 @@ namespace AnodyneSharp.States.PauseSubstates
             _autosaveSetter = new TextSelector(autosavePos, 40, GlobalState.autosave_on ? 1 : 0, DialogueManager.GetDialogue("misc", "any", "config", 4), DialogueManager.GetDialogue("misc", "any", "config", 5))
             {
                 ValueChangedEvent = AutoSaveValueChanged
+            };
+
+            _languageSetter = new TextSelector(new Vector2(x + _languageLabel.Writer.WriteArea.Width - 8, _languageLabel.Position.Y + GameConstants.LineOffset), GlobalState.CurrentLanguage == Language.ZH_CN ? 40 : 30, (int)GlobalState.CurrentLanguage, Enum.GetNames(GlobalState.CurrentLanguage.GetType()).Select(s => s.ToLower().Replace('_', '-')).ToArray())
+            {
+                ValueChangedEvent = LanguageValueChanged
             };
 
             _state = _lastState;
@@ -230,9 +240,9 @@ namespace AnodyneSharp.States.PauseSubstates
                 //case ConfigState.ScalingLabel:
                 //    _state = ConfigState.SettingScale;
                 //    break;
-                //case ConfigState.LanguageLabel:
-                //    _state = ConfigState.SettingLanguage;
-                //    break;
+                case ConfigState.LanguageLabel:
+                    _selectedOption = _languageSetter;
+                    break;
                 default:
                     _state = ConfigState.KeybindsLabel;
                     _selectedOption = null;
@@ -310,6 +320,15 @@ namespace AnodyneSharp.States.PauseSubstates
         private void AutoSaveValueChanged(string value, int index)
         {
             GlobalState.autosave_on = value == DialogueManager.GetDialogue("misc", "any", "config", 4);
+        }
+
+        private void LanguageValueChanged(string value, int index)
+        {
+            Language lang = (Language)index;
+            DialogueManager.LoadDialogue(lang);
+
+            SetLabels();
+            GlobalState.RefreshLabels = true;
         }
     }
 }

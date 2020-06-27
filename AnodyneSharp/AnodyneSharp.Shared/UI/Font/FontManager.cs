@@ -17,7 +17,7 @@ namespace AnodyneSharp.UI.Font
                 {
                     case Language.ES:
                         return es_string;
-                    case Language.ZHS:
+                    case Language.ZH_CN:
                         return zhs_string;
                     case Language.KR:
                         return ko_string;
@@ -56,7 +56,7 @@ namespace AnodyneSharp.UI.Font
                     fileName = "es_white";
                     width = 6;
                     break;
-                case Language.ZHS:
+                case Language.ZH_CN:
                     lString = zhs_string;
                     fileName = "11x12_ZHS";
                     width = 11;

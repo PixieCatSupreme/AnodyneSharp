@@ -35,7 +35,7 @@ namespace AnodyneSharp.States.PauseSubstates
         public SaveSubstate()
         {
             float x = 69;
-            float y = 28 - GameConstants.LineOffset - (GlobalState.CurrentLanguage == Language.ZHS ? 1 : 0);
+            float y = 28 - GameConstants.LineOffset - (GlobalState.CurrentLanguage == Language.ZH_CN ? 1 : 0);
             float yStep = GameConstants.FONT_LINE_HEIGHT;
 
             _saveLabel = new UILabel(new Vector2(x, y), true);

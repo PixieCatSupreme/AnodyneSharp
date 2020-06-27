@@ -33,7 +33,7 @@ namespace AnodyneSharp.States.PauseSubstates
         public MapSubstate()
         {
             float x = 73;
-            float y = 144 - GameConstants.LineOffset - (GlobalState.CurrentLanguage == Language.ZHS ? 1 : 0);
+            float y = 144 - GameConstants.LineOffset - (GlobalState.CurrentLanguage == Language.ZH_CN ? 1 : 0);
 
             _noMapLabel = new UILabel(new Vector2(x + 14, GameConstants.HEADER_HEIGHT + 11), true);
 

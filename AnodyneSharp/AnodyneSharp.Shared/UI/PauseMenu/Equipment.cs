@@ -27,7 +27,7 @@ namespace AnodyneSharp.UI.PauseMenu
         public Equipment(Vector2 pos, string textureName, string text)
             : base(pos, 18, 18, DrawOrder.EQUIPMENT_ICON)
         {
-            _label = new UILabel(new Vector2(pos.X + frameWidth + 4, pos.Y + frameHeight /4 -1 - (GlobalState.CurrentLanguage == Dialogue.Language.ZHS ? GameConstants.LineOffset - 2 : 0)), true);
+            _label = new UILabel(new Vector2(pos.X + frameWidth + 4, pos.Y + frameHeight /4 -1 - (GlobalState.CurrentLanguage == Dialogue.Language.ZH_CN ? GameConstants.LineOffset - 2 : 0)), true);
             _label.Initialize();
             _label.SetText(text);
 

@@ -88,11 +88,9 @@ namespace AnodyneSharp.States
 
             _updateEntities = true;
 
-            _keyValueLabel = new UILabel(new Vector2(37, 5 - LineOffset + (GlobalState.CurrentLanguage == Language.ZHS ? 1 : 0)), false);
-            _keyValueLabel.Writer.SetSpriteFont(FontManager.InitFont(new Color(124, 163, 177, 255)));
-            _keyValueLabel.SetText("x0");
-
             _iconPos = new Vector2(2, 3);
+
+            SetKeyLabel();
         }
 
         public override void Create()
@@ -242,6 +240,11 @@ namespace AnodyneSharp.States
                 InventoryManager.EquippedBroomChanged = false;
 
                 UpdateBroomIcon();
+            }
+
+            if (GlobalState.RefreshLabels)
+            {
+                SetKeyLabel();
             }
 
 #if DEBUG
@@ -446,6 +449,13 @@ namespace AnodyneSharp.States
 
                 _state = PlayStateState.S_NORMAL;
             }
+        }
+
+        private void SetKeyLabel()
+        {
+            _keyValueLabel = new UILabel(new Vector2(37, 5 - LineOffset + (GlobalState.CurrentLanguage == Language.ZH_CN ? 1 : 0)), false);
+            _keyValueLabel.Writer.SetSpriteFont(FontManager.InitFont(new Color(124, 163, 177, 255)));
+            _keyValueLabel.SetText($"x{InventoryManager.GetCurrentMapKeys()}");
         }
 
         private void UpdateScreenBorders()

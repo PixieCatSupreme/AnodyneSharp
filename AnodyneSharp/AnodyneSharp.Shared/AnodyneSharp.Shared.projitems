@@ -242,7 +242,7 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Dialogue\dialogue_IT.txt" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Dialogue\dialogue_JP.txt" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Dialogue\dialogue_PT_BR.txt" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Dialogue\dialogue_ZHS.txt" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Dialogue\dialogue_ZH_CN.txt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Dialogue\dialogue_KR.txt" />

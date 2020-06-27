@@ -15,7 +15,7 @@ namespace AnodyneSharp.States.PauseSubstates
         {
             get
             {
-                if (GlobalState.CurrentLanguage == Dialogue.Language.ZHS )
+                if (GlobalState.CurrentLanguage == Dialogue.Language.ZH_CN )
                 {
                     return GameConstants.LineOffset-1;
                 }

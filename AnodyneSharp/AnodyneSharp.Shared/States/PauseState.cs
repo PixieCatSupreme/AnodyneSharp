@@ -77,12 +77,18 @@ namespace AnodyneSharp.States
 
             _lastState = _state;
 
-            CreateLabels();
+            SetLabels();
             StateChanged();
         }
 
         public override void Update()
         {
+            if (GlobalState.RefreshLabels)
+            {
+                GlobalState.RefreshLabels = false;
+                SetLabels();
+            }
+
             _playtimeLabel.SetText((DateTime.Now - GlobalState.START_TIME).ToString(@"hh\:mm\:ss"));
 
             _selector.Update();
@@ -228,13 +234,12 @@ namespace AnodyneSharp.States
                 SoundManager.PlaySoundEffect("menu_move");
                 _state++;
             }
-
         }
 
-        private void CreateLabels()
+        private void SetLabels()
         {
             float x = 10f;
-            float startY = GameConstants.HEADER_HEIGHT - GameConstants.LineOffset + 11 + (GlobalState.CurrentLanguage == Language.ZHS ? 1 : 0) ;
+            float startY = GameConstants.HEADER_HEIGHT - GameConstants.LineOffset + 11 + (GlobalState.CurrentLanguage == Language.ZH_CN ? 1 : 0) ;
             float yStep = (GameConstants.FONT_LINE_HEIGHT - GameConstants.LineOffset ) * 2;
 
             _mapLabel = new UILabel(new Vector2(x, startY), true);
@@ -245,8 +250,23 @@ namespace AnodyneSharp.States
             _achievementsLabel = new UILabel(new Vector2(x, startY + yStep * 5), true);
             _secretsLabel = new UILabel(new Vector2(x, startY + yStep * 6), true);
 
+
             _playtimeLabel = new UILabel(new Vector2(1, 154), true);
-            _inputLabel = new UILabel(new Vector2(9, 168), new Color(143, 153, 176, 255), false);
+
+            Vector2 inputPos = Vector2.Zero;
+            if (GlobalState.CurrentLanguage == Language.ZH_CN)
+            {
+                inputPos = new Vector2(2, 168 - GameConstants.LineOffset +1);
+            }
+            else
+            {
+                inputPos = new Vector2(2, 168);
+                if (GlobalState.CurrentLanguage == Language.KR)
+                {
+                    inputPos.Y -= 1;
+                }
+            }
+            _inputLabel = new UILabel(inputPos, new Color(143, 153, 176, 255), false);
 
             _mapLabel.Initialize();
             _itemsLabel.Initialize();

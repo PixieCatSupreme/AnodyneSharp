@@ -23,7 +23,7 @@ namespace AnodyneSharp.Registry
         {
             get
             {
-                if (GlobalState.CurrentLanguage == Language.ZHS)
+                if (GlobalState.CurrentLanguage == Language.ZH_CN)
                 {
                     return 12;
                 }
