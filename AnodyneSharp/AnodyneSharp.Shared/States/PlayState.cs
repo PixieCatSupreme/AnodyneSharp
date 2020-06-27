@@ -369,6 +369,27 @@ namespace AnodyneSharp.States
                 {
                     SwitchBroom(false);
                 }
+
+                if (KeyInput.JustPressedKey(Keys.D1) && InventoryManager.HasBroom && BroomType.Normal != InventoryManager.EquippedBroom)
+                {
+                    SoundManager.PlaySoundEffect("menu_move");
+                    SetBroom(BroomType.Normal);
+                }
+                else if (KeyInput.JustPressedKey(Keys.D2) && InventoryManager.HasWiden && BroomType.Wide != InventoryManager.EquippedBroom)
+                {
+                    SoundManager.PlaySoundEffect("menu_move");
+                    SetBroom(BroomType.Wide);
+                }
+                else if (KeyInput.JustPressedKey(Keys.D3) && InventoryManager.HasLenghten && BroomType.Long != InventoryManager.EquippedBroom)
+                {
+                    SoundManager.PlaySoundEffect("menu_move");
+                    SetBroom(BroomType.Long);
+                }
+                else if (KeyInput.JustPressedKey(Keys.D4) && InventoryManager.HasTransformer && BroomType.Transformer != InventoryManager.EquippedBroom)
+                {
+                    SoundManager.PlaySoundEffect("menu_move");
+                    SetBroom(BroomType.Transformer);
+                }
             }
 
 
@@ -532,21 +553,8 @@ namespace AnodyneSharp.States
                 LoadMap();
                 StateTransition();
             }
-
-            if (KeyInput.JustPressedKey(Keys.D1))
-            {
-                SetBroom(BroomType.Normal);
-
-            }
-            else if (KeyInput.JustPressedKey(Keys.D2))
-            {
-                SetBroom(BroomType.Wide);
-            }
-            else if (KeyInput.JustPressedKey(Keys.D3))
-            {
-                SetBroom(BroomType.Long);
-            }
-            else if (KeyInput.JustPressedKey(Keys.D4))
+            
+            if (KeyInput.JustPressedKey(Keys.D5))
             {
                 SetBroom(BroomType.NONE);
             }
