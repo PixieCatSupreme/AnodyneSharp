@@ -9,6 +9,7 @@ namespace AnodyneSharp.Drawing
     {
         BACKGROUND,         //Moving background textures
         MAP_BG,             //Map layer 1
+        BG_ENTITIES,        //Background entities, animated tiles,...
         PLAYER_REFLECTION,  //Reflection of the player
         BROOM_REFLECTION,   //Reflection of broom
         FOOT_OVERLAY,       //Feet stuff like water wrinkles

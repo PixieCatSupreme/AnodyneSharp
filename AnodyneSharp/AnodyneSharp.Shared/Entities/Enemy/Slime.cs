@@ -16,7 +16,6 @@ namespace AnodyneSharp.Entities.Enemy
 
         private int _health = 2;
 
-        private float _deathTimer = 0.5f;
         private const float _moveTimerMax = 0.5f;
         private float _moveTimer = _moveTimerMax;
 
@@ -36,7 +35,7 @@ namespace AnodyneSharp.Entities.Enemy
 
             AddAnimation("Move", CreateAnimFrameArray(0, 1), 3);
             AddAnimation("Hurt", CreateAnimFrameArray(0, 8, 0, 8), 15);
-            AddAnimation("Dying", CreateAnimFrameArray(0, 8, 0, 8, 15, 9, 9), 12, false);
+            AddAnimation("Dying", CreateAnimFrameArray(0, 8, 0, 8), 12, false);
 
             Play("Move");
 
@@ -80,13 +79,9 @@ namespace AnodyneSharp.Entities.Enemy
                     if (finished) Play("Move");
                     break;
                 case "Dying":
-                    if(finished && _preset.Alive)
+                    if(finished)
                     {
-                        _deathTimer -= GameTimes.DeltaTime;
-                        if (_deathTimer <= 0)
-                        {
-                            exists = _preset.Alive = false;
-                        }
+                        exists = _preset.Alive = false;
                     }
                     break;
             }

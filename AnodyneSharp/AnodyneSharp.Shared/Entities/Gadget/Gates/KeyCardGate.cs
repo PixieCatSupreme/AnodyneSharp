@@ -7,9 +7,9 @@ using System.Text;
 namespace AnodyneSharp.Entities.Gadget.Gates
 {
     [Collision(typeof(Player))]
-    public abstract class Gate : Entity
+    public abstract class KeyCardGate : Entity
     {
-        public Gate(Vector2 pos, string textureName, int frameWidth, int frameHeight, DrawOrder layer) : base(pos, textureName, frameWidth, frameHeight, layer)
+        public KeyCardGate(Vector2 pos, string textureName, int frameWidth, int frameHeight, DrawOrder layer) : base(pos, textureName, frameWidth, frameHeight, layer)
         {
             immovable = true;
         }

@@ -17,7 +17,7 @@ namespace AnodyneSharp.Entities.Gadget
         private float _maxActivationTime;
         private bool _playerCollided;
         private bool _triedOpening;
-        private Gate _gate;
+        private KeyCardGate _gate;
 
         //It's just the small key block for now!
         public KeyBlock(EntityPreset preset, Player p) : 

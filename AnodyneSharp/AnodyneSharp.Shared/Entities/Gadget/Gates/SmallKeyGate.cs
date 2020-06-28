@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 
 namespace AnodyneSharp.Entities.Gadget.Gates
 {
-    public class SmallKeyGate : Gate
+    public class SmallKeyGate : KeyCardGate
     {
         public SmallKeyGate(Vector2 pos) : base(pos, "keyhole", 16, 16, DrawOrder.ENTITIES)
         {
