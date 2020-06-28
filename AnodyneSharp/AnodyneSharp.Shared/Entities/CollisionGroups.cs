@@ -33,6 +33,12 @@ namespace AnodyneSharp.Entities
             Type t = e.GetType();
             Get(t).targets.Add(e);
             CollisionAttribute c = t.GetCustomAttribute<CollisionAttribute>();
+
+            if (c == null)
+            {
+                return;
+            }
+
             if (c.MapCollision)
                 _mapColliders.Add(e);
             foreach(Type target in c.Types)

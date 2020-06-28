@@ -22,7 +22,7 @@ namespace AnodyneSharp.Drawing
         {
             get
             {
-                return new Vector2(Position.X,Position.Y) - new Vector2(SCREEN_WIDTH_IN_PIXELS, SCREEN_HEIGHT_IN_PIXELS) / 2 - new Vector2(-8, 2);
+                return new Vector2(Position.X,Position.Y) - new Vector2(SCREEN_WIDTH_IN_PIXELS, SCREEN_HEIGHT_IN_PIXELS) / 2 - new Vector2(0, 10);
             }
         }
 
@@ -91,7 +91,7 @@ namespace AnodyneSharp.Drawing
 
         public void GoTo(Vector2 target)
         {
-            target += new Vector2(SCREEN_WIDTH_IN_PIXELS, SCREEN_HEIGHT_IN_PIXELS) / 2 + new Vector2(-8, -HEADER_HEIGHT + 2);
+            target += new Vector2(SCREEN_WIDTH_IN_PIXELS, SCREEN_HEIGHT_IN_PIXELS) / 2 + new Vector2(0, -HEADER_HEIGHT +10);
             Position = new Vector3(target, Position.Z);
             Update();
         }

@@ -39,6 +39,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Treasures\KeyTreasure.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Treasures\Base\Treasure.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Treasures\SecretTreasure.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\HugeFuckingStag.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Player\Broom.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\NamedEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Slime.cs" />

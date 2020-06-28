@@ -27,7 +27,8 @@ namespace AnodyneSharp.Entities.Enemy
         private EntityPool<Goo> goos;
 
 
-        public Slime(EntityPreset preset) : base(preset.Position, "slime", 16,16, Drawing.DrawOrder.ENTITIES)
+        public Slime(EntityPreset preset) 
+            : base(preset.Position, "slime", 16,16, Drawing.DrawOrder.ENTITIES)
         {
             _preset = preset;
 
