@@ -43,6 +43,8 @@ namespace AnodyneSharp.Entities
 
         private const float jump_period = 0.4f * 1.15f; //length of jump
 
+        public const float FALL_TIMER_DEFAULT = 0.016f * 8 + 0.001f;
+
         public const float action_latency_max = 0.24f;
         public const float ATK_DELAY = 0.2f;
         public const float WATK_DELAY = 0.35f;
@@ -80,7 +82,7 @@ namespace AnodyneSharp.Entities
         private const float BUMP_TIMER_MAX = 0.2f;
         private float bump_timer = 0;
 
-        internal float grid_entrance_x;
+        internal Vector2 grid_entrance;
         private Vector2 additionalVel;
 
         private float action_latency;
@@ -88,13 +90,22 @@ namespace AnodyneSharp.Entities
         public Broom broom;
 
         private PlayState parent;
-        private bool hasFallen;
+
         private bool actions_disabled;
         public bool skipBroom;
         private bool just_landed;
         private bool anim_air_did_down;
         private float jump_timer;
         private bool sinking;
+        private bool dashing;
+
+        private bool isSlipping;
+        private bool hasFallen;
+        private bool justFell;
+        private bool fallingDisabled;
+        private float fallTimer;
+        private Vector2 fallPoint;
+
 
         public bool ON_CONVEYER { get; private set; }
 
@@ -187,68 +198,75 @@ namespace AnodyneSharp.Entities
                 solid = true;
             }
 
-            //if (!common_conditions())
-            //{
-            //    return;
-            //}
-
-            if (!dontMove)
+            if (!CommonConditions())
             {
-                Movement();
+                return;
             }
+
+            Movement();
 
             additionalVel = Vector2.Zero;
 
             base.Update();
         }
 
-        //      private bool Common_conditions() 
-        //{
-        //	//Registry.CUR_HEALTH = health_bar.cur_health;
+        private bool CommonConditions()
+        {
+            //	//Registry.CUR_HEALTH = health_bar.cur_health;
 
-        //	if (parent.state == parent.S_TRANSITION) {
-        //		dontMove = true;
-        //		velocity.X = velocity.Y = 0;
-        //		//if (ON_RAFT) {
-        //		//	raft.x = x - 2;
-        //		//	raft.y = y - 3;
-        //		//	conveyer_fudge_factor = 5; // <_<
-        //		//}
+            //	if (parent.state == parent.S_TRANSITION) {
+            //		dontMove = true;
+            //		velocity.X = velocity.Y = 0;
+            //		//if (ON_RAFT) {
+            //		//	raft.x = x - 2;
+            //		//	raft.y = y - 3;
+            //		//	conveyer_fudge_factor = 5; // <_<
+            //		//}
 
-        //		if (state ==  PlayerState.AIR) {
-        //			my_shadow.x = x + JUMP_SHADOW_X_OFF + 1;
-        //			my_shadow.y = y + JUMP_SHADOW_Y_OFF - 3;
-        //		}
-        //		return false;
-        //	}
+            //		if (state ==  PlayerState.AIR) {
+            //			my_shadow.x = x + JUMP_SHADOW_X_OFF + 1;
+            //			my_shadow.y = y + JUMP_SHADOW_Y_OFF - 3;
+            //		}
+            //		return false;
+            //	}
 
-        //	if (parent.SWITCH_MAPS || !alive)
-        //          {
-        //		base.Update();
-        //		return false;
-        //	}
+            //	if (parent.SWITCH_MAPS || !alive)
+            //          {
+            //		base.Update();
+            //		return false;
+            //	}
 
-        //	if (!solid && just_fell)
-        //          {
-        //		solid = true;
-        //		just_fell = false;
-        //	}
+            if (!solid && justFell)
+            {
+                solid = true;
+                justFell = false;
+            }
 
-        //	if (invincible_timer > 0)
-        //          {
-        //              invincible_timer -= GameTimes.DeltaTime;
-        //	}
-        //          else
-        //          {
-        //		invincible = false;
-        //		if (!GlobalState.FUCK_IT_MODE_ON)
-        //              {
-        //			visible = true;
-        //		}
-        //	}
+            //	if (invincible_timer > 0)
+            //          {
+            //              invincible_timer -= GameTimes.DeltaTime;
+            //	}
+            //          else
+            //          {
+            //		invincible = false;
+            //		if (!GlobalState.FUCK_IT_MODE_ON)
+            //              {
+            //			visible = true;
+            //		}
+            //	}
 
-        //	return true;
-        //}
+            return true;
+        }
+
+        public void Fall(Vector2 fallPoint)
+        {
+            if (!fallingDisabled && !isSlipping && !hasFallen)
+            {
+                isSlipping = true;
+                fallTimer = FALL_TIMER_DEFAULT;
+                this.fallPoint = fallPoint;
+            }
+        }
 
         private void Movement()
         {
@@ -265,7 +283,14 @@ namespace AnodyneSharp.Entities
                         Ground_movement();  //modify player vels
                     }
 
-                    //falling_logic();
+                    if (isSlipping)
+                    {
+                        SlippingLogic();
+                    }
+                    else if (hasFallen)
+                    {
+                        ResetAfterFalling();
+                    }
 
 
                     //update_sentinels();
@@ -290,7 +315,7 @@ namespace AnodyneSharp.Entities
                     else
                     {
                         Air_movement();
-                        Air_animation();
+                        AirAnimation();
                     }
 
                     //dash_logic();
@@ -307,6 +332,48 @@ namespace AnodyneSharp.Entities
                     break;
             }
         }
+
+        private void SlippingLogic()
+        {
+            fallTimer -= GameTimes.DeltaTime;
+            if (just_landed)
+            {
+                fallTimer = -1;
+                just_landed = false;
+            }
+
+            if ((dashing && fallTimer < FALL_TIMER_DEFAULT / 2) || fallTimer < 0)
+            {
+                SoundManager.PlaySoundEffect("fall_in_hole");
+                ANIM_STATE = PlayerAnimState.ANIM_FALL;
+                hasFallen = true;
+                isSlipping = false;
+                dontMove = true;
+
+                Position = fallPoint + new Vector2(3, 5);
+            }
+        }
+
+        private void ResetAfterFalling()
+        {
+            fallTimer -= GameTimes.DeltaTime;
+
+            if (_curFrame == 31)
+            {
+                Position = grid_entrance;
+                hasFallen = false;
+                Flicker(1);
+                Play("idle_d");
+                solid = false;
+                justFell = true;
+                dontMove = false;
+                ANIM_STATE = PlayerAnimState.as_idle;
+
+                //TODO: Re-enable for Kaizo mode?
+                //ReceiveDamage(1, false, false);
+            }
+        }
+
 
         private void Update_actions()
         {
@@ -497,7 +564,7 @@ namespace AnodyneSharp.Entities
             }
         }
 
-        private void Air_animation()
+        private void AirAnimation()
         {
             if (!anim_air_did_up)
             {
@@ -718,21 +785,29 @@ namespace AnodyneSharp.Entities
             velocity *= walkSpeed /* c_vel*/;
         }
 
-        internal void ReceiveDamage(int amount)
+        internal void ReceiveDamage(int amount, bool knockback = true, bool playSound = true)
         {
             if (!invincible)
             {
-                SoundManager.PlaySoundEffect("player_hit_1");
                 GlobalState.CUR_HEALTH -= amount;
                 invincible = true;
                 invincibility_time = INVINCIBLE_MAX;
-                bump_timer = BUMP_TIMER_MAX;
+
+                if (playSound)
+                {
+                    SoundManager.PlaySoundEffect("player_hit_1");
+                }
+                if (knockback)
+                {
+                    bump_timer = BUMP_TIMER_MAX;
+                }
+
             }
         }
 
         public void BeIdle()
         {
-            ANIM_STATE =  PlayerAnimState.as_idle;
+            ANIM_STATE = PlayerAnimState.as_idle;
             idle_ticks = 5;
             switch (facing)
             {

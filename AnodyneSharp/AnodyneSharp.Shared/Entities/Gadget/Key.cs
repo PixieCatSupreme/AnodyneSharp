@@ -14,11 +14,10 @@ namespace AnodyneSharp.Entities.Gadget
         EntityPreset _preset;
 
         public Key(EntityPreset preset) 
-            : base(preset.Position, 16, 16, DrawOrder.ENTITIES)
+            : base(preset.Position, "key", 16, 16, DrawOrder.ENTITIES)
         {
             _preset = preset;
 
-            SetTexture("key");
             SetFrame(_preset.Frame);
         }
 

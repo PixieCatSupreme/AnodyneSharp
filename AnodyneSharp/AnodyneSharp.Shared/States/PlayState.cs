@@ -436,8 +436,7 @@ namespace AnodyneSharp.States
 
             if (_state == PlayStateState.S_TRANSITION)
             {
-                _player.grid_entrance_x = _player.Position.X;
-                _player.grid_entrance_y = _player.Position.Y;
+                _player.grid_entrance = _player.Position;
                 _justTransitioned = true;
                 _player.dontMove = true;
 
