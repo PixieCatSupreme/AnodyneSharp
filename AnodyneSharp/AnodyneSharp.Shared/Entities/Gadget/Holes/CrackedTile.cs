@@ -12,7 +12,7 @@ namespace AnodyneSharp.Entities.Gadget.Holes
         Hole _hole;
         float _crackTimer = 1f;
 
-        public CrackedTile(EntityPreset preset)
+        public CrackedTile(EntityPreset preset, Player p)
             : base(preset.Position, "crackedtiles", 16, 16, DrawOrder.MAP_BG2)
         {
             immovable = true;

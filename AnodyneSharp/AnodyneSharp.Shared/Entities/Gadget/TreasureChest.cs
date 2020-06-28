@@ -32,7 +32,7 @@ namespace AnodyneSharp.Entities.Gadget
 
         public bool opened;
 
-        public TreasureChest(EntityPreset preset)
+        public TreasureChest(EntityPreset preset, Player p)
             : base(preset.Position, "treasureboxes", 16, 16, Drawing.DrawOrder.ENTITIES)
         {
             int frame = 0;

@@ -9,7 +9,7 @@ namespace AnodyneSharp.Entities.Gadget.Holes
     [NamedEntity, Collision(typeof(Player))]
     public class Hole : Entity
     {
-        public Hole(EntityPreset preset)
+        public Hole(EntityPreset preset, Player p)
             : this(preset.Position, preset.Frame)
         { }
 

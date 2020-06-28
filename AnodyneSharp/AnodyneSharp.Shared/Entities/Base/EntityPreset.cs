@@ -44,9 +44,9 @@ namespace AnodyneSharp.Entities
             Alive = alive;
         }
 
-        public Entity Create()
+        public Entity Create(Player p)
         {
-            return (Entity)Activator.CreateInstance(Type, this);
+            return (Entity)Activator.CreateInstance(Type, this, p);
         }
 
         public override string ToString()

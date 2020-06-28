@@ -20,7 +20,7 @@ namespace AnodyneSharp.Entities.Gadget
         private Gate _gate;
 
         //It's just the small key block for now!
-        public KeyBlock(EntityPreset preset) : 
+        public KeyBlock(EntityPreset preset, Player p) : 
             base(preset.Position - new Vector2(2,2), 20, 20, DrawOrder.ENTITIES)
         {
             _preset = preset;

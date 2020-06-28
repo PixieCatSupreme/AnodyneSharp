@@ -26,8 +26,10 @@ namespace AnodyneSharp.Entities.Enemy
 
         private EntityPool<Goo> goos;
 
+        private Player target;
 
-        public Slime(EntityPreset preset) 
+
+        public Slime(EntityPreset preset, Player p) 
             : base(preset.Position, "slime", 16,16, Drawing.DrawOrder.ENTITIES)
         {
             _preset = preset;
@@ -39,6 +41,7 @@ namespace AnodyneSharp.Entities.Enemy
             Play("Move");
 
             goos = new EntityPool<Goo>(8, () => new Goo());
+            target = p;
         }
 
         public override void Update()

@@ -13,7 +13,7 @@ namespace AnodyneSharp.Entities.Gadget
     {
         EntityPreset _preset;
 
-        public Key(EntityPreset preset) 
+        public Key(EntityPreset preset, Player p)
             : base(preset.Position, "key", 16, 16, DrawOrder.ENTITIES)
         {
             _preset = preset;

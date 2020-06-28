@@ -802,7 +802,7 @@ namespace AnodyneSharp.States
             }
 
             _gridEntities = gridPresets.Where(preset => preset.Alive)
-                .Select(preset => preset.Create()).SelectMany(e => new List<Entity> { e }.Concat(e.SubEntities())).ToList();
+                .Select(preset => preset.Create(_player)).SelectMany(e => new List<Entity> { e }.Concat(e.SubEntities())).ToList();
             foreach (Entity e in _gridEntities)
             {
                 _groups.Register(e);

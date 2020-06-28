@@ -11,7 +11,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc
     [NamedEntity("Huge_Fucking_Stag")]
     public class HugeFuckingStag : Entity
     {
-        public HugeFuckingStag(EntityPreset preset)
+        public HugeFuckingStag(EntityPreset preset, Player p)
            : base(preset.Position, "forest_stag", 64, 80, DrawOrder.FG_SPRITES)
         {
             AddAnimation("a", CreateAnimFrameArray(0, 1, 2), 4);
