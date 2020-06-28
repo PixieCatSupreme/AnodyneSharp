@@ -2,6 +2,7 @@
 using AnodyneSharp.Dialogue;
 using AnodyneSharp.Drawing;
 using AnodyneSharp.Entities;
+using AnodyneSharp.Entities.Enemy;
 using AnodyneSharp.Input;
 using AnodyneSharp.Map;
 using AnodyneSharp.Map.Tiles;
@@ -301,6 +302,8 @@ namespace AnodyneSharp.States
                 }
 
             }
+
+            GlobalState.ENEMIES_KILLED = _groups.KilledEnemies();
         }
 
         private void UpdateEntities()
@@ -789,10 +792,6 @@ namespace AnodyneSharp.States
 
         private void LoadGridEntities()
         {
-            _groups = new CollisionGroups();
-            _groups.Register(_player);
-            _groups.Register(_player.broom);
-
             _oldEntities = new List<Entity>(_gridEntities);
 
             List<EntityPreset> gridPresets = EntityManager.GetGridEntities(GlobalState.CURRENT_MAP_NAME, new Vector2(GlobalState.CURRENT_GRID_X, GlobalState.CURRENT_GRID_Y));
@@ -800,13 +799,22 @@ namespace AnodyneSharp.States
             {
                 preset.Alive = true;
             }
-
+            
+            GlobalState.ENEMIES_KILLED = gridPresets.Where(preset => !preset.Alive && preset.Type.IsDefined(typeof(EnemyAttribute), false)).Count();
+            GlobalState.PUZZLES_SOLVED = 0;
+            
+            _groups = new CollisionGroups(GlobalState.ENEMIES_KILLED);
+            _groups.Register(_player);
+            _groups.Register(_player.broom);
+            
             _gridEntities = gridPresets.Where(preset => preset.Alive)
                 .Select(preset => preset.Create(_player)).SelectMany(e => new List<Entity> { e }.Concat(e.SubEntities())).ToList();
             foreach (Entity e in _gridEntities)
             {
                 _groups.Register(e);
             }
+
+            
         }
     }
 }

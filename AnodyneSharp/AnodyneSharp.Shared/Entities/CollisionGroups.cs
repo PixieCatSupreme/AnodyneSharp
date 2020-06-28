@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Map;
+﻿using AnodyneSharp.Entities.Enemy;
+using AnodyneSharp.Map;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,16 +23,32 @@ namespace AnodyneSharp.Entities
         Dictionary<Type, Group> _groups;
         List<Entity> _mapColliders;
 
-        public CollisionGroups()
+        int base_killed_enemies;
+        List<Entity> _enemies;
+
+        public CollisionGroups(int num_enemies_killed)
         {
+            base_killed_enemies = num_enemies_killed;
+            _enemies = new List<Entity>();
             _groups = new Dictionary<Type, Group>();
             _mapColliders = new List<Entity>();
+        }
+
+        public int KilledEnemies()
+        {
+            return base_killed_enemies + _enemies.Where(e => !e.exists).Count();
         }
 
         public void Register(Entity e)
         {
             Type t = e.GetType();
             Get(t).targets.Add(e);
+
+            if(t.IsDefined(typeof(EnemyAttribute),false))
+            {
+                _enemies.Add(e);
+            }
+
             CollisionAttribute c = t.GetCustomAttribute<CollisionAttribute>();
 
             if (c == null)

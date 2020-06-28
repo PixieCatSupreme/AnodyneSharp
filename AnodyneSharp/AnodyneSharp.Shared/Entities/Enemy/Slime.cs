@@ -9,7 +9,7 @@ using System.Text;
 
 namespace AnodyneSharp.Entities.Enemy
 {
-    [NamedEntity, Collision(typeof(Player),typeof(Broom),MapCollision = true)]
+    [NamedEntity, Enemy, Collision(typeof(Player),typeof(Broom),MapCollision = true)]
     public class Slime : Entity
     {
         EntityPreset _preset;
