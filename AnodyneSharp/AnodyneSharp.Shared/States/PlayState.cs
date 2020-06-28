@@ -321,6 +321,11 @@ namespace AnodyneSharp.States
 
         private bool CheckInteraction()
         {
+            if (_player.state != PlayerState.GROUND)
+            {
+                return false;
+            }
+
             Rectangle InteractHitbox(Entity e)
             {
                 Rectangle ret = e.Hitbox;
@@ -346,6 +351,7 @@ namespace AnodyneSharp.States
             {
                 _state = PlayStateState.S_DIALOGUE;
                 _childState = new DialogueState();
+                _player.BeIdle();
                 return;
             }
 

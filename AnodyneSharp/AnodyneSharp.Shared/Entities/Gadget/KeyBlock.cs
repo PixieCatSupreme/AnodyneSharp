@@ -53,7 +53,7 @@ namespace AnodyneSharp.Entities.Gadget
 
         public override void Collided(Entity other)
         {
-            if (!_preset.Alive || _triedOpening)
+            if (!_preset.Alive || _triedOpening || (other is Player p && p.state != PlayerState.GROUND))
             {
                 return;
             }

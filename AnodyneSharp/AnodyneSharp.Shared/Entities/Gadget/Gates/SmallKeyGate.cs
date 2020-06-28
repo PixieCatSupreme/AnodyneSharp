@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Drawing;
+﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.Drawing;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 using Microsoft.Xna.Framework;
@@ -24,7 +25,7 @@ namespace AnodyneSharp.Entities.Gadget.Gates
             }
             else
             {
-                //TODO play keyblock dialogue
+                GlobalState.Dialogue = DialogueManager.GetDialogue("misc", "any", "keyblock", 0);
                 return false;
             }
         }

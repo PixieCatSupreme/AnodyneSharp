@@ -11,7 +11,6 @@ namespace AnodyneSharp.Entities
     {
         GROUND,
         AIR,
-        RAFT,
         AUTO_JUMP,
         INTERACT,
         ENTER_FALL,
@@ -295,8 +294,6 @@ namespace AnodyneSharp.Entities
                     }
 
                     //dash_logic();
-                    break;
-                case PlayerState.RAFT:
                     break;
                 case PlayerState.AUTO_JUMP:
                     break;
@@ -730,6 +727,27 @@ namespace AnodyneSharp.Entities
                 invincible = true;
                 invincibility_time = INVINCIBLE_MAX;
                 bump_timer = BUMP_TIMER_MAX;
+            }
+        }
+
+        public void BeIdle()
+        {
+            ANIM_STATE =  PlayerAnimState.as_idle;
+            idle_ticks = 5;
+            switch (facing)
+            {
+                case Facing.UP:
+                    Play("idle_u");
+                    break;
+                case Facing.LEFT:
+                    Play("idle_l");
+                    break;
+                case Facing.RIGHT:
+                    Play("idle_r");
+                    break;
+                case Facing.DOWN:
+                    Play("idle_d");
+                    break;
             }
         }
     }
