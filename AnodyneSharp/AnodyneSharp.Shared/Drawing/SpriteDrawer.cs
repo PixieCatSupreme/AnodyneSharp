@@ -39,11 +39,11 @@ namespace AnodyneSharp.Drawing
 
         public static void DrawSprite(Texture2D texture, Rectangle rect, Rectangle? sRect = null, Color? color = null, float rotation = 0, float Z = 0)
         {
-            Rectangle r = new Rectangle((int)(rect.X + rect.Width/2), (int)(rect.Y + rect.Height / 2), rect.Width, rect.Height);
+            Rectangle r = new Rectangle(rect.X + rect.Width/2,rect.Y + rect.Height / 2, rect.Width, rect.Height);
 
             _spriteBatch.Draw(texture, r,
                 sRect, color ?? Color.White, rotation,
-                new Vector2(rect.Width / 2, rect.Height/2), SpriteEffects.None, Z);
+                new Vector2((sRect ?? texture.Bounds).Width / 2, (sRect ?? texture.Bounds).Height / 2), SpriteEffects.None, Z);
         }
 
         public static void DrawGuiSprite(Texture2D texture, Vector2 pos, Rectangle? sRect = null, Color? color = null, float rotation = 0, float scale = 1f, float Z = 0)

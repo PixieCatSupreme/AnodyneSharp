@@ -20,7 +20,7 @@ namespace AnodyneSharp.Entities
             : base(parent.Position, DrawOrder.SHADOWS)
         {
             _parent = parent;
-            this.offset = offset;
+            this.offset = offset - new Vector2(_parent.frameWidth/4, _parent.frameHeight/4);
 
             switch (type)
             {

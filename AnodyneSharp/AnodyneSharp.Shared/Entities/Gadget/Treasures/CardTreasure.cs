@@ -25,6 +25,8 @@ namespace AnodyneSharp.Entities.Gadget.Treasures
         {
             animTimer = 0;
             scale = 0.5f;
+            offset = new Vector2( 12);
+            Position.X += 9;
         }
 
         public override void GetTreasure()
