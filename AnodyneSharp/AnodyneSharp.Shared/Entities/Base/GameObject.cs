@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Utilities;
+﻿using AnodyneSharp.Logging;
+using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using System;
 
@@ -231,7 +232,7 @@ namespace AnodyneSharp.Entities
                     //If they did overlap (and can), figure out by how much and flip the corresponding flags
                     if (obj1delta > obj2delta)
                     {
-                        overlap = Object1.Position.Y + Object1.width - Object2.Position.Y;
+                        overlap = Object1.Position.Y + Object1.height - Object2.Position.Y;
                         if ((overlap > maxOverlap) || (Object1.allowCollisions & Touching.DOWN) == 0 || (Object2.allowCollisions & Touching.UP) == 0)
                             overlap = 0;
                         else
@@ -242,7 +243,7 @@ namespace AnodyneSharp.Entities
                     }
                     else if (obj1delta < obj2delta)
                     {
-                        overlap = Object1.Position.Y - Object2.width - Object2.Position.Y;
+                        overlap = Object1.Position.Y - Object2.height - Object2.Position.Y;
                         if ((-overlap > maxOverlap) || (Object1.allowCollisions & Touching.UP) == 0 || (Object2.allowCollisions & Touching.DOWN) == 0)
                             overlap = 0;
                         else
