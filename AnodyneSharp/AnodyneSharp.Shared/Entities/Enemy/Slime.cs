@@ -5,6 +5,7 @@ using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace AnodyneSharp.Entities.Enemy
@@ -12,26 +13,41 @@ namespace AnodyneSharp.Entities.Enemy
     [NamedEntity, Enemy, Collision(typeof(Player),typeof(Broom),MapCollision = true)]
     public class Slime : Entity
     {
+        private enum SlimeType
+        {
+            Normal,
+            //Key, unused
+            //Rise, unused
+            Bullet = 3
+        }
+
         EntityPreset _preset;
+
+        private SlimeType _type;
 
         private int _health = 2;
 
         private const float _moveTimerMax = 0.5f;
+        private const float _shootTimerMax = 1.8f;
         private float _moveTimer = _moveTimerMax;
+        private float _shootTimer = _shootTimerMax;
 
         private bool move_frame_sound_sync = false;
 
         private float _speed = 20f;
 
+
         private EntityPool<Goo> goos;
+        private EntityPool<Bullet> bullets;
 
         private Player target;
-
 
         public Slime(EntityPreset preset, Player p) 
             : base(preset.Position, "slime", 16,16, Drawing.DrawOrder.ENTITIES)
         {
             _preset = preset;
+
+            _type = _preset.Frame == 3 ? SlimeType.Bullet : SlimeType.Normal;
 
             AddAnimation("Move", CreateAnimFrameArray(0, 1), 3);
             AddAnimation("Hurt", CreateAnimFrameArray(0, 8, 0, 8), 15);
@@ -41,6 +57,12 @@ namespace AnodyneSharp.Entities.Enemy
 
             goos = new EntityPool<Goo>(8, () => new Goo());
             target = p;
+
+            if (_type == SlimeType.Bullet)
+            {
+                bullets = new EntityPool<Bullet>(4, () => new Bullet());
+                _speed *= 2;
+            }
         }
 
         public override void Update()
@@ -73,6 +95,11 @@ namespace AnodyneSharp.Entities.Enemy
                             velocity = new Vector2((float)GlobalState.RNG.NextDouble(),(float)GlobalState.RNG.NextDouble()) - Vector2.One/2f;
                             velocity *= _speed;
                         }
+                    }
+
+                    if (_type == SlimeType.Bullet)
+                    {
+                        Shoot();
                     }
                     break;
                 case "Hurt":
@@ -117,7 +144,27 @@ namespace AnodyneSharp.Entities.Enemy
 
         public override IEnumerable<Entity> SubEntities()
         {
-            return goos.Entities;
+            if (_type == SlimeType.Normal)
+            {
+                return goos.Entities;
+            }
+            else
+            {
+                return goos.Entities.Concat(bullets.Entities);
+            }
+
+        }
+
+        private void Shoot()
+        {
+            _shootTimer -= GameTimes.DeltaTime;
+
+            if (_shootTimer < 0)
+            {
+                _shootTimer = _shootTimerMax;
+                bullets.Spawn(b => b.Spawn(this, target));
+                SoundManager.PlaySoundEffect("slime_shoot");
+            }
         }
 
         [Collision(MapCollision = true)]
@@ -161,6 +208,45 @@ namespace AnodyneSharp.Entities.Enemy
                         _opacity -= 0.05f;
                         if (_opacity <= 0) exists = false;
                     }
+                }
+            }
+        }
+        [Collision(typeof(Player), MapCollision = true)]
+        private class Bullet : Entity
+        {
+            public Bullet()
+                : base(Vector2.Zero, "slime_bullet", 8, 8, DrawOrder.PARTICLES)
+            {
+                AddAnimation("move", CreateAnimFrameArray(0, 1), GlobalState.RNG.Next(5, 10));
+            }
+
+            public void Spawn(Slime parent, Player target)
+            {
+                Position = parent.Position;
+                velocity = Vector2.Normalize(target.Position - parent.Position) * 40;
+
+                Play("move");
+                _opacity = 1.0f;
+            }
+
+            public override void Update()
+            {
+                base.Update();
+
+                _opacity -= 0.39f * GameTimes.DeltaTime;
+
+                if (touching != Touching.NONE || _opacity < 0.3f)
+                {
+                    exists = false;
+                }
+            }
+
+            public override void Collided(Entity other)
+            {
+                if (other is Player p && p.state != PlayerState.AIR)
+                {
+                    p.ReceiveDamage(1);
+                    exists = false;
                 }
             }
         }

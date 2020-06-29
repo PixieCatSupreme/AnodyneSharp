@@ -792,6 +792,7 @@ namespace AnodyneSharp.Entities
                 GlobalState.CUR_HEALTH -= amount;
                 invincible = true;
                 invincibility_time = INVINCIBLE_MAX;
+                Flicker(INVINCIBLE_MAX);
 
                 if (playSound)
                 {
