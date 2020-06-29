@@ -4,6 +4,7 @@ using AnodyneSharp.Sounds;
 using AnodyneSharp.States;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace AnodyneSharp.Entities
 {
@@ -106,6 +107,8 @@ namespace AnodyneSharp.Entities
         private float fallTimer;
         private Vector2 fallPoint;
 
+        internal float slowMul;
+        internal int slowTicks;
 
         public bool ON_CONVEYER { get; private set; }
 
@@ -205,6 +208,15 @@ namespace AnodyneSharp.Entities
 
             Movement();
 
+            if (slowTicks > 0)
+            {
+                slowTicks--;
+            }
+            else
+            {
+                slowMul = 1;
+            }
+
             additionalVel = Vector2.Zero;
 
             base.Update();
@@ -280,7 +292,7 @@ namespace AnodyneSharp.Entities
                     }
                     else
                     {
-                        Ground_movement();  //modify player vels
+                        GroundMovement();  //modify player vels
                     }
 
                     if (isSlipping)
@@ -301,7 +313,7 @@ namespace AnodyneSharp.Entities
                         broom.Update();
                         broom.PostUpdate();
                     }
-                    Ground_animation();
+                    GroundAnimation();
 
                     just_landed = false;
                     //dash_logic();
@@ -314,7 +326,7 @@ namespace AnodyneSharp.Entities
                     }
                     else
                     {
-                        Air_movement();
+                        AirMovement();
                         AirAnimation();
                     }
 
@@ -422,7 +434,7 @@ namespace AnodyneSharp.Entities
             }
         }
 
-        private void Ground_animation()
+        private void GroundAnimation()
         {
             //No change in animation during bump
             if (Do_bump) return;
@@ -653,7 +665,7 @@ namespace AnodyneSharp.Entities
             broom.ReloadTexture();
         }
 
-        private void Ground_movement()
+        private void GroundMovement()
         {
             Set_init_vel();
 
@@ -672,9 +684,10 @@ namespace AnodyneSharp.Entities
             }
 
             velocity += additionalVel;
+            velocity *= slowMul;
         }
 
-        private void Air_movement()
+        private void AirMovement()
         {
             Set_init_vel(0.83f);
 

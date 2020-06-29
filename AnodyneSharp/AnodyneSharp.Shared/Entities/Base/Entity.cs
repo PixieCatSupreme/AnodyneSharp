@@ -43,6 +43,8 @@ namespace AnodyneSharp.Entities
 
         protected float scale;
 
+        protected SpriteEffects _flip;
+
         private List<Anim> _animations;
         private string textureName;
 
@@ -203,7 +205,8 @@ namespace AnodyneSharp.Entities
                     MathUtilities.CreateRectangle(Position.X - offset.X*scale, Position.Y - offset.Y*scale, frameWidth*scale, frameHeight*scale), 
                     spriteRect, 
                     Color.White * _opacity,
-                    rotation, 
+                    rotation,
+                    _flip,
                     DrawingUtilities.GetDrawingZ(layer, MapUtilities.GetInGridPosition(Position).Y));
                 
                 if (shadow != null)

@@ -59,7 +59,7 @@ namespace AnodyneSharp.Entities.Gadget.Treasures
                 case AnimState.Delay:
 
                     state++;
-                    velocity.Y = 24;
+                    velocity.Y = -24;
                     if (Position.Y <= GlobalState.CURRENT_GRID_Y * 160 + 80)
                     {
                         velocity.Y *= -1;
