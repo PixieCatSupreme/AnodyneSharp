@@ -84,10 +84,10 @@ namespace AnodyneSharp.UI.PauseMenu.Config
             base.DrawUI();
 
             SpriteDrawer.DrawGuiSprite(_sliderBg, new Rectangle(
-                (int)((position.X + BarOffset) * GlobalState.UI_SCALE),
-                (int)(position.Y * GlobalState.UI_SCALE),
-                (int)(_slider.Width * GlobalState.UI_SCALE),
-                (int)(_slider.Height * GlobalState.UI_SCALE)),
+                (int)((position.X + BarOffset) ),
+                (int)(position.Y ),
+                (int)(_slider.Width ),
+                (int)(_slider.Height )),
                 Z: DrawingUtilities.GetDrawingZ(DrawOrder.AUDIO_SLIDER_BG));
 
 
@@ -96,10 +96,10 @@ namespace AnodyneSharp.UI.PauseMenu.Config
             if (current > min)
             {
                 SpriteDrawer.DrawGuiSprite(_sliderInside, new Rectangle(
-                    (int)((position.X + BarOffset) * GlobalState.UI_SCALE),
-                    (int)(position.Y * GlobalState.UI_SCALE),
-                    (int)(_slider.Width * GlobalState.UI_SCALE * (current - min) / (max - min)),
-                    (int)(_slider.Height * GlobalState.UI_SCALE)),
+                    (int)((position.X + BarOffset) ),
+                    (int)(position.Y ),
+                    (int)(_slider.Width  * (current - min) / (max - min)),
+                    (int)(_slider.Height )),
                     Z: DrawingUtilities.GetDrawingZ(DrawOrder.AUDIO_SLIDER_BAR));
             }
         }

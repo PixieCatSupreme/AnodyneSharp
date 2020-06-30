@@ -12,6 +12,7 @@ using AnodyneSharp.States;
 using AnodyneSharp.UI;
 using AnodyneSharp.UI.Font;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,8 @@ namespace AnodyneSharp
 
         State _currentState;
         Camera _camera;
+
+        private static Effect bwEffect;
 
         private UILabel _fpsLabel;
 
@@ -51,7 +54,6 @@ namespace AnodyneSharp
 
             _camera = new Camera();
             _camera.Initialize(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
-            _camera.Zoom = 3;
 
             _currentState = null;
 
@@ -121,6 +123,10 @@ namespace AnodyneSharp
             }
 
             DialogueManager.LoadDialogue( Language.EN);
+
+            bwEffect = Content.Load<Effect>("effects/blackwhite");
+
+            bwEffect.CurrentTechnique = bwEffect.Techniques["BasicColorDrawing"];
         }
 
         /// <summary>
@@ -142,8 +148,6 @@ namespace AnodyneSharp
             {
                 GlobalState.ShowFPS = !GlobalState.ShowFPS;
             }
-
-            GlobalState.UI_SCALE = graphics.PreferredBackBufferWidth / GameConstants.SCREEN_WIDTH_IN_PIXELS;
         }
 
         /// <summary>
@@ -160,6 +164,8 @@ namespace AnodyneSharp
             _currentState.Draw();
             SpriteDrawer.EndDraw();
 
+
+
             SpriteDrawer.BeginGUIDraw();
             _currentState.DrawUI();
 
@@ -169,6 +175,8 @@ namespace AnodyneSharp
             }
 
             SpriteDrawer.EndGUIDraw();
+
+            SpriteDrawer.Render();
         }
 
         private void SetDefaultKeys()

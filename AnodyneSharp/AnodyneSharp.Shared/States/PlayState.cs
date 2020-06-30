@@ -508,12 +508,12 @@ namespace AnodyneSharp.States
                 _camera.Move(Scroll_Increment, 0);
                 return true;
             }
-            else if (_camera.Position2D.Y < _gridBorders.Y - Scroll_Increment - HEADER_HEIGHT)
+            else if (_camera.Position2D.Y < _gridBorders.Y - Scroll_Increment)
             {
                 _camera.Move(0, Scroll_Increment);
                 return true;
             }
-            else if (_camera.Position2D.Y > _gridBorders.Y + Scroll_Increment - HEADER_HEIGHT)
+            else if (_camera.Position2D.Y > _gridBorders.Y + Scroll_Increment)
             {
                 _camera.Move(0, -Scroll_Increment);
                 return true;

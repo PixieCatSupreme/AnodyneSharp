@@ -83,9 +83,6 @@ namespace AnodyneSharp.Registry
         public static int CUR_HEALTH = 6;
         public static int MAX_HEALTH = 6;
 
-        //Drawing stuff
-        public static float UI_SCALE;
-
         //Cheatz stuff
         public static bool AlwaysCellGraphics = false;
         public static GameMode GameMode = GameMode.Normal;
