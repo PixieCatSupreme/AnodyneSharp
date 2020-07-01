@@ -47,6 +47,7 @@ namespace AnodyneSharp
             //graphics.PreferredBackBufferHeight = 1080;
             //graphics.PreferredBackBufferWidth = 960;
             //graphics.PreferredBackBufferHeight = 1080;
+            graphics.GraphicsProfile = GraphicsProfile.HiDef;
             graphics.PreferredBackBufferWidth = 480;
             graphics.PreferredBackBufferHeight = 540;
             //graphics.ToggleFullScreen();
@@ -127,6 +128,7 @@ namespace AnodyneSharp
             bwEffect = Content.Load<Effect>("effects/blackwhite");
 
             bwEffect.CurrentTechnique = bwEffect.Techniques["BasicColorDrawing"];
+            //bwEffect.Parameters["Cutoff"].SetValue(DrawingUtilities.GetDrawingZ(DrawOrder.FG_SPRITES, 0));
         }
 
         /// <summary>
@@ -160,7 +162,7 @@ namespace AnodyneSharp
             GameTimes.UpdateFPS(gameTime);
             _fpsLabel.SetText($"FPS: {GameTimes.FPS:0}");
 
-            SpriteDrawer.BeginDraw(_camera);
+            SpriteDrawer.BeginDraw(_camera, bwEffect);
             _currentState.Draw();
             SpriteDrawer.EndDraw();
 

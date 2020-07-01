@@ -152,7 +152,7 @@ namespace AnodyneSharp.Map
                     {
                         if(t.collisionEventType != CollisionEventType.NONE)
                         {
-                            //Call event method in TileData
+                            //TODO: Call event method in TileData
                         }
                     }
 

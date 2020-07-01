@@ -15,14 +15,6 @@
     <DefineConstants>TRACE;WINDOWS</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Content\bin\**" />
-    <Compile Remove="Content\obj\**" />
-    <EmbeddedResource Remove="Content\bin\**" />
-    <EmbeddedResource Remove="Content\obj\**" />
-    <None Remove="Content\bin\**" />
-    <None Remove="Content\obj\**" />
-  </ItemGroup>
-  <ItemGroup>
     <None Remove="Icon.bmp" />
     <None Remove="Icon.ico" />
   </ItemGroup>
@@ -36,9 +28,6 @@
   <ItemGroup>
     <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.0.1375-develop" />
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.0.1375-develop" />
-  </ItemGroup>
-  <ItemGroup>
-    <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   <Import Project="..\AnodyneSharp.Shared\AnodyneSharp.Shared.projitems" Label="Shared" />
 </Project>
