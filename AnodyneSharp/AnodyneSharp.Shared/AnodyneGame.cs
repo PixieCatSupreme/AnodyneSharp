@@ -32,7 +32,7 @@ namespace AnodyneSharp
         State _currentState;
         Camera _camera;
 
-        private static Effect bwEffect;
+        private static Effect overlay;
 
         private UILabel _fpsLabel;
 
@@ -123,12 +123,14 @@ namespace AnodyneSharp
                 KeyInput.SwapFaceButtons();
             }
 
-            DialogueManager.LoadDialogue( Language.EN);
+            DialogueManager.LoadDialogue(Language.EN);
 
-            bwEffect = Content.Load<Effect>("effects/blackwhite");
+            overlay = Content.Load<Effect>("effects/overlay_layer");
 
-            bwEffect.CurrentTechnique = bwEffect.Techniques["BasicColorDrawing"];
-            //bwEffect.Parameters["Cutoff"].SetValue(DrawingUtilities.GetDrawingZ(DrawOrder.FG_SPRITES, 0));
+            overlay.CurrentTechnique = overlay.Techniques["BasicColorDrawing"];
+            overlay.Parameters["World"].SetValue(Matrix.Identity);
+            overlay.Parameters["Projection"].SetValue(Matrix.CreateOrthographicOffCenter(0, 160, 160, 0, 0, -1));
+            overlay.Parameters["OverlayZ"].SetValue(DrawingUtilities.GetDrawingZ(DrawOrder.FG_SPRITES, 0));
         }
 
         /// <summary>
@@ -162,7 +164,9 @@ namespace AnodyneSharp
             GameTimes.UpdateFPS(gameTime);
             _fpsLabel.SetText($"FPS: {GameTimes.FPS:0}");
 
-            SpriteDrawer.BeginDraw(_camera, bwEffect);
+            overlay.Parameters["View"].SetValue(_camera.Transform);
+
+            SpriteDrawer.BeginDraw(_camera, overlay);
             _currentState.Draw();
             SpriteDrawer.EndDraw();
 

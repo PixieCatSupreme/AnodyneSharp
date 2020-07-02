@@ -872,5 +872,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />
+    <None Include="$(MSBuildThisFileDirectory)Content\effects\overlay_layer.fx" />
   </ItemGroup>
 </Project>
