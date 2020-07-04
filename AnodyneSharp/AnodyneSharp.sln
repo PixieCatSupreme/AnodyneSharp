@@ -12,12 +12,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnodyneSharp.Windows", "AnodyneSharp.Windows\AnodyneSharp.Windows.csproj", "{A9F40A34-94A6-4E0C-A813-CBA5BA4B5AEB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnodyneSharp.Windows", "AnodyneSharp.Windows\AnodyneSharp.Windows.csproj", "{A9F40A34-94A6-4E0C-A813-CBA5BA4B5AEB}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		AnodyneSharp.Shared\AnodyneSharp.Shared.projitems*{a0cdbd0e-3a41-42b7-9425-a838bc2c7383}*SharedItemsImports = 13
-		AnodyneSharp.Shared\AnodyneSharp.Shared.projitems*{a9f40a34-94a6-4e0c-a813-cba5ba4b5aeb}*SharedItemsImports = 5
 		AnodyneSharp.Shared\AnodyneSharp.Shared.projitems*{eddeb65c-af52-4ec6-9f60-cfcc1b07b113}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

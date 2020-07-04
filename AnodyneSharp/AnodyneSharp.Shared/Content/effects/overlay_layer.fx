@@ -7,13 +7,27 @@
 #define VS_SHADERMODEL vs_4_0
 #endif
 
+float blendOverlay(float base, float blend) {
+    return base < 0.5 ? (2.0 * base * blend) : (1.0 - 2.0 * (1.0 - base) * (1.0 - blend));
+}
+
+float3 blendOverlay(float3 base, float3 blend) {
+    return float3(blendOverlay(base.r, blend.r), blendOverlay(base.g, blend.g), blendOverlay(base.b, blend.b));
+}
+
+
 matrix World;
 matrix View;
 matrix Projection;
 
 float OverlayZ;
 
-sampler s0;
+sampler TextureSampler : register(s0);
+
+texture OverlayTex;
+sampler2D OverlaySampler = sampler_state {
+    Texture = <OverlayTex>;
+};
 
 //_______________________________________________________________
 // techniques 
@@ -48,10 +62,11 @@ Vs2Ps MainVS(VsInput input)
 
 float4 MainPS(Vs2Ps input) : COLOR
 {
-    float4 color = tex2D(s0,input.TexCoord);
+    float4 color = tex2D(TextureSampler,input.TexCoord);
 
-    if (input.Z.x < OverlayZ && input.Position.y > 80) {
-        color.rgb = color.a - color.rgb;
+    if (input.Z.x < OverlayZ && color.a == 1) {
+        float4 overlay = tex2D(OverlaySampler, input.Position.xy / 160);
+        color.rgb = blendOverlay(overlay.rgb,color.rgb);
     }
 
     return color;

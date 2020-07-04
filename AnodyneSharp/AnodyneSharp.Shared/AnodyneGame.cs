@@ -131,6 +131,7 @@ namespace AnodyneSharp
             overlay.Parameters["World"].SetValue(Matrix.Identity);
             overlay.Parameters["Projection"].SetValue(Matrix.CreateOrthographicOffCenter(0, 160, 160, 0, 0, -1));
             overlay.Parameters["OverlayZ"].SetValue(DrawingUtilities.GetDrawingZ(DrawOrder.FG_SPRITES, 0));
+            overlay.Parameters["OverlayTex"].SetValue(ResourceManager.GetTexture("forest_overlay"));
         }
 
         /// <summary>
