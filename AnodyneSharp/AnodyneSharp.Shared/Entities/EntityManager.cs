@@ -63,7 +63,8 @@ namespace AnodyneSharp.Entities
         {
             var type_lookup = (from t in Assembly.GetExecutingAssembly().GetTypes()
                                where t.IsDefined(typeof(NamedEntity), false)
-                               select t).ToDictionary(t => t.GetCustomAttribute<NamedEntity>().GetName(t), t => t);
+                               group new { type=t, check=t.GetCustomAttribute<NamedEntity>() } by t.GetCustomAttribute<NamedEntity>().GetName(t)
+                               ).ToDictionary(t => t.Key, t => t.ToList());
 
             HashSet<string> missing = new HashSet<string>();
 
@@ -124,7 +125,24 @@ namespace AnodyneSharp.Entities
                                 alive = bool.Parse(child.Attributes.GetNamedItem("alive").Value);
                             }
 
-                            presets.Add(new EntityPreset(type_lookup[child.Name], new Vector2(x, y), id,frame, p, type, alive));
+                            var matching = type_lookup[child.Name].FindAll(t => t.check.Matches(frame, type)).ToList();
+                            if (matching.Count == 0)
+                            {
+                                string missing_entity = $"{child.Name}-{frame}-'{type}'";
+                                if(!missing.Contains(missing_entity))
+                                {
+                                    missing.Add(missing_entity);
+                                    DebugLogger.AddWarning($"Missing Enitity {missing_entity}!");
+                                }
+                            }
+                            else if(matching.Count > 1)
+                            {
+                                DebugLogger.AddWarning($"Conflict at {child.Name}-{frame}-'{type}': "+String.Join(", ",matching.Select(t=>t.type.Name)));
+                            }
+                            else
+                            {
+                                presets.Add(new EntityPreset(matching[0].type, new Vector2(x, y), id,frame, p, type, alive));
+                            }
                         }
                     }
                 }

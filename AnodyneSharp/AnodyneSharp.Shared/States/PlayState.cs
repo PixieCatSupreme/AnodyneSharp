@@ -151,12 +151,12 @@ namespace AnodyneSharp.States
             SpriteDrawer.DrawGuiSprite(_header, Vector2.Zero, Z: DrawingUtilities.GetDrawingZ(DrawOrder.HEADER));
 
 
-            if (InventoryManager.EquippedBroom != BroomType.NONE)
+            if (InventoryManager.EquippedBroom != BroomType.NONE && _equippedBroomIcon != null)
             {
-                SpriteDrawer.DrawGuiSprite(_equippedBroomIcon, _iconPos, scale: 0.80f, Z: DrawingUtilities.GetDrawingZ(DrawOrder.UI_OBJECTS));
+                SpriteDrawer.DrawGuiSprite(_equippedBroomIcon, _iconPos, Z: DrawingUtilities.GetDrawingZ(DrawOrder.UI_OBJECTS));
             }
 
-            SpriteDrawer.DrawGuiSprite(_equippedBroomBorder, _iconPos, scale: 0.80f, Z: DrawingUtilities.GetDrawingZ(DrawOrder.EQUIPPED_BORDER));
+            SpriteDrawer.DrawGuiSprite(_equippedBroomBorder, _iconPos, Z: DrawingUtilities.GetDrawingZ(DrawOrder.EQUIPPED_BORDER));
 
 
             _healthBar.Draw();
@@ -549,6 +549,11 @@ namespace AnodyneSharp.States
                 Cheatz.Cheatz.ToggleFuckItMode();
             }
 
+            if (KeyInput.JustPressedKey(Keys.F10))
+            {
+                Cheatz.Cheatz.KonamiCode();
+            }
+
             if (KeyInput.JustPressedKey(Keys.M))
             {
                 GlobalState.CURRENT_MAP_NAME = TileData.GetNextMapName();
@@ -689,20 +694,20 @@ namespace AnodyneSharp.States
             switch (InventoryManager.EquippedBroom)
             {
                 case BroomType.Normal:
-                    tex = "none";
+                    tex = "Normal";
                     break;
                 case BroomType.Wide:
-                    tex = "wide";
+                    tex = "Wide";
                     break;
                 case BroomType.Long:
-                    tex = "long";
+                    tex = "Long";
                     break;
                 case BroomType.Transformer:
-                    tex = "transformer";
+                    tex = "Transform";
                     break;
             }
 
-            _equippedBroomIcon = ResourceManager.GetTexture(tex + "_icon", true);
+            _equippedBroomIcon = ResourceManager.GetTexture("hud" + tex, true);
         }
 
 
