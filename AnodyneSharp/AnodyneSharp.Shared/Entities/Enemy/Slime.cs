@@ -89,11 +89,7 @@ namespace AnodyneSharp.Entities.Enemy
                             state.move_frame_sound_sync = false;
                         }
                     })
-                    .Event("ShootTimer", (state) =>
-                    {
-                         bullets.Spawn(b => b.Spawn(this, target));
-                         SoundManager.PlaySoundEffect("slime_shoot");
-                    })
+                    .Event("ShootTimer", (state) => bullets.Spawn(b => b.Spawn(this, target)))
                     .Event("MoveTimer", (state) =>
                     {
                          if (_curFrame == 1)
@@ -240,6 +236,8 @@ namespace AnodyneSharp.Entities.Enemy
 
             public void Spawn(Slime parent, Player target)
             {
+                SoundManager.PlaySoundEffect("slime_shoot");
+
                 Position = parent.Position;
                 velocity = Vector2.Normalize(target.Position - parent.Position) * 40;
 
