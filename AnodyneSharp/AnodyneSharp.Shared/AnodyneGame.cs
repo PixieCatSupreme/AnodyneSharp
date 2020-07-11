@@ -162,7 +162,7 @@ namespace AnodyneSharp
             GameTimes.UpdateFPS(gameTime);
             _fpsLabel.SetText($"FPS: {GameTimes.FPS:0}");
 
-            SpriteDrawer.BeginDraw(_camera, bwEffect);
+            SpriteDrawer.BeginDraw(_camera);
             _currentState.Draw();
             SpriteDrawer.EndDraw();
 
