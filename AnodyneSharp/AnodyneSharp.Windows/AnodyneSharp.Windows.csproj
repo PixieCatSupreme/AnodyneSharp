@@ -29,5 +29,8 @@
     <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.0.1375-develop" />
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.0.1375-develop" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Fluent-State-Machine\Fluent-State-Machine.csproj" />
+  </ItemGroup>
   <Import Project="..\AnodyneSharp.Shared\AnodyneSharp.Shared.projitems" Label="Shared" />
 </Project>

@@ -1,8 +1,10 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.FSM;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
+using RSG;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +12,7 @@ using System.Text;
 
 namespace AnodyneSharp.Entities.Enemy
 {
-    [NamedEntity, Enemy, Collision(typeof(Player),typeof(Broom),MapCollision = true)]
+    [NamedEntity, Enemy, Collision(typeof(Player), typeof(Broom), MapCollision = true)]
     public class Slime : Entity
     {
         private enum SlimeType
@@ -27,12 +29,12 @@ namespace AnodyneSharp.Entities.Enemy
 
         private int _health = 2;
 
-        private const float _moveTimerMax = 0.5f;
-        private const float _shootTimerMax = 1.8f;
-        private float _moveTimer = _moveTimerMax;
-        private float _shootTimer = _shootTimerMax;
+        private IState state;
 
-        private bool move_frame_sound_sync = false;
+        private class MoveState : TimerState
+        {
+            public bool move_frame_sound_sync = false;
+        }
 
         private float _speed = 20f;
 
@@ -42,8 +44,8 @@ namespace AnodyneSharp.Entities.Enemy
 
         private Player target;
 
-        public Slime(EntityPreset preset, Player p) 
-            : base(preset.Position, "slime", 16,16, Drawing.DrawOrder.ENTITIES)
+        public Slime(EntityPreset preset, Player player)
+            : base(preset.Position, "slime", 16, 16, Drawing.DrawOrder.ENTITIES)
         {
             _preset = preset;
 
@@ -53,92 +55,100 @@ namespace AnodyneSharp.Entities.Enemy
             AddAnimation("Hurt", CreateAnimFrameArray(0, 8, 0, 8), 15);
             AddAnimation("Dying", CreateAnimFrameArray(0, 8, 0, 8), 12, false);
 
-            Play("Move");
-
             goos = new EntityPool<Goo>(8, () => new Goo());
-            target = p;
+            target = player;
 
             if (_type == SlimeType.Bullet)
             {
                 bullets = new EntityPool<Bullet>(4, () => new Bullet());
                 _speed *= 2;
             }
+
+            state = new StateMachineBuilder()
+                .State<MoveState>("Move")
+                    .Enter((state) =>
+                    {
+                        Play("Move");
+                        state.Reset();
+                        state.AddTimer(0.5f, "MoveTimer");
+                        if (_type == SlimeType.Bullet)
+                        {
+                            state.AddTimer(1.8f, "ShootTimer");
+                        }
+                    })
+                    .Update((state, time) =>
+                    {
+                        state.DoTimers(time);
+                        if (_curFrame == 1 && !state.move_frame_sound_sync)
+                        {
+                            SoundManager.PlaySoundEffect("slime_walk");
+                            state.move_frame_sound_sync = true;
+                        }
+                        else if (_curFrame == 0)
+                        {
+                            state.move_frame_sound_sync = false;
+                        }
+                    })
+                    .Event("ShootTimer", (state) =>
+                    {
+                         bullets.Spawn(b => b.Spawn(this, target));
+                         SoundManager.PlaySoundEffect("slime_shoot");
+                    })
+                    .Event("MoveTimer", (state) =>
+                    {
+                         if (_curFrame == 1)
+                         {
+                            //Make it more likely for slimes to stand still periodically
+                            velocity = Vector2.Zero;
+                         }
+                         else
+                         {
+                             velocity = new Vector2((float)GlobalState.RNG.NextDouble(), (float)GlobalState.RNG.NextDouble()) - Vector2.One / 2f;
+                             velocity *= _speed;
+                         }
+                    })
+                    .Event<CollisionEvent<Player>>("Player",(state,p) => p.entity.ReceiveDamage(1))
+                    .Event<CollisionEvent<Broom>>("Hit",(state,b) =>
+                    {
+                        SoundManager.PlaySoundEffect("hit_slime");
+
+                        goos.Spawn(g => g.Spawn(this), 2);
+
+                        _health -= 1;
+                        velocity = FacingDirection(b.entity.facing) * 100;
+
+                        state.Parent.ChangeState("Hurt");
+                    })
+                .End()
+                .State("Hurt")
+                    .Enter((state) => Play("Hurt"))
+                    .Event<CollisionEvent<Player>>("Player", (state, p) => p.entity.ReceiveDamage(1))
+                    .Condition(() => _health <= 0, (state) => state.Parent.ChangeState("Dying"))
+                    .Condition(() => finished, (state) => state.Parent.ChangeState("Move"))
+                .End()
+                .State("Dying")
+                    .Enter((state) => Play("Dying"))
+                    .Condition(() => finished, (state) => exists = _preset.Alive = false)
+                .End()
+                .Build();
+            state.ChangeState("Move");
         }
 
         public override void Update()
         {
-            //Using animation state as slime's state because it's easier than tracking multiple timers
-            switch(_curAnim.name)
-            {
-                case "Move":
-                    if (_curFrame == 1 && !move_frame_sound_sync)
-                    {
-                        move_frame_sound_sync = true;
-                        SoundManager.PlaySoundEffect("slime_walk");
-                    }
-                    else if (_curFrame == 0)
-                    {
-                        move_frame_sound_sync = false;
-                    }
-
-                    _moveTimer -= GameTimes.DeltaTime;
-                    if(_moveTimer <= 0)
-                    {
-                        _moveTimer = _moveTimerMax;
-                        if(_curFrame == 1)
-                        {
-                            //Make it more likely for slimes to stand still periodically
-                            velocity = Vector2.Zero;
-                        }
-                        else
-                        {
-                            velocity = new Vector2((float)GlobalState.RNG.NextDouble(),(float)GlobalState.RNG.NextDouble()) - Vector2.One/2f;
-                            velocity *= _speed;
-                        }
-                    }
-
-                    if (_type == SlimeType.Bullet)
-                    {
-                        Shoot();
-                    }
-                    break;
-                case "Hurt":
-                    if (finished) Play("Move");
-                    break;
-                case "Dying":
-                    if(finished)
-                    {
-                        exists = _preset.Alive = false;
-                    }
-                    break;
-            }
+            state.Update(GameTimes.DeltaTime);
             base.Update();
         }
 
         public override void Collided(Entity other)
         {
-            if(other is Player p && _curAnim.name != "Dying")
+            if (other is Player p)
             {
-                p.ReceiveDamage(1);
+                state.TriggerEvent("Player", new CollisionEvent<Player>() { entity = p });
             }
-            else if(other is Broom b && _curAnim.name == "Move")
+            else if (other is Broom b)
             {
-                SoundManager.PlaySoundEffect("hit_slime");
-
-                goos.Spawn(g => g.Spawn(this), 2);
-
-                _health -= 1;
-                if(_health == 0)
-                {
-                    Play("Dying");
-                    velocity = Vector2.Zero;
-                }
-                else
-                {
-                    Play("Hurt");
-
-                    velocity = FacingDirection(b.facing) * 100;
-                }
+                state.TriggerEvent("Hit", new CollisionEvent<Broom>() { entity = b });
             }
         }
 
@@ -155,62 +165,70 @@ namespace AnodyneSharp.Entities.Enemy
 
         }
 
-        private void Shoot()
-        {
-            _shootTimer -= GameTimes.DeltaTime;
-
-            if (_shootTimer < 0)
-            {
-                _shootTimer = _shootTimerMax;
-                bullets.Spawn(b => b.Spawn(this, target));
-                SoundManager.PlaySoundEffect("slime_shoot");
-            }
-        }
-
         [Collision(MapCollision = true)]
         private class Goo : Entity
         {
-            private Parabola_Thing parabola;
+            private IState state;
+
+            private class MoveState : AbstractState
+            {
+                public Parabola_Thing parabola;
+            }
 
             public Goo() : base(Vector2.Zero, "slime_goo", 6, 6, DrawOrder.PARTICLES)
             {
                 AddAnimation("move", CreateAnimFrameArray(0, 1, 2, 3, 1, 3, 1, 2, 1, 0), GlobalState.RNG.Next(5, 10));
                 shadow = new Shadow(this, Vector2.Zero, ShadowType.Tiny);
 
-                parabola = new Parabola_Thing(this, 16, 0.8f + 0.3f * (float)GlobalState.RNG.NextDouble());
+                state = new StateMachineBuilder()
+                    .State<MoveState>("Move")
+                        .Enter((state) =>
+                        {
+                            state.parabola = new Parabola_Thing(this, 16, 0.8f + 0.3f * (float)GlobalState.RNG.NextDouble());
+                            velocity.X = MathUtilities.OneRandomOf(-1, 1) * (10 + 5 * (float)GlobalState.RNG.NextDouble());
+                            velocity.Y = MathUtilities.OneRandomOf(-1, 1) * (10 + 5 * (float)GlobalState.RNG.NextDouble());
+                            Play("move");
+                            shadow.exists = true;
+                            _opacity = 1.0f;
+                        })
+                        .Update((state, time) =>
+                        {
+                            if (state.parabola.Tick())
+                            {
+                                state.Parent.ChangeState("Splash");
+                            }
+                        })
+                    .End()
+                    .State("Splash")
+                        .Enter((state) =>
+                        {
+                            SoundManager.PlaySoundEffect("slime_splash");
+                            shadow.exists = false;
+                            _curAnim = null;
+                            velocity = Vector2.Zero;
+                        })
+                        .Update((state, time) =>
+                        {
+                            _opacity -= 0.05f;
+                        })
+                        .Condition(() => _opacity <= 0, (state) => exists = false)
+                    .End()
+                    .Build();
             }
 
             public void Spawn(Slime parent)
             {
                 Position = parent.Position;
-                velocity.X = MathUtilities.OneRandomOf(-1, 1) * (10 + 5 * (float)GlobalState.RNG.NextDouble());
-                velocity.Y = MathUtilities.OneRandomOf(-1, 1) * (10 + 5 * (float)GlobalState.RNG.NextDouble());
-                Play("move");
-                shadow.exists = true;
-                parabola.ResetTime();
-                _opacity = 1.0f;
+                state.ChangeState("Move");
             }
 
             public override void Update()
             {
                 base.Update();
-                if (parabola.Tick())
-                {
-                    if (shadow.exists)
-                    {
-                        SoundManager.PlaySoundEffect("slime_splash");
-                        shadow.exists = false;
-                        _curAnim = null;
-                        velocity = Vector2.Zero;
-                    }
-                    else
-                    {
-                        _opacity -= 0.05f;
-                        if (_opacity <= 0) exists = false;
-                    }
-                }
+                state.Update(GameTimes.DeltaTime);
             }
         }
+
         [Collision(typeof(Player), MapCollision = true)]
         private class Bullet : Entity
         {

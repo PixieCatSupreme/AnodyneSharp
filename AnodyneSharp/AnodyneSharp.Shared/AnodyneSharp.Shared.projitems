@@ -48,6 +48,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Player\Broom.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\NamedEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Slime.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FSM\CollisionEvent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Map\Tiles\CollissionData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Registry\AchievementManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Registry\InventoryManager.cs" />
@@ -109,6 +110,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)UI\UILabel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\MapUtilities.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\MathUtilities.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FSM\TimerState.cs" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />

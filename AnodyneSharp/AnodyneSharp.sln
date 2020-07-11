@@ -12,7 +12,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnodyneSharp.Windows", "AnodyneSharp.Windows\AnodyneSharp.Windows.csproj", "{A9F40A34-94A6-4E0C-A813-CBA5BA4B5AEB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnodyneSharp.Windows", "AnodyneSharp.Windows\AnodyneSharp.Windows.csproj", "{A9F40A34-94A6-4E0C-A813-CBA5BA4B5AEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fluent-State-Machine", "..\Fluent-State-Machine\Fluent-State-Machine.csproj", "{74EC1B7F-CD01-4AF3-AED5-ED0393A3A069}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -33,6 +35,10 @@ Global
 		{A9F40A34-94A6-4E0C-A813-CBA5BA4B5AEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9F40A34-94A6-4E0C-A813-CBA5BA4B5AEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9F40A34-94A6-4E0C-A813-CBA5BA4B5AEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74EC1B7F-CD01-4AF3-AED5-ED0393A3A069}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74EC1B7F-CD01-4AF3-AED5-ED0393A3A069}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74EC1B7F-CD01-4AF3-AED5-ED0393A3A069}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74EC1B7F-CD01-4AF3-AED5-ED0393A3A069}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

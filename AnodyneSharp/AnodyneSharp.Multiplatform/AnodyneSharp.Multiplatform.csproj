@@ -106,6 +106,12 @@
     </None>
     <None Include="app.manifest" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Fluent-State-Machine\Fluent-State-Machine.csproj">
+      <Project>{74ec1b7f-cd01-4af3-aed5-ed0393a3a069}</Project>
+      <Name>Fluent-State-Machine</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="..\AnodyneSharp.Shared\AnodyneSharp.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

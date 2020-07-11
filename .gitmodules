@@ -1,0 +1,4 @@
+[submodule "Fluent-State-Machine"]
+	path = Fluent-State-Machine
+	url = git@github.com:Real-Serious-Games/Fluent-State-Machine.git
+	branch = master
