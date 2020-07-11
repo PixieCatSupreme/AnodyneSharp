@@ -38,6 +38,22 @@ namespace AnodyneSharp.Registry
             }
         }
 
+        public static bool CanChangeBroom
+        {
+            get
+            {
+                return !UseCellBroom && CURRENT_MAP_NAME != "SUBURB";
+            }
+        }
+
+        public static bool UseCellBroom
+        {
+            get
+            {
+                return AlwaysCellGraphics || CURRENT_MAP_NAME == "TRAIN";
+            }
+        }
+
         public static Language CurrentLanguage { get; set; }
 
         public static bool SetDialogueMode = false;

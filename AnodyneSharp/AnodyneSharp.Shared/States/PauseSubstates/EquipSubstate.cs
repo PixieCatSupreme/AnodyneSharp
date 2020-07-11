@@ -131,8 +131,8 @@ namespace AnodyneSharp.States.PauseSubstates
             {
                 UseItem();
             }
-            else 
-            { 
+            else
+            {
                 base.HandleInput();
             }
         }
