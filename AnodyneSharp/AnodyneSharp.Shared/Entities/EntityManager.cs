@@ -94,7 +94,7 @@ namespace AnodyneSharp.Entities
                         {
                             if (!missing.Contains(child.Name))
                             {
-                                DebugLogger.AddWarning($"Missing Enitity {child.Name}!");
+                                DebugLogger.AddWarning($"Missing Entity {child.Name}!");
                                 missing.Add(child.Name);
                             }
                             continue;
@@ -132,7 +132,7 @@ namespace AnodyneSharp.Entities
                                 if(!missing.Contains(missing_entity))
                                 {
                                     missing.Add(missing_entity);
-                                    DebugLogger.AddWarning($"Missing Enitity {missing_entity}!");
+                                    DebugLogger.AddWarning($"Missing Entity {missing_entity}!");
                                 }
                             }
                             else if(matching.Count > 1)
