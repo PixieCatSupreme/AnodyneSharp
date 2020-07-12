@@ -208,10 +208,7 @@ namespace AnodyneSharp.Entities.Enemy
                             _curAnim = null;
                             velocity = Vector2.Zero;
                         })
-                        .Update((state, time) =>
-                        {
-                            _opacity -= 0.05f;
-                        })
+                        .Update((state, time) => _opacity -= 0.05f)
                         .Condition(() => _opacity <= 0, (state) => exists = false)
                     .End()
                     .Build();
