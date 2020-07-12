@@ -63,7 +63,7 @@ namespace AnodyneSharp.Entities.Gadget
         {
             if(HeldDown)
             {
-                if(_player.Hitbox.Intersects(Hitbox))
+                if(!_player.Hitbox.Intersects(Hitbox))
                 {
                     HeldDown = false;
                     Play("close");
