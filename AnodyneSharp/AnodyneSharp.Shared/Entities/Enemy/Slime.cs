@@ -76,45 +76,11 @@ namespace AnodyneSharp.Entities.Enemy
                             state.AddTimer(1.8f, "ShootTimer");
                         }
                     })
-                    .Update((state, time) =>
-                    {
-                        state.DoTimers(time);
-                        if (_curFrame == 1 && !state.move_frame_sound_sync)
-                        {
-                            SoundManager.PlaySoundEffect("slime_walk");
-                            state.move_frame_sound_sync = true;
-                        }
-                        else if (_curFrame == 0)
-                        {
-                            state.move_frame_sound_sync = false;
-                        }
-                    })
+                    .Update((state, time) => { state.DoTimers(time); SyncSplash(state); })
                     .Event("ShootTimer", (state) => bullets.Spawn(b => b.Spawn(this, target)))
-                    .Event("MoveTimer", (state) =>
-                    {
-                         if (_curFrame == 1)
-                         {
-                            //Make it more likely for slimes to stand still periodically
-                            velocity = Vector2.Zero;
-                         }
-                         else
-                         {
-                             velocity = new Vector2((float)GlobalState.RNG.NextDouble(), (float)GlobalState.RNG.NextDouble()) - Vector2.One / 2f;
-                             velocity *= _speed;
-                         }
-                    })
-                    .Event<CollisionEvent<Player>>("Player",(state,p) => p.entity.ReceiveDamage(1))
-                    .Event<CollisionEvent<Broom>>("Hit",(state,b) =>
-                    {
-                        SoundManager.PlaySoundEffect("hit_slime");
-
-                        goos.Spawn(g => g.Spawn(this), 2);
-
-                        _health -= 1;
-                        velocity = FacingDirection(b.entity.facing) * 100;
-
-                        state.Parent.ChangeState("Hurt");
-                    })
+                    .Event("MoveTimer", (state) => ChangeDir())
+                    .Event<CollisionEvent<Player>>("Player", (state, p) => p.entity.ReceiveDamage(1))
+                    .Event<CollisionEvent<Broom>>("Hit", (state, b) => GetHit(b.entity))
                 .End()
                 .State("Hurt")
                     .Enter((state) => Play("Hurt"))
@@ -128,6 +94,45 @@ namespace AnodyneSharp.Entities.Enemy
                 .End()
                 .Build();
             state.ChangeState("Move");
+        }
+
+        private void SyncSplash(MoveState state)
+        {
+            if (_curFrame == 1 && !state.move_frame_sound_sync)
+            {
+                SoundManager.PlaySoundEffect("slime_walk");
+                state.move_frame_sound_sync = true;
+            }
+            else if (_curFrame == 0)
+            {
+                state.move_frame_sound_sync = false;
+            }
+        }
+
+        private void ChangeDir()
+        {
+            if (_curFrame == 1)
+            {
+                //Make it more likely for slimes to stand still periodically
+                velocity = Vector2.Zero;
+            }
+            else
+            {
+                velocity = new Vector2((float)GlobalState.RNG.NextDouble(), (float)GlobalState.RNG.NextDouble()) - Vector2.One / 2f;
+                velocity *= _speed;
+            }
+        }
+
+        private void GetHit(Broom b)
+        {
+            SoundManager.PlaySoundEffect("hit_slime");
+
+            goos.Spawn(g => g.Spawn(this), 2);
+
+            _health -= 1;
+            velocity = FacingDirection(b.facing) * 100;
+
+            state.ChangeState("Hurt");
         }
 
         public override void Update()
