@@ -21,10 +21,7 @@ namespace AnodyneSharp.Entities
     public enum PlayerAnimState
     {
         ANIM_DEFAULT,
-        ANIM_ATK_R,
-        ANIM_ATK_L,
-        ANIM_ATK_U,
-        ANIM_ATK_D,
+        ANIM_ATK,
         ANIM_FALL,
         ANIM_DEAD,
         as_idle,
@@ -123,10 +120,10 @@ namespace AnodyneSharp.Entities
             AddAnimation("walk_u", CreateAnimFrameArray(4, 5), 6, true);
             AddAnimation("walk_l", CreateAnimFrameArray(6, 7), 8, true);
 
-            AddAnimation("attack_down", CreateAnimFrameArray(8, 9), 10, false);
-            AddAnimation("attack_right", CreateAnimFrameArray(10, 11), 10, false);
-            AddAnimation("attack_up", CreateAnimFrameArray(12, 13), 10, false);
-            AddAnimation("attack_left", CreateAnimFrameArray(14, 15), 10, false);
+            AddAnimation("attack_d", CreateAnimFrameArray(8, 9), 10, false);
+            AddAnimation("attack_r", CreateAnimFrameArray(10, 11), 10, false);
+            AddAnimation("attack_u", CreateAnimFrameArray(12, 13), 10, false);
+            AddAnimation("attack_l", CreateAnimFrameArray(14, 15), 10, false);
             AddAnimation("fall", CreateAnimFrameArray(28, 29, 30, 31), 5, false);
             AddAnimation("die", CreateAnimFrameArray(25, 26, 27, 24, 25, 26, 27, 24, 25, 26, 27, 32), 6, false);
             AddAnimation("slumped", CreateAnimFrameArray(32));
@@ -408,13 +405,7 @@ namespace AnodyneSharp.Entities
                         broom.Play("stab", true);
                         SoundManager.PlaySoundEffect("swing_broom_1", "swing_broom_2", "swing_broom_3");
 
-                        switch (facing)
-                        {
-                            case Facing.LEFT: ANIM_STATE = PlayerAnimState.ANIM_ATK_L; break;
-                            case Facing.UP: ANIM_STATE = PlayerAnimState.ANIM_ATK_U; break;
-                            case Facing.DOWN: ANIM_STATE = PlayerAnimState.ANIM_ATK_D; break;
-                            case Facing.RIGHT: ANIM_STATE = PlayerAnimState.ANIM_ATK_R; break;
-                        }
+                        ANIM_STATE = PlayerAnimState.ANIM_ATK;
                     }
                     else if (InventoryManager.EquippedBroom == BroomType.Transformer)
                     {
@@ -446,17 +437,8 @@ namespace AnodyneSharp.Entities
             }
             switch (ANIM_STATE)
             {
-                case PlayerAnimState.ANIM_ATK_D:
-                    Play("attack_down");
-                    break;
-                case PlayerAnimState.ANIM_ATK_L:
-                    Play("attack_left");
-                    break;
-                case PlayerAnimState.ANIM_ATK_R:
-                    Play("attack_right");
-                    break;
-                case PlayerAnimState.ANIM_ATK_U:
-                    Play("attack_up");
+                case PlayerAnimState.ANIM_ATK:
+                    PlayFacing("attack");
                     break;
                 case PlayerAnimState.ANIM_FALL:
                     Play("fall");
@@ -471,49 +453,17 @@ namespace AnodyneSharp.Entities
                     }
                     if (velocity == Vector2.Zero)
                     {
-                        switch (facing)
-                        {
-                            case Facing.UP:
-                                Play("idle_u");
-                                break;
-                            case Facing.LEFT:
-                                Play("idle_l");
-                                break;
-                            case Facing.DOWN:
-                                Play("idle_d");
-                                break;
-                            case Facing.RIGHT:
-                                Play("idle_r");
-                                break;
-                        }
-                        break;
+                        PlayFacing("idle");
                     }
+                    else
+                    {
+                        FacingFromVelocity();
+                        PlayFacing("walk");
 
-                    if (velocity.Y < 0)
-                    {
-                        facing = Facing.UP;
-                        Play("walk_u");
+                        ANIM_STATE = PlayerAnimState.as_walk;
+                        _curIndex = last_frame[(int)facing];
+                        _curFrame = _curAnim.frames[_curIndex];
                     }
-                    else if (velocity.Y > 0)
-                    {
-                        facing = Facing.DOWN;
-                        Play("walk_d");
-                    }
-                    else if (velocity.X < 0)
-                    {
-                        facing = Facing.LEFT;
-                        Play("walk_l");
-                    }
-                    else if (velocity.X > 0)
-                    {
-                        facing = Facing.RIGHT;
-                        Play("walk_r");
-                    }
-
-                    ANIM_STATE = PlayerAnimState.as_walk;
-                    _curIndex = last_frame[(int)facing];
-                    _curFrame = _curAnim.frames[_curIndex];
-
                     break;
 
                 case PlayerAnimState.as_walk:
@@ -525,48 +475,12 @@ namespace AnodyneSharp.Entities
                     {
                         ANIM_STATE = PlayerAnimState.as_idle;
                         last_frame[(int)facing] = _curIndex;
-                        switch (facing)
-                        {
-                            case Facing.UP: Play("idle_u"); break;
-                            case Facing.DOWN: Play("idle_d"); break;
-                            case Facing.LEFT: Play("idle_l"); break;
-                            case Facing.RIGHT: Play("idle_r"); break;
-                        }
+                        PlayFacing("idle");
                     }
                     else
                     {
-                        if (velocity.Y < 0)
-                        {
-                            if (facing != Facing.UP)
-                            {
-                                facing = Facing.UP;
-                                Play("walk_u");
-                            }
-                        }
-                        else if (velocity.Y > 0)
-                        {
-                            if (facing != Facing.DOWN)
-                            {
-                                facing = Facing.DOWN;
-                                Play("walk_d");
-                            }
-                        }
-                        else if (velocity.X < 0)
-                        {
-                            if (facing != Facing.LEFT)
-                            {
-                                facing = Facing.LEFT;
-                                Play("walk_l");
-                            }
-                        }
-                        else
-                        {
-                            if (facing != Facing.RIGHT)
-                            {
-                                facing = Facing.RIGHT;
-                                Play("walk_r");
-                            }
-                        }
+                        FacingFromVelocity();
+                        PlayFacing("walk");
                     }
                     break;
                 case PlayerAnimState.as_slumped:
@@ -594,21 +508,7 @@ namespace AnodyneSharp.Entities
 
                 shadow.Play("get_small");
                 ANIM_STATE = PlayerAnimState.as_idle; // Always land in idle state.
-                switch (facing)
-                { // Play the jump animation
-                    case Facing.UP:
-                        Play("jump_u");
-                        break;
-                    case Facing.DOWN:
-                        Play("jump_d");
-                        break;
-                    case Facing.LEFT:
-                        Play("jump_l");
-                        break;
-                    case Facing.RIGHT:
-                        Play("jump_r");
-                        break;
-                }
+                PlayFacing("jump");
             }
 
             if (!anim_air_did_down && jump_timer > jump_period / 2)
@@ -645,15 +545,15 @@ namespace AnodyneSharp.Entities
             switch (name)
             {
                 case "walk_l":
-                case "attack_left":
+                case "attack_l":
                     offset.X = 4;
                     break;
                 case "walk_r":
-                case "attack_right":
+                case "attack_r":
                 case "walk_d":
-                case "attack_down":
+                case "attack_d":
                 case "walk_u":
-                case "attack_up":
+                case "attack_u":
                     offset.X = 3;
                     break;
             }
@@ -668,11 +568,6 @@ namespace AnodyneSharp.Entities
         private void GroundMovement()
         {
             Set_init_vel();
-
-            if (velocity.X != 0 && velocity.Y != 0)
-            {
-                velocity *= .7f;
-            }
 
             if (Do_bump)
             {
@@ -690,11 +585,6 @@ namespace AnodyneSharp.Entities
         private void AirMovement()
         {
             Set_init_vel(0.83f);
-
-            if (velocity != Vector2.Zero)
-            {
-                velocity *= .7f;
-            }
 
             //if (ON_RAFT)
             //{
@@ -796,6 +686,10 @@ namespace AnodyneSharp.Entities
             }
 
             velocity *= walkSpeed /* c_vel*/;
+            if (velocity.X != 0 && velocity.Y != 0)
+            {
+                velocity *= 0.7f;
+            }
         }
 
         internal void ReceiveDamage(int amount, bool knockback = true, bool playSound = true)
@@ -823,21 +717,35 @@ namespace AnodyneSharp.Entities
         {
             ANIM_STATE = PlayerAnimState.as_idle;
             idle_ticks = 5;
-            switch (facing)
+            PlayFacing("idle");
+        }
+
+        private Facing FacingFromVelocity()
+        {
+            if (velocity == Vector2.Zero)
             {
-                case Facing.UP:
-                    Play("idle_u");
-                    break;
-                case Facing.LEFT:
-                    Play("idle_l");
-                    break;
-                case Facing.RIGHT:
-                    Play("idle_r");
-                    break;
-                case Facing.DOWN:
-                    Play("idle_d");
-                    break;
+                return facing;
             }
+
+            if (velocity.Y < 0)
+            {
+                facing = Facing.UP;
+            }
+            else if (velocity.Y > 0)
+            {
+                facing = Facing.DOWN;
+            }
+            else if (velocity.X < 0)
+            {
+                facing = Facing.LEFT;
+            }
+            else
+            {
+                facing = Facing.RIGHT;
+            }
+
+            return facing;
+
         }
     }
 }

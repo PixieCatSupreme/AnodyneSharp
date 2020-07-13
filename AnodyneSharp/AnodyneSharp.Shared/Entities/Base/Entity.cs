@@ -5,6 +5,7 @@ using AnodyneSharp.Resources;
 using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 
 namespace AnodyneSharp.Entities
@@ -120,12 +121,21 @@ namespace AnodyneSharp.Entities
         protected virtual void AnimationChanged(string name) { }
 
         /**
- * Plays an existing animation (e.g. "run").
- * If you call an animation that is already playing it will be ignored.
- * 
- * @param	AnimName	The string name of the animation you want to play.
- * @param	Force		Whether to force the animation to restart.
- */
+         * Plays the animation corresponding to AnimName combined with '_x' where x is u,l,d, or r depending on facing.
+         */
+        public void PlayFacing(string AnimName)
+        {
+            char append = Enum.GetNames(typeof(Facing))[(int)facing].ToLower()[0];
+            Play($"{AnimName}_{append}");
+        }
+
+        /**
+         * Plays an existing animation (e.g. "run").
+         * If you call an animation that is already playing it will be ignored.
+         * 
+         * @param	AnimName	The string name of the animation you want to play.
+         * @param	Force		Whether to force the animation to restart.
+         */
         public void Play(string AnimName, bool Force = false)
         {
             if (!Force && (_curAnim != null) && (AnimName == _curAnim.name) && (_curAnim.looped || !finished))
