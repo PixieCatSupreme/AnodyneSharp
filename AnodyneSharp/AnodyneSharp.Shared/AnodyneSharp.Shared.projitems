@@ -25,6 +25,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\Parabola_Thing.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\Shadow.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\CollisionGroups.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Decorations\NonSolid.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\EnemyAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Person.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Button.cs" />

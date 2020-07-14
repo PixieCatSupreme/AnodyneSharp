@@ -115,6 +115,10 @@ namespace AnodyneSharp.States
                         }
 
                     }
+                    else
+                    {
+                        SoundManager.PlaySoundEffect("dialogue_blip");
+                    }
                     break;
                 case DialogueStateState.Waiting:
                     if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept) || KeyInput.JustPressedRebindableKey(KeyFunctions.Cancel))
