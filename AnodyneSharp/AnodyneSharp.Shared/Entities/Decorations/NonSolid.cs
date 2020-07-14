@@ -39,10 +39,10 @@ namespace AnodyneSharp.Entities.Decorations
 					SetTexture("rail_CROWD");
 					frameWidth = 16;
 					frameHeight = 22;
-
-					SetFrame(0);
 					break;
 			}
+
+			SetFrame(0);
 
 			Position = preset.Position;
 		}

@@ -27,7 +27,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\CollisionGroups.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Decorations\NonSolid.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\EnemyAttribute.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Person.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Crowd\Person.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Etc\FollowerBro.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Button.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Gate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Gates\KeyCardGate.cs" />
@@ -48,7 +49,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\HugeFuckingStag.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Player\Broom.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\NamedEntity.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Slime.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Apartment\Slime.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FSM\CollisionEvent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Map\Tiles\CollissionData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Registry\AchievementManager.cs" />
@@ -240,6 +241,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Dialogue\Tree\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Entities\Enemy\Apartment\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Entities\Enemy\Crowd\" />
     <Folder Include="$(MSBuildThisFileDirectory)Entities\Gadget\Treasures\Base\" />
     <Folder Include="$(MSBuildThisFileDirectory)UI\Font\Writing\" />
     <Folder Include="$(MSBuildThisFileDirectory)UI\Health\" />
