@@ -9,8 +9,8 @@ namespace AnodyneSharp.Entities
     {
         NONE,
         Normal,
-        Wide,
         Long,
+        Wide,
         Transformer
     }
 
@@ -173,6 +173,7 @@ namespace AnodyneSharp.Entities
 
         private void UpdatePos()
         {
+            Vector2 o;
             switch (_root.facing)
             {
                 case Facing.LEFT:
@@ -180,13 +181,15 @@ namespace AnodyneSharp.Entities
                     Position = new Vector2(_root.Position.X - 14, _root.Position.Y);
                     is_behind_player = true;
 
+                    o = new Vector2(0, -6);
+
                     if (is_wide)
                     {
-                        SetWideValues(new Vector2(0, -6), new Vector2(-1, 4));
+                        SetWideValues(o, new Vector2(-5, 1));
                     }
                     else if (is_long)
                     {
-                        SetLongValues(new Vector2(0, -6), new Vector2(-9, 4));
+                        SetLongValues(o, new Vector2(-14, 7));
                     }
 
                     switch (_curFrame)
@@ -202,13 +205,15 @@ namespace AnodyneSharp.Entities
                     Position = new Vector2(_root.Position.X + _root.width, _root.Position.Y - 2);
                     is_behind_player = false;
 
+                    o = new Vector2(5, -6);
+
                     if (is_wide)
                     {
-                        SetWideValues(new Vector2(5, -6), new Vector2(-3, 6));
+                        SetWideValues(o, new Vector2(2, 3));
                     }
                     else if (is_long)
                     {
-                        SetLongValues(new Vector2(5, -6), new Vector2(5, 6));
+                        SetLongValues(o, new Vector2(0, 9));
                     }
 
                     switch (_curFrame)
@@ -223,13 +228,15 @@ namespace AnodyneSharp.Entities
                     Position = new Vector2(_root.Position.X + -2, _root.Position.Y - 16);
                     is_behind_player = true;
 
+                    o = new Vector2(-2, 0);
+
                     if (is_wide)
                     {
-                        SetWideValues(new Vector2(-2, 0), new Vector2(3, -4));
+                        SetWideValues(o, new Vector2(5, -7));
                     }
                     else if (is_long)
                     {
-                        SetLongValues(new Vector2(-2, 0), new Vector2(3, -6));
+                        SetLongValues(o, new Vector2(0, -6));
                     }
 
                     switch (_curFrame)
@@ -244,13 +251,15 @@ namespace AnodyneSharp.Entities
                     Position = new Vector2(_root.Position.X + -6, _root.Position.Y + _root.height);
                     is_behind_player = false;
 
+                    o = new Vector2(-2, 4);
+
                     if (is_wide)
                     {
-                        SetWideValues(new Vector2(-2, 4), new Vector2(1, 0));
+                        SetWideValues(o, new Vector2(3, -1));
                     }
                     else if (is_long)
                     {
-                        SetLongValues(new Vector2(-2, 4), new Vector2(1, 0));
+                        SetLongValues(o, new Vector2(-2, 5));
                     }
 
                     switch (_curFrame)

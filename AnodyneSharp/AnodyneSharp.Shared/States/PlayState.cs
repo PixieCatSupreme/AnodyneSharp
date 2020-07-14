@@ -393,20 +393,16 @@ namespace AnodyneSharp.States
                 }
                 else if (GlobalState.CanChangeBroom)
                 {
-                    if (KeyInput.JustPressedKey(Keys.D2) && InventoryManager.HasWiden && BroomType.Wide != InventoryManager.EquippedBroom)
+                    if (KeyInput.JustPressedKey(Keys.D3) && InventoryManager.HasWiden && BroomType.Wide != InventoryManager.EquippedBroom)
                     {
                         SetBroom(BroomType.Wide);
                     }
-                    else if (KeyInput.JustPressedKey(Keys.D3) && InventoryManager.HasLenghten && BroomType.Long != InventoryManager.EquippedBroom)
+                    else if (KeyInput.JustPressedKey(Keys.D2) && InventoryManager.HasLenghten && BroomType.Long != InventoryManager.EquippedBroom)
                     {
                         SetBroom(BroomType.Long);
                     }
                 }
-
-
-
             }
-
 
             //TODO check if player is unalive
         }
