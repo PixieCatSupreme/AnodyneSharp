@@ -326,7 +326,7 @@ namespace AnodyneSharp.States
 
         private bool CheckInteraction()
         {
-            if (_player.state != PlayerState.GROUND)
+            if (_player.state != PlayerState.GROUND || _state == PlayStateState.S_DIALOGUE)
             {
                 return false;
             }

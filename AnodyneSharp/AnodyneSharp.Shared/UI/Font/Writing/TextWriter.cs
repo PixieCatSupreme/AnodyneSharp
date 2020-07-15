@@ -406,16 +406,13 @@ namespace AnodyneSharp.UI.Text
         protected virtual bool Write(char character)
         {
             bool output = false;
-            
+
             if (character == ' ')
             {
-                _newWord = true;
-
-                ProgressCursor();
-                letterProgress++;
+                DoSpace();
                 output = true;
             }
-            else if ((character == '\\' && Text[letterProgress+1] == 'n') || LineBreaks.Any(c => c == character))
+            else if ((character == '\\' && Text[letterProgress + 1] == 'n') || LineBreaks.Any(c => c == character))
             {
                 if (character == '\\')
                 {
@@ -434,27 +431,41 @@ namespace AnodyneSharp.UI.Text
                 Rectangle? rect = spriteFont.GetRectangle(character);
                 Rectangle writeArea = ActualWriteArea;
 
-                if (!KeepInBounds(rect.Value))
+                if (rect == null)
                 {
-                    return false;
+                    DoSpace();
+                    output = true;
                 }
+                else
+                {
+                    if (!KeepInBounds(rect.Value))
+                    {
+                        return false;
+                    }
 
-                float y = cursorPos.Y + writeArea.Y + spriteFont.lineSeparation - rect.Value.Height;
+                    float y = cursorPos.Y + writeArea.Y + spriteFont.lineSeparation - rect.Value.Height;
 
-                characters.Add(new TextCharacter(character, new Vector2(cursorPos.X + writeArea.X, y), rect));
-                LastWrittenCharacter = character;
+                    characters.Add(new TextCharacter(character, new Vector2(cursorPos.X + writeArea.X, y), rect));
+                    LastWrittenCharacter = character;
 
-                letterProgress++;
-                output = true;
+                    letterProgress++;
+                    output = true;
 
-                //if (!IgnoreSoftLineBreaks && SoftLinebreak.Any(c => c == character))
-                //{
-                //    cursorPos.Y += spriteFont.lineSeparation;
-                //    cursorPos.X = 0;
-                //    _newLine = true;
+                    if (!IgnoreSoftLineBreaks && SoftLinebreak.Any(c => c == character) && letterProgress < Text.Length && Text[letterProgress] == ' ')
+                    {
+                        cursorPos.Y += spriteFont.lineSeparation;
+                        cursorPos.X = 0;
+                        _newLine = true;
 
-                //    output = cursorPos.Y + spriteFont.lineSeparation < writeArea.Height;
-                //}
+                        output = cursorPos.Y + spriteFont.lineSeparation < writeArea.Height;
+                        letterProgress++;
+
+                        if (letterProgress < Text.Length && Text[letterProgress] == ' ')
+                        {
+                            letterProgress++;
+                        }
+                    }
+                }
             }
 
             if (output)
@@ -463,6 +474,14 @@ namespace AnodyneSharp.UI.Text
             }
 
             return output;
+        }
+
+        protected void DoSpace()
+        {
+            _newWord = true;
+
+            ProgressCursor();
+            letterProgress++;
         }
 
         protected bool KeepInBounds(Rectangle characterRectangle)

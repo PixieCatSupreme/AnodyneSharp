@@ -16,6 +16,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Dialogue\DialogueManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dialogue\Tree\DialogueNPC.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dialogue\Tree\DialogueScene.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dialogue\Tree\DialogueState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Camera.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\DrawingUtilities.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\SpriteDrawer.cs" />
@@ -47,6 +48,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Treasures\SecretTreasure.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\DevEaster.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\HugeFuckingStag.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Rock.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Player\Broom.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\NamedEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Apartment\Slime.cs" />
@@ -240,7 +242,6 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\OVERWORLD.col" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Dialogue\Tree\" />
     <Folder Include="$(MSBuildThisFileDirectory)Entities\Enemy\Apartment\" />
     <Folder Include="$(MSBuildThisFileDirectory)Entities\Enemy\Crowd\" />
     <Folder Include="$(MSBuildThisFileDirectory)Entities\Gadget\Treasures\Base\" />

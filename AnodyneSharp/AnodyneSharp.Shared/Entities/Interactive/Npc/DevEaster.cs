@@ -27,7 +27,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc
 
         public bool PlayerInteraction(Facing player_direction)
         {
-            GlobalState.Dialogue = DialogueManager.GetDialogue("generic_npc", "DEBUG", scene, 0);
+            GlobalState.Dialogue = DialogueManager.GetDialogue("generic_npc", scene);
             return true;
         }
     }

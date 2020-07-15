@@ -115,6 +115,13 @@ namespace AnodyneSharp.States
                         }
 
                     }
+                    else if (_tb.Writer.NextCharacter == '^')
+                    {
+                        _forcedInput = true;
+                        _tb.Writer.SkipCharacter();
+                        _tb.PauseWriting = true;
+                        state = DialogueStateState.Waiting;
+                    }
                     else
                     {
                         SoundManager.PlaySoundEffect("dialogue_blip");

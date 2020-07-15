@@ -35,6 +35,8 @@ namespace AnodyneSharp.Dialogue
 
         private static Dictionary<string, DialogueNPC> _sceneTree;
 
+        private static int _lastPlayedChunk;
+
         public static void LoadDialogue(Language lang)
         {
             GlobalState.CurrentLanguage = lang;
@@ -42,7 +44,12 @@ namespace AnodyneSharp.Dialogue
             ReadFile();
         }
 
-        public static string GetDialogue(string npc, string area, string scene, int id)
+        public static string GetDialogue(string npc, string scene, int id = -1)
+        {
+            return GetDialogue(npc, GlobalState.CURRENT_MAP_NAME, scene, id);
+        }
+
+        public static string GetDialogue(string npc, string area, string scene, int id = -1)
         {
             if (!_sceneTree.ContainsKey(npc))
             {
