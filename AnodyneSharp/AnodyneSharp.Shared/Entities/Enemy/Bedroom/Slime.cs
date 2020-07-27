@@ -76,7 +76,7 @@ namespace AnodyneSharp.Entities.Enemy
                             state.AddTimer(1.8f, "ShootTimer");
                         }
                     })
-                    .Update((state, time) => { state.DoTimers(time); SyncSplash(state); })
+                    .Update((state, time) => SyncSplash(state))
                     .Event("ShootTimer", (state) => bullets.Spawn(b => b.Spawn(this, target)))
                     .Event("MoveTimer", (state) => ChangeDir())
                     .Event<CollisionEvent<Player>>("Player", (state, p) => p.entity.ReceiveDamage(1))

@@ -1,5 +1,8 @@
-﻿using RSG;
+﻿using Microsoft.Xna.Framework;
+using RSG;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Linq;
 
 namespace AnodyneSharp.FSM
 {
@@ -7,33 +10,40 @@ namespace AnodyneSharp.FSM
     {
         private class Timer
         {
-            public float current = 0.0f;
             public float max;
             public string name;
         }
-        List<Timer> timers = new List<Timer>();
+        SortedDictionary<float,Timer> timers = new SortedDictionary<float, Timer>();
+
+        private float current = 0.0f;
 
         public void Reset()
         {
-            timers = new List<Timer>();
+            timers = new SortedDictionary<float, Timer>();
         }
 
         public void AddTimer(float time, string name)
         {
-            timers.Add(new Timer() { max=time, name=name });
+            timers.Add(current+time,new Timer() { max=time, name=name });
         }
 
-        public void DoTimers(float deltaTime)
+        public override void Update(float deltaTime)
         {
-            foreach(Timer t in timers)
+            current += deltaTime;
+
+            if (timers.Count > 0)
             {
-                t.current += deltaTime;
-                if(t.current >= t.max)
+                var min = timers.First();
+
+                while (min.Key <= current)
                 {
-                    t.current = 0.0f;
-                    TriggerEvent(t.name);
+                    TriggerEvent(min.Value.name);
+                    timers.Remove(min.Key);
+                    AddTimer(min.Value.max, min.Value.name);
+                    min = timers.First();
                 }
             }
+            base.Update(deltaTime);
         }
     }
 }

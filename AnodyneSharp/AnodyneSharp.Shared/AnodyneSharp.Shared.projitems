@@ -51,7 +51,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Rock.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Player\Broom.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\NamedEntity.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Apartment\Slime.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Bedroom\Slime.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FSM\CollisionEvent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Map\Tiles\CollissionData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Registry\AchievementManager.cs" />
@@ -242,7 +242,6 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\OVERWORLD.col" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Entities\Enemy\Apartment\" />
     <Folder Include="$(MSBuildThisFileDirectory)Entities\Enemy\Crowd\" />
     <Folder Include="$(MSBuildThisFileDirectory)Entities\Gadget\Treasures\Base\" />
     <Folder Include="$(MSBuildThisFileDirectory)UI\Font\Writing\" />
