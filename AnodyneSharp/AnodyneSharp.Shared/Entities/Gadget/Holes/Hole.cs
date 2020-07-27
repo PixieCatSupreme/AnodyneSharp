@@ -17,7 +17,7 @@ namespace AnodyneSharp.Entities.Gadget.Holes
             : base(position, "hole", 16, 16, DrawOrder.MAP_BG2)
         {
             immovable = true;
-            solid = false;
+            Solid = false;
 
             SetFrame(frame);
         }

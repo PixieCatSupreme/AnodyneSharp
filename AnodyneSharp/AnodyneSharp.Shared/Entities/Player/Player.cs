@@ -48,9 +48,7 @@ namespace AnodyneSharp.Entities
         public const float WATK_DELAY = 0.35f;
         public const float LATK_DELAY = 0.4f;
 
-        internal bool dontMove;
-
-        internal float grid_entrance_y;
+        public bool dontMove;
 
         public const int DEFAULT_Y_OFFSET = 4;
         public const string TRANSITION_IDLE = "idle_u";
@@ -184,7 +182,7 @@ namespace AnodyneSharp.Entities
             }
             if (GlobalState.FUCK_IT_MODE_ON)
             {
-                solid = false;
+                Solid = false;
                 walkSpeed = 200;
 
                 if (KeyInput.JustPressedKey(Keys.V))
@@ -195,7 +193,7 @@ namespace AnodyneSharp.Entities
             else
             {
                 walkSpeed = 70;
-                solid = true;
+                Solid = true;
             }
 
             if (!CommonConditions())
@@ -245,9 +243,9 @@ namespace AnodyneSharp.Entities
             //		return false;
             //	}
 
-            if (!solid && justFell)
+            if (!Solid && justFell)
             {
-                solid = true;
+                Solid = true;
                 justFell = false;
             }
 
@@ -373,7 +371,7 @@ namespace AnodyneSharp.Entities
                 hasFallen = false;
                 Flicker(1);
                 Play("idle_d");
-                solid = false;
+                Solid = false;
                 justFell = true;
                 dontMove = false;
                 ANIM_STATE = PlayerAnimState.as_idle;

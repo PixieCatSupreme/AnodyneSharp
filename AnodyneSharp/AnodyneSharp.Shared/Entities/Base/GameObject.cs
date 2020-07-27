@@ -28,18 +28,20 @@ namespace AnodyneSharp.Entities
             }
         }
 
-        public bool solid
+        public Vector2 Center
+        {
+            get
+            {
+                return Position + new Vector2(width, height) / 2;
+            }
+        }
+
+        public bool Solid
         {
             get { return allowCollisions != Touching.NONE; }
             set
             {
-                if (value)
-                {
-                    allowCollisions = Touching.ANY;
-                } else
-                {
-                    allowCollisions = Touching.NONE;
-                }
+                allowCollisions = value ? Touching.ANY : Touching.NONE;
             }
         }
 

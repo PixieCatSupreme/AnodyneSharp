@@ -20,7 +20,7 @@ namespace AnodyneSharp.Entities.Gadget.Gates
             {
                 InventoryManager.RemoveCurrentMapKey();
                 SoundManager.PlaySoundEffect("unlock");
-                solid = false;
+                Solid = false;
                 return true;
             }
             else

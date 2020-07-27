@@ -16,7 +16,7 @@ namespace AnodyneSharp.Entities.Gadget.Holes
             : base(preset.Position, "crackedtiles", 16, 16, DrawOrder.MAP_BG2)
         {
             immovable = true;
-            solid = false;
+            Solid = false;
 
             _hole = new Hole(Position, preset.Frame)
             {
