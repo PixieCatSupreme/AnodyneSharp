@@ -58,6 +58,14 @@ namespace AnodyneSharp.Entities
 
         private float _lastScale;
 
+        public Vector2 VisualCenter
+        {
+            get
+            {
+                return Position - offset + new Vector2(frameWidth/2,frameHeight/2);
+            }
+        }
+
         public Entity(Vector2 pos, DrawOrder layer)
             : base(pos)
         {
