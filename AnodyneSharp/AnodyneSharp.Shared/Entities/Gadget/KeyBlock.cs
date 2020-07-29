@@ -4,6 +4,7 @@ using AnodyneSharp.Registry;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace AnodyneSharp.Entities.Gadget
@@ -74,7 +75,7 @@ namespace AnodyneSharp.Entities.Gadget
 
         public override IEnumerable<Entity> SubEntities()
         {
-            return new List<Entity> { _gate };
+            return Enumerable.Repeat(_gate,1);
         }
     }
 }

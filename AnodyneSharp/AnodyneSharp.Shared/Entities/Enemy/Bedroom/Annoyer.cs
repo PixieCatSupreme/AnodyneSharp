@@ -210,7 +210,7 @@ namespace AnodyneSharp.Entities.Enemy
             }
         }
 
-        class Explosion : Entity
+        class Explosion : HealthDropper
         {
             public Explosion(Vector2 pos) : base(pos, "enemy_explode_2", 24, 24, DrawOrder.ENTITIES)
             {
@@ -223,8 +223,7 @@ namespace AnodyneSharp.Entities.Enemy
                 base.Update();
                 if(finished)
                 {
-                    //TODO: drop health pickup
-                    exists = false;
+                    Die();
                 }
             }
         }

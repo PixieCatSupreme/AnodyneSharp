@@ -22,6 +22,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\SpriteDrawer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\CollisionAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\EntityPool.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\HealthDropper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\Interactable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\Parabola_Thing.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\Shadow.cs" />
@@ -47,6 +48,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Treasures\KeyTreasure.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Treasures\Base\Treasure.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Treasures\SecretTreasure.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\HealthPickup.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\DevEaster.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\HugeFuckingStag.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Rock.cs" />

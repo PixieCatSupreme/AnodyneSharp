@@ -13,7 +13,7 @@ using System.Text;
 namespace AnodyneSharp.Entities.Enemy
 {
     [NamedEntity, Enemy, Collision(typeof(Player), typeof(Broom), MapCollision = true)]
-    public class Slime : Entity
+    public class Slime : HealthDropper
     {
         private enum SlimeType
         {
@@ -45,7 +45,7 @@ namespace AnodyneSharp.Entities.Enemy
         private Player target;
 
         public Slime(EntityPreset preset, Player player)
-            : base(preset.Position, "slime", 16, 16, Drawing.DrawOrder.ENTITIES)
+            : base(preset.Position, "slime", 16, 16, DrawOrder.ENTITIES)
         {
             _preset = preset;
 
@@ -90,7 +90,7 @@ namespace AnodyneSharp.Entities.Enemy
                 .End()
                 .State("Dying")
                     .Enter((state) => Play("Dying"))
-                    .Condition(() => finished, (state) => exists = _preset.Alive = false)
+                    .Condition(() => finished, (state) => { _preset.Alive = false; Die(); })
                 .End()
                 .Build();
             state.ChangeState("Move");
@@ -157,11 +157,11 @@ namespace AnodyneSharp.Entities.Enemy
         {
             if (_type == SlimeType.Normal)
             {
-                return goos.Entities;
+                return goos.Entities.Concat(base.SubEntities());
             }
             else
             {
-                return goos.Entities.Concat(bullets.Entities);
+                return goos.Entities.Concat(bullets.Entities).Concat(base.SubEntities());
             }
 
         }
