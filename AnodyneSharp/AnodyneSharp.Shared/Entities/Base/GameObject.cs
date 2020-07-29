@@ -279,5 +279,12 @@ namespace AnodyneSharp.Entities
             else
                 return false;
         }
+
+        protected void MoveTowards(Vector2 target, float speed)
+        {
+            velocity = target - Position;
+            velocity.Normalize();
+            velocity *= speed;
+        }
     }
 }

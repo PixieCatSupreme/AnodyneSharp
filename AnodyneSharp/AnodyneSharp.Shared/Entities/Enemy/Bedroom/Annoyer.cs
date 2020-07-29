@@ -7,7 +7,6 @@ using RSG;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace AnodyneSharp.Entities.Enemy
 {
@@ -30,6 +29,7 @@ namespace AnodyneSharp.Entities.Enemy
         private string start_state = "Wait";
 
         private Explosion explosion;
+        private EntityPool<Fireball> fireballs;
 
         private class CirclingState : TimerState
         {
@@ -44,6 +44,14 @@ namespace AnodyneSharp.Entities.Enemy
             {
                 angle += velocity * deltaTime;
                 base.Update(deltaTime);
+            }
+        }
+
+        private class ActiveState : TimerState
+        {
+            public ActiveState()
+            {
+                AddTimer(2.3f, "Fire");
             }
         }
 
@@ -90,8 +98,10 @@ namespace AnodyneSharp.Entities.Enemy
             if (preset.Frame == T_SUPER)
                 _health = 2;
 
+            fireballs = new EntityPool<Fireball>(preset.Frame == T_SUPER ? 4 : 0, () => new Fireball());
+
             _state = new StateMachineBuilder()
-                .State("Active")
+                .State<ActiveState>("Active")
                     .Enter((state) => {
                         velocity = Vector2.Zero;
                         state.ChangeState(start_state);
@@ -104,6 +114,8 @@ namespace AnodyneSharp.Entities.Enemy
                             velocity.X = GlobalState.RNG.Next(-30, 31);
                         _state.ChangeState("Hit");
                     })
+
+                    .Event("Fire", (state) => fireballs.Spawn((f)=>f.Spawn(this,_target)))
                     
                     .State<TimerState>("Wait")
                         .Enter((state) =>
@@ -175,13 +187,6 @@ namespace AnodyneSharp.Entities.Enemy
             _state.ChangeState("Active");
         }
 
-        private void MoveTowards(Vector2 target, float speed)
-        {
-            velocity = target - Position;
-            velocity.Normalize();
-            velocity *= speed;
-        }
-
         public override void Update()
         {
             _state.Update(GameTimes.DeltaTime);
@@ -190,7 +195,7 @@ namespace AnodyneSharp.Entities.Enemy
 
         public override IEnumerable<Entity> SubEntities()
         {
-            return Enumerable.Repeat(explosion,1);
+            return fireballs.Entities.Concat(Enumerable.Repeat(explosion,1));
         }
 
         public override void Collided(Entity other)
@@ -221,6 +226,63 @@ namespace AnodyneSharp.Entities.Enemy
                     //TODO: drop health pickup
                     exists = false;
                 }
+            }
+        }
+
+        [Collision(typeof(Player),typeof(Broom),MapCollision = false)]
+        class Fireball : Entity
+        {
+            private const float speed = 30f;
+
+            private IState _state;
+
+            public Fireball() : base(Vector2.Zero, "lion_fireballs", 16,16,DrawOrder.FG_SPRITES)
+            {
+                width = height = 8;
+                offset = new Vector2(4, 4);
+
+                AddAnimation("shoot", CreateAnimFrameArray(0, 1), 8);
+                AddAnimation("poof", CreateAnimFrameArray(2, 3, 4, 5), 8, looped:false);
+
+                _state = new StateMachineBuilder()
+                    .State("Shoot")
+                        .Enter((state) => Play("shoot"))
+                        .Update((state,time) => _opacity -= 0.06f * time)
+                        .Condition(()=>_opacity <= 0.6f, (s) => _state.ChangeState("Poof"))
+                        .Event<CollisionEvent<Broom>>("Hit",(s,b) => _state.ChangeState("Poof"))
+                        .Event<CollisionEvent<Player>>("Player",(s,p) => { p.entity.ReceiveDamage(1); _state.ChangeState("Poof"); })
+                    .End()
+                    .State("Poof")
+                        .Enter((state) => Play("poof"))
+                        .Condition(()=>finished,(s) => exists=false)
+                    .End()
+                    .Build();
+            }
+
+            public void Spawn(Entity parent, Entity target)
+            {
+                Position = parent.Position;
+                MoveTowards(target.Position, speed);
+                _opacity = 1.0f;
+                _state.ChangeState("Shoot");
+            }
+
+            public override void Collided(Entity other)
+            {
+                if (other is Player p)
+                {
+                    _state.TriggerEvent("Player", new CollisionEvent<Player>() { entity = p });
+                }
+                else if (other is Broom b)
+                {
+                    _state.TriggerEvent("Hit", new CollisionEvent<Broom>() { entity = b });
+                }
+            }
+
+            public override void Update()
+            {
+                _state.Update(GameTimes.DeltaTime);
+                base.Update();
             }
         }
     }
