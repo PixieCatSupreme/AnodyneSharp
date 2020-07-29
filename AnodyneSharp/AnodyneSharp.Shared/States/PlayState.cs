@@ -810,6 +810,11 @@ namespace AnodyneSharp.States
             SoundManager.PlaySong(title);
         }
 
+        private IEnumerable<Entity> SubEntities(Entity e)
+        {
+            return Enumerable.Repeat(e, 1).Concat(e.SubEntities().SelectMany(s => SubEntities(s)));
+        }
+
         private void LoadGridEntities()
         {
             _oldEntities = new List<Entity>(_gridEntities);
@@ -828,7 +833,7 @@ namespace AnodyneSharp.States
             _groups.Register(_player.broom);
 
             _gridEntities = gridPresets.Where(preset => preset.Alive)
-                .Select(preset => preset.Create(_player)).SelectMany(e => new List<Entity> { e }.Concat(e.SubEntities())).ToList();
+                .Select(preset => preset.Create(_player)).SelectMany(e => SubEntities(e)).ToList();
             foreach (Entity e in _gridEntities)
             {
                 _groups.Register(e);
