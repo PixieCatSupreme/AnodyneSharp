@@ -15,5 +15,7 @@ namespace AnodyneSharp.Entities
         public Type[] Types { get; }
 
         public bool MapCollision { get; set; }
+
+        public bool KeepOnScreen { get; set; }
     }
 }

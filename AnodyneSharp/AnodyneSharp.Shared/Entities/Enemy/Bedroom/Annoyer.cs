@@ -11,7 +11,7 @@ using System.Linq;
 namespace AnodyneSharp.Entities.Enemy
 {
     //MapCollision conditionally enabled with Solid property
-    [NamedEntity, Enemy, Collision(typeof(Player), typeof(Broom), MapCollision = true)]
+    [NamedEntity, Enemy, Collision(typeof(Player), typeof(Broom), MapCollision = true, KeepOnScreen = true)]
     public class Annoyer : Entity
     {
         private int _health = 1;
@@ -146,10 +146,12 @@ namespace AnodyneSharp.Entities.Enemy
                     .End()
                     
                     .State<SwoopState>("Swoop")
-                        .Enter((state) => { state.target = Position + 3 * (_target.Position - Position); MoveTowards(state.target, 100f); })
+                        .Enter((state) => state.target = Position + 3 * (_target.Position - Position) )
                         .Update((state,time) => { //TODO: make it possible for this to be a Condition
                             if ((Position - state.target).Length() < 3)
                                 state.Parent.ChangeState("Approach");
+                            else
+                                MoveTowards(state.target, 100f);
                         })
                     .End()
                 .End()

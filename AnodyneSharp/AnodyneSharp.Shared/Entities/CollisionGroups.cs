@@ -1,5 +1,7 @@
 ﻿using AnodyneSharp.Entities.Enemy;
 using AnodyneSharp.Map;
+using AnodyneSharp.Registry;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,12 +28,15 @@ namespace AnodyneSharp.Entities
         int base_killed_enemies;
         List<Entity> _enemies;
 
+        List<Entity> _keepOnScreen;
+
         public CollisionGroups(int num_enemies_killed)
         {
             base_killed_enemies = num_enemies_killed;
             _enemies = new List<Entity>();
             _groups = new Dictionary<Type, Group>();
             _mapColliders = new List<Entity>();
+            _keepOnScreen = new List<Entity>();
         }
 
         public int KilledEnemies()
@@ -58,6 +63,10 @@ namespace AnodyneSharp.Entities
 
             if (c.MapCollision)
                 _mapColliders.Add(e);
+
+            if (c.KeepOnScreen)
+                _keepOnScreen.Add(e);
+
             foreach(Type target in c.Types)
             {
                 Get(target).colliders.Add(e);
@@ -71,6 +80,35 @@ namespace AnodyneSharp.Entities
                 bg.Collide(e);
                 bg2.Collide(e);
             }
+
+            Vector2 roomUpLeft = GlobalState.CurrentMapGrid * GameConstants.SCREEN_WIDTH_IN_PIXELS;
+            Vector2 roomBottomRight = roomUpLeft + Vector2.One * GameConstants.SCREEN_WIDTH_IN_PIXELS;
+
+            foreach(Entity e in _keepOnScreen.Where(e=>e.exists))
+            {
+                if (e.Hitbox.Right < roomUpLeft.X)
+                {
+                    e.Position.X = roomUpLeft.X;
+                    e.touching |= Touching.LEFT;
+                }
+                else if(e.Hitbox.Left > roomBottomRight.X)
+                {
+                    e.Position.X = roomBottomRight.X - e.width;
+                    e.touching |= Touching.RIGHT;
+                }
+
+                if(e.Hitbox.Top < roomUpLeft.Y)
+                {
+                    e.Position.Y = roomUpLeft.Y;
+                    e.touching |= Touching.UP;
+                }
+                else if(e.Hitbox.Bottom > roomBottomRight.Y)
+                {
+                    e.Position.Y = roomBottomRight.Y - e.height;
+                    e.touching |= Touching.DOWN;
+                }
+            }
+
             foreach(Group g in _groups.Values)
             {
                 foreach(Entity collider in g.colliders.Where(e => e.exists))

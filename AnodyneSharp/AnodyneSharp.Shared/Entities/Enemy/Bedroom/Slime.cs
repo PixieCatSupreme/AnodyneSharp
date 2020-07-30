@@ -12,7 +12,7 @@ using System.Text;
 
 namespace AnodyneSharp.Entities.Enemy
 {
-    [NamedEntity, Enemy, Collision(typeof(Player), typeof(Broom), MapCollision = true)]
+    [NamedEntity, Enemy, Collision(typeof(Player), typeof(Broom), MapCollision = true, KeepOnScreen = true)]
     public class Slime : HealthDropper
     {
         private enum SlimeType
