@@ -55,6 +55,7 @@ namespace AnodyneSharp.Registry
         }
 
         public static Language CurrentLanguage { get; set; }
+        public static bool FishermanDead { get; set; }
 
         public static bool SetDialogueMode = false;
 

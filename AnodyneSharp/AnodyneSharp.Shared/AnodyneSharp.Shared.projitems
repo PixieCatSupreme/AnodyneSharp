@@ -28,11 +28,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\Shadow.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\CollisionGroups.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Decorations\NonSolid.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\DoorPair.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Bedroom\Annoyer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\EnemyAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Crowd\Person.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Etc\FollowerBro.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Button.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Door.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Doors\WhirlPool.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Gate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Gates\KeyCardGate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Gates\SmallKeyGate.cs" />
