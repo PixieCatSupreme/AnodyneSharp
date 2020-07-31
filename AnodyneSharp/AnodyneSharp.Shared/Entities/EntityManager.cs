@@ -16,10 +16,12 @@ namespace AnodyneSharp.Entities
         private const string EntityFilePath = "Content.Entities.xml";
 
         private static Dictionary<string, List<EntityPreset>> _entities;
+        private static Dictionary<int, DoorPair> _doorPairs;
 
         static EntityManager()
         {
             _entities = new Dictionary<string, List<EntityPreset>>();
+            _doorPairs = new Dictionary<int, DoorPair>();
         }
 
         /// <summary>
@@ -59,11 +61,24 @@ namespace AnodyneSharp.Entities
             return GetMapEntities(mapName).Where(e => e.GridPosition == grid).ToList();
         }
 
+        public static DoorMapPair GetLinkedDoor(EntityPreset door)
+        {
+            if (_doorPairs.TryGetValue(door.Frame, out DoorPair pair))
+            {
+                return pair.GetLinkedDoor(door);
+            }
+            else
+            {
+                DebugLogger.AddCritical($"Could not find door pair with id {door.Frame}");
+                return null;
+            }
+        }
+
         private static void ReadEntities(string xml)
         {
             var type_lookup = (from t in Assembly.GetExecutingAssembly().GetTypes()
                                where t.IsDefined(typeof(NamedEntity), false)
-                               group new { type=t, check=t.GetCustomAttribute<NamedEntity>() } by t.GetCustomAttribute<NamedEntity>().GetName(t)
+                               group new { type = t, check = t.GetCustomAttribute<NamedEntity>() } by t.GetCustomAttribute<NamedEntity>().GetName(t)
                                ).ToDictionary(t => t.Key, t => t.ToList());
 
             HashSet<string> missing = new HashSet<string>();
@@ -74,6 +89,8 @@ namespace AnodyneSharp.Entities
 
             XmlNode root = doc.FirstChild;
 
+            List<DoorMapPair> doors = new List<DoorMapPair>();
+
             if (root.HasChildNodes)
             {
                 for (int i = 0; i < root.ChildNodes.Count; i++)
@@ -81,8 +98,8 @@ namespace AnodyneSharp.Entities
                     var map = root.ChildNodes[i];
 
                     string mapName = map.Attributes.GetNamedItem("name").Value;
-                    
-                    if(!_entities.ContainsKey(mapName))
+
+                    if (!_entities.ContainsKey(mapName))
                     {
                         _entities.Add(mapName, new List<EntityPreset>());
                     }
@@ -90,7 +107,7 @@ namespace AnodyneSharp.Entities
 
                     foreach (XmlNode child in map.ChildNodes)
                     {
-                        if(!type_lookup.ContainsKey(child.Name))
+                        if (!type_lookup.ContainsKey(child.Name))
                         {
                             if (!missing.Contains(child.Name))
                             {
@@ -129,19 +146,40 @@ namespace AnodyneSharp.Entities
                             if (matching.Count == 0)
                             {
                                 string missing_entity = $"{child.Name}-{frame}-'{type}'";
-                                if(!missing.Contains(missing_entity))
+                                if (!missing.Contains(missing_entity))
                                 {
                                     missing.Add(missing_entity);
                                     DebugLogger.AddWarning($"Missing Entity {missing_entity}!");
                                 }
                             }
-                            else if(matching.Count > 1)
+                            else if (matching.Count > 1)
                             {
-                                DebugLogger.AddWarning($"Conflict at {child.Name}-{frame}-'{type}': "+String.Join(", ",matching.Select(t=>t.type.Name)));
+                                DebugLogger.AddWarning($"Conflict at {child.Name}-{frame}-'{type}': " + String.Join(", ", matching.Select(t => t.type.Name)));
                             }
                             else
                             {
-                                presets.Add(new EntityPreset(matching[0].type, new Vector2(x, y), id,frame, p, type, alive));
+                                EntityPreset preset = new EntityPreset(matching[0].type, new Vector2(x, y), id, frame, p, type, alive);
+
+                                presets.Add(preset);
+
+                                if (child.Name == "Door")
+                                {
+                                    DoorMapPair newDoor = new DoorMapPair(preset, mapName);
+
+                                    if (doors.Any(d => d.Door.Frame == preset.Frame))
+                                    {
+                                        DoorMapPair doorOne = doors.First(d => d.Door.Frame == preset.Frame);
+                                        _doorPairs.Add(preset.Frame, new DoorPair(doorOne, newDoor));
+
+                                        doors.Remove(doorOne);
+
+                                        DebugLogger.AddInfo($"DOOR PAIR {preset.Frame}\n{doorOne.Door.Position.X} {doorOne.Door.Position.Y} {doorOne.Map}\n{newDoor.Door.Position.X} {newDoor.Door.Position.Y} {newDoor.Map}");
+                                    }
+                                    else
+                                    {
+                                        doors.Add(newDoor);
+                                    }
+                                }
                             }
                         }
                     }
