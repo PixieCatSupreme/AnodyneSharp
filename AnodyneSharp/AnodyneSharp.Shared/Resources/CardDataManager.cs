@@ -63,8 +63,14 @@ namespace AnodyneSharp.Resources
             string mapName = GlobalState.CURRENT_MAP_NAME;
             Vector2 gridPos = GlobalState.CurrentMapGrid;
 
+            if (mapName == "NEXUS")
+            {
+                return 48;
+            }
+
             if (!_cardLocations.ContainsKey(mapName))
             {
+
                 DebugLogger.AddError($"No card data found for map {mapName}!");
                 return -1;
             }

@@ -21,7 +21,7 @@ namespace AnodyneSharp.Entities.Gadget.Treasures
         float animTimer;
 
         public CardTreasure(Vector2 pos, int frame)
-            : base("card_sheet", pos, 24, 24, frame)
+            : base(frame != 48 ?"card_sheet" : "card_49", pos, 24, 24, frame)
         {
             animTimer = 0;
             scale = 0.5f;
