@@ -2297,37 +2297,37 @@
     <NPC x="384" y="80" guid="67918A21-B9F5-C6B1-130B-424AB235C6AD" frame="12" type="generic" />
   </map>
   <map name="NEXUS" type="Stateful">
-    <Door x="704" y="1392" guid="7C6BBEC5-AAB2-3506-DF56-2903596CEA74" frame="4" type="7" />
-    <Door x="816" y="1136" guid="917CCBF2-037E-CC96-A391-EF58610A39C4" frame="46" type="9" />
-    <Door x="704" y="1024" guid="CEA5FE5D-714E-B4CF-7C9A-8E7EA72313FB" frame="48" type="9" />
-    <Door x="816" y="1200" guid="9D2B3401-F034-9D81-1D70-2C06189A02FE" frame="49" type="9" />
-    <Door x="816" y="1024" guid="2546E954-4BC0-1BDB-0F20-F98867EDE0D3" frame="50" type="9" />
-    <Door x="656" y="960" guid="F4FD3F80-6DB2-1B18-F6EE-FE1D9E90B55C" frame="51" type="9" />
-    <Door x="656" y="880" guid="02BA0095-95AE-7088-E6B9-70A0546F8A29" frame="52" type="9" />
+    <Door x="704" y="1392" guid="7C6BBEC5-AAB2-3506-DF56-2903596CEA74" frame="2" type="6" />
+    <Door x="816" y="1136" guid="917CCBF2-037E-CC96-A391-EF58610A39C4" frame="46" type="17" />
+    <Door x="704" y="1024" guid="CEA5FE5D-714E-B4CF-7C9A-8E7EA72313FB" frame="48" type="17" />
+    <Door x="816" y="1200" guid="9D2B3401-F034-9D81-1D70-2C06189A02FE" frame="49" type="17" />
+    <Door x="816" y="1024" guid="2546E954-4BC0-1BDB-0F20-F98867EDE0D3" frame="50" type="17" />
+    <Door x="656" y="960" guid="F4FD3F80-6DB2-1B18-F6EE-FE1D9E90B55C" frame="51" type="17" />
+    <Door x="656" y="880" guid="02BA0095-95AE-7088-E6B9-70A0546F8A29" frame="52" type="17" />
     <NPC x="688" y="1200" guid="9DCF2047-F16B-77AA-17C6-6A61EEDC2D68" frame="0" type="statue" />
     <Sage x="704" y="1216" guid="6141059D-A515-86F6-D03B-2212BD8A82A1" frame="0"/>
     <NPC x="768" y="1376" guid="3B8993E3-E2F4-CB35-8F07-29E8B3D573D3" frame="0" type="rock" />
     <Event x="736" y="1200" guid="AF70B22E-0B46-1838-980C-2EB8203C4490" frame="2"/>
-    <Door x="896" y="1200" guid="7E61CF69-7616-CEE1-ED48-34FDC35D68A0" frame="63" type="9" />
-    <Door x="896" y="1136" guid="5134445B-0C25-8C9D-ACB5-873A91EAB6EE" frame="60" type="9" />
-    <Door x="592" y="1024" guid="D792EBD9-B180-BBA5-727C-32EDC23F353A" frame="55" type="9" />
-    <Door x="576" y="864" guid="D4CA732D-E414-3F20-4F6D-70A886A2936E" frame="53" type="9" />
-    <Door x="496" y="864" guid="F66AAB4B-4C52-BB35-A348-D07436D39224" frame="62" type="9" />
-    <Door x="496" y="800" guid="FF592726-1EB9-79CF-E112-49A8584B2800" frame="58" type="9" />
-    <Door x="576" y="800" guid="F78EAB03-F6C2-A911-F68C-ABA6DD6D9115" frame="45" type="9" />
-    <Door x="816" y="864" guid="4F8C6CB3-ECC5-313C-3592-4C2157A59437" frame="54" type="9" />
-    <Door x="896" y="864" guid="486F21D8-F268-E973-29BF-B3A01BE20A6F" frame="61" type="9" />
-    <Door x="816" y="800" guid="BFF7C10F-9043-8D9A-2431-006771BF4903" frame="47" type="9" />
-    <Door x="896" y="800" guid="DC7EA52C-149A-C994-DD3C-A63FAB501266" frame="59" type="9" />
-    <Door x="656" y="816" guid="3AE98A81-770E-F344-95A2-1B35DC4BCFD2" frame="56" type="9" />
-    <Door x="752" y="816" guid="6100C106-EF96-FDAD-9ADF-736F92C67700" frame="57" type="9" />
-    <Door x="752" y="960" guid="8B83AE2C-DDCF-B7EA-655D-378E35F89D21" frame="64" type="9" />
+    <Door x="896" y="1200" guid="7E61CF69-7616-CEE1-ED48-34FDC35D68A0" frame="63" type="17" />
+    <Door x="896" y="1136" guid="5134445B-0C25-8C9D-ACB5-873A91EAB6EE" frame="60" type="17" />
+    <Door x="592" y="1024" guid="D792EBD9-B180-BBA5-727C-32EDC23F353A" frame="55" type="17" />
+    <Door x="576" y="864" guid="D4CA732D-E414-3F20-4F6D-70A886A2936E" frame="53" type="17" />
+    <Door x="496" y="864" guid="F66AAB4B-4C52-BB35-A348-D07436D39224" frame="62" type="17" />
+    <Door x="496" y="800" guid="FF592726-1EB9-79CF-E112-49A8584B2800" frame="58" type="17" />
+    <Door x="576" y="800" guid="F78EAB03-F6C2-A911-F68C-ABA6DD6D9115" frame="45" type="17" />
+    <Door x="816" y="864" guid="4F8C6CB3-ECC5-313C-3592-4C2157A59437" frame="54" type="17" />
+    <Door x="896" y="864" guid="486F21D8-F268-E973-29BF-B3A01BE20A6F" frame="61" type="17" />
+    <Door x="816" y="800" guid="BFF7C10F-9043-8D9A-2431-006771BF4903" frame="47" type="17" />
+    <Door x="896" y="800" guid="DC7EA52C-149A-C994-DD3C-A63FAB501266" frame="59" type="17" />
+    <Door x="656" y="816" guid="3AE98A81-770E-F344-95A2-1B35DC4BCFD2" frame="56" type="17" />
+    <Door x="752" y="816" guid="6100C106-EF96-FDAD-9ADF-736F92C67700" frame="57" type="17" />
+    <Door x="752" y="960" guid="8B83AE2C-DDCF-B7EA-655D-378E35F89D21" frame="64" type="17" />
     <Button x="688" y="1072" guid="AABBF273-9C7E-235B-FB91-FA5B5ECBD47F" frame="0"/>
     <Gate x="704" y="1088" guid="AAAECAD4-F6A9-9756-31E0-C3813862E61B" frame="5" alive="true"/>
     <Gate x="720" y="1088" guid="73FB3BC5-AC42-6439-75EF-8EE824DCF143" frame="5" alive="true"/>
     <Gate x="864" y="1216" guid="335DD556-D1EF-06D5-24B4-DFACCCD59A28" frame="5" alive="true"/>
     <Button x="864" y="1168" guid="11A9CA9D-6C34-948B-5B1A-A83A6F034E08" frame="0"/>
-    <Door x="560" y="1200" guid="49657318-F48E-55E6-053F-3A78109685BB" frame="13" type="9" />
+    <Door x="560" y="1200" guid="49657318-F48E-55E6-053F-3A78109685BB" frame="13" type="17" />
     <Treasure x="832" y="400" guid="D3498803-D92D-4A88-83B1-B0E5EC6D38A8" frame="2" alive="true"/>
     <KeyBlock x="704" y="384" guid="FF9FAF51-3420-85DB-B6E9-2DF93C4E5283" frame="4" p="2" alive="true"/>
     <NPC x="720" y="432" guid="67D0F47F-52A4-3227-C299-B916569252BD" frame="1" type="rock" />
