@@ -34,6 +34,7 @@ namespace AnodyneSharp.Entities.Gadget
 
         protected virtual void TeleportPlayer()
         {
+            //TODO: Screen transition
             DebugLogger.AddInfo($"Teleporting player to map {_linkedDoor.Map} at {_linkedDoor.Door.Position.X}, {_linkedDoor.Door.Position.Y}. Door pair {_linkedDoor.Door.Frame}.");
         }
     }

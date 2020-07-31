@@ -12,9 +12,8 @@ namespace AnodyneSharp.Entities.Gadget.Doors
         //This is just the target for a one way door. It's supposed to do literally nothing!
         public OneWayDoor(EntityPreset preset, Player player)
             : base(Vector2.Zero, 0)
-        { }
-
-        public override void Draw()
-        { }
+        {
+            exists = false;
+        }
     }
 }

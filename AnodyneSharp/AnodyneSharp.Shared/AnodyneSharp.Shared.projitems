@@ -36,6 +36,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Button.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Door.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Doors\BlankPortal.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Doors\DirectionalDoor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Doors\FallDoor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Doors\NoMoveDoor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Doors\OneWayDoor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Doors\WhirlPool.cs" />
