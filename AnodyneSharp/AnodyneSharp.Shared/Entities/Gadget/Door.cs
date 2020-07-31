@@ -13,6 +13,10 @@ namespace AnodyneSharp.Entities.Gadget
 
         protected Vector2 teleportOffset;
 
+        public Door(EntityPreset preset, Player player)
+            : this(preset, player, "doors", 16, 16)
+        { }
+
         public Door(EntityPreset preset, Player player, string textureName, int width, int height)
             : base(preset.Position, textureName, width, height, DrawOrder.BG_ENTITIES)
         {
@@ -28,7 +32,7 @@ namespace AnodyneSharp.Entities.Gadget
             }
         }
 
-        protected void TeleportPlayer()
+        protected virtual void TeleportPlayer()
         {
             DebugLogger.AddInfo($"Teleporting player to map {_linkedDoor.Map} at {_linkedDoor.Door.Position.X}, {_linkedDoor.Door.Position.Y}");
         }
