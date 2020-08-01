@@ -103,8 +103,6 @@ namespace AnodyneSharp.States
             _equippedBroomBorder = ResourceManager.GetTexture("frame_icon", true);
 
             LoadMap();
-
-            UpdateBroomIcon();
         }
 
         public override void Draw()
@@ -209,19 +207,16 @@ namespace AnodyneSharp.States
                 case PlayStateState.S_CUTSCENE:
                     break;
                 case PlayStateState.S_DIALOGUE:
-                    if (_childState is DialogueState dialogueState)
-                    {
-                        _player.dontMove = true;
-                        _player.skipBroom = true;
-                        dialogueState.Update();
+                    _player.dontMove = true;
+                    _player.skipBroom = true;
+                    _childState.Update();
 
-                        if (GlobalState.Dialogue == "")
-                        {
-                            _state = PlayStateState.S_NORMAL;
-                            _childState = null;
-                            _player.dontMove = false;
-                            _player.skipBroom = false;
-                        }
+                    if (GlobalState.Dialogue == "")
+                    {
+                        _state = PlayStateState.S_NORMAL;
+                        _childState = null;
+                        _player.dontMove = false;
+                        _player.skipBroom = false;
                     }
                     break;
                 default:
@@ -383,24 +378,21 @@ namespace AnodyneSharp.States
                     SwitchBroom(false);
                 }
 
-                if (KeyInput.JustPressedKey(Keys.D4) && InventoryManager.HasTransformer && BroomType.Transformer != InventoryManager.EquippedBroom)
-                {
-                    SetBroom(BroomType.Transformer);
-                }
-                else if (KeyInput.JustPressedKey(Keys.D1) && InventoryManager.HasBroom && BroomType.Normal != InventoryManager.EquippedBroom)
+                if (KeyInput.JustPressedKey(Keys.D1))
                 {
                     SetBroom(BroomType.Normal);
                 }
-                else if (GlobalState.CanChangeBroom)
+                else if (KeyInput.JustPressedKey(Keys.D3))
                 {
-                    if (KeyInput.JustPressedKey(Keys.D3) && InventoryManager.HasWiden && BroomType.Wide != InventoryManager.EquippedBroom)
-                    {
-                        SetBroom(BroomType.Wide);
-                    }
-                    else if (KeyInput.JustPressedKey(Keys.D2) && InventoryManager.HasLenghten && BroomType.Long != InventoryManager.EquippedBroom)
-                    {
-                        SetBroom(BroomType.Long);
-                    }
+                    SetBroom(BroomType.Wide);
+                }
+                else if (KeyInput.JustPressedKey(Keys.D2))
+                {
+                    SetBroom(BroomType.Long);
+                }
+                else if (KeyInput.JustPressedKey(Keys.D4))
+                {
+                    SetBroom(BroomType.Transformer);
                 }
             }
 
@@ -631,56 +623,34 @@ namespace AnodyneSharp.States
                 return;
             }
 
-            bool allowedBroom;
-
             BroomType broomType = InventoryManager.EquippedBroom;
 
-            do
+            if (!GlobalState.CanChangeBroom)
             {
-                broomType += nextBroom ? 1 : -1;
-                if (broomType < 0 || broomType > BroomType.Transformer)
-                {
-                    broomType = (BroomType)(((int)broomType + (int)BroomType.Transformer + 1) % ((int)BroomType.Transformer + 1));
-                }
-
-                switch (broomType)
-                {
-                    case BroomType.Normal:
-                        allowedBroom = true;
-                        break;
-                    case BroomType.Wide:
-                        allowedBroom = GlobalState.CanChangeBroom && InventoryManager.HasWiden;
-                        break;
-                    case BroomType.Long:
-                        allowedBroom = GlobalState.CanChangeBroom && InventoryManager.HasLenghten;
-                        break;
-                    case BroomType.Transformer:
-                        allowedBroom = InventoryManager.HasTransformer;
-                        break;
-                    default:
-                        allowedBroom = false;
-                        break;
-                }
-            } while (!allowedBroom);
-
-            if (broomType != InventoryManager.EquippedBroom)
-            {
-                SetBroom(broomType);
+                broomType = broomType == BroomType.Transformer ? BroomType.Normal : BroomType.Transformer;
             }
+            else
+            {
+                do
+                {
+                    broomType += nextBroom ? 1 : -1;
+                    broomType = (BroomType)(((int)broomType + (int)BroomType.Transformer + 1) % ((int)BroomType.Transformer + 1));
+                } while (!InventoryManager.HasBroomType(broomType));
+            }
+
+            SetBroom(broomType);
 
         }
 
         private void SetBroom(BroomType broom)
         {
-            if (!GlobalState.CanChangeBroom && broom != BroomType.Normal && broom != BroomType.Transformer)
-            {
-                return;
-            }
-
-            SoundManager.PlaySoundEffect("menu_move");
             InventoryManager.EquippedBroom = broom;
-            UpdateBroomIcon();
-            _player.broom.UpdateBroomType();
+            if (InventoryManager.EquippedBroomChanged)
+            {
+                SoundManager.PlaySoundEffect("menu_move");
+                UpdateBroomIcon();
+                _player.broom.UpdateBroomType();
+            }
         }
 
         private void UpdateHealth()
@@ -703,11 +673,6 @@ namespace AnodyneSharp.States
             string tex = "";
 
             BroomType broom = InventoryManager.EquippedBroom;
-
-            if (!GlobalState.CanChangeBroom && InventoryManager.EquippedBroom != BroomType.Transformer)
-            {
-                broom = BroomType.Normal;
-            }
 
             switch (broom)
             {

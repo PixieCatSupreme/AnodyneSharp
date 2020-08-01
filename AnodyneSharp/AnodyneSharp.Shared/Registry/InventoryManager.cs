@@ -25,16 +25,46 @@ namespace AnodyneSharp.Registry
             }
         }
 
+        public static bool HasBroomType(BroomType type)
+        {
+            switch(type)
+            {
+                case BroomType.Normal:
+                    return HasBroom;
+                case BroomType.Long:
+                    return HasLenghten;
+                case BroomType.Wide:
+                    return HasWiden;
+                case BroomType.Transformer:
+                    return HasTransformer;
+            }
+            return false;
+        }
+
         public static BroomType EquippedBroom
         {
             get
             {
+                if (!GlobalState.CanChangeBroom && _equippedBroom != BroomType.Transformer && _equippedBroom != BroomType.NONE)
+                    return BroomType.Normal;
+
                 return _equippedBroom;
             }
             set
             {
-                _equippedBroom = value;
-                EquippedBroomChanged = true;
+                if (HasBroomType(value))
+                {
+                    BroomType old_val = _equippedBroom;
+                    if (!GlobalState.CanChangeBroom && value != BroomType.Transformer)
+                    {
+                        _equippedBroom = BroomType.Normal;
+                    }
+                    else
+                    {
+                        _equippedBroom = value;
+                    }
+                    EquippedBroomChanged = _equippedBroom != old_val;
+                }
             }
         }
 

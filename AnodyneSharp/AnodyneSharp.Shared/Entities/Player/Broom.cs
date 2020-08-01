@@ -41,8 +41,6 @@ namespace AnodyneSharp.Entities
 
         private bool is_behind_player = false;
         private bool just_played_extra_anim = false;
-        private bool is_wide;
-        private bool is_long;
 
         public Broom(Entity root)
             : base(new Vector2(root.Position.X - 10, root.Position.Y), 16, 16, Drawing.DrawOrder.ENTITIES)
@@ -132,35 +130,14 @@ namespace AnodyneSharp.Entities
             if (GlobalState.UseCellBroom)
             {
                 SetTexture(Cell_Sprite);
-                is_wide = is_long = false;
-                return;
             }
             else if (GlobalState.CURRENT_MAP_NAME == "SUBURB")
             {
                 SetTexture(Knife_Sprite);
-                is_wide = is_long = false;
-                return;
             }
             else
             {
                 SetTexture(Broom_Sprite);
-            }
-
-            switch (InventoryManager.EquippedBroom)
-            {
-                case BroomType.Wide:
-                    is_wide = true;
-                    is_long = false;
-                    break;
-                case BroomType.Long:
-                    is_wide = false;
-                    is_long = true;
-                    break;
-                case BroomType.Transformer:
-                    break;
-                default:
-                    is_wide = is_long = false;
-                    break;
             }
         }
 
@@ -183,11 +160,11 @@ namespace AnodyneSharp.Entities
 
                     o = new Vector2(0, -6);
 
-                    if (is_wide)
+                    if (InventoryManager.EquippedBroom == BroomType.Wide)
                     {
                         SetWideValues(o, new Vector2(-5, 1));
                     }
-                    else if (is_long)
+                    else if (InventoryManager.EquippedBroom == BroomType.Long)
                     {
                         SetLongValues(o, new Vector2(-14, 7));
                     }
@@ -207,11 +184,11 @@ namespace AnodyneSharp.Entities
 
                     o = new Vector2(5, -6);
 
-                    if (is_wide)
+                    if (InventoryManager.EquippedBroom == BroomType.Wide)
                     {
                         SetWideValues(o, new Vector2(2, 3));
                     }
-                    else if (is_long)
+                    else if (InventoryManager.EquippedBroom == BroomType.Long)
                     {
                         SetLongValues(o, new Vector2(0, 9));
                     }
@@ -230,11 +207,11 @@ namespace AnodyneSharp.Entities
 
                     o = new Vector2(-2, 0);
 
-                    if (is_wide)
+                    if (InventoryManager.EquippedBroom == BroomType.Wide)
                     {
                         SetWideValues(o, new Vector2(5, -7));
                     }
-                    else if (is_long)
+                    else if (InventoryManager.EquippedBroom == BroomType.Long)
                     {
                         SetLongValues(o, new Vector2(0, -6));
                     }
@@ -253,11 +230,11 @@ namespace AnodyneSharp.Entities
 
                     o = new Vector2(-2, 4);
 
-                    if (is_wide)
+                    if (InventoryManager.EquippedBroom == BroomType.Wide)
                     {
                         SetWideValues(o, new Vector2(3, -1));
                     }
-                    else if (is_long)
+                    else if (InventoryManager.EquippedBroom == BroomType.Long)
                     {
                         SetLongValues(o, new Vector2(-2, 5));
                     }
