@@ -28,7 +28,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc
 
                 f = MapUtilities.GetRoomCoordinate(Position).X > 5 ? 31 : 30;
             }
-            else if (GlobalState.CURRENT_MAP_NAME == "TRAIN")
+            else if (GlobalState.CURRENT_MAP_NAME == "CELL")
             {
                 f = 1;
             }

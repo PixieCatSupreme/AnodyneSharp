@@ -26,7 +26,7 @@ namespace AnodyneSharp.Entities.Gadget.Doors
 
             Position += new Vector2(6, 6);
 
-            if (GlobalState.CURRENT_MAP_NAME == "TRAIN")
+            if (GlobalState.CURRENT_MAP_NAME == "CELL")
             {
                 AddAnimation("on", CreateAnimFrameArray(3), 12, false);
                 AddAnimation("off", CreateAnimFrameArray(2), 12, false);

@@ -40,7 +40,7 @@ namespace AnodyneSharp.Entities.Gadget
             _preset = preset;
             immovable = true;
 
-            if (GlobalState.CURRENT_MAP_NAME == "TRAIN")
+            if (GlobalState.CURRENT_MAP_NAME == "CELL")
             {
                 frame = 4;
             }

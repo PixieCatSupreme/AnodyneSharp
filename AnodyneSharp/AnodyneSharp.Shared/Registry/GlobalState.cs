@@ -52,7 +52,7 @@ namespace AnodyneSharp.Registry
         {
             get
             {
-                return AlwaysCellGraphics || CURRENT_MAP_NAME == "TRAIN";
+                return AlwaysCellGraphics || CURRENT_MAP_NAME == "CELL";
             }
         }
 

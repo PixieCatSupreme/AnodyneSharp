@@ -769,8 +769,8 @@ Here lies Dave. He wasn't very inspirational.
 	end area
 	
 	
-# Area for TRAIN (it's actually CELL sorry)
-	area TRAIN
+# Area for CELL (it's actually CELL sorry)
+	area CELL
 		scene one
 The Seeing One knows all and will lead one to enlightenment. The road to enlightenment is unlit by any torches.
 		end scene
@@ -1157,7 +1157,7 @@ Kuribu: I tell you my phone number!  0*1-51*7-*4386
 	end area
 	
 	
-	area TRAIN
+	area CELL
 		scene quest_normal
 What AM I doing here? Good question! I just stumbled upon here. I'm in hiding. It's safe here, if you don't venture too far out and let those guys get you.
 It looks like I'm relatively fortunate. All these dead people strewn all over the place - how did they die? It's a little fascinating, to try and think of how it happened. Were they attacked by the monsters? Tripped and fell onto the spikes?

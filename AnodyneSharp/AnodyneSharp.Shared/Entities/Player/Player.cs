@@ -154,7 +154,7 @@ namespace AnodyneSharp.Entities
 
         public void Reset()
         {
-            if (GlobalState.AlwaysCellGraphics || GlobalState.CURRENT_MAP_NAME == "TRAIN")
+            if (GlobalState.AlwaysCellGraphics || GlobalState.CURRENT_MAP_NAME == "CELL")
             {
                 SetTexture(Cell_Player_Sprite);
             }

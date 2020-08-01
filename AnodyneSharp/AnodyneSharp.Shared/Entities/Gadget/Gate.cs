@@ -30,7 +30,7 @@ namespace AnodyneSharp.Entities.Gadget
                 ClosedFrame = 8;
                 fast = false;
             }
-            else if(GlobalState.CURRENT_MAP_NAME == "TRAIN")
+            else if(GlobalState.CURRENT_MAP_NAME == "CELL")
             {
                 ClosedFrame = 16;
                 fast = false;

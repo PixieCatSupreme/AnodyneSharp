@@ -26,7 +26,7 @@ namespace AnodyneSharp.Entities.Gadget
                 case "REDCAVE":
                     SetFrame(4);
                     break;
-                case "TRAIN":
+                case "CELL":
                     SetFrame(8);
                     break;
                 default:

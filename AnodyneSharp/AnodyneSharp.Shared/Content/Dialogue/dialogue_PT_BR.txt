@@ -1006,10 +1006,10 @@ UMA SITUAÇÃO PERIGOSA
 		end scene
 	end area
 	
-# Area for TRAIN (it's actually CELL sorry)
+# Area for CELL (it's actually CELL sorry)
 
 
-	area TRAIN
+	area CELL
 		scene one
 Aquele que Vê sabe de tudo e conduzirá um para a iluminação. O caminho para a iluminação não é iluminado por tochas.
 #The Seeing One knows all and will lead one to enlightenment. The road to enlightenment is unlit by any torches.
@@ -1533,7 +1533,7 @@ Kuribu:Tome meu número de telefone! 0800 meiamolemeiadura
 #Kuribu:I tell you my phone number! 0*1-51*7-*4386
 		end scene
 		end area
-	area TRAIN
+	area CELL
 
 		scene quest_normal
 O QUE eu estou fazendo aqui? Boa pergunta! Encontrei esse lugar por acaso. Estou me escondendo. Aqui é seguro, se você não se aventurar tão longe e deixar esses caras te encontrarem.

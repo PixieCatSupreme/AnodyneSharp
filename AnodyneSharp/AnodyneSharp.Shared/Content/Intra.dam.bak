@@ -13953,9 +13953,9 @@
     <SaveGuidesSeparately>false</SaveGuidesSeparately>
     <ForceTilemapPositionChangesInUnits>false</ForceTilemapPositionChangesInUnits>
   </options>
-  <exporter name="D:\Projects\AnodyneSharp\Project\AnodyneSharp\AnodyneSharp.Shared\Content\editor_scripts\Intra.lua" spritepos="Top Left" rotatedSpritePos="false" relativePaths="false" useProjectExporterOnly="false">
-    <setting name="LevelName">Entities</setting>
-    <setting name="DataDir">D:\Projects\AnodyneSharp\Project\AnodyneSharp\AnodyneSharp.Shared\Content</setting>
+  <exporter name="D:\Anodyne\Intra\src\lua\Intra.lua" spritepos="Top Left" rotatedSpritePos="false" relativePaths="false" useProjectExporterOnly="false">
+    <setting name="LevelName">Intra</setting>
+    <setting name="DataDir">D:\Anodyne\Intra\src\xml</setting>
   </exporter>
   <customPropertyTypes>
     <type name="Type" isString="true" exportedType="int"/>

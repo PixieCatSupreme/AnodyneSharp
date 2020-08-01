@@ -259,11 +259,11 @@
 /processorParam:Quality=Best
 /build:mp3/title.mp3
 
-#begin mp3/train.mp3
+#begin mp3/cell.mp3
 /importer:Mp3Importer
 /processor:SongProcessor
 /processorParam:Quality=Best
-/build:mp3/train.mp3
+/build:mp3/cell.mp3
 
 #begin mp3/windmill.mp3
 /importer:Mp3Importer
@@ -6229,7 +6229,7 @@
 /processorParam:TextureFormat=Color
 /build:textures/tilemaps/terminal_tilemap.png
 
-#begin textures/tilemaps/train_tilemap.png
+#begin textures/tilemaps/cell_tilemap.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -6239,7 +6239,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:textures/tilemaps/train_tilemap.png
+/build:textures/tilemaps/cell_tilemap.png
 
 #begin textures/tilemaps/train_tiles.png
 /importer:TextureImporter

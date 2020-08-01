@@ -24,7 +24,7 @@ namespace AnodyneSharp.Registry
             TERMINAL,
             HAPPY,
             SPACE,
-            TRAIN,
+            CELL,
             SUBURB,
             BLUE
         };

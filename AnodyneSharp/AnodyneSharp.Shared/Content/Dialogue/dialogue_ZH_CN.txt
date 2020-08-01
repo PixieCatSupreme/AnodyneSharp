@@ -1047,8 +1047,8 @@ ____长眠于此（看不清，究竟是谁写的这个？）他被彩虹刺穿�
 	end area
 	
 	
-# Area for TRAIN (it's actually CELL sorry)
-	area TRAIN
+# Area for CELL (it's actually CELL sorry)
+	area CELL
 		scene one
 #The Seeing One knows all and will lead one to enlightenment. The road to enlightenment is unlit by any torches.
 “观察者”知道一切，并会启迪我们。启迪之路是无法用任何火把点燃的。
@@ -1673,7 +1673,7 @@ LOOP
 	end area
 	
 	
-	area TRAIN
+	area CELL
 		scene quest_normal
 #What AM I doing here? Good question! I just stumbled upon here. I'm in hiding. It's safe here, if you don't venture too far out and let those guys get you.
 我在这儿干嘛？问得好！我只是偶然在这儿的。我正在忙着躲藏呢，这儿很安全，只要你不要离开太远，让那些家伙找到你。

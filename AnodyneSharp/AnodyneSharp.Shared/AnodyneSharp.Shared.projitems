@@ -217,9 +217,9 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\TERMINAL_BG.csv" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\TERMINAL_BG2.csv" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\TERMINAL_FG.csv" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\TRAIN_BG.csv" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\TRAIN_BG2.csv" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\TRAIN_FG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\CELL_BG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\CELL_BG2.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\CELL_FG.csv" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\WINDMILL_BG.csv" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\WINDMILL_BG2.csv" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\csv\WINDMILL_FG.csv" />
@@ -229,7 +229,7 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\CLIFF.col" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\GO.col" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\SUBURB.col" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\TRAIN.col" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\CELL.col" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\WINDMILL.col" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\REDCAVE.col" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\tileProperties\FOREST.col" />

@@ -1013,8 +1013,8 @@ npc rock
 	end area
 	
 	
-# Area for TRAIN (it's actually CELL sorry)
-	area TRAIN
+# Area for CELL (it's actually CELL sorry)
+	area CELL
 		scene one
 # The Seeing One knows all and will lead one to enlightenment. The road to enlightenment is unlit by any torches.
 관측자는 모든것을 알고있고, 깨달음으로 이끈다. 깨달음으로 가는 길을 비추는 빛은 없다.
@@ -1558,7 +1558,7 @@ LOOP
 	end area
 	
 	
-	area TRAIN
+	area CELL
 		scene quest_normal
 # What AM I doing here? Good question! I just stumbled upon here. I'm in hiding. It's safe here, if you don't venture too far out and let those guys get you.
 내가 여기서 뭐하고 있었냐고? 좋은 질문이야! 난 우연히 이곳에 오게 됐고, 숨어있었지. 여기는 안전하고 그 이상한 거에 잡히고 싶지 않거든.

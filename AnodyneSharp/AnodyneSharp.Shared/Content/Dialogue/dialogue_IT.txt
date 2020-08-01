@@ -1049,8 +1049,8 @@ Qui giace Dave. Non era molto d'ispirazione.
 	end area
 	
 	
-# Area for TRAIN (it's actually CELL sorry)
-	area TRAIN
+# Area for CELL (it's actually CELL sorry)
+	area CELL
 		scene one
 #The Seeing One knows all and will lead one to enlightenment. The road to enlightenment is unlit by any torches.
 Colui Che Vede sa tutto, e conduce all'illuminazione. Il cammino per l'illuminazione non è illuminato da alcuna torcia.
@@ -1676,7 +1676,7 @@ Kuribu: Ti dico il mio numero di telefono!  0*1-51*7-*4386
 	end area
 	
 	
-	area TRAIN
+	area CELL
 		scene quest_normal
 #What AM I doing here? Good question! I just stumbled upon here. I'm in hiding. It's safe here, if you don't venture too far out and let those guys get you.
 Che STO FACENDO qui? Bella domanda! Sono capitato qui per caso. Mi sto nascondendo. Questo posto è sicuro, se non ti avventuri troppo lontano e lasci che quei tizi ti prendano.

@@ -14,7 +14,7 @@ namespace AnodyneSharp.Entities.Gadget.Doors
         {
             width = height = 2;
 
-            if (GlobalState.CURRENT_MAP_NAME == "TRAIN")
+            if (GlobalState.CURRENT_MAP_NAME == "CELL")
             {
                 AddAnimation("a", CreateAnimFrameArray(4,5),8,true);
             }

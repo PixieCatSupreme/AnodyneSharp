@@ -3025,7 +3025,7 @@
     <Door x="872" y="7" guid="85602297-5EF1-E55E-DF8E-C4C0FC386AAD" frame="25" type="5" />
     <Treasure x="496" y="16" guid="39D77BF3-D173-A00B-0A34-4327616C9712" frame="10" alive="true"/>
   </map>
-  <map name="TRAIN" type="Stateless">
+  <map name="CELL" type="Stateless">
     <NPC x="48" y="1216" guid="98AC1ED6-6382-906A-294B-E406E178858E" frame="0" type="rock" />
     <Event x="560" y="576" guid="B664EFE0-E1BA-4881-F616-E657C3ED42D8" frame="2"/>
     <Event x="112" y="1248" guid="A528880B-AA35-6BC8-64B3-DB65E9D63A5D" frame="2"/>
@@ -3102,7 +3102,7 @@
     <NPC x="400" y="432" guid="C2CEA43D-BC02-29E4-0FF9-C7E71F605585" frame="2" type="Cell_Body" />
     <NPC x="663" y="410" guid="59ABD655-74D9-B678-88F8-96359A07C86D" frame="7" type="generic" />
   </map>
-  <map name="TRAIN" type="Stateful">
+  <map name="CELL" type="Stateful">
     <NPC x="592" y="496" guid="445C736A-7BF9-8856-6F4B-E9C4C6675770" frame="1" type="rock" />
     <Treasure x="96" y="48" guid="021A2AC3-4FED-13ED-A0FA-88FB641C50F1" frame="2" alive="true"/>
     <NPC x="992" y="1024" guid="A7192061-5A14-1E53-6A8F-44151E833597" frame="2" type="rock" />

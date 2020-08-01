@@ -1003,10 +1003,10 @@ npc rock
 		end scene
 	end area
 	
-# Area for TRAIN (it's actually CELL sorry)
+# Area for CELL (it's actually CELL sorry)
 
 
-	area TRAIN
+	area CELL
 		scene one
 見通せし者はすべてを知り なんじを悟りへとみちびく者 悟りへの道のりを照らす明かりはない
 #The Seeing One knows all and will lead one to enlightenment. The road to enlightenment is unlit by any torches.
@@ -1530,7 +1530,7 @@ LOOP
 #Kuribu:I tell you my phone number! 0*1-51*7-*4386
 		end scene
 		end area
-	area TRAIN
+	area CELL
 
 		scene quest_normal
 ここで何してるのかって? いい質問ですね! たまたまココに来ちゃって この場所にかくれているんだ ここは安全だし あの変なのに つかまりたくないからね
