@@ -87,7 +87,7 @@ namespace AnodyneSharp.Entities
 
         private PlayState parent;
 
-        private bool actions_disabled;
+        public bool actions_disabled;
         public bool skipBroom;
         private bool just_landed;
         private bool anim_air_did_down;

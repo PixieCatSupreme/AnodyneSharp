@@ -49,7 +49,6 @@ namespace AnodyneSharp.States
         private Player _player;
 
         private Camera _camera;
-        private bool _justTransitioned;
 
         private Rectangle _gridBorders;
 
@@ -190,8 +189,6 @@ namespace AnodyneSharp.States
                         {
                             _state = PlayStateState.S_NORMAL;
                             _childState = null;
-                            _player.dontMove = false;
-                            _player.skipBroom = false;
                             _player.broom.UpdateBroomType();
                             _updateEntities = true;
                             return;
@@ -225,7 +222,7 @@ namespace AnodyneSharp.States
 
             if (_updateEntities)
             {
-                if (!_justTransitioned)
+                if (_state != PlayStateState.S_TRANSITION)
                 {
                     DoCollisions();
                 }
@@ -362,9 +359,8 @@ namespace AnodyneSharp.States
                 _childState = new PauseState();
                 _state = PlayStateState.S_PAUSED;
                 _updateEntities = false;
-                _player.dontMove = true;
-                _player.skipBroom = true;
                 SoundManager.PlaySoundEffect("pause_sound");
+                return;
             }
 
             if (!_player.broom.exists)
@@ -434,26 +430,18 @@ namespace AnodyneSharp.States
             if (_state == PlayStateState.S_TRANSITION)
             {
                 _player.grid_entrance = _player.Position;
-                _justTransitioned = true;
                 _player.dontMove = true;
 
-                //TODO maybe put this in Player.cs to get the transition bug
                 _player.velocity = Vector2.Zero;
+
+                UpdateScreenBorders();
+                LoadGridEntities();
             }
         }
 
         private void StateTransition()
         {
             _player.invincible = true;
-
-            if (_justTransitioned)
-            {
-                //TODO add enemy, puzzle and tile resetting on grid change
-                UpdateScreenBorders();
-                LoadGridEntities();
-
-                _justTransitioned = false;
-            }
 
             if (!UpdateCamera())
             {
@@ -463,8 +451,6 @@ namespace AnodyneSharp.States
                 _oldEntities.Clear();
 
                 // TODO update miniminimap
-
-                //TODO reset broom
 
                 _player.dontMove = false;
 
