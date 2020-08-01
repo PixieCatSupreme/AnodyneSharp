@@ -24,6 +24,7 @@ namespace AnodyneSharp.Entities.Gadget
         public KeyBlock(EntityPreset preset, Player p) : 
             base(preset.Position - new Vector2(2,2), 20, 20, DrawOrder.ENTITIES)
         {
+            visible = false;
             _preset = preset;
 
             _activationTime = 0;
@@ -33,11 +34,6 @@ namespace AnodyneSharp.Entities.Gadget
 
             _playerCollided = false;
             _triedOpening = false;
-        }
-
-        public override void Draw()
-        {
-            //Nothing, this is the sentinel
         }
 
         public override void Update()
