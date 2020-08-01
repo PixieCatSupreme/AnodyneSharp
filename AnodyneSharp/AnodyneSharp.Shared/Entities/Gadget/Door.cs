@@ -9,6 +9,14 @@ namespace AnodyneSharp.Entities.Gadget
 {
     public class Door : Entity
     {
+        protected string LinkedMapName
+        {
+            get
+            {
+                return _linkedDoor.Map;
+            }
+        }
+
         private DoorMapPair _linkedDoor;
 
         protected Vector2 teleportOffset;
@@ -22,6 +30,8 @@ namespace AnodyneSharp.Entities.Gadget
         {
             _linkedDoor = EntityManager.GetLinkedDoor(preset);
             teleportOffset = Vector2.Zero;
+
+            immovable = true;
         }
 
         public override void Collided(Entity other)

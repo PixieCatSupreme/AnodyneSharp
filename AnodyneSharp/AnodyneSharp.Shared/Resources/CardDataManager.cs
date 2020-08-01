@@ -1,5 +1,6 @@
 ﻿using AnodyneSharp.Logging;
 using AnodyneSharp.Registry;
+using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -84,6 +85,27 @@ namespace AnodyneSharp.Resources
             }
 
             return mapCards[gridPos];
+        }
+
+        public static bool GotAllNormalCards(string mapName)
+        {
+            if (!_cardLocations.ContainsKey(mapName))
+            {
+                return GlobalState.ActivatedNexusPortals[MapUtilities.GetMapID(mapName)];
+            }
+
+            foreach (int cardID in _cardLocations[mapName].Values)
+            {
+                if (cardID < 36 || cardID == 43)
+                {
+                    if (!InventoryManager.CardStatus[cardID])
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
         }
     }
 }

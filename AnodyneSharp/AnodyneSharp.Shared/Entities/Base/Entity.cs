@@ -31,6 +31,8 @@ namespace AnodyneSharp.Entities
         public DrawOrder layer;
 
 
+        public Color color;
+
         public bool finished;
 
         protected int _curIndex;
@@ -79,6 +81,8 @@ namespace AnodyneSharp.Entities
 
             scale = 1;
             _lastScale = scale;
+
+            color = Color.White;
         }
 
         public Entity(Vector2 pos, int frameWidth, int frameHeight, DrawOrder layer)
@@ -94,6 +98,8 @@ namespace AnodyneSharp.Entities
 
             scale = 1;
             _lastScale = scale;
+
+            color = Color.White;
         }
 
         public Entity(Vector2 pos, string textureName, int frameWidth, int frameHeight, DrawOrder layer)
@@ -110,6 +116,8 @@ namespace AnodyneSharp.Entities
 
             scale = 1;
             _lastScale = scale;
+
+            color = Color.White;
 
             SetTexture(textureName);
         }
@@ -221,8 +229,8 @@ namespace AnodyneSharp.Entities
             {
                 SpriteDrawer.DrawSprite(Texture, 
                     MathUtilities.CreateRectangle(Position.X - offset.X*scale, Position.Y - offset.Y*scale, frameWidth*scale, frameHeight*scale), 
-                    spriteRect, 
-                    Color.White * _opacity,
+                    spriteRect,
+                    color * _opacity,
                     rotation,
                     _flip,
                     DrawingUtilities.GetDrawingZ(layer, MapUtilities.GetInGridPosition(Position).Y));
@@ -235,7 +243,7 @@ namespace AnodyneSharp.Entities
 
         }
 
-        protected void SetFrame(int frame)
+        public void SetFrame(int frame)
         {
             _curFrame = frame;
 

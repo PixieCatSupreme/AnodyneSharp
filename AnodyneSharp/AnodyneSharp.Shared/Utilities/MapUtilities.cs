@@ -1,6 +1,6 @@
 ﻿using AnodyneSharp.Registry;
 using Microsoft.Xna.Framework;
-
+using System;
 using static AnodyneSharp.Registry.GameConstants;
 
 namespace AnodyneSharp.Utilities
@@ -20,6 +20,11 @@ namespace AnodyneSharp.Utilities
         public static Vector2 GetInGridPosition(Vector2 pos)
         {
             return pos - GetRoomUpperLeftPos(GetRoomCoordinate(pos));
+        }
+
+        public static int GetMapID(string mapName)
+        {
+            return (int)Enum.Parse(typeof(MapOrder), mapName);
         }
     }
 }

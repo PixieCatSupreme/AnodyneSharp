@@ -1,5 +1,6 @@
 ﻿using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
+using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -36,6 +37,8 @@ namespace AnodyneSharp.Entities.Gadget.Doors
                 AddAnimation("off", CreateAnimFrameArray(0), 12, false);
             }
             Play("off");
+
+            GlobalState.ActivatedNexusPortals[MapUtilities.GetMapID(GlobalState.CURRENT_MAP_NAME)] = true;
         }
 
         public override void Update()

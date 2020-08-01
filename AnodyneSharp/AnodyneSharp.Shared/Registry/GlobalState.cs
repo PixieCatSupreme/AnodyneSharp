@@ -3,6 +3,8 @@ using AnodyneSharp.Dialogue;
 using AnodyneSharp.Entities;
 using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace AnodyneSharp.Registry
 {
@@ -86,6 +88,8 @@ namespace AnodyneSharp.Registry
         public static bool RefreshMaxHealth = false;
         public static bool RefreshLabels = false;
 
+        public static bool[] ActivatedNexusPortals { get; private set; } = Enumerable.Repeat(false, 21).ToArray();
+
         public static bool autosave_on = true;
         //public static var checkpoint:Object = { x: 0, y: 0, area: "" };
 
@@ -133,5 +137,6 @@ namespace AnodyneSharp.Registry
         public static bool WindmillOpened;
 
         private static string _dialogue;
+
     }
 }

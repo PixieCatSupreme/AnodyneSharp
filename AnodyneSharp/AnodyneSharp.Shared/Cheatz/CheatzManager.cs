@@ -80,6 +80,18 @@ namespace AnodyneSharp.Cheatz
             InventoryManager.EquippedBroom = InventoryManager.EquippedBroom == Entities.BroomType.NONE ? Entities.BroomType.Normal : InventoryManager.EquippedBroom;
         }
 
+        [Cheat("UDUD121212")]
+        public static void UnlockNexusGates()
+        {
+            for (int i = 0; i < GlobalState.ActivatedNexusPortals.Length; i++)
+            {
+                GlobalState.ActivatedNexusPortals[i] = true;
+            }
+
+            SoundManager.PlaySoundEffect("menu_select");
+            SoundManager.PlaySoundEffect("keyget");
+        }
+
         [Cheat("URLDURLD11")]
         public static void ToggleAlwaysCellGraphics()
         {

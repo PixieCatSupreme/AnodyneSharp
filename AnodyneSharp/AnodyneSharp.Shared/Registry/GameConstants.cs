@@ -4,6 +4,31 @@ namespace AnodyneSharp.Registry
 {
     public static class GameConstants
     {
+        public enum MapOrder
+        {
+            STREET,
+            OVERWORLD,
+            REDCAVE,
+            CROWD,
+            APARTMENT,
+            HOTEL,
+            CIRCUS,
+            CLIFF,
+            FOREST,
+            WINDMILL,
+            REDSEA,
+            BEACH,
+            BEDROOM,
+            FIELDS,
+            GO,
+            TERMINAL,
+            HAPPY,
+            SPACE,
+            TRAIN,
+            SUBURB,
+            BLUE
+        };
+
         public static int MAX_DOOR_PAIRS = 95;
         //public static var DOOR_REFS:Array = private new Array();
         //public static var DOOR_INFO:Array = private new Array(MAX_DOOR_PAIRS);

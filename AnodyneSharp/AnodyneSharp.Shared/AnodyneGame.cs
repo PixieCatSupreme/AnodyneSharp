@@ -11,6 +11,7 @@ using AnodyneSharp.Resources.Writing;
 using AnodyneSharp.States;
 using AnodyneSharp.UI;
 using AnodyneSharp.UI.Font;
+using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -64,6 +65,8 @@ namespace AnodyneSharp
 
             //_baseFolder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             _baseFolder = "";
+
+            GlobalState.ActivatedNexusPortals[MapUtilities.GetMapID("STREET")] = true;
 
         }
 

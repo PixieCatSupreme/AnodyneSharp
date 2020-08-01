@@ -555,6 +555,10 @@ namespace AnodyneSharp.States
             {
                 Cheatz.Cheatz.KonamiCode();
             }
+            if (KeyInput.JustPressedKey(Keys.F9))
+            {
+                Cheatz.Cheatz.UnlockNexusGates();
+            }
 
             if (KeyInput.JustPressedKey(Keys.M))
             {
