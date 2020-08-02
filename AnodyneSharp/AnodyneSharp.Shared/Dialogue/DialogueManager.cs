@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Entities;
+using AnodyneSharp.Entities.Gadget;
 using AnodyneSharp.Input;
 using AnodyneSharp.Registry;
 using Microsoft.Xna.Framework.Input;
@@ -8,6 +9,8 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+
+using static AnodyneSharp.Utilities.TextUtilities;
 
 namespace AnodyneSharp.Dialogue
 {
@@ -77,29 +80,35 @@ namespace AnodyneSharp.Dialogue
 
         private static string ReplaceKeys(string line)
         {
-            //TODO controller mode check
-            //if ()
-            //{
-            //
-            //}
-            //else
-            //{
-
-            Keys t = 0;
-
-            line = line
-                .Replace("[SOMEKEY-X]", Enum.GetName(t.GetType(), KeyInput.RebindableKeys[KeyFunctions.Cancel].Keys.First()))
-                .Replace("[SOMEKEY-C]", Enum.GetName(t.GetType(), KeyInput.RebindableKeys[KeyFunctions.Accept].Keys.First()))
-                .Replace("[SOMEKEY-LEFT]", Enum.GetName(t.GetType(), KeyInput.RebindableKeys[KeyFunctions.Left].Keys.First()))
-                .Replace("[SOMEKEY-UP]", Enum.GetName(t.GetType(), KeyInput.RebindableKeys[KeyFunctions.Up].Keys.First()))
-                .Replace("[SOMEKEY-RIGHT]", Enum.GetName(t.GetType(), KeyInput.RebindableKeys[KeyFunctions.Right].Keys.First()))
-                .Replace("[SOMEKEY-DOWN]", Enum.GetName(t.GetType(), KeyInput.RebindableKeys[KeyFunctions.Down].Keys.First()))
-                .Replace("[SOMEKEY-ENTER]", Enum.GetName(t.GetType(), KeyInput.RebindableKeys[KeyFunctions.Pause].Keys.First()))
-                ;
-            //}
+            if (KeyInput.ControllerMode)
+            {
+                line = line
+                    .Replace("[SOMEKEY-X]", GetButtonString(KeyInput.RebindableKeys[KeyFunctions.Cancel].Buttons.First()))
+                    .Replace("[SOMEKEY-C]", GetButtonString(KeyInput.RebindableKeys[KeyFunctions.Accept].Buttons.First()))
+                    .Replace("[SOMEKEY-LEFT]", GetButtonString(KeyInput.RebindableKeys[KeyFunctions.Left].Buttons.First()))
+                    .Replace("[SOMEKEY-UP]", GetButtonString(KeyInput.RebindableKeys[KeyFunctions.Up].Buttons.First()))
+                    .Replace("[SOMEKEY-RIGHT]", GetButtonString(KeyInput.RebindableKeys[KeyFunctions.Right].Buttons.First()))
+                    .Replace("[SOMEKEY-DOWN]", GetButtonString(KeyInput.RebindableKeys[KeyFunctions.Down].Buttons.First()))
+                    .Replace("[SOMEKEY-ENTER]", GetButtonString(KeyInput.RebindableKeys[KeyFunctions.Pause].Buttons.First()))
+                    ;
+            }
+            else
+            {
+                line = line
+                    .Replace("[SOMEKEY-X]", GetKeyBoardString(KeyInput.RebindableKeys[KeyFunctions.Cancel].Keys.First()))
+                    .Replace("[SOMEKEY-C]", GetKeyBoardString(KeyInput.RebindableKeys[KeyFunctions.Accept].Keys.First()))
+                    .Replace("[SOMEKEY-LEFT]", GetKeyBoardString(KeyInput.RebindableKeys[KeyFunctions.Left].Keys.First()))
+                    .Replace("[SOMEKEY-UP]", GetKeyBoardString(KeyInput.RebindableKeys[KeyFunctions.Up].Keys.First()))
+                    .Replace("[SOMEKEY-RIGHT]", GetKeyBoardString(KeyInput.RebindableKeys[KeyFunctions.Right].Keys.First()))
+                    .Replace("[SOMEKEY-DOWN]", GetKeyBoardString(KeyInput.RebindableKeys[KeyFunctions.Down].Keys.First()))
+                    .Replace("[SOMEKEY-ENTER]", GetKeyBoardString(KeyInput.RebindableKeys[KeyFunctions.Pause].Keys.First()))
+                    ;
+            }
 
             return line;
         }
+
+
 
         private static void ReadFile()
         {

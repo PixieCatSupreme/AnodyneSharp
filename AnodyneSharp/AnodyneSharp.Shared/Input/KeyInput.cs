@@ -31,6 +31,14 @@ namespace AnodyneSharp.Input
             PRESSED
         };
 
+        private enum ControllerKind
+        {
+            XBOX,
+            NINTENDO,
+            SONY
+        };
+
+
         private static InputState UpdateInput(InputState current, bool pressed)
         {
             if (!pressed)
@@ -46,15 +54,20 @@ namespace AnodyneSharp.Input
 
         public static Dictionary<KeyFunctions, RebindableKey> RebindableKeys;
 
-        public static readonly bool IsNintendoController;
+        public static bool ControllerMode { get; private set; }
+        public static bool ControllerModeChanged { get; private set; }
+
+        public static int ControllerButtonOffset { get; private set; }
+
+        private static bool _faceButtonsSwitched;
+
+        private static ControllerKind CurrentControlerKind;
 
         private static Dictionary<Keys, InputState> KeyState;
         private static Dictionary<Buttons, InputState>[] ControllerState;
 
         static KeyInput()
         {
-            IsNintendoController = (GamePad.GetCapabilities(PlayerIndex.One).DisplayName ?? "").Contains("Nintendo");
-
             RebindableKeys = new Dictionary<KeyFunctions, RebindableKey>();
             ControllerState = new Dictionary<Buttons, InputState>[4];
 
@@ -71,11 +84,20 @@ namespace AnodyneSharp.Input
         /// </summary>
         public static void Update()
         {
+            ControllerModeChanged = false;
+
             KeyboardState s = Keyboard.GetState();
 
             foreach (Keys key in Enum.GetValues(typeof(Keys)))
             {
+                bool isDown = s.IsKeyDown(key);
                 KeyState[key] = UpdateInput(KeyState[key], s.IsKeyDown(key));
+
+                if (ControllerMode)
+                {
+                    ControllerMode = !isDown;
+                    ControllerModeChanged = true;
+                }
             }
 
             for (int i = 0; i < ControllerState.Length; i++)
@@ -86,7 +108,47 @@ namespace AnodyneSharp.Input
 
                 foreach (Buttons button in Enum.GetValues(typeof(Buttons)))
                 {
-                    dic[button] = UpdateInput(dic[button], g.IsButtonDown(button));
+                    bool isDown = g.IsButtonDown(button);
+                    dic[button] = UpdateInput(dic[button], isDown);
+
+                    if (!ControllerMode)
+                    {
+                        ControllerMode = isDown;
+                        ControllerModeChanged = true;
+                    }
+                }
+            }
+
+            if (ControllerModeChanged)
+            {
+                string displayName = GamePad.GetCapabilities(PlayerIndex.One).DisplayName.ToLower() ?? "";
+
+                if (displayName.Contains("nintendo"))
+                {
+                    ControllerButtonOffset = 26;
+                    CurrentControlerKind = ControllerKind.NINTENDO;
+                    if (!_faceButtonsSwitched)
+                    {
+                        SwapFaceButtons();
+                    }
+                }
+                else if (displayName.Contains("sony"))
+                {
+                    ControllerButtonOffset = 52;
+                    CurrentControlerKind = ControllerKind.SONY;
+                    if (_faceButtonsSwitched)
+                    {
+                        SwapFaceButtons();
+                    }
+                }
+                else
+                {
+                    ControllerButtonOffset = 0;
+                    CurrentControlerKind = ControllerKind.XBOX;
+                    if (_faceButtonsSwitched)
+                    {
+                        SwapFaceButtons();
+                    }
                 }
             }
         }
@@ -165,6 +227,8 @@ namespace AnodyneSharp.Input
 
         public static void SwapFaceButtons()
         {
+            _faceButtonsSwitched = !_faceButtonsSwitched;
+
             var aList = RebindableKeys.Where(k => k.Value.Buttons.Contains(Buttons.A)).ToList();
             var bList = RebindableKeys.Where(k => k.Value.Buttons.Contains(Buttons.B)).ToList();
             var xList = RebindableKeys.Where(k => k.Value.Buttons.Contains(Buttons.X)).ToList();

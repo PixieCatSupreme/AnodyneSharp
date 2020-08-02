@@ -79,6 +79,12 @@
 /processorParam:Quality=Best
 /build:mp3/briar-fight.mp3
 
+#begin mp3/cell.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:mp3/cell.mp3
+
 #begin mp3/circus.mp3
 /importer:Mp3Importer
 /processor:SongProcessor
@@ -258,12 +264,6 @@
 /processor:SongProcessor
 /processorParam:Quality=Best
 /build:mp3/title.mp3
-
-#begin mp3/cell.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:mp3/cell.mp3
 
 #begin mp3/windmill.mp3
 /importer:Mp3Importer
@@ -1368,6 +1368,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:textures/sprites/broom_reflection.png
+
+#begin textures/sprites/consoleButtons.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:textures/sprites/consoleButtons.png
 
 #begin textures/sprites/dame/dame_circusfolk.png
 /importer:TextureImporter
@@ -5797,6 +5809,18 @@
 /processorParam:TextureFormat=Color
 /build:textures/tilemaps/blue_tilemap.png
 
+#begin textures/tilemaps/cell_tilemap.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:textures/tilemaps/cell_tilemap.png
+
 #begin textures/tilemaps/cell_tilemap_old.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -6228,18 +6252,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:textures/tilemaps/terminal_tilemap.png
-
-#begin textures/tilemaps/cell_tilemap.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:textures/tilemaps/cell_tilemap.png
 
 #begin textures/tilemaps/train_tiles.png
 /importer:TextureImporter

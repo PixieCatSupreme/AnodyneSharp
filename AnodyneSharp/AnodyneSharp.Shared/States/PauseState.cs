@@ -91,6 +91,11 @@ namespace AnodyneSharp.States
 
             _playtimeLabel.SetText((DateTime.Now - GlobalState.START_TIME).ToString(@"hh\:mm\:ss"));
 
+            if (KeyInput.ControllerModeChanged)
+            {
+                _inputLabel.SetText($"{DialogueManager.GetDialogue("misc", "any", "secrets", 13)} {DialogueManager.GetDialogue("misc", "any", "secrets", 14)}");
+            }
+
             _selector.Update();
             _selector.PostUpdate();
 

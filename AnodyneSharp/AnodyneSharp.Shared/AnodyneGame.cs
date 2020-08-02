@@ -117,11 +117,6 @@ namespace AnodyneSharp
                 inputConfigWriter.WriteInputConfig();
             }
 
-            if (KeyInput.IsNintendoController)
-            {
-                KeyInput.SwapFaceButtons();
-            }
-
             DialogueManager.LoadDialogue( Language.EN);
 
             bwEffect = Content.Load<Effect>("effects/blackwhite");

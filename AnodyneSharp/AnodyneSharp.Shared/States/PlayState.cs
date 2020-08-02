@@ -463,7 +463,7 @@ namespace AnodyneSharp.States
         private void SetKeyLabel()
         {
             _keyValueLabel = new UILabel(new Vector2(37, 5 - LineOffset + (GlobalState.CurrentLanguage == Language.ZH_CN ? 1 : 0)), false);
-            _keyValueLabel.Writer.SetSpriteFont(FontManager.InitFont(new Color(124, 163, 177, 255)));
+            _keyValueLabel.Writer.SetSpriteFont(FontManager.InitFont(new Color(124, 163, 177, 255)), ResourceManager.GetTexture("consoleButtons"));
             _keyValueLabel.SetText($"x{InventoryManager.GetCurrentMapKeys()}");
         }
 

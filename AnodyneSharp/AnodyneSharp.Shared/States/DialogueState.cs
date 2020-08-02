@@ -1,5 +1,6 @@
 ﻿using AnodyneSharp.Input;
 using AnodyneSharp.Registry;
+using AnodyneSharp.Resources;
 using AnodyneSharp.Sounds;
 using AnodyneSharp.UI;
 using AnodyneSharp.UI.Font;
@@ -35,7 +36,7 @@ namespace AnodyneSharp.States
         public DialogueState(bool useMenuBox = false)
         {
             _tb = new TextBox(useMenuBox);
-            _tb.Writer.SetSpriteFont(FontManager.InitFont(Color.White));
+            _tb.Writer.SetSpriteFont(FontManager.InitFont(Color.White), ResourceManager.GetTexture("consoleButtons"));
             _tb.Writer.Text = GlobalState.Dialogue;
             _tb.Writer.DrawShadow = true;
 

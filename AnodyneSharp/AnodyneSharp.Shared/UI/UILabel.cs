@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.UI.Font;
+﻿using AnodyneSharp.Resources;
+using AnodyneSharp.UI.Font;
 using AnodyneSharp.UI.Text;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -73,7 +74,7 @@ namespace AnodyneSharp.UI
 
         public void Initialize(bool forceEnglish = false)
         {
-            Writer.SetSpriteFont(FontManager.InitFont(_color, forceEnglish));
+            Writer.SetSpriteFont(FontManager.InitFont(_color, forceEnglish), ResourceManager.GetTexture("consoleButtons"));
             Writer.Initialize();
             Writer.IgnoreSoftLineBreaks = true;
             Writer.DrawShadow = _drawShadow;

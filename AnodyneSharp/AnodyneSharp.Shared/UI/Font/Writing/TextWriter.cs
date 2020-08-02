@@ -1,5 +1,8 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Gadget;
+using AnodyneSharp.Input;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.Linq;
 using SpriteFont = AnodyneSharp.UI.Font.SpriteFont;
@@ -111,6 +114,7 @@ namespace AnodyneSharp.UI.Text
         protected Vector2 cursorPos;
         protected Rectangle writeArea;
         protected SpriteFont spriteFont;
+        protected Texture2D buttonSprite;
 
         private float _stepProgress;
         private bool _centered;
@@ -171,9 +175,10 @@ namespace AnodyneSharp.UI.Text
             drawLayer = DrawOrder.TEXT;
         }
 
-        public void SetSpriteFont(SpriteFont font)
+        public void SetSpriteFont(SpriteFont font, Texture2D buttonSprite)
         {
             spriteFont = font;
+            this.buttonSprite = buttonSprite;
         }
 
 
@@ -221,10 +226,17 @@ namespace AnodyneSharp.UI.Text
             float shadowZ = z - 0.01f;
             foreach (var c in characters)
             {
-                SpriteDrawer.DrawGuiSprite(spriteFont.texture, c.Position, c.Crop, spriteFont.color, Z: z);
-                if (DrawShadow)
+                if (c.Character == null)
                 {
-                    SpriteDrawer.DrawGuiSprite(spriteFont.texture, c.Position + new Vector2(0, 1f), c.Crop, color: Color.Black, Z: shadowZ);
+                    SpriteDrawer.DrawGuiSprite(buttonSprite, c.Position, c.Crop, Z: z);
+                }
+                else
+                {
+                    SpriteDrawer.DrawGuiSprite(spriteFont.texture, c.Position, c.Crop, spriteFont.color, Z: z);
+                    if (DrawShadow)
+                    {
+                        SpriteDrawer.DrawGuiSprite(spriteFont.texture, c.Position + new Vector2(0, 1f), c.Crop, color: Color.Black, Z: shadowZ);
+                    }
                 }
             }
         }
@@ -425,6 +437,23 @@ namespace AnodyneSharp.UI.Text
                 _newLine = true;
 
                 output = cursorPos.Y + spriteFont.lineSeparation < writeArea.Height;
+            }
+            //♦ is used to indicate that the next 'character' is a button
+            else if (character == '♦')
+            {
+                letterProgress++;
+
+                string s = Text.Substring(letterProgress, Text.IndexOf('♦', letterProgress+1)- letterProgress);
+
+                letterProgress += s.Length + 1;
+
+                int pos = int.Parse(s) + KeyInput.ControllerButtonOffset;
+                int spaceWidth = 13;
+                int lineHeight = 14;
+
+                characters.Add(new TextCharacter(null, new Vector2(cursorPos.X + writeArea.X, cursorPos.Y + writeArea.Y -1), new Rectangle(pos % 13 * spaceWidth, pos / 13 * lineHeight, spaceWidth, lineHeight)));
+
+                output = true;
             }
             else
             {
