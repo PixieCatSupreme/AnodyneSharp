@@ -890,7 +890,4 @@
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\title\title_text.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\title\title_text_white.png" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />
-  </ItemGroup>
 </Project>
