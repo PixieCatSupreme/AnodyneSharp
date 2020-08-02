@@ -26,7 +26,12 @@ namespace AnodyneSharp.Registry
             SPACE,
             CELL,
             SUBURB,
-            BLUE
+            BLUE,
+            //All maps before this have nexus gates and are in order of nexus gate preview sprite
+            NEXUS,
+            BLANK,
+            DRAWER,
+            DEBUG
         };
 
         public static int MAX_DOOR_PAIRS = 95;

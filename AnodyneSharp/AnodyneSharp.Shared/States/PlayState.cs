@@ -540,13 +540,29 @@ namespace AnodyneSharp.States
 
             if (KeyInput.JustPressedKey(Keys.M))
             {
-                GlobalState.CURRENT_MAP_NAME = TileData.GetNextMapName();
+                int newIndex = MapUtilities.GetMapID( GlobalState.CURRENT_MAP_NAME) +1;
+
+                if (newIndex  > (int)MapOrder.DEBUG)
+                {
+                    newIndex = 0;
+                }
+
+                GlobalState.CURRENT_MAP_NAME = Enum.GetName(typeof(MapOrder), (MapOrder)newIndex);
+
                 LoadMap();
                 StateTransition();
             }
             else if (KeyInput.JustPressedKey(Keys.N))
             {
-                GlobalState.CURRENT_MAP_NAME = TileData.GetPreviousMapName();
+                int newIndex = MapUtilities.GetMapID(GlobalState.CURRENT_MAP_NAME) - 1;
+
+                if (newIndex < (int)MapOrder.STREET)
+                {
+                    newIndex = (int)MapOrder.DEBUG;
+                }
+
+                GlobalState.CURRENT_MAP_NAME = Enum.GetName(typeof(MapOrder), (MapOrder)newIndex);
+
                 LoadMap();
                 StateTransition();
             }
