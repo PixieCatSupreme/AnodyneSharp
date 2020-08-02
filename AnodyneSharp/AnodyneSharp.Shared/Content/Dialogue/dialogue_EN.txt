@@ -102,10 +102,8 @@ npc sage
         scene intro
 Mysterious voice: Hello? ...Young?  ^HEY!  ... oh, you can hear me?  Good, now listen.  You are about to wake up.  You will use the arrow keys to move around.
 # Note, these next two lines should be assumed to have the keybinding between them when translated (hence the single quotes)
-You will press the '
-' key to interact with objects and people around you.
-And you will press the '
-' key to access the menu, which will provide you with information about yourself and your surroundings.  
+You will press the [SOMEKEY-C] key to interact with objects and people around you.
+And you will press the [SOMEKEY-ENTER] key to access the menu, which will provide you with information about yourself and your surroundings.  
         end scene
     end area
 	

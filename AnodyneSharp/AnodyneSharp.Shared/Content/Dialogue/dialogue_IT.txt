@@ -118,13 +118,9 @@ npc sage
 Voce Misteriosa: Ehi... ... Young? EHI!  ... oh, riesci a sentirmi?  Bene, allora ascolta.  Stai per svegliarti.  Usa le frecce direzionali per muoverti.
 # Note, these next two lines should be assumed to have the keybinding between them when translated (hence the single quotes)
 #You will press the '
-Premi '
-#' key to interact with objects and people around you.
-' per interagire con gli oggetti e le persone accanto a te. 
+Premi [SOMEKEY-C] per interagire con gli oggetti e le persone accanto a te. 
 #And you will press the '
-Premi '
-#' key to access the menu, which will provide you with information about yourself and your surroundings.
-' per accedere al menù, che ti darà informazioni su te stesso e su ciò che ti circonda.
+Premi '[SOMEKEY-ENTER] per accedere al menù, che ti darà informazioni su te stesso e su ciò che ti circonda.
         end scene
     end area
 	

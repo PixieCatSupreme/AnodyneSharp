@@ -92,13 +92,9 @@ npc sage
 #Mysterious voice:Hello? ...Young? ^HEY! ... oh, you can hear me? Good, now listen. You are about to wake up. You will use the arrow keys to move around.
 
 # Note, these next two lines should be assumed to have the keybinding between them when translated (hence the single quotes)
-人と話したりモノを使ったりするには '
-#You will press the '
-' キーを押すように
+人と話したりモノを使ったりするには [SOMEKEY-C] キーを押すように
 #' key to interact with objects and people around you.
-それからメニューを開くには '
-#And you will press the '
-' キーだ ここでは自分や世界についての情報が見られる
+それからメニューを開くには [SOMEKEY-ENTER] キーだ ここでは自分や世界についての情報が見られる
 #' key to access the menu, which will provide you with information about yourself and your surroundings. 
  end scene
  end area

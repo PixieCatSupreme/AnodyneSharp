@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AnodyneSharp.Registry;
+using System;
 using System.Linq;
 
 namespace AnodyneSharp.Entities
@@ -8,7 +9,22 @@ namespace AnodyneSharp.Entities
     {
         readonly string xmlName;
         public readonly string type;
+        public readonly string map;
         public readonly int[] frames;
+
+        public NamedEntity() : this(null) { }
+
+        public NamedEntity(string xmlName)
+            : this(xmlName, type:null)
+        { }
+
+        public NamedEntity(string xmlName = null, string type = null, string map = null, params int[] frames)
+        {
+            this.xmlName = xmlName;
+            this.type = type;
+            this.frames = frames;
+            this.map = map;
+        }
 
         public NamedEntity(string xmlName = null, string type = null, params int[] frames)
         {
@@ -28,9 +44,9 @@ namespace AnodyneSharp.Entities
             }
         }
 
-        public bool Matches(int f, string t)
+        public bool Matches(int f, string t, string m)
         {
-            return (type ?? t) == t && (frames.Length == 0 || frames.Contains(f));
+            return (map ?? m) == m && (type ?? t) == t && (frames.Length == 0 || frames.Contains(f));
         }
     }
 }

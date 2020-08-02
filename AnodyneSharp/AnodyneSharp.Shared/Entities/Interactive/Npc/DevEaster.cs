@@ -8,7 +8,7 @@ using System.Text;
 
 namespace AnodyneSharp.Entities.Interactive.Npc
 {
-    [NamedEntity("NPC", "generic", 17, 18), Collision(typeof(Player))]
+    [NamedEntity("NPC", type:"generic", 17, 18), Collision(typeof(Player))]
     class DevEaster : Entity, Interactable
     {
         string scene;

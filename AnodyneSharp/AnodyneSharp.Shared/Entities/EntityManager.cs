@@ -142,7 +142,7 @@ namespace AnodyneSharp.Entities
                                 alive = bool.Parse(child.Attributes.GetNamedItem("alive").Value);
                             }
 
-                            var matching = type_lookup[child.Name].FindAll(t => t.check.Matches(frame, type)).ToList();
+                            var matching = type_lookup[child.Name].FindAll(t => t.check.Matches(frame, type, mapName)).ToList();
                             if (matching.Count == 0)
                             {
                                 string missing_entity = $"{child.Name}-{frame}-'{type}'";

@@ -118,13 +118,9 @@ npc sage
 Voz misteriosa: ¿Hola? ¿...Young? ^EY!  ... oh, ¿puedes oírme?  Bien, ahora escucha.  Estás a punto de despertar.  Usarás las teclas de dirección para desplazarte.
 # Note, these next two lines should be assumed to have the keybinding between them when translated (hence the single quotes)
 #You will press the '
-Pulsarás la tecla '
-#' key to interact with objects and people around you.
-' para interactuar con objetos y la gente a tu alrededor.
+Pulsarás la tecla [SOMEKEY-C] para interactuar con objetos y la gente a tu alrededor.
 #And you will press the '
-Y pulsarás la tecla '
-#' key to access the menu, which will provide you with information about yourself and your surroundings.
-' para acceder al menú, el cual te proporcionará información sobre ti mismo y tus alrededores.
+Y pulsarás la tecla [SOMEKEY-ENTER] para acceder al menú, el cual te proporcionará información sobre ti mismo y tus alrededores.
         end scene
     end area
 	

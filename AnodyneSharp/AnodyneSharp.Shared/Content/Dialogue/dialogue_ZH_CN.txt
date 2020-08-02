@@ -118,13 +118,9 @@ npc sage
 神秘的声音：喂？…扬？ ^嘿！…噢，你能听到我的声音吗？ 太好了，听着，你马上就要醒过来了。 你可以使用方向键四周围移动。
 # Note, these next two lines should be assumed to have the keybinding between them when translated (hence the single quotes)
 #You will press the '
-你需要按下'
-#' key to interact with objects and people around you.
-'键来与周围的物体和他人互动。
+你需要按下[SOMEKEY-C]键来与周围的物体和他人互动。
 #And you will press the '
-同时，你需要按下'
-#' key to access the menu, which will provide you with information about yourself and your surroundings.
-'键调出菜单，那里将会提供有关你自身以及周围环境的相关信息。
+同时，你需要按下[SOMEKEY-ENTER]键调出菜单，那里将会提供有关你自身以及周围环境的相关信息。
         end scene
     end area
 	

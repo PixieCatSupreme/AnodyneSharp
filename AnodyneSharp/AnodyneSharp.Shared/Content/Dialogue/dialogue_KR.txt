@@ -120,13 +120,9 @@ npc sage
 의문의 목소리: 이봐? ...영?  ^이봐!!!  ... 오, 내 말이 들리나?  좋아, 내 말 잘 듣게.  우선 움직이는 법을 알려주겠네.  방향키를 사용해서 움직일 수 있네.
 # Note, these next two lines should be assumed to have the keybinding between them when translated (hence the single quotes)
 # You will press the '
-아마 '
-# ' key to interact with objects and people around you.
-' 버튼을 눌러서 앞에 있는 사물이나 사람들이랑 상호 작용을 할 수 있을 걸세.
+아마 [SOMEKEY-C] 버튼을 눌러서 앞에 있는 사물이나 사람들이랑 상호 작용을 할 수 있을 걸세.
 # And you will press the '
-그리고 '
-# ' key to access the menu, which will provide you with information about yourself and your surroundings.  
-' 버튼을 눌러서 메뉴로 갈 수 있네, 메뉴에서 자네에 대한 정보와 환경을 볼 수 있을걸세.
+그리고 [SOMEKEY-ENTER] 버튼을 눌러서 메뉴로 갈 수 있네, 메뉴에서 자네에 대한 정보와 환경을 볼 수 있을걸세.
         end scene
     end area
 	
