@@ -63,13 +63,11 @@ namespace AnodyneSharp.Resources
 
         protected string[] SplitNextLine()
         {
-            string line = "";
-
             if (!_reader.EndOfStream)
             {
                 do
                 {
-                    line = _reader.ReadLine().Trim();
+                    string line = _reader.ReadLine().Trim();
                     LineNumber++;
 
                     if (!line.StartsWith("//") && !string.IsNullOrWhiteSpace(line))

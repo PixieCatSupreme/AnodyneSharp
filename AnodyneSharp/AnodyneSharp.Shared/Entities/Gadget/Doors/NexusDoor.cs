@@ -12,16 +12,12 @@ namespace AnodyneSharp.Entities.Gadget.Doors
     [NamedEntity("Door", "17"), Collision(typeof(Player))]
     public class NexusDoor : Door, Interactable
     {
-        Player _player;
-
         NexusPreview _preview;
         Entity _nexusGem;
 
         public NexusDoor(EntityPreset preset, Player player)
             : base(preset, player)
         {
-            _player = player;
-
             visible = false;
 
             width = 32;

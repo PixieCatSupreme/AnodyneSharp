@@ -31,10 +31,8 @@ namespace AnodyneSharp.Map
 
             using (Stream stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.Content.csv.{mapName}.csv"))
             {
-                using (StreamReader reader = new StreamReader(stream))
-                {
-                    CSV = reader.ReadToEnd();
-                }
+                using StreamReader reader = new StreamReader(stream);
+                CSV = reader.ReadToEnd();
             }
 
             return CSV;

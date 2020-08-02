@@ -10,6 +10,7 @@ namespace AnodyneSharp.Entities.Gadget.Doors
     public class OneWayDoor : Entity
     {
         //This is just the target for a one way door. It's supposed to do literally nothing!
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Both parameters are required for the entity preset system to work.")]
         public OneWayDoor(EntityPreset preset, Player player)
             : base(Vector2.Zero, 0)
         {

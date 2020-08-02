@@ -27,18 +27,14 @@ namespace AnodyneSharp.Registry
 
         public static bool HasBroomType(BroomType type)
         {
-            switch(type)
+            return type switch
             {
-                case BroomType.Normal:
-                    return HasBroom;
-                case BroomType.Long:
-                    return HasLenghten;
-                case BroomType.Wide:
-                    return HasWiden;
-                case BroomType.Transformer:
-                    return HasTransformer;
-            }
-            return false;
+                BroomType.Normal => HasBroom,
+                BroomType.Long => HasLenghten,
+                BroomType.Wide => HasWiden,
+                BroomType.Transformer => HasTransformer,
+                _ => false,
+            };
         }
 
         public static BroomType EquippedBroom

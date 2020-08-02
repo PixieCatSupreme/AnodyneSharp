@@ -49,18 +49,17 @@ namespace AnodyneSharp.Map
             _layer = layer;
 
             uint row = 0;
-            uint column = 0;
             while (row < heightInTiles)
             {
                 columns = rows[row++].Split(',');
                 if (columns.Length <= 1)
                 {
-                    heightInTiles = heightInTiles - 1;
+                    heightInTiles -= 1;
                     continue;
                 }
                 if (widthInTiles == 0)
                     widthInTiles = columns.Length;
-                column = 0;
+                uint column = 0;
                 while (column < widthInTiles)
                     data.Add(int.Parse(columns[column++]));
             }

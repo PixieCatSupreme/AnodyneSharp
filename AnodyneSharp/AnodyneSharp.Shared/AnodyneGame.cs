@@ -107,18 +107,14 @@ namespace AnodyneSharp
 
             if (File.Exists("InputConfig.dat"))
             {
-                using (InputConfigLoader inputConfigWriter = new InputConfigLoader($"{_baseFolder}InputConfig.dat"))
-                {
-                    inputConfigWriter.LoadInputConfig();
-                }
+                using InputConfigLoader inputConfigWriter = new InputConfigLoader($"{_baseFolder}InputConfig.dat");
+                inputConfigWriter.LoadInputConfig();
             }
             else
             {
                 SetDefaultKeys();
-                using (InputConfigWriter inputConfigWriter = new InputConfigWriter($"{_baseFolder}InputConfig.dat"))
-                {
-                    inputConfigWriter.WriteInputConfig();
-                }
+                using InputConfigWriter inputConfigWriter = new InputConfigWriter($"{_baseFolder}InputConfig.dat");
+                inputConfigWriter.WriteInputConfig();
             }
 
             if (KeyInput.IsNintendoController)

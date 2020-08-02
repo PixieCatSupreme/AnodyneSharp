@@ -80,34 +80,33 @@ namespace AnodyneSharp.Map.Tiles
                     return new List<CollissionData>();
                 }
 
-                using (StreamReader reader = new StreamReader(stream))
+                using StreamReader reader = new StreamReader(stream);
+
+                while (!reader.EndOfStream)
                 {
-                    while (!reader.EndOfStream)
+                    string[] dataStrings = reader.ReadLine().Split('\t');
+                    CollisionEventType eventType = CollisionEventType.NONE;
+                    Touching direction = Touching.ANY;
+
+                    if (Enum.TryParse(dataStrings[1], out Touching allowedCol) &&
+                        (dataStrings.Length == 2 || (Enum.TryParse(dataStrings[2], out eventType) &&
+                        (dataStrings.Length <= 3 || Enum.TryParse(dataStrings[3], out direction)))))
                     {
-                        string[] dataStrings = reader.ReadLine().Split('\t');
-                        CollisionEventType eventType = CollisionEventType.NONE;
-                        Touching direction = Touching.ANY;
-
-                        if (Enum.TryParse(dataStrings[1], out Touching allowedCol) &&
-                            (dataStrings.Length == 2 || (Enum.TryParse(dataStrings[2], out eventType) &&
-                            (dataStrings.Length <= 3 || Enum.TryParse(dataStrings[3], out direction)))))
+                        if (dataStrings[0].Contains('-'))
                         {
-                            if (dataStrings[0].Contains('-'))
-                            {
-                                string[] minMax = dataStrings[0].Split('-');
+                            string[] minMax = dataStrings[0].Split('-');
 
-                                if (int.TryParse(minMax[0], out int min) &&
-                                    int.TryParse(minMax[1], out int max))
-                                {
-                                    data.Add(new CollissionData(min, max, allowedCol, eventType, direction));
-                                }
-                            }
-                            else
+                            if (int.TryParse(minMax[0], out int min) &&
+                                int.TryParse(minMax[1], out int max))
                             {
-                                if (int.TryParse(dataStrings[0], out int min))
-                                {
-                                    data.Add(new CollissionData(min, allowedCol, eventType, direction));
-                                }
+                                data.Add(new CollissionData(min, max, allowedCol, eventType, direction));
+                            }
+                        }
+                        else
+                        {
+                            if (int.TryParse(dataStrings[0], out int min))
+                            {
+                                data.Add(new CollissionData(min, allowedCol, eventType, direction));
                             }
                         }
                     }

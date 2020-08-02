@@ -119,91 +119,87 @@ namespace AnodyneSharp.Dialogue
             int? loopID = null;
             bool alignTop = false;
 
-            using (Stream stream = assembly.GetManifestResourceStream(path))
+            using Stream stream = assembly.GetManifestResourceStream(path);
+            using StreamReader reader = new StreamReader(stream);
+            while (!reader.EndOfStream)
             {
-                using (StreamReader reader = new StreamReader(stream))
-                {
-                    while (!reader.EndOfStream)
-                    {
-                        string line = reader.ReadLine().Trim();
+                string line = reader.ReadLine().Trim();
 
-                        if (line.StartsWith("#"))
+                if (line.StartsWith("#"))
+                {
+                    continue;
+                }
+
+                switch (state)
+                {
+                    case ParseState.START:
+                        if (line.StartsWith("npc"))
+                        {
+                            npc = new DialogueNPC();
+                            state = ParseState.NPC;
+                            _sceneTree.Add(GetName(line), npc);
+                        }
+                        break;
+                    case ParseState.NPC:
+                        if (line == "does reset")
+                        {
+                            npc.doesReset = true;
+                            continue;
+                        }
+                        if (line == "end npc")
+                        {
+                            state = ParseState.START;
+                            continue;
+                        }
+                        if (line.StartsWith("area"))
+                        {
+                            areaName = GetName(line);
+                            state = ParseState.AREA;
+                            npc.AddArea(areaName);
+                        }
+                        break;
+                    case ParseState.AREA:
+                        if (line == "end area")
+                        {
+                            state = ParseState.NPC;
+                            continue;
+                        }
+                        if (line.StartsWith("scene"))
+                        {
+                            scene = GetName(line);
+                            state = ParseState.SCENE;
+
+                            loopID = null;
+                            dialogue = new List<string>();
+                            alignTop = false;
+                        }
+                        break;
+                    case ParseState.SCENE:
+                        if (string.IsNullOrWhiteSpace(line))
                         {
                             continue;
                         }
 
-                        switch (state)
+                        if (line == "TOP")
                         {
-                            case ParseState.START:
-                                if (line.StartsWith("npc"))
-                                {
-                                    npc = new DialogueNPC();
-                                    state = ParseState.NPC;
-                                    _sceneTree.Add(GetName(line), npc);
-                                }
-                                break;
-                            case ParseState.NPC:
-                                if (line == "does reset")
-                                {
-                                    npc.doesReset = true;
-                                    continue;
-                                }
-                                if (line == "end npc")
-                                {
-                                    state = ParseState.START;
-                                    continue;
-                                }
-                                if (line.StartsWith("area"))
-                                {
-                                    areaName = GetName(line);
-                                    state = ParseState.AREA;
-                                    npc.AddArea(areaName);
-                                }
-                                break;
-                            case ParseState.AREA:
-                                if (line == "end area")
-                                {
-                                    state = ParseState.NPC;
-                                    continue;
-                                }
-                                if (line.StartsWith("scene"))
-                                {
-                                    scene = GetName(line);
-                                    state = ParseState.SCENE;
-
-                                    loopID = null;
-                                    dialogue = new List<string>();
-                                    alignTop = false;
-                                }
-                                break;
-                            case ParseState.SCENE:
-                                if (string.IsNullOrWhiteSpace(line))
-                                {
-                                    continue;
-                                }
-
-                                if (line == "TOP")
-                                {
-                                    alignTop = true;
-                                    continue;
-                                }
-                                if (line == "end scene")
-                                {
-                                    state = ParseState.AREA;
-                                    npc.GetArea(areaName).AddScene(scene, new DialogueScene(alignTop, loopID, dialogue));
-                                    continue;
-                                }
-                                if (line == "LOOP")
-                                {
-                                    loopID = dialogue.Count - 1;
-                                    continue;
-                                }
-                                dialogue.Add(line);
-                                break;
+                            alignTop = true;
+                            continue;
                         }
-
-                    }
+                        if (line == "end scene")
+                        {
+                            state = ParseState.AREA;
+                            npc.GetArea(areaName).AddScene(scene, new DialogueScene(alignTop, loopID, dialogue));
+                            continue;
+                        }
+                        if (line == "LOOP")
+                        {
+                            loopID = dialogue.Count - 1;
+                            continue;
+                        }
+                        dialogue.Add(line);
+                        break;
                 }
+
             }
         }
 
