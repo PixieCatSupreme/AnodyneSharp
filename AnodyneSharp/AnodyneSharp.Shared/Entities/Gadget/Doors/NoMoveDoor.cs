@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AnodyneSharp.Sounds;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -11,13 +12,6 @@ namespace AnodyneSharp.Entities.Gadget.Doors
             : base(preset, player)
         {
             visible = false;
-        }
-
-        protected override void TeleportPlayer()
-        {
-            //TODO: Enable when teleporting is a thing. (We don't want to listen to it otherwise)
-            //SoundManager.PlaySoundEffect("enter_Door");
-            base.TeleportPlayer();
         }
     }
 }

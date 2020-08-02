@@ -10,7 +10,7 @@ namespace AnodyneSharp.Entities.Gadget.Doors
     public class WhirlPool : Door
     {
         public WhirlPool(EntityPreset preset, Player player)
-            : base(preset, player, "whirlpool", 16, 16)
+            : base(preset, player, "whirlpool", 16, 16, null)
         {
             AddAnimation("whirl", CreateAnimFrameArray(0, 1), 6, true);
             AddAnimation("transition", CreateAnimFrameArray(3, 4, 4), 6, false);

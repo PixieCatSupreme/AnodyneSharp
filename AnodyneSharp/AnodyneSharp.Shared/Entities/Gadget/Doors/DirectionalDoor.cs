@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AnodyneSharp.Registry;
+using AnodyneSharp.Sounds;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -25,10 +27,7 @@ namespace AnodyneSharp.Entities.Gadget.Doors
 
         protected override void TeleportPlayer()
         {
-            //TODO: Enable when teleporting is a thing. (We don't want to listen to it otherwise)
-            //SoundManager.PlaySoundEffect("enter_Door");
-
-            _player.facing = _exitDirection;
+            GlobalState.NewMapFacing = _exitDirection;
 
             base.TeleportPlayer();
         }

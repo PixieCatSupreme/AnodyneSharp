@@ -16,7 +16,7 @@ namespace AnodyneSharp.Entities.Gadget.Doors
         Entity _nexusGem;
 
         public NexusDoor(EntityPreset preset, Player player)
-            : base(preset, player)
+            : base(preset, player, "teleport_up")
         {
             visible = false;
 

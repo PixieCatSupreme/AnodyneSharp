@@ -81,6 +81,8 @@ namespace AnodyneSharp.Registry
         public static int ENEMIES_KILLED;
         public static int PUZZLES_SOLVED;
 
+        public static Facing NewMapFacing = Facing.RIGHT;
+
         public static bool WARP = false;
         public static string NEXT_MAP_NAME;
         public static Vector2 PLAYER_WARP_TARGET;

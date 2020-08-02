@@ -449,11 +449,7 @@ namespace AnodyneSharp.Entities
                         idle_ticks -= 1;
                         break;
                     }
-                    if (velocity == Vector2.Zero)
-                    {
-                        PlayFacing("idle");
-                    }
-                    else
+                    if (velocity != Vector2.Zero)
                     {
                         FacingFromVelocity();
                         PlayFacing("walk");
@@ -461,6 +457,11 @@ namespace AnodyneSharp.Entities
                         ANIM_STATE = PlayerAnimState.as_walk;
                         _curIndex = last_frame[(int)facing];
                         _curFrame = _curAnim.frames[_curIndex];
+
+                    }
+                    else
+                    {
+                        PlayFacing("idle");
                     }
                     break;
 

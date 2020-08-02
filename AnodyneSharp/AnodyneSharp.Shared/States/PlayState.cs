@@ -731,6 +731,7 @@ namespace AnodyneSharp.States
             }
 
             _player.Position = GlobalState.PLAYER_WARP_TARGET == Vector2.Zero ? _map.GetFirstWalkable(_map_bg_2) * TILE_WIDTH : GlobalState.PLAYER_WARP_TARGET;
+            _player.facing = GlobalState.NewMapFacing;
 
             Vector2 gridPos = MapUtilities.GetRoomCoordinate(_player.Position);
             Vector2 roomPos = MapUtilities.GetRoomUpperLeftPos(gridPos);

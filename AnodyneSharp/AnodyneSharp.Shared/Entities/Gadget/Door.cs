@@ -1,10 +1,13 @@
 ﻿using AnodyneSharp.Drawing;
 using AnodyneSharp.Logging;
 using AnodyneSharp.Registry;
+using AnodyneSharp.Sounds;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
+
+#nullable enable
 
 namespace AnodyneSharp.Entities.Gadget
 {
@@ -25,11 +28,13 @@ namespace AnodyneSharp.Entities.Gadget
         private bool player_on_door;
         private Player _player;
 
-        public Door(EntityPreset preset, Player player)
-            : this(preset, player, "doors", 16, 16)
+        private string? _sfx;
+
+        public Door(EntityPreset preset, Player player, string? sfx = "enter_Door")
+            : this(preset, player, "doors", 16, 16, sfx)
         { }
 
-        public Door(EntityPreset preset, Player player, string textureName, int width, int height)
+        public Door(EntityPreset preset, Player player, string textureName, int width, int height, string? sfx = "enter_Door")
             : base(preset.Position, textureName, width, height, DrawOrder.BG_ENTITIES)
         {
             _linkedDoor = EntityManager.GetLinkedDoor(preset);
@@ -39,6 +44,8 @@ namespace AnodyneSharp.Entities.Gadget
 
             _player = player;
             player_on_door = player.Hitbox.Intersects(this.Hitbox);
+
+            _sfx = sfx;
         }
 
         protected override void CenterOffset()
@@ -72,6 +79,11 @@ namespace AnodyneSharp.Entities.Gadget
             GlobalState.PLAYER_WARP_TARGET = _linkedDoor.Door.Position + teleportOffset;
             GlobalState.WARP = true;
             player_on_door = true;
+
+            if (_sfx != null)
+            {
+                SoundManager.PlaySoundEffect(_sfx);
+            }
         }
     }
 }

@@ -16,7 +16,7 @@ namespace AnodyneSharp.Entities.Gadget.Doors
         Player _player;
 
         public NexusPad(EntityPreset preset, Player player)
-            : base(preset, player, "nexus_pad", 32, 32)
+            : base(preset, player, "nexus_pad", 32, 32, null)
         {
             _player = player;
 

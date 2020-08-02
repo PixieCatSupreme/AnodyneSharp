@@ -11,7 +11,7 @@ namespace AnodyneSharp.Entities.Gadget.Doors
     public class BlankPortal : Door
     {
         public BlankPortal(EntityPreset preset, Player player) 
-            : base(preset, player, "whiteportal", 16, 16)
+            : base(preset, player, "whiteportal", 16, 16, "teleport_up")
         {
             width = height = 2;
             CenterOffset();
@@ -26,13 +26,6 @@ namespace AnodyneSharp.Entities.Gadget.Doors
                 AddAnimation("a", CreateAnimFrameArray(0,1,2), 8, true);
             }
             Play("a");
-        }
-
-        protected override void TeleportPlayer()
-        {
-            //TODO: Enable when teleporting is a thing. (We don't want to listen to it otherwise)
-            //SoundManager.PlaySoundEffect("enter_Door");
-            base.TeleportPlayer();
         }
     }
 }
