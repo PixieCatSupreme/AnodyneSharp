@@ -189,7 +189,7 @@ namespace AnodyneSharp.States
                         break;
                     case PlayStateState.S_MAP_EXIT:
                         GlobalState.transition_fadeout_progress = Math.Min(1.0f, GlobalState.transition_fadeout_progress + GameTimes.DeltaTime * 2f);
-                        if (GlobalState.transition_fadeout_progress == 1)
+                        if (GlobalState.transition_fadeout_progress == 1 || GlobalState.FUCK_IT_MODE_ON)
                         {
                             Warp();
                             _state = PlayStateState.S_MAP_ENTER;

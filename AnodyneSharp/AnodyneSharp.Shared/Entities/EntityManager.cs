@@ -116,8 +116,8 @@ namespace AnodyneSharp.Entities
                             }
                             continue;
                         }
-                        if (int.TryParse(child.Attributes.GetNamedItem("x").Value, out int x) &&
-                            int.TryParse(child.Attributes.GetNamedItem("y").Value, out int y) &&
+                        if (float.TryParse(child.Attributes.GetNamedItem("x").Value, out float x) &&
+                            float.TryParse(child.Attributes.GetNamedItem("y").Value, out float y) &&
                             Guid.TryParse(child.Attributes.GetNamedItem("guid").Value, out Guid id) &&
                             int.TryParse(child.Attributes.GetNamedItem("frame").Value, out int frame))
                         {
@@ -183,6 +183,11 @@ namespace AnodyneSharp.Entities
                             }
                         }
                     }
+                }
+
+                foreach (var item in doors)
+                {
+                    DebugLogger.AddWarning($"Door {item.Door.EntityID} in map {item.Map} with link ID {item.Door.Frame} is missing a pair!");
                 }
             }
         }
