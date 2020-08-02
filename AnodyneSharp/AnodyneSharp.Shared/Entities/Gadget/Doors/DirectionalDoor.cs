@@ -16,7 +16,7 @@ namespace AnodyneSharp.Entities.Gadget.Doors
         {
             visible = false;
 
-            offset = FacingDirection(facing) * offsetSize;
+            teleportOffset = FacingDirection(facing) * offsetSize;
 
             _exitDirection = facing;
 
@@ -31,6 +31,25 @@ namespace AnodyneSharp.Entities.Gadget.Doors
             _player.facing = _exitDirection;
 
             base.TeleportPlayer();
+        }
+    }
+
+    [NamedEntity("Door", "1")]
+    public class DownDoor : DirectionalDoor
+    {
+        public DownDoor(EntityPreset preset, Player player)
+            : base(preset, player, Facing.DOWN, 16)
+        { }
+    }
+
+    [NamedEntity("Door", "5")]
+    public class UpDoor : DirectionalDoor
+    {
+        public UpDoor(EntityPreset preset, Player player)
+            : base(preset, player, Facing.UP, 20)
+        {
+            width = height = 8;
+            CenterOffset();
         }
     }
 
@@ -50,37 +69,21 @@ namespace AnodyneSharp.Entities.Gadget.Doors
         { }
     }
 
-    [NamedEntity("Door", "5")]
-    public class UpDoor : DirectionalDoor
+    [NamedEntity("Door", "12")]
+    public class WideDownDoor : DirectionalDoor
     {
-        public UpDoor(EntityPreset preset, Player player)
-            : base(preset, player, Facing.UP, 20)
-        { }
-    }
-
-    [NamedEntity("Door", "1")]
-    public class DownDoor : DirectionalDoor
-    {
-        public DownDoor(EntityPreset preset, Player player)
+        public WideDownDoor(EntityPreset preset, Player player)
             : base(preset, player, Facing.DOWN, 16)
-        { }
+        {
+            width = 80;
+            Position.X -= 32;
+        }
     }
 
     [NamedEntity("Door", "13")]
     public class TallLeftDoor : LeftDoor
     {
         public TallLeftDoor(EntityPreset preset, Player player)
-            : base(preset, player)
-        {
-            height = 80;
-            Position.Y -= 32;
-        }
-    }
-
-    [NamedEntity("Door", "15")]
-    public class TallRightDoor : RightDoor
-    {
-        public TallRightDoor(EntityPreset preset, Player player)
             : base(preset, player)
         {
             height = 80;
@@ -99,14 +102,14 @@ namespace AnodyneSharp.Entities.Gadget.Doors
         }
     }
 
-    [NamedEntity("Door", "12")]
-    public class WideDownDoor : DirectionalDoor
+    [NamedEntity("Door", "15")]
+    public class TallRightDoor : RightDoor
     {
-        public WideDownDoor(EntityPreset preset, Player player)
-            : base(preset, player, Facing.DOWN, 16)
+        public TallRightDoor(EntityPreset preset, Player player)
+            : base(preset, player)
         {
-            width = 80;
-            Position.X -= 32;
+            height = 80;
+            Position.Y -= 32;
         }
     }
 }

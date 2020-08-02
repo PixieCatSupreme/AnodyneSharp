@@ -62,7 +62,6 @@ namespace AnodyneSharp.Registry
         public static bool SetDialogueMode = false;
 
         public static bool BOI = false; // BOI Sprites on in easter egg redcave
-        public static bool is_playstate = true;
         public static float music_volume_scale =
 #if DEBUG
             0.1f;
@@ -71,11 +70,9 @@ namespace AnodyneSharp.Registry
 #endif
         public static float sfx_volume_scale = 1.0f;
 
-        public static bool pillar_switch_state = false; //Reset when entering a map with differentname
+        public static bool pillar_switch_state = false; //Reset when entering a map with different name
         public static int ENTRANCE_GRID_X;
         public static int ENTRANCE_GRID_Y;
-        public static int ENTRANCE_PLAYER_X;
-        public static int ENTRANCE_PLAYER_Y;
         public static int PLAYER_X;
         public static int PLAYER_Y;
         public static int CURRENT_GRID_X;
@@ -83,6 +80,11 @@ namespace AnodyneSharp.Registry
         public static string CURRENT_MAP_NAME;
         public static int ENEMIES_KILLED;
         public static int PUZZLES_SOLVED;
+
+        public static bool WARP = false;
+        public static string NEXT_MAP_NAME;
+        public static Vector2 PLAYER_WARP_TARGET;
+        public static float transition_fadeout_progress = 0.0f;
 
         public static bool RefreshKeyCount = false;
         public static bool RefreshMaxHealth = false;

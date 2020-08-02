@@ -25,6 +25,7 @@ namespace AnodyneSharp.Entities.Gadget.Doors
             offset = new Vector2(6,4);
 
             Position += new Vector2(6, 6);
+            teleportOffset = new Vector2(10, 34);
 
             if (GlobalState.CURRENT_MAP_NAME == "CELL")
             {

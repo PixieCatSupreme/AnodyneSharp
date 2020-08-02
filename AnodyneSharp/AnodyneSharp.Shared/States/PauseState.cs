@@ -39,8 +39,6 @@ namespace AnodyneSharp.States
 
         private static PauseStateState _state;
 
-        public bool Exited { get; private set; }
-
         private PauseStateState _lastAllowedState
         {
             get
@@ -102,7 +100,7 @@ namespace AnodyneSharp.States
             if (KeyInput.JustPressedRebindableKey(KeyFunctions.Pause) || (!_inSubstate && KeyInput.JustPressedRebindableKey(KeyFunctions.Cancel)))
             {
                 SoundManager.PlayPitchedSoundEffect("pause_sound", -0.1f);
-                Exited = true;
+                Exit = true;
             }
             else if (!_inSubstate)
             {
@@ -157,36 +155,18 @@ namespace AnodyneSharp.States
             _lastState = _state;
             _selector.Position = new Vector2(0, 30 + (int)_state * 16);
 
-            switch (_state)
+            _substate = _state switch
             {
-                case PauseStateState.Map:
-                    _substate = new MapSubstate();
-                    break;
-                case PauseStateState.Equip:
-                    _substate = new EquipSubstate();
-                    break;
-                case PauseStateState.Cards:
-                    _substate = new CardSubstate();
-                    break;
-                case PauseStateState.Save:
-                    _substate = new SaveSubstate();
-                    break;
-                case PauseStateState.Settings:
-                    _substate = new ConfigSubstate();
-                    break;
-                case PauseStateState.Achievements:
-                    _substate = new AchievementsSubstate();
-                    break;
-                case PauseStateState.Secretz:
-                    _substate = new SecretSubstate();
-                    break;
-                case PauseStateState.Cheatz:
-                    _substate = new CheatzSubstate();
-                    break;
-                default:
-                    _substate = new PauseSubstate();
-                    break;
-            }
+                PauseStateState.Map => new MapSubstate(),
+                PauseStateState.Equip => new EquipSubstate(),
+                PauseStateState.Cards => new CardSubstate(),
+                PauseStateState.Save => new SaveSubstate(),
+                PauseStateState.Settings => new ConfigSubstate(),
+                PauseStateState.Achievements => new AchievementsSubstate(),
+                PauseStateState.Secretz => new SecretSubstate(),
+                PauseStateState.Cheatz => new CheatzSubstate(),
+                _ => new PauseSubstate(),
+            };
         }
 
         private void BrowseInput()

@@ -321,6 +321,12 @@ namespace AnodyneSharp.Entities
                 f == Facing.DOWN ? 1 : (f == Facing.UP ? -1 : 0));
         }
 
+        protected virtual void CenterOffset()
+        {
+            offset = (new Vector2(frameWidth, frameHeight) - new Vector2(width, height)) / 2;
+            Position += offset;
+        }
+
         protected void Flicker(float duration)
         {
             _flickering = true;

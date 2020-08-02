@@ -9,6 +9,7 @@ namespace AnodyneSharp.Drawing
     {
         public static Color BackColor;
         public static SamplerState SamplerState;
+        public static Color FullScreenFade = Color.White;
 
         private static GraphicsDevice _graphicsDevice;
         private static SpriteBatch _spriteBatch;
@@ -95,7 +96,7 @@ namespace AnodyneSharp.Drawing
 
             _spriteBatch.Begin(sortMode: SpriteSortMode.Texture, blendState: BlendState.AlphaBlend, samplerState: SamplerState, effect: effect);
 
-            _spriteBatch.Draw(_render, new Rectangle(0,0, _graphicsDevice.PresentationParameters.BackBufferWidth, _graphicsDevice.PresentationParameters.BackBufferHeight), Color.White);
+            _spriteBatch.Draw(_render, new Rectangle(0,0, _graphicsDevice.PresentationParameters.BackBufferWidth, _graphicsDevice.PresentationParameters.BackBufferHeight), FullScreenFade);
 
             _spriteBatch.End();
         }

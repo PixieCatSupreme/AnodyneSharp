@@ -157,6 +157,7 @@ namespace AnodyneSharp.States
                     break;
                 case DialogueStateState.Done:
                     GlobalState.Dialogue = "";
+                    Exit = true;
                     break;
             }
         }

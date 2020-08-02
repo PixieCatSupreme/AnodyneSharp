@@ -26,12 +26,11 @@ namespace AnodyneSharp.States
     {
         S_NORMAL,
         S_TRANSITION,
-        S_PAUSED,
         S_PLAYER_DIED = 4,
-        S_JUST_ENTERED_MAP,
+        S_MAP_EXIT,
+        S_MAP_ENTER,
         S_DIRECT_CONTROLS,
-        S_CUTSCENE,
-        S_DIALOGUE
+        S_CUTSCENE
     }
 
     public class PlayState : State
@@ -62,7 +61,6 @@ namespace AnodyneSharp.States
 
         private State _childState;
 
-        private bool _updateEntities;
         private UILabel _keyValueLabel;
 
         private Texture2D _equippedBroomBorder;
@@ -86,11 +84,9 @@ namespace AnodyneSharp.States
             _player = new Player(this);
             _healthBar = new HealthBar(new Vector2(155, 2));
 
-            _updateEntities = true;
-
             _iconPos = new Vector2(2, 3);
 
-            SetKeyLabel();
+            CreateKeyLabel();
         }
 
         public override void Create()
@@ -101,7 +97,7 @@ namespace AnodyneSharp.States
 
             _equippedBroomBorder = ResourceManager.GetTexture("frame_icon", true);
 
-            LoadMap();
+            Warp();
         }
 
         public override void Draw()
@@ -169,77 +165,60 @@ namespace AnodyneSharp.States
 
         public override void Update()
         {
-            switch (_state)
+            if (_childState != null)
             {
-                case PlayStateState.S_NORMAL:
-                    StateNormal();
-                    break;
-                case PlayStateState.S_TRANSITION:
-                    //Registry.sound_data.current_song.volume = FlxG.volume * Registry.volume_scale;
-                    StateTransition();
-                    DoCollisions();
-                    UpdateEntities();
-                    return;
-                case PlayStateState.S_PAUSED:
-                    if (_childState is PauseState pauseState)
-                    {
-                        pauseState.Update();
-
-                        if (pauseState.Exited)
+                _childState.Update();
+                if (_childState.Exit)
+                {
+                    _childState = null;
+                }
+            }
+            else
+            {
+                var oldstate = _state;
+                switch (_state)
+                {
+                    case PlayStateState.S_NORMAL:
+                        StateNormal();
+                        break;
+                    case PlayStateState.S_TRANSITION:
+                        //Registry.sound_data.current_song.volume = FlxG.volume * Registry.volume_scale;
+                        StateTransition();
+                        break;
+                    case PlayStateState.S_PLAYER_DIED:
+                        break;
+                    case PlayStateState.S_MAP_EXIT:
+                        GlobalState.transition_fadeout_progress = Math.Min(1.0f, GlobalState.transition_fadeout_progress + GameTimes.DeltaTime * 2f);
+                        if (GlobalState.transition_fadeout_progress == 1)
+                        {
+                            Warp();
+                            _state = PlayStateState.S_MAP_ENTER;
+                        }
+                        break;
+                    case PlayStateState.S_MAP_ENTER:
+                        GlobalState.transition_fadeout_progress = Math.Max(0.0f, GlobalState.transition_fadeout_progress - GameTimes.DeltaTime * 2f);
+                        if (GlobalState.transition_fadeout_progress == 0)
                         {
                             _state = PlayStateState.S_NORMAL;
-                            _childState = null;
-                            _player.broom.UpdateBroomType();
-                            _updateEntities = true;
-                            return;
+                            _player.dontMove = false;
+                            _player.invincible = false;
                         }
-                    }
-                    break;
-                case PlayStateState.S_PLAYER_DIED:
-                    break;
-                case PlayStateState.S_JUST_ENTERED_MAP:
-                    break;
-                case PlayStateState.S_DIRECT_CONTROLS:
-                    break;
-                case PlayStateState.S_CUTSCENE:
-                    break;
-                case PlayStateState.S_DIALOGUE:
-                    _player.dontMove = true;
-                    _player.skipBroom = true;
-                    _childState.Update();
+                        break;
+                    case PlayStateState.S_DIRECT_CONTROLS:
+                        break;
+                    case PlayStateState.S_CUTSCENE:
+                        break;
+                    default:
+                        break;
+                }
 
-                    if (GlobalState.Dialogue == "")
-                    {
-                        _state = PlayStateState.S_NORMAL;
-                        _childState = null;
-                        _player.dontMove = false;
-                        _player.skipBroom = false;
-                    }
-                    break;
-                default:
-                    break;
-            }
-
-            if (_updateEntities)
-            {
-                if (_state != PlayStateState.S_TRANSITION)
+                //Single frame non-collision on transition to enable wiggle glitch
+                if (oldstate == _state || _state != PlayStateState.S_TRANSITION)
                 {
                     DoCollisions();
                 }
 
                 UpdateEntities();
-            }
-
-            if (InventoryManager.EquippedBroomChanged)
-            {
-                InventoryManager.EquippedBroomChanged = false;
-
-                UpdateBroomIcon();
-            }
-
-            if (GlobalState.RefreshLabels)
-            {
-                SetKeyLabel();
             }
 
 #if DEBUG
@@ -256,6 +235,18 @@ namespace AnodyneSharp.States
 
         private void Refreshes()
         {
+            if (InventoryManager.EquippedBroomChanged)
+            {
+                InventoryManager.EquippedBroomChanged = false;
+
+                UpdateBroomIcon();
+            }
+
+            if (GlobalState.RefreshLabels)
+            {
+                CreateKeyLabel();
+            }
+
             if (GlobalState.RefreshMaxHealth)
             {
                 GlobalState.RefreshMaxHealth = false;
@@ -318,7 +309,7 @@ namespace AnodyneSharp.States
 
         private bool CheckInteraction()
         {
-            if (_player.state != PlayerState.GROUND || _state == PlayStateState.S_DIALOGUE)
+            if (_player.state != PlayerState.GROUND)
             {
                 return false;
             }
@@ -346,22 +337,28 @@ namespace AnodyneSharp.States
         {
             if (GlobalState.SetDialogueMode)
             {
-                _state = PlayStateState.S_DIALOGUE;
                 _childState = new DialogueState();
                 _player.BeIdle();
                 return;
             }
 
-            CheckForTransition();
-
             if (KeyInput.JustPressedRebindableKey(KeyFunctions.Pause))
             {
                 _childState = new PauseState();
-                _state = PlayStateState.S_PAUSED;
-                _updateEntities = false;
                 SoundManager.PlaySoundEffect("pause_sound");
                 return;
             }
+
+            if (GlobalState.WARP)
+            {
+                GlobalState.WARP = false;
+                _player.invincible = true;
+                _player.dontMove = true;
+                _state = PlayStateState.S_MAP_EXIT;
+                return;
+            }
+
+            CheckForTransition();
 
             if (!_player.broom.exists)
             {
@@ -447,24 +444,28 @@ namespace AnodyneSharp.States
             {
                 _player.invincible = false;
 
-                //delete old objects
-                _oldEntities.Clear();
-
-                // TODO update miniminimap
-
                 _player.dontMove = false;
 
-                //TODO update minimap
+                FinalizeTransition();
 
                 _state = PlayStateState.S_NORMAL;
             }
         }
 
-        private void SetKeyLabel()
+        private void FinalizeTransition()
+        {
+            //delete old objects
+            _oldEntities.Clear();
+
+            // TODO update miniminimap
+
+            //TODO update minimap
+        }
+
+        private void CreateKeyLabel()
         {
             _keyValueLabel = new UILabel(new Vector2(37, 5 - LineOffset + (GlobalState.CurrentLanguage == Language.ZH_CN ? 1 : 0)), false);
             _keyValueLabel.Writer.SetSpriteFont(FontManager.InitFont(new Color(124, 163, 177, 255)), ResourceManager.GetTexture("consoleButtons"));
-            _keyValueLabel.SetText($"x{InventoryManager.GetCurrentMapKeys()}");
         }
 
         private void UpdateScreenBorders()
@@ -540,17 +541,17 @@ namespace AnodyneSharp.States
 
             if (KeyInput.JustPressedKey(Keys.M))
             {
-                int newIndex = MapUtilities.GetMapID( GlobalState.CURRENT_MAP_NAME) +1;
+                int newIndex = MapUtilities.GetMapID(GlobalState.CURRENT_MAP_NAME) + 1;
 
-                if (newIndex  > (int)MapOrder.DEBUG)
+                if (newIndex > (int)MapOrder.DEBUG)
                 {
                     newIndex = 0;
                 }
 
-                GlobalState.CURRENT_MAP_NAME = Enum.GetName(typeof(MapOrder), (MapOrder)newIndex);
+                GlobalState.NEXT_MAP_NAME = Enum.GetName(typeof(MapOrder), (MapOrder)newIndex);
+                GlobalState.PLAYER_WARP_TARGET = Vector2.Zero;
+                GlobalState.WARP = true;
 
-                LoadMap();
-                StateTransition();
             }
             else if (KeyInput.JustPressedKey(Keys.N))
             {
@@ -561,10 +562,9 @@ namespace AnodyneSharp.States
                     newIndex = (int)MapOrder.DEBUG;
                 }
 
-                GlobalState.CURRENT_MAP_NAME = Enum.GetName(typeof(MapOrder), (MapOrder)newIndex);
-
-                LoadMap();
-                StateTransition();
+                GlobalState.NEXT_MAP_NAME = Enum.GetName(typeof(MapOrder), (MapOrder)newIndex);
+                GlobalState.PLAYER_WARP_TARGET = Vector2.Zero;
+                GlobalState.WARP = true;
             }
 
             if (KeyInput.JustPressedKey(Keys.D5))
@@ -696,19 +696,41 @@ namespace AnodyneSharp.States
         }
 
 
-        private void LoadMap()
+        private void Warp()
         {
-            TileData.SetTileset(GlobalState.CURRENT_MAP_NAME);
-            _map.LoadMap(MapLoader.GetMap(GlobalState.CURRENT_MAP_NAME), TileData.Tiles, DrawOrder.MAP_BG);
+            if (GlobalState.CURRENT_MAP_NAME != GlobalState.NEXT_MAP_NAME)
+            {
+                GlobalState.CURRENT_MAP_NAME = GlobalState.NEXT_MAP_NAME;
 
-            _map_bg_2.LoadMap(MapLoader.GetMap(GlobalState.CURRENT_MAP_NAME, 2), TileData.Tiles, DrawOrder.MAP_BG2);
-            _map_bg_2.y = HEADER_HEIGHT;
-            _map_fg.LoadMap(MapLoader.GetMap(GlobalState.CURRENT_MAP_NAME, 3), TileData.Tiles, DrawOrder.MAP_FG);
-            _map_fg.y = HEADER_HEIGHT;
+                TileData.SetTileset(GlobalState.CURRENT_MAP_NAME);
+                _map.LoadMap(MapLoader.GetMap(GlobalState.CURRENT_MAP_NAME), TileData.Tiles, DrawOrder.MAP_BG);
 
-            //Sets tile collission and tile events
-            TileData.Set_tile_properties(_map, _map_bg_2);
-            _player.Position = _map.GetFirstWalkable(_map_bg_2) * TILE_WIDTH;
+                _map_bg_2.LoadMap(MapLoader.GetMap(GlobalState.CURRENT_MAP_NAME, 2), TileData.Tiles, DrawOrder.MAP_BG2);
+                _map_bg_2.y = HEADER_HEIGHT;
+                _map_fg.LoadMap(MapLoader.GetMap(GlobalState.CURRENT_MAP_NAME, 3), TileData.Tiles, DrawOrder.MAP_FG);
+                _map_fg.y = HEADER_HEIGHT;
+
+                //Sets tile collission and tile events
+                TileData.Set_tile_properties(_map, _map_bg_2);
+
+                foreach (EntityPreset p in EntityManager.GetMapEntities(GlobalState.CURRENT_MAP_NAME).Where(p => p.Permanence == Permanence.MAP_LOCAL))
+                {
+                    p.Alive = true;
+                }
+
+                PlayMapMusic();
+
+                UpdateBroomIcon();
+
+                if (GlobalState.GameMode != GameMode.Normal)
+                {
+                    ReloadMapTextures();
+                }
+
+                GlobalState.RefreshKeyCount = true;
+            }
+
+            _player.Position = GlobalState.PLAYER_WARP_TARGET == Vector2.Zero ? _map.GetFirstWalkable(_map_bg_2) * TILE_WIDTH : GlobalState.PLAYER_WARP_TARGET;
 
             Vector2 gridPos = MapUtilities.GetRoomCoordinate(_player.Position);
             Vector2 roomPos = MapUtilities.GetRoomUpperLeftPos(gridPos);
@@ -722,23 +744,9 @@ namespace AnodyneSharp.States
 
             UpdateScreenBorders();
 
-            foreach (EntityPreset p in EntityManager.GetMapEntities(GlobalState.CURRENT_MAP_NAME).Where(p => p.Permanence == Permanence.MAP_LOCAL))
-            {
-                p.Alive = true;
-            }
-
             LoadGridEntities();
 
-            _keyValueLabel.SetText($"x{InventoryManager.GetCurrentMapKeys()}");
-
-            PlayMapMusic();
-
-            UpdateBroomIcon();
-
-            if (GlobalState.GameMode != GameMode.Normal)
-            {
-                ReloadMapTextures();
-            }
+            FinalizeTransition();
         }
 
         private void ReloadMapTextures()

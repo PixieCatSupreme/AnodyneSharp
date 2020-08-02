@@ -121,7 +121,7 @@ namespace AnodyneSharp.Input
 
             if (ControllerModeChanged)
             {
-                string displayName = GamePad.GetCapabilities(PlayerIndex.One).DisplayName.ToLower() ?? "";
+                string displayName = (GamePad.GetCapabilities(PlayerIndex.One).DisplayName ?? "").ToLower();
 
                 if (displayName.Contains("nintendo"))
                 {

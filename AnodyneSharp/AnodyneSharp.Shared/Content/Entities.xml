@@ -2297,7 +2297,7 @@
     <NPC x="384" y="80" guid="67918A21-B9F5-C6B1-130B-424AB235C6AD" frame="12" type="generic" />
   </map>
   <map name="NEXUS" type="Stateful">
-    <Door x="704" y="1392" guid="7C6BBEC5-AAB2-3506-DF56-2903596CEA74" frame="2" type="6" />
+    <Door x="704" y="1392" guid="7C6BBEC5-AAB2-3506-DF56-2903596CEA74" frame="4" type="6" />
     <Door x="816" y="1136" guid="917CCBF2-037E-CC96-A391-EF58610A39C4" frame="46" type="17" />
     <Door x="704" y="1024" guid="CEA5FE5D-714E-B4CF-7C9A-8E7EA72313FB" frame="48" type="17" />
     <Door x="816" y="1200" guid="9D2B3401-F034-9D81-1D70-2C06189A02FE" frame="49" type="17" />

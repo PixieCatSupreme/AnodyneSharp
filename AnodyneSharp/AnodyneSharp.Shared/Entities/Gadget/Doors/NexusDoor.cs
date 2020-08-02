@@ -26,6 +26,8 @@ namespace AnodyneSharp.Entities.Gadget.Doors
 
             Position += new Vector2(6, 6);
 
+            teleportOffset = new Vector2(10, 8);
+
             _preview = new NexusPreview(preset.Position, LinkedMapName, player);
 
             _nexusGem = new Entity(new Vector2(Position.X - 6, Position.Y - 4), "nexus_cardgem", 32, 16, DrawOrder.ENTITIES);

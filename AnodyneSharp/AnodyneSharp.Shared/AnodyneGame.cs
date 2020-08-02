@@ -100,7 +100,7 @@ namespace AnodyneSharp
         /// </summary>
         protected override void LoadContent()
         {
-            GlobalState.CURRENT_MAP_NAME = "STREET";
+            GlobalState.NEXT_MAP_NAME = "STREET";
 
             ResourceManager.LoadResources(Content);
             CardDataManager.ReadCardData();
@@ -144,6 +144,8 @@ namespace AnodyneSharp
             {
                 GlobalState.ShowFPS = !GlobalState.ShowFPS;
             }
+
+            SpriteDrawer.FullScreenFade = Color.Lerp(Color.White, Color.Black, GlobalState.transition_fadeout_progress);
         }
 
         /// <summary>
@@ -159,8 +161,6 @@ namespace AnodyneSharp
             SpriteDrawer.BeginDraw(_camera);
             _currentState.Draw();
             SpriteDrawer.EndDraw();
-
-
 
             SpriteDrawer.BeginGUIDraw();
             _currentState.DrawUI();

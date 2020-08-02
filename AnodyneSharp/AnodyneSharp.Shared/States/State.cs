@@ -7,6 +7,8 @@ namespace AnodyneSharp.States
 {
     public class State
     {
+        public bool Exit { get; protected set; } = false;
+
         public virtual void Create()
         {
         }
