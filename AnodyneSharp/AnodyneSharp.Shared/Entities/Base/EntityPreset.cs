@@ -32,6 +32,7 @@ namespace AnodyneSharp.Entities
         public Permanence Permanence {get; set;}
         public string TypeValue { get; private set; }
         public bool Alive { get; set; }
+        public bool Activated = false; //State-keeping for entities that need it beyond getting killed
 
         public EntityPreset(Type creation_type, Vector2 position, Guid entityID, int frame, Permanence permanence = Permanence.GRID_LOCAL, string type = "", bool alive = true)
         {

@@ -100,7 +100,8 @@ namespace AnodyneSharp
         /// </summary>
         protected override void LoadContent()
         {
-            GlobalState.NEXT_MAP_NAME = "STREET";
+            GlobalState.NEXT_MAP_NAME = "BLANK";
+            GlobalState.PLAYER_WARP_TARGET = new Vector2(40, 112);
 
             ResourceManager.LoadResources(Content);
             CardDataManager.ReadCardData();
