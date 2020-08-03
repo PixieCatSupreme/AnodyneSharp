@@ -101,7 +101,7 @@ namespace AnodyneSharp
         protected override void LoadContent()
         {
             GlobalState.NEXT_MAP_NAME = "BLANK";
-            GlobalState.PLAYER_WARP_TARGET = new Vector2(40, 112);
+            GlobalState.PLAYER_WARP_TARGET = new Vector2(23, 130 - 20); //original reports 23,130 but ends up subtracting HEADER_HEIGHT(20) from Y value
 
             ResourceManager.LoadResources(Content);
             CardDataManager.ReadCardData();
