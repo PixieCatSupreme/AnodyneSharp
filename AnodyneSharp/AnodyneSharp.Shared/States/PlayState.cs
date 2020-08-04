@@ -39,6 +39,9 @@ namespace AnodyneSharp.States
 
         public const int Scroll_Increment = 4;
 
+        private const float transition_out = 1.56f;
+        private const float transition_in = 0.8f;
+
         private PlayStateState _state;
 
         private TileMap _map;
@@ -188,7 +191,8 @@ namespace AnodyneSharp.States
                     case PlayStateState.S_PLAYER_DIED:
                         break;
                     case PlayStateState.S_MAP_EXIT:
-                        GlobalState.transition_fadeout_progress = Math.Min(1.0f, GlobalState.transition_fadeout_progress + GameTimes.DeltaTime * 2f);
+                        GlobalState.MAX_PIXELATION = 47;
+                        GlobalState.transition_fadeout_progress = Math.Min(1.0f, GlobalState.transition_fadeout_progress + GameTimes.DeltaTime / transition_out);
                         if (GlobalState.transition_fadeout_progress == 1 || GlobalState.FUCK_IT_MODE_ON)
                         {
                             Warp();
@@ -196,7 +200,8 @@ namespace AnodyneSharp.States
                         }
                         break;
                     case PlayStateState.S_MAP_ENTER:
-                        GlobalState.transition_fadeout_progress = Math.Max(0.0f, GlobalState.transition_fadeout_progress - GameTimes.DeltaTime * 2f);
+                        GlobalState.MAX_PIXELATION = 10;
+                        GlobalState.transition_fadeout_progress = Math.Max(0.0f, GlobalState.transition_fadeout_progress - GameTimes.DeltaTime / transition_in);
                         if (GlobalState.transition_fadeout_progress == 0)
                         {
                             _state = PlayStateState.S_NORMAL;

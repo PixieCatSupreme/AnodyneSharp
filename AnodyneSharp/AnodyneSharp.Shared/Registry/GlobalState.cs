@@ -87,6 +87,7 @@ namespace AnodyneSharp.Registry
         public static string NEXT_MAP_NAME;
         public static Vector2 PLAYER_WARP_TARGET;
         public static float transition_fadeout_progress = 0.0f;
+        public static int MAX_PIXELATION = 10;
 
         public static bool RefreshKeyCount = false;
         public static bool RefreshMaxHealth = false;

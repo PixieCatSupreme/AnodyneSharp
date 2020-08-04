@@ -19,6 +19,12 @@
 /processorParam:DebugMode=Auto
 /build:effects/blackwhite.fx
 
+#begin effects/screenfade.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:effects/screenfade.fx
+
 #begin mp3/anodyne_TRAILER_1.mp3
 /importer:Mp3Importer
 /processor:SongProcessor

@@ -33,7 +33,7 @@ namespace AnodyneSharp
         State _currentState;
         Camera _camera;
 
-        private static Effect bwEffect;
+        private static Effect fadeout;
 
         private UILabel _fpsLabel;
 
@@ -120,10 +120,11 @@ namespace AnodyneSharp
 
             DialogueManager.LoadDialogue( Language.EN);
 
-            bwEffect = Content.Load<Effect>("effects/blackwhite");
+            fadeout = Content.Load<Effect>("effects/screenfade");
 
-            bwEffect.CurrentTechnique = bwEffect.Techniques["BasicColorDrawing"];
-            //bwEffect.Parameters["Cutoff"].SetValue(DrawingUtilities.GetDrawingZ(DrawOrder.FG_SPRITES, 0));
+            fadeout.CurrentTechnique = fadeout.Techniques["Fade"];
+            fadeout.Parameters["FadeColor"].SetValue(new Vector4(0,0,0,1));
+            fadeout.Parameters["ScreenSize"].SetValue(new Vector2(GameConstants.SCREEN_WIDTH_IN_PIXELS, GameConstants.SCREEN_HEIGHT_IN_PIXELS));
         }
 
         /// <summary>
@@ -146,7 +147,8 @@ namespace AnodyneSharp
                 GlobalState.ShowFPS = !GlobalState.ShowFPS;
             }
 
-            SpriteDrawer.FullScreenFade = Color.Lerp(Color.White, Color.Black, GlobalState.transition_fadeout_progress);
+            fadeout.Parameters["Progress"].SetValue(GlobalState.transition_fadeout_progress);
+            fadeout.Parameters["MaxSteps"].SetValue(GlobalState.MAX_PIXELATION);
         }
 
         /// <summary>
@@ -173,7 +175,7 @@ namespace AnodyneSharp
 
             SpriteDrawer.EndGUIDraw();
 
-            SpriteDrawer.Render();
+            SpriteDrawer.Render(fadeout);
         }
 
         private void SetDefaultKeys()
