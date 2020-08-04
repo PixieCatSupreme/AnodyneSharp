@@ -434,7 +434,7 @@
     <Pew_Laser x="416" y="576" guid="AA663CA6-1DBA-6BB0-CE05-EB679D741694" frame="6"/>
     <Pew_Laser x="336" y="672" guid="9BF09379-4100-5FD4-6282-11292D819467" frame="1"/>
     <Pew_Laser x="448" y="688" guid="33D48EE6-F83B-6322-6758-EDC1C887C31D" frame="3"/>
-    <Sage x="544" y="80" guid="5F991DE1-6C84-118A-DB8F-0B4087125CB1" frame="0"/>
+    <Sage x="544" y="80" guid="5F991DE1-6C84-118A-DB8F-0B4087125CB1" frame="0" p="2"/>
     <NPC x="496" y="16" guid="F94045C8-D9B6-70A6-6912-EE6076F86643" frame="0" type="statue" />
     <Health_Cicada x="352" y="16" guid="C481EE20-662E-6B02-B010-676AB339FC2D" frame="0" p="2" alive="true"/>
     <Gate x="64" y="464" guid="99D78FF0-AC27-3CAE-9D9F-1F03AB60D0C5" frame="1" alive="true"/>
@@ -632,8 +632,8 @@
     <Treasure x="912" y="256" guid="2A73F27F-1B41-F1A2-1B16-525F9F57AE10" frame="2" alive="true"/>
   </map>
   <map name="BLANK" type="Stateless">
-    <Sage x="336" y="176" guid="14717F7B-3E0A-959A-BE17-1333AF6CE252" frame="0"/>
-    <Sage x="320" y="0." guid="D28A5024-01D4-2A18-ADD5-935CCB90002C" frame="1"/>
+    <Sage x="336" y="176" guid="14717F7B-3E0A-959A-BE17-1333AF6CE252" frame="0" p="2"/>
+    <Sage x="320" y="0." guid="D28A5024-01D4-2A18-ADD5-935CCB90002C" frame="1" p="2"/>
   </map>
   <map name="BLUE" type="Stateless">
     <Button x="16" y="544" guid="FC137588-56CF-4B5A-E5B0-4C3468806B9F" frame="0"/>
@@ -1413,7 +1413,7 @@
     <Gate x="1200" y="992" guid="955EBC04-6016-9A6F-DFAB-5F4E79A00A65" frame="0" alive="true"/>
     <Treasure x="1200" y="976" guid="F5CF525F-0A3A-61AC-7D1F-39D2EF17291A" frame="5" alive="true"/>
     <Door x="552" y="1264" guid="9C45BDDE-4B6D-0C16-65DD-EEA4573964D9" frame="38" type="1" />
-    <Sage x="1504" y="880" guid="7A387EA1-D3A8-D794-6F34-5A8BDE31849E" frame="0"/>
+    <Sage x="1504" y="880" guid="7A387EA1-D3A8-D794-6F34-5A8BDE31849E" frame="0" p="2"/>
     <KeyBlock x="1184" y="240" guid="F6802671-7EE8-9A45-1754-3729F14D251D" frame="0" p="2" alive="true"/>
     <Treasure x="896" y="704" guid="868736EF-EC8B-74C9-ACAB-B7BC56A44394" frame="1" alive="true"/>
     <Rotator x="800" y="976" guid="67AEB282-670A-4BE2-E21C-21FFD8C05FB4" frame="0"/>
@@ -1852,7 +1852,7 @@
   </map>
   <map name="GO" type="Stateful">
     <Go_Detector x="352" y="512" guid="ED2195E9-9798-B9B3-3C15-105C40F7C501" frame="0" alive="true"/>
-    <Sage x="432" y="80" guid="070C9F3D-0EB1-859C-C7E7-7439FEFF5EA8" frame="0"/>
+    <Sage x="432" y="80" guid="070C9F3D-0EB1-859C-C7E7-7439FEFF5EA8" frame="0" p="2"/>
     <Shadow_Briar x="352" y="176" guid="4C1F729B-85D2-B0A8-BCBB-749329FF03EC" frame="4" p="2" alive="true"/>
     <Door x="777" y="400" guid="207B47BA-6E22-AF7E-90AF-DAF5F775CE0F" frame="44" type="11" />
     <Door x="608" y="496" guid="07E5F055-C4FD-767E-3D3E-30B9105A76DF" frame="71" type="5" />
@@ -2305,7 +2305,7 @@
     <Door x="656" y="960" guid="F4FD3F80-6DB2-1B18-F6EE-FE1D9E90B55C" frame="51" type="17" />
     <Door x="656" y="880" guid="02BA0095-95AE-7088-E6B9-70A0546F8A29" frame="52" type="17" />
     <NPC x="688" y="1200" guid="9DCF2047-F16B-77AA-17C6-6A61EEDC2D68" frame="0" type="statue" />
-    <Sage x="704" y="1216" guid="6141059D-A515-86F6-D03B-2212BD8A82A1" frame="0"/>
+    <Sage x="704" y="1216" guid="6141059D-A515-86F6-D03B-2212BD8A82A1" frame="0" p="2"/>
     <NPC x="768" y="1376" guid="3B8993E3-E2F4-CB35-8F07-29E8B3D573D3" frame="0" type="rock" />
     <Event x="736" y="1200" guid="AF70B22E-0B46-1838-980C-2EB8203C4490" frame="2"/>
     <Door x="896" y="1200" guid="7E61CF69-7616-CEE1-ED48-34FDC35D68A0" frame="63" type="17" />
@@ -2379,7 +2379,7 @@
     <Treasure x="176" y="1536" guid="1BCDDFFB-5F98-4787-3A81-D1CE8FDECA29" frame="2" alive="true"/>
     <Mitra x="324" y="1135" guid="99CF42FE-A643-A89B-96D9-7C42A773CA2A" frame="0"/>
     <NPC x="752" y="1040" guid="0630E838-D68E-F285-05D1-CC99856436B0" frame="0" type="statue" />
-    <Sage x="720" y="1040" guid="D1D6D2A0-9BF0-18A6-BE7A-571CD670E225" frame="0"/>
+    <Sage x="720" y="1040" guid="D1D6D2A0-9BF0-18A6-BE7A-571CD670E225" frame="0" p="2"/>
     <NPC x="288" y="1184" guid="E3569AF1-DC07-8000-D5F4-8F8F6C5F0B40" frame="0" type="rock" />
     <KeyBlock x="64" y="1536" guid="E1941545-20E6-0257-551B-CEB77783F62B" frame="2" p="2" alive="true"/>
     <Treasure x="912" y="1232" guid="A4FFDA64-6373-F561-1484-FD30AED00A87" frame="2" alive="true"/>
@@ -2539,7 +2539,7 @@
     <Treasure x="592" y="176" guid="72BAD10E-598F-F238-0103-60E1B36F6240" frame="1" alive="true"/>
     <Treasure x="512" y="176" guid="AE87F1D5-57E0-1749-7E1E-1D0BCC1BCAB4" frame="1" alive="true"/>
     <Treasure x="544" y="176" guid="ED7D4D0F-C29D-D5AA-289A-B6C6AB8A041E" frame="2" alive="true"/>
-    <Sage x="1072" y="192" guid="2FC4548F-C973-0327-9900-E33480E53E41" frame="0"/>
+    <Sage x="1072" y="192" guid="2FC4548F-C973-0327-9900-E33480E53E41" frame="0" p="2"/>
     <Slasher x="416" y="192" guid="4484BB10-8431-E095-BDD8-904E2D5C6672" frame="0" p="1"/>
     <Red_Pillar x="832" y="192" guid="95D6CF28-66DF-54A5-0AEC-6B54F56A2EDC" frame="4" p="2" alive="true"/>
     <Red_Pillar x="224" y="208" guid="09241266-9657-6152-BB37-5FF0A7FDDCF9" frame="3" p="2" alive="true"/>
@@ -3159,7 +3159,7 @@
     <Gate x="624" y="1344" guid="FFF0910E-4A59-6D1D-44F1-AA949F6860B3" frame="12" alive="true"/>
   </map>
   <map name="TERMINAL" type="Stateless">
-    <Sage x="384" y="704" guid="97C26EF9-14DF-D0E8-075F-1A5C5BEB7D42" frame="0"/>
+    <Sage x="384" y="704" guid="97C26EF9-14DF-D0E8-075F-1A5C5BEB7D42" frame="0" p="2"/>
     <Event x="336" y="720" guid="15F9F1C3-1681-2162-A25A-A2AB631111E5" frame="2"/>
     <Event x="448" y="96" guid="DE529BED-D695-DD83-44F0-40B85F6AB8DD" frame="2"/>
   </map>

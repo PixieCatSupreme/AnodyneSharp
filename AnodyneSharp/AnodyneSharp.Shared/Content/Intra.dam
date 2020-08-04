@@ -131,7 +131,11 @@
           <type typeof="String" name="type" value="npc_test" hidden="false"/>
         </properties>
       </sprite>
-      <sprite name="Sage" idx="30" className="Sage" image="textures/sprites/dame/dame_npc_sage.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="0" canEditFrames="true" lockRotation="false"/>
+      <sprite name="Sage" idx="30" className="Sage" image="textures/sprites/dame/dame_npc_sage.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="0" canEditFrames="true" lockRotation="false" selected="true">
+        <properties>
+          <type typeof="String" name="p" value="2" hidden="false"/>
+        </properties>
+      </sprite>
       <sprite name="Mitra" idx="31" className="Mitra" image="textures/sprites/dame/dame_npc_mitra.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="0" canEditFrames="true" lockRotation="false"/>
       <sprite name="Statue" idx="32" className="NPC" image="textures/sprites/dame/dame_npc_statue.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="-1" canEditFrames="true" lockRotation="false">
         <properties>
