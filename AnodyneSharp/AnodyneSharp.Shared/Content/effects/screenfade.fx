@@ -9,9 +9,9 @@
 
 float4 FadeColor;
 float2 ScreenSize;
-int MaxSteps;
+int StrideSize;
 sampler s0;
-float Progress;
+float Fade;
 
 struct VertexShaderOutput
 {
@@ -23,18 +23,17 @@ struct VertexShaderOutput
 float4 MainPS(VertexShaderOutput input) : COLOR
 {
 	float2 texCoord = input.Tex;
-	int tileSize = 1 + Progress * MaxSteps;
-	if (tileSize > 1) {
+	if (StrideSize > 1) {
 		//Position in tile coordinates of current pixel
-		int2 TilePos = input.Tex * ScreenSize / tileSize;
+		int2 TilePos = input.Tex * ScreenSize / StrideSize;
 
 		//Back to texture coordinates of the top-left corner of the tile
-		texCoord = (TilePos * tileSize) / ScreenSize;
+		texCoord = (TilePos * StrideSize) / ScreenSize;
 	}
 	
 	float4 game = tex2D(s0, texCoord);
 
-	game.rgb = game.rgb * (1 - Progress) + FadeColor.rgb * Progress;
+	game.rgb = game.rgb * (1 - Fade) + FadeColor.rgb * Fade;
 	
 	return game;
 }

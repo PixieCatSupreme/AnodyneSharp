@@ -147,8 +147,8 @@ namespace AnodyneSharp
                 GlobalState.ShowFPS = !GlobalState.ShowFPS;
             }
 
-            fadeout.Parameters["Progress"].SetValue(GlobalState.transition_fadeout_progress);
-            fadeout.Parameters["MaxSteps"].SetValue(GlobalState.MAX_PIXELATION);
+            fadeout.Parameters["Fade"].SetValue(GlobalState.transition_fadeout_progress);
+            fadeout.Parameters["StrideSize"].SetValue((int)GlobalState.PIXELATION);
         }
 
         /// <summary>

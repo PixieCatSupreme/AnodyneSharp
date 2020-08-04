@@ -39,8 +39,14 @@ namespace AnodyneSharp.States
 
         public const int Scroll_Increment = 4;
 
-        private const float transition_out = 1.56f;
+
+        private float transition_out {
+            get {
+                return GlobalState.CURRENT_MAP_NAME == "BLANK" ? 1.568f : 0.785f;
+            }
+        }
         private const float transition_in = 0.8f;
+        private const float pixelation_per_second = 30f;
 
         private PlayStateState _state;
 
@@ -191,16 +197,17 @@ namespace AnodyneSharp.States
                     case PlayStateState.S_PLAYER_DIED:
                         break;
                     case PlayStateState.S_MAP_EXIT:
-                        GlobalState.MAX_PIXELATION = 47;
+                        GlobalState.PIXELATION += GameTimes.DeltaTime * pixelation_per_second;
                         GlobalState.transition_fadeout_progress = Math.Min(1.0f, GlobalState.transition_fadeout_progress + GameTimes.DeltaTime / transition_out);
                         if (GlobalState.transition_fadeout_progress == 1 || GlobalState.FUCK_IT_MODE_ON)
                         {
                             Warp();
                             _state = PlayStateState.S_MAP_ENTER;
+                            GlobalState.PIXELATION = 10;
                         }
                         break;
                     case PlayStateState.S_MAP_ENTER:
-                        GlobalState.MAX_PIXELATION = 10;
+                        GlobalState.PIXELATION = Math.Max(GlobalState.PIXELATION - GameTimes.DeltaTime * pixelation_per_second, 1);
                         GlobalState.transition_fadeout_progress = Math.Max(0.0f, GlobalState.transition_fadeout_progress - GameTimes.DeltaTime / transition_in);
                         if (GlobalState.transition_fadeout_progress == 0)
                         {
