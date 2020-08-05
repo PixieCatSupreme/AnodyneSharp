@@ -174,6 +174,8 @@ namespace AnodyneSharp.States
 
         public override void Update()
         {
+            base.Update();
+
             if (_childState != null)
             {
                 _childState.Update();
@@ -761,9 +763,23 @@ namespace AnodyneSharp.States
 
             UpdateScreenBorders();
 
+            SetBackground();
+
             LoadGridEntities();
 
             FinalizeTransition();
+        }
+
+        private void SetBackground()
+        {
+            Background = GlobalState.CURRENT_MAP_NAME switch
+            {
+                "BLANK" => new Background("BLANK_BG", new Vector2(-20, 0)),
+                "SPACE" => new Background("SPACE_BG", new Vector2(-15, 0)),
+                "GO" => new Background("briar_BG", new Vector2(0, 15)),
+                "NEXUS" => new Background("nexus_bg", new Vector2(0, 15)),
+                _ => null,
+            };
         }
 
         private void ReloadMapTextures()

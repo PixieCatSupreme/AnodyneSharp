@@ -17,6 +17,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Dialogue\Tree\DialogueNPC.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dialogue\Tree\DialogueScene.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dialogue\Tree\DialogueState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Drawing\Background.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Camera.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\DrawingUtilities.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\SpriteDrawer.cs" />

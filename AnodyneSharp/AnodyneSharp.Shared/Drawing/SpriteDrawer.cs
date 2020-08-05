@@ -20,7 +20,7 @@ namespace AnodyneSharp.Drawing
 
         public static void Initialize(GraphicsDevice graphicsDevice)
         {
-            BackColor = Color.Honeydew;
+            BackColor = Color.Black;
             SamplerState = SamplerState.PointWrap;
 
             _graphicsDevice = graphicsDevice;
@@ -31,13 +31,28 @@ namespace AnodyneSharp.Drawing
             _render = new RenderTarget2D(_graphicsDevice, 160, 180);
         }
 
-        public static void BeginDraw(Camera camera, Effect effect = null)
+        public static void DrawBackground(Background background)
         {
-            _graphicsDevice.Clear(BackColor);
-
             _graphicsDevice.SetRenderTarget(_game);
 
             _graphicsDevice.Clear(BackColor);
+
+            if (background == null)
+            {
+                return;
+            }
+
+            Texture2D texture = background.Texture;
+
+            _spriteBatch.Begin(sortMode: SpriteSortMode.FrontToBack, blendState: BlendState.AlphaBlend, samplerState: SamplerState);
+            _spriteBatch.Draw(texture, background.Position, Color.White);
+            _spriteBatch.End();
+
+        }
+
+        public static void BeginDraw(Camera camera, Effect effect = null)
+        {
+            _graphicsDevice.SetRenderTarget(_game);
             _spriteBatch.Begin(sortMode: SpriteSortMode.FrontToBack, blendState: BlendState.AlphaBlend, samplerState: SamplerState, effect: effect, transformMatrix: camera.Transform);
         }
 
@@ -57,7 +72,7 @@ namespace AnodyneSharp.Drawing
 
         public static void DrawSprite(Texture2D texture, Rectangle rect, Rectangle? sRect = null, Color? color = null, float rotation = 0, SpriteEffects flip = SpriteEffects.None, float Z = 0)
         {
-            Rectangle r = new Rectangle(rect.X + rect.Width/2,rect.Y + rect.Height / 2, rect.Width, rect.Height);
+            Rectangle r = new Rectangle(rect.X + rect.Width / 2, rect.Y + rect.Height / 2, rect.Width, rect.Height);
 
             _spriteBatch.Draw(texture, r,
                 sRect, color ?? Color.White, rotation,
@@ -96,7 +111,7 @@ namespace AnodyneSharp.Drawing
 
             _spriteBatch.Begin(sortMode: SpriteSortMode.Texture, blendState: BlendState.AlphaBlend, samplerState: SamplerState, effect: effect);
 
-            _spriteBatch.Draw(_render, new Rectangle(0,0, _graphicsDevice.PresentationParameters.BackBufferWidth, _graphicsDevice.PresentationParameters.BackBufferHeight), FullScreenFade);
+            _spriteBatch.Draw(_render, new Rectangle(0, 0, _graphicsDevice.PresentationParameters.BackBufferWidth, _graphicsDevice.PresentationParameters.BackBufferHeight), FullScreenFade);
 
             _spriteBatch.End();
         }
