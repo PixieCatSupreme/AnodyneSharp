@@ -28,8 +28,9 @@ namespace AnodyneSharp.States
         private bool _forcedInput;
 
         private float bump_timer;
-        private int bumpCounter;
+        private int linesBumped;
         private bool doBump;
+        private int currentLineBump;
 
         private int normalSpeed;
 
@@ -70,7 +71,19 @@ namespace AnodyneSharp.States
                     }
                     else
                     {
-                        state = (_tb.Writer.AtEndOfText || _tb.Writer.AtEndOfBox) ? DialogueStateState.Waiting : DialogueStateState.Writing;
+                        bool atEnd = _tb.Writer.AtEndOfText || _tb.Writer.AtEndOfBox;
+                        if (atEnd)
+                        {
+                            if (linesBumped != 0)
+                            {
+                                state = DialogueStateState.BumpingUp;
+                                doBump = true;
+                            }
+                            else
+                            {
+                                state = DialogueStateState.Waiting;
+                            }
+                        }
                     }
 
                     break;
@@ -82,50 +95,40 @@ namespace AnodyneSharp.States
                         break;
                     }
 
-                    if (_tb.Writer.AtEndOfBox)
+
+                    bump_timer -= GameTimes.DeltaTime;
+                    if (bump_timer > 0)
                     {
-                        if (doBump)
-                        {
-                            _tb.Writer.RemoveFirstLine();
-                            doBump = false;
-                            bump_timer = 0;
-                        }
-
-                        bump_timer -= GameTimes.DeltaTime;
-                        if (bump_timer > 0)
-                        {
-                            break;
-                        }
-                        bump_timer = bump_timer_max;
-
-                        if (_tb.Writer.PushTextUp())
-                        {
-                            bumpCounter++;
-
-                            _tb.Writer.ResetCursor();
-
-                            if (bumpCounter == 3)
-                            {
-                                state = DialogueStateState.Writing;
-                                bumpCounter = 0;
-                            }
-                            else
-                            {
-                                doBump = true;
-                            }
-                        }
-
+                        break;
                     }
-                    else if (_tb.Writer.NextCharacter == '^')
+                    bump_timer = bump_timer_max;
+
+
+                    if (doBump)
                     {
-                        _forcedInput = true;
-                        _tb.Writer.SkipCharacter();
-                        _tb.PauseWriting = true;
-                        state = DialogueStateState.Waiting;
+                        _tb.Writer.RemoveFirstLine();
+                        doBump = false;
                     }
-                    else
+
+                    if (currentLineBump < 2)
                     {
-                        SoundManager.PlaySoundEffect("dialogue_blip");
+                        _tb.Writer.PushTextUp();
+                        currentLineBump++;
+                    }
+                    else if (linesBumped < 3)
+                    {
+                        if (linesBumped < 2)
+                        {
+                            currentLineBump = 0;
+                        }
+                        linesBumped++;
+                        if (linesBumped == 3)
+                        {
+                            linesBumped = 0;
+                        }
+
+                        _tb.Writer.ResetCursor();
+                        state = DialogueStateState.Writing;
                     }
                     break;
                 case DialogueStateState.Waiting:
@@ -145,6 +148,7 @@ namespace AnodyneSharp.States
 
                             state = DialogueStateState.BumpingUp;
                             bump_timer = 0;
+                            currentLineBump = 0;
                             doBump = true;
                         }
                         else if (_forcedInput)

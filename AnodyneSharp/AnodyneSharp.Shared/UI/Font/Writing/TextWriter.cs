@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using SpriteFont = AnodyneSharp.UI.Font.SpriteFont;
 
 namespace AnodyneSharp.UI.Text
@@ -24,7 +25,7 @@ namespace AnodyneSharp.UI.Text
             }
             set
             {
-                _text = value;
+                _text = Regex.Unescape(value).Trim();
                 ResetTextProgress();
             }
         }
@@ -44,7 +45,6 @@ namespace AnodyneSharp.UI.Text
                 }
             }
         }
-
 
         public Vector2 WriteAreaSize
         {
@@ -83,6 +83,29 @@ namespace AnodyneSharp.UI.Text
             }
         }
 
+        public char? PreviousCharacter
+        {
+            get
+            {
+                if (letterProgress > 0)
+                {
+                    return Text[letterProgress - 1];
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
+        public bool FirstLineEmpty
+        {
+            get
+            {
+                return !characterLines.FirstOrDefault()?.Any() ?? true;
+            }
+        }
+
         protected Rectangle ActualWriteArea { get; private set; }
 
         public int Speed { get; set; }
@@ -110,11 +133,13 @@ namespace AnodyneSharp.UI.Text
 
         protected int letterProgress;
 
-        protected List<TextCharacter> characters;
+        protected List<List<TextCharacter>> characterLines;
         protected Vector2 cursorPos;
         protected Rectangle writeArea;
         protected SpriteFont spriteFont;
         protected Texture2D buttonSprite;
+
+        public bool ForcedNewLine { get; private set; }
 
         private float _stepProgress;
         private bool _centered;
@@ -123,6 +148,7 @@ namespace AnodyneSharp.UI.Text
 
         private string _text;
         private float firstLineY;
+        private int _line;
 
         public TextWriter()
         {
@@ -136,7 +162,7 @@ namespace AnodyneSharp.UI.Text
             WroteCharacter = false;
             WriteArea = new Rectangle(0, 0, 200, 200);
 
-            characters = new List<TextCharacter>();
+            characterLines = new List<List<TextCharacter>>();
 
             drawLayer = DrawOrder.TEXT;
         }
@@ -153,7 +179,7 @@ namespace AnodyneSharp.UI.Text
             WroteCharacter = false;
             WriteArea = new Rectangle(x, y, 1, 1);
 
-            characters = new List<TextCharacter>();
+            characterLines = new List<List<TextCharacter>>();
 
             drawLayer = DrawOrder.TEXT;
         }
@@ -168,7 +194,7 @@ namespace AnodyneSharp.UI.Text
             _newWord = false;
             WroteCharacter = false;
 
-            characters = new List<TextCharacter>();
+            characterLines = new List<List<TextCharacter>>();
 
             WriteArea = new Rectangle(x, y, width, height);
 
@@ -210,7 +236,7 @@ namespace AnodyneSharp.UI.Text
             _newWord = true;
             AtEndOfBox = false;
             AtEndOfText = false;
-            characters.Clear();
+            characterLines.Clear();
 
             ResetWriteArea();
         }
@@ -224,18 +250,21 @@ namespace AnodyneSharp.UI.Text
         {
             float z = DrawingUtilities.GetDrawingZ(drawLayer);
             float shadowZ = z - 0.01f;
-            foreach (var c in characters)
+            foreach (List<TextCharacter> line in characterLines)
             {
-                if (c.Character == null)
+                foreach (var c in line)
                 {
-                    SpriteDrawer.DrawGuiSprite(buttonSprite, c.Position, c.Crop, Z: z);
-                }
-                else
-                {
-                    SpriteDrawer.DrawGuiSprite(spriteFont.texture, c.Position, c.Crop, spriteFont.color, Z: z);
-                    if (DrawShadow)
+                    if (c.Character == null)
                     {
-                        SpriteDrawer.DrawGuiSprite(spriteFont.texture, c.Position + new Vector2(0, 1f), c.Crop, color: Color.Black, Z: shadowZ);
+                        SpriteDrawer.DrawGuiSprite(buttonSprite, c.Position, c.Crop, Z: z);
+                    }
+                    else
+                    {
+                        SpriteDrawer.DrawGuiSprite(spriteFont.texture, c.Position, c.Crop, spriteFont.color, Z: z);
+                        if (DrawShadow)
+                        {
+                            SpriteDrawer.DrawGuiSprite(spriteFont.texture, c.Position + new Vector2(0, 1f), c.Crop, color: Color.Black, Z: shadowZ);
+                        }
                     }
                 }
             }
@@ -249,6 +278,7 @@ namespace AnodyneSharp.UI.Text
         public void Update()
         {
             WroteCharacter = false;
+            ForcedNewLine = false;
 
             if (!AtEndOfBox && !AtEndOfText)
             {
@@ -304,6 +334,7 @@ namespace AnodyneSharp.UI.Text
             return lenght;
         }
 
+
         public int GetlineSeparation()
         {
             return spriteFont.lineSeparation;
@@ -352,33 +383,21 @@ namespace AnodyneSharp.UI.Text
 
         public void RemoveFirstLine()
         {
-            firstLineY = characters.First().Position.Y;
-
-            for (int i = characters.Count - 1; i >= 0; i--)
-            {
-                var c = characters[i];
-                if (c.Position.Y == firstLineY)
-                {
-                    characters.Remove(c);
-                }
-            }
+            characterLines.RemoveAt(0);
+            characterLines.Add(new List<TextCharacter>());
+            _line--;
         }
 
-        public bool PushTextUp()
+        public void PushTextUp()
         {
-            bool finished = false;
-            foreach (var c in characters)
+            foreach (var line in characterLines)
             {
-                c.Position.Y -= spriteFont.lineSeparation / 2;
-
-                if (c.Position.Y <= firstLineY)
+                foreach (var c in line)
                 {
-                    //c.Position.Y = firstLineY;
-                    finished = true;
+                    c.Position.Y -= spriteFont.lineSeparation / 2;
                 }
             }
 
-            return finished;
         }
 
         public void ResetCursor()
@@ -419,22 +438,20 @@ namespace AnodyneSharp.UI.Text
         {
             bool output = false;
 
+            while (characterLines.Count-1 < _line)
+            {
+                characterLines.Add(new List<TextCharacter>());
+            }
+
             if (character == ' ')
             {
                 DoSpace();
                 output = true;
             }
-            else if ((character == '\\' && Text[letterProgress + 1] == 'n') || LineBreaks.Any(c => c == character))
+            else if ( LineBreaks.Any(c => c == character))
             {
-                if (character == '\\')
-                {
-                    letterProgress++;
-                }
-                letterProgress++;
-
-                cursorPos.Y += spriteFont.lineSeparation;
-                cursorPos.X = 0;
-                _newLine = true;
+                NewLine();
+                ForcedNewLine = true;
 
                 output = cursorPos.Y + spriteFont.lineSeparation < writeArea.Height;
             }
@@ -443,7 +460,7 @@ namespace AnodyneSharp.UI.Text
             {
                 letterProgress++;
 
-                string s = Text.Substring(letterProgress, Text.IndexOf('♦', letterProgress+1)- letterProgress);
+                string s = Text.Substring(letterProgress, Text.IndexOf('♦', letterProgress + 1) - letterProgress);
 
                 letterProgress += s.Length + 1;
 
@@ -451,7 +468,7 @@ namespace AnodyneSharp.UI.Text
                 int spaceWidth = 13;
                 int lineHeight = 14;
 
-                characters.Add(new TextCharacter(null, new Vector2(cursorPos.X + writeArea.X, cursorPos.Y + writeArea.Y -1), new Rectangle(pos % 13 * spaceWidth, pos / 13 * lineHeight, spaceWidth, lineHeight)));
+                characterLines[_line].Add(new TextCharacter(null, new Vector2(cursorPos.X + writeArea.X, cursorPos.Y + writeArea.Y - 1), new Rectangle(pos % 13 * spaceWidth, pos / 13 * lineHeight, spaceWidth, lineHeight)));
 
                 output = true;
             }
@@ -471,10 +488,15 @@ namespace AnodyneSharp.UI.Text
                     {
                         return false;
                     }
+                    while (characterLines.Count - 1 < _line)
+                    {
+                        characterLines.Add(new List<TextCharacter>());
+                    }
+
 
                     float y = cursorPos.Y + writeArea.Y + spriteFont.lineSeparation - rect.Value.Height;
 
-                    characters.Add(new TextCharacter(character, new Vector2(cursorPos.X + writeArea.X, y), rect));
+                    characterLines[_line].Add(new TextCharacter(character, new Vector2(cursorPos.X + writeArea.X, y), rect));
                     LastWrittenCharacter = character;
 
                     letterProgress++;
@@ -482,17 +504,8 @@ namespace AnodyneSharp.UI.Text
 
                     if (!IgnoreSoftLineBreaks && SoftLinebreak.Any(c => c == character) && letterProgress < Text.Length && Text[letterProgress] == ' ')
                     {
-                        cursorPos.Y += spriteFont.lineSeparation;
-                        cursorPos.X = 0;
-                        _newLine = true;
-
+                        NewLine();
                         output = cursorPos.Y + spriteFont.lineSeparation < writeArea.Height;
-                        letterProgress++;
-
-                        if (letterProgress < Text.Length && Text[letterProgress] == ' ')
-                        {
-                            letterProgress++;
-                        }
                     }
                 }
             }
@@ -511,6 +524,23 @@ namespace AnodyneSharp.UI.Text
 
             ProgressCursor();
             letterProgress++;
+        }
+
+
+        protected void NewLine()
+        {
+            cursorPos.Y += spriteFont.lineSeparation;
+            cursorPos.X = 0;
+            _newLine = true;
+            _line++;
+
+
+            letterProgress++;
+
+            if (letterProgress < Text.Length && Text[letterProgress] == ' ')
+            {
+                letterProgress++;
+            }
         }
 
         protected bool KeepInBounds(Rectangle characterRectangle)
@@ -546,10 +576,11 @@ namespace AnodyneSharp.UI.Text
             {
                 cursorPos.Y += spriteFont.lineSeparation;
                 cursorPos.X = 0;
+                _line++;
 
                 return !(cursorPos.Y + spriteFont.lineSeparation > writeArea.Height);
             }
-            else
+            else if(letterProgress > 0)
             {
                 ProgressCursor();
             }
@@ -559,7 +590,7 @@ namespace AnodyneSharp.UI.Text
 
         protected void ProgressCursor()
         {
-            if (characters.Count == 0)
+            if (characterLines.Count == 0)
             {
                 return;
             }

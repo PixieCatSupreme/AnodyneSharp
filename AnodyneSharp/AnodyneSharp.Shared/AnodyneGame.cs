@@ -159,7 +159,10 @@ namespace AnodyneSharp
         {
             base.Draw(gameTime);
             GameTimes.UpdateFPS(gameTime);
-            _fpsLabel.SetText($"FPS: {GameTimes.FPS:0}");
+            if (GlobalState.ShowFPS)
+            {
+                _fpsLabel.SetText($"FPS: {GameTimes.FPS:0}");
+            }
 
             SpriteDrawer.DrawBackground(_currentState.Background);
 
