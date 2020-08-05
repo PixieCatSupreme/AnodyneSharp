@@ -7,18 +7,13 @@ namespace AnodyneSharp.UI.Text
         public Rectangle? Crop { get; set; }
 
         public char? Character { get; private set; }
-        public Vector2 Position;
+        public float X;
 
-        public TextCharacter(char? character, Vector2 position, Rectangle? crop)
+        public TextCharacter(char? character, float x, Rectangle? crop)
         {
             Character = character;
-            Position = position;
+            X = x;
             Crop = crop;
-        }
-
-        public virtual Vector2 GetPosition()
-        {
-            return Position;
         }
     }
 }

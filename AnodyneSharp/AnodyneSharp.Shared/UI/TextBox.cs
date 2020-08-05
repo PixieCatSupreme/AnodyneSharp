@@ -1,5 +1,6 @@
 ﻿using AnodyneSharp.Drawing;
 using AnodyneSharp.Entities;
+using AnodyneSharp.Registry;
 using AnodyneSharp.Resources;
 using AnodyneSharp.UI.Text;
 using AnodyneSharp.Utilities;
@@ -73,26 +74,24 @@ namespace AnodyneSharp.UI
 
         private void Set_box_position(Touching direction = Touching.DOWN)
         {
-            float height = 44;
+            int height = 44;
 
 
             if (direction == Touching.DOWN)
             {
-                pos.Y = 180 - height - 2;
+                pos.Y = GameConstants.SCREEN_HEIGHT_IN_PIXELS - height - 2;
                 height -= 2;
-
             }
             else if (direction == Touching.UP)
             {
-                pos.Y = 22;
+                pos.Y = 2;
             }
+
+            pos.Y += GameConstants.HEADER_HEIGHT;
 
             pos.X = 2;
 
-            Writer = new TextWriter
-            {
-                WriteArea = MathUtilities.CreateRectangle(pos.X + 4, pos.Y + 5, Width - 16, height - 8)
-            };
+            Writer = new TextWriter((int)pos.X + 4, (int)pos.Y + 5, Width - 16, height - 8);
 
 
             //if (DH.isZH()) dialogue.y = dialogue_box.y + 2;

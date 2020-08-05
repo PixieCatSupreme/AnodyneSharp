@@ -18,7 +18,7 @@ namespace AnodyneSharp.States.PauseSubstates
             {
                 _subsubstate.Update();
 
-                if (GlobalState.Dialogue == "")
+                if (_subsubstate.Exit)
                 {
                     InDialogueMode = false;
                     _subsubstate = null;

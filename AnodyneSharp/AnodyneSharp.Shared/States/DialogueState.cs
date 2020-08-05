@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Input;
+﻿using AnodyneSharp.FSM;
+using AnodyneSharp.Input;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Resources;
 using AnodyneSharp.Sounds;
@@ -6,31 +7,27 @@ using AnodyneSharp.UI;
 using AnodyneSharp.UI.Font;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using RSG;
 
 namespace AnodyneSharp.States
 {
-    public enum DialogueStateState
-    {
-        Writing,
-        BumpingUp,
-        Waiting,
-        Done
-    }
-
     public class DialogueState : State
     {
-        private float bump_timer_max = 0.2f;
+        
+        private class BumpState : TimerState
+        {
+            public int halfBumps = 0;
+            public int linesBumped = 0;
 
+            public BumpState()
+            {
+                AddTimer(0.2f, "doBump");
+            }
+        }
 
-        private DialogueStateState state;
         private TextBox _tb;
 
-        private bool _forcedInput;
-
-        private float bump_timer;
-        private int linesBumped;
-        private bool doBump;
-        private int currentLineBump;
+        private IState _state;
 
         private int normalSpeed;
 
@@ -42,6 +39,90 @@ namespace AnodyneSharp.States
             _tb.Writer.DrawShadow = true;
 
             normalSpeed = _tb.Writer.Speed;
+
+            /*
+             * Standard stack:
+             * 
+             *     Waiting, Writing
+             *   =>Waiting
+             *   =>Bump
+             *   =>Bump, Writing
+             *   =>Bump
+             *   =>...
+             *   =>Bump
+             *   =>Waiting
+             *   =>Waiting,Writing
+             *   =>Waiting
+             *   =>...
+             *   =>Waiting
+             *   =>Done
+             */
+
+            _state = new StateMachineBuilder()
+                .State("Writing")
+                    //Make sure writing only happens in this state
+                    .Enter((state) => _tb.PauseWriting = false)
+                    .Exit((state) => _tb.PauseWriting = true)
+
+                    .Update((state, time) => SoundManager.PlaySoundEffect("dialogue_blip"))
+                    .Condition(() => _tb.Writer.NextCharacter == '^', (state) =>
+                      {
+                          _state.PopState();
+                          _tb.Writer.SkipCharacter();
+                          _state.ChangeState("Waiting"); //Make sure it's in Waiting
+                    })
+                    .Condition(() => _tb.Writer.AtEndOfBox, (state) => _state.PopState())
+                    .Condition(() => _tb.Writer.AtEndOfText, (state) => { _state.PopState(); _state.ChangeState("Waiting"); })
+                .End()
+                .State<BumpState>("Bump")
+                    .Event("doBump", (state) =>
+                     {
+                         if (state.halfBumps == 0)
+                         {
+                             _tb.Writer.RemoveFirstLine();
+                         }
+
+                         if (state.halfBumps < 2)
+                         {
+                             state.halfBumps++;
+                             _tb.Writer.PushTextUp();
+                         }
+                         else
+                         {
+                             state.halfBumps = 0;
+                             state.linesBumped++;
+                             if (state.linesBumped == _tb.Writer.LinesPerBox) //Bumped all lines, move back to Waiting
+                                _state.ChangeState("Waiting");
+                             _state.PushState("Writing");
+                         }
+                     })
+                .End()
+                .State("Waiting")
+                    .Event("KeyPressed", (state) => {
+                        SoundManager.PlaySoundEffect("dialogue_bloop");
+
+                        if (_tb.Writer.AtEndOfText)
+                        {
+                            _state.ChangeState("Done");
+                        }
+                        else if (_tb.Writer.AtEndOfBox)
+                        {
+                            _state.ChangeState("Bump");
+                            _state.TriggerEvent("doBump");
+                        }
+                        else
+                        {
+                            _state.PushState("Writing");
+                        }
+                    })
+                .End()
+                .State("Done")
+                    .Enter((state) => { Exit = true; GlobalState.Dialogue = ""; })
+                .End()
+                .Build();
+
+            _state.ChangeState("Waiting");
+            _state.PushState("Writing");
         }
 
         public override void Update()
@@ -55,115 +136,12 @@ namespace AnodyneSharp.States
                 _tb.Writer.Speed = normalSpeed;
             }
 
+            if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept) || KeyInput.JustPressedRebindableKey(KeyFunctions.Cancel))
+                _state.TriggerEvent("KeyPressed");
+
             _tb.Update();
 
-            switch (state)
-            {
-                case DialogueStateState.Writing:
-                    SoundManager.PlaySoundEffect("dialogue_blip");
-
-                    if (_tb.Writer.NextCharacter == '^')
-                    {
-                        _forcedInput = true;
-                        _tb.Writer.SkipCharacter();
-                        _tb.PauseWriting = true;
-                        state = DialogueStateState.Waiting;
-                    }
-                    else
-                    {
-                        bool atEnd = _tb.Writer.AtEndOfText || _tb.Writer.AtEndOfBox;
-                        if (atEnd)
-                        {
-                            if (linesBumped != 0)
-                            {
-                                state = DialogueStateState.BumpingUp;
-                                doBump = true;
-                            }
-                            else
-                            {
-                                state = DialogueStateState.Waiting;
-                            }
-                        }
-                    }
-
-                    break;
-                case DialogueStateState.BumpingUp:
-
-                    if (_tb.Writer.AtEndOfText)
-                    {
-                        state = DialogueStateState.Waiting;
-                        break;
-                    }
-
-
-                    bump_timer -= GameTimes.DeltaTime;
-                    if (bump_timer > 0)
-                    {
-                        break;
-                    }
-                    bump_timer = bump_timer_max;
-
-
-                    if (doBump)
-                    {
-                        _tb.Writer.RemoveFirstLine();
-                        doBump = false;
-                    }
-
-                    if (currentLineBump < 2)
-                    {
-                        _tb.Writer.PushTextUp();
-                        currentLineBump++;
-                    }
-                    else if (linesBumped < 3)
-                    {
-                        if (linesBumped < 2)
-                        {
-                            currentLineBump = 0;
-                        }
-                        linesBumped++;
-                        if (linesBumped == 3)
-                        {
-                            linesBumped = 0;
-                        }
-
-                        _tb.Writer.ResetCursor();
-                        state = DialogueStateState.Writing;
-                    }
-                    break;
-                case DialogueStateState.Waiting:
-                    if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept) || KeyInput.JustPressedRebindableKey(KeyFunctions.Cancel))
-                    {
-                        SoundManager.PlaySoundEffect("dialogue_bloop");
-
-                        if (_tb.Writer.AtEndOfText)
-                        {
-                            //DONE
-
-                            state = DialogueStateState.Done;
-                        }
-                        else if (_tb.Writer.AtEndOfBox)
-                        {
-                            //Bump up
-
-                            state = DialogueStateState.BumpingUp;
-                            bump_timer = 0;
-                            currentLineBump = 0;
-                            doBump = true;
-                        }
-                        else if (_forcedInput)
-                        {
-                            _forcedInput = false;
-                            _tb.PauseWriting = false;
-                            state = DialogueStateState.Writing;
-                        }
-                    }
-                    break;
-                case DialogueStateState.Done:
-                    GlobalState.Dialogue = "";
-                    Exit = true;
-                    break;
-            }
+            _state.Update(GameTimes.DeltaTime);
         }
 
         public override void DrawUI()

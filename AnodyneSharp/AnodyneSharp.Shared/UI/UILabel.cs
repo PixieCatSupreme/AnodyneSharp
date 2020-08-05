@@ -75,7 +75,6 @@ namespace AnodyneSharp.UI
         public void Initialize(bool forceEnglish = false)
         {
             Writer.SetSpriteFont(FontManager.InitFont(_color, forceEnglish), ResourceManager.GetTexture("consoleButtons"));
-            Writer.Initialize();
             Writer.IgnoreSoftLineBreaks = true;
             Writer.DrawShadow = _drawShadow;
         }
@@ -106,13 +105,6 @@ namespace AnodyneSharp.UI
             }
         }
 
-        public void MoveTo(Vector2 target)
-        {
-            Position = target;
-
-            Writer.Move((int)Position.X, (int)Position.Y);
-        }
-
         public virtual void SetText(string text)
         {
             if (text == Writer.Text)
@@ -122,11 +114,9 @@ namespace AnodyneSharp.UI
 
             Writer.Text = text;
 
-            int lines = 2 + text.Count(c => TextWriter.LineBreaks.Any(character => character == c));
+            int lines = 2 + Writer.Text.Count(c => TextWriter.LineBreaks.Any(character => character == c));
 
-            lines += Regex.Matches(text, @"\\n").Count;
-
-            Writer.SetWriteArea((int)Writer.GetTextLenght(), Writer.GetLineHeight() * lines);
+            Writer.SetWriteArea((int)Writer.GetTextLength(), Writer.GetLineHeight() * lines);
             Writer.ProgressTextToEnd();
         }
     }
