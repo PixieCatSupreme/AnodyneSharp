@@ -207,6 +207,10 @@ namespace AnodyneSharp.States
                         }
                         break;
                     case PlayStateState.S_MAP_ENTER:
+                        if (GlobalState.FUCK_IT_MODE_ON)
+                        {
+                            GlobalState.PIXELATION = 1;
+                        }
                         GlobalState.PIXELATION = Math.Max(GlobalState.PIXELATION - GameTimes.DeltaTime * pixelation_per_second, 1);
                         GlobalState.transition_fadeout_progress = Math.Max(0.0f, GlobalState.transition_fadeout_progress - GameTimes.DeltaTime / transition_in);
                         if (GlobalState.transition_fadeout_progress == 0)
