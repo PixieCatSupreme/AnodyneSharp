@@ -49,6 +49,7 @@ namespace AnodyneSharp.Entities
         public Vector2 lastPosition;
         public Vector2 velocity;
         public Vector2 acceleration;
+        public Vector2 drag;
 
         public bool immovable;
 
@@ -98,11 +99,15 @@ namespace AnodyneSharp.Entities
         {
             lastPosition = Position;
             Position += velocity * GameTimes.DeltaTime;
+
             velocity += acceleration * GameTimes.DeltaTime;
+            velocity.X = CalculateDrag(velocity.X, drag.X);
+            velocity.Y = CalculateDrag(velocity.Y, drag.Y);
 
             rotation += angularVelocity * GameTimes.DeltaTime;
 
             angularVelocity += angularAcceleration *GameTimes.DeltaTime;
+
 
             wasTouching = touching;
             touching = Touching.NONE;
@@ -285,6 +290,19 @@ namespace AnodyneSharp.Entities
             velocity = target - Position;
             velocity.Normalize();
             velocity *= speed;
+        }
+
+        private float CalculateDrag(float velocity, float drag)
+        {
+            drag = drag * GameTimes.DeltaTime;
+            if(velocity < 0)
+            {
+                velocity = Math.Min(velocity + drag, 0f);
+            } else
+            {
+                velocity = Math.Max(velocity - drag, 0f);
+            }
+            return velocity;
         }
     }
 }
