@@ -77,6 +77,8 @@ namespace AnodyneSharp.States
 
             SetLabels();
             StateChanged();
+
+            UpdateEntities = false;
         }
 
         public override void Update()

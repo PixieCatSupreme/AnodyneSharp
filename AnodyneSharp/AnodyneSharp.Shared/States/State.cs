@@ -9,6 +9,7 @@ namespace AnodyneSharp.States
     public class State
     {
         public bool Exit { get; protected set; } = false;
+        public bool UpdateEntities { get; protected set; } = true;
         public Background Background { get; protected set; }
 
         public virtual void Create()

@@ -176,9 +176,13 @@ namespace AnodyneSharp.States
         {
             base.Update();
 
+            bool updateEntities = true;
+
             if (_childState != null)
             {
                 _childState.Update();
+                updateEntities = _childState.UpdateEntities;
+
                 if (_childState.Exit)
                 {
                     _childState = null;
@@ -235,7 +239,10 @@ namespace AnodyneSharp.States
                 {
                     DoCollisions();
                 }
+            }
 
+            if (updateEntities)
+            {
                 UpdateEntities();
             }
 

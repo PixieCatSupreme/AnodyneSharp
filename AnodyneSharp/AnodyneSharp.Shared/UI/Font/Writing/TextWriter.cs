@@ -235,7 +235,7 @@ namespace AnodyneSharp.UI.Text
 
         public void SetWriteArea(int x, int y, int width, int height)
         {
-            writeArea = new Rectangle(x, y, width, height);
+            writeArea = new Rectangle(x, y+2, width, height);
         }
 
         public void RemoveFirstLine()
