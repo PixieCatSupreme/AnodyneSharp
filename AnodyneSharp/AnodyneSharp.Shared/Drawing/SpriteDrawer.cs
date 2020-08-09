@@ -56,16 +56,16 @@ namespace AnodyneSharp.Drawing
             _spriteBatch.Begin(sortMode: SpriteSortMode.FrontToBack, blendState: BlendState.AlphaBlend, samplerState: SamplerState, effect: effect, transformMatrix: camera.Transform);
         }
 
-        public static void BeginGUIDraw()
+        public static void BeginGUIDraw(Effect gameEffect = null, Effect UIEffect = null)
         {
             _graphicsDevice.SetRenderTarget(_render);
             _graphicsDevice.Clear(BackColor);
 
-            _guiSpriteBatch.Begin(sortMode: SpriteSortMode.FrontToBack, blendState: BlendState.AlphaBlend, samplerState: SamplerState);
+            _guiSpriteBatch.Begin(sortMode: SpriteSortMode.FrontToBack, blendState: BlendState.AlphaBlend, samplerState: SamplerState, effect:gameEffect);
             _guiSpriteBatch.Draw(_game, new Rectangle(0, GameConstants.HEADER_HEIGHT, GameConstants.SCREEN_WIDTH_IN_PIXELS, GameConstants.SCREEN_HEIGHT_IN_PIXELS), Color.White);
             _guiSpriteBatch.End();
 
-            _guiSpriteBatch.Begin(sortMode: SpriteSortMode.FrontToBack, blendState: BlendState.AlphaBlend, samplerState: SamplerState);
+            _guiSpriteBatch.Begin(sortMode: SpriteSortMode.FrontToBack, blendState: BlendState.AlphaBlend, samplerState: SamplerState, effect:UIEffect);
         }
 
 

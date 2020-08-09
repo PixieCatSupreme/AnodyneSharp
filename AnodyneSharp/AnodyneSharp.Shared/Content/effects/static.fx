@@ -5,6 +5,8 @@
 #define PS_SHADERMODEL ps_4_0
 #endif
 
+int step;
+
 sampler s0;
 
 struct VertexShaderOutput
@@ -14,18 +16,25 @@ struct VertexShaderOutput
 	float2 Tex : TEXCOORD0;
 };
 
+float rand(float2 uv) {
+	//Constants based on irrational numbers for better distribution
+	const float2 k = float2(23.1406926327792690, 2.6651441426902251);
+	return frac(cos(dot(uv + step, k)) * 12345.6789);
+}
+
 float4 MainPS(VertexShaderOutput input) : COLOR
 {
 	float4 color = tex2D(s0, input.Tex);
-	float average = (color.r+color.g+color.b)/3;
 
-	average = int(average * 25) / 25.0;
+	float alpha = rand(input.Tex) * 0.31;
+	float gray = rand(input.Tex + float2(1, 1)) * 0.31;
 
-	color.rgb = average;
+	color.rgb = color.rgb * (1 - alpha) + gray * alpha;
+
 	return color;
 }
 
-technique BasicColorDrawing
+technique AddStatic
 {
 	pass P0
 	{

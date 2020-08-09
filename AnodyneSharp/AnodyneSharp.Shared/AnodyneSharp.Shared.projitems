@@ -896,5 +896,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)Content\effects\screenfade.fx" />
+    <None Include="$(MSBuildThisFileDirectory)Content\effects\static.fx" />
   </ItemGroup>
 </Project>

@@ -34,6 +34,10 @@ namespace AnodyneSharp
         Camera _camera;
 
         private static Effect fadeout;
+        private static float static_timer = 0;
+        private static int static_step = 0;
+        private static Effect static_shader;
+        private static Effect blackwhite;
 
         private UILabel _fpsLabel;
 
@@ -125,6 +129,11 @@ namespace AnodyneSharp
             fadeout.CurrentTechnique = fadeout.Techniques["Fade"];
             fadeout.Parameters["FadeColor"].SetValue(new Vector4(0,0,0,1));
             fadeout.Parameters["ScreenSize"].SetValue(new Vector2(GameConstants.SCREEN_WIDTH_IN_PIXELS, GameConstants.SCREEN_HEIGHT_IN_PIXELS));
+
+            static_shader = Content.Load<Effect>("effects/static");
+            static_shader.CurrentTechnique = static_shader.Techniques["AddStatic"];
+
+            blackwhite = Content.Load<Effect>("effects/blackwhite");
         }
 
         /// <summary>
@@ -141,6 +150,14 @@ namespace AnodyneSharp
             _camera.Update();
 
             _currentState.Update();
+
+            static_timer += GameTimes.DeltaTime;
+            if (static_timer > 1.0f / 8.0f)
+            {
+                static_timer = 0;
+                static_step = (static_step + 1) % 4;
+                static_shader.Parameters["step"].SetValue(static_step);
+            }
 
             if (KeyInput.JustPressedKey(Keys.F12))
             {
@@ -170,7 +187,7 @@ namespace AnodyneSharp
             _currentState.Draw();
             SpriteDrawer.EndDraw();
 
-            SpriteDrawer.BeginGUIDraw();
+            SpriteDrawer.BeginGUIDraw(gameEffect:(GlobalState.CURRENT_MAP_NAME == "SUBURB" ? static_shader : null));
             _currentState.DrawUI();
 
             if (GlobalState.ShowFPS)
@@ -180,7 +197,8 @@ namespace AnodyneSharp
 
             SpriteDrawer.EndGUIDraw();
 
-            SpriteDrawer.Render(fadeout);
+            //TODO: Actually implement explicit render stages
+            SpriteDrawer.Render((GlobalState.CURRENT_MAP_NAME == "SUBURB" && GlobalState.transition_fadeout_progress == 0 ? blackwhite : fadeout));
         }
 
         private void SetDefaultKeys()
