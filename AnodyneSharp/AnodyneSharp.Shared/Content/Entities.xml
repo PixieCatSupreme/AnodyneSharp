@@ -2762,6 +2762,8 @@
     <Button x="336" y="816" guid="0BD7DE14-7FEF-798A-E3AF-757CDC767C9C" frame="0"/>
     <Button x="448" y="816" guid="43EAF400-FBB9-D447-D1D8-184056A36873" frame="0"/>
     <Button x="448" y="928" guid="9C02AA66-2804-77CA-9B19-2206B2F93EFB" frame="0"/>
+    <Event x="0." y="960" guid="441C22BD-0BD0-2993-558B-8B77A47AC5BD" frame="4"/>
+    <Event x="480" y="800" guid="C657B296-92F2-A5BD-0B59-ADE5A269627F" frame="4"/>
   </map>
   <map name="SUBURB" type="Stateful">
     <Suburb_Killer x="80" y="256" guid="08FA88AD-FF2E-2244-A732-2030DCD9718C" frame="0"/>

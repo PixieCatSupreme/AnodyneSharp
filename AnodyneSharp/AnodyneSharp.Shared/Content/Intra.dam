@@ -11678,6 +11678,8 @@
         <sprite guid="0BD7DE14-7FEF-798A-E3AF-757CDC767C9C" x="336" y="816" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="54" frame="0"/>
         <sprite guid="43EAF400-FBB9-D447-D1D8-184056A36873" x="448" y="816" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="54" frame="0"/>
         <sprite guid="9C02AA66-2804-77CA-9B19-2206B2F93EFB" x="448" y="928" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="54" frame="0"/>
+        <sprite guid="441C22BD-0BD0-2993-558B-8B77A47AC5BD" x="0" y="960" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="22" frame="4"/>
+        <sprite guid="C657B296-92F2-A5BD-0B59-ADE5A269627F" x="480" y="800" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="22" frame="4"/>
       </spritelayer>
       <spritelayer name="Stateful" id="104" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="08FA88AD-FF2E-2244-A732-2030DCD9718C" x="80" y="256" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="95"/>
