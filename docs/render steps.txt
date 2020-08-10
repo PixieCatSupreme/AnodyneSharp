@@ -1,0 +1,33 @@
+During game rendering:
+1. before_fg_overlay
+    during main game drawing, exclude fg sprites from overlay/hardlight/... blend
+    
+Applied on top of game screen
+2. dec_over:
+    either moving rain image in windmill(probably implementable as extra entity to draw), or street's overlay(overlay blending)
+    (also used for suburb and drawer's static, but that's already replaced by a shader)
+3. darkness:
+    ***lights draw using a screen blend on top of this layer first
+    
+    alpha changed throughout with entities and other special events
+    Applies an overlay/hardlight/multiply
+    defaults to full black, 0 alpha in maps that don't have a specific blend, 1.0 alpha otherwise
+
+**UI draws here**
+
+Whole screen
+4. death_fadein
+    Fade game to white/black depending on map on player death(CELL fades to black, all other areas fade to white)
+5. death_text
+    UI layer drawn on top of death_fadein
+6. black_overlay
+    full-screen fadeout when needed
+
+after-drawing shaders
+7. unused disco effect? (REDCAVE easter egg)
+8. out-of-bounds glitch effect
+9. SUBURB/BLANK greyscale
+9a. SUBURB before_fg_overlay a second time if in suburb, applied to the game part of the screen
+10. downsample transition effect
+11. horizontal wave effect
+
