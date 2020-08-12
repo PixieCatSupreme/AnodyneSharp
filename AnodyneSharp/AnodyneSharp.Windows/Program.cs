@@ -7,7 +7,7 @@ namespace AnodyneSharp.Windows
         [STAThread]
         static void Main()
         {
-            using var game = new AnodyneGame();
+            using AnodyneGame game = new AnodyneGame();
             game.Run();
         }
     }

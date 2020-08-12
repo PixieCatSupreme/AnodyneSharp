@@ -1,19 +1,13 @@
 ﻿using System;
 
-namespace AnodyneSharp
+namespace AnodyneSharp.Multiplatform
 {
-    /// <summary>
-    /// The main class.
-    /// </summary>
     public static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
-            using var game = new AnodyneGame();
+            using AnodyneGame game = new AnodyneGame();
             game.Run();
         }
     }

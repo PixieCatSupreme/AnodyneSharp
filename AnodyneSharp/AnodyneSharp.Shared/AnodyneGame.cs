@@ -48,19 +48,6 @@ namespace AnodyneSharp
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            //graphics.PreferredBackBufferWidth = 1920;
-            //graphics.PreferredBackBufferHeight = 1080;
-            //graphics.PreferredBackBufferWidth = 960;
-            //graphics.PreferredBackBufferHeight = 1080;
-            graphics.GraphicsProfile = GraphicsProfile.HiDef;
-            graphics.PreferredBackBufferWidth = 480;
-            graphics.PreferredBackBufferHeight = 540;
-            //graphics.ToggleFullScreen();
-            graphics.ApplyChanges();
-
-            _camera = new Camera();
-            _camera.Initialize(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
-
             _currentState = null;
 
             _fpsLabel = new UILabel(new Vector2(0, GameConstants.HEADER_HEIGHT), Color.LightBlue, false);
@@ -72,6 +59,19 @@ namespace AnodyneSharp
 
             GlobalState.ActivatedNexusPortals[MapUtilities.GetMapID("STREET")] = true;
 
+
+#if WINDOWS
+            InitGraphics();
+#endif
+        }
+
+        private void InitGraphics()
+        {
+            graphics.GraphicsProfile = GraphicsProfile.HiDef;
+            graphics.PreferredBackBufferWidth = 480;
+            graphics.PreferredBackBufferHeight = 540;
+
+            graphics.ApplyChanges();
         }
 
         /// <summary>
@@ -83,6 +83,13 @@ namespace AnodyneSharp
         /// </summary>
         protected override void Initialize()
         {
+#if OPENGL
+            InitGraphics();
+#endif
+
+            _camera = new Camera();
+            _camera.Initialize(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
+
             SpriteDrawer.Initialize(graphics.GraphicsDevice);
 
             InventoryManager.ResetValues();

@@ -3,42 +3,42 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30002.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnodyneSharp.Multiplatform", "AnodyneSharp.Multiplatform\AnodyneSharp.Multiplatform.csproj", "{EDDEB65C-AF52-4EC6-9F60-CFCC1B07B113}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "AnodyneSharp.Shared", "AnodyneSharp.Shared\AnodyneSharp.Shared.shproj", "{A0CDBD0E-3A41-42B7-9425-A838BC2C7383}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B540E85F-E15A-420C-9AA1-A483A7E40AC3}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnodyneSharp.Windows", "AnodyneSharp.Windows\AnodyneSharp.Windows.csproj", "{A9F40A34-94A6-4E0C-A813-CBA5BA4B5AEB}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fluent-State-Machine", "..\Fluent-State-Machine\Fluent-State-Machine.csproj", "{74EC1B7F-CD01-4AF3-AED5-ED0393A3A069}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnodyneSharp.Windows", "AnodyneSharp.Windows\AnodyneSharp.Windows.csproj", "{9D4CD4FD-E304-4B61-908C-989A08B8D289}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "AnodyneSharp.Shared", "AnodyneSharp.Shared\AnodyneSharp.Shared.shproj", "{A0CDBD0E-3A41-42B7-9425-A838BC2C7383}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnodyneSharp.Multiplatform", "AnodyneSharp.Multiplatform\AnodyneSharp.Multiplatform.csproj", "{C3425B4E-EE0B-41B7-AA64-E4637EC6B299}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		AnodyneSharp.Shared\AnodyneSharp.Shared.projitems*{9d4cd4fd-e304-4b61-908c-989a08b8d289}*SharedItemsImports = 5
 		AnodyneSharp.Shared\AnodyneSharp.Shared.projitems*{a0cdbd0e-3a41-42b7-9425-a838bc2c7383}*SharedItemsImports = 13
-		AnodyneSharp.Shared\AnodyneSharp.Shared.projitems*{a9f40a34-94a6-4e0c-a813-cba5ba4b5aeb}*SharedItemsImports = 5
-		AnodyneSharp.Shared\AnodyneSharp.Shared.projitems*{eddeb65c-af52-4ec6-9f60-cfcc1b07b113}*SharedItemsImports = 4
+		AnodyneSharp.Shared\AnodyneSharp.Shared.projitems*{c3425b4e-ee0b-41b7-aa64-e4637ec6b299}*SharedItemsImports = 5
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EDDEB65C-AF52-4EC6-9F60-CFCC1B07B113}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EDDEB65C-AF52-4EC6-9F60-CFCC1B07B113}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EDDEB65C-AF52-4EC6-9F60-CFCC1B07B113}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EDDEB65C-AF52-4EC6-9F60-CFCC1B07B113}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A9F40A34-94A6-4E0C-A813-CBA5BA4B5AEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A9F40A34-94A6-4E0C-A813-CBA5BA4B5AEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A9F40A34-94A6-4E0C-A813-CBA5BA4B5AEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A9F40A34-94A6-4E0C-A813-CBA5BA4B5AEB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{74EC1B7F-CD01-4AF3-AED5-ED0393A3A069}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{74EC1B7F-CD01-4AF3-AED5-ED0393A3A069}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74EC1B7F-CD01-4AF3-AED5-ED0393A3A069}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74EC1B7F-CD01-4AF3-AED5-ED0393A3A069}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D4CD4FD-E304-4B61-908C-989A08B8D289}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D4CD4FD-E304-4B61-908C-989A08B8D289}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D4CD4FD-E304-4B61-908C-989A08B8D289}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D4CD4FD-E304-4B61-908C-989A08B8D289}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3425B4E-EE0B-41B7-AA64-E4637EC6B299}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3425B4E-EE0B-41B7-AA64-E4637EC6B299}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3425B4E-EE0B-41B7-AA64-E4637EC6B299}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3425B4E-EE0B-41B7-AA64-E4637EC6B299}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

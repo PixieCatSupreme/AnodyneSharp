@@ -895,6 +895,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\title\title_text_white.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />
     <None Include="$(MSBuildThisFileDirectory)Content\effects\screenfade.fx" />
     <None Include="$(MSBuildThisFileDirectory)Content\effects\static.fx" />
   </ItemGroup>
