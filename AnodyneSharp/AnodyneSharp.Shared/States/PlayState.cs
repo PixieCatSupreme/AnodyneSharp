@@ -1,6 +1,7 @@
 ﻿using AnodyneSharp.Cheatz;
 using AnodyneSharp.Dialogue;
 using AnodyneSharp.Drawing;
+using AnodyneSharp.Drawing.Effects;
 using AnodyneSharp.Entities;
 using AnodyneSharp.Entities.Enemy;
 using AnodyneSharp.Input;
@@ -751,6 +752,8 @@ namespace AnodyneSharp.States
                 {
                     ReloadMapTextures();
                 }
+
+                FG_Blend.MapChange();
 
                 GlobalState.RefreshKeyCount = true;
             }

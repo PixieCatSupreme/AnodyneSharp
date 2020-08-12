@@ -1,6 +1,7 @@
 ﻿#region Using Statements
 using AnodyneSharp.Dialogue;
 using AnodyneSharp.Drawing;
+using AnodyneSharp.Drawing.Effects;
 using AnodyneSharp.Entities;
 using AnodyneSharp.Entities.Gadget;
 using AnodyneSharp.Input;
@@ -131,6 +132,8 @@ namespace AnodyneSharp
 
             DialogueManager.LoadDialogue( Language.EN);
 
+            FG_Blend.Load(Content);
+            
             fadeout = Content.Load<Effect>("effects/screenfade");
 
             fadeout.CurrentTechnique = fadeout.Techniques["Fade"];
@@ -171,6 +174,8 @@ namespace AnodyneSharp
                 GlobalState.ShowFPS = !GlobalState.ShowFPS;
             }
 
+            FG_Blend.Update(_camera);
+
             fadeout.Parameters["Fade"].SetValue(GlobalState.transition_fadeout_progress);
             fadeout.Parameters["StrideSize"].SetValue((int)GlobalState.PIXELATION);
         }
@@ -190,7 +195,7 @@ namespace AnodyneSharp
 
             SpriteDrawer.DrawBackground(_currentState.Background);
 
-            SpriteDrawer.BeginDraw(_camera);
+            SpriteDrawer.BeginDraw(_camera, FG_Blend.GetEffect());
             _currentState.Draw();
             SpriteDrawer.EndDraw();
 

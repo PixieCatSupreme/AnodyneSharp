@@ -19,6 +19,12 @@
 /processorParam:DebugMode=Auto
 /build:effects/blackwhite.fx
 
+#begin effects/fg_blendlayer.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:effects/fg_blendlayer.fx
+
 #begin effects/screenfade.fx
 /importer:EffectImporter
 /processor:EffectProcessor
