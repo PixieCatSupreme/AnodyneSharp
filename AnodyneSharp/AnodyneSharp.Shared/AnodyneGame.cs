@@ -138,7 +138,7 @@ namespace AnodyneSharp
 
             fadeout.CurrentTechnique = fadeout.Techniques["Fade"];
             fadeout.Parameters["FadeColor"].SetValue(new Vector4(0,0,0,1));
-            fadeout.Parameters["ScreenSize"].SetValue(new Vector2(GameConstants.SCREEN_WIDTH_IN_PIXELS, GameConstants.SCREEN_HEIGHT_IN_PIXELS));
+            fadeout.Parameters["ScreenSize"].SetValue(new Vector2(GameConstants.SCREEN_WIDTH_IN_PIXELS, GameConstants.SCREEN_HEIGHT_IN_PIXELS + 20));
 
             static_shader = Content.Load<Effect>("effects/static");
             static_shader.CurrentTechnique = static_shader.Techniques["AddStatic"];
