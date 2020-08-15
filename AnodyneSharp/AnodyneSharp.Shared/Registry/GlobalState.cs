@@ -1,5 +1,6 @@
 ﻿
 using AnodyneSharp.Dialogue;
+using AnodyneSharp.Drawing.Effects;
 using AnodyneSharp.Entities;
 using Microsoft.Xna.Framework;
 using System;
@@ -86,8 +87,6 @@ namespace AnodyneSharp.Registry
         public static bool WARP = false;
         public static string NEXT_MAP_NAME;
         public static Vector2 PLAYER_WARP_TARGET;
-        public static float transition_fadeout_progress = 0.0f;
-        public static float PIXELATION = 1;
 
         public static bool RefreshKeyCount = false;
         public static bool RefreshMaxHealth = false;
@@ -132,6 +131,22 @@ namespace AnodyneSharp.Registry
         public static bool MovingCamera = true;
         public static bool FreeRoamCamera = false;
 #endif
+
+        public static FadeEffect death_fadein = new FadeEffect() { fadeColor = Color.Black };
+        public static FadeEffect black_overlay = new FadeEffect() { fadeColor = Color.Black };
+
+        public static Pixelate pixelation = new Pixelate();
+
+        public static List<IFullScreenEffect> gameEffects = new List<IFullScreenEffect>() { new Static() };
+        public static List<IFullScreenEffect> fullScreenEffects = new List<IFullScreenEffect>() { death_fadein, black_overlay, new GrayScale() , pixelation};
+        public static IEnumerable<IFullScreenEffect> AllEffects
+        {
+            get
+            {
+                return gameEffects.Concat(fullScreenEffects);
+            }
+        }
+
 
         //Song deciding bools
         public static bool OnRoof;

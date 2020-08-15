@@ -19,6 +19,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 #endregion
 
@@ -33,12 +34,6 @@ namespace AnodyneSharp
 
         State _currentState;
         Camera _camera;
-
-        private static Effect fadeout;
-        private static float static_timer = 0;
-        private static int static_step = 0;
-        private static Effect static_shader;
-        private static Effect blackwhite;
 
         private UILabel _fpsLabel;
 
@@ -133,17 +128,12 @@ namespace AnodyneSharp
             DialogueManager.LoadDialogue( Language.EN);
 
             FG_Blend.Load(Content);
+
+            foreach(var effect in GlobalState.AllEffects)
+            {
+                effect.Load(Content, graphics.GraphicsDevice);
+            }
             
-            fadeout = Content.Load<Effect>("effects/screenfade");
-
-            fadeout.CurrentTechnique = fadeout.Techniques["Fade"];
-            fadeout.Parameters["FadeColor"].SetValue(new Vector4(0,0,0,1));
-            fadeout.Parameters["ScreenSize"].SetValue(new Vector2(GameConstants.SCREEN_WIDTH_IN_PIXELS, GameConstants.SCREEN_HEIGHT_IN_PIXELS + 20));
-
-            static_shader = Content.Load<Effect>("effects/static");
-            static_shader.CurrentTechnique = static_shader.Techniques["AddStatic"];
-
-            blackwhite = Content.Load<Effect>("effects/blackwhite");
         }
 
         /// <summary>
@@ -161,23 +151,17 @@ namespace AnodyneSharp
 
             _currentState.Update();
 
-            static_timer += GameTimes.DeltaTime;
-            if (static_timer > 1.0f / 8.0f)
+            FG_Blend.Update(_camera);
+
+            foreach (var effect in GlobalState.AllEffects.Where(e => e.Active()))
             {
-                static_timer = 0;
-                static_step = (static_step + 1) % 4;
-                static_shader.Parameters["step"].SetValue(static_step);
+                effect.Update();
             }
 
             if (KeyInput.JustPressedKey(Keys.F12))
             {
                 GlobalState.ShowFPS = !GlobalState.ShowFPS;
             }
-
-            FG_Blend.Update(_camera);
-
-            fadeout.Parameters["Fade"].SetValue(GlobalState.transition_fadeout_progress);
-            fadeout.Parameters["StrideSize"].SetValue((int)GlobalState.PIXELATION);
         }
 
         /// <summary>
@@ -199,7 +183,7 @@ namespace AnodyneSharp
             _currentState.Draw();
             SpriteDrawer.EndDraw();
 
-            SpriteDrawer.BeginGUIDraw(gameEffect:(GlobalState.CURRENT_MAP_NAME == "SUBURB" ? static_shader : null));
+            SpriteDrawer.BeginGUIDraw();
             _currentState.DrawUI();
 
             if (GlobalState.ShowFPS)
@@ -209,8 +193,7 @@ namespace AnodyneSharp
 
             SpriteDrawer.EndGUIDraw();
 
-            //TODO: Actually implement explicit render stages
-            SpriteDrawer.Render((GlobalState.CURRENT_MAP_NAME == "SUBURB" && GlobalState.transition_fadeout_progress == 0 ? blackwhite : fadeout));
+            SpriteDrawer.Render();
         }
 
         private void SetDefaultKeys()

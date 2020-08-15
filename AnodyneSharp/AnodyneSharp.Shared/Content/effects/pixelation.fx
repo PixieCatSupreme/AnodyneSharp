@@ -7,15 +7,10 @@
 	#define PS_SHADERMODEL ps_4_0
 #endif
 
-float4 FadeColor;
 float2 ScreenSize;
 int StrideSize;
 
-sampler s0 {
-	Filter = POINT;
-};
-
-float Fade;
+sampler s0;
 
 struct VertexShaderOutput
 {
@@ -33,13 +28,11 @@ float4 MainPS(VertexShaderOutput input) : COLOR
 	float2 texCoord = (TilePos * StrideSize + float2(0.5,0.5)) / ScreenSize;
 	
 	float4 game = tex2D(s0, texCoord);
-
-	game.rgb = game.rgb * (1 - Fade) + FadeColor.rgb * Fade;
 	
 	return game;
 }
 
-technique Fade
+technique Pixelate
 {
 	pass P0
 	{

@@ -1,7 +1,9 @@
-﻿using AnodyneSharp.Registry;
+﻿using AnodyneSharp.Drawing.Effects;
+using AnodyneSharp.Registry;
 using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Linq;
 
 namespace AnodyneSharp.Drawing
 {
@@ -16,7 +18,9 @@ namespace AnodyneSharp.Drawing
         private static SpriteBatch _guiSpriteBatch;
 
         private static RenderTarget2D _game;
+        private static RenderTarget2D _game2;
         private static RenderTarget2D _render;
+        private static RenderTarget2D _render2;
 
         public static void Initialize(GraphicsDevice graphicsDevice)
         {
@@ -28,7 +32,9 @@ namespace AnodyneSharp.Drawing
             _guiSpriteBatch = new SpriteBatch(_graphicsDevice);
 
             _game = new RenderTarget2D(_graphicsDevice, 160, 160);
+            _game2 = new RenderTarget2D(_graphicsDevice, 160, 160);
             _render = new RenderTarget2D(_graphicsDevice, 160, 180);
+            _render2 = new RenderTarget2D(_graphicsDevice, 160, 180);
         }
 
         public static void DrawBackground(Background background)
@@ -98,11 +104,24 @@ namespace AnodyneSharp.Drawing
         public static void EndDraw()
         {
             _spriteBatch.End();
+            foreach(IFullScreenEffect effect in GlobalState.gameEffects.Where(e => e.Active()))
+            {
+                _graphicsDevice.SetRenderTarget(_game2);
+                effect.Render(_spriteBatch, _game);
+                (_game, _game2) = (_game2, _game);
+            }
         }
 
         public static void EndGUIDraw()
         {
             _guiSpriteBatch.End();
+
+            foreach (IFullScreenEffect effect in GlobalState.fullScreenEffects.Where(e => e.Active()))
+            {
+                _graphicsDevice.SetRenderTarget(_render2);
+                effect.Render(_spriteBatch, _render);
+                (_render, _render2) = (_render2, _render);
+            }
         }
 
         public static void Render(Effect effect = null)

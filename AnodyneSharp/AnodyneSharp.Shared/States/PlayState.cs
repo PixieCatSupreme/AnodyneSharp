@@ -204,23 +204,23 @@ namespace AnodyneSharp.States
                     case PlayStateState.S_PLAYER_DIED:
                         break;
                     case PlayStateState.S_MAP_EXIT:
-                        GlobalState.PIXELATION += GameTimes.DeltaTime * pixelation_per_second;
-                        GlobalState.transition_fadeout_progress = Math.Min(1.0f, GlobalState.transition_fadeout_progress + GameTimes.DeltaTime / transition_out);
-                        if (GlobalState.transition_fadeout_progress == 1 || GlobalState.FUCK_IT_MODE_ON)
+                        GlobalState.pixelation.AddPixelation(pixelation_per_second);
+                        GlobalState.black_overlay.ChangeAlpha(1 / transition_out);
+                        if (GlobalState.black_overlay.alpha == 1 || GlobalState.FUCK_IT_MODE_ON)
                         {
                             Warp();
                             _state = PlayStateState.S_MAP_ENTER;
-                            GlobalState.PIXELATION = 10;
+                            GlobalState.pixelation.SetPixelation(10f);
                         }
                         break;
                     case PlayStateState.S_MAP_ENTER:
                         if (GlobalState.FUCK_IT_MODE_ON)
                         {
-                            GlobalState.PIXELATION = 1;
+                            GlobalState.pixelation.SetPixelation(1f);
                         }
-                        GlobalState.PIXELATION = Math.Max(GlobalState.PIXELATION - GameTimes.DeltaTime * pixelation_per_second, 1);
-                        GlobalState.transition_fadeout_progress = Math.Max(0.0f, GlobalState.transition_fadeout_progress - GameTimes.DeltaTime / transition_in);
-                        if (GlobalState.transition_fadeout_progress == 0)
+                        GlobalState.pixelation.AddPixelation(-pixelation_per_second);
+                        GlobalState.black_overlay.ChangeAlpha(-1 / transition_in);
+                        if (GlobalState.black_overlay.alpha == 0)
                         {
                             _state = PlayStateState.S_NORMAL;
                             _player.dontMove = false;

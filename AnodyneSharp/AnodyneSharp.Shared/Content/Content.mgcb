@@ -25,11 +25,11 @@
 /processorParam:DebugMode=Auto
 /build:effects/fg_blendlayer.fx
 
-#begin effects/screenfade.fx
+#begin effects/pixelation.fx
 /importer:EffectImporter
 /processor:EffectProcessor
 /processorParam:DebugMode=Auto
-/build:effects/screenfade.fx
+/build:effects/pixelation.fx
 
 #begin effects/static.fx
 /importer:EffectImporter
