@@ -731,6 +731,9 @@ namespace AnodyneSharp.States
                 TileData.SetTileset(GlobalState.CURRENT_MAP_NAME);
                 _map.LoadMap(MapLoader.GetMap(GlobalState.CURRENT_MAP_NAME), TileData.Tiles, DrawOrder.MAP_BG);
 
+                GlobalState.MAP_GRID_WIDTH = _map.WidthInTiles/10;
+                GlobalState.MAP_GRID_HEIGHT = _map.HeightInTiles/10;
+
                 _map_bg_2.LoadMap(MapLoader.GetMap(GlobalState.CURRENT_MAP_NAME, 2), TileData.Tiles, DrawOrder.MAP_BG2);
                 _map_bg_2.y = HEADER_HEIGHT;
                 _map_fg.LoadMap(MapLoader.GetMap(GlobalState.CURRENT_MAP_NAME, 3), TileData.Tiles, DrawOrder.MAP_FG);

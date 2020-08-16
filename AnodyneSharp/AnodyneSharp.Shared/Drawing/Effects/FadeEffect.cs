@@ -18,7 +18,7 @@ namespace AnodyneSharp.Drawing.Effects
             batch.GraphicsDevice.Clear(fadeColor);
 
             batch.Begin();
-            batch.Draw(screen, new Rectangle(0, 0, screen.Width, screen.Height), Color.White * (1 - alpha));
+            batch.Draw(screen, screen.Bounds, Color.White * (1 - alpha));
             batch.End();
         }
 

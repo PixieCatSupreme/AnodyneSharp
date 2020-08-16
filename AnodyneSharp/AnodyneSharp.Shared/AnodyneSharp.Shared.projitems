@@ -12,6 +12,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)AnodyneGame.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Cheatz\CheatAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Cheatz\CheatzManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Drawing\Effects\Glitch.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Effects\Pixelate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dialogue\Tree\DialogueArea.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dialogue\DialogueManager.cs" />

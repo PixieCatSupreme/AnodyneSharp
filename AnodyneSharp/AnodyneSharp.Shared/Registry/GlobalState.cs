@@ -78,6 +78,8 @@ namespace AnodyneSharp.Registry
         public static int PLAYER_Y;
         public static int CURRENT_GRID_X;
         public static int CURRENT_GRID_Y;
+        public static int MAP_GRID_WIDTH;
+        public static int MAP_GRID_HEIGHT;
         public static string CURRENT_MAP_NAME;
         public static int ENEMIES_KILLED;
         public static int PUZZLES_SOLVED;
@@ -138,7 +140,7 @@ namespace AnodyneSharp.Registry
         public static Pixelate pixelation = new Pixelate();
 
         public static List<IFullScreenEffect> gameEffects = new List<IFullScreenEffect>() { new Static() };
-        public static List<IFullScreenEffect> fullScreenEffects = new List<IFullScreenEffect>() { death_fadein, black_overlay, new GrayScale() , pixelation};
+        public static List<IFullScreenEffect> fullScreenEffects = new List<IFullScreenEffect>() { death_fadein, black_overlay, new Glitch(), new GrayScale(), pixelation };
         public static IEnumerable<IFullScreenEffect> AllEffects
         {
             get

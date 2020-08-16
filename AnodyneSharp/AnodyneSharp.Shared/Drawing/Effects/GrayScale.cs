@@ -22,7 +22,7 @@ namespace AnodyneSharp.Drawing.Effects
         public void Render(SpriteBatch batch, Texture2D screen)
         {
             batch.Begin(effect: effect);
-            batch.Draw(screen, new Rectangle(0, 0, screen.Width, screen.Height), Color.White);
+            batch.Draw(screen, screen.Bounds, Color.White);
             batch.End();
         }
     }

@@ -37,7 +37,7 @@ namespace AnodyneSharp.Drawing.Effects
         {
             effect.Parameters["ScreenSize"].SetValue(new Vector2(screen.Width, screen.Height));
             batch.Begin(effect: effect);
-            batch.Draw(screen, new Rectangle(0, 0, screen.Width, screen.Height), Color.White);
+            batch.Draw(screen, screen.Bounds, Color.White);
             batch.End();
         }
 
