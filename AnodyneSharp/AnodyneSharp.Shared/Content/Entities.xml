@@ -2769,7 +2769,7 @@
     <Suburb_Killer x="80" y="256" guid="08FA88AD-FF2E-2244-A732-2030DCD9718C" frame="0"/>
     <Suburb_Killer x="240" y="256" guid="556A5BC6-0EA5-2B4C-7F22-4557C5AE8C3C" frame="0"/>
     <NPC x="560" y="576" guid="664230FB-9F92-4D9A-61AE-7B93755BF98E" frame="0" type="generic" />
-    <Door x="551" y="7" guid="8FC1E78F-D0C3-456E-346F-01BE8040248E" frame="18" type="5" />
+    <Door x="551" y="7" guid="8FC1E78F-D0C3-456E-346F-01BE8040248E" frame="18" type="14" />
     <Suburb_Killer x="203" y="115" guid="C6780C20-90BC-8A55-5401-5B65B6AA3AAD" frame="0"/>
     <Suburb_Killer x="747" y="407" guid="7831239A-1E61-1E89-D439-D2E77F65847A" frame="0"/>
     <Suburb_Killer x="512" y="576" guid="1BE14BD6-4DEE-9612-F4E1-3BAE94B42FF6" frame="0"/>

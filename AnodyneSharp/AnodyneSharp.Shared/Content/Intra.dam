@@ -11687,7 +11687,7 @@
         <sprite guid="664230FB-9F92-4D9A-61AE-7B93755BF98E" x="560" y="576" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="37" frame="0">
           <properties/>
         </sprite>
-        <sprite guid="8FC1E78F-D0C3-456E-346F-01BE8040248E" x="551" y="7" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="150" frame="18">
+        <sprite guid="8FC1E78F-D0C3-456E-346F-01BE8040248E" x="551" y="7" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="159" frame="18">
           <properties/>
         </sprite>
         <sprite guid="C6780C20-90BC-8A55-5401-5B65B6AA3AAD" x="203" y="115" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="95" frame="0"/>
