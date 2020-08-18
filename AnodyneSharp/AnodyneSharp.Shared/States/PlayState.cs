@@ -187,6 +187,14 @@ namespace AnodyneSharp.States
                 if (_childState.Exit)
                 {
                     _childState = null;
+                    _player.dontMove = false;
+                    _player.actions_disabled = false;
+                    _player.skipBroom = true;
+                }
+                else
+                {
+                    _player.dontMove = true;
+                    _player.actions_disabled = true;
                 }
             }
             else
@@ -244,7 +252,7 @@ namespace AnodyneSharp.States
 
             if (updateEntities)
             {
-                UpdateEntities();
+                EntityUpdate();
             }
 
 #if DEBUG
@@ -317,7 +325,7 @@ namespace AnodyneSharp.States
             GlobalState.ENEMIES_KILLED = _groups.KilledEnemies();
         }
 
-        private void UpdateEntities()
+        private void EntityUpdate()
         {
             if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept) && CheckInteraction())
             {
