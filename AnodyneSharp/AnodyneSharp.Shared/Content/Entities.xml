@@ -3110,7 +3110,6 @@
     <NPC x="992" y="1024" guid="A7192061-5A14-1E53-6A8F-44151E833597" frame="2" type="rock" />
     <NPC x="1168" y="1168" guid="752CBD82-1FAB-3237-DF9D-C24D87BEA2CB" frame="3" type="rock" />
     <Door x="112" y="1137" guid="BB916AAE-ED42-1EB8-A8AC-FF602FB2CAC5" frame="41" type="4" />
-    <Door x="1193" y="6" guid="A89A05A6-BB0E-56EA-5987-28D89BA18B46" frame="31" type="5" />
     <Door x="544" y="512" guid="56E3EBEB-6F33-4671-6300-FA909B776286" frame="45" type="16" />
     <KeyBlock x="1008" y="1184" guid="EB24A58B-200E-798E-2FE6-72C4D96B1A2C" frame="4" p="2" alive="true"/>
     <Health_Cicada x="992" y="992" guid="047260E5-E357-36BB-5454-A99AA3E03524" frame="0" p="2" alive="true"/>
@@ -3159,6 +3158,7 @@
     <Gate x="784" y="1344" guid="06449153-2371-315F-544D-ADD9CFBBF6EF" frame="12" alive="true"/>
     <Gate x="784" y="1360" guid="FFF67136-0605-DDDE-41CE-B42730DD3007" frame="12" alive="true"/>
     <Gate x="624" y="1344" guid="FFF0910E-4A59-6D1D-44F1-AA949F6860B3" frame="12" alive="true"/>
+    <Door x="1193" y="6" guid="61CCB668-A7BA-D2B1-B818-C1739CFB42D3" frame="31" type="14" />
   </map>
   <map name="TERMINAL" type="Stateless">
     <Sage x="384" y="704" guid="97C26EF9-14DF-D0E8-075F-1A5C5BEB7D42" frame="0" p="2"/>

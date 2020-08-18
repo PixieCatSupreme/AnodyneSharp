@@ -13172,9 +13172,6 @@
         <sprite guid="BB916AAE-ED42-1EB8-A8AC-FF602FB2CAC5" x="112" y="1137" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="149" frame="41">
           <properties/>
         </sprite>
-        <sprite guid="A89A05A6-BB0E-56EA-5987-28D89BA18B46" x="1193" y="6" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="150" frame="31">
-          <properties/>
-        </sprite>
         <sprite guid="56E3EBEB-6F33-4671-6300-FA909B776286" x="544" y="512" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="161" frame="45">
           <properties/>
         </sprite>
@@ -13277,6 +13274,9 @@
           <properties/>
         </sprite>
         <sprite guid="FFF0910E-4A59-6D1D-44F1-AA949F6860B3" x="624" y="1344" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="50" frame="12">
+          <properties/>
+        </sprite>
+        <sprite guid="61CCB668-A7BA-D2B1-B818-C1739CFB42D3" x="1193" y="6" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="159" frame="31">
           <properties/>
         </sprite>
       </spritelayer>
