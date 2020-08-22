@@ -230,6 +230,7 @@ namespace AnodyneSharp.Entities
         public void SetFrame(int frame)
         {
             _curAnim = new Anim("forcedFrame", new int[] { frame }, 1);
+            UpdateRect();
         }
 
         protected void UpdateAnimation()
