@@ -26,8 +26,6 @@ namespace AnodyneSharp.Map.Tiles
 
     public static class TileData
     {
-        private const string CollissionFilePath = "Content.tileProperties";
-
         public static int Overworld_Tileset_Width = 10;
         public static int Overworld_Tilemap_Solid_Rows = 4;
         public static int Overworld_Tilemap_Special_Row_offset = 4;
@@ -71,7 +69,7 @@ namespace AnodyneSharp.Map.Tiles
 
             var assembly = Assembly.GetExecutingAssembly();
 
-            string path = $"{assembly.GetName().Name}.{CollissionFilePath}.{GlobalState.CURRENT_MAP_NAME}.col";
+            string path = $"{assembly.GetName().Name}.Content.Maps.{GlobalState.CURRENT_MAP_NAME}.TileData.col";
 
             using (Stream stream = assembly.GetManifestResourceStream(path))
             {

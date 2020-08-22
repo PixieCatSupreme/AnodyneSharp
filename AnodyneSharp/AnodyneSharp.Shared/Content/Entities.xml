@@ -724,6 +724,139 @@
     <Happy_NPC x="48" y="0." guid="277A0071-5F64-47E4-8992-592DDEFEE2B8" frame="18"/>
     <Gate x="624" y="400" guid="F454F1AA-5777-A24B-E2F4-76CFF639F577" frame="6" alive="true"/>
   </map>
+  <map name="CELL" type="Stateless">
+    <NPC x="48" y="1216" guid="98AC1ED6-6382-906A-294B-E406E178858E" frame="0" type="rock" />
+    <Event x="560" y="576" guid="B664EFE0-E1BA-4881-F616-E657C3ED42D8" frame="2"/>
+    <Event x="112" y="1248" guid="A528880B-AA35-6BC8-64B3-DB65E9D63A5D" frame="2"/>
+    <Event x="752" y="128" guid="3DEE2519-D5BC-D2FF-EFC7-3C488A94F4CB" frame="2"/>
+    <Event x="384" y="288" guid="18DBE051-5BA9-BE6D-4256-BE45380B2D2A" frame="2"/>
+    <Chaser x="864" y="112" guid="904D88CC-71A7-B36A-725C-4F1CF8DDC4D4" frame="0"/>
+    <Chaser x="880" y="32" guid="C1847E3F-4EDB-94DE-D5F4-065C3EA7F10A" frame="0"/>
+    <Chaser x="1056" y="48" guid="9F689C36-4180-5BA5-3FD8-C759C4F3D6C0" frame="0"/>
+    <Chaser x="1008" y="112" guid="8731071C-DC0D-FBC1-18FA-99AA3BF6B869" frame="0"/>
+    <Chaser x="576" y="224" guid="8723DFE9-E1A1-A8E4-31BC-5A76D3F036E9" frame="0"/>
+    <Chaser x="576" y="160" guid="9E79E829-05A4-2BB5-58EF-D457D8221A97" frame="0"/>
+    <Chaser x="688" y="272" guid="4DDD1714-3A9B-EA3C-42AC-F62BF7195F43" frame="0"/>
+    <Chaser x="864" y="384" guid="AFDE0916-66BA-10B5-3495-13A81D62D478" frame="0"/>
+    <Chaser x="896" y="432" guid="70EC3334-722F-83AC-C071-5B89D34D05ED" frame="0"/>
+    <Chaser x="816" y="416" guid="946D75B2-073A-26E8-0678-B45090C1FA6C" frame="1"/>
+    <Chaser x="1152" y="320" guid="62608A53-9B2A-CB19-1908-3CDB265DF477" frame="0"/>
+    <Chaser x="1136" y="592" guid="7656C0A6-6C39-2F1B-C3B6-5C9940AD5704" frame="1"/>
+    <Chaser x="1248" y="688" guid="AE95A559-5604-A560-76D9-7504307F8ACC" frame="1"/>
+    <Chaser x="1136" y="864" guid="2F0247A7-955F-FB80-0036-3F7778CE2F65" frame="1"/>
+    <Chaser x="1136" y="1008" guid="CC1CE732-10B7-7333-E7D5-A7DADAD3C162" frame="1"/>
+    <Chaser x="848" y="864" guid="BC4640CE-2DAB-EA8C-C102-50F1879C4AAE" frame="1"/>
+    <Chaser x="1056" y="1152" guid="45A84657-8553-B515-2D67-0631E9D3AD89" frame="0"/>
+    <Chaser x="528" y="1232" guid="61962EE8-FD13-6346-10FC-85E5B2CFD5DB" frame="0"/>
+    <Chaser x="96" y="992" guid="9472DAD1-8113-FB9D-A83A-4F0C20CA756C" frame="0"/>
+    <Chaser x="496" y="1088" guid="40D80FB2-1EC0-460D-0F2F-1237CD213A0F" frame="1"/>
+    <Chaser x="448" y="368" guid="49F0AD55-26BB-A68F-F1C6-E204EC42F013" frame="1"/>
+    <Chaser x="272" y="368" guid="4E4CBBC5-78B6-57FE-4AA3-50E3EB92122D" frame="1"/>
+    <Chaser x="80" y="208" guid="3D419DDB-1594-157B-BC5D-16CD8D00369E" frame="1"/>
+    <Chaser x="224" y="640" guid="DF8066D1-36E1-EA86-C124-F71EC47EBF3E" frame="0"/>
+    <Chaser x="16" y="704" guid="C82538E2-5B4E-0F55-6164-3121DB89F1BC" frame="1"/>
+    <Chaser x="16" y="880" guid="75841D82-7E27-5A0A-3778-CC416DD9B105" frame="1"/>
+    <Chaser x="288" y="192" guid="FB4DE5CC-3AB3-C11F-48AB-C598C42E0A8D" frame="1"/>
+    <Chaser x="272" y="272" guid="241C1FD1-09DA-5D7C-AEE2-81C7F91E910D" frame="0"/>
+    <Chaser x="256" y="0." guid="778A6F3A-0F53-D528-5CB3-FF54861C00B5" frame="0"/>
+    <Chaser x="272" y="112" guid="B43EB760-71E1-6970-63B4-50B1DC3C5DB8" frame="0"/>
+    <Solid_Sprite x="1174" y="2" guid="5E0CAF5B-FAB8-ECA4-A398-8D0865F87423" frame="5" type="blocker" />
+    <NPC x="176" y="1152" guid="BCF5F3FC-4CAC-CA69-24F1-BB66AA4A9681" frame="0" type="Cell_Body" />
+    <NPC x="272" y="1152" guid="4F00DB44-3975-9062-C296-D83131AE36A5" frame="6" type="Cell_Body" />
+    <NPC x="256" y="1200" guid="1C65F9F7-C533-341D-6D1D-3C0E75EE7666" frame="2" type="Cell_Body" />
+    <NPC x="48" y="432" guid="D9D5A474-3597-739A-DFCC-F6EC609E7BBE" frame="2" type="Cell_Body" />
+    <NPC x="240" y="464" guid="4D8AF0CF-D5F8-CB30-9AF7-F04D68D6392A" frame="2" type="Cell_Body" />
+    <NPC x="224" y="400" guid="86345B7B-B577-20F2-5B16-AA8950D84F17" frame="6" type="Cell_Body" />
+    <NPC x="368" y="352" guid="2646BD72-9C29-C788-B16A-179D573EF291" frame="6" type="Cell_Body" />
+    <NPC x="400" y="352" guid="D4FC9102-4F4E-9AFD-7FE3-E006D5D4BF2D" frame="0" type="Cell_Body" />
+    <NPC x="720" y="224" guid="C060FAA6-A378-2B48-E3B3-8C241718B8C0" frame="0" type="Cell_Body" />
+    <NPC x="928" y="160" guid="DF8AE2E2-0F6A-36D8-0CE1-DA921D9FE29D" frame="0" type="Cell_Body" />
+    <NPC x="1136" y="144" guid="7AE11B30-46B6-979A-B90C-6FBDA99B6AB8" frame="6" type="Cell_Body" />
+    <NPC x="1088" y="80" guid="C5FF3B6D-D21B-2F17-7C65-4199F22E6B8D" frame="6" type="Cell_Body" />
+    <NPC x="1040" y="176" guid="5698BC9E-7BB5-F496-F3E4-2D67B52FF23E" frame="4" type="Cell_Body" />
+    <NPC x="896" y="192" guid="3E4964F6-6EB3-32F4-6F06-F3E9C8B4D998" frame="4" type="Cell_Body" />
+    <NPC x="1024" y="96" guid="6987DB61-2A88-152A-0BF7-03CBCB6DCE50" frame="2" type="Cell_Body" />
+    <NPC x="864" y="1104" guid="045B0880-B9FC-6F6E-3A78-76B710D58307" frame="2" type="Cell_Body" />
+    <NPC x="592" y="1008" guid="6DE2FBB6-B687-24E9-D118-E5FD66036EEF" frame="2" type="Cell_Body" />
+    <NPC x="688" y="1024" guid="748EA61F-94ED-6350-2CBF-1B83AB5BFDE9" frame="2" type="Cell_Body" />
+    <NPC x="736" y="976" guid="A8D4A588-8265-E1DC-E614-259BEF5EC8C0" frame="2" type="Cell_Body" />
+    <NPC x="768" y="960" guid="DC5C2613-D2B0-75C8-63AE-373CC305F825" frame="6" type="Cell_Body" />
+    <NPC x="560" y="992" guid="246337AB-49CD-54E1-D6B7-6B4ABBB60DE0" frame="6" type="Cell_Body" />
+    <NPC x="704" y="960" guid="48C3ED13-203C-3CA9-B428-234C84AA3891" frame="0" type="Cell_Body" />
+    <NPC x="528" y="896" guid="619142A0-F4BB-9EF3-0C13-D47DDA48D999" frame="0" type="Cell_Body" />
+    <NPC x="448" y="832" guid="3D6F49C7-A0C4-ABCD-FC37-F33F7E2E2726" frame="0" type="Cell_Body" />
+    <NPC x="336" y="912" guid="9B446416-1595-D237-3759-87A7363078E8" frame="2" type="Cell_Body" />
+    <NPC x="352" y="832" guid="49881C61-1F93-2AB0-7980-1183B1A5FED4" frame="6" type="Cell_Body" />
+    <NPC x="704" y="880" guid="4EFDB21B-40FC-7C61-2B1A-01733C4C8152" frame="4" type="Cell_Body" />
+    <NPC x="672" y="864" guid="1ECB307A-2F22-FE6D-EFBE-3CE33AAF1C40" frame="0" type="Cell_Body" />
+    <NPC x="752" y="736" guid="B0A2E8A5-FEB3-7377-808E-5A915F9F4053" frame="0" type="Cell_Body" />
+    <NPC x="704" y="752" guid="59F3A9B9-BED1-7E07-7FC4-4AF028AEEF8F" frame="4" type="Cell_Body" />
+    <NPC x="736" y="640" guid="7722340B-D4AB-5BFF-1EDD-47520E0ADEA5" frame="6" type="Cell_Body" />
+    <NPC x="128" y="672" guid="966A41A6-4ACC-8BD4-13B7-42B5923D86B5" frame="6" type="Cell_Body" />
+    <NPC x="688" y="512" guid="42DC3FF9-4785-FCB2-B69C-F7A5EFDB1833" frame="6" type="Cell_Body" />
+    <NPC x="672" y="448" guid="6E18B47F-0454-0961-CBFC-38A2ED5B1CD7" frame="4" type="Cell_Body" />
+    <NPC x="272" y="768" guid="AAD7FD59-CE8F-9958-C34D-543DA7B48D1C" frame="4" type="Cell_Body" />
+    <NPC x="592" y="768" guid="5C5263CC-85DA-FBD0-0D84-C18915086BF2" frame="4" type="Cell_Body" />
+    <NPC x="608" y="752" guid="A20E6CE2-70B9-2E91-FCA2-126888E6732A" frame="2" type="Cell_Body" />
+    <NPC x="400" y="432" guid="C2CEA43D-BC02-29E4-0FF9-C7E71F605585" frame="2" type="Cell_Body" />
+    <NPC x="663" y="410" guid="59ABD655-74D9-B678-88F8-96359A07C86D" frame="7" type="generic" />
+  </map>
+  <map name="CELL" type="Stateful">
+    <NPC x="592" y="496" guid="445C736A-7BF9-8856-6F4B-E9C4C6675770" frame="1" type="rock" />
+    <Treasure x="96" y="48" guid="021A2AC3-4FED-13ED-A0FA-88FB641C50F1" frame="2" alive="true"/>
+    <NPC x="992" y="1024" guid="A7192061-5A14-1E53-6A8F-44151E833597" frame="2" type="rock" />
+    <NPC x="1168" y="1168" guid="752CBD82-1FAB-3237-DF9D-C24D87BEA2CB" frame="3" type="rock" />
+    <Door x="112" y="1137" guid="BB916AAE-ED42-1EB8-A8AC-FF602FB2CAC5" frame="41" type="4" />
+    <Door x="544" y="512" guid="56E3EBEB-6F33-4671-6300-FA909B776286" frame="45" type="16" />
+    <KeyBlock x="1008" y="1184" guid="EB24A58B-200E-798E-2FE6-72C4D96B1A2C" frame="4" p="2" alive="true"/>
+    <Health_Cicada x="992" y="992" guid="047260E5-E357-36BB-5454-A99AA3E03524" frame="0" p="2" alive="true"/>
+    <Door x="224" y="432" guid="E3644BAC-0447-D4C8-80DD-5CC4D1B09D20" frame="92" type="4" />
+    <Door x="80" y="1312" guid="FB21A73C-0719-78B4-7D54-2775CCA7AB48" frame="92" type="4" />
+    <Rat x="176" y="1392" guid="B6B6F645-1751-DCD3-520F-6D585D1C75D4" frame="0" p="0" alive="true"/>
+    <Rat x="176" y="1360" guid="8CF32799-2688-0E1E-27F7-33B77D45AA96" frame="0" p="0" alive="true"/>
+    <Rat x="176" y="1328" guid="0094EFB1-EAE4-C98E-C364-9824EE51B9E2" frame="0" p="0" alive="true"/>
+    <Chaser x="288" y="1392" guid="0FD0C5BE-7E73-1178-A0B8-613D2ADEBB7B" frame="0"/>
+    <Chaser x="208" y="1360" guid="F4411B7A-D07C-C7DC-DE0A-A117E1F48010" frame="0"/>
+    <Chaser x="288" y="1328" guid="7C66BCBF-2398-2BFF-53BA-C6E8C3E66787" frame="0"/>
+    <Chaser x="208" y="1296" guid="98F00DC9-ECD5-0C10-29ED-4B97C62A3043" frame="0"/>
+    <Gate x="336" y="1312" guid="EE355D49-5329-757E-58D5-6500C0567C0C" frame="15" alive="true"/>
+    <Button x="448" y="1296" guid="D2B37E2D-C696-0263-8BC2-1B481DADA4BC" frame="0"/>
+    <Annoyer x="336" y="1344" guid="E3DA9FAC-CE6B-B98D-FBA4-2740D5D6D1A6" frame="0" alive="true"/>
+    <Annoyer x="368" y="1328" guid="DDF697FA-ED75-8568-15B0-03778162083A" frame="0" alive="true"/>
+    <Annoyer x="400" y="1328" guid="D50635CD-74AE-8E13-73ED-499E5C0DFF97" frame="0" alive="true"/>
+    <Annoyer x="432" y="1344" guid="49D9328B-02C4-66FE-B788-03417E3F32FA" frame="0" alive="true"/>
+    <Chaser x="336" y="1392" guid="41867632-2F2C-9C8F-B5CD-6A06B07F2E1E" frame="1"/>
+    <Chaser x="368" y="1376" guid="5FECAD96-8FE3-9623-DF16-90E43254E994" frame="1"/>
+    <Chaser x="400" y="1376" guid="96E222ED-0557-BF25-CCD4-AEB3251CE3D5" frame="1"/>
+    <Chaser x="432" y="1392" guid="0E175F72-E6A7-B140-E7C3-7B32563A93C7" frame="1"/>
+    <Chaser x="608" y="1328" guid="3899654C-A2D3-23CD-CF33-3CF1EF32140F" frame="1"/>
+    <Gate x="496" y="1344" guid="DA314DD8-2804-D68F-471A-77208A4914C0" frame="15" alive="true"/>
+    <Button x="608" y="1296" guid="0B4FBDB7-3E05-37D6-6494-70C8F91E7FCF" frame="0"/>
+    <Silverfish x="560" y="1392" guid="37CB30C2-0D5A-ED3B-28D1-4BFCDC84EE57" frame="0" p="0" alive="true"/>
+    <Silverfish x="528" y="1360" guid="1FBC65FA-164D-EB76-69E3-7D763C45D086" frame="0" p="0" alive="true"/>
+    <Silverfish x="544" y="1408" guid="D15A391C-2029-552E-0476-84FAEC6EB561" frame="0" p="0" alive="true"/>
+    <Treasure x="896" y="1344" guid="EBABD989-126B-A804-01CD-158EFD5D1EE8" frame="2" alive="true"/>
+    <Silverfish x="512" y="1376" guid="F0A3C22E-DFC6-4BE0-17C9-670F27DFF3EE" frame="0" p="0" alive="true"/>
+    <Gate x="656" y="1376" guid="E6E3024C-FAD0-19BC-8162-95948A37156F" frame="5" alive="true"/>
+    <Button x="768" y="1296" guid="F2A47D16-76E6-6276-89ED-09C3F019ACF1" frame="0"/>
+    <Chaser x="768" y="1312" guid="97693FED-7B59-B912-0A35-3FFA8CA74802" frame="1"/>
+    <Chaser x="752" y="1328" guid="47BEC32F-61C5-8AED-9FCE-24A2FA4CCCC8" frame="1"/>
+    <Chaser x="736" y="1344" guid="B57DA599-13EE-73CE-A62E-5539CEA385A5" frame="1"/>
+    <Chaser x="704" y="1344" guid="16FDA504-DF8F-6ACB-B228-EA1904F8D609" frame="1"/>
+    <Chaser x="688" y="1328" guid="0DE66890-8D66-A9BD-F301-10339EEC3B18" frame="1"/>
+    <Chaser x="672" y="1312" guid="9953F4D5-9031-4AA6-C698-8E6741509F40" frame="1"/>
+    <Slime x="656" y="1392" guid="30A04B2A-246C-FF90-EB06-F266EF654B51" frame="0" p="1" alive="true"/>
+    <Slime x="656" y="1408" guid="A6829494-9B91-3D9A-1B64-2EA89F54CAA5" frame="0" p="1" alive="true"/>
+    <Slime x="672" y="1392" guid="D38A965E-F63D-2D15-4A5A-B9B3EF34789E" frame="0" p="1" alive="true"/>
+    <Slime x="672" y="1408" guid="161A751B-4098-536D-02AA-9EB5FDAE1D99" frame="0" p="1" alive="true"/>
+    <Slime x="664" y="1399" guid="301D6009-FC07-839F-BEBD-91B9BDC2DF3A" frame="0" p="1" alive="true"/>
+    <Dash_Pad x="656" y="1344" guid="082AB579-29F7-5D0C-257E-2BA9944EF388" frame="1"/>
+    <Dash_Pad x="640" y="1344" guid="44E3CCB3-F7FD-2C97-FB3D-5A74815CF398" frame="1"/>
+    <Gate x="784" y="1344" guid="06449153-2371-315F-544D-ADD9CFBBF6EF" frame="12" alive="true"/>
+    <Gate x="784" y="1360" guid="FFF67136-0605-DDDE-41CE-B42730DD3007" frame="12" alive="true"/>
+    <Gate x="624" y="1344" guid="FFF0910E-4A59-6D1D-44F1-AA949F6860B3" frame="12" alive="true"/>
+    <Door x="1193" y="6" guid="61CCB668-A7BA-D2B1-B818-C1739CFB42D3" frame="31" type="14" />
+  </map>
   <map name="CIRCUS" type="Stateless">
     <Event x="688" y="1392" guid="C36D8238-17B5-9469-E890-7018E550B7FD" frame="2"/>
     <Dash_Pad x="432" y="1168" guid="B77FC1F1-BF8D-C818-2F09-F4D241300DC7" frame="3"/>
@@ -2444,81 +2577,6 @@
     <NPC x="528" y="256" guid="D7013C38-71E9-0F68-0B16-2B93FDE1795C" frame="3" type="rock" />
     <NPC x="1328" y="656" guid="1B10B17B-ED47-9865-22BC-400C42BD06D5" frame="4" type="rock" />
   </map>
-  <map name="REDSEA" type="Stateful">
-    <Solid_Sprite x="528" y="528" guid="48D9056E-F176-EC2A-61D0-D19CECEE358D" frame="0" type="red_cave_n_ss" />
-    <Solid_Sprite x="688" y="688" guid="2899E6CA-9215-73E2-5918-921CB69FEE51" frame="0" type="red_cave_r_ss" />
-    <Solid_Sprite x="368" y="688" guid="52A44FAE-659D-5D99-001C-3EABB5AA3114" frame="0" type="red_cave_l_ss" />
-    <Red_Walker x="342" y="188" guid="25211D0F-24BC-9F6A-49DA-88EE03FDAB7F" frame="0"/>
-    <Red_Walker x="192" y="32" guid="7939B595-559E-DA2A-E0B2-C7A50593AFDE" frame="0"/>
-    <Door x="392" y="738" guid="E6E85735-0F7C-B2D1-540A-A8A1D452E3C8" frame="5" type="5" />
-    <Door x="712" y="740" guid="AC435A22-EF17-A8F3-F1A2-FB218E83A28A" frame="7" type="5" />
-    <Door x="551" y="581" guid="6A0C574F-2A32-E02F-5B6A-1C65042A1EA1" frame="8" type="5" />
-    <Door x="550" y="58" guid="E01078EC-37C4-F824-6E47-FE9B56943364" frame="11" type="7" />
-    <Solid_Sprite x="528" y="688" guid="5F9E0821-5270-0537-9DEA-203DBF53214B" frame="0" type="red_cave_l_ss" />
-    <Door x="551" y="739" guid="23EC54F8-6B4B-65B2-2665-530C83C109B4" frame="0" type="5" />
-    <NPC x="352" y="416" guid="1C43F9B6-92C5-E954-7050-4E0756DC6476" frame="0" type="rock" />
-    <NPC x="560" y="96" guid="9EA28B42-692D-3CCB-D7A6-47A9A1581090" frame="1" type="rock" />
-    <NPC x="1008" y="96" guid="B293BC62-EDDA-E478-FCF1-A08EA5DE949C" frame="2" type="rock" />
-    <NPC x="496" y="976" guid="554B4CE5-5E79-113B-F89B-A36937C38014" frame="3" type="rock" />
-    <Treasure x="384" y="432" guid="21B8A756-9B48-3857-D285-A3E66B31F60A" frame="2" alive="true"/>
-    <Door x="544" y="368" guid="2158A162-3172-75E8-277C-79CF4EC04DB2" frame="53" type="16" />
-    <Redsea_NPC x="720" y="368" guid="6BC0AF03-0F8B-B9BB-3BB7-DBD557B00EAD" frame="0"/>
-    <Redsea_NPC x="416" y="576" guid="2C44F72A-84D6-5892-C761-C2A10F8B45E7" frame="10"/>
-    <Treasure x="32" y="1024" guid="87802506-447B-55C9-B01E-702A3C02480A" frame="2" alive="true"/>
-    <Gate x="752" y="272" guid="0A123C3A-35B5-C94A-7EA9-2A07ACD31C5B" frame="5" alive="true"/>
-    <Gate x="288" y="336" guid="118AB26E-95DE-D567-FD53-21D240AF9BB7" frame="5" alive="true"/>
-    <Gate x="608" y="896" guid="48AEABF4-5A04-0B78-A1FB-E3759DC83A89" frame="5" alive="true"/>
-    <Gate x="880" y="688" guid="745AEEAB-76CB-852E-5FF0-FD652633C385" frame="5" alive="true"/>
-    <Redsea_NPC x="688" y="80" guid="639F2803-AD5F-ED84-7025-8FDEF927DAFA" frame="10"/>
-    <Redsea_NPC x="80" y="352" guid="B1A357F9-27CD-34D3-494C-25A408ACAFD5" frame="10"/>
-    <Redsea_NPC x="1024" y="720" guid="7058B717-A8F9-30FB-30A0-F8AFAA65108F" frame="10"/>
-    <Redsea_NPC x="96" y="32" guid="0EF2BB78-8BBC-1D4F-3CBD-1AC23686530A" frame="10"/>
-    <Button x="592" y="848" guid="B8639F58-5DF6-851F-14EF-A2B694BEFCDF" frame="0"/>
-    <Button x="848" y="736" guid="71751185-4200-D3FB-8409-7CEA3012C10B" frame="0"/>
-    <Button x="720" y="240" guid="2C1A9EFF-D2FD-9899-8978-4C5275A993D7" frame="0"/>
-    <Button x="256" y="368" guid="F5D331C2-5EAC-182D-0F27-7FCD12471CA3" frame="0"/>
-    <Door x="64" y="688" guid="05D5AA47-FA32-08C4-EDEB-15B39B9CB4D4" frame="94" type="5" />
-    <Solid_Sprite x="512" y="208" guid="0EBD66C2-35F3-9858-3479-152D0CD3B800" frame="4" type="sign" />
-    <Slime x="992" y="224" guid="8DC11E12-E6EF-24E8-C889-DCF413841245" frame="0" p="1" alive="true"/>
-    <Slime x="1024" y="192" guid="1BE9FC55-C6DD-B1B0-4116-9F4E0AA3602A" frame="0" p="1" alive="true"/>
-    <Slime x="1056" y="240" guid="49A539C7-FADD-D1A2-ABFE-74D65398328C" frame="0" p="1" alive="true"/>
-    <Slime x="1024" y="416" guid="83F8401E-630B-D62A-831E-272568884352" frame="0" p="1" alive="true"/>
-    <Slime x="1040" y="384" guid="CD5C1C32-65B7-523A-C4BA-AFFF0B0ED14F" frame="0" p="1" alive="true"/>
-    <Slime x="880" y="208" guid="C68EDCEC-8D75-70AD-0EE8-324C294CC2BE" frame="0" p="1" alive="true"/>
-    <Slime x="352" y="80" guid="C2B46D9C-F506-F440-F06D-80DF182DEEED" frame="0" p="1" alive="true"/>
-    <Slime x="368" y="112" guid="352D0431-BE21-A263-D69C-3917DE81AD28" frame="0" p="1" alive="true"/>
-    <Slime x="432" y="80" guid="5B80DD2E-3AD6-C31C-757D-AF7421F420A1" frame="0" p="1" alive="true"/>
-    <Slime x="672" y="528" guid="37F39907-337B-105B-D998-A56560393D9D" frame="0" p="1" alive="true"/>
-    <Slime x="672" y="576" guid="564B9B40-4787-C999-4BE0-F609735FC8E8" frame="0" p="1" alive="true"/>
-    <Slime x="720" y="560" guid="E36AD85F-F8FA-973E-C370-DBEC91B3DEB4" frame="0" p="1" alive="true"/>
-    <Annoyer x="48" y="272" guid="AEEE18EC-F9A0-E068-B266-755562B27639" frame="0" alive="true"/>
-    <Annoyer x="32" y="192" guid="D030A93D-925E-F165-E13B-0F765A003391" frame="0" alive="true"/>
-    <Annoyer x="272" y="240" guid="E490AFA4-D3A5-0F59-566F-F814D49EDA40" frame="0" alive="true"/>
-    <Annoyer x="272" y="592" guid="A66E8CC8-EC9B-13FE-CFE3-B5C8732DCD1D" frame="0" alive="true"/>
-    <Annoyer x="192" y="528" guid="9E9AFC7B-879A-B8DB-1DD7-1C2F3844A4F3" frame="0" alive="true"/>
-    <Annoyer x="64" y="736" guid="1C81322D-3D67-157F-4611-14CFBBCC93BB" frame="0" alive="true"/>
-    <Annoyer x="240" y="688" guid="9C4F9B2F-5B8F-2966-1EBB-159C630B546D" frame="0" alive="true"/>
-    <Annoyer x="400" y="880" guid="A27D4674-2DF5-D526-5C4A-61CBACB08559" frame="0" alive="true"/>
-    <Annoyer x="368" y="896" guid="B22DF62A-3AE4-FADE-5F60-F7E0649A7EED" frame="0" alive="true"/>
-    <Annoyer x="672" y="240" guid="5FE53EA4-659C-9D50-F952-A19FBF34BCAC" frame="0" alive="true"/>
-    <Annoyer x="704" y="256" guid="CFEABF1B-15C2-F422-27F9-96A36C969EF8" frame="0" alive="true"/>
-    <Annoyer x="1088" y="384" guid="64AEC702-8818-2D32-103B-BB56F56E1F44" frame="0" alive="true"/>
-    <Slime x="272" y="528" guid="02336BD9-516B-ACAD-5F0C-81A0FB3AFF50" frame="0" p="1" alive="true"/>
-    <Gate x="368" y="544" guid="EC2A1E2B-8659-F83F-EE7A-BD9EBFD6DC0F" frame="5" alive="true"/>
-    <Button x="384" y="496" guid="49E3AC54-0FDC-923C-9649-C3CC624878D7" frame="0"/>
-    <Door x="551" y="883" guid="AB684E0E-1882-83E0-773A-D71697B20BF3" frame="67" type="5" />
-  </map>
-  <map name="REDSEA" type="Stateless">
-    <Solid_Sprite x="528" y="832" guid="F1DB603B-324D-45DF-98B2-3DBFFBB18683" frame="0" type="red_cave_l_ss" />
-    <Event x="560" y="208" guid="05C54A60-9430-55BF-6C85-11F3B9E1C816" frame="2"/>
-    <Red_Walker x="529" y="1011" guid="B5518D6D-632E-FB35-F509-D02FD3A63A9F" frame="0"/>
-    <Red_Walker x="582" y="975" guid="58BF5F35-EE36-D795-EC46-4A927513374E" frame="0"/>
-    <Red_Walker x="663" y="1039" guid="8F85284C-8326-C435-CAE6-3B644AD6F742" frame="0"/>
-    <Red_Walker x="743" y="978" guid="15BDA201-E07B-22FD-03E9-FE8FA94C716C" frame="0"/>
-    <Red_Walker x="816" y="832" guid="90F98638-0B2E-317E-8530-DDDF8DBF2EB6" frame="0"/>
-    <Red_Walker x="864" y="882" guid="CD34F546-F2E1-EEB5-60E8-235720CB6573" frame="0"/>
-    <Red_Walker x="993" y="977" guid="33AD27C4-4A0B-C7FF-E5E9-FAC72F10E159" frame="0"/>
-  </map>
   <map name="REDCAVE" type="Stateful">
     <Health_Cicada x="1024" y="16" guid="082409E1-1D7E-3A22-9059-D5D9D0626FB1" frame="0" p="2" alive="true"/>
     <Annoyer x="816" y="16" guid="A81D463F-4F42-4715-0C71-C6352E5B171C" frame="0" alive="true"/>
@@ -2727,6 +2785,81 @@
     <Event x="512" y="1088" guid="65004B1E-9BE6-9D85-4F7A-7B0C1C734534" frame="2"/>
     <NPC x="54" y="216" guid="9483A721-44C5-5D1D-37D4-3A7E3AC2B995" frame="8" type="generic" />
   </map>
+  <map name="REDSEA" type="Stateful">
+    <Solid_Sprite x="528" y="528" guid="48D9056E-F176-EC2A-61D0-D19CECEE358D" frame="0" type="red_cave_n_ss" />
+    <Solid_Sprite x="688" y="688" guid="2899E6CA-9215-73E2-5918-921CB69FEE51" frame="0" type="red_cave_r_ss" />
+    <Solid_Sprite x="368" y="688" guid="52A44FAE-659D-5D99-001C-3EABB5AA3114" frame="0" type="red_cave_l_ss" />
+    <Red_Walker x="342" y="188" guid="25211D0F-24BC-9F6A-49DA-88EE03FDAB7F" frame="0"/>
+    <Red_Walker x="192" y="32" guid="7939B595-559E-DA2A-E0B2-C7A50593AFDE" frame="0"/>
+    <Door x="392" y="738" guid="E6E85735-0F7C-B2D1-540A-A8A1D452E3C8" frame="5" type="5" />
+    <Door x="712" y="740" guid="AC435A22-EF17-A8F3-F1A2-FB218E83A28A" frame="7" type="5" />
+    <Door x="551" y="581" guid="6A0C574F-2A32-E02F-5B6A-1C65042A1EA1" frame="8" type="5" />
+    <Door x="550" y="58" guid="E01078EC-37C4-F824-6E47-FE9B56943364" frame="11" type="7" />
+    <Solid_Sprite x="528" y="688" guid="5F9E0821-5270-0537-9DEA-203DBF53214B" frame="0" type="red_cave_l_ss" />
+    <Door x="551" y="739" guid="23EC54F8-6B4B-65B2-2665-530C83C109B4" frame="0" type="5" />
+    <NPC x="352" y="416" guid="1C43F9B6-92C5-E954-7050-4E0756DC6476" frame="0" type="rock" />
+    <NPC x="560" y="96" guid="9EA28B42-692D-3CCB-D7A6-47A9A1581090" frame="1" type="rock" />
+    <NPC x="1008" y="96" guid="B293BC62-EDDA-E478-FCF1-A08EA5DE949C" frame="2" type="rock" />
+    <NPC x="496" y="976" guid="554B4CE5-5E79-113B-F89B-A36937C38014" frame="3" type="rock" />
+    <Treasure x="384" y="432" guid="21B8A756-9B48-3857-D285-A3E66B31F60A" frame="2" alive="true"/>
+    <Door x="544" y="368" guid="2158A162-3172-75E8-277C-79CF4EC04DB2" frame="53" type="16" />
+    <Redsea_NPC x="720" y="368" guid="6BC0AF03-0F8B-B9BB-3BB7-DBD557B00EAD" frame="0"/>
+    <Redsea_NPC x="416" y="576" guid="2C44F72A-84D6-5892-C761-C2A10F8B45E7" frame="10"/>
+    <Treasure x="32" y="1024" guid="87802506-447B-55C9-B01E-702A3C02480A" frame="2" alive="true"/>
+    <Gate x="752" y="272" guid="0A123C3A-35B5-C94A-7EA9-2A07ACD31C5B" frame="5" alive="true"/>
+    <Gate x="288" y="336" guid="118AB26E-95DE-D567-FD53-21D240AF9BB7" frame="5" alive="true"/>
+    <Gate x="608" y="896" guid="48AEABF4-5A04-0B78-A1FB-E3759DC83A89" frame="5" alive="true"/>
+    <Gate x="880" y="688" guid="745AEEAB-76CB-852E-5FF0-FD652633C385" frame="5" alive="true"/>
+    <Redsea_NPC x="688" y="80" guid="639F2803-AD5F-ED84-7025-8FDEF927DAFA" frame="10"/>
+    <Redsea_NPC x="80" y="352" guid="B1A357F9-27CD-34D3-494C-25A408ACAFD5" frame="10"/>
+    <Redsea_NPC x="1024" y="720" guid="7058B717-A8F9-30FB-30A0-F8AFAA65108F" frame="10"/>
+    <Redsea_NPC x="96" y="32" guid="0EF2BB78-8BBC-1D4F-3CBD-1AC23686530A" frame="10"/>
+    <Button x="592" y="848" guid="B8639F58-5DF6-851F-14EF-A2B694BEFCDF" frame="0"/>
+    <Button x="848" y="736" guid="71751185-4200-D3FB-8409-7CEA3012C10B" frame="0"/>
+    <Button x="720" y="240" guid="2C1A9EFF-D2FD-9899-8978-4C5275A993D7" frame="0"/>
+    <Button x="256" y="368" guid="F5D331C2-5EAC-182D-0F27-7FCD12471CA3" frame="0"/>
+    <Door x="64" y="688" guid="05D5AA47-FA32-08C4-EDEB-15B39B9CB4D4" frame="94" type="5" />
+    <Solid_Sprite x="512" y="208" guid="0EBD66C2-35F3-9858-3479-152D0CD3B800" frame="4" type="sign" />
+    <Slime x="992" y="224" guid="8DC11E12-E6EF-24E8-C889-DCF413841245" frame="0" p="1" alive="true"/>
+    <Slime x="1024" y="192" guid="1BE9FC55-C6DD-B1B0-4116-9F4E0AA3602A" frame="0" p="1" alive="true"/>
+    <Slime x="1056" y="240" guid="49A539C7-FADD-D1A2-ABFE-74D65398328C" frame="0" p="1" alive="true"/>
+    <Slime x="1024" y="416" guid="83F8401E-630B-D62A-831E-272568884352" frame="0" p="1" alive="true"/>
+    <Slime x="1040" y="384" guid="CD5C1C32-65B7-523A-C4BA-AFFF0B0ED14F" frame="0" p="1" alive="true"/>
+    <Slime x="880" y="208" guid="C68EDCEC-8D75-70AD-0EE8-324C294CC2BE" frame="0" p="1" alive="true"/>
+    <Slime x="352" y="80" guid="C2B46D9C-F506-F440-F06D-80DF182DEEED" frame="0" p="1" alive="true"/>
+    <Slime x="368" y="112" guid="352D0431-BE21-A263-D69C-3917DE81AD28" frame="0" p="1" alive="true"/>
+    <Slime x="432" y="80" guid="5B80DD2E-3AD6-C31C-757D-AF7421F420A1" frame="0" p="1" alive="true"/>
+    <Slime x="672" y="528" guid="37F39907-337B-105B-D998-A56560393D9D" frame="0" p="1" alive="true"/>
+    <Slime x="672" y="576" guid="564B9B40-4787-C999-4BE0-F609735FC8E8" frame="0" p="1" alive="true"/>
+    <Slime x="720" y="560" guid="E36AD85F-F8FA-973E-C370-DBEC91B3DEB4" frame="0" p="1" alive="true"/>
+    <Annoyer x="48" y="272" guid="AEEE18EC-F9A0-E068-B266-755562B27639" frame="0" alive="true"/>
+    <Annoyer x="32" y="192" guid="D030A93D-925E-F165-E13B-0F765A003391" frame="0" alive="true"/>
+    <Annoyer x="272" y="240" guid="E490AFA4-D3A5-0F59-566F-F814D49EDA40" frame="0" alive="true"/>
+    <Annoyer x="272" y="592" guid="A66E8CC8-EC9B-13FE-CFE3-B5C8732DCD1D" frame="0" alive="true"/>
+    <Annoyer x="192" y="528" guid="9E9AFC7B-879A-B8DB-1DD7-1C2F3844A4F3" frame="0" alive="true"/>
+    <Annoyer x="64" y="736" guid="1C81322D-3D67-157F-4611-14CFBBCC93BB" frame="0" alive="true"/>
+    <Annoyer x="240" y="688" guid="9C4F9B2F-5B8F-2966-1EBB-159C630B546D" frame="0" alive="true"/>
+    <Annoyer x="400" y="880" guid="A27D4674-2DF5-D526-5C4A-61CBACB08559" frame="0" alive="true"/>
+    <Annoyer x="368" y="896" guid="B22DF62A-3AE4-FADE-5F60-F7E0649A7EED" frame="0" alive="true"/>
+    <Annoyer x="672" y="240" guid="5FE53EA4-659C-9D50-F952-A19FBF34BCAC" frame="0" alive="true"/>
+    <Annoyer x="704" y="256" guid="CFEABF1B-15C2-F422-27F9-96A36C969EF8" frame="0" alive="true"/>
+    <Annoyer x="1088" y="384" guid="64AEC702-8818-2D32-103B-BB56F56E1F44" frame="0" alive="true"/>
+    <Slime x="272" y="528" guid="02336BD9-516B-ACAD-5F0C-81A0FB3AFF50" frame="0" p="1" alive="true"/>
+    <Gate x="368" y="544" guid="EC2A1E2B-8659-F83F-EE7A-BD9EBFD6DC0F" frame="5" alive="true"/>
+    <Button x="384" y="496" guid="49E3AC54-0FDC-923C-9649-C3CC624878D7" frame="0"/>
+    <Door x="551" y="883" guid="AB684E0E-1882-83E0-773A-D71697B20BF3" frame="67" type="5" />
+  </map>
+  <map name="REDSEA" type="Stateless">
+    <Solid_Sprite x="528" y="832" guid="F1DB603B-324D-45DF-98B2-3DBFFBB18683" frame="0" type="red_cave_l_ss" />
+    <Event x="560" y="208" guid="05C54A60-9430-55BF-6C85-11F3B9E1C816" frame="2"/>
+    <Red_Walker x="529" y="1011" guid="B5518D6D-632E-FB35-F509-D02FD3A63A9F" frame="0"/>
+    <Red_Walker x="582" y="975" guid="58BF5F35-EE36-D795-EC46-4A927513374E" frame="0"/>
+    <Red_Walker x="663" y="1039" guid="8F85284C-8326-C435-CAE6-3B644AD6F742" frame="0"/>
+    <Red_Walker x="743" y="978" guid="15BDA201-E07B-22FD-03E9-FE8FA94C716C" frame="0"/>
+    <Red_Walker x="816" y="832" guid="90F98638-0B2E-317E-8530-DDDF8DBF2EB6" frame="0"/>
+    <Red_Walker x="864" y="882" guid="CD34F546-F2E1-EEB5-60E8-235720CB6573" frame="0"/>
+    <Red_Walker x="993" y="977" guid="33AD27C4-4A0B-C7FF-E5E9-FAC72F10E159" frame="0"/>
+  </map>
   <map name="SUBURB" type="Stateless">
     <Suburb_Walker x="76" y="121" guid="EDFD94FA-F718-2FF4-58AF-8089DF0C90A9" frame="0" p="1" alive="true"/>
     <Suburb_Walker x="133" y="126" guid="AD4B8F8D-832F-9F7C-A438-4D1999D5264C" frame="5" p="1" alive="true"/>
@@ -2852,42 +2985,6 @@
     <Fire_Pillar x="432" y="1232" guid="F824E00B-EDED-8E14-73D4-64C074ACDBB7" frame="3"/>
     <Suburb_Killer x="352" y="1168" guid="D4CA9F21-8185-3A70-47E7-018C53DA3A04" frame="0"/>
     <Suburb_Killer x="432" y="1168" guid="A5D14BC5-B605-8D91-A7D7-97AC96311E45" frame="0"/>
-  </map>
-  <map name="STREET" type="Stateful">
-    <Door x="528" y="224" guid="0451D211-C1BC-B510-BC86-D93D94A3998F" frame="2" type="4" />
-    <Follower_Bro x="208" y="458" guid="0ED7AE3A-B0FB-8EBB-1B2D-D9973FBD36FE" frame="0" p="2" alive="true"/>
-    <Gate x="240" y="512" guid="4C93E608-4B03-BFAB-52B7-AC885D7A1AF8" frame="0" alive="true"/>
-    <Slime x="208" y="576" guid="E5384091-250E-984F-8A6D-CEB9B3973422" frame="0" p="1" alive="true"/>
-    <Treasure x="16" y="656" guid="3307AA58-CCF1-FB0D-1450-5AF0A0C458F7" frame="1" alive="true"/>
-    <Slime x="688" y="672" guid="82CCA278-F0A3-2F43-8610-A90AC0F6AE56" frame="0" p="1" alive="true"/>
-    <Slime x="80" y="672" guid="7CE427E7-7DA2-FF22-ED2D-B8F716BC2EF1" frame="0" p="1" alive="true"/>
-    <KeyBlock x="240" y="672" guid="CC6E2442-2FC2-BD15-7E78-1C67AFECDB78" frame="0" p="2" alive="true"/>
-    <Gate x="16" y="672" guid="7B5B4CE6-4382-6DE2-5553-821108DB2289" frame="2" alive="true"/>
-    <Treasure x="768" y="672" guid="1525EAD8-4D92-A815-873A-4DC04037D973" frame="0" alive="true"/>
-    <Gate x="608" y="704" guid="8D414C26-5622-F61C-92C6-7707BC6F454C" frame="5" alive="true"/>
-    <Gate x="640" y="704" guid="2D542F43-08AB-0EE2-7314-D355FBE98ADB" frame="1" alive="true"/>
-    <Slime x="48" y="720" guid="D8C6A996-7187-A007-C560-B0CD60F45235" frame="0" p="1" alive="true"/>
-    <Slime x="688" y="736" guid="4093CA80-5EE2-9E4E-7FAA-F8A95F1BEC77" frame="0" p="1" alive="true"/>
-    <Slime x="80" y="752" guid="510E2C71-96B6-8CD4-DB2C-7E5220A32F38" frame="0" p="1" alive="true"/>
-    <Door x="224" y="896" guid="F1B87342-BAFC-591C-6D54-6C5E8653AA03" frame="13" type="16" />
-    <Treasure x="272" y="1008" guid="C11E4AAB-C8B9-F7CB-BD10-8BF41B98BDC9" frame="2" alive="true"/>
-  </map>
-  <map name="STREET" type="Stateless">
-    <Solid_Sprite x="513" y="161" guid="4B64DDE4-FE45-7619-75AC-14F12D5AC399" frame="5" type="blocker" />
-    <Event x="340" y="177" guid="5A4C81F0-81F1-A3D9-310D-644701DA60E9" frame="1" type="1.0" />
-    <Event x="178" y="192" guid="456958CD-9AF6-A913-FC30-C74651C2DDF6" frame="0" type="0.0" />
-    <Dust x="434" y="208" guid="C886CEC1-861B-94CC-B94C-3F49472CACD6" frame="0" alive="false"/>
-    <Dust x="402" y="224" guid="CA8453C7-EBC2-72DE-03BA-1C70824E6A69" frame="0" alive="false"/>
-    <Event x="166" y="333" guid="9AF92680-D351-1E5B-8EEE-4DCEDE2A6128" frame="1" type="0" />
-    <Event x="178" y="352" guid="6FE535A2-6677-AD0D-C77C-9308BD964CB7" frame="0" type="0.6" />
-    <Event x="162" y="512" guid="6E616417-84B8-D9CA-1C30-2B76EBAE656C" frame="0" type="0.0" />
-    <CrackedTile x="178" y="528" guid="D3ACA89C-121E-6F88-FDC4-CF3508FAB1F1" frame="1"/>
-    <CrackedTile x="290" y="528" guid="184B4D2D-D847-0CC1-2252-4A421CC15015" frame="1"/>
-    <CrackedTile x="178" y="592" guid="8CB39FCB-CF2B-5A41-5AC4-E11E3EFD7849" frame="1"/>
-    <Button x="578" y="704" guid="F9C13721-FD8B-6A55-0D1F-6B29CC6F68F6" frame="0"/>
-    <Event x="174" y="812" guid="EAF8F4C4-6C56-2829-A846-5800079BB16B" frame="0" type="0.0" />
-    <Event x="224" y="848" guid="B6826E40-1473-1010-E1A8-3326D2FFA2CF" frame="2"/>
-    <Event x="175" y="979" guid="A29D45D7-3DD2-F40A-39AD-53F6546BDF6F" frame="0" type="0.6" />
   </map>
   <map name="SPACE" type="Stateless">
     <Space_Face x="1280" y="192" guid="3277CBCF-EE97-5412-94C2-238E848A1B8D" frame="0"/>
@@ -3027,138 +3124,41 @@
     <Door x="872" y="7" guid="85602297-5EF1-E55E-DF8E-C4C0FC386AAD" frame="25" type="5" />
     <Treasure x="496" y="16" guid="39D77BF3-D173-A00B-0A34-4327616C9712" frame="10" alive="true"/>
   </map>
-  <map name="CELL" type="Stateless">
-    <NPC x="48" y="1216" guid="98AC1ED6-6382-906A-294B-E406E178858E" frame="0" type="rock" />
-    <Event x="560" y="576" guid="B664EFE0-E1BA-4881-F616-E657C3ED42D8" frame="2"/>
-    <Event x="112" y="1248" guid="A528880B-AA35-6BC8-64B3-DB65E9D63A5D" frame="2"/>
-    <Event x="752" y="128" guid="3DEE2519-D5BC-D2FF-EFC7-3C488A94F4CB" frame="2"/>
-    <Event x="384" y="288" guid="18DBE051-5BA9-BE6D-4256-BE45380B2D2A" frame="2"/>
-    <Chaser x="864" y="112" guid="904D88CC-71A7-B36A-725C-4F1CF8DDC4D4" frame="0"/>
-    <Chaser x="880" y="32" guid="C1847E3F-4EDB-94DE-D5F4-065C3EA7F10A" frame="0"/>
-    <Chaser x="1056" y="48" guid="9F689C36-4180-5BA5-3FD8-C759C4F3D6C0" frame="0"/>
-    <Chaser x="1008" y="112" guid="8731071C-DC0D-FBC1-18FA-99AA3BF6B869" frame="0"/>
-    <Chaser x="576" y="224" guid="8723DFE9-E1A1-A8E4-31BC-5A76D3F036E9" frame="0"/>
-    <Chaser x="576" y="160" guid="9E79E829-05A4-2BB5-58EF-D457D8221A97" frame="0"/>
-    <Chaser x="688" y="272" guid="4DDD1714-3A9B-EA3C-42AC-F62BF7195F43" frame="0"/>
-    <Chaser x="864" y="384" guid="AFDE0916-66BA-10B5-3495-13A81D62D478" frame="0"/>
-    <Chaser x="896" y="432" guid="70EC3334-722F-83AC-C071-5B89D34D05ED" frame="0"/>
-    <Chaser x="816" y="416" guid="946D75B2-073A-26E8-0678-B45090C1FA6C" frame="1"/>
-    <Chaser x="1152" y="320" guid="62608A53-9B2A-CB19-1908-3CDB265DF477" frame="0"/>
-    <Chaser x="1136" y="592" guid="7656C0A6-6C39-2F1B-C3B6-5C9940AD5704" frame="1"/>
-    <Chaser x="1248" y="688" guid="AE95A559-5604-A560-76D9-7504307F8ACC" frame="1"/>
-    <Chaser x="1136" y="864" guid="2F0247A7-955F-FB80-0036-3F7778CE2F65" frame="1"/>
-    <Chaser x="1136" y="1008" guid="CC1CE732-10B7-7333-E7D5-A7DADAD3C162" frame="1"/>
-    <Chaser x="848" y="864" guid="BC4640CE-2DAB-EA8C-C102-50F1879C4AAE" frame="1"/>
-    <Chaser x="1056" y="1152" guid="45A84657-8553-B515-2D67-0631E9D3AD89" frame="0"/>
-    <Chaser x="528" y="1232" guid="61962EE8-FD13-6346-10FC-85E5B2CFD5DB" frame="0"/>
-    <Chaser x="96" y="992" guid="9472DAD1-8113-FB9D-A83A-4F0C20CA756C" frame="0"/>
-    <Chaser x="496" y="1088" guid="40D80FB2-1EC0-460D-0F2F-1237CD213A0F" frame="1"/>
-    <Chaser x="448" y="368" guid="49F0AD55-26BB-A68F-F1C6-E204EC42F013" frame="1"/>
-    <Chaser x="272" y="368" guid="4E4CBBC5-78B6-57FE-4AA3-50E3EB92122D" frame="1"/>
-    <Chaser x="80" y="208" guid="3D419DDB-1594-157B-BC5D-16CD8D00369E" frame="1"/>
-    <Chaser x="224" y="640" guid="DF8066D1-36E1-EA86-C124-F71EC47EBF3E" frame="0"/>
-    <Chaser x="16" y="704" guid="C82538E2-5B4E-0F55-6164-3121DB89F1BC" frame="1"/>
-    <Chaser x="16" y="880" guid="75841D82-7E27-5A0A-3778-CC416DD9B105" frame="1"/>
-    <Chaser x="288" y="192" guid="FB4DE5CC-3AB3-C11F-48AB-C598C42E0A8D" frame="1"/>
-    <Chaser x="272" y="272" guid="241C1FD1-09DA-5D7C-AEE2-81C7F91E910D" frame="0"/>
-    <Chaser x="256" y="0." guid="778A6F3A-0F53-D528-5CB3-FF54861C00B5" frame="0"/>
-    <Chaser x="272" y="112" guid="B43EB760-71E1-6970-63B4-50B1DC3C5DB8" frame="0"/>
-    <Solid_Sprite x="1174" y="2" guid="5E0CAF5B-FAB8-ECA4-A398-8D0865F87423" frame="5" type="blocker" />
-    <NPC x="176" y="1152" guid="BCF5F3FC-4CAC-CA69-24F1-BB66AA4A9681" frame="0" type="Cell_Body" />
-    <NPC x="272" y="1152" guid="4F00DB44-3975-9062-C296-D83131AE36A5" frame="6" type="Cell_Body" />
-    <NPC x="256" y="1200" guid="1C65F9F7-C533-341D-6D1D-3C0E75EE7666" frame="2" type="Cell_Body" />
-    <NPC x="48" y="432" guid="D9D5A474-3597-739A-DFCC-F6EC609E7BBE" frame="2" type="Cell_Body" />
-    <NPC x="240" y="464" guid="4D8AF0CF-D5F8-CB30-9AF7-F04D68D6392A" frame="2" type="Cell_Body" />
-    <NPC x="224" y="400" guid="86345B7B-B577-20F2-5B16-AA8950D84F17" frame="6" type="Cell_Body" />
-    <NPC x="368" y="352" guid="2646BD72-9C29-C788-B16A-179D573EF291" frame="6" type="Cell_Body" />
-    <NPC x="400" y="352" guid="D4FC9102-4F4E-9AFD-7FE3-E006D5D4BF2D" frame="0" type="Cell_Body" />
-    <NPC x="720" y="224" guid="C060FAA6-A378-2B48-E3B3-8C241718B8C0" frame="0" type="Cell_Body" />
-    <NPC x="928" y="160" guid="DF8AE2E2-0F6A-36D8-0CE1-DA921D9FE29D" frame="0" type="Cell_Body" />
-    <NPC x="1136" y="144" guid="7AE11B30-46B6-979A-B90C-6FBDA99B6AB8" frame="6" type="Cell_Body" />
-    <NPC x="1088" y="80" guid="C5FF3B6D-D21B-2F17-7C65-4199F22E6B8D" frame="6" type="Cell_Body" />
-    <NPC x="1040" y="176" guid="5698BC9E-7BB5-F496-F3E4-2D67B52FF23E" frame="4" type="Cell_Body" />
-    <NPC x="896" y="192" guid="3E4964F6-6EB3-32F4-6F06-F3E9C8B4D998" frame="4" type="Cell_Body" />
-    <NPC x="1024" y="96" guid="6987DB61-2A88-152A-0BF7-03CBCB6DCE50" frame="2" type="Cell_Body" />
-    <NPC x="864" y="1104" guid="045B0880-B9FC-6F6E-3A78-76B710D58307" frame="2" type="Cell_Body" />
-    <NPC x="592" y="1008" guid="6DE2FBB6-B687-24E9-D118-E5FD66036EEF" frame="2" type="Cell_Body" />
-    <NPC x="688" y="1024" guid="748EA61F-94ED-6350-2CBF-1B83AB5BFDE9" frame="2" type="Cell_Body" />
-    <NPC x="736" y="976" guid="A8D4A588-8265-E1DC-E614-259BEF5EC8C0" frame="2" type="Cell_Body" />
-    <NPC x="768" y="960" guid="DC5C2613-D2B0-75C8-63AE-373CC305F825" frame="6" type="Cell_Body" />
-    <NPC x="560" y="992" guid="246337AB-49CD-54E1-D6B7-6B4ABBB60DE0" frame="6" type="Cell_Body" />
-    <NPC x="704" y="960" guid="48C3ED13-203C-3CA9-B428-234C84AA3891" frame="0" type="Cell_Body" />
-    <NPC x="528" y="896" guid="619142A0-F4BB-9EF3-0C13-D47DDA48D999" frame="0" type="Cell_Body" />
-    <NPC x="448" y="832" guid="3D6F49C7-A0C4-ABCD-FC37-F33F7E2E2726" frame="0" type="Cell_Body" />
-    <NPC x="336" y="912" guid="9B446416-1595-D237-3759-87A7363078E8" frame="2" type="Cell_Body" />
-    <NPC x="352" y="832" guid="49881C61-1F93-2AB0-7980-1183B1A5FED4" frame="6" type="Cell_Body" />
-    <NPC x="704" y="880" guid="4EFDB21B-40FC-7C61-2B1A-01733C4C8152" frame="4" type="Cell_Body" />
-    <NPC x="672" y="864" guid="1ECB307A-2F22-FE6D-EFBE-3CE33AAF1C40" frame="0" type="Cell_Body" />
-    <NPC x="752" y="736" guid="B0A2E8A5-FEB3-7377-808E-5A915F9F4053" frame="0" type="Cell_Body" />
-    <NPC x="704" y="752" guid="59F3A9B9-BED1-7E07-7FC4-4AF028AEEF8F" frame="4" type="Cell_Body" />
-    <NPC x="736" y="640" guid="7722340B-D4AB-5BFF-1EDD-47520E0ADEA5" frame="6" type="Cell_Body" />
-    <NPC x="128" y="672" guid="966A41A6-4ACC-8BD4-13B7-42B5923D86B5" frame="6" type="Cell_Body" />
-    <NPC x="688" y="512" guid="42DC3FF9-4785-FCB2-B69C-F7A5EFDB1833" frame="6" type="Cell_Body" />
-    <NPC x="672" y="448" guid="6E18B47F-0454-0961-CBFC-38A2ED5B1CD7" frame="4" type="Cell_Body" />
-    <NPC x="272" y="768" guid="AAD7FD59-CE8F-9958-C34D-543DA7B48D1C" frame="4" type="Cell_Body" />
-    <NPC x="592" y="768" guid="5C5263CC-85DA-FBD0-0D84-C18915086BF2" frame="4" type="Cell_Body" />
-    <NPC x="608" y="752" guid="A20E6CE2-70B9-2E91-FCA2-126888E6732A" frame="2" type="Cell_Body" />
-    <NPC x="400" y="432" guid="C2CEA43D-BC02-29E4-0FF9-C7E71F605585" frame="2" type="Cell_Body" />
-    <NPC x="663" y="410" guid="59ABD655-74D9-B678-88F8-96359A07C86D" frame="7" type="generic" />
+  <map name="STREET" type="Stateful">
+    <Door x="528" y="224" guid="0451D211-C1BC-B510-BC86-D93D94A3998F" frame="2" type="4" />
+    <Follower_Bro x="208" y="458" guid="0ED7AE3A-B0FB-8EBB-1B2D-D9973FBD36FE" frame="0" p="2" alive="true"/>
+    <Gate x="240" y="512" guid="4C93E608-4B03-BFAB-52B7-AC885D7A1AF8" frame="0" alive="true"/>
+    <Slime x="208" y="576" guid="E5384091-250E-984F-8A6D-CEB9B3973422" frame="0" p="1" alive="true"/>
+    <Treasure x="16" y="656" guid="3307AA58-CCF1-FB0D-1450-5AF0A0C458F7" frame="1" alive="true"/>
+    <Slime x="688" y="672" guid="82CCA278-F0A3-2F43-8610-A90AC0F6AE56" frame="0" p="1" alive="true"/>
+    <Slime x="80" y="672" guid="7CE427E7-7DA2-FF22-ED2D-B8F716BC2EF1" frame="0" p="1" alive="true"/>
+    <KeyBlock x="240" y="672" guid="CC6E2442-2FC2-BD15-7E78-1C67AFECDB78" frame="0" p="2" alive="true"/>
+    <Gate x="16" y="672" guid="7B5B4CE6-4382-6DE2-5553-821108DB2289" frame="2" alive="true"/>
+    <Treasure x="768" y="672" guid="1525EAD8-4D92-A815-873A-4DC04037D973" frame="0" alive="true"/>
+    <Gate x="608" y="704" guid="8D414C26-5622-F61C-92C6-7707BC6F454C" frame="5" alive="true"/>
+    <Gate x="640" y="704" guid="2D542F43-08AB-0EE2-7314-D355FBE98ADB" frame="1" alive="true"/>
+    <Slime x="48" y="720" guid="D8C6A996-7187-A007-C560-B0CD60F45235" frame="0" p="1" alive="true"/>
+    <Slime x="688" y="736" guid="4093CA80-5EE2-9E4E-7FAA-F8A95F1BEC77" frame="0" p="1" alive="true"/>
+    <Slime x="80" y="752" guid="510E2C71-96B6-8CD4-DB2C-7E5220A32F38" frame="0" p="1" alive="true"/>
+    <Door x="224" y="896" guid="F1B87342-BAFC-591C-6D54-6C5E8653AA03" frame="13" type="16" />
+    <Treasure x="272" y="1008" guid="C11E4AAB-C8B9-F7CB-BD10-8BF41B98BDC9" frame="2" alive="true"/>
   </map>
-  <map name="CELL" type="Stateful">
-    <NPC x="592" y="496" guid="445C736A-7BF9-8856-6F4B-E9C4C6675770" frame="1" type="rock" />
-    <Treasure x="96" y="48" guid="021A2AC3-4FED-13ED-A0FA-88FB641C50F1" frame="2" alive="true"/>
-    <NPC x="992" y="1024" guid="A7192061-5A14-1E53-6A8F-44151E833597" frame="2" type="rock" />
-    <NPC x="1168" y="1168" guid="752CBD82-1FAB-3237-DF9D-C24D87BEA2CB" frame="3" type="rock" />
-    <Door x="112" y="1137" guid="BB916AAE-ED42-1EB8-A8AC-FF602FB2CAC5" frame="41" type="4" />
-    <Door x="544" y="512" guid="56E3EBEB-6F33-4671-6300-FA909B776286" frame="45" type="16" />
-    <KeyBlock x="1008" y="1184" guid="EB24A58B-200E-798E-2FE6-72C4D96B1A2C" frame="4" p="2" alive="true"/>
-    <Health_Cicada x="992" y="992" guid="047260E5-E357-36BB-5454-A99AA3E03524" frame="0" p="2" alive="true"/>
-    <Door x="224" y="432" guid="E3644BAC-0447-D4C8-80DD-5CC4D1B09D20" frame="92" type="4" />
-    <Door x="80" y="1312" guid="FB21A73C-0719-78B4-7D54-2775CCA7AB48" frame="92" type="4" />
-    <Rat x="176" y="1392" guid="B6B6F645-1751-DCD3-520F-6D585D1C75D4" frame="0" p="0" alive="true"/>
-    <Rat x="176" y="1360" guid="8CF32799-2688-0E1E-27F7-33B77D45AA96" frame="0" p="0" alive="true"/>
-    <Rat x="176" y="1328" guid="0094EFB1-EAE4-C98E-C364-9824EE51B9E2" frame="0" p="0" alive="true"/>
-    <Chaser x="288" y="1392" guid="0FD0C5BE-7E73-1178-A0B8-613D2ADEBB7B" frame="0"/>
-    <Chaser x="208" y="1360" guid="F4411B7A-D07C-C7DC-DE0A-A117E1F48010" frame="0"/>
-    <Chaser x="288" y="1328" guid="7C66BCBF-2398-2BFF-53BA-C6E8C3E66787" frame="0"/>
-    <Chaser x="208" y="1296" guid="98F00DC9-ECD5-0C10-29ED-4B97C62A3043" frame="0"/>
-    <Gate x="336" y="1312" guid="EE355D49-5329-757E-58D5-6500C0567C0C" frame="15" alive="true"/>
-    <Button x="448" y="1296" guid="D2B37E2D-C696-0263-8BC2-1B481DADA4BC" frame="0"/>
-    <Annoyer x="336" y="1344" guid="E3DA9FAC-CE6B-B98D-FBA4-2740D5D6D1A6" frame="0" alive="true"/>
-    <Annoyer x="368" y="1328" guid="DDF697FA-ED75-8568-15B0-03778162083A" frame="0" alive="true"/>
-    <Annoyer x="400" y="1328" guid="D50635CD-74AE-8E13-73ED-499E5C0DFF97" frame="0" alive="true"/>
-    <Annoyer x="432" y="1344" guid="49D9328B-02C4-66FE-B788-03417E3F32FA" frame="0" alive="true"/>
-    <Chaser x="336" y="1392" guid="41867632-2F2C-9C8F-B5CD-6A06B07F2E1E" frame="1"/>
-    <Chaser x="368" y="1376" guid="5FECAD96-8FE3-9623-DF16-90E43254E994" frame="1"/>
-    <Chaser x="400" y="1376" guid="96E222ED-0557-BF25-CCD4-AEB3251CE3D5" frame="1"/>
-    <Chaser x="432" y="1392" guid="0E175F72-E6A7-B140-E7C3-7B32563A93C7" frame="1"/>
-    <Chaser x="608" y="1328" guid="3899654C-A2D3-23CD-CF33-3CF1EF32140F" frame="1"/>
-    <Gate x="496" y="1344" guid="DA314DD8-2804-D68F-471A-77208A4914C0" frame="15" alive="true"/>
-    <Button x="608" y="1296" guid="0B4FBDB7-3E05-37D6-6494-70C8F91E7FCF" frame="0"/>
-    <Silverfish x="560" y="1392" guid="37CB30C2-0D5A-ED3B-28D1-4BFCDC84EE57" frame="0" p="0" alive="true"/>
-    <Silverfish x="528" y="1360" guid="1FBC65FA-164D-EB76-69E3-7D763C45D086" frame="0" p="0" alive="true"/>
-    <Silverfish x="544" y="1408" guid="D15A391C-2029-552E-0476-84FAEC6EB561" frame="0" p="0" alive="true"/>
-    <Treasure x="896" y="1344" guid="EBABD989-126B-A804-01CD-158EFD5D1EE8" frame="2" alive="true"/>
-    <Silverfish x="512" y="1376" guid="F0A3C22E-DFC6-4BE0-17C9-670F27DFF3EE" frame="0" p="0" alive="true"/>
-    <Gate x="656" y="1376" guid="E6E3024C-FAD0-19BC-8162-95948A37156F" frame="5" alive="true"/>
-    <Button x="768" y="1296" guid="F2A47D16-76E6-6276-89ED-09C3F019ACF1" frame="0"/>
-    <Chaser x="768" y="1312" guid="97693FED-7B59-B912-0A35-3FFA8CA74802" frame="1"/>
-    <Chaser x="752" y="1328" guid="47BEC32F-61C5-8AED-9FCE-24A2FA4CCCC8" frame="1"/>
-    <Chaser x="736" y="1344" guid="B57DA599-13EE-73CE-A62E-5539CEA385A5" frame="1"/>
-    <Chaser x="704" y="1344" guid="16FDA504-DF8F-6ACB-B228-EA1904F8D609" frame="1"/>
-    <Chaser x="688" y="1328" guid="0DE66890-8D66-A9BD-F301-10339EEC3B18" frame="1"/>
-    <Chaser x="672" y="1312" guid="9953F4D5-9031-4AA6-C698-8E6741509F40" frame="1"/>
-    <Slime x="656" y="1392" guid="30A04B2A-246C-FF90-EB06-F266EF654B51" frame="0" p="1" alive="true"/>
-    <Slime x="656" y="1408" guid="A6829494-9B91-3D9A-1B64-2EA89F54CAA5" frame="0" p="1" alive="true"/>
-    <Slime x="672" y="1392" guid="D38A965E-F63D-2D15-4A5A-B9B3EF34789E" frame="0" p="1" alive="true"/>
-    <Slime x="672" y="1408" guid="161A751B-4098-536D-02AA-9EB5FDAE1D99" frame="0" p="1" alive="true"/>
-    <Slime x="664" y="1399" guid="301D6009-FC07-839F-BEBD-91B9BDC2DF3A" frame="0" p="1" alive="true"/>
-    <Dash_Pad x="656" y="1344" guid="082AB579-29F7-5D0C-257E-2BA9944EF388" frame="1"/>
-    <Dash_Pad x="640" y="1344" guid="44E3CCB3-F7FD-2C97-FB3D-5A74815CF398" frame="1"/>
-    <Gate x="784" y="1344" guid="06449153-2371-315F-544D-ADD9CFBBF6EF" frame="12" alive="true"/>
-    <Gate x="784" y="1360" guid="FFF67136-0605-DDDE-41CE-B42730DD3007" frame="12" alive="true"/>
-    <Gate x="624" y="1344" guid="FFF0910E-4A59-6D1D-44F1-AA949F6860B3" frame="12" alive="true"/>
-    <Door x="1193" y="6" guid="61CCB668-A7BA-D2B1-B818-C1739CFB42D3" frame="31" type="14" />
+  <map name="STREET" type="Stateless">
+    <Solid_Sprite x="513" y="161" guid="4B64DDE4-FE45-7619-75AC-14F12D5AC399" frame="5" type="blocker" />
+    <Event x="340" y="177" guid="5A4C81F0-81F1-A3D9-310D-644701DA60E9" frame="1" type="1.0" />
+    <Event x="178" y="192" guid="456958CD-9AF6-A913-FC30-C74651C2DDF6" frame="0" type="0.0" />
+    <Dust x="434" y="208" guid="C886CEC1-861B-94CC-B94C-3F49472CACD6" frame="0" alive="false"/>
+    <Dust x="402" y="224" guid="CA8453C7-EBC2-72DE-03BA-1C70824E6A69" frame="0" alive="false"/>
+    <Event x="166" y="333" guid="9AF92680-D351-1E5B-8EEE-4DCEDE2A6128" frame="1" type="0" />
+    <Event x="178" y="352" guid="6FE535A2-6677-AD0D-C77C-9308BD964CB7" frame="0" type="0.6" />
+    <Event x="162" y="512" guid="6E616417-84B8-D9CA-1C30-2B76EBAE656C" frame="0" type="0.0" />
+    <CrackedTile x="178" y="528" guid="D3ACA89C-121E-6F88-FDC4-CF3508FAB1F1" frame="1"/>
+    <CrackedTile x="290" y="528" guid="184B4D2D-D847-0CC1-2252-4A421CC15015" frame="1"/>
+    <CrackedTile x="178" y="592" guid="8CB39FCB-CF2B-5A41-5AC4-E11E3EFD7849" frame="1"/>
+    <Button x="578" y="704" guid="F9C13721-FD8B-6A55-0D1F-6B29CC6F68F6" frame="0"/>
+    <Event x="174" y="812" guid="EAF8F4C4-6C56-2829-A846-5800079BB16B" frame="0" type="0.0" />
+    <Event x="224" y="848" guid="B6826E40-1473-1010-E1A8-3326D2FFA2CF" frame="2"/>
+    <Event x="175" y="979" guid="A29D45D7-3DD2-F40A-39AD-53F6546BDF6F" frame="0" type="0.6" />
   </map>
   <map name="TERMINAL" type="Stateless">
     <Sage x="384" y="704" guid="97C26EF9-14DF-D0E8-075F-1A5C5BEB7D42" frame="0" p="2"/>

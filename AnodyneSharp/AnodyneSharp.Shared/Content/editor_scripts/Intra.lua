@@ -16,15 +16,12 @@ dataDir = as3.tolua(VALUE_DataDir)
 levelName = as3.tolua(VALUE_LevelName)
 
 
-function exportMapCSV( mapLayer, layerFileName )
+function exportMapCSV( mapLayer, mapName, layerSimpleName )
 	-- get the raw mapdata. To change format, modify the strings passed in (rowPrefix,rowSuffix,columnPrefix,columnSeparator,columnSuffix)
 	mapText = as3.tolua(DAME.ConvertMapToText(mapLayer,"","\n","",",",""))
 	--print("output to "..as3.tolua(VALUE_CSVDir).."/"..layerFileName)
 	
-	--Don't bother generating the BG_old tilemaps
-	if (string.find(layerFileName,"BG_old") == nil) then
-		DAME.WriteFile(dataDir.."/csv/"..layerFileName, mapText );
-	end
+	DAME.WriteFile(dataDir.."/Maps/"..mapName.."/"..layerSimpleName..".csv", mapText );
 end
 
 -- This is the file for the map level class.
@@ -55,9 +52,8 @@ for groupIndex = 0,groupCount do
 			stageAddText = stageAddText..tab4.."addSpritesForLayer"..layerName.."(onAddSpritesCallback);\n"
 		end
         if isMap == true then
-			mapFileName = groupName.."_"..layerSimpleName..".csv"
 			-- Generate the map file.
-			exportMapCSV( layer, mapFileName )
+			exportMapCSV( layer, groupName, layerSimpleName )
 		end
 	end
     
