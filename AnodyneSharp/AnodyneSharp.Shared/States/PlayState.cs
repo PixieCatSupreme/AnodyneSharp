@@ -259,6 +259,8 @@ namespace AnodyneSharp.States
             DebugKeyInput();
 #endif
 
+            _map.Update();
+
             Refreshes();
         }
 
@@ -748,7 +750,7 @@ namespace AnodyneSharp.States
                 _map_fg.y = HEADER_HEIGHT;
 
                 //Sets tile collission and tile events
-                TileData.Set_tile_properties(_map, _map_bg_2);
+                TileData.SetTileProperties(_map, _map_bg_2);
 
                 foreach (EntityPreset p in EntityManager.GetMapEntities(GlobalState.CURRENT_MAP_NAME).Where(p => p.Permanence == Permanence.MAP_LOCAL))
                 {

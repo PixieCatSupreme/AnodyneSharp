@@ -29,6 +29,8 @@ namespace AnodyneSharp.Entities
         public static string Wide_Attack_v = "wide_attack_v";
         public static string Long_Attack_v = "long_attack_h";
 
+        public bool AnimFinished => _curAnim.finished;
+
         //public Dust dust;
         public bool just_released_dust;
 
@@ -41,6 +43,7 @@ namespace AnodyneSharp.Entities
 
         private bool is_behind_player = false;
         private bool just_played_extra_anim = false;
+
 
         public Broom(Entity root)
             : base(new Vector2(root.Position.X - 10, root.Position.Y), 16, 16, Drawing.DrawOrder.ENTITIES)
@@ -80,7 +83,7 @@ namespace AnodyneSharp.Entities
 
         public override void Update()
         {
-            if (finished)
+            if (_curAnim.finished)
             {
                 exists = false;
 
@@ -169,7 +172,7 @@ namespace AnodyneSharp.Entities
                         SetLongValues(o, new Vector2(-14, 7));
                     }
 
-                    switch (_curFrame)
+                    switch (_curAnim.Frame)
                     {
                         case 0: Position.X += 10; break;
                         case 1: Position.X += 6; break;
@@ -193,7 +196,7 @@ namespace AnodyneSharp.Entities
                         SetLongValues(o, new Vector2(0, 9));
                     }
 
-                    switch (_curFrame)
+                    switch (_curAnim.Frame)
                     {
                         case 0: Position.X -= 12; break;
                         case 1: Position.X -= 8; break;
@@ -216,7 +219,7 @@ namespace AnodyneSharp.Entities
                         SetLongValues(o, new Vector2(0, -6));
                     }
 
-                    switch (_curFrame)
+                    switch (_curAnim.Frame)
                     {
                         case 0: Position.Y += 12; break;
                         case 1: Position.Y += 6; break;
@@ -239,7 +242,7 @@ namespace AnodyneSharp.Entities
                         SetLongValues(o, new Vector2(-2, 5));
                     }
 
-                    switch (_curFrame)
+                    switch (_curAnim.Frame)
                     {
                         case 0: Position.Y -= 8; break;
                         case 1: Position.Y -= 5; break;

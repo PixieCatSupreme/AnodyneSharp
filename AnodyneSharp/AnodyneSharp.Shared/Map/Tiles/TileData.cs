@@ -44,9 +44,12 @@ namespace AnodyneSharp.Map.Tiles
             }
         }
 
-        public static void Set_tile_properties(TileMap map, TileMap bg2)
+        public static void SetTileProperties(TileMap map, TileMap bg2)
         {
             List<CollissionData> data = GetColData();
+            SortedList<int, AnimatedTile> animationData = GetAnimData();
+
+            map.SetAnimationData(animationData);
 
             foreach (var d in data)
             {
@@ -61,6 +64,38 @@ namespace AnodyneSharp.Map.Tiles
                     bg2.SetTileProperties(d.Start, d.AllowedCollisions, d.CollisionEventType, d.Direction, tileMax: d.End.Value);
                 }
             }
+        }
+
+        private static SortedList<int, AnimatedTile> GetAnimData()
+        {
+            SortedList<int, AnimatedTile> animTiles = new SortedList<int, AnimatedTile>();
+
+            var assembly = Assembly.GetExecutingAssembly();
+
+            foreach (var path in assembly.GetManifestResourceNames().Where(p => p.StartsWith($"{ assembly.GetName().Name}.Content.Maps.{ GlobalState.CURRENT_MAP_NAME}.TileAnims")))
+            {
+                string texName = path.Split('.')[^2];
+
+                using (Stream stream = assembly.GetManifestResourceStream(path))
+                {
+                    using StreamReader reader = new StreamReader(stream);
+
+                    while (!reader.EndOfStream)
+                    {
+                        string[] values = reader.ReadLine().Trim().Split('\t');
+
+                        int[] frames = values[2].Split(',').Select(v => int.Parse(v)).ToArray();
+
+                        if (int.TryParse(values[0], out int frame) &&
+                            int.TryParse(values[1], out int frameRate))
+                        {
+                            animTiles.Add(frame, new AnimatedTile(frames, frameRate, ResourceManager.GetTexture(texName)));
+                        }
+                    }
+                }
+            }
+
+            return animTiles;
         }
 
         private static List<CollissionData> GetColData()

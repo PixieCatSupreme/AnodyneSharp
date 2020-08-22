@@ -86,11 +86,11 @@ namespace AnodyneSharp.Entities.Enemy
                     .Enter((state) => Play("Hurt"))
                     .Event<CollisionEvent<Player>>("Player", (state, p) => p.entity.ReceiveDamage(1))
                     .Condition(() => _health <= 0, (state) => state.Parent.ChangeState("Dying"))
-                    .Condition(() => finished, (state) => state.Parent.ChangeState("Move"))
+                    .Condition(() => _curAnim.finished, (state) => state.Parent.ChangeState("Move"))
                 .End()
                 .State("Dying")
                     .Enter((state) => Play("Dying"))
-                    .Condition(() => finished, (state) => { _preset.Alive = false; Die(); })
+                    .Condition(() => _curAnim.finished, (state) => { _preset.Alive = false; Die(); })
                 .End()
                 .Build();
             state.ChangeState("Move");
@@ -98,12 +98,12 @@ namespace AnodyneSharp.Entities.Enemy
 
         private void SyncSplash(MoveState state)
         {
-            if (_curFrame == 1 && !state.move_frame_sound_sync)
+            if (_curAnim.Frame == 1 && !state.move_frame_sound_sync)
             {
                 SoundManager.PlaySoundEffect("slime_walk");
                 state.move_frame_sound_sync = true;
             }
-            else if (_curFrame == 0)
+            else if (_curAnim.Frame == 0)
             {
                 state.move_frame_sound_sync = false;
             }
@@ -111,7 +111,7 @@ namespace AnodyneSharp.Entities.Enemy
 
         private void ChangeDir()
         {
-            if (_curFrame == 1)
+            if (_curAnim.Frame == 1)
             {
                 //Make it more likely for slimes to stand still periodically
                 velocity = Vector2.Zero;

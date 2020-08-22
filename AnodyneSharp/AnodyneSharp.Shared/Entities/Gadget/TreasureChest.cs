@@ -77,7 +77,7 @@ namespace AnodyneSharp.Entities.Gadget
             opened = true;
             _treasure.GetTreasure();
 
-            SetFrame(_curFrame + 1);
+            SetFrame(_curAnim.Frame + 1);
             _preset.Frame = -1;
             return true;
         }

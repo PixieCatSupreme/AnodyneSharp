@@ -12,12 +12,16 @@ namespace AnodyneSharp.Map
 {
     public class TileMap
     {
+        public int HeightInTiles { get; protected set; }
+        public int WidthInTiles { get; protected set; }
+
         public float width;
         public float height;
         private Rectangle?[] _rects;
-        public int HeightInTiles { get; protected set; }
-        public int WidthInTiles { get; protected set; }
+
         protected List<int> data;
+        protected SortedList<int, AnimatedTile> animatedTiles;
+
         protected int totalTiles;
 
         protected Texture2D tiles;
@@ -45,6 +49,7 @@ namespace AnodyneSharp.Map
             data = new List<int>();
 
             tiles = tileMap;
+            animatedTiles = new SortedList<int, AnimatedTile>();
 
             _layer = layer;
 
@@ -103,6 +108,11 @@ namespace AnodyneSharp.Map
             }
         }
 
+        internal void SetAnimationData(SortedList<int, AnimatedTile> animationData)
+        {
+            animatedTiles = animationData;
+        }
+
         internal void SetTileProperties(int tileMin, Touching allowCollisions, CollisionEventType collisionEventType, Touching direction, int tileMax = 0)
         {
             if (tileMax == 0)
@@ -131,7 +141,7 @@ namespace AnodyneSharp.Map
         public void Collide(Entity ent, bool onlyCurrentScreen = false)
         {
             Rectangle hitbox = ent.Hitbox;
-            for(int y = hitbox.Top/GameConstants.TILE_WIDTH; y <= hitbox.Bottom/GameConstants.TILE_WIDTH; ++y)
+            for (int y = hitbox.Top / GameConstants.TILE_WIDTH; y <= hitbox.Bottom / GameConstants.TILE_WIDTH; ++y)
             {
                 if (y < 0) continue;
                 if (y >= HeightInTiles) break;
@@ -147,9 +157,9 @@ namespace AnodyneSharp.Map
                     t.lastPosition.X = t.Position.X = x * GameConstants.TILE_WIDTH;
                     t.lastPosition.Y = t.Position.Y = y * GameConstants.TILE_HEIGHT;
 
-                    if(t.allowCollisions == Touching.NONE || GameObject.Separate(ent,t))
+                    if (t.allowCollisions == Touching.NONE || GameObject.Separate(ent, t))
                     {
-                        if(t.collisionEventType != CollisionEventType.NONE)
+                        if (t.collisionEventType != CollisionEventType.NONE)
                         {
                             //TODO: Call event method in TileData
                         }
@@ -158,6 +168,14 @@ namespace AnodyneSharp.Map
                 }
             }
 
+        }
+
+        public void Update()
+        {
+            foreach (var tile in animatedTiles.Values)
+            {
+                tile.UpdateAnimation();
+            }
         }
 
         public void Draw(bool ignoreEmpty = false)
@@ -176,7 +194,16 @@ namespace AnodyneSharp.Map
 
                         if (!ignoreEmpty || tile != 0)
                         {
-                            SpriteDrawer.DrawSprite(tiles, new Rectangle(x * _tileWidth, y * _tileHeight, _tileWidth, _tileHeight), rect.Value, Z: z);
+                            Texture2D tex = tiles;
+                            Rectangle source = rect.Value;
+
+                            if (animatedTiles.TryGetValue(tile, out AnimatedTile animTile))
+                            {
+                                tex = animTile.Texture;
+                                source = animTile.spriteRect;
+                            }
+
+                            SpriteDrawer.DrawSprite(tex, new Rectangle(x * _tileWidth, y * _tileHeight, _tileWidth, _tileHeight), source, Z: z);
                         }
                     }
                 }

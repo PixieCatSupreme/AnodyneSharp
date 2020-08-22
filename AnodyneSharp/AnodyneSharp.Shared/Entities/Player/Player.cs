@@ -365,7 +365,7 @@ namespace AnodyneSharp.Entities
         {
             fallTimer -= GameTimes.DeltaTime;
 
-            if (_curFrame == 31)
+            if (_curAnim.Frame == 31)
             {
                 Position = grid_entrance;
                 hasFallen = false;
@@ -428,7 +428,7 @@ namespace AnodyneSharp.Entities
             //No change in animation during bump
             if (Do_bump) return;
 
-            if (broom.finished && broom.exists)
+            if (broom.AnimFinished && broom.exists)
             {
                 //We just finished an attack
                 ANIM_STATE = PlayerAnimState.as_idle;
@@ -455,9 +455,6 @@ namespace AnodyneSharp.Entities
                         PlayFacing("walk");
 
                         ANIM_STATE = PlayerAnimState.as_walk;
-                        _curIndex = last_frame[(int)facing];
-                        _curFrame = _curAnim.frames[_curIndex];
-
                     }
                     else
                     {
@@ -473,7 +470,6 @@ namespace AnodyneSharp.Entities
                     if (velocity == Vector2.Zero)
                     {
                         ANIM_STATE = PlayerAnimState.as_idle;
-                        last_frame[(int)facing] = _curIndex;
                         PlayFacing("idle");
                     }
                     else

@@ -30,13 +30,8 @@ namespace AnodyneSharp.Entities
         public Facing facing;
         public DrawOrder layer;
 
-
         public Color color;
 
-        public bool finished;
-
-        protected int _curIndex;
-        protected int _curFrame;
         protected Anim _curAnim;
         protected float _opacity;
 
@@ -49,10 +44,7 @@ namespace AnodyneSharp.Entities
         protected SpriteEffects _flip;
 
         private List<Anim> _animations;
-        private string textureName;
-
-        private bool dirty;
-        private float _frameTimer;
+        private string textureName; 
 
         protected bool _flickering;
         private float _flickerTimer;
@@ -83,6 +75,8 @@ namespace AnodyneSharp.Entities
             _lastScale = scale;
 
             color = Color.White;
+
+            SetFrame(0);
         }
 
         public Entity(Vector2 pos, int frameWidth, int frameHeight, DrawOrder layer)
@@ -100,6 +94,8 @@ namespace AnodyneSharp.Entities
             _lastScale = scale;
 
             color = Color.White;
+
+            SetFrame(0);
         }
 
         public Entity(Vector2 pos, string textureName, int frameWidth, int frameHeight, DrawOrder layer)
@@ -154,30 +150,18 @@ namespace AnodyneSharp.Entities
          */
         public void Play(string AnimName, bool Force = false)
         {
-            if (!Force && (_curAnim != null) && (AnimName == _curAnim.name) && (_curAnim.looped || !finished))
+            if (!Force && (_curAnim != null) && (AnimName == _curAnim.name) && (_curAnim.looped || !_curAnim.finished))
             {
                 return;
             }
-            _curIndex = 0;
-            _curFrame = 0;
-            _frameTimer = 0;
 
             for (int i = 0; i < _animations.Count; i++)
             {
                 if (_animations[i].name == AnimName)
                 {
                     _curAnim = _animations[i];
-                    if (_curAnim.delay <= 0)
-                    {
-                        finished = true;
-                    }
-                    else
-                    {
-                        finished = false;
-                    }
+                    _curAnim.Reset();
 
-                    _curFrame = _curAnim.frames[_curIndex];
-                    dirty = true;
                     AnimationChanged(AnimName);
                     return;
                 }
@@ -245,42 +229,31 @@ namespace AnodyneSharp.Entities
 
         public void SetFrame(int frame)
         {
-            _curFrame = frame;
-
-            UpdateRect();
+            _curAnim = new Anim("forcedFrame", new int[] { frame }, 1);
         }
 
         protected void UpdateAnimation()
         {
-            if ((_curAnim != null) && (_curAnim.delay > 0) && (_curAnim.looped || !finished))
+            if ((_curAnim != null) && (_curAnim.delay > 0) && (_curAnim.looped || !_curAnim.finished))
             {
-                _frameTimer += GameTimes.DeltaTime;
-                while (_frameTimer > _curAnim.delay)
-                {
-                    _frameTimer -= _curAnim.delay;
-                    if (_curIndex == _curAnim.frames.Length - 1)
-                    {
-                        if (_curAnim.looped)
-                            _curIndex = 0;
-                        finished = true;
-                    }
-                    else
-                        _curIndex++;
-                    _curFrame = _curAnim.frames[_curIndex];
-                    dirty = true;
-                }
+                _curAnim.Update();
             }
 
-
-            if (dirty)
+            if (_curAnim.Dirty)
             {
                 UpdateRect();
             }
+
+            _curAnim.Dirty = false;
         }
 
         protected void UpdateRect()
         {
-            int indexX = _curFrame * frameWidth;
+            if (Texture == null)
+            {
+                return;
+            }
+            int indexX = _curAnim.Frame * frameWidth;
             int indexY = 0;
 
             //Handle sprite sheets
@@ -292,8 +265,6 @@ namespace AnodyneSharp.Entities
             }
 
             spriteRect = new Rectangle(indexX, indexY, frameWidth, frameHeight);
-
-            dirty = false;
         }
 
         protected int[] CreateAnimFrameArray(params int[] frames)
@@ -305,6 +276,8 @@ namespace AnodyneSharp.Entities
         {
             this.textureName = textureName;
             Texture = ResourceManager.GetTexture(textureName, ignoreChaos);
+
+            SetFrame(0);
 
             return Texture != null;
         }

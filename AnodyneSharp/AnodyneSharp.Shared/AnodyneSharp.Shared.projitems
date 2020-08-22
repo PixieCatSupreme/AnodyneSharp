@@ -77,6 +77,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\NamedEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Bedroom\Slime.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FSM\CollisionEvent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Map\Tiles\AnimatedTile.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Map\Tiles\CollissionData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Registry\AchievementManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Registry\InventoryManager.cs" />
@@ -150,7 +151,6 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\APARTMENT\FG.csv" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\BEACH\BG.csv" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\BEDROOM\BG.csv" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\BEDROOM\BG2.csv" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\BLANK\BG.csv" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\BLUE\BG.csv" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\BLUE\BG2.csv" />
@@ -244,7 +244,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Content\Maps\APARTMENT\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Content\Maps\BEACH\" />
     <Folder Include="$(MSBuildThisFileDirectory)Content\Maps\BEDROOM\" />
     <Folder Include="$(MSBuildThisFileDirectory)Content\Maps\BLANK\" />
     <Folder Include="$(MSBuildThisFileDirectory)Content\Maps\BLUE\" />
@@ -909,5 +908,7 @@
     <None Include="$(MSBuildThisFileDirectory)Content\effects\fg_blendlayer.fx" />
     <None Include="$(MSBuildThisFileDirectory)Content\effects\pixelation.fx" />
     <None Include="$(MSBuildThisFileDirectory)Content\effects\static.fx" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\BEACH\TileAnims\shoreline.dat" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\BEACH\TileAnims\beach_anims.dat" />
   </ItemGroup>
 </Project>
