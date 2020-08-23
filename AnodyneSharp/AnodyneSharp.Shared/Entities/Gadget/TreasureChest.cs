@@ -116,7 +116,7 @@ namespace AnodyneSharp.Entities.Gadget
                     _treasureType = TreasureType.GROWTH;
                     break;
                 default:
-                    if (_preset.Frame >= 8 && _preset.Frame <= 20)
+                    if (_preset.Frame >= 7 && _preset.Frame <= 20)
                     {
                         _treasureType = TreasureType.SECRET;
                     }
