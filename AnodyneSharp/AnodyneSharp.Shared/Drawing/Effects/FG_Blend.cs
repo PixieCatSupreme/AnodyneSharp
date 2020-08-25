@@ -30,7 +30,7 @@ namespace AnodyneSharp.Drawing.Effects
             switch (GlobalState.CURRENT_MAP_NAME)
             {
                 case "SUBURB":
-                    effect.Parameters["OverlayTex"].SetValue(ResourceManager.GetTexture("suburbs_overlay"));
+                    effect.Parameters["OverlayTex"].SetValue(ResourceManager.GetTexture("suburb_fg_overlay"));
                     effect.Parameters["HardLight"].SetValue(false);
                     break;
                 case "HOTEL":
@@ -39,7 +39,7 @@ namespace AnodyneSharp.Drawing.Effects
                     effect.Parameters["HardLight"].SetValue(true);
                     break;
                 case "FOREST":
-                    effect.Parameters["OverlayTex"].SetValue(ResourceManager.GetTexture("forest_overlay"));
+                    effect.Parameters["OverlayTex"].SetValue(ResourceManager.GetTexture("forest_fg_overlay"));
                     effect.Parameters["HardLight"].SetValue(false);
                     break;
                 default:

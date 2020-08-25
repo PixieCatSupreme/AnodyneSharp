@@ -43,7 +43,7 @@ namespace AnodyneSharp.Resources
             return true;
         }
 
-        public static Texture2D GetTexture(string textureName, bool forceCorrectTexture = false)
+        public static Texture2D GetTexture(string textureName, bool forceCorrectTexture = false, bool allowUnknown = false)
         {
             if (!forceCorrectTexture && GlobalState.GameMode != GameMode.Normal)
             {
@@ -52,7 +52,10 @@ namespace AnodyneSharp.Resources
 
             if (!_textures.ContainsKey(textureName))
             {
-                DebugLogger.AddWarning($"Texture file called {textureName}.png not found!");
+                if (!allowUnknown)
+                {
+                    DebugLogger.AddWarning($"Texture file called {textureName}.png not found!");
+                }
                 return null;
             }
 

@@ -134,12 +134,14 @@ namespace AnodyneSharp.Registry
         public static bool FreeRoamCamera = false;
 #endif
 
+        public static Darkness darkness = new Darkness();
+
         public static FadeEffect death_fadein = new FadeEffect() { fadeColor = Color.Black };
         public static FadeEffect black_overlay = new FadeEffect() { fadeColor = Color.Black };
 
         public static Pixelate pixelation = new Pixelate();
 
-        public static List<IFullScreenEffect> gameEffects = new List<IFullScreenEffect>() { new Static() };
+        public static List<IFullScreenEffect> gameEffects = new List<IFullScreenEffect>() { new Static(), darkness };
         public static List<IFullScreenEffect> fullScreenEffects = new List<IFullScreenEffect>() { death_fadein, black_overlay, new Glitch(), new GrayScale(), pixelation };
         public static IEnumerable<IFullScreenEffect> AllEffects
         {

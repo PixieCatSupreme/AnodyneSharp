@@ -19,6 +19,12 @@
 /processorParam:DebugMode=Auto
 /build:effects/blackwhite.fx
 
+#begin effects/blend.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:effects/blend.fx
+
 #begin effects/fg_blendlayer.fx
 /importer:EffectImporter
 /processor:EffectProcessor
@@ -1867,7 +1873,7 @@
 /processorParam:TextureFormat=Color
 /build:textures/sprites/decoration/overlay_WINDMILL_water.png
 
-#begin textures/sprites/decoration/overlays/apartment_overlay.png
+#begin textures/sprites/decoration/overlays/beach_hardlight.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1877,31 +1883,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:textures/sprites/decoration/overlays/apartment_overlay.png
-
-#begin textures/sprites/decoration/overlays/beach_overlay.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:textures/sprites/decoration/overlays/beach_overlay.png
-
-#begin textures/sprites/decoration/overlays/bedroom_overlay.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:textures/sprites/decoration/overlays/bedroom_overlay.png
+/build:textures/sprites/decoration/overlays/beach_hardlight.png
 
 #begin textures/sprites/decoration/overlays/blue_overlay.png
 /importer:TextureImporter
@@ -1915,18 +1897,6 @@
 /processorParam:TextureFormat=Color
 /build:textures/sprites/decoration/overlays/blue_overlay.png
 
-#begin textures/sprites/decoration/overlays/circus_overlay.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:textures/sprites/decoration/overlays/circus_overlay.png
-
 #begin textures/sprites/decoration/overlays/cliff_overlay.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1938,30 +1908,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:textures/sprites/decoration/overlays/cliff_overlay.png
-
-#begin textures/sprites/decoration/overlays/crowd_overlay.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:textures/sprites/decoration/overlays/crowd_overlay.png
-
-#begin textures/sprites/decoration/overlays/debug_overlay.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:textures/sprites/decoration/overlays/debug_overlay.png
 
 #begin textures/sprites/decoration/overlays/ending_overlay.png
 /importer:TextureImporter
@@ -1975,7 +1921,7 @@
 /processorParam:TextureFormat=Color
 /build:textures/sprites/decoration/overlays/ending_overlay.png
 
-#begin textures/sprites/decoration/overlays/forest_overlay.png
+#begin textures/sprites/decoration/overlays/forest_fg_overlay.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1985,9 +1931,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:textures/sprites/decoration/overlays/forest_overlay.png
+/build:textures/sprites/decoration/overlays/forest_fg_overlay.png
 
-#begin textures/sprites/decoration/overlays/go_overlay - Copy.png
+#begin textures/sprites/decoration/overlays/go_hardlight.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1997,9 +1943,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:textures/sprites/decoration/overlays/go_overlay - Copy.png
+/build:textures/sprites/decoration/overlays/go_hardlight.png
 
-#begin textures/sprites/decoration/overlays/go_overlay.png
+#begin textures/sprites/decoration/overlays/happy_hardlight.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -2009,9 +1955,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:textures/sprites/decoration/overlays/go_overlay.png
+/build:textures/sprites/decoration/overlays/happy_hardlight.png
 
-#begin textures/sprites/decoration/overlays/happy_blend.png
+#begin textures/sprites/decoration/overlays/hotel_roof_fg_overlay.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -2021,43 +1967,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:textures/sprites/decoration/overlays/happy_blend.png
-
-#begin textures/sprites/decoration/overlays/happy_overlay.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:textures/sprites/decoration/overlays/happy_overlay.png
-
-#begin textures/sprites/decoration/overlays/hotel_overlay.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:textures/sprites/decoration/overlays/hotel_overlay.png
-
-#begin textures/sprites/decoration/overlays/hotel_roof_overlay.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:textures/sprites/decoration/overlays/hotel_roof_overlay.png
+/build:textures/sprites/decoration/overlays/hotel_roof_fg_overlay.png
 
 #begin textures/sprites/decoration/overlays/nexus_overlay.png
 /importer:TextureImporter
@@ -2083,7 +1993,7 @@
 /processorParam:TextureFormat=Color
 /build:textures/sprites/decoration/overlays/redcave_overlay .png
 
-#begin textures/sprites/decoration/overlays/redsea_overlay.png
+#begin textures/sprites/decoration/overlays/redsea_hardlight.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -2093,7 +2003,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:textures/sprites/decoration/overlays/redsea_overlay.png
+/build:textures/sprites/decoration/overlays/redsea_hardlight.png
 
 #begin textures/sprites/decoration/overlays/space_overlay.png
 /importer:TextureImporter
@@ -2107,7 +2017,7 @@
 /processorParam:TextureFormat=Color
 /build:textures/sprites/decoration/overlays/space_overlay.png
 
-#begin textures/sprites/decoration/overlays/street_overlay.png
+#begin textures/sprites/decoration/overlays/street_dec_overlay.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -2117,9 +2027,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:textures/sprites/decoration/overlays/street_overlay.png
+/build:textures/sprites/decoration/overlays/street_dec_overlay.png
 
-#begin textures/sprites/decoration/overlays/suburbs_overlay.png
+#begin textures/sprites/decoration/overlays/suburb_fg_overlay.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -2129,19 +2039,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:textures/sprites/decoration/overlays/suburbs_overlay.png
-
-#begin textures/sprites/decoration/overlays/suburbs_overlay_dark.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:textures/sprites/decoration/overlays/suburbs_overlay_dark.png
+/build:textures/sprites/decoration/overlays/suburb_fg_overlay.png
 
 #begin textures/sprites/decoration/overlays/terminal_overlay.png
 /importer:TextureImporter
@@ -2167,7 +2065,7 @@
 /processorParam:TextureFormat=Color
 /build:textures/sprites/decoration/overlays/windmill_overlay.png
 
-#begin textures/sprites/decoration/overlays/windmill_overlay2.png
+#begin textures/sprites/decoration/overlays/windmill_rain.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -2177,7 +2075,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:textures/sprites/decoration/overlays/windmill_overlay2.png
+/build:textures/sprites/decoration/overlays/windmill_rain.png
 
 #begin textures/sprites/decoration/pixelation.png
 /importer:TextureImporter

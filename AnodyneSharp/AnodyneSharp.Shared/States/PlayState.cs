@@ -767,6 +767,7 @@ namespace AnodyneSharp.States
                 }
 
                 FG_Blend.MapChange();
+                GlobalState.darkness.MapChange();
 
                 GlobalState.RefreshKeyCount = true;
             }
