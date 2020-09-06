@@ -173,7 +173,7 @@ namespace AnodyneSharp.Entities
 
                                         doors.Remove(doorOne);
 
-                                        DebugLogger.AddInfo($"DOOR PAIR {preset.Frame}\n{doorOne.Door.Position.X} {doorOne.Door.Position.Y} {doorOne.Map}\n{newDoor.Door.Position.X} {newDoor.Door.Position.Y} {newDoor.Map}");
+                                        //DebugLogger.AddInfo($"DOOR PAIR {preset.Frame}\n{doorOne.Door.Position.X} {doorOne.Door.Position.Y} {doorOne.Map}\n{newDoor.Door.Position.X} {newDoor.Door.Position.Y} {newDoor.Map}");
                                     }
                                     else
                                     {

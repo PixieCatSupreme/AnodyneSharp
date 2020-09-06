@@ -35,7 +35,7 @@ namespace AnodyneSharp.Drawing.Effects
                     break;
                 case "HOTEL":
                     //TODO: only activate when on ROOF
-                    effect.Parameters["OverlayTex"].SetValue(ResourceManager.GetTexture("hotel_roof_overlay"));
+                    effect.Parameters["OverlayTex"].SetValue(ResourceManager.GetTexture("hotel_roof_fg_overlay"));
                     effect.Parameters["HardLight"].SetValue(true);
                     break;
                 case "FOREST":
