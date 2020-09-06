@@ -39,6 +39,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Decorations\NonSolid.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\DoorPair.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Bedroom\Annoyer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Crowd\Dog.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\EnemyAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Crowd\Person.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Etc\FollowerBro.cs" />
@@ -275,7 +276,6 @@
     <Folder Include="$(MSBuildThisFileDirectory)Content\Maps\SPACE\" />
     <Folder Include="$(MSBuildThisFileDirectory)Content\Maps\STREET\" />
     <Folder Include="$(MSBuildThisFileDirectory)Content\MiniMaps\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Entities\Enemy\Crowd\" />
     <Folder Include="$(MSBuildThisFileDirectory)Entities\Gadget\Treasures\Base\" />
     <Folder Include="$(MSBuildThisFileDirectory)UI\Health\" />
   </ItemGroup>
