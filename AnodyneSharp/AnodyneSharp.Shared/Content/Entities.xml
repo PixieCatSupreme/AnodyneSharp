@@ -459,7 +459,7 @@
     <Eye_Light x="912" y="400" guid="AEDB3CA4-7640-8E85-E400-FBC2B934BCD9" frame="0"/>
     <Eye_Light x="832" y="400" guid="77F48185-1FBB-3563-5FFD-E3F743BCC04B" frame="0"/>
     <Event x="800" y="640" guid="9317BBDD-D22E-B187-75A6-E3DB2B2596B5" frame="0" type="0.8" />
-    <Door x="872" y="794" guid="9637F785-B7F5-B68C-1051-F1C3A44CE7B5" frame="85" type="12" />
+    <Door x="872" y="784" guid="9637F785-B7F5-B68C-1051-F1C3A44CE7B5" frame="85" type="12" />
     <Door x="872" y="359" guid="90A7AF28-F0B1-EB44-40F0-23E7AADF9310" frame="79" type="4" />
   </map>
   <map name="BEDROOM" type="Stateless">
@@ -1711,7 +1711,7 @@
     <Event x="160" y="672" guid="7D6F05E3-5F27-C634-962F-1DDEE87FB65D" frame="4"/>
   </map>
   <map name="DRAWER" type="Stateful">
-    <Door x="70" y="629" guid="6B1AC13B-CF0B-7FD1-6786-2F6575467599" frame="79" type="1" />
+    <Door x="70" y="624" guid="6B1AC13B-CF0B-7FD1-6786-2F6575467599" frame="79" type="1" />
     <Treasure x="432" y="192" guid="34CA70FD-F8D3-6CF8-5408-6C3EB4F9342C" frame="2" alive="true"/>
     <NPC x="64" y="96" guid="FED55AF0-98B3-DC64-299D-E607C99D6E3A" frame="4" type="rock" />
     <NPC x="832" y="192" guid="B9F840F3-4242-8850-1BB1-50FFC12FFE8E" frame="3" type="rock" />
