@@ -428,7 +428,7 @@ namespace AnodyneSharp.Entities
             //No change in animation during bump
             if (Do_bump) return;
 
-            if (broom.AnimFinished && broom.exists)
+            if (ANIM_STATE == PlayerAnimState.ANIM_ATK && broom.AnimFinished)
             {
                 //We just finished an attack
                 ANIM_STATE = PlayerAnimState.as_idle;
