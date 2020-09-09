@@ -19,12 +19,12 @@ namespace AnodyneSharp.Entities
             _pool = Enumerable.Repeat(create, total).Select(c => { T e = c(); e.exists = false; return e; }).ToList();
         }
 
-        public void Spawn(Action<T> onSpawn = null, int total = 1)
+        public void Spawn(Action<T> onSpawn = null,  int total = 1, bool force = false)
         {
             if (onSpawn == null)
                 onSpawn = t => { };
 
-            foreach(T t in _pool.Where(t=>!t.exists).Take(total))
+            foreach(T t in _pool.Where(t=>!t.exists || force).Take(total))
             {
                 t.exists = true;
                 onSpawn(t);

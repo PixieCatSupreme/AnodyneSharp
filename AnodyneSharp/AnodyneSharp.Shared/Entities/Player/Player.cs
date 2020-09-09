@@ -105,6 +105,9 @@ namespace AnodyneSharp.Entities
         internal float slowMul;
         internal int slowTicks;
 
+        public bool reversed;
+        private float _revTimer;
+
         public bool ON_CONVEYER { get; private set; }
 
         public Player(PlayState parent)
@@ -213,6 +216,18 @@ namespace AnodyneSharp.Entities
             }
 
             additionalVel = Vector2.Zero;
+
+            if (reversed)
+            {
+                _revTimer += GameTimes.DeltaTime;
+
+                if (_revTimer > 0.9f)
+                {
+                    reversed = false;
+                    _revTimer = 0;
+                    //TODO Disable Wave effect
+                }
+            }
 
             base.Update();
         }
@@ -601,7 +616,7 @@ namespace AnodyneSharp.Entities
                 return;
             }
 
-            if (KeyInput.IsRebindableKeyPressed(KeyFunctions.Up))
+            if (KeyInput.IsRebindableKeyPressed(Reverse(KeyFunctions.Up)))
             {
                 velocity.Y = -mul;
                 if ((touching & Touching.UP) != 0)
@@ -619,7 +634,7 @@ namespace AnodyneSharp.Entities
                 }
 
             }
-            else if (KeyInput.IsRebindableKeyPressed(KeyFunctions.Down))
+            else if (KeyInput.IsRebindableKeyPressed(Reverse(KeyFunctions.Down)))
             {
                 velocity.Y = mul;
                 if ((touching & Touching.DOWN) != 0)
@@ -641,7 +656,7 @@ namespace AnodyneSharp.Entities
                 velocity.Y = 0;
             }
 
-            if (KeyInput.IsRebindableKeyPressed(KeyFunctions.Left))
+            if (KeyInput.IsRebindableKeyPressed(Reverse(KeyFunctions.Left)))
             {
                 velocity.X = -mul;
                 if ((touching & Touching.LEFT) != 0)
@@ -658,7 +673,7 @@ namespace AnodyneSharp.Entities
                     }
                 }
             }
-            else if (KeyInput.IsRebindableKeyPressed(KeyFunctions.Right))
+            else if (KeyInput.IsRebindableKeyPressed(Reverse(KeyFunctions.Right)))
             {
                 velocity.X = mul;
                 if ((touching & Touching.RIGHT) != 0)
@@ -685,6 +700,23 @@ namespace AnodyneSharp.Entities
             {
                 velocity *= 0.7f;
             }
+        }
+
+        private KeyFunctions Reverse(KeyFunctions key)
+        {
+            if (!reversed)
+            {
+                return key;
+            }
+
+            return key switch
+            {
+                KeyFunctions.Up => KeyFunctions.Down,
+                KeyFunctions.Down => KeyFunctions.Up,
+                KeyFunctions.Left => KeyFunctions.Right,
+                KeyFunctions.Right => KeyFunctions.Left,
+                _ => key,
+            };
         }
 
         internal void ReceiveDamage(int amount, bool knockback = true, bool playSound = true)
