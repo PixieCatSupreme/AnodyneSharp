@@ -238,14 +238,14 @@ namespace AnodyneSharp.Entities
             if ((_curAnim != null) && (_curAnim.delay > 0) && (_curAnim.looped || !_curAnim.finished))
             {
                 _curAnim.Update();
+                if (_curAnim.Dirty)
+                {
+                    UpdateRect();
+                }
+
+                _curAnim.Dirty = false;
             }
 
-            if (_curAnim.Dirty)
-            {
-                UpdateRect();
-            }
-
-            _curAnim.Dirty = false;
         }
 
         protected void UpdateRect()
