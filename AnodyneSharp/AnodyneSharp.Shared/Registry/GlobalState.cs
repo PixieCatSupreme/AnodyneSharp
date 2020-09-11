@@ -141,8 +141,10 @@ namespace AnodyneSharp.Registry
 
         public static Pixelate pixelation = new Pixelate();
 
+        public static Wave wave = new Wave();
+
         public static List<IFullScreenEffect> gameEffects = new List<IFullScreenEffect>() { new Static(), darkness };
-        public static List<IFullScreenEffect> fullScreenEffects = new List<IFullScreenEffect>() { death_fadein, black_overlay, new Glitch(), new GrayScale(), pixelation };
+        public static List<IFullScreenEffect> fullScreenEffects = new List<IFullScreenEffect>() { death_fadein, black_overlay, new Glitch(), new GrayScale(), pixelation, wave };
         public static IEnumerable<IFullScreenEffect> AllEffects
         {
             get

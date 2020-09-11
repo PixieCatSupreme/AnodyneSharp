@@ -202,6 +202,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
                 if (_opacity > 0.3f && other is Player p)
                 {
                     p.reversed = true;
+                    GlobalState.wave.active = true;
                 }
                 else if (other is Broom broom)
                 {

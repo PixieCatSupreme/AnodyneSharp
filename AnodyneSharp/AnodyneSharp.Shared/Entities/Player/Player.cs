@@ -225,7 +225,7 @@ namespace AnodyneSharp.Entities
                 {
                     reversed = false;
                     _revTimer = 0;
-                    //TODO Disable Wave effect
+                    GlobalState.wave.active = false;
                 }
             }
 
