@@ -13,6 +13,7 @@ namespace AnodyneSharp.Drawing.Effects
     {
         Texture2D darkness;
         float alpha;
+        float target_alpha;
 
         GraphicsDevice device;
         RenderTarget2D lights_applied;
@@ -20,17 +21,47 @@ namespace AnodyneSharp.Drawing.Effects
 
         static readonly BlendState screen = new BlendState() {
             ColorBlendFunction = BlendFunction.Add,
-            AlphaBlendFunction = BlendFunction.Add,
             ColorSourceBlend = Blend.One,
             ColorDestinationBlend = Blend.InverseSourceColor,
+            AlphaBlendFunction = BlendFunction.Add,
             AlphaSourceBlend = Blend.Zero,
             AlphaDestinationBlend = Blend.One
         };
 
+        static readonly BlendState multiply = new BlendState()
+        {
+            ColorBlendFunction = BlendFunction.Add,
+            ColorSourceBlend = Blend.DestinationColor,
+            ColorDestinationBlend = Blend.Zero
+        };
+
+        public void TargetAlpha(float d)
+        {
+            target_alpha = d;
+            if(alpha == 0f)
+            {
+                alpha = 0.1f;
+            }
+        }
 
         public bool Active()
         {
             return alpha > 0;
+        }
+
+        public void Update()
+        {
+            if (alpha != target_alpha)
+            {
+                if (alpha > target_alpha)
+                {
+                    alpha = Math.Max(alpha - 0.8f * GameTimes.DeltaTime, target_alpha);
+                }
+                else
+                {
+                    alpha = Math.Min(alpha + 0.8f * GameTimes.DeltaTime, target_alpha);
+                }
+            }
         }
 
         public void Load(ContentManager content, GraphicsDevice graphicsDevice)
@@ -40,13 +71,11 @@ namespace AnodyneSharp.Drawing.Effects
             blend = content.Load<Effect>("effects/blend");
 
             blend.Parameters["HardLight"].SetValue(false);
-            blend.Parameters["blendAlpha"].SetValue(1.0f);
             blend.Parameters["OverlayTex"].SetValue(lights_applied);
         }
 
         public void Render(SpriteBatch batch, Texture2D screen)
         {
-            blend.Parameters["blendAlpha"].SetValue(alpha);
 
             RenderTargetBinding[] resultTargets = device.GetRenderTargets();
 
@@ -59,6 +88,10 @@ namespace AnodyneSharp.Drawing.Effects
                 batch.Draw(darkness, screen.Bounds, Color.White);
                 batch.End();
             }
+            else
+            {
+                device.Clear(Color.Black);
+            }
 
             //todo: draw lights
 
@@ -66,18 +99,29 @@ namespace AnodyneSharp.Drawing.Effects
 
             if (darkness != null)
             {
-                blend.Parameters["OverlayTex"].SetValue(darkness);
+                blend.Parameters["OverlayTex"].SetValue(lights_applied);
                 batch.Begin(samplerState: SamplerState.PointClamp, effect: blend);
                 batch.Draw(screen, screen.Bounds, Color.White);
                 batch.End();
             }
             else
             {
-                batch.Begin(SpriteSortMode.Immediate, samplerState: SamplerState.PointClamp);
+                device.Clear(Color.White);
+
+                batch.Begin(SpriteSortMode.Immediate, blendState:multiply, samplerState: SamplerState.PointClamp);
                 batch.Draw(screen, screen.Bounds, Color.White);
-                batch.Draw(lights_applied, lights_applied.Bounds, Color.White*alpha);
+                batch.Draw(lights_applied, lights_applied.Bounds, Color.White);
                 batch.End();
             }
+
+            //Deal with darkness-wide alpha, blend darkness-applied screen with original
+            if (alpha != 1f)
+            {
+                batch.Begin(SpriteSortMode.Immediate, samplerState: SamplerState.PointClamp);
+                batch.Draw(screen, screen.Bounds, Color.White * (1 - alpha));
+                batch.End();
+            }
+
         }
 
         public void MapChange()
@@ -100,6 +144,8 @@ namespace AnodyneSharp.Drawing.Effects
             {
                 alpha = 0;
             }
+
+            target_alpha = alpha;
         }
     }
 }

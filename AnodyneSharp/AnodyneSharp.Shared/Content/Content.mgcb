@@ -1879,6 +1879,18 @@
 /processorParam:TextureFormat=Color
 /build:textures/sprites/decoration/overlay_WINDMILL_water.png
 
+#begin textures/sprites/decoration/overlays/apartment_overlay.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:textures/sprites/decoration/overlays/apartment_overlay.png
+
 #begin textures/sprites/decoration/overlays/beach_hardlight.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1914,6 +1926,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:textures/sprites/decoration/overlays/cliff_overlay.png
+
+#begin textures/sprites/decoration/overlays/crowd_overlay.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:textures/sprites/decoration/overlays/crowd_overlay.png
 
 #begin textures/sprites/decoration/overlays/ending_overlay.png
 /importer:TextureImporter
@@ -1962,6 +1986,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:textures/sprites/decoration/overlays/happy_hardlight.png
+
+#begin textures/sprites/decoration/overlays/hotel_overlay.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:textures/sprites/decoration/overlays/hotel_overlay.png
 
 #begin textures/sprites/decoration/overlays/hotel_roof_fg_overlay.png
 /importer:TextureImporter

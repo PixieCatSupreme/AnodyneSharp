@@ -24,8 +24,6 @@ sampler2D OverlaySampler = sampler_state {
 
 bool HardLight;
 
-float blendAlpha;
-
 struct VertexShaderOutput
 {
 	float4 Position : SV_POSITION0;
@@ -41,7 +39,7 @@ float4 MainPS(VertexShaderOutput input) : COLOR
 		return color;
 	blend.rgb /= blend.a;
 	blend.rgb = HardLight ? blendOverlay(blend.rgb, color.rgb) : blendOverlay(color.rgb, blend.rgb);
-	color.rgb = blend.rgb * blendAlpha * blend.a + color.rgb * (1 - blendAlpha * blend.a);
+	color.rgb = blend.rgb * blend.a + color.rgb * (1 - blend.a);
 	return color;
 }
 
