@@ -2107,7 +2107,7 @@
         <sprite guid="D301BDA2-0B72-0F41-2EAC-122A315396F3" x="64" y="208" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="54" frame="1"/>
         <sprite guid="498A84A0-E4D2-CE2C-807C-F75AD66CAC21" x="544" y="608" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="52" frame="0"/>
         <sprite guid="9B2F1A6C-18F3-418C-3C20-3AF3270AD43C" x="560" y="592" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="52" frame="0"/>
-        <sprite guid="68074C23-8DB2-17D3-7F94-801EDED10BAE" x="560" y="576" Z="0" angle="0" scaleX="0.1" scaleY="1" flipped="false" idx="52" frame="0"/>
+        <sprite guid="68074C23-8DB2-17D3-7F94-801EDED10BAE" x="560" y="576" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="52" frame="0"/>
         <sprite guid="02E48A4A-B10C-407C-DC63-8A66CD6B5B32" x="592" y="560" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="52" frame="0"/>
         <sprite guid="C8D3BBD4-F74E-2886-6D77-465BF01960EE" x="592" y="528" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="52" frame="0"/>
         <sprite guid="260AF256-FEB1-ED3B-2F5B-E1659E9E23EA" x="608" y="544" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="52" frame="0"/>
