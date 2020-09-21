@@ -78,6 +78,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\HugeFuckingStag.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Rock.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Sage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Decorations\Eye_Light.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Lights\Light.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Player\Broom.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\NamedEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Bedroom\Slime.cs" />

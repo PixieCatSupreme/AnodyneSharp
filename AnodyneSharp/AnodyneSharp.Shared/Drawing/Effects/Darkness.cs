@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Registry;
+﻿using AnodyneSharp.Entities.Lights;
+using AnodyneSharp.Registry;
 using AnodyneSharp.Resources;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -19,7 +20,10 @@ namespace AnodyneSharp.Drawing.Effects
         RenderTarget2D lights_applied;
         Effect blend;
 
-        static readonly BlendState screen = new BlendState() {
+        Camera camera;
+        List<Light> lights = new List<Light>();
+
+        static readonly BlendState screenblend = new BlendState() {
             ColorBlendFunction = BlendFunction.Add,
             ColorSourceBlend = Blend.One,
             ColorDestinationBlend = Blend.InverseSourceColor,
@@ -34,6 +38,13 @@ namespace AnodyneSharp.Drawing.Effects
             ColorSourceBlend = Blend.DestinationColor,
             ColorDestinationBlend = Blend.Zero
         };
+
+        //Called during draw phase of entities
+        public void AddLight(Light light)
+        {
+            if (!Active()) return;
+            lights.Add(light);
+        }
 
         public void TargetAlpha(float d)
         {
@@ -93,7 +104,16 @@ namespace AnodyneSharp.Drawing.Effects
                 device.Clear(Color.Black);
             }
 
-            //todo: draw lights
+            if(lights.Count > 0)
+            {
+                batch.Begin(SpriteSortMode.Immediate, blendState: screenblend, samplerState: SamplerState.PointClamp, transformMatrix:camera.Transform);
+                foreach (Light light in lights)
+                {
+                    light.DrawLight();
+                }
+                batch.End();
+                lights.Clear();
+            }
 
             device.SetRenderTargets(resultTargets);
 
@@ -122,6 +142,11 @@ namespace AnodyneSharp.Drawing.Effects
                 batch.End();
             }
 
+        }
+
+        internal void SetCamera(Camera camera)
+        {
+            this.camera = camera;
         }
 
         public void MapChange()

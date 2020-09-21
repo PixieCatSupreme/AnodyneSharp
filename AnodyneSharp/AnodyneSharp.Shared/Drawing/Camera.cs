@@ -15,9 +15,6 @@ namespace AnodyneSharp.Drawing
         public Vector3 Offset { get; set; }
         public float Zoom { get; set; }
 
-        private float _screenWidth;
-        private float _screenHeight;
-
         public Vector2 Position2D
         {
             get
@@ -42,17 +39,6 @@ namespace AnodyneSharp.Drawing
         {
             Position = new Vector3(x, y, 0);
             Zoom = 1;
-        }
-
-        /// <summary>
-        /// Initializes the camera and sets the view.
-        /// </summary>
-        /// <param name="screenWidth"></param>
-        /// <param name="screenHeight"></param>
-        public void Initialize(float screenWidth, float screenHeight)
-        {
-            _screenWidth = screenWidth;
-            _screenHeight = screenHeight;
         }
 
         /// <summary>

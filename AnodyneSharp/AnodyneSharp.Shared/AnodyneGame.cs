@@ -84,7 +84,6 @@ namespace AnodyneSharp
 #endif
 
             _camera = new Camera();
-            _camera.Initialize(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
 
             SpriteDrawer.Initialize(graphics.GraphicsDevice);
 
@@ -99,6 +98,8 @@ namespace AnodyneSharp
             _currentState.Create();
 
             _fpsLabel.Initialize();
+
+            GlobalState.darkness.SetCamera(_camera);
         }
 
         /// <summary>
