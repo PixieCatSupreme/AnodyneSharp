@@ -2355,7 +2355,7 @@
         <sprite guid="F4B01217-9115-D231-A59A-E54C106635D8" x="448" y="256" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="60">
           <properties/>
         </sprite>
-        <sprite guid="729A84CB-16BA-0549-BABA-9204F1CDF3C3" x="356" y="253" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="50" frame="6">
+        <sprite guid="729A84CB-16BA-0549-BABA-9204F1CDF3C3" x="356" y="252" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="50" frame="6">
           <properties/>
         </sprite>
         <sprite guid="0D3A6B26-B6F0-992D-8879-8CD015E10EC2" x="414" y="252" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="50" frame="6">
@@ -2364,7 +2364,7 @@
         <sprite guid="C4377481-1740-AD87-9494-2C77B3952145" x="396" y="252" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="50" frame="6">
           <properties/>
         </sprite>
-        <sprite guid="0F441FFC-7E96-7429-C43E-DDF7B12DA704" x="376" y="253" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="50" frame="6">
+        <sprite guid="0F441FFC-7E96-7429-C43E-DDF7B12DA704" x="376" y="252" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="50" frame="6">
           <properties/>
         </sprite>
         <sprite guid="2998777C-710F-2E5C-7A06-1ADE4070BDE7" x="396" y="50" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="149" frame="4">

@@ -581,10 +581,10 @@
     <Door x="112" y="112" guid="F29185BC-FD9E-CB95-B947-97B8E074141C" frame="6" type="4" />
     <Console x="336" y="256" guid="C3C267E5-F438-6954-5541-A441EE2FEBD3" frame="0" alive="false"/>
     <Console x="448" y="256" guid="F4B01217-9115-D231-A59A-E54C106635D8" frame="0" alive="false"/>
-    <Gate x="356" y="253" guid="729A84CB-16BA-0549-BABA-9204F1CDF3C3" frame="6" alive="true"/>
+    <Gate x="356" y="252" guid="729A84CB-16BA-0549-BABA-9204F1CDF3C3" frame="6" alive="true"/>
     <Gate x="414" y="252" guid="0D3A6B26-B6F0-992D-8879-8CD015E10EC2" frame="6" alive="true"/>
     <Gate x="396" y="252" guid="C4377481-1740-AD87-9494-2C77B3952145" frame="6" alive="true"/>
-    <Gate x="376" y="253" guid="0F441FFC-7E96-7429-C43E-DDF7B12DA704" frame="6" alive="true"/>
+    <Gate x="376" y="252" guid="0F441FFC-7E96-7429-C43E-DDF7B12DA704" frame="6" alive="true"/>
     <Door x="396" y="50" guid="2998777C-710F-2E5C-7A06-1ADE4070BDE7" frame="4" type="4" />
     <Gate x="433" y="252" guid="D8ECB281-B49A-7A03-6A87-95AD8FDC27CD" frame="6" alive="true"/>
     <Gate x="240" y="336" guid="9817F5DD-28D4-767F-DFEF-79C1FF21453C" frame="5" alive="true"/>
