@@ -434,3 +434,4 @@ __pycache__/
 # End of https://www.gitignore.io/api/csharp,visualstudio
 /AnodyneSharp/AnodyneSharp.Shared/Content/Intra.dam.bak
 *.pubxml
+*.dam.bak

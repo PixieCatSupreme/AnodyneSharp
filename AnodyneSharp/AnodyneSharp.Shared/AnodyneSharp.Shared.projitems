@@ -201,23 +201,6 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\SUBURB\TileAnims\suburbs_anims.dat" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\TERMINAL\TileAnims\terminal.dat" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\WINDMILL\TileAnims\windmill_drops.dat" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\MiniMaps\Minimap_Apartment.csv" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\MiniMaps\Minimap_Beach.csv" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\MiniMaps\Minimap_Bedroom.csv" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\MiniMaps\Minimap_Cell.csv" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\MiniMaps\Minimap_Circus.csv" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\MiniMaps\Minimap_Cliff.csv" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\MiniMaps\Minimap_Crowd.csv" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\MiniMaps\Minimap_Fields.csv" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\MiniMaps\Minimap_Forest.csv" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\MiniMaps\Minimap_Hotel.csv" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\MiniMaps\Minimap_Overworld.csv" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\MiniMaps\Minimap_Redcave.csv" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\MiniMaps\Minimap_Redsea.csv" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\MiniMaps\Minimap_Space.csv" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\MiniMaps\Minimap_Street.csv" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\MiniMaps\Minimap_Suburb.csv" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\MiniMaps\Minimap_Terminal.csv" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\NEXUS\BG.csv" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\OVERWORLD\BG.csv" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\OVERWORLD\BG2.csv" />
@@ -280,7 +263,6 @@
     <Folder Include="$(MSBuildThisFileDirectory)Content\Maps\REDSEA\" />
     <Folder Include="$(MSBuildThisFileDirectory)Content\Maps\SPACE\" />
     <Folder Include="$(MSBuildThisFileDirectory)Content\Maps\STREET\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Content\MiniMaps\" />
     <Folder Include="$(MSBuildThisFileDirectory)Entities\Gadget\Treasures\Base\" />
     <Folder Include="$(MSBuildThisFileDirectory)UI\Health\" />
   </ItemGroup>
@@ -918,5 +900,22 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\BEACH\TileAnims\shoreline.dat" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\BEACH\TileAnims\beach_anims.dat" />
     <None Include="$(MSBuildThisFileDirectory)Content\effects\wave.fx" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\MiniMaps\mapCSV_Minimap_Apartment.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\MiniMaps\mapCSV_Minimap_Beach.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\MiniMaps\mapCSV_Minimap_Bedroom.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\MiniMaps\mapCSV_Minimap_Cell.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\MiniMaps\mapCSV_Minimap_Circus.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\MiniMaps\mapCSV_Minimap_Cliff.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\MiniMaps\mapCSV_Minimap_Crowd.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\MiniMaps\mapCSV_Minimap_Fields.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\MiniMaps\mapCSV_Minimap_Forest.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\MiniMaps\mapCSV_Minimap_Hotel.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\MiniMaps\mapCSV_Minimap_Overworld.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\MiniMaps\mapCSV_Minimap_Redcave.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\MiniMaps\mapCSV_Minimap_Redsea.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\MiniMaps\mapCSV_Minimap_Space.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\MiniMaps\mapCSV_Minimap_Street.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\MiniMaps\mapCSV_Minimap_Suburb.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\MiniMaps\mapCSV_Minimap_Terminal.csv" />
   </ItemGroup>
 </Project>
