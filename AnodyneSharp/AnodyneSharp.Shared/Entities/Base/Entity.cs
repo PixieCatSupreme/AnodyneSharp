@@ -162,6 +162,8 @@ namespace AnodyneSharp.Entities
                     _curAnim = _animations[i];
                     _curAnim.Reset();
 
+                    UpdateRect();
+
                     AnimationChanged(AnimName);
                     return;
                 }
