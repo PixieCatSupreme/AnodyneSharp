@@ -86,11 +86,11 @@ namespace AnodyneSharp.Entities.Enemy
                     .Enter((state) => Play("Hurt"))
                     .Event<CollisionEvent<Player>>("Player", (state, p) => p.entity.ReceiveDamage(1))
                     .Condition(() => _health <= 0, (state) => state.Parent.ChangeState("Dying"))
-                    .Condition(() => _curAnim.finished, (state) => state.Parent.ChangeState("Move"))
+                    .Condition(() => _curAnim.Finished, (state) => state.Parent.ChangeState("Move"))
                 .End()
                 .State("Dying")
                     .Enter((state) => Play("Dying"))
-                    .Condition(() => _curAnim.finished, (state) => { _preset.Alive = false; Die(); })
+                    .Condition(() => _curAnim.Finished, (state) => { _preset.Alive = false; Die(); })
                 .End()
                 .Build();
             state.ChangeState("Move");

@@ -1,5 +1,4 @@
 ﻿using AnodyneSharp.Drawing;
-using AnodyneSharp.Entities.Animations;
 using AnodyneSharp.Logging;
 using AnodyneSharp.Resources;
 using AnodyneSharp.Utilities;
@@ -150,7 +149,7 @@ namespace AnodyneSharp.Entities
          */
         public void Play(string AnimName, bool Force = false)
         {
-            if (!Force && (_curAnim != null) && (AnimName == _curAnim.name) && (_curAnim.looped || !_curAnim.finished))
+            if (!Force && _curAnim != null && AnimName == _curAnim.name && !_curAnim.Finished)
             {
                 return;
             }
@@ -161,8 +160,6 @@ namespace AnodyneSharp.Entities
                 {
                     _curAnim = _animations[i];
                     _curAnim.Reset();
-
-                    UpdateRect();
 
                     AnimationChanged(AnimName);
                     return;
@@ -237,7 +234,7 @@ namespace AnodyneSharp.Entities
 
         protected void UpdateAnimation()
         {
-            if ((_curAnim != null) && (_curAnim.delay > 0) && (_curAnim.looped || !_curAnim.finished))
+            if (_curAnim != null)
             {
                 _curAnim.Update();
                 if (_curAnim.Dirty)

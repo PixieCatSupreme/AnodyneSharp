@@ -93,7 +93,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Resources\ContentWriter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Resources\Loading\InputConfigLoader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Resources\ResourceManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Entities\Animations\Anim.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Drawing\Spritesheet\Anim.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\Entity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\EntityPreset.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\GameObject.cs" />

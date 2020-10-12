@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AnodyneSharp.Entities.Animations
+namespace AnodyneSharp
 {
     public class Anim
     {
@@ -19,7 +19,7 @@ namespace AnodyneSharp.Entities.Animations
         private float _frameTimer;
 
 
-        public bool finished;
+        public bool Finished => delay == 0 || (!looped && _curIndex == frames.Length - 1);
 
         public Anim(string name, int[] frames, float frameRate, bool looped = true)
         {
@@ -46,19 +46,13 @@ namespace AnodyneSharp.Entities.Animations
             _curIndex = 0;
             _frameTimer = 0;
 
-            if (delay <= 0)
-            {
-                finished = true;
-            }
-            else
-            {
-                finished = false;
-            }
             Dirty = true;
         }
 
         public void Update()
         {
+            if (Finished) return;
+
             _frameTimer += GameTimes.DeltaTime;
             while (_frameTimer > delay)
             {
@@ -69,8 +63,6 @@ namespace AnodyneSharp.Entities.Animations
                     {
                         _curIndex = 0;
                     }
-
-                    finished = true;
                 }
                 else
                 {

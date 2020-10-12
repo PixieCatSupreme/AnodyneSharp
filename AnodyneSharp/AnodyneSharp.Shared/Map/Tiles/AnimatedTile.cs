@@ -1,5 +1,4 @@
-﻿using AnodyneSharp.Entities.Animations;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -23,10 +22,7 @@ namespace AnodyneSharp.Map.Tiles
 
         public void UpdateAnimation()
         {
-            if ((_curAnim != null) && (_curAnim.delay > 0) && (_curAnim.looped || !_curAnim.finished))
-            {
-                _curAnim.Update();
-            }
+            _curAnim.Update();
 
             if (_curAnim.Dirty)
             {

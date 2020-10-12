@@ -223,7 +223,7 @@ namespace AnodyneSharp.Entities.Enemy
             public override void Update()
             {
                 base.Update();
-                if(_curAnim.finished)
+                if(_curAnim.Finished)
                 {
                     Die();
                 }
@@ -255,7 +255,7 @@ namespace AnodyneSharp.Entities.Enemy
                     .End()
                     .State("Poof")
                         .Enter((state) => Play("poof"))
-                        .Condition(()=> _curAnim.finished, (s) => exists=false)
+                        .Condition(()=> _curAnim.Finished, (s) => exists=false)
                     .End()
                     .Build();
             }

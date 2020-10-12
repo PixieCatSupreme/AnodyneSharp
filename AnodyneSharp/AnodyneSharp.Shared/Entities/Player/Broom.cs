@@ -29,7 +29,7 @@ namespace AnodyneSharp.Entities
         public static string Wide_Attack_v = "wide_attack_v";
         public static string Long_Attack_v = "long_attack_h";
 
-        public bool AnimFinished => _curAnim.finished;
+        public bool AnimFinished => _curAnim.Finished;
 
         //public Dust dust;
         public bool just_released_dust;
@@ -83,7 +83,7 @@ namespace AnodyneSharp.Entities
 
         public override void Update()
         {
-            if (_curAnim.finished)
+            if (_curAnim.Finished)
             {
                 exists = false;
 
