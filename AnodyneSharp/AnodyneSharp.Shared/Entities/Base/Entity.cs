@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Drawing.Spritesheet;
 using AnodyneSharp.Logging;
 using AnodyneSharp.Resources;
 using AnodyneSharp.Utilities;
@@ -21,10 +22,8 @@ namespace AnodyneSharp.Entities
     {
         private const float FlickerLength = 0.05f;
 
-        public Texture2D Texture;
+        public Spritesheet sprite;
 
-        public int frameWidth;
-        public int frameHeight;
         public Vector2 offset;
         public Facing facing;
         public DrawOrder layer;
@@ -33,8 +32,6 @@ namespace AnodyneSharp.Entities
 
         protected Anim _curAnim;
         protected float _opacity;
-
-        protected Rectangle spriteRect;
 
         protected Shadow shadow;
 
@@ -55,7 +52,7 @@ namespace AnodyneSharp.Entities
         {
             get
             {
-                return Position - offset + new Vector2(frameWidth/2,frameHeight/2);
+                return Position - offset + new Vector2(sprite.Width/2,sprite.Height/2);
             }
         }
 
@@ -63,9 +60,6 @@ namespace AnodyneSharp.Entities
             : base(pos)
         {
             _animations = new List<Anim>();
-
-            frameWidth = 0;
-            frameHeight = 0;
 
             this.layer = layer;
             _opacity = 1f;
@@ -83,9 +77,6 @@ namespace AnodyneSharp.Entities
         {
             _animations = new List<Anim>();
 
-            this.frameWidth = frameWidth;
-            this.frameHeight = frameHeight;
-
             this.layer = layer;
             _opacity = 1f;
 
@@ -102,9 +93,6 @@ namespace AnodyneSharp.Entities
         {
             _animations = new List<Anim>();
 
-            this.frameWidth = frameWidth;
-            this.frameHeight = frameHeight;
-
             this.layer = layer;
 
             _opacity = 1f;
@@ -114,7 +102,7 @@ namespace AnodyneSharp.Entities
 
             color = Color.White;
 
-            SetTexture(textureName);
+            SetTexture(textureName, frameWidth, frameHeight);
         }
         /**
  * Adds a new animation to the sprite.
@@ -210,9 +198,9 @@ namespace AnodyneSharp.Entities
         {
             if (visible && exists)
             {
-                SpriteDrawer.DrawSprite(Texture, 
-                    MathUtilities.CreateRectangle(Position.X - offset.X*scale, Position.Y - offset.Y*scale, frameWidth*scale, frameHeight*scale), 
-                    spriteRect,
+                SpriteDrawer.DrawSprite(sprite.Tex, 
+                    MathUtilities.CreateRectangle(Position.X - offset.X*scale, Position.Y - offset.Y*scale, sprite.Width*scale, sprite.Height*scale), 
+                    sprite.GetRect(_curAnim.Frame),
                     color * _opacity,
                     rotation,
                     _flip,
@@ -229,7 +217,6 @@ namespace AnodyneSharp.Entities
         public void SetFrame(int frame)
         {
             _curAnim = new Anim("forcedFrame", new int[] { frame }, 1);
-            UpdateRect();
         }
 
         protected void UpdateAnimation()
@@ -237,34 +224,10 @@ namespace AnodyneSharp.Entities
             if (_curAnim != null)
             {
                 _curAnim.Update();
-                if (_curAnim.Dirty)
-                {
-                    UpdateRect();
-                }
 
                 _curAnim.Dirty = false;
             }
 
-        }
-
-        protected void UpdateRect()
-        {
-            if (Texture == null)
-            {
-                return;
-            }
-            int indexX = _curAnim.Frame * frameWidth;
-            int indexY = 0;
-
-            //Handle sprite sheets
-            int texWidth = Texture.Bounds.Width;
-            if (indexX >= texWidth)
-            {
-                indexY = indexX / texWidth * frameHeight;
-                indexX %= texWidth;
-            }
-
-            spriteRect = new Rectangle(indexX, indexY, frameWidth, frameHeight);
         }
 
         protected int[] CreateAnimFrameArray(params int[] frames)
@@ -272,19 +235,19 @@ namespace AnodyneSharp.Entities
             return frames;
         }
 
-        protected virtual bool SetTexture(string textureName, bool ignoreChaos = false)
+        protected virtual bool SetTexture(string textureName, int frameWidth, int frameHeight, bool ignoreChaos = false)
         {
             this.textureName = textureName;
-            Texture = ResourceManager.GetTexture(textureName, ignoreChaos);
+            sprite = new Spritesheet(ResourceManager.GetTexture(textureName, ignoreChaos),frameWidth,frameHeight);
 
             SetFrame(0);
 
-            return Texture != null;
+            return sprite.Tex != null;
         }
 
         public virtual void ReloadTexture(bool ignoreChaos = false)
         {
-            Texture = ResourceManager.GetTexture(textureName, ignoreChaos);
+            sprite = new Spritesheet(ResourceManager.GetTexture(textureName, ignoreChaos), sprite.Width, sprite.Height);
         }
 
         public static Vector2 FacingDirection(Facing f)
@@ -296,7 +259,7 @@ namespace AnodyneSharp.Entities
 
         protected virtual void CenterOffset()
         {
-            offset = (new Vector2(frameWidth, frameHeight) - new Vector2(width, height)) / 2;
+            offset = (new Vector2(sprite.Width, sprite.Height) - new Vector2(width, height)) / 2;
             Position += offset;
         }
 

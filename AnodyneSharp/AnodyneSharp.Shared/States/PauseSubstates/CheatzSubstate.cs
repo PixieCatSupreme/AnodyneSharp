@@ -22,7 +22,7 @@ namespace AnodyneSharp.States.PauseSubstates
             _cheatLabel.Initialize(true);
             _cheatLabel.SetText("");
 
-            _selector.Position = _cheatLabel.Position - new Vector2(_selector.frameWidth, -2);
+            _selector.Position = _cheatLabel.Position - new Vector2(_selector.sprite.Width, -2);
         }
 
         public override void DrawUI()

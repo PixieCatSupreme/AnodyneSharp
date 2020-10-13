@@ -207,7 +207,7 @@ namespace AnodyneSharp.States.PauseSubstates
                     break;
             }
 
-            _selector.Position -= new Vector2(_selector.frameWidth, -2);
+            _selector.Position -= new Vector2(_selector.sprite.Width, -2);
 
             if (!ignoreOffset)
             {

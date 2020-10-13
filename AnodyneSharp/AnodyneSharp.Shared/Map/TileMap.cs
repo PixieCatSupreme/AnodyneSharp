@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Drawing.Spritesheet;
 using AnodyneSharp.Entities;
 using AnodyneSharp.Map.Tiles;
 using AnodyneSharp.Registry;
@@ -24,9 +25,7 @@ namespace AnodyneSharp.Map
 
         protected int totalTiles;
 
-        protected Texture2D tiles;
-        private int _tileWidth;
-        private int _tileHeight;
+        protected Spritesheet tiles;
         private Tile[] _tileObjects;
 
         private DrawOrder _layer;
@@ -48,7 +47,7 @@ namespace AnodyneSharp.Map
             WidthInTiles = 0;
             data = new List<int>();
 
-            tiles = tileMap;
+            tiles = new Spritesheet(tileMap, GameConstants.TILE_WIDTH, GameConstants.TILE_HEIGHT);
             animatedTiles = new SortedList<int, AnimatedTile>();
 
             _layer = layer;
@@ -71,23 +70,9 @@ namespace AnodyneSharp.Map
 
             totalTiles = WidthInTiles * HeightInTiles;
 
-            //Figure out the size of the tiles
-            tiles = tileMap;
-            _tileWidth = GameConstants.TILE_WIDTH;
-            if (_tileWidth == 0)
-            {
-                _tileWidth = tiles.Height;
-            }
-
-            _tileHeight = GameConstants.TILE_HEIGHT;
-            if (_tileHeight == 0)
-            {
-                _tileHeight = _tileWidth;
-            }
-
 
             //create some tile objects that we'll use for overlap checks (one for each tile)
-            int l = (tiles?.Width ?? 0) / _tileWidth * (tiles?.Height ?? 0) / _tileHeight;
+            int l = (tiles.Tex?.Width ?? 0) / tiles.Width * (tiles.Tex?.Height ?? 0) / tiles.Height;
 
             _tileObjects = new Tile[l];
 
@@ -95,12 +80,12 @@ namespace AnodyneSharp.Map
             {
                 //Tile 0 is invisible and has no collision, all others default to being visible and being collidable from all directions.
                 //Default gets overridden by SetTileProperties later on
-                _tileObjects[i] = new Tile(_tileWidth, _tileHeight, (i >= 1), (i >= 1) ? Touching.ANY : Touching.NONE);
+                _tileObjects[i] = new Tile(tiles.Width, tiles.Height, (i >= 1), (i >= 1) ? Touching.ANY : Touching.NONE);
             }
 
             //Then go through and create the actual map
-            width = WidthInTiles * _tileWidth;
-            height = HeightInTiles * _tileHeight;
+            width = WidthInTiles * tiles.Width;
+            height = HeightInTiles * tiles.Height;
             _rects = new Rectangle?[totalTiles];
             for (int i = 0; i < totalTiles; i++)
             {
@@ -194,16 +179,16 @@ namespace AnodyneSharp.Map
 
                         if (!ignoreEmpty || tile != 0)
                         {
-                            Texture2D tex = tiles;
+                            Texture2D tex = tiles.Tex;
                             Rectangle source = rect.Value;
 
                             if (animatedTiles.TryGetValue(tile, out AnimatedTile animTile))
                             {
-                                tex = animTile.Texture;
+                                tex = animTile.sprite.Tex;
                                 source = animTile.spriteRect;
                             }
 
-                            SpriteDrawer.DrawSprite(tex, new Rectangle(x * _tileWidth, y * _tileHeight, _tileWidth, _tileHeight), source, Z: z);
+                            SpriteDrawer.DrawSprite(tex, new Rectangle(x * tiles.Width, y * tiles.Height, tiles.Width, tiles.Height), source, Z: z);
                         }
                     }
                 }
@@ -221,7 +206,7 @@ namespace AnodyneSharp.Map
 
         public void ReloadTexture()
         {
-            tiles = ResourceManager.GetTexture(textureName);
+            tiles = new Spritesheet(ResourceManager.GetTexture(textureName), tiles.Width, tiles.Height);
         }
 
         protected void UpdateTile(int Index)
@@ -234,15 +219,7 @@ namespace AnodyneSharp.Map
                 return;
             }
 
-            int rx = d * _tileWidth;
-            int ry = 0;
-
-            if (rx >= tiles.Width)
-            {
-                ry = (rx / tiles.Width) * _tileHeight;
-                rx %= tiles.Width;
-            }
-            _rects[Index] = new Rectangle(rx, ry, _tileWidth, _tileHeight);
+            _rects[Index] = tiles.GetRect(d);
         }
     }
 }

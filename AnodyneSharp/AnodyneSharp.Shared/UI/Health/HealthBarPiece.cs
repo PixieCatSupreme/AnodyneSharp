@@ -19,16 +19,12 @@ namespace AnodyneSharp.UI
         public const int FULL_FRAME = 0;
         public const int EMPTY_FRAME = 1;
 
-        public const string Health_Piece_Sprite = "health_piece";
-
         public HealthBarPiece(Vector2 pos)
-            :base(pos, BOX_WIDTH, BOX_HEIGHT, DrawOrder.UI_OBJECTS)
+            :base(pos, "health_piece", BOX_WIDTH, BOX_HEIGHT, DrawOrder.UI_OBJECTS)
         {
             AddAnimation("flash", CreateAnimFrameArray(0, 2), 7, true);
             AddAnimation("full", CreateAnimFrameArray(0), 0, false);
             AddAnimation("empty", CreateAnimFrameArray(1), 0, false);
-
-            SetTexture( Health_Piece_Sprite, true);
 
             Play("full");
         }

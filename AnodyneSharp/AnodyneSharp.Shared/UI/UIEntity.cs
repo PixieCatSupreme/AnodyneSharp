@@ -31,13 +31,13 @@ namespace AnodyneSharp.UI
         {
             if (visible)
             {
-                SpriteDrawer.DrawGuiSprite(Texture, Position - offset, spriteRect, Z: DrawingUtilities.GetDrawingZ(layer));
+                SpriteDrawer.DrawGuiSprite(sprite.Tex, Position - offset, sprite.GetRect(_curAnim.Frame), Z: DrawingUtilities.GetDrawingZ(layer));
             }
         }
 
-        protected override bool SetTexture(string textureName, bool ignoreChaos = false)
+        protected override bool SetTexture(string textureName, int width, int height, bool ignoreChaos = false)
         {
-            return base.SetTexture(textureName, true);
+            return base.SetTexture(textureName, width, height, true);
         }
 
         public override void ReloadTexture(bool ignoreChaos = false)

@@ -20,43 +20,30 @@ namespace AnodyneSharp.Entities
             : base(parent.Position, DrawOrder.SHADOWS)
         {
             _parent = parent;
-            this.offset = offset - new Vector2(_parent.frameWidth/4, _parent.frameHeight/4);
+            this.offset = offset - new Vector2(_parent.sprite.Width / 4, _parent.sprite.Height / 4);
 
             switch (type)
             {
                 case ShadowType.Normal:
-                    frameWidth = frameHeight = 8;
-
-                    SetTexture("8x8_shadow");
+                    SetTexture("8x8_shadow", 8, 8);
 
                     AddAnimation("get_big", CreateAnimFrameArray(0, 1, 2, 3), fps, false);
                     AddAnimation("get_small", CreateAnimFrameArray(3, 2, 1, 0), fps, false);
                     break;
                 case ShadowType.Big:
-                    frameWidth = 28;
-                    frameHeight = 10;
-
-                    SetTexture("28x10_shadow");
+                    SetTexture("28x10_shadow", 28, 10);
 
                     AddAnimation("get_big", CreateAnimFrameArray(0, 1, 2, 3, 4), fps, false);
                     AddAnimation("get_small", CreateAnimFrameArray(4, 3, 2, 1, 0), fps, false);
                     break;
                 case ShadowType.Tiny:
-                    frameWidth = frameHeight = 3;
-
-                    SetTexture("teeny_shadow");
+                    SetTexture("teeny_shadow", 3, 3);
                     break;
                 case ShadowType.RollerHorizontal:
-                    frameWidth = 128;
-                    frameHeight = 16;
-
-                    SetTexture("spike_roller_horizontal_shadow");
+                    SetTexture("spike_roller_horizontal_shadow", 128, 16);
                     break;
                 case ShadowType.RollerVertical:
-                    frameWidth = 16;
-                    frameHeight = 128;
-
-                    SetTexture("spike_roller_shadow");
+                    SetTexture("spike_roller_shadow", 16, 128);
                     break;
             }
         }

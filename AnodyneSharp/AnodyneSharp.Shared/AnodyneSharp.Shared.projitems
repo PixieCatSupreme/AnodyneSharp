@@ -30,6 +30,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Effects\Static.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Effects\Wave.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\SpriteDrawer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Drawing\Spritesheet\Spritesheet.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\CollisionAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\EntityPool.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\HealthDropper.cs" />

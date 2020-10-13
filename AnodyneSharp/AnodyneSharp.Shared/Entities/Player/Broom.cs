@@ -46,13 +46,11 @@ namespace AnodyneSharp.Entities
 
 
         public Broom(Entity root)
-            : base(new Vector2(root.Position.X - 10, root.Position.Y), 16, 16, Drawing.DrawOrder.ENTITIES)
+            : base(new Vector2(root.Position.X - 10, root.Position.Y), "broom", 16, 16, Drawing.DrawOrder.ENTITIES)
         {
             _root = root;
             exists = false;
             immovable = true;
-
-            SetTexture(Broom_Sprite);
 
             AddAnimation("stab", CreateAnimFrameArray(1, 2, 2, 1, 0, 0), 20, false);
 
@@ -74,7 +72,7 @@ namespace AnodyneSharp.Entities
                     float player_y = MapUtilities.GetInGridPosition(_root.Position).Y;
                     draw_y = player_y + 0.5f;
                 }
-                SpriteDrawer.DrawSprite(Texture, MathUtilities.CreateRectangle(Position.X - offset.X, Position.Y - offset.Y, frameWidth, frameHeight), spriteRect, rotation: rotation, Z: DrawingUtilities.GetDrawingZ(layer, draw_y));
+                SpriteDrawer.DrawSprite(sprite.Tex, MathUtilities.CreateRectangle(Position.X - offset.X, Position.Y - offset.Y, sprite.Width, sprite.Height), sprite.GetRect(_curAnim.Frame), rotation: rotation, Z: DrawingUtilities.GetDrawingZ(layer, draw_y));
 
                 wide_attack.Draw();
                 long_attack.Draw();
@@ -132,15 +130,15 @@ namespace AnodyneSharp.Entities
 
             if (GlobalState.UseCellBroom)
             {
-                SetTexture(Cell_Sprite);
+                SetTexture(Cell_Sprite, sprite.Width, sprite.Height);
             }
             else if (GlobalState.CURRENT_MAP_NAME == "SUBURB")
             {
-                SetTexture(Knife_Sprite);
+                SetTexture(Knife_Sprite, sprite.Width, sprite.Height);
             }
             else
             {
-                SetTexture(Broom_Sprite);
+                SetTexture(Broom_Sprite, sprite.Width, sprite.Height);
             }
         }
 

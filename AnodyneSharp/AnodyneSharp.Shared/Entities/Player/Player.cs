@@ -111,7 +111,7 @@ namespace AnodyneSharp.Entities
         public bool ON_CONVEYER { get; private set; }
 
         public Player(PlayState parent)
-            : base(Vector2.Zero, ORIGINAL_WIDTH, ORIGINAL_HEIGHT, Drawing.DrawOrder.ENTITIES)
+            : base(Vector2.Zero, Player_Sprite, ORIGINAL_WIDTH, ORIGINAL_HEIGHT, Drawing.DrawOrder.ENTITIES)
         {
             DEATH_FRAME = 32;
             this.parent = parent;
@@ -159,11 +159,11 @@ namespace AnodyneSharp.Entities
         {
             if (GlobalState.AlwaysCellGraphics || GlobalState.CURRENT_MAP_NAME == "CELL")
             {
-                SetTexture(Cell_Player_Sprite);
+                SetTexture(Cell_Player_Sprite, 16, 16);
             }
             else
             {
-                SetTexture(Player_Sprite);
+                SetTexture(Player_Sprite, 16, 16);
             }
 
             broom.UpdateBroomType();

@@ -10,13 +10,11 @@ namespace AnodyneSharp.UI.PauseMenu
 {
     public class PauseMenuSelector : UIEntity
     {
-        public PauseMenuSelector(Vector2 pos) 
-            : base(pos,61,15, DrawOrder.PAUSE_SELECTOR)
+        public PauseMenuSelector(Vector2 pos)
+            : base(pos, "menu_select_active", 61, 15, DrawOrder.PAUSE_SELECTOR)
         {
             AddAnimation("flash", CreateAnimFrameArray(0, 1), 4, true);
             AddAnimation("inactive", CreateAnimFrameArray(2), 0, false);
-
-            SetTexture("menu_select_active");
 
             Play("flash");
         }

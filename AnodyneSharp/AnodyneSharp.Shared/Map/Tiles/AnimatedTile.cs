@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AnodyneSharp.Drawing.Spritesheet;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ namespace AnodyneSharp.Map.Tiles
     public class AnimatedTile
     {
         private Anim _curAnim;
-        public Texture2D Texture;
+        public Spritesheet sprite;
 
         public Rectangle spriteRect;
 
@@ -17,7 +18,7 @@ namespace AnodyneSharp.Map.Tiles
         {
             _curAnim = new Anim("a", frames, framerate);
 
-            Texture = texture;
+            sprite = new Spritesheet(texture, 16, 16);
         }
 
         public void UpdateAnimation()
@@ -32,18 +33,7 @@ namespace AnodyneSharp.Map.Tiles
 
         private void UpdateRect()
         {
-            int indexX = _curAnim.Frame * 16;
-            int indexY = 0;
-
-            //Handle sprite sheets
-            int texWidth = Texture.Bounds.Width;
-            if (indexX >= texWidth)
-            {
-                indexY = indexX / texWidth * 16;
-                indexX %= texWidth;
-            }
-
-            spriteRect = new Rectangle(indexX, indexY, 16, 16);
+            spriteRect = sprite.GetRect(_curAnim.Frame);
         }
     }
 }

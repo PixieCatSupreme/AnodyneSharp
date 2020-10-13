@@ -17,18 +17,17 @@ namespace AnodyneSharp.Entities.Interactive
         {
             if (isBigHealth)
             {
-                SetTexture("big_health_pickup");
-                width = frameWidth = 16;
+                SetTexture("big_health_pickup", 16, 16);
                 healingFactor = 3;
             }
             else
             {
-                SetTexture("small_health_pickup");
-                width = frameWidth = 10;
+                SetTexture("small_health_pickup", 16, 10);
             }
 
             AddAnimation("float", CreateAnimFrameArray(0, 1, 2, 3), 5);
-            height = frameHeight = 16;
+            height = sprite.Height;
+            width = sprite.Width;
 
             Play("float");
 

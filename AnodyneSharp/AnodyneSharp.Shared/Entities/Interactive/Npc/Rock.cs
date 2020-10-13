@@ -17,7 +17,6 @@ namespace AnodyneSharp.Entities.Interactive.Npc
             : base(preset.Position, 16, 16, DrawOrder.ENTITIES)
         {
             immovable = true;
-            scene = preset.Frame == 17 ? "melos" : "marina";
 
             string texName = "note_rock";
             int f = 0;
@@ -33,7 +32,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc
                 f = 1;
             }
 
-            SetTexture(texName);
+            SetTexture(texName, 16, 16);
 
             SetFrame(f);
 
