@@ -101,13 +101,9 @@ namespace AnodyneSharp.Map
             Rectangle hitbox = ent.Hitbox;
             for (int y = hitbox.Top / GameConstants.TILE_WIDTH; y <= hitbox.Bottom / GameConstants.TILE_WIDTH; ++y)
             {
-                if (y < 0) continue;
-                if (y >= HeightInTiles) break;
                 if (onlyCurrentScreen && y / GameConstants.SCREEN_HEIGHT_IN_TILES != GlobalState.CURRENT_GRID_Y) continue;
                 for (int x = hitbox.Left / GameConstants.TILE_WIDTH; x <= hitbox.Right / GameConstants.TILE_WIDTH; ++x)
                 {
-                    if (x < 0) continue;
-                    if (x >= WidthInTiles) break;
                     if (onlyCurrentScreen && x / GameConstants.SCREEN_WIDTH_IN_TILES != GlobalState.CURRENT_GRID_X) continue;
 
                     Tile t = _tileObjects[data.GetTile(x, y)];

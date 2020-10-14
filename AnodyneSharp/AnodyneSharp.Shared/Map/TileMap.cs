@@ -20,7 +20,7 @@ namespace AnodyneSharp.Map
             foreach (string row in rows)
             {
                 int[] columns = row.Split(',').Select(int.Parse).ToArray();
-                if(Width != 0 && Width != columns.Length)
+                if (Width != 0 && Width != columns.Length)
                 {
                     throw new FormatException($"Inconsistent row length {Width} vs {columns.Length}!");
                 }
@@ -31,9 +31,10 @@ namespace AnodyneSharp.Map
 
         public int GetTile(int x, int y)
         {
-            if (x >= Width || x < 0 || y < 0 || y >= Height)
-                return 0; //TODO implement PUs
-            return tiles[x + y * Width];
+            int pos = x + y * Width;
+            if (pos >= tiles.Count)
+                return 0;
+            return tiles[pos];
         }
     }
 }
