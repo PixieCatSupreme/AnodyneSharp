@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Entities;
+﻿using AnodyneSharp.Drawing.Spritesheet;
+using AnodyneSharp.Entities;
 using AnodyneSharp.Logging;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Resources;
@@ -26,25 +27,19 @@ namespace AnodyneSharp.Map.Tiles
 
     public static class TileData
     {
-        public static int Overworld_Tileset_Width = 10;
-        public static int Overworld_Tilemap_Solid_Rows = 4;
-        public static int Overworld_Tilemap_Special_Row_offset = 4;
-        public static int Overworld_Tilemap_Nonsolid_Row_offset = 5;
-        public static int Overworld_Tilemap_Nr_Rows = 10;
-
-        public static Texture2D Tiles;
+        public static Spritesheet Tiles;
 
         public static void SetTileset(string MapName)
         {
-            Tiles = ResourceManager.GetTexture($"{MapName.ToLower()}_tilemap", true);
+            Tiles = new Spritesheet(ResourceManager.GetTexture($"{MapName.ToLower()}_tilemap", true), 16, 16);
 
             if (Tiles == null)
             {
-                Tiles = ResourceManager.GetTexture("debug_tilemap", true);
+                Tiles = new Spritesheet(ResourceManager.GetTexture("debug_tilemap", true), 16, 16);
             }
         }
 
-        public static void SetTileProperties(TileMap map, TileMap bg2)
+        public static void SetTileProperties(MapLayer map, MapLayer bg2)
         {
             List<CollissionData> data = GetColData();
             SortedList<int, AnimatedTile> animationData = GetAnimData();

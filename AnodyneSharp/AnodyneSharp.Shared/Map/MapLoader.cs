@@ -14,7 +14,7 @@ namespace AnodyneSharp.Map
             FG
         }
 
-        public static string GetMap(string mapName, int layer = 1)
+        public static TileMap GetMap(string mapName, int layer = 1)
         {
             string CSV = "0,0";
 
@@ -24,7 +24,7 @@ namespace AnodyneSharp.Map
 
             if (layer != 1 && !assembly.GetManifestResourceNames().Contains(path))
             {
-                return CSV;
+                return new TileMap(CSV);
             }
 
             using (Stream stream = assembly.GetManifestResourceStream(path))
@@ -32,13 +32,13 @@ namespace AnodyneSharp.Map
                 if (stream == null)
                 {
                     DebugLogger.AddCritical($"Unable to find map at {path}");
-                    return CSV;
+                    return new TileMap(CSV);
                 }
                 using StreamReader reader = new StreamReader(stream);
                 CSV = reader.ReadToEnd();
             }
 
-            return CSV;
+            return new TileMap(CSV);
         }
     }
 }

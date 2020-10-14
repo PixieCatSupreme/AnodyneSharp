@@ -51,9 +51,9 @@ namespace AnodyneSharp.States
 
         private PlayStateState _state;
 
-        private TileMap _map;
-        private TileMap _map_bg_2; //on top of the bg map
-        private TileMap _map_fg; // on top of all sprites but below darkness
+        private MapLayer _map;
+        private MapLayer _map_bg_2; //on top of the bg map
+        private MapLayer _map_fg; // on top of all sprites but below darkness
 
         private Player _player;
 
@@ -82,9 +82,9 @@ namespace AnodyneSharp.States
 
         public PlayState(Camera camera)
         {
-            _map = new TileMap();
-            _map_bg_2 = new TileMap();
-            _map_fg = new TileMap();
+            _map = new MapLayer();
+            _map_bg_2 = new MapLayer();
+            _map_fg = new MapLayer();
 
             _gridEntities = new List<Entity>();
             _oldEntities = new List<Entity>();
@@ -745,9 +745,7 @@ namespace AnodyneSharp.States
                 GlobalState.MAP_GRID_HEIGHT = _map.HeightInTiles/10;
 
                 _map_bg_2.LoadMap(MapLoader.GetMap(GlobalState.CURRENT_MAP_NAME, 2), TileData.Tiles, DrawOrder.MAP_BG2);
-                _map_bg_2.y = HEADER_HEIGHT;
                 _map_fg.LoadMap(MapLoader.GetMap(GlobalState.CURRENT_MAP_NAME, 3), TileData.Tiles, DrawOrder.MAP_FG);
-                _map_fg.y = HEADER_HEIGHT;
 
                 //Sets tile collission and tile events
                 TileData.SetTileProperties(_map, _map_bg_2);

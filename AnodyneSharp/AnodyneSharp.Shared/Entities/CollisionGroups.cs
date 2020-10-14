@@ -73,7 +73,7 @@ namespace AnodyneSharp.Entities
             }
         }
 
-        public void DoCollision(TileMap bg, TileMap bg2)
+        public void DoCollision(MapLayer bg, MapLayer bg2)
         {
             foreach(Entity e in _mapColliders.Where(e=>e.exists))
             {

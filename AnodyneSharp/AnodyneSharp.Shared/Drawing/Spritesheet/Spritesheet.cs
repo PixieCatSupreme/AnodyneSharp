@@ -12,6 +12,8 @@ namespace AnodyneSharp.Drawing.Spritesheet
         public readonly int Width;
         public readonly int Height;
 
+        public int NumFrames => Tex.Width / Width * Tex.Height / Height;
+
         public Spritesheet(Texture2D tex, int width, int height)
         {
             Tex = tex;
