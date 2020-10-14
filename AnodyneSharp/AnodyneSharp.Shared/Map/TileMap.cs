@@ -32,7 +32,7 @@ namespace AnodyneSharp.Map
         public int GetTile(int x, int y)
         {
             int pos = x + y * Width;
-            if (pos >= tiles.Count)
+            if (pos < 0 || pos >= tiles.Count)
                 return 0;
             return tiles[pos];
         }
