@@ -59,6 +59,8 @@ namespace AnodyneSharp.Map.Tiles
                     bg2.SetTileProperties(d.Start, d.AllowedCollisions, d.CollisionEventType, d.Direction, tileMax: d.End.Value);
                 }
             }
+            //tile 0 never has collision in bg2(important for maps in which 0 does have collision in map, but is used as transparent in bg2)
+            bg2.SetTileProperties(0, Touching.NONE, CollisionEventType.NONE, Touching.NONE);
         }
 
         private static SortedList<int, AnimatedTile> GetAnimData()
