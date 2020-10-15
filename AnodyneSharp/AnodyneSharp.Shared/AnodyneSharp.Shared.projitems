@@ -840,6 +840,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\tilemaps\bedroom_tilemap.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\tilemaps\blank_tilemap.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\tilemaps\blue_tilemap.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Content\textures\tilemaps\cell_tilemap.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\tilemaps\cell_tilemap_old.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\tilemaps\circus_tilemap.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\tilemaps\cliff_tilemap.png" />
@@ -876,7 +877,6 @@
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\tilemaps\street_tilemap.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\tilemaps\suburb_tilemap.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\tilemaps\terminal_tilemap.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\textures\tilemaps\train_tilemap.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\tilemaps\train_tiles.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\tilemaps\windmill_tilemap.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\title\door.png" />

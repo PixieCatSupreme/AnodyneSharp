@@ -23,6 +23,15 @@ namespace AnodyneSharp.Drawing
             }
         }
 
+        public Rectangle Bounds
+        {
+            get
+            {
+                Vector2 pos = Position2D;
+                return new Rectangle((int)pos.X, (int)pos.Y, SCREEN_HEIGHT_IN_PIXELS, SCREEN_HEIGHT_IN_PIXELS);
+            }
+        }
+
         public Camera()
         {
             Position = Vector3.Zero;

@@ -132,13 +132,13 @@ namespace AnodyneSharp.Map
             }
         }
 
-        public void Draw(bool ignoreEmpty = false)
+        public void Draw(Rectangle bounds, bool ignoreEmpty = false)
         {
             float z = DrawingUtilities.GetDrawingZ(_layer);
 
-            for (int y = 0; y < HeightInTiles; y++)
+            for (int y = bounds.Y / GameConstants.TILE_HEIGHT - 1; y < bounds.Bottom / GameConstants.TILE_HEIGHT + 1; y++)
             {
-                for (int x = 0; x < WidthInTiles; x++)
+                for (int x = bounds.X / GameConstants.TILE_WIDTH - 1; x < bounds.Right / GameConstants.TILE_WIDTH + 1; x++)
                 {
                     int tile = data.GetTile(x, y);
                     Rectangle? rect = _rects[tile];
@@ -166,8 +166,6 @@ namespace AnodyneSharp.Map
         public Touching GetCollisionData(Vector2 position)
         {
             position /= GameConstants.TILE_HEIGHT;
-            if (position.X < 0 || position.X >= WidthInTiles || position.Y < 0 || position.Y >= HeightInTiles)
-                return Touching.NONE;
 
             return _tileObjects[data.GetTile((int)position.X, (int)position.Y)].allowCollisions;
         }

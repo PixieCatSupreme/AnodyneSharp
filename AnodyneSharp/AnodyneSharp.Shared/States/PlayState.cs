@@ -115,21 +115,21 @@ namespace AnodyneSharp.States
 #if DEBUG
             if (GlobalState.DrawBG)
             {
-                _map.Draw();
+                _map.Draw(_camera.Bounds);
             }
             if (GlobalState.DrawBG2)
             {
-                _map_bg_2.Draw(true);
+                _map_bg_2.Draw(_camera.Bounds,true);
             }
             if (GlobalState.DrawFG)
             {
-                _map_fg.Draw(true);
+                _map_fg.Draw(_camera.Bounds,true);
             }
 
 #else
-            _map.Draw();
-            _map_bg_2.Draw(true);
-            _map_fg.Draw(true);
+            _map.Draw(_camera.Bounds);
+            _map_bg_2.Draw(_camera.Bounds,true);
+            _map_fg.Draw(_camera.Bounds,true);
 #endif
 
             _player.Draw();
