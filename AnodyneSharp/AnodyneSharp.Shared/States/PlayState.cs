@@ -2,6 +2,7 @@
 using AnodyneSharp.Dialogue;
 using AnodyneSharp.Drawing;
 using AnodyneSharp.Drawing.Effects;
+using AnodyneSharp.Drawing.Spritesheet;
 using AnodyneSharp.Entities;
 using AnodyneSharp.Entities.Enemy;
 using AnodyneSharp.Input;
@@ -19,6 +20,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using static AnodyneSharp.Registry.GameConstants;
 
 namespace AnodyneSharp.States
@@ -72,6 +74,7 @@ namespace AnodyneSharp.States
         private State _childState;
 
         private UILabel _keyValueLabel;
+        private Spritesheet _miniminimap;
 
         private Texture2D _equippedBroomBorder;
         private Texture2D _equippedBroomIcon;
@@ -106,6 +109,8 @@ namespace AnodyneSharp.States
             _header = ResourceManager.GetTexture(UiHeader, true);
 
             _equippedBroomBorder = ResourceManager.GetTexture("frame_icon", true);
+
+            _miniminimap = new Spritesheet(ResourceManager.GetTexture("mini_minimap_tiles", true),5,5);
 
             Warp();
         }
@@ -171,6 +176,16 @@ namespace AnodyneSharp.States
 
 
             _keyValueLabel.Draw();
+
+            Minimap mm = GlobalState.CurrentMinimap;
+            if(mm.tiles.Width > 0)
+            {
+                int x = Math.Clamp(GlobalState.CURRENT_GRID_X - 2, 0, mm.tiles.Width - 5);
+                int y = Math.Clamp(GlobalState.CURRENT_GRID_Y - 1, 0, mm.tiles.Height - 4);
+
+                mm.Draw(_miniminimap, new Vector2(55,0) - new Vector2(x,y)*_miniminimap.Width, new Rectangle(x,y,5,4));
+            }
+
         }
 
         public override void Update()
@@ -492,10 +507,6 @@ namespace AnodyneSharp.States
         {
             //delete old objects
             _oldEntities.Clear();
-
-            // TODO update miniminimap
-
-            //TODO update minimap
         }
 
         private void CreateKeyLabel()
@@ -510,6 +521,8 @@ namespace AnodyneSharp.States
             _gridBorders.Width = SCREEN_WIDTH_IN_PIXELS;
             _gridBorders.Y = GlobalState.CURRENT_GRID_Y * SCREEN_HEIGHT_IN_PIXELS;
             _gridBorders.Height = SCREEN_HEIGHT_IN_PIXELS;
+
+            GlobalState.CurrentMinimap.Update();
         }
 
         private bool UpdateCamera()
@@ -739,13 +752,13 @@ namespace AnodyneSharp.States
                 GlobalState.CURRENT_MAP_NAME = GlobalState.NEXT_MAP_NAME;
 
                 TileData.SetTileset(GlobalState.CURRENT_MAP_NAME);
-                _map.LoadMap(MapLoader.GetMap(GlobalState.CURRENT_MAP_NAME), TileData.Tiles, DrawOrder.MAP_BG);
+                _map.LoadMap(MapLoader.GetMapLayer(GlobalState.CURRENT_MAP_NAME), TileData.Tiles, DrawOrder.MAP_BG);
 
                 GlobalState.MAP_GRID_WIDTH = _map.WidthInTiles/10;
                 GlobalState.MAP_GRID_HEIGHT = _map.HeightInTiles/10;
 
-                _map_bg_2.LoadMap(MapLoader.GetMap(GlobalState.CURRENT_MAP_NAME, 2), TileData.Tiles, DrawOrder.MAP_BG2);
-                _map_fg.LoadMap(MapLoader.GetMap(GlobalState.CURRENT_MAP_NAME, 3), TileData.Tiles, DrawOrder.MAP_FG);
+                _map_bg_2.LoadMap(MapLoader.GetMapLayer(GlobalState.CURRENT_MAP_NAME, 2), TileData.Tiles, DrawOrder.MAP_BG2);
+                _map_fg.LoadMap(MapLoader.GetMapLayer(GlobalState.CURRENT_MAP_NAME, 3), TileData.Tiles, DrawOrder.MAP_FG);
 
                 //Sets tile collission and tile events
                 TileData.SetTileProperties(_map, _map_bg_2);

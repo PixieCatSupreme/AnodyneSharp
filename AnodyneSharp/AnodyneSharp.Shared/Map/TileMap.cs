@@ -14,6 +14,7 @@ namespace AnodyneSharp.Map
         public TileMap(string data)
         {
             tiles = new List<int>();
+            if (data == "") return;
             string[] rows = data.Trim().Split('\n');
             Height = rows.Length;
 

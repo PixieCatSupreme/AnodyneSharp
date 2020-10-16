@@ -2,6 +2,7 @@
 using AnodyneSharp.Dialogue;
 using AnodyneSharp.Drawing.Effects;
 using AnodyneSharp.Entities;
+using AnodyneSharp.Map;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -83,6 +84,10 @@ namespace AnodyneSharp.Registry
         public static string CURRENT_MAP_NAME;
         public static int ENEMIES_KILLED;
         public static int PUZZLES_SOLVED;
+
+        public static MinimapTracker minimaps = new MinimapTracker();
+
+        public static Minimap CurrentMinimap => minimaps.GetMinimap(CURRENT_MAP_NAME);
 
         public static Facing NewMapFacing = Facing.RIGHT;
 

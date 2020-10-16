@@ -14,7 +14,39 @@ namespace AnodyneSharp.Map
             FG
         }
 
-        public static TileMap GetMap(string mapName, int layer = 1)
+        public static TileMap LoadMap(string path)
+        {
+            string CSV = "0,0";
+
+            using (Stream stream = Assembly.GetCallingAssembly().GetManifestResourceStream(path))
+            {
+                if (stream == null)
+                {
+                    DebugLogger.AddCritical($"Unable to find map at {path}");
+                    return new TileMap(CSV);
+                }
+                using StreamReader reader = new StreamReader(stream);
+                CSV = reader.ReadToEnd();
+            }
+
+            return new TileMap(CSV);
+        }
+
+        public static TileMap GetMinimap(string mapName)
+        {
+            var assembly = Assembly.GetCallingAssembly();
+
+            string path = $"{assembly.GetName().Name}.Content.MiniMaps.Minimap_{mapName}.csv";
+
+            if(!assembly.GetManifestResourceNames().Contains(path))
+            {
+                return new TileMap("");
+            }
+
+            return LoadMap(path);
+        }
+
+        public static TileMap GetMapLayer(string mapName, int layer = 1)
         {
             string CSV = "0,0";
 
@@ -27,18 +59,7 @@ namespace AnodyneSharp.Map
                 return new TileMap(CSV);
             }
 
-            using (Stream stream = assembly.GetManifestResourceStream(path))
-            {
-                if (stream == null)
-                {
-                    DebugLogger.AddCritical($"Unable to find map at {path}");
-                    return new TileMap(CSV);
-                }
-                using StreamReader reader = new StreamReader(stream);
-                CSV = reader.ReadToEnd();
-            }
-
-            return new TileMap(CSV);
+            return LoadMap(path);
         }
     }
 }

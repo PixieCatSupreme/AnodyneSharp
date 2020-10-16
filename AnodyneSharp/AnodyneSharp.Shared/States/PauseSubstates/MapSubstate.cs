@@ -1,6 +1,9 @@
 ﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.Drawing.Spritesheet;
 using AnodyneSharp.Input;
+using AnodyneSharp.Map;
 using AnodyneSharp.Registry;
+using AnodyneSharp.Resources;
 using AnodyneSharp.Sounds;
 using AnodyneSharp.UI;
 using AnodyneSharp.UI.PauseMenu;
@@ -30,6 +33,8 @@ namespace AnodyneSharp.States.PauseSubstates
         private MapState _state;
         private MapState _lastState;
 
+        private Spritesheet _mapSheet;
+
         public MapSubstate()
         {
             float x = 73;
@@ -55,6 +60,8 @@ namespace AnodyneSharp.States.PauseSubstates
 
             _yesLabel.SetText(DialogueManager.GetDialogue("misc","any", "checkpoint", 1));
             _noLabel.SetText(DialogueManager.GetDialogue("misc","any", "checkpoint", 2));
+
+            _mapSheet = new Spritesheet(ResourceManager.GetTexture("minimap_tiles",true,true),7,7);
         }
 
         public override void GetControl()
@@ -140,7 +147,6 @@ namespace AnodyneSharp.States.PauseSubstates
         {
             base.DrawUI();
 
-            _noMapLabel.Draw();
             _returnLabel.Draw();
 
             if (_state != MapState.ReturnToNexusLabel)
@@ -148,6 +154,15 @@ namespace AnodyneSharp.States.PauseSubstates
                 _yesLabel.Draw();
                 _noLabel.Draw();
             }
+
+            Minimap minimap = GlobalState.CurrentMinimap;
+            if(minimap.tiles.Width == 0)
+                _noMapLabel.Draw();
+
+            //explicit int math to not have to deal with subpixels
+            int x = 110 - minimap.tiles.Width * _mapSheet.Width / 2;
+            int y = 70 - minimap.tiles.Height * _mapSheet.Height / 2;
+            minimap.Draw(_mapSheet,new Vector2(x,y));
 
             _selector.Draw();
         }
