@@ -15,6 +15,9 @@ namespace AnodyneSharp.Map
 
         private int CurrentLoc => GlobalState.CURRENT_GRID_X + GlobalState.CURRENT_GRID_Y * tiles.Width;
 
+        private const int PlayerIndicator = 27;
+        private const int ChestIndicator = 18;
+
         public Minimap(TileMap map)
         {
             tiles = map;
@@ -25,7 +28,7 @@ namespace AnodyneSharp.Map
         {
             int x = GlobalState.CURRENT_GRID_X;
             int y = GlobalState.CURRENT_GRID_Y;
-            if(x >= 0 && x < tiles.Width && y >= 0 && y < tiles.Height)
+            if (x >= 0 && x < tiles.Width && y >= 0 && y < tiles.Height)
             {
                 interest[CurrentLoc] = 1;
             }
@@ -45,17 +48,30 @@ namespace AnodyneSharp.Map
         /// <param name="sprites">Spritesheet to use when drawing</param>
         /// <param name="topleft">Top left coordinate of the 0,0 tile</param>
         /// <param name="bounds">Part of the minimap to draw</param>
-        public void Draw(Spritesheet sprites, Vector2 topleft, Rectangle? bounds = null)
+        public void Draw(Spritesheet sprites, Vector2 topleft, Rectangle? bounds = null, bool DrawPlayerIndicator = true)
         {
-            Rectangle b = bounds ?? new Rectangle(0,0,tiles.Width,tiles.Height);
-            for(int y = b.Top; y < b.Bottom; ++y)
-                for(int x = b.Left; x < b.Right; ++x)
+            Rectangle b = bounds ?? new Rectangle(0, 0, tiles.Width, tiles.Height);
+            for (int y = b.Top; y < b.Bottom; ++y)
+                for (int x = b.Left; x < b.Right; ++x)
                 {
-                    if(interest[x+y*tiles.Width] > 0)
+                    Vector2 pos = topleft + new Vector2(x * sprites.Width, y * sprites.Height);
+                    int visible = interest[x + y * tiles.Width];
+                    if (visible > 0)
                     {
-                        SpriteDrawer.DrawGuiSprite(sprites.Tex,topleft + new Vector2(x*sprites.Width,y*sprites.Height),sprites.GetRect(tiles.GetTile(x,y)),Z:DrawingUtilities.GetDrawingZ(DrawOrder.MINIMAP));
+                        SpriteDrawer.DrawGuiSprite(sprites.Tex, pos, sprites.GetRect(tiles.GetTile(x, y)), Z: DrawingUtilities.GetDrawingZ(DrawOrder.MINIMAP));
                     }
+                    if (visible > 1)
+                    {
+                        SpriteDrawer.DrawGuiSprite(sprites.Tex, pos, sprites.GetRect(ChestIndicator), Z: DrawingUtilities.GetDrawingZ(DrawOrder.MINIMAP_CHEST));
+                    }
+
                 }
+
+            Vector2 PlayerPos = new Vector2(GlobalState.CURRENT_GRID_X, GlobalState.CURRENT_GRID_Y);
+            if (b.Contains(PlayerPos) && DrawPlayerIndicator)
+            {
+                SpriteDrawer.DrawGuiSprite(sprites.Tex, topleft + PlayerPos * new Vector2(sprites.Width), sprites.GetRect(PlayerIndicator), Z: DrawingUtilities.GetDrawingZ(DrawOrder.MINIMAP_PLAYER));
+            }
         }
     }
 }

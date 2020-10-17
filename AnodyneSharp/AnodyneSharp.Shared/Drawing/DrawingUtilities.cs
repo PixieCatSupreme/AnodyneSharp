@@ -34,6 +34,8 @@ namespace AnodyneSharp.Drawing
         PAUSE_SELECTOR,     //Pause menu option selector
         MENUTEXT,           //Text in pause menu
         MINIMAP,            //Minimap in pause menu and header
+        MINIMAP_PLAYER,     //Minimap player indicator
+        MINIMAP_CHEST,      //Minimap chest indicator
         TEXTBOX,            //Textboxes
         TEXT,               //Text in dialogueBoxes
         SUBMENU_SELECTOR,   //Equipment selector, config selector and card selector

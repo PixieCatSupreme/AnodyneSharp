@@ -35,6 +35,9 @@ namespace AnodyneSharp.States.PauseSubstates
 
         private Spritesheet _mapSheet;
 
+        private float _playerIndicatorTimer = 0f;
+        private const float _playerBlink = 0.4f;
+
         public MapSubstate()
         {
             float x = 73;
@@ -78,6 +81,12 @@ namespace AnodyneSharp.States.PauseSubstates
             {
                 _lastState = _state;
                 SetSelectorPos();
+            }
+
+            _playerIndicatorTimer += GameTimes.DeltaTime;
+            if(_playerIndicatorTimer > 2*_playerBlink)
+            {
+                _playerIndicatorTimer -= 2 * _playerBlink;
             }
 
             base.Update();
@@ -162,7 +171,7 @@ namespace AnodyneSharp.States.PauseSubstates
             //explicit int math to not have to deal with subpixels
             int x = 110 - minimap.tiles.Width * _mapSheet.Width / 2;
             int y = 70 - minimap.tiles.Height * _mapSheet.Height / 2;
-            minimap.Draw(_mapSheet,new Vector2(x,y));
+            minimap.Draw(_mapSheet,new Vector2(x,y),DrawPlayerIndicator:_playerIndicatorTimer < _playerBlink);
 
             _selector.Draw();
         }

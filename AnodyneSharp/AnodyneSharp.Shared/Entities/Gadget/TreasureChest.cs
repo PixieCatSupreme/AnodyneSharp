@@ -52,6 +52,7 @@ namespace AnodyneSharp.Entities.Gadget
             }
             else
             {
+                GlobalState.CurrentMinimap.AddInterest();
                 SetTreasure();
             }
 
@@ -75,6 +76,7 @@ namespace AnodyneSharp.Entities.Gadget
                 return false;
             }
             opened = true;
+            GlobalState.CurrentMinimap.RemoveInterest();
             _treasure.GetTreasure();
 
             SetFrame(_curAnim.Frame + 1);
