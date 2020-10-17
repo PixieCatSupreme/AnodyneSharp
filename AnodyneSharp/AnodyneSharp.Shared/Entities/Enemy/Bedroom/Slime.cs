@@ -52,7 +52,7 @@ namespace AnodyneSharp.Entities.Enemy
             _type = _preset.Frame == 3 ? SlimeType.Bullet : SlimeType.Normal;
 
             AddAnimation("Move", CreateAnimFrameArray(0, 1), 3);
-            AddAnimation("Hurt", CreateAnimFrameArray(0, 8, 0, 8), 15);
+            AddAnimation("Hurt", CreateAnimFrameArray(0, 8, 0, 8), 15, false);
             AddAnimation("Dying", CreateAnimFrameArray(0, 8, 0, 8), 12, false);
 
             goos = new EntityPool<Goo>(8, () => new Goo());
@@ -205,7 +205,7 @@ namespace AnodyneSharp.Entities.Enemy
                         {
                             SoundManager.PlaySoundEffect("slime_splash");
                             shadow.exists = false;
-                            _curAnim = null;
+                            SetFrame(_curAnim.Frame);
                             velocity = Vector2.Zero;
                         })
                         .Update((state, time) => _opacity -= 0.05f)

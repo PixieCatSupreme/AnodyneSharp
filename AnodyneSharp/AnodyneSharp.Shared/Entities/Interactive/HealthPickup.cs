@@ -22,7 +22,7 @@ namespace AnodyneSharp.Entities.Interactive
             }
             else
             {
-                SetTexture("small_health_pickup", 16, 10);
+                SetTexture("small_health_pickup", 10, 16);
             }
 
             AddAnimation("float", CreateAnimFrameArray(0, 1, 2, 3), 5);
