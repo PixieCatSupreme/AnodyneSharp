@@ -164,14 +164,14 @@
         <row>9,9,9,9,9,9,9,9,9,9,9</row>
       </maplayer>
       <maplayer name="SUBURB" id="15" xScroll="1" yScroll="1" x="0" y="0" width="6" height="8" tileset="textures/tilemaps/minimap_tiles.png" tileWidth="7" tileHeight="7" visible="false" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="7" tileSpacingY="7" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
-        <row>35,17,17,26,33,27</row>
-        <row>10,8,8,8,16,27</row>
-        <row>10,26,8,8,16,27</row>
-        <row>10,8,26,26,30,27</row>
-        <row>4,32,14,14,11,27</row>
-        <row>27,27,27,27,27,27</row>
-        <row>27,27,27,27,27,27</row>
-        <row>27,27,27,27,27,27</row>
+        <row>35,17,17,26,33,9</row>
+        <row>10,8,8,8,16,9</row>
+        <row>10,26,8,8,16,9</row>
+        <row>10,8,26,26,30,9</row>
+        <row>4,32,14,14,11,9</row>
+        <row>9,9,9,9,9,9</row>
+        <row>9,9,9,9,9,9</row>
+        <row>9,9,9,9,9,9</row>
       </maplayer>
       <maplayer name="TERMINAL" id="16" xScroll="1" yScroll="1" x="0" y="0" width="5" height="5" tileset="textures/tilemaps/minimap_tiles.png" tileWidth="7" tileHeight="7" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="7" tileSpacingY="7" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false" selected="true">
         <row>9,7,26,15,9</row>
