@@ -2,7 +2,7 @@
 <project>
   <version/>
   <bgColor>0xcccccc</bgColor>
-  <viewPos x="34" y="31"/>
+  <viewPos x="25.913043478260875" y="20.65783294468197"/>
   <firstLayersTop>false</firstLayersTop>
   <spriteEntries currentId="1"/>
   <layers>
@@ -32,39 +32,39 @@
         <row>4,8,12,5,4,8,12</row>
         <row>0,24,25,14,11,24,0</row>
       </maplayer>
-      <maplayer name="CROWD" id="3" xScroll="1" yScroll="1" x="0" y="0" width="10" height="8" tileset="textures/tilemaps/minimap_tiles.png" tileWidth="7" tileHeight="7" visible="false" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="7" tileSpacingY="7" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+      <maplayer name="CROWD" id="3" xScroll="1" yScroll="1" x="0" y="0" width="10" height="8" tileset="textures/tilemaps/minimap_tiles.png" tileWidth="7" tileHeight="7" visible="false" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="7" tileSpacingY="7" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false" selected="true">
         <row>0,0,0,0,0,0,7,17,13,15</row>
         <row>0,0,0,0,0,0,4,8,15,6</row>
-        <row>0,7,17,33,0,1,0,28,12,24</row>
-        <row>7,8,16,24,0,0,0,4,13,12</row>
-        <row>4,16,6,24,0,5,0,0,0,20</row>
+        <row>0,7,17,69,0,1,0,82,12,78</row>
+        <row>7,8,16,60,0,0,0,4,13,12</row>
+        <row>4,16,6,60,0,5,0,0,0,24</row>
         <row>7,14,8,8,17,16,0,0,0,6</row>
         <row>6,7,8,16,4,12,0,5,0,6</row>
-        <row>4,14,12,24,7,13,13,12,0,20</row>
+        <row>4,14,12,24,7,13,13,12,0,38</row>
       </maplayer>
       <maplayer name="APARTMENT" id="4" xScroll="1" yScroll="1" x="0" y="0" width="9" height="8" tileset="textures/tilemaps/minimap_tiles.png" tileWidth="7" tileHeight="7" visible="false" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="7" tileSpacingY="7" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
-        <row>19,21,15,23,0,23,23,7,33</row>
+        <row>37,39,15,41,0,59,59,7,69</row>
         <row>7,17,14,16,0,4,12,4,16</row>
-        <row>6,6,23,6,23,7,13,33,6</row>
+        <row>6,6,41,6,59,7,13,69,6</row>
         <row>4,8,8,16,4,12,7,14,12</row>
-        <row>0,6,24,6,0,0,6,0,0</row>
-        <row>0,20,20,2,0,0,20,0,0</row>
+        <row>0,6,6,6,0,0,6,0,0</row>
+        <row>0,38,20,2,0,0,56,0,0</row>
         <row>0,0,0,0,0,7,11,5,0</row>
-        <row>0,0,0,0,21,14,13,14,11</row>
+        <row>0,0,0,0,75,14,13,14,11</row>
       </maplayer>
       <maplayer name="HOTEL" id="5" xScroll="1" yScroll="1" x="0" y="0" width="12" height="12" tileset="textures/tilemaps/minimap_tiles.png" tileWidth="7" tileHeight="7" visible="false" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="7" tileSpacingY="7" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
-        <row>21,13,13,29,0,0,7,17,17,33,0,0</row>
+        <row>111,13,13,29,0,0,7,17,17,69,0,0</row>
         <row>0,0,0,0,0,0,6,6,6,6,0,0</row>
-        <row>0,0,24,0,0,0,10,16,6,6,0,0</row>
-        <row>0,7,8,15,5,0,2,22,32,12,0,0</row>
+        <row>0,0,96,0,0,0,10,16,6,6,0,0</row>
+        <row>0,7,8,15,5,0,2,58,68,12,0,0</row>
         <row>0,10,8,16,6,0,0,0,0,0,0,0</row>
-        <row>0,4,32,8,12,0,7,13,17,33,0,0</row>
+        <row>0,4,104,8,12,0,7,13,17,51,0,0</row>
         <row>0,3,13,12,0,0,6,5,10,12,0,0</row>
         <row>0,0,0,0,0,0,10,16,4,15,0,0</row>
-        <row>0,5,5,23,0,0,4,32,35,12,0,0</row>
+        <row>0,5,5,77,0,0,4,50,53,12,0,0</row>
         <row>0,4,8,12,0,0,0,0,6,0,0,0</row>
         <row>0,7,8,11,0,0,0,0,6,0,0,0</row>
-        <row>0,20,22,11,0,0,0,0,2,0,0,0</row>
+        <row>0,74,76,11,0,0,0,0,2,0,0,0</row>
       </maplayer>
       <maplayer name="CIRCUS" id="6" xScroll="1" yScroll="1" x="0" y="0" width="9" height="9" tileset="textures/tilemaps/minimap_tiles.png" tileWidth="7" tileHeight="7" visible="false" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="7" tileSpacingY="7" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,7,35,15,0,3,33</row>
@@ -173,7 +173,7 @@
         <row>9,9,9,9,9,9</row>
         <row>9,9,9,9,9,9</row>
       </maplayer>
-      <maplayer name="TERMINAL" id="16" xScroll="1" yScroll="1" x="0" y="0" width="5" height="5" tileset="textures/tilemaps/minimap_tiles.png" tileWidth="7" tileHeight="7" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="7" tileSpacingY="7" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false" selected="true">
+      <maplayer name="TERMINAL" id="16" xScroll="1" yScroll="1" x="0" y="0" width="5" height="5" tileset="textures/tilemaps/minimap_tiles.png" tileWidth="7" tileHeight="7" visible="false" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="7" tileSpacingY="7" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>9,7,26,15,9</row>
         <row>3,14,8,12,9</row>
         <row>9,9,6,9,5</row>
@@ -319,6 +319,8 @@
     <ForceTilemapPositionChangesInUnits>false</ForceTilemapPositionChangesInUnits>
   </options>
   <exporter name="D:\Projects\AnodyneSharp\AnodyneSharp\AnodyneSharp.Shared\Content\editor_scripts\csvTilemap.lua" spritepos="Top Left" rotatedSpritePos="false" relativePaths="true" useProjectExporterOnly="false">
+    <setting name="LevelName">Entities</setting>
+    <setting name="DataDir">D:\Projects\AnodyneSharp\Project\AnodyneSharp\AnodyneSharp.Shared\Content</setting>
     <setting name="FileExt">csv</setting>
     <setting name="CSVDir">MiniMaps</setting>
   </exporter>
