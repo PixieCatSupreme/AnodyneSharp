@@ -4,7 +4,7 @@ using AnodyneSharp.Sounds;
 
 namespace AnodyneSharp.Entities.Gadget
 {
-    [NamedEntity, Collision(typeof(Player))]
+    [NamedEntity, Collision(PartOfMap = true)]
     public class Gate : Entity
     {
         private EntityPreset _preset;
@@ -16,25 +16,13 @@ namespace AnodyneSharp.Entities.Gadget
 
         public Gate(EntityPreset preset, Player p) : base(preset.Position, "gates", 16, 16, DrawOrder.ENTITIES)
         {
-            //Hack to fix missing permanence in map
-            preset.Permanence = Permanence.GLOBAL;
-            
             _preset = preset;
             _player = p;
             immovable = true;
 
-            ClosedFrame = 0;
-            bool fast = true;
-            if(GlobalState.CURRENT_MAP_NAME == "BLANK")
-            {
-                ClosedFrame = 8;
-                fast = false;
-            }
-            else if(GlobalState.CURRENT_MAP_NAME == "CELL")
-            {
-                ClosedFrame = 16;
-                fast = false;
-            }
+            ClosedFrame = int.Parse(preset.TypeValue);
+            bool fast = ClosedFrame == 0;
+            
             AddAnimation("still", CreateAnimFrameArray(ClosedFrame));
             AddAnimation("close", CreateAnimFrameArray(ClosedFrame + 3, ClosedFrame + 2, ClosedFrame + 1, ClosedFrame), fast ? 10 : 8, false);
             AddAnimation("open", CreateAnimFrameArray(ClosedFrame, ClosedFrame + 1, ClosedFrame + 2, ClosedFrame + 3), fast ? 10 : 4, false);
@@ -45,6 +33,7 @@ namespace AnodyneSharp.Entities.Gadget
             if(HeldDown && !ConditionSatisfied())
             {
                 SetFrame(ClosedFrame+3);
+                Solid = false;
             }
             else
             {
@@ -68,6 +57,7 @@ namespace AnodyneSharp.Entities.Gadget
                     HeldDown = false;
                     Play("close");
                     SoundManager.PlaySoundEffect("hit_ground_1");
+                    Solid = true;
                 }
             }
             else if(_curAnim.name == "still" || _curAnim.name == "close")
@@ -80,6 +70,7 @@ namespace AnodyneSharp.Entities.Gadget
                     {
                         _preset.Alive = false;
                     }
+                    Solid = false;
                 }
             }
 
@@ -89,7 +80,7 @@ namespace AnodyneSharp.Entities.Gadget
 
         public override void Collided(Entity other)
         {
-            if(!HeldDown && _curAnim.name != "open")
+            if(Solid)
             {
                 Separate(this, other);
             }

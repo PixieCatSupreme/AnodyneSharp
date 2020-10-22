@@ -2,10 +2,10 @@
 <project>
   <version/>
   <bgColor>0xcccccc</bgColor>
-  <viewPos x="-524.5" y="-394.5"/>
+  <viewPos x="240" y="53"/>
   <firstLayersTop>false</firstLayersTop>
-  <spriteEntries currentId="163">
-    <group name="Events SL" idx="1" open="false" selected="true">
+  <spriteEntries currentId="165">
+    <group name="Events SL" idx="1" open="false">
       <group name="Text Events" idx="2" open="true">
         <sprite name="blank2" idx="3" className="Event" image="textures/sprites/dame/dame-events.png" width="16" height="16" preview="3" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="3" canEditFrames="true" lockRotation="false">
           <properties>
@@ -196,11 +196,27 @@
       <sprite name="Huge_Fucking_Stag" idx="46" className="Huge_Fucking_Stag" image="textures/sprites/npcs/forest_stag.png" width="64" height="80" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="64" boundsHeight="80" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="0" canEditFrames="true" lockRotation="false"/>
       <sprite name="Black_Thing" idx="47" className="Black_Thing" image="textures/sprites/dame/dameblackthing.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="-1" canEditFrames="true" lockRotation="false"/>
     </group>
-    <group name="Gadgets" idx="48" open="false">
+    <group name="Gadgets" idx="48" open="true">
       <group name="Gates" idx="49" open="true">
         <sprite name="Gate S" idx="50" className="Gate" image="textures/sprites/dame/dame-gates.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="5" canEditFrames="true" lockRotation="false">
           <properties>
             <type typeof="Boolean" name="alive" value="true" hidden="false"/>
+            <type typeof="Int" name="p" value="2" hidden="false"/>
+            <type typeof="Int" name="type" value="0" hidden="false"/>
+          </properties>
+        </sprite>
+        <sprite name="Gate S BLANK" idx="164" className="Gate" image="textures/sprites/dame/dame-gates.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="5" canEditFrames="true" lockRotation="false" selected="true">
+          <properties>
+            <type typeof="Boolean" name="alive" value="true" hidden="false"/>
+            <type typeof="Int" name="p" value="2" hidden="false"/>
+            <type typeof="Int" name="type" value="8" hidden="false"/>
+          </properties>
+        </sprite>
+        <sprite name="Gate S CELL" idx="163" className="Gate" image="textures/sprites/dame/dame-gates.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="12" canEditFrames="true" lockRotation="false">
+          <properties>
+            <type typeof="Boolean" name="alive" value="true" hidden="false"/>
+            <type typeof="Int" name="p" value="2" hidden="false"/>
+            <type typeof="String" name="type" value="16" hidden="false"/>
           </properties>
         </sprite>
       </group>
@@ -1765,7 +1781,7 @@
         </sprite>
       </spritelayer>
     </group>
-    <group name="BEDROOM" id="8" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
+    <group name="BEDROOM" id="8" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
       <maplayer name="BG" id="8" xScroll="1" yScroll="1" x="0" y="0" width="70" height="50" tileset="textures/tilemaps/bedroom_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0,0,0,0,3,1,1,1,1,1,1,1,1,2,3,1,1,1,1,1,1,1,1,2,3,1,1,1,1,1,1,1,1,2,3,1,1,2,3,1,1,2,9,9,3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2</row>
         <row>0,0,0,0,0,0,0,0,0,0,3,24,19,24,24,24,24,24,24,2,3,21,24,19,24,24,19,24,21,2,3,24,24,19,19,19,24,24,24,2,3,24,24,2,3,24,24,2,9,9,3,24,24,24,37,37,24,24,24,24,24,24,24,24,24,24,24,24,21,2</row>
@@ -1818,7 +1834,7 @@
         <row>3,24,24,24,24,24,24,36,36,2,3,37,24,24,24,24,20,24,37,2,3,24,24,36,36,24,36,24,20,2,3,24,24,24,24,24,24,24,24,2,9,9,9,9,3,24,2,9,9,9,9,9,3,24,24,24,24,2,9,9,9,9,9,9,9,9,9,9,9,9</row>
         <row>9,4,4,4,4,4,4,4,4,9,9,4,4,4,4,4,4,4,4,9,9,4,4,15,36,36,14,4,4,9,9,4,4,4,4,4,4,4,4,9,9,9,9,9,3,24,2,9,9,9,9,9,9,15,24,24,14,9,9,9,9,9,9,9,9,9,9,9,9,9</row>
       </maplayer>
-      <spritelayer name="Stateful" id="9" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false" selected="true">
+      <spritelayer name="Stateful" id="9" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="20832549-4D6A-DAB4-5965-8A301A184D15" x="208" y="688" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="143" frame="0">
           <properties/>
         </sprite>
@@ -2259,7 +2275,7 @@
         <sprite guid="37B5CA73-3420-140E-4CA1-B9398F41E316" x="672" y="720" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="86" frame="0"/>
       </spritelayer>
     </group>
-    <group name="BLANK" id="14" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
+    <group name="BLANK" id="14" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
       <maplayer name="BG" id="11" xScroll="1" yScroll="1" x="0" y="0" width="60" height="80" tileset="textures/tilemaps/blank_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,3,3,3,3,3,3,3,3,41,41,41,41,41,41,41,41,41,41,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,17,18,20,0,0,0,3,3,3,3,3,3,3,3,3,3,41,41,41,41,41,41,41,41,41,41,0,0,0,0,0,0,0,17,20,0,0,17,20,0,0,0,17,18,20,0</row>
@@ -2355,25 +2371,25 @@
         <sprite guid="F4B01217-9115-D231-A59A-E54C106635D8" x="448" y="256" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="60">
           <properties/>
         </sprite>
-        <sprite guid="729A84CB-16BA-0549-BABA-9204F1CDF3C3" x="356" y="252" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="50" frame="6">
+        <sprite guid="729A84CB-16BA-0549-BABA-9204F1CDF3C3" x="356" y="252" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="164" frame="6">
           <properties/>
         </sprite>
-        <sprite guid="0D3A6B26-B6F0-992D-8879-8CD015E10EC2" x="414" y="252" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="50" frame="6">
+        <sprite guid="0D3A6B26-B6F0-992D-8879-8CD015E10EC2" x="414" y="252" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="164" frame="6">
           <properties/>
         </sprite>
-        <sprite guid="C4377481-1740-AD87-9494-2C77B3952145" x="396" y="252" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="50" frame="6">
+        <sprite guid="C4377481-1740-AD87-9494-2C77B3952145" x="396" y="252" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="164" frame="6">
           <properties/>
         </sprite>
-        <sprite guid="0F441FFC-7E96-7429-C43E-DDF7B12DA704" x="376" y="252" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="50" frame="6">
+        <sprite guid="0F441FFC-7E96-7429-C43E-DDF7B12DA704" x="376" y="252" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="164" frame="6">
           <properties/>
         </sprite>
         <sprite guid="2998777C-710F-2E5C-7A06-1ADE4070BDE7" x="396" y="50" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="149" frame="4">
           <properties/>
         </sprite>
-        <sprite guid="D8ECB281-B49A-7A03-6A87-95AD8FDC27CD" x="433" y="252" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="50" frame="6">
+        <sprite guid="D8ECB281-B49A-7A03-6A87-95AD8FDC27CD" x="433" y="252" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="164" frame="6">
           <properties/>
         </sprite>
-        <sprite guid="9817F5DD-28D4-767F-DFEF-79C1FF21453C" x="240" y="336" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="50" frame="5">
+        <sprite guid="9817F5DD-28D4-767F-DFEF-79C1FF21453C" x="240" y="336" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="164" frame="5">
           <properties/>
         </sprite>
         <sprite guid="B1A61AEB-1A9E-1C27-E03D-D032DD26E118" x="176" y="368" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="54" frame="0"/>
@@ -2381,16 +2397,16 @@
           <properties/>
         </sprite>
         <sprite guid="9993C794-16EE-43DB-8726-5147C947ABF5" x="704" y="1104" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="69"/>
-        <sprite guid="C9DE9C8A-060C-9B68-4E43-3CB6EA9F6446" x="896" y="32" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="50" frame="5">
+        <sprite guid="C9DE9C8A-060C-9B68-4E43-3CB6EA9F6446" x="896" y="32" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="164" frame="5">
           <properties/>
         </sprite>
-        <sprite guid="62CBC388-03E9-0A72-FA4B-A6D5BE10EE9B" x="912" y="16" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="50" frame="5">
+        <sprite guid="62CBC388-03E9-0A72-FA4B-A6D5BE10EE9B" x="912" y="16" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="164" frame="5">
           <properties/>
         </sprite>
-        <sprite guid="B5C4D83F-8765-2534-547E-E61A0D4B8B60" x="928" y="32" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="50" frame="5">
+        <sprite guid="B5C4D83F-8765-2534-547E-E61A0D4B8B60" x="928" y="32" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="164" frame="5">
           <properties/>
         </sprite>
-        <sprite guid="BCA7BAB5-2C07-3C39-971A-79D9175210DB" x="912" y="48" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="50" frame="5">
+        <sprite guid="BCA7BAB5-2C07-3C39-971A-79D9175210DB" x="912" y="48" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="164" frame="5">
           <properties/>
         </sprite>
         <sprite guid="72B1BE91-57E3-1578-D6B7-1FE89FC702F3" x="832" y="16" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="54" frame="0"/>
@@ -2421,22 +2437,19 @@
         <sprite guid="7B50120E-42BC-B124-5CE1-CB352327F0BE" x="240" y="48" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="149" frame="87">
           <properties/>
         </sprite>
-        <sprite guid="77D9549E-0B65-CDEA-7A68-0A125FCF87EA" x="224" y="912" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="50" frame="5">
+        <sprite guid="77D9549E-0B65-CDEA-7A68-0A125FCF87EA" x="224" y="912" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="164" frame="5">
           <properties/>
         </sprite>
-        <sprite guid="A43F3616-BF50-0914-0511-E1A260FA473A" x="240" y="912" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="50" frame="5">
+        <sprite guid="7F6AFE32-595A-B1E9-2E3D-97535D17C009" x="256" y="896" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="164" frame="5">
           <properties/>
         </sprite>
-        <sprite guid="7F6AFE32-595A-B1E9-2E3D-97535D17C009" x="256" y="896" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="50" frame="5">
+        <sprite guid="FC51CF7C-4D3E-3ED4-4A25-9C2933454085" x="256" y="880" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="164" frame="5">
           <properties/>
         </sprite>
-        <sprite guid="FC51CF7C-4D3E-3ED4-4A25-9C2933454085" x="256" y="880" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="50" frame="5">
+        <sprite guid="AE479CB8-8512-0854-7D81-8A01E49E14E7" x="208" y="880" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="164" frame="5">
           <properties/>
         </sprite>
-        <sprite guid="AE479CB8-8512-0854-7D81-8A01E49E14E7" x="208" y="880" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="50" frame="5">
-          <properties/>
-        </sprite>
-        <sprite guid="46B28832-D18A-9636-1B1E-E98E6207CF8C" x="208" y="896" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="50" frame="5">
+        <sprite guid="46B28832-D18A-9636-1B1E-E98E6207CF8C" x="208" y="896" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="164" frame="5">
           <properties/>
         </sprite>
         <sprite guid="1C7AD5AC-3819-BAFC-2A6A-719AE91540FD" x="224" y="864" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="55" frame="4">
@@ -2494,8 +2507,11 @@
         <sprite guid="2A73F27F-1B41-F1A2-1B16-525F9F57AE10" x="912" y="256" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="53" frame="2">
           <properties/>
         </sprite>
+        <sprite guid="E418C812-60B1-F4BC-5195-5B6C39604CAC" x="240" y="912" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="164" frame="5">
+          <properties/>
+        </sprite>
       </spritelayer>
-      <spritelayer name="Stateless" id="13" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateless" id="13" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false" selected="true">
         <sprite guid="14717F7B-3E0A-959A-BE17-1333AF6CE252" x="336" y="176" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="30" frame="0">
           <properties/>
         </sprite>
@@ -3051,7 +3067,7 @@
         <sprite guid="F4411B7A-D07C-C7DC-DE0A-A117E1F48010" x="208" y="1360" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="93" frame="0"/>
         <sprite guid="7C66BCBF-2398-2BFF-53BA-C6E8C3E66787" x="288" y="1328" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="93" frame="0"/>
         <sprite guid="98F00DC9-ECD5-0C10-29ED-4B97C62A3043" x="208" y="1296" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="93" frame="0"/>
-        <sprite guid="EE355D49-5329-757E-58D5-6500C0567C0C" x="336" y="1312" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="50" frame="15">
+        <sprite guid="EE355D49-5329-757E-58D5-6500C0567C0C" x="336" y="1312" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="163" frame="15">
           <properties/>
         </sprite>
         <sprite guid="D2B37E2D-C696-0263-8BC2-1B481DADA4BC" x="448" y="1296" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="54" frame="0"/>
@@ -3072,7 +3088,7 @@
         <sprite guid="96E222ED-0557-BF25-CCD4-AEB3251CE3D5" x="400" y="1376" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="93" frame="1"/>
         <sprite guid="0E175F72-E6A7-B140-E7C3-7B32563A93C7" x="432" y="1392" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="93" frame="1"/>
         <sprite guid="3899654C-A2D3-23CD-CF33-3CF1EF32140F" x="608" y="1328" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="93" frame="1"/>
-        <sprite guid="DA314DD8-2804-D68F-471A-77208A4914C0" x="496" y="1344" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="50" frame="15">
+        <sprite guid="DA314DD8-2804-D68F-471A-77208A4914C0" x="496" y="1344" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="163" frame="15">
           <properties/>
         </sprite>
         <sprite guid="0B4FBDB7-3E05-37D6-6494-70C8F91E7FCF" x="608" y="1296" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="54" frame="0"/>
@@ -3091,7 +3107,7 @@
         <sprite guid="F0A3C22E-DFC6-4BE0-17C9-670F27DFF3EE" x="512" y="1376" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="126" frame="0">
           <properties/>
         </sprite>
-        <sprite guid="E6E3024C-FAD0-19BC-8162-95948A37156F" x="656" y="1376" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="50" frame="5">
+        <sprite guid="E6E3024C-FAD0-19BC-8162-95948A37156F" x="656" y="1376" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="163" frame="5">
           <properties/>
         </sprite>
         <sprite guid="F2A47D16-76E6-6276-89ED-09C3F019ACF1" x="768" y="1296" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="54" frame="0"/>
@@ -3118,13 +3134,13 @@
         </sprite>
         <sprite guid="082AB579-29F7-5D0C-257E-2BA9944EF388" x="656" y="1344" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="70" frame="1"/>
         <sprite guid="44E3CCB3-F7FD-2C97-FB3D-5A74815CF398" x="640" y="1344" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="70" frame="1"/>
-        <sprite guid="06449153-2371-315F-544D-ADD9CFBBF6EF" x="784" y="1344" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="50" frame="12">
+        <sprite guid="06449153-2371-315F-544D-ADD9CFBBF6EF" x="784" y="1344" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="163" frame="12">
           <properties/>
         </sprite>
-        <sprite guid="FFF67136-0605-DDDE-41CE-B42730DD3007" x="784" y="1360" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="50" frame="12">
+        <sprite guid="FFF67136-0605-DDDE-41CE-B42730DD3007" x="784" y="1360" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="163" frame="12">
           <properties/>
         </sprite>
-        <sprite guid="FFF0910E-4A59-6D1D-44F1-AA949F6860B3" x="624" y="1344" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="50" frame="12">
+        <sprite guid="FFF0910E-4A59-6D1D-44F1-AA949F6860B3" x="624" y="1344" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="163" frame="12">
           <properties/>
         </sprite>
         <sprite guid="61CCB668-A7BA-D2B1-B818-C1739CFB42D3" x="1193" y="6" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="159" frame="31">
@@ -11739,9 +11755,9 @@
     <SaveGuidesSeparately>false</SaveGuidesSeparately>
     <ForceTilemapPositionChangesInUnits>false</ForceTilemapPositionChangesInUnits>
   </options>
-  <exporter name="D:\Projects\AnodyneSharp\Project\AnodyneSharp\AnodyneSharp.Shared\Content\editor_scripts\Intra.lua" spritepos="Top Left" rotatedSpritePos="false" relativePaths="false" useProjectExporterOnly="false">
+  <exporter name="D:\Projects\AnodyneSharp\AnodyneSharp\AnodyneSharp.Shared\Content\editor_scripts\Intra.lua" spritepos="Top Left" rotatedSpritePos="false" relativePaths="false" useProjectExporterOnly="false">
     <setting name="LevelName">Entities</setting>
-    <setting name="DataDir">D:\Projects\AnodyneSharp\Project\AnodyneSharp\AnodyneSharp.Shared\Content</setting>
+    <setting name="DataDir">D:\Projects\AnodyneSharp\AnodyneSharp\AnodyneSharp.Shared\Content</setting>
   </exporter>
   <customPropertyTypes>
     <type name="Type" isString="true" exportedType="int"/>

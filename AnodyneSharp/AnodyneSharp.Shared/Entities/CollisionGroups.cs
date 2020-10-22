@@ -24,6 +24,7 @@ namespace AnodyneSharp.Entities
         }
         Dictionary<Type, Group> _groups;
         List<Entity> _mapColliders;
+        List<Entity> _mapEntities;
 
         int base_killed_enemies;
         List<Entity> _enemies;
@@ -36,6 +37,7 @@ namespace AnodyneSharp.Entities
             _enemies = new List<Entity>();
             _groups = new Dictionary<Type, Group>();
             _mapColliders = new List<Entity>();
+            _mapEntities = new List<Entity>();
             _keepOnScreen = new List<Entity>();
         }
 
@@ -64,6 +66,9 @@ namespace AnodyneSharp.Entities
             if (c.MapCollision)
                 _mapColliders.Add(e);
 
+            if (c.PartOfMap)
+                _mapEntities.Add(e);
+
             if (c.KeepOnScreen)
                 _keepOnScreen.Add(e);
 
@@ -79,6 +84,10 @@ namespace AnodyneSharp.Entities
             {
                 bg.Collide(e);
                 bg2.Collide(e);
+                foreach(Entity m in _mapEntities.Where(m=>m.Solid && m.exists && m.Hitbox.Intersects(e.Hitbox)))
+                {
+                    m.Collided(e);
+                }
             }
 
             Vector2 roomUpLeft = GlobalState.CurrentMapGrid * GameConstants.SCREEN_WIDTH_IN_PIXELS;
