@@ -36,7 +36,7 @@ namespace AnodyneSharp.Entities
 
             using (Stream stream = assembly.GetManifestResourceStream(path))
             {
-                using (StreamReader reader = new StreamReader(stream))
+                using (StreamReader reader = new(stream))
                 {
                     xml = reader.ReadToEnd();
                 }
@@ -81,15 +81,15 @@ namespace AnodyneSharp.Entities
                                group new { type = t, check = t.GetCustomAttribute<NamedEntity>() } by t.GetCustomAttribute<NamedEntity>().GetName(t)
                                ).ToDictionary(t => t.Key, t => t.ToList());
 
-            HashSet<string> missing = new HashSet<string>();
+            HashSet<string> missing = new();
 
-            XmlDocument doc = new XmlDocument();
+            XmlDocument doc = new();
 
             doc.LoadXml(xml);
 
             XmlNode root = doc.FirstChild;
 
-            List<DoorMapPair> doors = new List<DoorMapPair>();
+            List<DoorMapPair> doors = new();
 
             if (root.HasChildNodes)
             {
@@ -158,13 +158,13 @@ namespace AnodyneSharp.Entities
                             }
                             else
                             {
-                                EntityPreset preset = new EntityPreset(matching[0].type, new Vector2(x, y), id, frame, p, type, alive);
+                                EntityPreset preset = new(matching[0].type, new Vector2(x, y), id, frame, p, type, alive);
 
                                 presets.Add(preset);
 
                                 if (child.Name == "Door")
                                 {
-                                    DoorMapPair newDoor = new DoorMapPair(preset, mapName);
+                                    DoorMapPair newDoor = new(preset, mapName);
 
                                     if (doors.Any(d => d.Door.Frame == preset.Frame))
                                     {
