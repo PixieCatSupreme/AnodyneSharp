@@ -10,7 +10,6 @@ namespace AnodyneSharp.States
     {
         public bool Exit { get; protected set; } = false;
         public bool UpdateEntities { get; protected set; } = true;
-        public Background Background { get; protected set; }
 
         public virtual void Create()
         {
@@ -23,10 +22,7 @@ namespace AnodyneSharp.States
 
         public virtual void Update()
         {
-            if (Background != null)
-            {
-                Background.Update();
-            }
+
         }
 
         public virtual void Draw()

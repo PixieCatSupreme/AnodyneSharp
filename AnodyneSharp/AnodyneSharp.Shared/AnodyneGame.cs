@@ -148,9 +148,9 @@ namespace AnodyneSharp
             GameTimes.UpdateTimes(gameTime);
             KeyInput.Update();
 
-            _camera.Update();
-
             _currentState.Update();
+
+            _camera.Update();
 
             FG_Blend.Update(_camera);
 
@@ -177,8 +177,6 @@ namespace AnodyneSharp
             {
                 _fpsLabel.SetText($"FPS: {GameTimes.FPS:0}");
             }
-
-            SpriteDrawer.DrawBackground(_currentState.Background);
 
             SpriteDrawer.BeginDraw(_camera, FG_Blend.GetEffect());
             _currentState.Draw();

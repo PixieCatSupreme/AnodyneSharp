@@ -1,4 +1,6 @@
-﻿using AnodyneSharp.Resources;
+﻿using AnodyneSharp.Registry;
+using AnodyneSharp.Resources;
+using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -7,18 +9,27 @@ using System.Text;
 
 namespace AnodyneSharp.Drawing
 {
-    public class Background
+    public class ScrollingTex
     {
         public Texture2D Texture { get; private set; }
         public Vector2 Position;
         private Vector2 _velocity;
+        private DrawOrder _layer;
 
-        public Background(string texture, Vector2 velocity)
+        public ScrollingTex(string texture, Vector2 velocity, DrawOrder layer)
         {
             Texture = ResourceManager.GetTexture(texture);
             Position = Vector2.Zero;
 
             _velocity = velocity;
+            _layer = layer;
+        }
+
+        public void Draw(Camera c)
+        {
+            Vector2 topleft = Position + c.Position2D;
+            Rectangle pos = new Rectangle((int)topleft.X, (int)topleft.Y, Texture.Width, Texture.Height);
+            SpriteDrawer.DrawSprite(Texture,pos,Z:DrawingUtilities.GetDrawingZ(_layer));
         }
 
         public void Update()

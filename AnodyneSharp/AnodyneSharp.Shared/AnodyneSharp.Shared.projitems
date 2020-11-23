@@ -20,7 +20,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Dialogue\Tree\DialogueNPC.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dialogue\Tree\DialogueScene.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dialogue\Tree\DialogueState.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Drawing\Background.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Camera.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\DrawingUtilities.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Effects\FadeEffect.cs" />
@@ -29,6 +28,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Effects\IFullScreenEffect.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Effects\Static.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Effects\Wave.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Drawing\ScrollingTex.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\SpriteDrawer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Spritesheet\Spritesheet.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\CollisionAttribute.cs" />

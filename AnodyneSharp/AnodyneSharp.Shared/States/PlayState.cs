@@ -43,8 +43,10 @@ namespace AnodyneSharp.States
         public const int Scroll_Increment = 4;
 
 
-        private float transition_out {
-            get {
+        private float transition_out
+        {
+            get
+            {
                 return GlobalState.CURRENT_MAP_NAME == "BLANK" ? 1.568f : 0.785f;
             }
         }
@@ -82,6 +84,8 @@ namespace AnodyneSharp.States
         private Vector2 _iconPos;
 
         private float _texRandomTimer;
+        private ScrollingTex _background;
+        private ScrollingTex _dec_over;
 
         public PlayState(Camera camera)
         {
@@ -110,13 +114,17 @@ namespace AnodyneSharp.States
 
             _equippedBroomBorder = ResourceManager.GetTexture("frame_icon", true);
 
-            _miniminimap = new Spritesheet(ResourceManager.GetTexture("mini_minimap_tiles", true),5,5);
+            _miniminimap = new Spritesheet(ResourceManager.GetTexture("mini_minimap_tiles", true), 5, 5);
 
             Warp();
         }
 
         public override void Draw()
         {
+            if (_background != null)
+                _background.Draw(_camera);
+            if (_dec_over != null)
+                _dec_over.Draw(_camera);
 #if DEBUG
             if (GlobalState.DrawBG)
             {
@@ -124,11 +132,11 @@ namespace AnodyneSharp.States
             }
             if (GlobalState.DrawBG2)
             {
-                _map_bg_2.Draw(_camera.Bounds,true);
+                _map_bg_2.Draw(_camera.Bounds, true);
             }
             if (GlobalState.DrawFG)
             {
-                _map_fg.Draw(_camera.Bounds,true);
+                _map_fg.Draw(_camera.Bounds, true);
             }
 
 #else
@@ -178,12 +186,12 @@ namespace AnodyneSharp.States
             _keyValueLabel.Draw();
 
             Minimap mm = GlobalState.CurrentMinimap;
-            if(mm.tiles.Width > 0)
+            if (mm.tiles.Width > 0)
             {
                 int x = Math.Clamp(GlobalState.CURRENT_GRID_X - 2, 0, mm.tiles.Width - 5);
                 int y = Math.Clamp(GlobalState.CURRENT_GRID_Y - 1, 0, mm.tiles.Height - 4);
 
-                mm.Draw(_miniminimap, new Vector2(55,0) - new Vector2(x,y)*_miniminimap.Width, new Rectangle(x,y,5,4));
+                mm.Draw(_miniminimap, new Vector2(55, 0) - new Vector2(x, y) * _miniminimap.Width, new Rectangle(x, y, 5, 4));
             }
 
         }
@@ -191,6 +199,9 @@ namespace AnodyneSharp.States
         public override void Update()
         {
             base.Update();
+
+            if (_background != null) _background.Update();
+            if (_dec_over != null) _dec_over.Update();
 
             bool updateEntities = true;
 
@@ -754,8 +765,8 @@ namespace AnodyneSharp.States
                 TileData.SetTileset(GlobalState.CURRENT_MAP_NAME);
                 _map.LoadMap(MapLoader.GetMapLayer(GlobalState.CURRENT_MAP_NAME), TileData.Tiles, DrawOrder.MAP_BG);
 
-                GlobalState.MAP_GRID_WIDTH = _map.WidthInTiles/10;
-                GlobalState.MAP_GRID_HEIGHT = _map.HeightInTiles/10;
+                GlobalState.MAP_GRID_WIDTH = _map.WidthInTiles / 10;
+                GlobalState.MAP_GRID_HEIGHT = _map.HeightInTiles / 10;
 
                 _map_bg_2.LoadMap(MapLoader.GetMapLayer(GlobalState.CURRENT_MAP_NAME, 2), TileData.Tiles, DrawOrder.MAP_BG2);
                 _map_fg.LoadMap(MapLoader.GetMapLayer(GlobalState.CURRENT_MAP_NAME, 3), TileData.Tiles, DrawOrder.MAP_FG);
@@ -799,6 +810,7 @@ namespace AnodyneSharp.States
             UpdateScreenBorders();
 
             SetBackground();
+            SetDecOver();
 
             LoadGridEntities();
 
@@ -807,12 +819,21 @@ namespace AnodyneSharp.States
 
         private void SetBackground()
         {
-            Background = GlobalState.CURRENT_MAP_NAME switch
+            _background = GlobalState.CURRENT_MAP_NAME switch
             {
-                "BLANK" => new Background("BLANK_BG", new Vector2(-20, 0)),
-                "SPACE" => new Background("SPACE_BG", new Vector2(-15, 0)),
-                "GO" => new Background("briar_BG", new Vector2(0, 15)),
-                "NEXUS" => new Background("nexus_bg", new Vector2(0, 15)),
+                "BLANK" => new ScrollingTex("BLANK_BG", new Vector2(-20, 0), DrawOrder.BACKGROUND),
+                "SPACE" => new ScrollingTex("SPACE_BG", new Vector2(-15, 0), DrawOrder.BACKGROUND),
+                "GO" => new ScrollingTex("briar_BG", new Vector2(0, 15), DrawOrder.BACKGROUND),
+                "NEXUS" => new ScrollingTex("nexus_bg", new Vector2(0, 15), DrawOrder.BACKGROUND),
+                _ => null,
+            };
+        }
+
+        private void SetDecOver()
+        {
+            _dec_over = GlobalState.CURRENT_MAP_NAME switch
+            {
+                "WINDMILL" => new ScrollingTex("windmill_rain", new Vector2(-10, 160), DrawOrder.DEC_OVER),
                 _ => null,
             };
         }

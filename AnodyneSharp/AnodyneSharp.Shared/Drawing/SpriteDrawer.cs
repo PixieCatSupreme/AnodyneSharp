@@ -37,28 +37,11 @@ namespace AnodyneSharp.Drawing
             _render2 = new RenderTarget2D(_graphicsDevice, 160, 180);
         }
 
-        public static void DrawBackground(Background background)
+        public static void BeginDraw(Camera camera, Effect effect = null)
         {
             _graphicsDevice.SetRenderTarget(_game);
 
             _graphicsDevice.Clear(BackColor);
-
-            if (background == null)
-            {
-                return;
-            }
-
-            Texture2D texture = background.Texture;
-
-            _spriteBatch.Begin(sortMode: SpriteSortMode.FrontToBack, blendState: BlendState.AlphaBlend, samplerState: SamplerState);
-            _spriteBatch.Draw(texture, background.Position, Color.White);
-            _spriteBatch.End();
-
-        }
-
-        public static void BeginDraw(Camera camera, Effect effect = null)
-        {
-            _graphicsDevice.SetRenderTarget(_game);
             _spriteBatch.Begin(sortMode: SpriteSortMode.FrontToBack, blendState: BlendState.AlphaBlend, samplerState: SamplerState, effect: effect, transformMatrix: camera.Transform);
         }
 
