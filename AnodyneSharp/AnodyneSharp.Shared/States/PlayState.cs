@@ -87,6 +87,8 @@ namespace AnodyneSharp.States
         private ScrollingTex _background;
         private ScrollingTex _dec_over;
 
+        private Action _map_specific_update;
+
         public PlayState(Camera camera)
         {
             _map = new MapLayer();
@@ -288,6 +290,8 @@ namespace AnodyneSharp.States
             _map.Update();
 
             Refreshes();
+
+            _map_specific_update?.Invoke();
         }
 
         public Touching GetTileCollisionFlags(Vector2 position)
@@ -811,6 +815,7 @@ namespace AnodyneSharp.States
 
             SetBackground();
             SetDecOver();
+            SetMapUpdate();
 
             LoadGridEntities();
 
@@ -835,6 +840,19 @@ namespace AnodyneSharp.States
             {
                 "WINDMILL" => new ScrollingTex("windmill_rain", new Vector2(-10, 160), DrawOrder.DEC_OVER),
                 _ => null,
+            };
+        }
+
+        private void SetMapUpdate()
+        {
+            _map_specific_update = GlobalState.CURRENT_MAP_NAME switch
+            {
+                "BLANK" => () =>
+                {
+                    if (GlobalState.RNG.NextDouble() < 0.05) GlobalState.screenShake.Shake(0.002f, 0.1f);
+                }
+                ,
+                _ => null
             };
         }
 

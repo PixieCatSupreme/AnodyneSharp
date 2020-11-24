@@ -26,6 +26,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Effects\FG_Blend.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Effects\GrayScale.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Effects\IFullScreenEffect.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Drawing\Effects\ScreenShake.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Effects\Static.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Effects\Wave.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\ScrollingTex.cs" />
