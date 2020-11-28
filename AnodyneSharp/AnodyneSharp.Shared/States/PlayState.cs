@@ -850,6 +850,11 @@ namespace AnodyneSharp.States
                 "BLANK" => () =>
                 {
                     if (GlobalState.RNG.NextDouble() < 0.05) GlobalState.screenShake.Shake(0.002f, 0.1f);
+                    if(GlobalState.RNG.NextDouble() < 0.005)
+                    {
+                        GlobalState.darkness.ForceAlpha(0.2f);
+                        GlobalState.darkness.TargetAlpha(0f);
+                    }
                 }
                 ,
                 _ => null

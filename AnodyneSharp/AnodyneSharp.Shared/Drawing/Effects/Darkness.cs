@@ -55,6 +55,11 @@ namespace AnodyneSharp.Drawing.Effects
             }
         }
 
+        public void ForceAlpha(float a)
+        {
+            target_alpha = alpha = a;
+        }
+
         public bool Active()
         {
             return alpha > 0;
