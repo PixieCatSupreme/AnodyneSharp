@@ -75,9 +75,7 @@ namespace AnodyneSharp.Entities.Gadget
         protected virtual void TeleportPlayer()
         {
             DebugLogger.AddInfo($"Teleporting player to map {_linkedDoor.Map} at {_linkedDoor.Door.Position.X}, {_linkedDoor.Door.Position.Y}. Door pair {_linkedDoor.Door.Frame}.");
-            GlobalState.NEXT_MAP_NAME = _linkedDoor.Map;
-            GlobalState.PLAYER_WARP_TARGET = _linkedDoor.Door.Position + teleportOffset;
-            GlobalState.WARP = true;
+            _linkedDoor.Warp(teleportOffset);
             player_on_door = true;
 
             if (_sfx != null)

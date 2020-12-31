@@ -117,6 +117,11 @@ namespace AnodyneSharp.States
                     _inSubstate = false;
                     _substate.Exit = false;
                     _selector.Play("flash");
+                    if(GlobalState.WARP) //exit pause state if substate triggered a warp
+                    {
+                        Exit = true;
+                        return;
+                    }
                 }
             }
 

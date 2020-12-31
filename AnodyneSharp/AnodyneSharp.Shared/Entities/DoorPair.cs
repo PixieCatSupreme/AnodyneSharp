@@ -1,4 +1,7 @@
-﻿using System;
+﻿using AnodyneSharp.Entities.Gadget.Doors;
+using AnodyneSharp.Registry;
+using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -13,6 +16,13 @@ namespace AnodyneSharp.Entities
         {
             Door = door;
             Map = map;
+        }
+
+        public void Warp(Vector2 offset)
+        {
+            GlobalState.NEXT_MAP_NAME = Map;
+            GlobalState.PLAYER_WARP_TARGET = Door.Position + offset;
+            GlobalState.WARP = true;
         }
     }
 

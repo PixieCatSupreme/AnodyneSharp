@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Entities.Enemy;
+using AnodyneSharp.Entities.Gadget.Doors;
 using AnodyneSharp.Logging;
 using AnodyneSharp.Registry;
 using Microsoft.Xna.Framework;
@@ -70,6 +71,19 @@ namespace AnodyneSharp.Entities
             else
             {
                 DebugLogger.AddCritical($"Could not find door pair with id {door.Frame}");
+                return null;
+            }
+        }
+
+        public static DoorMapPair GetNexusGateForCurrentMap()
+        {
+            try
+            {
+                var t = GetMapEntities(GlobalState.CURRENT_MAP_NAME).Where(p => p.Type == typeof(NexusPad)).Single();
+                return GetLinkedDoor(t);
+            }
+            catch
+            {
                 return null;
             }
         }
