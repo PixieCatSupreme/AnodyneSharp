@@ -2,6 +2,7 @@
 using AnodyneSharp.Drawing.Spritesheet;
 using AnodyneSharp.Entities;
 using AnodyneSharp.Input;
+using AnodyneSharp.Logging;
 using AnodyneSharp.Map;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Resources;
@@ -34,8 +35,6 @@ namespace AnodyneSharp.States.PauseSubstates
         private MapState _state;
         private MapState _lastState;
 
-        private DoorMapPair _nexusGate;
-
         private Spritesheet _mapSheet;
 
         private float _playerIndicatorTimer = 0f;
@@ -64,21 +63,11 @@ namespace AnodyneSharp.States.PauseSubstates
             _noMapLabel.SetText(DialogueManager.GetDialogue("misc","any","map", 3));
 
             _returnLabel.IsVisible = false;
-            if(false)
+            if(GlobalState.ReturnTarget != null)
             {
-                //return to entrance
-                _returnLabel.SetText(DialogueManager.GetDialogue("misc", "any", "map", 5));
+                DebugLogger.AddInfo(GlobalState.ReturnTarget.Map);
+                _returnLabel.SetText(DialogueManager.GetDialogue("misc", "any", "map", GlobalState.ReturnTarget.Map == "NEXUS" ? 4 : 5));
                 _returnLabel.IsVisible = true;
-            }
-            else
-            {
-                _nexusGate = EntityManager.GetNexusGateForCurrentMap();
-                if (_nexusGate != null)
-                {
-                    //return to nexus
-                    _returnLabel.SetText(DialogueManager.GetDialogue("misc", "any", "map", 4));
-                    _returnLabel.IsVisible = true;
-                }
             }
 
             _yesLabel.SetText(DialogueManager.GetDialogue("misc","any", "checkpoint", 1));
@@ -89,7 +78,7 @@ namespace AnodyneSharp.States.PauseSubstates
 
         public override void GetControl()
         {
-            if(!_returnLabel.IsVisible)
+            if(GlobalState.ReturnTarget == null)
             {
                 ExitSubState();
                 return;
@@ -157,7 +146,7 @@ namespace AnodyneSharp.States.PauseSubstates
                     if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept))
                     {
                         SoundManager.PlaySoundEffect("menu_select");
-                        _nexusGate.Warp(new Vector2(10, 34));
+                        GlobalState.ReturnTarget.Warp(new Vector2(10, 34));
                         ExitSubState();
                     }
                     else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Cancel))

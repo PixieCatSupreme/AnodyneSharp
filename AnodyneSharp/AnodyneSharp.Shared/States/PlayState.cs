@@ -766,6 +766,8 @@ namespace AnodyneSharp.States
             {
                 GlobalState.CURRENT_MAP_NAME = GlobalState.NEXT_MAP_NAME;
 
+                GlobalState.ReturnTarget = EntityManager.GetNexusGateForCurrentMap();
+
                 TileData.SetTileset(GlobalState.CURRENT_MAP_NAME);
                 _map.LoadMap(MapLoader.GetMapLayer(GlobalState.CURRENT_MAP_NAME), TileData.Tiles, DrawOrder.MAP_BG);
 
