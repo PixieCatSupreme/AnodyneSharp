@@ -766,6 +766,10 @@ namespace AnodyneSharp.States
             {
                 GlobalState.CURRENT_MAP_NAME = GlobalState.NEXT_MAP_NAME;
 
+                if(GlobalState.CURRENT_MAP_NAME == "NEXUS")
+                {
+                    GlobalState.SeenNexus = true;
+                }
                 GlobalState.ReturnTarget = EntityManager.GetNexusGateForCurrentMap();
 
                 TileData.SetTileset(GlobalState.CURRENT_MAP_NAME);

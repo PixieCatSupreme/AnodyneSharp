@@ -49,6 +49,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Etc\FollowerBro.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Etc\SpaceFace.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\DarknessChange.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\DungeonEntrance.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Button.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Console.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Door.cs" />
