@@ -167,6 +167,7 @@ namespace AnodyneSharp.Entities
             }
 
             broom.UpdateBroomType();
+            broom.dust = null;
         }
 
         public override void Draw()
@@ -245,10 +246,6 @@ namespace AnodyneSharp.Entities
             //		//	conveyer_fudge_factor = 5; // <_<
             //		//}
 
-            //		if (state ==  PlayerState.AIR) {
-            //			my_shadow.x = x + JUMP_SHADOW_X_OFF + 1;
-            //			my_shadow.y = y + JUMP_SHADOW_Y_OFF - 3;
-            //		}
             //		return false;
             //	}
 
@@ -408,21 +405,16 @@ namespace AnodyneSharp.Entities
             {
                 if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept) && action_latency <= 0 && !skipBroom)
                 {
-                    if (InventoryManager.EquippedBroom != BroomType.NONE && !broom.exists)
-                    {
-                        broom.visible_timer = 0;
-                        broom.exists = true;
-                        broom.facing = facing;
-                        action_latency = action_latency_max;
-
-                        broom.Play("stab", true);
-                        SoundManager.PlaySoundEffect("swing_broom_1", "swing_broom_2", "swing_broom_3");
-
-                        ANIM_STATE = PlayerAnimState.ANIM_ATK;
-                    }
-                    else if (InventoryManager.EquippedBroom == BroomType.Transformer)
+                    if(InventoryManager.EquippedBroom == BroomType.Transformer)
                     {
                         //TODO transformer stuff
+                    }
+                    else if (InventoryManager.EquippedBroom != BroomType.NONE && !broom.exists)
+                    {
+                        broom.Attack();
+                        action_latency = action_latency_max;
+                        
+                        ANIM_STATE = PlayerAnimState.ANIM_ATK;
                     }
 
                 }
@@ -455,9 +447,9 @@ namespace AnodyneSharp.Entities
                     break;
                 case PlayerAnimState.ANIM_FALL:
                     Play("fall");
-                    return;
+                    break;
                 case PlayerAnimState.ANIM_DEAD:
-                    return;
+                    break;
                 case PlayerAnimState.as_idle:
                     if (idle_ticks > 0)
                     {

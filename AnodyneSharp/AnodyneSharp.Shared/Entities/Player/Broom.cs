@@ -1,7 +1,9 @@
 ﻿using AnodyneSharp.Drawing;
 using AnodyneSharp.Registry;
+using AnodyneSharp.Sounds;
 using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
+using System;
 
 namespace AnodyneSharp.Entities
 {
@@ -14,7 +16,7 @@ namespace AnodyneSharp.Entities
         Transformer
     }
 
-    [Collision(MapCollision = false)]
+    [Collision(typeof(Dust),MapCollision = false)]
     public class Broom : Entity
     {
         private const int WATK_W = 24;
@@ -31,7 +33,7 @@ namespace AnodyneSharp.Entities
 
         public bool AnimFinished => _curAnim.Finished;
 
-        //public Dust dust;
+        public Dust dust;
         public bool just_released_dust;
 
         public Entity long_attack;
@@ -87,26 +89,16 @@ namespace AnodyneSharp.Entities
 
                 wide_attack.visible = false;
                 long_attack.visible = false;
+                just_released_dust = false;
+                if(dust != null)
+                {
+                    //dust.exists = false;
+                }
             }
             else
             {
                 UpdatePos();
             }
-
-            //if (visible)
-            //{
-            //    visible_timer += GameTimes.DeltaTime;
-            //    // needs to be long enough to ensure the broom makes a full anim
-            //    if (visible_timer > 0.4)
-            //    {
-            //        long_attack_h.visible = long_attack_v.visible = visible = false;
-            //        wide_attack_h.visible = wide_attack_v.visible = false;
-            //    }
-            //}
-            //else
-            //{
-            //    visible_timer = 0;
-            //}
 
             wide_attack.Update();
             long_attack.Update();
@@ -281,6 +273,48 @@ namespace AnodyneSharp.Entities
             if (!just_played_extra_anim)
             {
                 long_attack.Play("a");
+            }
+        }
+
+        public void Attack()
+        {
+            visible_timer = 0;
+            exists = true;
+            facing = _root.facing;
+            Play("stab", true);
+            SoundManager.PlaySoundEffect("swing_broom_1", "swing_broom_2", "swing_broom_3");
+
+            if(dust != null)
+            {
+                dust.Position = _root.Position + FacingDirection(_root.facing) * 16;
+                int x = (int)dust.Position.X;
+                int y = (int)dust.Position.Y;
+                int xdiff = x % 16;
+                int ydiff = y % 16;
+                if (xdiff <= 9) x -= xdiff;
+                else x += (16 - xdiff);
+
+                if (ydiff <= 7) y -= ydiff;
+                else y += (16 - ydiff);
+
+                dust.Position = new Vector2(x, y);
+                if(GlobalState.CheckTile(dust.Position) == Touching.NONE)
+                {
+                    dust.exists = true;
+                    dust.Play("unpoof",true);
+                    dust = null;
+                    just_released_dust = true;
+                    //dust-dust check done next frame by dust itself
+                }
+            }
+        }
+
+        public override void Collided(Entity other)
+        {
+            if(dust == null && !just_released_dust && other is Dust d)
+            {
+                dust = d;
+                d.Play("poof");
             }
         }
     }
