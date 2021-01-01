@@ -85,6 +85,9 @@ namespace AnodyneSharp.Registry
         public static int ENEMIES_KILLED;
         public static int PUZZLES_SOLVED;
 
+        public delegate Touching MapChecker(Vector2 pos);
+        public static MapChecker CheckTile;
+
         public static MinimapTracker minimaps = new MinimapTracker();
 
         public static Minimap CurrentMinimap => minimaps.GetMinimap(CURRENT_MAP_NAME);

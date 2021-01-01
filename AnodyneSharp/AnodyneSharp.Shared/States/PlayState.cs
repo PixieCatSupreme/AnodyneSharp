@@ -106,6 +106,13 @@ namespace AnodyneSharp.States
             _iconPos = new Vector2(2, 3);
 
             CreateKeyLabel();
+
+            GlobalState.CheckTile = CheckTile;
+        }
+
+        private Touching CheckTile(Vector2 pos)
+        {
+            return _map.GetCollisionData(pos) | _map_bg_2.GetCollisionData(pos);
         }
 
         public override void Create()
@@ -928,6 +935,7 @@ namespace AnodyneSharp.States
             _groups = new CollisionGroups(GlobalState.ENEMIES_KILLED);
             _groups.Register(_player);
             _groups.Register(_player.broom);
+            
 
             _gridEntities = gridPresets.Where(preset => preset.Alive)
                 .Select(preset => preset.Create(_player)).SelectMany(e => SubEntities(e)).ToList();
