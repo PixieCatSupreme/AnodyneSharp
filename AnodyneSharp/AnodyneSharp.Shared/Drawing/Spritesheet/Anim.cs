@@ -15,11 +15,12 @@ namespace AnodyneSharp
         public bool looped;
         public float delay;
 
+        private bool _finishedLastFrame;
         private int _curIndex;
         private float _frameTimer;
 
 
-        public bool Finished => delay == 0 || (!looped && _curIndex == frames.Length - 1);
+        public bool Finished => delay == 0 || (!looped && _finishedLastFrame);
 
         public Anim(string name, int[] frames, float frameRate, bool looped = true)
         {
@@ -45,6 +46,7 @@ namespace AnodyneSharp
         {
             _curIndex = 0;
             _frameTimer = 0;
+            _finishedLastFrame = false;
 
             Dirty = true;
         }
@@ -59,6 +61,7 @@ namespace AnodyneSharp
                 _frameTimer -= delay;
                 if (_curIndex == frames.Length - 1)
                 {
+                    _finishedLastFrame = true;
                     if (looped)
                     {
                         _curIndex = 0;
