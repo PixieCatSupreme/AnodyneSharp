@@ -108,7 +108,11 @@ namespace AnodyneSharp.Entities
         public bool reversed;
         private float _revTimer;
 
-        public bool ON_CONVEYER { get; private set; }
+        private const float step_timer_max = 0.5f;
+        private float step_noise_timer = 0f;
+
+        public bool ON_CONVEYOR { get; private set; }
+        private bool IS_SINKING = false;
 
         public Player(PlayState parent)
             : base(Vector2.Zero, Player_Sprite, ORIGINAL_WIDTH, ORIGINAL_HEIGHT, Drawing.DrawOrder.ENTITIES)
@@ -168,6 +172,8 @@ namespace AnodyneSharp.Entities
 
             broom.UpdateBroomType();
             broom.dust = null;
+
+            y_push = 0;
         }
 
         public override void Draw()
@@ -230,7 +236,29 @@ namespace AnodyneSharp.Entities
                 }
             }
 
+            step_noise_timer -= GameTimes.DeltaTime;
+            if(step_noise_timer < 0f && velocity != Vector2.Zero && ON_CONVEYOR && state != PlayerState.AIR)
+            {
+                if (IS_SINKING)
+                {
+                    SoundManager.PlaySoundEffect("water_step");
+                    step_noise_timer = step_timer_max;
+                }
+                else
+                {
+                    SoundManager.PlaySoundEffect("puddle_step");
+                    step_noise_timer = step_timer_max / 2;
+                }
+            }
+
             base.Update();
+        }
+
+        public override void PostUpdate()
+        {
+            base.PostUpdate();
+            ON_CONVEYOR = false;
+            IS_SINKING = false;
         }
 
         private bool CommonConditions()
@@ -277,13 +305,39 @@ namespace AnodyneSharp.Entities
             return true;
         }
 
-        public void Fall(Vector2 fallPoint)
+        public override void Fall(Vector2 fallPoint)
         {
-            if (!fallingDisabled && !isSlipping && !hasFallen)
+            if (state != PlayerState.AIR && !fallingDisabled && !isSlipping && !hasFallen)
             {
                 isSlipping = true;
                 fallTimer = FALL_TIMER_DEFAULT;
                 this.fallPoint = fallPoint;
+            }
+        }
+
+        public override void Puddle()
+        {
+            ON_CONVEYOR = true;
+        }
+
+        public override void Conveyor(Touching direction)
+        {
+            ON_CONVEYOR = true;
+            const float CONVEYOR_VEL = 35f;
+            if(state != PlayerState.AIR)
+            {
+                additionalVel = direction switch
+                {
+                    Touching.DOWN => new Vector2(0, CONVEYOR_VEL),
+                    Touching.UP => new Vector2(0, -CONVEYOR_VEL),
+                    Touching.RIGHT => new Vector2(CONVEYOR_VEL, 0),
+                    Touching.LEFT => new Vector2(-CONVEYOR_VEL, 0),
+                    _ => Vector2.Zero
+                };
+
+                //TODO: check for raft
+                slowMul = 0.5f;
+                IS_SINKING = true;
             }
         }
 
@@ -311,6 +365,14 @@ namespace AnodyneSharp.Entities
                         ResetAfterFalling();
                     }
 
+                    if(IS_SINKING)
+                    {
+                        SinkingLogic();
+                    }
+                    else
+                    {
+                        y_push = 0;
+                    }
 
                     //update_sentinels();
 
@@ -349,6 +411,17 @@ namespace AnodyneSharp.Entities
                     break;
                 default:
                     break;
+            }
+        }
+
+        private void SinkingLogic()
+        {
+            y_push += GameTimes.DeltaTime * 16 / 3;
+            if(y_push > 16)
+            {
+                y_push = 0;
+                Position = grid_entrance;
+                ReceiveDamage(1);
             }
         }
 
@@ -499,7 +572,7 @@ namespace AnodyneSharp.Entities
                 broom.exists = false;
                 anim_air_did_up = true;
 
-                if (ON_CONVEYER)
+                if (ON_CONVEYOR)
                 {
                     SoundManager.PlaySoundEffect("puddle_up");
                 }
@@ -525,7 +598,7 @@ namespace AnodyneSharp.Entities
             if (jump_timer > jump_period)
             {
                 jump_timer = 0;
-                if (ON_CONVEYER)
+                if (ON_CONVEYOR)
                 {
                     SoundManager.PlaySoundEffect("puddle_down");
                 }
@@ -590,7 +663,7 @@ namespace AnodyneSharp.Entities
 
             //if (ON_RAFT)
             //{
-            //    if (ON_CONVEYER != NONE)
+            //    if (ON_CONVEYOR != NONE)
             //    {
             //        raft.x = x - 2;
             //        raft.y = y - 2;
@@ -617,11 +690,11 @@ namespace AnodyneSharp.Entities
                     Touching tr = parent.GetTileCollisionFlags(Position + new Vector2(width, -8));
                     if ((Position.X + width) % 16 < 6 && (tl & Touching.DOWN) == 0)
                     {
-                        additionalVel.X = -30;
+                        additionalVel.X -= 30;
                     }
                     else if ((Position.X % 16) > 9 && (tr & Touching.DOWN) == 0)
                     {
-                        additionalVel.X = 30;
+                        additionalVel.X += 30;
                     }
                 }
 
@@ -635,11 +708,11 @@ namespace AnodyneSharp.Entities
                     Touching br = parent.GetTileCollisionFlags(Position + new Vector2(width, height + 8));
                     if ((Position.X + width) % 16 < 6 && (bl & Touching.UP) == 0)
                     {
-                        additionalVel.X = -30;
+                        additionalVel.X -= 30;
                     }
                     else if ((Position.X % 16) > 9 && (br & Touching.UP) == 0)
                     {
-                        additionalVel.X = 30;
+                        additionalVel.X += 30;
                     }
                 }
             }
@@ -657,11 +730,11 @@ namespace AnodyneSharp.Entities
                     Touching bl2 = parent.GetTileCollisionFlags(Position + new Vector2(-8, height));
                     if ((Position.Y + height) % 16 < 6 && (tl2 & Touching.RIGHT) == 0)
                     {
-                        additionalVel.Y = -30;
+                        additionalVel.Y -= 30;
                     }
                     else if (Position.Y % 16 > 9 && (bl2 & Touching.RIGHT) == 0)
                     {
-                        additionalVel.Y = 30;
+                        additionalVel.Y += 30;
                     }
                 }
             }
@@ -674,11 +747,11 @@ namespace AnodyneSharp.Entities
                     Touching br2 = parent.GetTileCollisionFlags(Position + new Vector2(width + 8, height));
                     if ((Position.Y + height) % 16 < 6 && (tr2 & Touching.LEFT) == 0)
                     {
-                        additionalVel.Y = -30;
+                        additionalVel.Y -= 30;
                     }
                     else if (Position.Y % 16 > 9 && (br2 & Touching.LEFT) == 0)
                     {
-                        additionalVel.Y = 30;
+                        additionalVel.Y += 30;
                     }
                 }
             }

@@ -52,7 +52,7 @@ namespace AnodyneSharp.Map
                 //Default gets overridden by SetTileProperties later on
                 _tileObjects[i] = new Tile(tiles.Width, tiles.Height, (i >= 1), (i >= 1) ? Touching.ANY : Touching.NONE);
             }
-            
+
             _rects = new Rectangle?[tiles.NumFrames];
             for (int i = 0; i < _rects.Length; i++)
             {
@@ -78,6 +78,7 @@ namespace AnodyneSharp.Map
 
                 tile.allowCollisions = allowCollisions;
                 tile.collisionEventType = collisionEventType;
+                tile.direction = direction;
             }
         }
 
@@ -113,9 +114,46 @@ namespace AnodyneSharp.Map
 
                     if (t.allowCollisions == Touching.NONE || GameObject.Separate(ent, t))
                     {
-                        if (t.collisionEventType != CollisionEventType.NONE)
+                        if (t.collisionEventType != CollisionEventType.NONE && ent.MapInteraction)
                         {
-                            //TODO: Call event method in TileData
+                            switch (t.collisionEventType)
+                            {
+                                case CollisionEventType.CONVEYOR:
+                                    if(t.Hitbox.Contains(ent.Center))
+                                    {
+                                        ent.Conveyor(t.direction);
+                                    }
+                                    break;
+                                case CollisionEventType.THIN:
+                                    //try implementing this as collision?
+                                    break;
+                                case CollisionEventType.HOLE:
+                                    Rectangle actualHitbox = t.Hitbox;
+                                    actualHitbox.Y += 5; actualHitbox.Height = 4;
+                                    actualHitbox.X += 5; actualHitbox.Width = 6;
+
+                                    if (actualHitbox.Intersects(ent.Hitbox))
+                                    {
+                                        ent.Fall(t.Position);
+                                    }
+                                    break;
+                                case CollisionEventType.SLOW:
+
+                                    break;
+                                case CollisionEventType.SPIKE:
+                                    if (ent is Player p && p.state != PlayerState.AIR) p.ReceiveDamage(1);
+                                    break;
+                                case CollisionEventType.LADDER:
+                                    break;
+                                case CollisionEventType.PUDDLE:
+                                    if (t.Hitbox.Contains(ent.Center))
+                                    {
+                                        ent.Puddle();
+                                    }
+                                    break;
+                                default:
+                                    break;
+                            }
                         }
                     }
 

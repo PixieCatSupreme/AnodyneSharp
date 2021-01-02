@@ -71,6 +71,7 @@ namespace AnodyneSharp.Entities.Enemy
         public Annoyer(EntityPreset preset, Player player) 
             : base(preset.Position, "annoyer", 16,16, DrawOrder.ENTITIES)
         {
+            MapInteraction = false;
             _preset = preset;
             _target = player;
             Solid = false;

@@ -48,6 +48,10 @@ namespace AnodyneSharp.Entities
 
         private float _lastScale;
 
+        public bool MapInteraction = true;
+
+        public float y_push = 0f; //sinking into the ground
+
         public Vector2 VisualCenter
         {
             get
@@ -198,9 +202,11 @@ namespace AnodyneSharp.Entities
         {
             if (visible && exists)
             {
+                Rectangle srect = sprite.GetRect(_curAnim.Frame);
+                srect.Height -= (int)y_push;
                 SpriteDrawer.DrawSprite(sprite.Tex, 
-                    MathUtilities.CreateRectangle(Position.X - offset.X*scale, Position.Y - offset.Y*scale, sprite.Width*scale, sprite.Height*scale), 
-                    sprite.GetRect(_curAnim.Frame),
+                    MathUtilities.CreateRectangle(Position.X - offset.X*scale, Position.Y - offset.Y*scale + (int)y_push, srect.Width*scale, srect.Height*scale), 
+                    srect,
                     color * _opacity,
                     rotation,
                     _flip,
@@ -287,5 +293,22 @@ namespace AnodyneSharp.Entities
                 visible = true;
             }
         }
+
+        //Map interactions
+
+        public virtual void Fall(Vector2 fallPoint)
+        {
+            exists = false;
+        }
+
+        public virtual void SlowTile() { }
+
+        public virtual void Puddle() { }
+
+        public virtual void Ladder() { }
+
+        public virtual void Conveyor(Touching direction) { }
+
+
     }
 }
