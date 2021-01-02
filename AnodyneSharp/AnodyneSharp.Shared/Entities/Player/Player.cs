@@ -172,8 +172,6 @@ namespace AnodyneSharp.Entities
 
             broom.UpdateBroomType();
             broom.dust = null;
-
-            y_push = 0;
         }
 
         public override void Draw()
@@ -350,6 +348,7 @@ namespace AnodyneSharp.Entities
                     if (dontMove)
                     {
                         velocity = Vector2.Zero;
+                        return;
                     }
                     else
                     {
