@@ -256,6 +256,20 @@ namespace AnodyneSharp.Entities
             sprite = new Spritesheet(ResourceManager.GetTexture(textureName, ignoreChaos), sprite.Width, sprite.Height);
         }
 
+        public static Facing FacingFromTouching(Touching t)
+        {
+            return t switch
+            {
+                Touching.NONE => throw new InvalidCastException(),
+                Touching.LEFT => Facing.LEFT,
+                Touching.RIGHT => Facing.RIGHT,
+                Touching.UP => Facing.UP,
+                Touching.DOWN => Facing.DOWN,
+                Touching.ANY => throw new InvalidCastException(),
+                _ => throw new InvalidCastException()
+            };
+        }
+
         public static Vector2 FacingDirection(Facing f)
         {
             return new Vector2(
