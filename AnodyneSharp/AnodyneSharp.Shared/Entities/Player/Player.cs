@@ -356,10 +356,10 @@ namespace AnodyneSharp.Entities
             {
                 case PlayerState.GROUND:
                     shadow.visible = false;
+                    
                     if (dontMove)
                     {
                         velocity = Vector2.Zero;
-                        return;
                     }
                     else
                     {
@@ -375,13 +375,16 @@ namespace AnodyneSharp.Entities
                         ResetAfterFalling();
                     }
 
-                    if(IS_SINKING)
+                    if (!dontMove)
                     {
-                        SinkingLogic();
-                    }
-                    else
-                    {
-                        y_push = 0;
+                        if (IS_SINKING)
+                        {
+                            SinkingLogic();
+                        }
+                        else
+                        {
+                            y_push = 0;
+                        }
                     }
 
                     //update_sentinels();
@@ -507,6 +510,7 @@ namespace AnodyneSharp.Entities
                     state = PlayerState.AIR;
                     shadow.visible = true;
                     broom.exists = false;
+                    isSlipping = false;
                 }
             }
         }
