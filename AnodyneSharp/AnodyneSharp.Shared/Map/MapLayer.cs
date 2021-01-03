@@ -128,20 +128,27 @@ namespace AnodyneSharp.Map
                                     //try implementing this as collision?
                                     break;
                                 case CollisionEventType.HOLE:
-                                    Rectangle actualHitbox = t.Hitbox;
-                                    actualHitbox.Y += 5; actualHitbox.Height = 4;
-                                    actualHitbox.X += 5; actualHitbox.Width = 6;
-
-                                    if (actualHitbox.Intersects(ent.Hitbox))
                                     {
-                                        ent.Fall(t.Position);
+                                        Rectangle actualHitbox = t.Hitbox;
+                                        actualHitbox.Y += 5; actualHitbox.Height = 4;
+                                        actualHitbox.X += 5; actualHitbox.Width = 6;
+
+                                        if (actualHitbox.Intersects(ent.Hitbox))
+                                        {
+                                            ent.Fall(t.Position);
+                                        }
                                     }
                                     break;
                                 case CollisionEventType.SLOW:
 
                                     break;
                                 case CollisionEventType.SPIKE:
-                                    if (ent is Player p && p.state != PlayerState.AIR) p.ReceiveDamage(1);
+                                    {
+                                        Rectangle actualHitbox = t.Hitbox;
+                                        actualHitbox.Y += 6; actualHitbox.Height = 6;
+                                        actualHitbox.X += 6; actualHitbox.Width = 5;
+                                        if (ent is Player p && p.state != PlayerState.AIR && actualHitbox.Intersects(p.Hitbox)) p.ReceiveDamage(1);
+                                    }
                                     break;
                                 case CollisionEventType.LADDER:
                                     break;
