@@ -1819,6 +1819,42 @@
 /processorParam:TextureFormat=Color
 /build:textures/sprites/decoration/overlay_APARTMENT_water.png
 
+#begin textures/sprites/decoration/overlay_APARTMENT_water.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:textures/sprites/decoration/overlay_APARTMENT_water.png
+
+#begin textures/sprites/decoration/overlay_CIRCUS_water.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:textures/sprites/decoration/overlay_CIRCUS_water.png
+
+#begin textures/sprites/decoration/overlay_DEBUG_water.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:textures/sprites/decoration/overlay_DEBUG_water.png
+
 #begin textures/sprites/decoration/overlay_FIELDS_grass.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1830,6 +1866,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:textures/sprites/decoration/overlay_FIELDS_grass.png
+
+#begin textures/sprites/decoration/overlay_FOREST_water.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:textures/sprites/decoration/overlay_FOREST_water.png
 
 #begin textures/sprites/decoration/overlay_REDCAVE_water.png
 /importer:TextureImporter
@@ -1843,7 +1891,7 @@
 /processorParam:TextureFormat=Color
 /build:textures/sprites/decoration/overlay_REDCAVE_water.png
 
-#begin textures/sprites/decoration/overlay_REDSEA.png
+#begin textures/sprites/decoration/overlay_REDSEA_water.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1853,7 +1901,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:textures/sprites/decoration/overlay_REDSEA.png
+/build:textures/sprites/decoration/overlay_REDSEA_water.png
 
 #begin textures/sprites/decoration/overlay_water.png
 /importer:TextureImporter
@@ -1866,18 +1914,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:textures/sprites/decoration/overlay_water.png
-
-#begin textures/sprites/decoration/overlay_WINDMILL_water.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:textures/sprites/decoration/overlay_WINDMILL_water.png
 
 #begin textures/sprites/decoration/overlays/apartment_overlay.png
 /importer:TextureImporter
@@ -2130,18 +2166,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:textures/sprites/decoration/pixelation.png
-
-#begin textures/sprites/decoration/player_overlay_foot_test.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:textures/sprites/decoration/player_overlay_foot_test.png
 
 #begin textures/sprites/decoration/rail.png
 /importer:TextureImporter

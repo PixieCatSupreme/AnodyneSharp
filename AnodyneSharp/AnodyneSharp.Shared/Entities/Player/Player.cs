@@ -113,12 +113,14 @@ namespace AnodyneSharp.Entities
 
         public bool ON_CONVEYOR { get; private set; }
         private bool IS_SINKING = false;
+        private Foot_Overlay foot_overlay;
 
         public Player(PlayState parent)
             : base(Vector2.Zero, Player_Sprite, ORIGINAL_WIDTH, ORIGINAL_HEIGHT, Drawing.DrawOrder.ENTITIES)
         {
             DEATH_FRAME = 32;
             this.parent = parent;
+            
 
             AddAnimation("walk_d", CreateAnimFrameArray(1, 0), 6, true);
             AddAnimation("walk_r", CreateAnimFrameArray(2, 3), 8, true);
@@ -157,6 +159,7 @@ namespace AnodyneSharp.Entities
 
             broom = new Broom(this);
             shadow = new Shadow(this, new Vector2(3, -1), fps: 20);
+            foot_overlay = new Foot_Overlay(this);
         }
 
         public void Reset()
@@ -172,6 +175,7 @@ namespace AnodyneSharp.Entities
 
             broom.UpdateBroomType();
             broom.dust = null;
+            foot_overlay.OnMapChange();
         }
 
         public override void Draw()
@@ -179,6 +183,7 @@ namespace AnodyneSharp.Entities
             base.Draw();
 
             broom.Draw();
+            foot_overlay.Draw();
         }
 
         public override void Update()
@@ -249,12 +254,15 @@ namespace AnodyneSharp.Entities
                 }
             }
 
+            foot_overlay.Update(); //Can't be a subentity bc it requires ON_CONVEYOR to be set correctly
+
             base.Update();
         }
 
         public override void PostUpdate()
         {
             base.PostUpdate();
+            foot_overlay.PostUpdate();
             ON_CONVEYOR = false;
             IS_SINKING = false;
         }

@@ -87,6 +87,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Player\Broom.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\NamedEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Bedroom\Slime.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Player\Foot_Overlay.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FSM\CollisionEvent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Map\Minimap.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Map\MinimapTracker.cs" />
