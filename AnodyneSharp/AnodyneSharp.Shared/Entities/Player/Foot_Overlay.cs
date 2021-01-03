@@ -16,6 +16,8 @@ namespace AnodyneSharp.Entities
             follow = p;
             visible = false;
             AddAnimation("water", CreateAnimFrameArray(0, 1), 5);
+            AddAnimation("grass_go", CreateAnimFrameArray(4, 5), 8);
+            AddAnimation("grass_stop", CreateAnimFrameArray(5), 8);
         }
 
         public void OnMapChange()
@@ -23,6 +25,8 @@ namespace AnodyneSharp.Entities
             if (!SetTexture($"overlay_{GlobalState.CURRENT_MAP_NAME}_water", 24, 24))
             {
                 SetTexture("overlay_water", 24, 24);
+                offset.Y = 0;
+                layer = Drawing.DrawOrder.FOOT_OVERLAY;
             }
             Play("water");
         }
@@ -34,6 +38,27 @@ namespace AnodyneSharp.Entities
             if (GlobalState.CURRENT_MAP_NAME == "WINDMILL") //only map that doesn't have the foot overlay flicker
             {
                 visible = true;
+            }
+        }
+
+        public override void Grass()
+        {
+            if (_curAnim.name == "water")
+            {
+                SetTexture($"overlay_{GlobalState.CURRENT_MAP_NAME}_grass", 24, 24);
+                offset.Y = 1;
+                layer = Drawing.DrawOrder.FG_SPRITES;
+            }
+            activated = true;
+            visible = true;
+
+            if (follow.velocity == Vector2.Zero)
+            {
+                Play($"grass_stop");
+            }
+            else
+            {
+                Play($"grass_go");
             }
         }
 
@@ -49,6 +74,10 @@ namespace AnodyneSharp.Entities
 
         private void Activate()
         {
+            if (_curAnim.name != "water")
+            {
+                OnMapChange();
+            }
             if (follow.state == PlayerState.GROUND)
             {
                 activated = true;

@@ -151,6 +151,12 @@ namespace AnodyneSharp.Map
                                         ent.Puddle();
                                     }
                                     break;
+                                case CollisionEventType.GRASS:
+                                    if(t.Hitbox.Contains(ent.Center))
+                                    {
+                                        ent.Grass();
+                                    }
+                                    break;
                                 default:
                                     break;
                             }

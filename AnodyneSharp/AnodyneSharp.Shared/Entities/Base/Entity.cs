@@ -40,7 +40,7 @@ namespace AnodyneSharp.Entities
         protected SpriteEffects _flip;
 
         private List<Anim> _animations;
-        private string textureName; 
+        private string textureName;
 
         protected bool _flickering;
         private float _flickerTimer;
@@ -56,7 +56,7 @@ namespace AnodyneSharp.Entities
         {
             get
             {
-                return Position - offset + new Vector2(sprite.Width/2,sprite.Height/2);
+                return Position - offset + new Vector2(sprite.Width / 2, sprite.Height / 2);
             }
         }
 
@@ -158,7 +158,7 @@ namespace AnodyneSharp.Entities
                 }
             }
             DebugLogger.AddWarning("No animation called \"" + AnimName + "\"");
-        } 
+        }
 
         public override void Update()
         {
@@ -204,14 +204,14 @@ namespace AnodyneSharp.Entities
             {
                 Rectangle srect = sprite.GetRect(_curAnim.Frame);
                 srect.Height -= (int)y_push;
-                SpriteDrawer.DrawSprite(sprite.Tex, 
-                    MathUtilities.CreateRectangle(Position.X - offset.X*scale, Position.Y - offset.Y*scale + (int)y_push, srect.Width*scale, srect.Height*scale), 
+                SpriteDrawer.DrawSprite(sprite.Tex,
+                    MathUtilities.CreateRectangle(Position.X - offset.X * scale, Position.Y - offset.Y * scale + (int)y_push, srect.Width * scale, srect.Height * scale),
                     srect,
                     color * _opacity,
                     rotation,
                     _flip,
                     DrawingUtilities.GetDrawingZ(layer, MapUtilities.GetInGridPosition(Position).Y));
-                
+
                 if (shadow != null)
                 {
                     shadow.Draw();
@@ -244,7 +244,7 @@ namespace AnodyneSharp.Entities
         protected virtual bool SetTexture(string textureName, int frameWidth, int frameHeight, bool ignoreChaos = false)
         {
             this.textureName = textureName;
-            sprite = new Spritesheet(ResourceManager.GetTexture(textureName, ignoreChaos),frameWidth,frameHeight);
+            sprite = new Spritesheet(ResourceManager.GetTexture(textureName, ignoreChaos), frameWidth, frameHeight);
 
             SetFrame(0);
 
@@ -309,6 +309,6 @@ namespace AnodyneSharp.Entities
 
         public virtual void Conveyor(Touching direction) { }
 
-
+        public virtual void Grass() { }
     }
 }
