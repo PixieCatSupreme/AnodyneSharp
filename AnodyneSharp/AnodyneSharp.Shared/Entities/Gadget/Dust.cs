@@ -11,6 +11,7 @@ namespace AnodyneSharp.Entities
         private Broom b; //used to un-unpoof on dust-dust collision
 
         public bool ON_CONVEYOR = false;
+        public bool IS_RAFT = false;
 
         public Dust(EntityPreset preset, Player p) : base(preset.Position,"dust",16,16,Drawing.DrawOrder.BG_ENTITIES)
         {
@@ -39,6 +40,8 @@ namespace AnodyneSharp.Entities
 
         public override void Fall(Vector2 fallPoint)
         {
+            if (IS_RAFT) return;
+
             if(_curAnim.name == "unpoof")
             {
                 if(_curAnim.Finished)
@@ -56,7 +59,7 @@ namespace AnodyneSharp.Entities
 
         public override void Conveyor(Touching direction)
         {
-            if (direction != Touching.ANY)
+            if (direction != Touching.ANY && !IS_RAFT)
             {
                 velocity = FacingDirection(FacingFromTouching(direction)) * 10;
             }

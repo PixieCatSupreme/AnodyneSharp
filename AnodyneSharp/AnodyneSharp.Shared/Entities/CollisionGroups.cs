@@ -79,22 +79,7 @@ namespace AnodyneSharp.Entities
         }
 
         public void DoCollision(MapLayer bg, MapLayer bg2)
-        {
-            //entity-entity collisions first, needs priority for certain combinations to work properly(dust-propeller vs dust-hole)
-            foreach(Group g in _groups.Values)
-            {
-                foreach(Entity collider in g.colliders.Where(e => e.exists))
-                {
-                    foreach(Entity target in g.targets.Where(e => e.exists && !ReferenceEquals(e,collider)))
-                    {
-                        if(collider.Hitbox.Intersects(target.Hitbox))
-                        {
-                            collider.Collided(target);
-                        }
-                    }
-                }
-            }
-            
+        {   
             foreach(Entity e in _mapColliders.Where(e=>e.exists))
             {
                 bg.Collide(e);
@@ -102,6 +87,20 @@ namespace AnodyneSharp.Entities
                 foreach(Entity m in _mapEntities.Where(m=>m.Solid && m.exists && m.Hitbox.Intersects(e.Hitbox)))
                 {
                     m.Collided(e);
+                }
+            }
+            //map-entity collision sets per-frame state values that are checked in entity-entity collisions(player+dust->raft)
+            foreach (Group g in _groups.Values)
+            {
+                foreach (Entity collider in g.colliders.Where(e => e.exists))
+                {
+                    foreach (Entity target in g.targets.Where(e => e.exists && !ReferenceEquals(e, collider)))
+                    {
+                        if (collider.Hitbox.Intersects(target.Hitbox))
+                        {
+                            collider.Collided(target);
+                        }
+                    }
                 }
             }
 

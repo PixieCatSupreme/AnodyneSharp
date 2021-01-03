@@ -30,7 +30,7 @@ namespace AnodyneSharp.Entities
         as_slumped
     }
 
-    [Collision(MapCollision = true)]
+    [Collision(typeof(Dust),MapCollision = true)]
     public class Player : Entity
     {
         public const string Player_Sprite = "young_player";
@@ -115,6 +115,8 @@ namespace AnodyneSharp.Entities
         public bool ON_CONVEYOR { get; private set; }
         private bool IS_SINKING = false;
         private Foot_Overlay foot_overlay;
+
+        public Dust raft;
 
         public Player(PlayState parent)
             : base(Vector2.Zero, Player_Sprite, ORIGINAL_WIDTH, ORIGINAL_HEIGHT, Drawing.DrawOrder.ENTITIES)
@@ -267,49 +269,19 @@ namespace AnodyneSharp.Entities
 
         public override IEnumerable<Entity> SubEntities()
         {
-            return new List<Entity>() { broom, foot_overlay };
+            List<Entity> ret = new() { broom, foot_overlay };
+            if (raft != null) ret.Add(raft);
+            return ret;
         }
 
         private bool CommonConditions()
         {
-            //	//Registry.CUR_HEALTH = health_bar.cur_health;
-
-            //	if (parent.state == parent.S_TRANSITION) {
-            //		dontMove = true;
-            //		velocity.X = velocity.Y = 0;
-            //		//if (ON_RAFT) {
-            //		//	raft.x = x - 2;
-            //		//	raft.y = y - 3;
-            //		//	conveyer_fudge_factor = 5; // <_<
-            //		//}
-
-            //		return false;
-            //	}
-
-            //	if (parent.SWITCH_MAPS || !alive)
-            //          {
-            //		base.Update();
-            //		return false;
-            //	}
 
             if (!Solid && justFell)
             {
                 Solid = true;
                 justFell = false;
             }
-
-            //	if (invincible_timer > 0)
-            //          {
-            //              invincible_timer -= GameTimes.DeltaTime;
-            //	}
-            //          else
-            //          {
-            //		invincible = false;
-            //		if (!GlobalState.FUCK_IT_MODE_ON)
-            //              {
-            //			visible = true;
-            //		}
-            //	}
 
             return true;
         }
@@ -344,9 +316,25 @@ namespace AnodyneSharp.Entities
                     _ => Vector2.Zero
                 };
 
-                //TODO: check for raft
-                slowMul = 0.5f;
-                IS_SINKING = true;
+                if (raft == null)
+                {
+                    slowMul = 0.5f;
+                    IS_SINKING = true;
+                }
+            }
+        }
+
+        public override void Collided(Entity other)
+        {
+            if(other is Dust d)
+            {
+                if(raft == null && d.Hitbox.Contains(this.Center) && d.ON_CONVEYOR && ON_CONVEYOR)
+                {
+                    raft = d;
+                    d.IS_RAFT = true;
+                    IS_SINKING = false;
+                    y_push = 0;
+                }
             }
         }
 
@@ -375,7 +363,7 @@ namespace AnodyneSharp.Entities
                         ResetAfterFalling();
                     }
 
-                    if (!dontMove)
+                    if (!dontMove) //Don't do sinking logic during transition
                     {
                         if (IS_SINKING)
                         {
@@ -385,6 +373,27 @@ namespace AnodyneSharp.Entities
                         {
                             y_push = 0;
                         }
+
+                        if(raft != null)
+                        {
+                            if (ON_CONVEYOR)
+                            {
+                                raft.Position = Position - new Vector2(2, 2);
+                            }
+                            else if(velocity != Vector2.Zero && !isSlipping && !hasFallen)
+                            {
+                                Vector2 vel = velocity;
+                                vel.Normalize();
+                                raft.Position -= vel * 3;
+                                raft.IS_RAFT = false;
+                                raft = null;
+                            }
+                        }
+                    }
+
+                    if(raft != null && ON_CONVEYOR)
+                    {
+                        raft.Position = Position - Vector2.One * 2;
                     }
 
                     //update_sentinels();
@@ -673,14 +682,13 @@ namespace AnodyneSharp.Entities
         {
             Set_init_vel(0.83f);
 
-            //if (ON_RAFT)
-            //{
-            //    if (ON_CONVEYOR != NONE)
-            //    {
-            //        raft.x = x - 2;
-            //        raft.y = y - 2;
-            //    }
-            //}
+            if (raft != null)
+            {
+                if (ON_CONVEYOR)
+                {
+                    raft.Position = Position - Vector2.One*2;
+                }
+            }
 
             velocity += additionalVel;
         }

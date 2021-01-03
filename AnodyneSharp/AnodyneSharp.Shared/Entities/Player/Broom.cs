@@ -39,7 +39,7 @@ namespace AnodyneSharp.Entities
         public Entity long_attack;
         public Entity wide_attack;
 
-        private Entity _root;
+        private Player _root;
 
         public float visible_timer = 0;
 
@@ -47,7 +47,7 @@ namespace AnodyneSharp.Entities
         private bool just_played_extra_anim = false;
 
 
-        public Broom(Entity root)
+        public Broom(Player root)
             : base(new Vector2(root.Position.X - 10, root.Position.Y), "broom", 16, 16, Drawing.DrawOrder.ENTITIES)
         {
             _root = root;
@@ -311,7 +311,7 @@ namespace AnodyneSharp.Entities
 
         public override void Collided(Entity other)
         {
-            if(dust == null && !just_released_dust && other is Dust d)
+            if(dust == null && !just_released_dust && other is Dust d && !ReferenceEquals(d,_root.raft))
             {
                 dust = d;
                 d.Play("poof");
