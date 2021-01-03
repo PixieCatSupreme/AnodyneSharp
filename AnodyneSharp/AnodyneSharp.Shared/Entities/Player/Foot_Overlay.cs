@@ -6,9 +6,11 @@ using System.Text;
 
 namespace AnodyneSharp.Entities
 {
+    [Collision(MapCollision = true)]
     public class Foot_Overlay : Entity
     {
         Player follow;
+        bool activated = true;
         public Foot_Overlay(Player p) : base(p.Position, "overlay_water", 24, 24, Drawing.DrawOrder.FOOT_OVERLAY)
         {
             follow = p;
@@ -28,21 +30,42 @@ namespace AnodyneSharp.Entities
         public override void Update()
         {
             base.Update();
-            if (!follow.ON_CONVEYOR || follow.state != PlayerState.GROUND)
-            {
-                _flickering = false;
-                visible = false;
-                return;
-            }
-            
+
             if (GlobalState.CURRENT_MAP_NAME == "WINDMILL") //only map that doesn't have the foot overlay flicker
             {
                 visible = true;
             }
-            else
+        }
+
+        public override void Conveyor(Touching direction)
+        {
+            Activate();
+        }
+
+        public override void Puddle()
+        {
+            Activate();
+        }
+
+        private void Activate()
+        {
+            if (follow.state == PlayerState.GROUND)
             {
-                Flicker(0.2f);
+                activated = true;
+                if (GlobalState.CURRENT_MAP_NAME == "WINDMILL")
+                {
+                    visible = true;
+                }
+                else
+                {
+                    Flicker(0.1f);
+                }
             }
+        }
+
+        public override void Fall(Vector2 fallPoint)
+        {
+            //Nothing
         }
 
         public override void PostUpdate()
@@ -53,6 +76,13 @@ namespace AnodyneSharp.Entities
             {
                 Position.X--;
             }
+
+            if (!activated)
+            {
+                visible = false;
+                _flickering = false;
+            }
+            activated = false;
         }
     }
 }

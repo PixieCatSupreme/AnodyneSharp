@@ -5,6 +5,7 @@ using AnodyneSharp.States;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Collections.Generic;
 
 namespace AnodyneSharp.Entities
 {
@@ -254,17 +255,19 @@ namespace AnodyneSharp.Entities
                 }
             }
 
-            foot_overlay.Update(); //Can't be a subentity bc it requires ON_CONVEYOR to be set correctly
-
             base.Update();
         }
 
         public override void PostUpdate()
         {
             base.PostUpdate();
-            foot_overlay.PostUpdate();
             ON_CONVEYOR = false;
             IS_SINKING = false;
+        }
+
+        public override IEnumerable<Entity> SubEntities()
+        {
+            return new List<Entity>() { broom, foot_overlay };
         }
 
         private bool CommonConditions()
@@ -386,8 +389,6 @@ namespace AnodyneSharp.Entities
                     if (!hasFallen && !actions_disabled)
                     {
                         Update_actions();
-                        broom.Update();
-                        broom.PostUpdate();
                     }
                     GroundAnimation();
 

@@ -773,7 +773,7 @@ namespace AnodyneSharp.States
             {
                 GlobalState.CURRENT_MAP_NAME = GlobalState.NEXT_MAP_NAME;
 
-                if(GlobalState.CURRENT_MAP_NAME == "NEXUS")
+                if (GlobalState.CURRENT_MAP_NAME == "NEXUS")
                 {
                     GlobalState.SeenNexus = true;
                 }
@@ -863,7 +863,7 @@ namespace AnodyneSharp.States
                 "BLANK" => () =>
                 {
                     if (GlobalState.RNG.NextDouble() < 0.05) GlobalState.screenShake.Shake(0.002f, 0.1f);
-                    if(GlobalState.RNG.NextDouble() < 0.005)
+                    if (GlobalState.RNG.NextDouble() < 0.005)
                     {
                         GlobalState.darkness.ForceAlpha(0.2f);
                         GlobalState.darkness.TargetAlpha(0f);
@@ -933,17 +933,16 @@ namespace AnodyneSharp.States
             GlobalState.PUZZLES_SOLVED = 0;
 
             _groups = new CollisionGroups(GlobalState.ENEMIES_KILLED);
-            _groups.Register(_player);
-            _groups.Register(_player.broom);
-            
 
             _gridEntities = gridPresets.Where(preset => preset.Alive)
-                .Select(preset => preset.Create(_player)).SelectMany(e => SubEntities(e)).ToList();
+                .Select(preset => preset.Create(_player)).Concat(_player.SubEntities()).SelectMany(e => SubEntities(e)).ToList();
+
+            _groups.Register(_player);
+
             foreach (Entity e in _gridEntities)
             {
                 _groups.Register(e);
             }
-
 
         }
     }
