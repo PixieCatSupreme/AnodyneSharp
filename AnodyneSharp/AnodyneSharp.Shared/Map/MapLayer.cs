@@ -151,7 +151,7 @@ namespace AnodyneSharp.Map
                                     }
                                     break;
                                 case CollisionEventType.SLOW:
-
+                                    ent.SlowTile();
                                     break;
                                 case CollisionEventType.SPIKE:
                                     {
@@ -162,6 +162,7 @@ namespace AnodyneSharp.Map
                                     }
                                     break;
                                 case CollisionEventType.LADDER:
+                                    ent.Ladder();
                                     break;
                                 case CollisionEventType.PUDDLE:
                                     if (t.Hitbox.Contains(ent.Center))

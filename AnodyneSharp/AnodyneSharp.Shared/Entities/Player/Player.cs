@@ -239,21 +239,6 @@ namespace AnodyneSharp.Entities
                 }
             }
 
-            step_noise_timer -= GameTimes.DeltaTime;
-            if(step_noise_timer < 0f && velocity != Vector2.Zero && ON_CONVEYOR && state != PlayerState.AIR)
-            {
-                if (IS_SINKING)
-                {
-                    SoundManager.PlaySoundEffect("water_step");
-                    step_noise_timer = step_timer_max;
-                }
-                else
-                {
-                    SoundManager.PlaySoundEffect("puddle_step");
-                    step_noise_timer = step_timer_max / 2;
-                }
-            }
-
             base.Update();
         }
 
@@ -296,6 +281,19 @@ namespace AnodyneSharp.Entities
         public override void Puddle()
         {
             ON_CONVEYOR = true;
+        }
+
+        public override void Ladder()
+        {
+            if (state == PlayerState.GROUND)
+            {
+                state = PlayerState.LADDER;
+            }
+        }
+
+        public override void SlowTile()
+        {
+            slowMul = 0.5f;
         }
 
         public override void Conveyor(Touching direction)
@@ -393,6 +391,21 @@ namespace AnodyneSharp.Entities
                         raft.Position = Position - Vector2.One * 2;
                     }
 
+                    step_noise_timer -= GameTimes.DeltaTime;
+                    if (step_noise_timer < 0f && velocity != Vector2.Zero && ON_CONVEYOR)
+                    {
+                        if (IS_SINKING)
+                        {
+                            SoundManager.PlaySoundEffect("water_step");
+                            step_noise_timer = step_timer_max;
+                        }
+                        else
+                        {
+                            SoundManager.PlaySoundEffect("puddle_step");
+                            step_noise_timer = step_timer_max / 2;
+                        }
+                    }
+
                     //update_sentinels();
 
                     if (!hasFallen && !actions_disabled)
@@ -425,10 +438,55 @@ namespace AnodyneSharp.Entities
                 case PlayerState.ENTER_FALL:
                     break;
                 case PlayerState.LADDER:
+                    LadderLogic();
                     break;
                 default:
                     break;
             }
+        }
+
+        private void LadderLogic()
+        {
+            velocity = Vector2.Zero;
+
+            if (!dontMove)
+            {
+                Play("climb");
+                if (KeyInput.IsRebindableKeyPressed(KeyFunctions.Up))
+                {
+                    velocity.Y = -walkSpeed * 0.7f;
+                }
+                else if (KeyInput.IsRebindableKeyPressed(KeyFunctions.Down))
+                {
+                    velocity.Y = walkSpeed * 0.7f;
+                }
+                else
+                {
+                    Play("idle_climb");
+                }
+
+                if (KeyInput.IsRebindableKeyPressed(KeyFunctions.Left))
+                {
+                    velocity.X = -walkSpeed;
+                }
+                else if (KeyInput.IsRebindableKeyPressed(KeyFunctions.Right))
+                {
+                    velocity.X = walkSpeed;
+                }
+
+                step_noise_timer -= GameTimes.DeltaTime;
+                if (step_noise_timer < 0 && velocity.Y != 0)
+                {
+                    step_noise_timer = 0.2f;
+                    SoundManager.PlaySoundEffect("ladder_step_1", "ladder_step_2");
+                }
+            }
+            else
+            {
+                Play("idle_climb");
+            }
+            state = PlayerState.GROUND; //reset will stick as soon as we're not touching a ladder anymore
+            ANIM_STATE = PlayerAnimState.as_idle;
         }
 
         private void SinkingLogic()
