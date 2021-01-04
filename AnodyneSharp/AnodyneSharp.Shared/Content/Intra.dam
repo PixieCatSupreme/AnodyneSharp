@@ -2,10 +2,10 @@
 <project>
   <version/>
   <bgColor>0xcccccc</bgColor>
-  <viewPos x="-355" y="114"/>
+  <viewPos x="-93.85668789808906" y="7.565261044176694"/>
   <firstLayersTop>false</firstLayersTop>
   <spriteEntries currentId="166">
-    <group name="Events SL" idx="1" open="true">
+    <group name="Events SL" idx="1" open="false">
       <group name="Text Events" idx="2" open="false">
         <sprite name="blank2" idx="3" className="Event" image="textures/sprites/dame/dame-events.png" width="16" height="16" preview="3" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="3" canEditFrames="true" lockRotation="false">
           <properties>
@@ -100,7 +100,7 @@
         </properties>
       </sprite>
       <sprite name="itsok2useswap" idx="22" className="Event" image="textures/sprites/dame/dame-events.png" width="16" height="16" preview="3" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="3" canEditFrames="true" lockRotation="false"/>
-      <sprite name="Dugeon Entrance" idx="23" className="Event" image="textures/sprites/dame/dame-events.png" width="16" height="16" preview="5" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="-1" canEditFrames="true" lockRotation="false" selected="true">
+      <sprite name="Dugeon Entrance" idx="23" className="Event" image="textures/sprites/dame/dame-events.png" width="16" height="16" preview="5" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="-1" canEditFrames="true" lockRotation="false">
         <properties>
           <type typeof="String" name="type" value="entrance" hidden="false"/>
         </properties>
@@ -1792,7 +1792,7 @@
         </sprite>
       </spritelayer>
     </group>
-    <group name="BEDROOM" id="8" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
+    <group name="BEDROOM" id="8" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
       <maplayer name="BG" id="8" xScroll="1" yScroll="1" x="0" y="0" width="70" height="50" tileset="textures/tilemaps/bedroom_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0,0,0,0,3,1,1,1,1,1,1,1,1,2,3,1,1,1,1,1,1,1,1,2,3,1,1,1,1,1,1,1,1,2,3,1,1,2,3,1,1,2,9,9,3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2</row>
         <row>0,0,0,0,0,0,0,0,0,0,3,24,19,24,24,24,24,24,24,2,3,21,24,19,24,24,19,24,21,2,3,24,24,19,19,19,24,24,24,2,3,24,24,2,3,24,24,2,9,9,3,24,24,24,37,37,24,24,24,24,24,24,24,24,24,24,24,24,21,2</row>
@@ -1845,7 +1845,7 @@
         <row>3,24,24,24,24,24,24,36,36,2,3,37,24,24,24,24,20,24,37,2,3,24,24,36,36,24,36,24,20,2,3,24,24,24,24,24,24,24,24,2,9,9,9,9,3,24,2,9,9,9,9,9,3,24,24,24,24,2,9,9,9,9,9,9,9,9,9,9,9,9</row>
         <row>9,4,4,4,4,4,4,4,4,9,9,4,4,4,4,4,4,4,4,9,9,4,4,15,36,36,14,4,4,9,9,4,4,4,4,4,4,4,4,9,9,9,9,9,3,24,2,9,9,9,9,9,9,15,24,24,14,9,9,9,9,9,9,9,9,9,9,9,9,9</row>
       </maplayer>
-      <spritelayer name="Stateful" id="9" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false" selected="true">
+      <spritelayer name="Stateful" id="9" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="20832549-4D6A-DAB4-5965-8A301A184D15" x="208" y="688" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="146" frame="0">
           <properties/>
         </sprite>
@@ -4840,7 +4840,7 @@
         </sprite>
       </spritelayer>
     </group>
-    <group name="DEBUG" id="24" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
+    <group name="DEBUG" id="24" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
       <maplayer name="BG" id="31" xScroll="1" yScroll="1" x="0" y="0" width="60" height="100" tileset="textures/tilemaps/debug_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1</row>
         <row>1,2,2,2,2,2,2,2,2,2,10,10,10,10,1,10,10,10,10,10,10,10,10,10,10,10,10,10,3,3,3,3,3,3,3,3,3,3,3,3,10,10,10,10,10,10,10,10,10,1,1,10,10,10,10,10,10,10,10,1</row>
@@ -4975,7 +4975,7 @@
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
       </maplayer>
-      <maplayer name="FG" id="33" xScroll="1" yScroll="1" x="0" y="0" width="60" height="30" tileset="textures/tilemaps/debug_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+      <maplayer name="FG" id="33" xScroll="1" yScroll="1" x="0" y="0" width="60" height="30" tileset="textures/tilemaps/debug_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false" selected="true">
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
@@ -4983,7 +4983,7 @@
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
-        <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,21,22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
+        <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,21,22,23,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
