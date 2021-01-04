@@ -12,9 +12,12 @@ namespace AnodyneSharp.Entities
     {
         public DungeonEntrance(EntityPreset preset, Player p) : base(preset.Position, DrawOrder.ENTITIES)
         {
+            exists = false;
+
+            if (GlobalState.ReturnTarget.Map == GlobalState.CURRENT_MAP_NAME) return;
+            
             EntityPreset moved = new EntityPreset(preset.Type, preset.Position - new Vector2(10, 34), preset.EntityID, preset.Frame);
             GlobalState.ReturnTarget = new DoorMapPair(moved, GlobalState.CURRENT_MAP_NAME);
-            exists = false;
         }
     }
 }

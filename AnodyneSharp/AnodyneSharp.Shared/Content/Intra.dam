@@ -2,7 +2,7 @@
 <project>
   <version/>
   <bgColor>0xcccccc</bgColor>
-  <viewPos x="-93.85668789808906" y="7.565261044176694"/>
+  <viewPos x="49" y="-679"/>
   <firstLayersTop>false</firstLayersTop>
   <spriteEntries currentId="166">
     <group name="Events SL" idx="1" open="false">
@@ -4840,7 +4840,7 @@
         </sprite>
       </spritelayer>
     </group>
-    <group name="DEBUG" id="24" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
+    <group name="DEBUG" id="24" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
       <maplayer name="BG" id="31" xScroll="1" yScroll="1" x="0" y="0" width="60" height="100" tileset="textures/tilemaps/debug_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1</row>
         <row>1,2,2,2,2,2,2,2,2,2,10,10,10,10,1,10,10,10,10,10,10,10,10,10,10,10,10,10,3,3,3,3,3,3,3,3,3,3,3,3,10,10,10,10,10,10,10,10,10,1,1,10,10,10,10,10,10,10,10,1</row>
@@ -4975,7 +4975,7 @@
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
       </maplayer>
-      <maplayer name="FG" id="33" xScroll="1" yScroll="1" x="0" y="0" width="60" height="30" tileset="textures/tilemaps/debug_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false" selected="true">
+      <maplayer name="FG" id="33" xScroll="1" yScroll="1" x="0" y="0" width="60" height="30" tileset="textures/tilemaps/debug_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
@@ -7164,7 +7164,7 @@
         <sprite guid="DFB90A07-A11C-38B3-5CE8-13FDF213E207" x="400" y="384" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="46" frame="4"/>
       </spritelayer>
     </group>
-    <group name="HOTEL" id="86" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
+    <group name="HOTEL" id="86" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
       <maplayer name="BG" id="58" xScroll="1" yScroll="1" x="0" y="0" width="120" height="120" tileset="textures/tilemaps/hotel_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>225,224,224,224,224,225,225,225,225,225,225,225,224,224,224,225,225,225,224,224,224,224,225,225,225,225,225,225,224,224,224,224,225,225,224,224,224,225,225,225,225,224,224,224,225,225,225,224,224,224,224,225,225,225,224,224,224,225,225,225,1,23,21,21,21,21,23,24,26,18,9,9,1,13,11,16,13,16,11,2,1,11,13,16,13,13,13,16,12,2,9,9,9,9,9,9,9,9,9,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>235,234,234,234,234,235,235,235,235,235,235,235,234,234,234,235,235,235,234,234,234,234,235,235,235,235,235,235,234,234,234,234,235,235,234,234,234,235,235,235,235,234,234,234,235,235,235,234,234,234,234,235,235,235,234,234,234,235,235,235,19,98,98,98,98,98,98,98,98,20,11,11,12,92,92,14,92,16,92,18,19,92,93,16,91,92,93,16,91,18,1,11,88,13,11,16,11,89,11,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
@@ -7775,7 +7775,7 @@
           <properties/>
         </sprite>
       </spritelayer>
-      <spritelayer name="Stateful" id="61" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateful" id="61" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false" selected="true">
         <sprite guid="6FE49A57-7BCD-B63B-6B64-BD34945C6585" x="368" y="912" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="58" frame="0">
           <properties/>
         </sprite>
@@ -8198,7 +8198,7 @@
         <sprite guid="67918A21-B9F5-C6B1-130B-424AB235C6AD" x="384" y="80" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="38" frame="12">
           <properties/>
         </sprite>
-        <sprite guid="3D013C69-3B13-BCDF-376A-22633AA2E0AD" x="388" y="803" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="23">
+        <sprite guid="3D013C69-3B13-BCDF-376A-22633AA2E0AD" x="436" y="843" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="23">
           <properties/>
         </sprite>
         <sprite guid="CFE9CC42-595F-EDED-6720-90848DB38C19" x="385" y="420" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="23">
@@ -11153,7 +11153,7 @@
         <sprite guid="510E2C71-96B6-8CD4-DB2C-7E5220A32F38" x="80" y="752" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="146" frame="0">
           <properties/>
         </sprite>
-        <sprite guid="C6FF79C4-4354-C7AD-C213-F8FBB8BCCA6C" x="207" y="866" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="23">
+        <sprite guid="C6FF79C4-4354-C7AD-C213-F8FBB8BCCA6C" x="224" y="870" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="23">
           <properties/>
         </sprite>
         <sprite guid="F1B87342-BAFC-591C-6D54-6C5E8653AA03" x="224" y="896" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="164" frame="13">

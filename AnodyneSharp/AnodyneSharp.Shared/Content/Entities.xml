@@ -2437,7 +2437,7 @@
     <Burst_Plant x="896" y="64" guid="F56F138F-9BA8-0145-470B-2749D49C08B6" frame="0" p="1" alive="true"/>
     <Burst_Plant x="928" y="112" guid="1A859AD9-F90C-4586-6458-1A73A1D6C493" frame="0" p="1" alive="true"/>
     <NPC x="384" y="80" guid="67918A21-B9F5-C6B1-130B-424AB235C6AD" frame="12" type="generic" />
-    <Event x="388" y="803" guid="3D013C69-3B13-BCDF-376A-22633AA2E0AD" frame="5" type="entrance" />
+    <Event x="436" y="843" guid="3D013C69-3B13-BCDF-376A-22633AA2E0AD" frame="5" type="entrance" />
     <Event x="385" y="420" guid="CFE9CC42-595F-EDED-6720-90848DB38C19" frame="5" type="entrance" />
   </map>
   <map name="NEXUS" type="Stateful">
@@ -3158,7 +3158,7 @@
     <Slime x="48" y="720" guid="D8C6A996-7187-A007-C560-B0CD60F45235" frame="0" p="1" alive="true"/>
     <Slime x="688" y="736" guid="4093CA80-5EE2-9E4E-7FAA-F8A95F1BEC77" frame="0" p="1" alive="true"/>
     <Slime x="80" y="752" guid="510E2C71-96B6-8CD4-DB2C-7E5220A32F38" frame="0" p="1" alive="true"/>
-    <Event x="207" y="866" guid="C6FF79C4-4354-C7AD-C213-F8FBB8BCCA6C" frame="5" type="entrance" />
+    <Event x="224" y="870" guid="C6FF79C4-4354-C7AD-C213-F8FBB8BCCA6C" frame="5" type="entrance" />
     <Door x="224" y="896" guid="F1B87342-BAFC-591C-6D54-6C5E8653AA03" frame="13" type="16" />
     <Treasure x="272" y="1008" guid="C11E4AAB-C8B9-F7CB-BD10-8BF41B98BDC9" frame="2" alive="true"/>
   </map>

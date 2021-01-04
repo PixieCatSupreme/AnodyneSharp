@@ -270,7 +270,7 @@ namespace AnodyneSharp.Entities
 
         public override void Fall(Vector2 fallPoint)
         {
-            if (state != PlayerState.AIR && !fallingDisabled && !isSlipping && !hasFallen)
+            if (state != PlayerState.AIR && !fallingDisabled && !isSlipping && !hasFallen && !GlobalState.FUCK_IT_MODE_ON)
             {
                 isSlipping = true;
                 fallTimer = FALL_TIMER_DEFAULT;
