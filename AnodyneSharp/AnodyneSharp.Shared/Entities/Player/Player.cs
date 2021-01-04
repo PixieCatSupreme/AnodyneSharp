@@ -86,8 +86,6 @@ namespace AnodyneSharp.Entities
 
         public Broom broom;
 
-        private PlayState parent;
-
         public bool actions_disabled;
         public bool skipBroom;
         private bool just_landed;
@@ -118,11 +116,10 @@ namespace AnodyneSharp.Entities
 
         public Dust raft;
 
-        public Player(PlayState parent)
+        public Player()
             : base(Vector2.Zero, Player_Sprite, ORIGINAL_WIDTH, ORIGINAL_HEIGHT, Drawing.DrawOrder.ENTITIES)
         {
             DEATH_FRAME = 32;
-            this.parent = parent;
             
 
             AddAnimation("walk_d", CreateAnimFrameArray(1, 0), 6, true);
@@ -706,8 +703,8 @@ namespace AnodyneSharp.Entities
                 velocity.Y = -mul;
                 if ((touching & Touching.UP) != 0)
                 {
-                    Touching tl = parent.GetTileCollisionFlags(Position + new Vector2(0, -8));
-                    Touching tr = parent.GetTileCollisionFlags(Position + new Vector2(width, -8));
+                    Touching tl = GlobalState.CheckTile(Position + new Vector2(0, -8));
+                    Touching tr = GlobalState.CheckTile(Position + new Vector2(width, -8));
                     if ((Position.X + width) % 16 < 6 && (tl & Touching.DOWN) == 0)
                     {
                         additionalVel.X -= 30;
@@ -724,8 +721,8 @@ namespace AnodyneSharp.Entities
                 velocity.Y = mul;
                 if ((touching & Touching.DOWN) != 0)
                 {
-                    Touching bl = parent.GetTileCollisionFlags(Position + new Vector2(0, height + 8));
-                    Touching br = parent.GetTileCollisionFlags(Position + new Vector2(width, height + 8));
+                    Touching bl = GlobalState.CheckTile(Position + new Vector2(0, height + 8));
+                    Touching br = GlobalState.CheckTile(Position + new Vector2(width, height + 8));
                     if ((Position.X + width) % 16 < 6 && (bl & Touching.UP) == 0)
                     {
                         additionalVel.X -= 30;
@@ -746,8 +743,8 @@ namespace AnodyneSharp.Entities
                 velocity.X = -mul;
                 if ((touching & Touching.LEFT) != 0)
                 {
-                    Touching tl2 = parent.GetTileCollisionFlags(Position + new Vector2(-8, 0));
-                    Touching bl2 = parent.GetTileCollisionFlags(Position + new Vector2(-8, height));
+                    Touching tl2 = GlobalState.CheckTile(Position + new Vector2(-8, 0));
+                    Touching bl2 = GlobalState.CheckTile(Position + new Vector2(-8, height));
                     if ((Position.Y + height) % 16 < 6 && (tl2 & Touching.RIGHT) == 0)
                     {
                         additionalVel.Y -= 30;
@@ -763,8 +760,8 @@ namespace AnodyneSharp.Entities
                 velocity.X = mul;
                 if ((touching & Touching.RIGHT) != 0)
                 {
-                    Touching tr2 = parent.GetTileCollisionFlags(Position + new Vector2(width + 8, 0));
-                    Touching br2 = parent.GetTileCollisionFlags(Position + new Vector2(width + 8, height));
+                    Touching tr2 = GlobalState.CheckTile(Position + new Vector2(width + 8, 0));
+                    Touching br2 = GlobalState.CheckTile(Position + new Vector2(width + 8, height));
                     if ((Position.Y + height) % 16 < 6 && (tr2 & Touching.LEFT) == 0)
                     {
                         additionalVel.Y -= 30;

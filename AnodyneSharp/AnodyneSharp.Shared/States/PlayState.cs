@@ -100,7 +100,7 @@ namespace AnodyneSharp.States
 
             _camera = camera;
 
-            _player = new Player(this);
+            _player = new Player();
             _healthBar = new HealthBar(new Vector2(155, 2));
 
             _iconPos = new Vector2(2, 3);
@@ -299,11 +299,6 @@ namespace AnodyneSharp.States
             Refreshes();
 
             _map_specific_update?.Invoke();
-        }
-
-        public Touching GetTileCollisionFlags(Vector2 position)
-        {
-            return _map.GetCollisionData(position) | _map_bg_2.GetCollisionData(position);
         }
 
         private void Refreshes()
