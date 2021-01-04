@@ -125,7 +125,18 @@ namespace AnodyneSharp.Map
                                     }
                                     break;
                                 case CollisionEventType.THIN:
-                                    //try implementing this as collision?
+                                    {
+                                        GameObject collider = t.direction switch
+                                        {
+                                            Touching.DOWN => new(t.Position + new Vector2(0, 13), t.width, 3),
+                                            Touching.UP => new(t.Position, t.width, 3),
+                                            Touching.LEFT => new(t.Position, 3, t.height),
+                                            Touching.RIGHT => new(t.Position + new Vector2(13, 0), 3, t.height),
+                                            _ => null,
+                                        };
+                                        collider.immovable = true;
+                                        GameObject.Separate(ent, collider);
+                                    }
                                     break;
                                 case CollisionEventType.HOLE:
                                     {
@@ -163,8 +174,6 @@ namespace AnodyneSharp.Map
                                     {
                                         ent.Grass();
                                     }
-                                    break;
-                                default:
                                     break;
                             }
                         }
