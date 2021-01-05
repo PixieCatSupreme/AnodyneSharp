@@ -1,5 +1,4 @@
 ﻿using AnodyneSharp.Drawing;
-using AnodyneSharp.Entities.Gadget.Gates;
 using AnodyneSharp.Registry;
 using Microsoft.Xna.Framework;
 using System;
@@ -9,28 +8,25 @@ using System.Text;
 
 namespace AnodyneSharp.Entities.Gadget
 {
-    [NamedEntity, Collision(typeof(Player))]
-    public class KeyBlock : Entity
+    [Collision(typeof(Player))]
+    public class KeyBlockSentinel : Entity, Interactable
     {
-        EntityPreset _preset;
-
         private float _activationTime;
-        private float _maxActivationTime;
+        public float _maxActivationTime;
         private bool _playerCollided;
         private bool _triedOpening;
+        public bool OpensOnInteract = false;
         private KeyCardGate _gate;
 
-        //It's just the small key block for now!
-        public KeyBlock(EntityPreset preset, Player p) : 
-            base(preset.Position - new Vector2(2,2), 20, 20, DrawOrder.ENTITIES)
+        public KeyBlockSentinel(KeyCardGate gate) : 
+            base(gate.Position - new Vector2(2,2), 20, 20, DrawOrder.ENTITIES)
         {
             visible = false;
-            _preset = preset;
 
             _activationTime = 0;
             _maxActivationTime = 0.2f;
 
-            _gate = new SmallKeyGate(preset.Position);
+            _gate = gate;
 
             _playerCollided = false;
             _triedOpening = false;
@@ -50,7 +46,7 @@ namespace AnodyneSharp.Entities.Gadget
 
         public override void Collided(Entity other)
         {
-            if (!_preset.Alive || _triedOpening || (other is Player p && p.state != PlayerState.GROUND))
+            if (OpensOnInteract || _triedOpening || (other is Player p && p.state != PlayerState.GROUND))
             {
                 return;
             }
@@ -62,16 +58,26 @@ namespace AnodyneSharp.Entities.Gadget
             {
                 if(_gate.TryUnlock())
                 {
-                    _gate.Play("Open");
-                    _preset.Alive = false;
+                    _gate._preset.Alive = false;
+                    exists = false;
                 }
                 _triedOpening = true;
             }
         }
 
-        public override IEnumerable<Entity> SubEntities()
+        public bool PlayerInteraction(Facing player_direction)
         {
-            return Enumerable.Repeat(_gate,1);
+            if(!OpensOnInteract)
+            {
+                return false;
+            }
+
+            if(_gate.TryUnlock())
+            {
+                _gate._preset.Alive = false;
+                exists = false;
+            }
+            return true;
         }
     }
 }

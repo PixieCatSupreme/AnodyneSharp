@@ -331,7 +331,6 @@
     <solid_tile x="1584" y="240" guid="6B9155E9-98B9-ED9E-48B4-4AC576C66255" frame="0"/>
     <Door x="1023" y="384" guid="F43C49A5-1205-C949-97E0-886B17D8FB68" frame="55" type="16" />
     <Health_Cicada x="224" y="400" guid="7A7DBB2E-99B9-D453-0047-D46AE347C1D6" frame="0" p="2" alive="true"/>
-    <KeyBlock x="16" y="720" guid="27DBF399-D5E0-9B4A-D7A6-07EB22CFB95D" frame="4" p="2" alive="true"/>
     <Four_Shooter x="48" y="416" guid="4FE5DCD7-23C8-FCAC-3F81-2C8EAF49B86A" frame="0" p="2"/>
     <Four_Shooter x="96" y="528" guid="8C8E188E-CA98-06F2-6A8B-AB71C6C1BE23" frame="0" p="2"/>
     <Four_Shooter x="32" y="544" guid="869BC7BD-9350-883B-1435-7AB58868D37F" frame="0" p="2"/>
@@ -369,6 +368,7 @@
     <Treasure x="368" y="48" guid="8BABEA9D-B94A-DDA4-ABB1-75B03EFC08BB" frame="12" alive="true"/>
     <NPC x="352" y="80" guid="26262458-E973-D603-7209-275A64843BF8" frame="16" type="generic" />
     <Treasure x="704" y="1072" guid="5A485EC4-DF5E-A2FF-04DE-D900B4D9B6DB" frame="18" alive="true"/>
+    <CardGate x="16" y="720" guid="38D7E8F0-B068-407D-9CE6-195DAC8B9B2B" frame="8" p="2"/>
   </map>
   <map name="BEDROOM" type="Stateful">
     <Slime x="208" y="688" guid="20832549-4D6A-DAB4-5965-8A301A184D15" frame="0" p="1" alive="true"/>
@@ -615,7 +615,6 @@
     <Gate x="256" y="880" guid="FC51CF7C-4D3E-3ED4-4A25-9C2933454085" frame="5" p="2" alive="true" type="8" />
     <Gate x="208" y="880" guid="AE479CB8-8512-0854-7D81-8A01E49E14E7" frame="5" p="2" alive="true" type="8" />
     <Gate x="208" y="896" guid="46B28832-D18A-9636-1B1E-E98E6207CF8C" frame="5" p="2" alive="true" type="8" />
-    <KeyBlock x="224" y="864" guid="1C7AD5AC-3819-BAFC-2A6A-719AE91540FD" frame="4" p="2" alive="true"/>
     <Door x="230" y="886" guid="DCBEB72F-B0E4-B5DD-3778-4E15A6F9EAEB" frame="88" type="4" />
     <Solid_Sprite x="160" y="1088" guid="1A20CA70-6925-C0E7-E0B5-A7E59E1F16AB" frame="5" type="blocker" />
     <Solid_Sprite x="224" y="1088" guid="427B0A5A-7F1C-0A34-456B-76BC097F7C6E" frame="5" type="blocker" />
@@ -631,10 +630,11 @@
     <Solid_Sprite x="286" y="941" guid="87EEE177-4D2E-BE28-7BB3-F06BF3F0E905" frame="5" type="blocker" />
     <Solid_Sprite x="324" y="934" guid="AD6F2767-0068-51F0-3647-5208E521318E" frame="5" type="blocker" />
     <Door x="232" y="1223" guid="09EEE254-0B0C-833B-FE5C-9CEBC07EF13C" frame="91" type="4" />
-    <KeyBlock x="224" y="1120" guid="1A2E72BC-FE56-3772-5FE7-126ED1CDD66B" frame="4" p="2" alive="true"/>
     <Event x="704" y="992" guid="4D6810AB-5602-414E-31DC-46AF65D72334" frame="2"/>
     <Treasure x="912" y="256" guid="2A73F27F-1B41-F1A2-1B16-525F9F57AE10" frame="2" alive="true"/>
     <Gate x="240" y="912" guid="E418C812-60B1-F4BC-5195-5B6C39604CAC" frame="5" p="2" alive="true" type="8" />
+    <CardGate x="224" y="864" guid="DF7510BB-4682-F475-4D70-5BFB0F75FBBA" frame="47" p="2"/>
+    <CardGate x="224" y="1120" guid="EEC30352-7D44-FB77-7FEA-EFFA55C8DE42" frame="50" p="2" type="unopenable" />
   </map>
   <map name="BLANK" type="Stateless">
     <Sage x="336" y="176" guid="14717F7B-3E0A-959A-BE17-1333AF6CE252" frame="0" p="2"/>
@@ -813,7 +813,6 @@
     <NPC x="1168" y="1168" guid="752CBD82-1FAB-3237-DF9D-C24D87BEA2CB" frame="3" type="rock" />
     <Door x="112" y="1137" guid="BB916AAE-ED42-1EB8-A8AC-FF602FB2CAC5" frame="41" type="4" />
     <Door x="544" y="512" guid="56E3EBEB-6F33-4671-6300-FA909B776286" frame="45" type="16" />
-    <KeyBlock x="1008" y="1184" guid="EB24A58B-200E-798E-2FE6-72C4D96B1A2C" frame="4" p="2" alive="true"/>
     <Health_Cicada x="992" y="992" guid="047260E5-E357-36BB-5454-A99AA3E03524" frame="0" p="2" alive="true"/>
     <Door x="224" y="432" guid="E3644BAC-0447-D4C8-80DD-5CC4D1B09D20" frame="92" type="4" />
     <Door x="80" y="1312" guid="FB21A73C-0719-78B4-7D54-2775CCA7AB48" frame="92" type="4" />
@@ -861,6 +860,7 @@
     <Gate x="784" y="1360" guid="FFF67136-0605-DDDE-41CE-B42730DD3007" frame="12" p="2" alive="true" type="16" />
     <Gate x="624" y="1344" guid="FFF0910E-4A59-6D1D-44F1-AA949F6860B3" frame="12" p="2" alive="true" type="16" />
     <Door x="1193" y="6" guid="61CCB668-A7BA-D2B1-B818-C1739CFB42D3" frame="31" type="14" />
+    <CardGate x="1008" y="1184" guid="A3430169-FEE3-BE2F-8D74-5332B74FD3E2" frame="24" p="2"/>
   </map>
   <map name="CIRCUS" type="Stateless">
     <Event x="688" y="1392" guid="C36D8238-17B5-9469-E890-7018E550B7FD" frame="2"/>
@@ -2473,7 +2473,6 @@
     <Button x="864" y="1168" guid="11A9CA9D-6C34-948B-5B1A-A83A6F034E08" frame="0"/>
     <Door x="560" y="1200" guid="49657318-F48E-55E6-053F-3A78109685BB" frame="13" type="17" />
     <Treasure x="832" y="400" guid="D3498803-D92D-4A88-83B1-B0E5EC6D38A8" frame="2" alive="true"/>
-    <KeyBlock x="704" y="384" guid="FF9FAF51-3420-85DB-B6E9-2DF93C4E5283" frame="4" p="2" alive="true"/>
     <NPC x="720" y="432" guid="67D0F47F-52A4-3227-C299-B916569252BD" frame="1" type="rock" />
     <NPC x="720" y="368" guid="88D07CAD-A3BE-63EA-8E6A-A434C8BD8267" frame="2" type="rock" />
     <NPC x="832" y="544" guid="FA367578-2673-E999-0820-7EF5E97ED010" frame="3" type="rock" />
@@ -2495,6 +2494,7 @@
     <Solid_Sprite x="484" y="651" guid="74A0B4DA-EF75-5AAD-6B3A-47AF5EFF438E" frame="5" type="blocker" />
     <Solid_Sprite x="566" y="649" guid="8B9B720A-8AC0-EBE7-7334-551074A73406" frame="5" type="blocker" />
     <Event x="703" y="1099" guid="A9204E29-823C-1A2E-2962-351434E57D44" frame="5" type="entrance" />
+    <CardGate x="704" y="384" guid="1B5C72F8-5151-CAD4-946C-EF6739759D57" frame="49" p="2"/>
   </map>
   <map name="OVERWORLD" type="Stateless">
     <Event x="352" y="1312" guid="D9B1D93C-EDA8-7EF1-AD56-D62B5DECC038" frame="2"/>
@@ -2528,7 +2528,6 @@
     <NPC x="288" y="1184" guid="E3569AF1-DC07-8000-D5F4-8F8F6C5F0B40" frame="0" type="rock" />
     <KeyBlock x="64" y="1536" guid="E1941545-20E6-0257-551B-CEB77783F62B" frame="2" p="2" alive="true"/>
     <Treasure x="912" y="1232" guid="A4FFDA64-6373-F561-1484-FD30AED00A87" frame="2" alive="true"/>
-    <KeyBlock x="32" y="1120" guid="807E83C2-A820-E034-B0D0-FC3D66734157" frame="4" p="2" alive="true"/>
     <Slime x="224" y="976" guid="C9B34E59-A1A2-1513-2C16-00576823ADB1" frame="0" p="1" alive="true"/>
     <Annoyer x="16" y="1008" guid="B86F5057-2499-3F74-9560-5F0EDCD306B9" frame="0" alive="true"/>
     <Annoyer x="96" y="992" guid="E06A5A1B-BD05-3230-E6CC-2192A7C50267" frame="0" alive="true"/>
@@ -2588,6 +2587,7 @@
     <NPC x="688" y="1488" guid="6CC430E4-C69B-DD4D-BACF-1A5699D99627" frame="2" type="rock" />
     <NPC x="528" y="256" guid="D7013C38-71E9-0F68-0B16-2B93FDE1795C" frame="3" type="rock" />
     <NPC x="1328" y="656" guid="1B10B17B-ED47-9865-22BC-400C42BD06D5" frame="4" type="rock" />
+    <CardGate x="32" y="1120" guid="E9730752-B60C-0E95-3197-01529A4A31EB" frame="4" p="2"/>
   </map>
   <map name="REDCAVE" type="Stateful">
     <Health_Cicada x="1024" y="16" guid="082409E1-1D7E-3A22-9059-D5D9D0626FB1" frame="0" p="2" alive="true"/>
@@ -2967,7 +2967,6 @@
     <Suburb_Killer x="128" y="864" guid="03CA2D43-029C-4CCA-0475-5E737AD17F24" frame="0"/>
     <Suburb_Walker x="688" y="848" guid="B1746FBC-0FBD-6016-5022-153D09641708" frame="12" p="1" alive="true"/>
     <Door x="384" y="528" guid="23358FBF-1120-5165-6968-FCDBB72C5D4E" frame="46" type="16" />
-    <KeyBlock x="752" y="544" guid="E7BDD5CD-474A-C6CC-2A4A-B77F3ADCC7AD" frame="4" p="2" alive="true"/>
     <Health_Cicada x="672" y="400" guid="DD551369-9B21-2658-0EC9-1F7A5009E8D6" frame="0" p="2" alive="true"/>
     <Door x="240" y="64" guid="740374AB-E0E8-8B48-3B52-6517896E1F06" frame="81" type="5" />
     <Door x="560" y="1088" guid="2EA7909C-9F12-02E6-F2CE-FBD1056EA11F" frame="81" type="1" />
@@ -3003,6 +3002,7 @@
     <Fire_Pillar x="432" y="1232" guid="F824E00B-EDED-8E14-73D4-64C074ACDBB7" frame="3"/>
     <Suburb_Killer x="352" y="1168" guid="D4CA9F21-8185-3A70-47E7-018C53DA3A04" frame="0"/>
     <Suburb_Killer x="432" y="1168" guid="A5D14BC5-B605-8D91-A7D7-97AC96311E45" frame="0"/>
+    <CardGate x="752" y="544" guid="56910455-197C-A23C-B798-40EE51AAA378" frame="16" p="2"/>
   </map>
   <map name="SPACE" type="Stateless">
     <Space_Face x="1280" y="192" guid="3277CBCF-EE97-5412-94C2-238E848A1B8D" frame="0"/>
@@ -3188,7 +3188,6 @@
     <Gate x="400" y="480" guid="D6498F36-DB8F-1494-48CE-D5A5A25EF7FA" frame="0" p="2" alive="true" type="0" />
     <Gate x="384" y="480" guid="15EF72D6-8866-67B7-DD19-12A2F2FF3FD8" frame="0" p="2" alive="true" type="0" />
     <Sage_Boss x="368" y="512" guid="A7936ABE-3784-4C6C-0DF7-3A39ADDE0F47" frame="5" p="2" alive="true"/>
-    <KeyBlock x="384" y="672" guid="198F936D-B4C6-58B9-3545-7EA54D8A97AE" frame="4" p="2" alive="true"/>
     <Door x="392" y="779" guid="4F275437-CCD5-8DC1-A5B6-8BAB6E0A4526" frame="36" type="1" />
     <Gate x="384" y="624" guid="9E99BC1E-ADCE-0EBE-7864-9CD2FA5B0A16" frame="0" p="2" alive="true" type="0" />
     <Gate x="400" y="624" guid="6FB45F65-5E53-8902-6CEF-D2941CB2AED0" frame="0" p="2" alive="true" type="0" />
@@ -3209,6 +3208,7 @@
     <solid_tile x="400" y="0." guid="833AF9EE-4804-DEE8-E5E8-9FC3A0C0B314" frame="0"/>
     <solid_tile x="384" y="0." guid="D57062D0-B046-A55C-0CFF-4AA235C98885" frame="0"/>
     <NPC x="448" y="688" guid="892260FB-FA7A-D4D4-4623-C99A60464E49" frame="0" type="statue" />
+    <CardGate x="384" y="672" guid="C8CE6E18-CF07-180B-A550-9DC808A2F7E3" frame="36" p="2"/>
   </map>
   <map name="WINDMILL" type="Stateless">
     <Solid_Sprite x="211" y="1277" guid="D8D58A24-BA47-AD5F-60CF-D77FDD0BD2CE" frame="5" type="blocker" />

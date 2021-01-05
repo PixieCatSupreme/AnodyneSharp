@@ -4,11 +4,12 @@ using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 using Microsoft.Xna.Framework;
 
-namespace AnodyneSharp.Entities.Gadget.Gates
+namespace AnodyneSharp.Entities.Gadget
 {
+    [NamedEntity("KeyBlock",null,0)]
     public class SmallKeyGate : KeyCardGate
     {
-        public SmallKeyGate(Vector2 pos) : base(pos, "keyhole", 16, 16, DrawOrder.ENTITIES)
+        public SmallKeyGate(EntityPreset preset, Player p) : base(preset, "keyhole", 16, 16, DrawOrder.ENTITIES)
         {
             SetFrame(0);
             AddAnimation("Open", CreateAnimFrameArray(16, 17, 18, 19, 20), 10, false);
@@ -20,6 +21,7 @@ namespace AnodyneSharp.Entities.Gadget.Gates
             {
                 InventoryManager.RemoveCurrentMapKey();
                 SoundManager.PlaySoundEffect("unlock");
+                Play("Open");
                 Solid = false;
                 return true;
             }
