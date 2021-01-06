@@ -11,7 +11,6 @@ namespace AnodyneSharp.Entities.Gadget
     {
         public BigCardGate(EntityPreset preset, Player p) : base(preset,p)
         {
-            immovable = true;
             _sentinel.OpensOnInteract = true;
 
             int frame = preset.Frame switch

@@ -20,7 +20,7 @@ namespace AnodyneSharp.Entities.Gadget
         }
 
         protected IState _state;
-        private Player _player;
+        protected Player _player;
 
         public BigGate(EntityPreset preset, Player p) : base(preset, "gate_green", 32, 16, Drawing.DrawOrder.ENTITIES)
         {
@@ -30,23 +30,22 @@ namespace AnodyneSharp.Entities.Gadget
 
             _state = new StateMachineBuilder()
                 .State<OpenState>("Open")
-                    .Enter((s) => _player.state = PlayerState.INTERACT)
                     .Event("open", (s) =>
                     {
-                        if (_curAnim.Frame != 5)
+                        if (_curAnim.Frame != 4)
                         {
                             GlobalState.screenShake.Shake(0.02f, 0.3f);
                             SoundManager.PlaySoundEffect("hit_ground_1");
                         }
                         switch (_curAnim.Frame)
                         {
-                            case < 5:
+                            case < 4:
                                 SetFrame(_curAnim.Frame + 1);
                                 break;
-                            case > 5:
-                                SetFrame(1);
+                            case > 4:
+                                SetFrame(0);
                                 break;
-                            case 5:
+                            case 4:
                                 SoundManager.PlaySoundEffect("open");
                                 _player.state = PlayerState.GROUND;
                                 exists = false;
