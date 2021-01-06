@@ -813,7 +813,7 @@
     <NPC x="1168" y="1168" guid="752CBD82-1FAB-3237-DF9D-C24D87BEA2CB" frame="3" type="rock" />
     <Door x="112" y="1137" guid="BB916AAE-ED42-1EB8-A8AC-FF602FB2CAC5" frame="41" type="4" />
     <Door x="544" y="512" guid="56E3EBEB-6F33-4671-6300-FA909B776286" frame="45" type="16" />
-    <Health_Cicada x="992" y="992" guid="047260E5-E357-36BB-5454-A99AA3E03524" frame="0" p="2" alive="true"/>
+    <Health_Cicada x="992" y="992" guid="047260E5-E357-36BB-5454-A99AA3E03524" frame="4" p="2" alive="true"/>
     <Door x="224" y="432" guid="E3644BAC-0447-D4C8-80DD-5CC4D1B09D20" frame="92" type="4" />
     <Door x="80" y="1312" guid="FB21A73C-0719-78B4-7D54-2775CCA7AB48" frame="92" type="4" />
     <Rat x="176" y="1392" guid="B6B6F645-1751-DCD3-520F-6D585D1C75D4" frame="0" p="0" alive="true"/>

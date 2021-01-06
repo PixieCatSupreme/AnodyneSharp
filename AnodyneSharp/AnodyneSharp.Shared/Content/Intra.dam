@@ -2,7 +2,7 @@
 <project>
   <version/>
   <bgColor>0xcccccc</bgColor>
-  <viewPos x="-353" y="-181"/>
+  <viewPos x="-484" y="-670"/>
   <firstLayersTop>false</firstLayersTop>
   <spriteEntries currentId="167">
     <group name="Events SL" idx="1" open="false">
@@ -147,7 +147,7 @@
           <type typeof="String" name="type" value="statue" hidden="false"/>
         </properties>
       </sprite>
-      <sprite name="health_cicada" idx="34" className="Health_Cicada" image="textures/sprites/inventory/life_cicada.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="0" canEditFrames="true" lockRotation="false">
+      <sprite name="health_cicada" idx="34" className="Health_Cicada" image="textures/sprites/inventory/life_cicada.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="4" canEditFrames="true" lockRotation="false" selected="true">
         <properties>
           <type typeof="String" name="alive" value="true" hidden="false"/>
           <type typeof="String" name="p" value="2" hidden="false"/>
@@ -201,8 +201,8 @@
       <sprite name="Huge_Fucking_Stag" idx="47" className="Huge_Fucking_Stag" image="textures/sprites/npcs/forest_stag.png" width="64" height="80" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="64" boundsHeight="80" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="0" canEditFrames="true" lockRotation="false"/>
       <sprite name="Black_Thing" idx="48" className="Black_Thing" image="textures/sprites/dame/dameblackthing.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="-1" canEditFrames="true" lockRotation="false"/>
     </group>
-    <group name="Gadgets" idx="49" open="false">
-      <group name="Gates" idx="50" open="true">
+    <group name="Gadgets" idx="49" open="true">
+      <group name="Gates" idx="50" open="false">
         <sprite name="Gate S" idx="51" className="Gate" image="textures/sprites/dame/dame-gates.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="5" canEditFrames="true" lockRotation="false">
           <properties>
             <type typeof="Boolean" name="alive" value="true" hidden="false"/>
@@ -2300,7 +2300,7 @@
         <sprite guid="37B5CA73-3420-140E-4CA1-B9398F41E316" x="672" y="720" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="90" frame="0"/>
       </spritelayer>
     </group>
-    <group name="BLANK" id="14" xScroll="1" yScroll="1" visible="false" open="true" locked="false" exports="true">
+    <group name="BLANK" id="14" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
       <maplayer name="BG" id="11" xScroll="1" yScroll="1" x="0" y="0" width="60" height="80" tileset="textures/tilemaps/blank_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,3,3,3,3,3,3,3,3,41,41,41,41,41,41,41,41,41,41,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,17,18,20,0,0,0,3,3,3,3,3,3,3,3,3,3,41,41,41,41,41,41,41,41,41,41,0,0,0,0,0,0,0,17,20,0,0,17,20,0,0,0,17,18,20,0</row>
@@ -2798,7 +2798,7 @@
         </sprite>
       </spritelayer>
     </group>
-    <group name="CELL" id="50" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
+    <group name="CELL" id="50" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
       <maplayer name="BG" id="18" xScroll="1" yScroll="1" x="0" y="0" width="80" height="90" tileset="textures/tilemaps/cell_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,2,1,1,60,60,1,1,2,1</row>
         <row>1,60,60,60,60,60,60,60,60,60,60,60,60,10,60,1,60,60,60,60,60,80,60,60,60,60,60,60,60,1,1,2,2,60,60,60,80,60,60,60,60,60,60,60,60,60,60,60,60,1,14,1,60,60,60,60,60,60,60,60,60,60,60,60,60,60,60,60,60,1,1,80,2,2,60,60,2,2,80,1</row>
@@ -3050,7 +3050,7 @@
           <properties/>
         </sprite>
       </spritelayer>
-      <spritelayer name="Stateful" id="20" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateful" id="20" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false" selected="true">
         <sprite guid="445C736A-7BF9-8856-6F4B-E9C4C6675770" x="592" y="496" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="36" frame="1">
           <properties/>
         </sprite>
@@ -3069,7 +3069,7 @@
         <sprite guid="56E3EBEB-6F33-4671-6300-FA909B776286" x="544" y="512" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="165" frame="45">
           <properties/>
         </sprite>
-        <sprite guid="047260E5-E357-36BB-5454-A99AA3E03524" x="992" y="992" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="34">
+        <sprite guid="047260E5-E357-36BB-5454-A99AA3E03524" x="992" y="992" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="34" frame="4">
           <properties/>
         </sprite>
         <sprite guid="E3644BAC-0447-D4C8-80DD-5CC4D1B09D20" x="224" y="432" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="153" frame="92">
@@ -8213,7 +8213,7 @@
         </sprite>
       </spritelayer>
     </group>
-    <group name="NEXUS" id="27" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
+    <group name="NEXUS" id="27" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
       <maplayer name="BG" id="62" xScroll="1" yScroll="1" x="0" y="0" width="100" height="100" tileset="textures/tilemaps/nexus_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
@@ -8316,7 +8316,7 @@
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
       </maplayer>
-      <spritelayer name="Stateful" id="63" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false" selected="true">
+      <spritelayer name="Stateful" id="63" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="7C6BBEC5-AAB2-3506-DF56-2903596CEA74" x="704" y="1392" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="155" frame="4">
           <properties/>
         </sprite>
