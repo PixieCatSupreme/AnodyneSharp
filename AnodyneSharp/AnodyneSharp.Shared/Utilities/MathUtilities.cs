@@ -23,6 +23,18 @@ namespace AnodyneSharp.Utilities
             return p[GlobalState.RNG.Next(p.Length)];
         }
 
+        public static bool MoveTo(ref float v, float target, float speed)
+        {
+            if(v > target)
+            {
+                v = Math.Max(target, v - speed * GameTimes.DeltaTime);
+            } else
+            {
+                v = Math.Min(target, v + speed * GameTimes.DeltaTime);
+            }
+            return v == target;
+        }
+
         public static string IntToString(int num)
         {
             switch (num)

@@ -65,6 +65,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Dust.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Gate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Gates\BigGate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Gates\BigKeyGate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Gates\KeyCardGate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Gates\SmallKeyGate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Holes\CrackedTile.cs" />
