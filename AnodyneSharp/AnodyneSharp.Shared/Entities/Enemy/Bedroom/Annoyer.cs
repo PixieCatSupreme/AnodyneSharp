@@ -249,8 +249,8 @@ namespace AnodyneSharp.Entities.Enemy
                 _state = new StateMachineBuilder()
                     .State("Shoot")
                         .Enter((state) => Play("shoot"))
-                        .Update((state,time) => _opacity -= 0.06f * time)
-                        .Condition(()=>_opacity <= 0.6f, (s) => _state.ChangeState("Poof"))
+                        .Update((state,time) => opacity -= 0.06f * time)
+                        .Condition(()=>opacity <= 0.6f, (s) => _state.ChangeState("Poof"))
                         .Event<CollisionEvent<Broom>>("Hit",(s,b) => _state.ChangeState("Poof"))
                         .Event<CollisionEvent<Player>>("Player",(s,p) => { p.entity.ReceiveDamage(1); _state.ChangeState("Poof"); })
                     .End()
@@ -265,7 +265,7 @@ namespace AnodyneSharp.Entities.Enemy
             {
                 Position = parent.Position;
                 MoveTowards(target.Position, speed);
-                _opacity = 1.0f;
+                opacity = 1.0f;
                 _state.ChangeState("Shoot");
             }
 

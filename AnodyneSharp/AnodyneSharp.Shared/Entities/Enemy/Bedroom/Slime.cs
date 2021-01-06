@@ -190,7 +190,7 @@ namespace AnodyneSharp.Entities.Enemy
                             velocity.Y = MathUtilities.OneRandomOf(-1, 1) * (10 + 5 * (float)GlobalState.RNG.NextDouble());
                             Play("move");
                             shadow.exists = true;
-                            _opacity = 1.0f;
+                            opacity = 1.0f;
                         })
                         .Update((state, time) =>
                         {
@@ -208,8 +208,8 @@ namespace AnodyneSharp.Entities.Enemy
                             SetFrame(_curAnim.Frame);
                             velocity = Vector2.Zero;
                         })
-                        .Update((state, time) => _opacity -= 0.05f)
-                        .Condition(() => _opacity <= 0, (state) => exists = false)
+                        .Update((state, time) => opacity -= 0.05f)
+                        .Condition(() => opacity <= 0, (state) => exists = false)
                     .End()
                     .Build();
             }
@@ -244,16 +244,16 @@ namespace AnodyneSharp.Entities.Enemy
                 velocity = Vector2.Normalize(target.Position - parent.Position) * 40;
 
                 Play("move");
-                _opacity = 1.0f;
+                opacity = 1.0f;
             }
 
             public override void Update()
             {
                 base.Update();
 
-                _opacity -= 0.39f * GameTimes.DeltaTime;
+                opacity -= 0.39f * GameTimes.DeltaTime;
 
-                if (touching != Touching.NONE || _opacity < 0.3f)
+                if (touching != Touching.NONE || opacity < 0.3f)
                 {
                     exists = false;
                 }

@@ -182,16 +182,16 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
 
                 Flicker(9001);
 
-                _opacity = 0.8f;
+                opacity = 0.8f;
             }
 
             public override void Update()
             {
                 base.Update();
 
-                _opacity -= 0.06f * GameTimes.DeltaTime;
+                opacity -= 0.06f * GameTimes.DeltaTime;
 
-                if (_opacity <= 0f)
+                if (opacity <= 0f)
                 {
                     exists = false;
                 }
@@ -199,14 +199,14 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
 
             public override void Collided(Entity other)
             {
-                if (_opacity > 0.3f && other is Player p)
+                if (opacity > 0.3f && other is Player p)
                 {
                     p.reversed = true;
                     GlobalState.wave.active = true;
                 }
                 else if (other is Broom broom)
                 {
-                    _opacity -= 0.025f;
+                    opacity -= 0.025f;
                 }
             }
         }

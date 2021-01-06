@@ -31,7 +31,7 @@ namespace AnodyneSharp.Entities
         public Color color;
 
         protected Anim _curAnim;
-        protected float _opacity;
+        public float opacity;
 
         protected Shadow shadow;
 
@@ -66,7 +66,7 @@ namespace AnodyneSharp.Entities
             _animations = new List<Anim>();
 
             this.layer = layer;
-            _opacity = 1f;
+            opacity = 1f;
 
             scale = 1;
             _lastScale = scale;
@@ -82,7 +82,7 @@ namespace AnodyneSharp.Entities
             _animations = new List<Anim>();
 
             this.layer = layer;
-            _opacity = 1f;
+            opacity = 1f;
 
             scale = 1;
             _lastScale = scale;
@@ -99,7 +99,7 @@ namespace AnodyneSharp.Entities
 
             this.layer = layer;
 
-            _opacity = 1f;
+            opacity = 1f;
 
             scale = 1;
             _lastScale = scale;
@@ -207,7 +207,7 @@ namespace AnodyneSharp.Entities
                 SpriteDrawer.DrawSprite(sprite.Tex,
                     MathUtilities.CreateRectangle(Position.X - offset.X * scale, Position.Y - offset.Y * scale + (int)y_push, srect.Width * scale, srect.Height * scale),
                     srect,
-                    color * _opacity,
+                    color * opacity,
                     rotation,
                     _flip,
                     DrawingUtilities.GetDrawingZ(layer, MapUtilities.GetInGridPosition(Position).Y));
@@ -283,7 +283,7 @@ namespace AnodyneSharp.Entities
             Position += offset;
         }
 
-        protected void Flicker(float duration)
+        public void Flicker(float duration)
         {
             _flickering = true;
             _flickerTimer = duration;

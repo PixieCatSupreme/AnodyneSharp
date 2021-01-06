@@ -23,7 +23,7 @@ namespace AnodyneSharp.Entities.Enemy.Etc
 
             AddAnimation("walk", CreateAnimFrameArray(1, 2, 1, 0), 4, true);
             SetFrame(0);
-            _opacity = 0;
+            opacity = 0;
 
             _state = new StateMachineBuilder()
                 .State("Hidden")
@@ -31,8 +31,8 @@ namespace AnodyneSharp.Entities.Enemy.Etc
                 .End()
                 .State("Appearing")
                     .Enter((state) => { _player.dontMove = true; _preset.Alive = false; })
-                    .Update((state, time) => _opacity += 0.6f * time)
-                    .Condition(() => _opacity > 0.96f, (state) => state.Parent.ChangeState("Walk"))
+                    .Update((state, time) => opacity += 0.6f * time)
+                    .Condition(() => opacity > 0.96f, (state) => state.Parent.ChangeState("Walk"))
                 .End()
                 .State("Walk")
                     .Enter((state) => { _player.dontMove = false; Play("walk"); })
@@ -44,8 +44,8 @@ namespace AnodyneSharp.Entities.Enemy.Etc
                     .Condition(() => _player.Position.Y < Position.Y, (state) => state.Parent.ChangeState("Walk"))
                 .End()
                 .State("Disappearing")
-                    .Update((state, time) => _opacity -= 0.6f * time)
-                    .Condition(() => _opacity <= 0, (state) => exists = false)
+                    .Update((state, time) => opacity -= 0.6f * time)
+                    .Condition(() => opacity <= 0, (state) => exists = false)
                 .End()
                 .Build();
 

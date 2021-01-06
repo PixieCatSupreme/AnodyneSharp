@@ -95,8 +95,8 @@ namespace AnodyneSharp.Entities.Gadget.Treasures
                     break;
                 case AnimState.GrowSpinFade:
                     scale += GameTimes.DeltaTime * 3f;
-                    _opacity -= GameTimes.DeltaTime * 0.5f;
-                    if (_opacity <= 0)
+                    opacity -= GameTimes.DeltaTime * 0.5f;
+                    if (opacity <= 0)
                     {
                         visible = false;
                         state++;
