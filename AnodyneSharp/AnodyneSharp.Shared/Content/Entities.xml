@@ -1580,7 +1580,6 @@
     <Propelled x="80" y="368" guid="8EADBCC2-D110-89FA-1751-C71B3E5DA484" frame="2"/>
     <Dust x="112" y="192" guid="52F999B8-387E-77A8-93E3-1A7F1D8851A1" frame="0" alive="false"/>
     <Button x="32" y="256" guid="3C46F97F-B799-CA1D-9163-932EB7CD8BB3" frame="1"/>
-    <Button x="-368" y="-160" guid="B9BF7240-014B-307C-6430-9A3A9327E9B4" frame="1"/>
     <Dust x="256" y="208" guid="5E717F29-5F59-ABE1-C404-40F29987C3BA" frame="0" alive="false"/>
     <Dust x="224" y="256" guid="5F0A4A4D-BF77-B95A-16D1-A75EE5883C7C" frame="0" alive="false"/>
     <NPC x="96" y="240" guid="80186F01-0584-30B8-C287-A074A64C2DA1" frame="0" type="npc_test" />

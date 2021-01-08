@@ -377,7 +377,7 @@ namespace AnodyneSharp.States
 
         private bool CheckInteraction()
         {
-            if (_player.state != PlayerState.GROUND)
+            if (_player.state != PlayerState.GROUND || _player.skipBroom) //skipBroom can be set before interaction check for other reasons, like going out of a dialogue state
             {
                 return false;
             }

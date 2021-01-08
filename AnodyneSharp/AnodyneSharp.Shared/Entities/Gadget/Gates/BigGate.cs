@@ -24,7 +24,7 @@ namespace AnodyneSharp.Entities.Gadget
 
         public BigGate(EntityPreset preset, Player p) : base(preset, "gate_green", 32, 16, Drawing.DrawOrder.ENTITIES)
         {
-            _sentinel.Position = Position + new Vector2(6, -3);
+            _sentinel.Position = Position + new Vector2(11, -3);
             _sentinel.width = 10;
             _player = p;
 
