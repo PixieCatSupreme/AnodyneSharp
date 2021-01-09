@@ -112,7 +112,7 @@ namespace AnodyneSharp.Registry
 
             CardStatus = Enumerable.Repeat(false, 49).ToArray();
             SecretStatus = Enumerable.Repeat(false, 13).ToArray();
-            BigKeyStatus = Enumerable.Repeat(true, 3).ToArray();
+            BigKeyStatus = Enumerable.Repeat(false, 3).ToArray();
 
             HasBroom = false;
             HasLenghten = false;

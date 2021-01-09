@@ -13,6 +13,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Cheatz\CheatAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Cheatz\CheatzManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Effects\Darkness.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Drawing\Effects\FlashEffect.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Effects\Glitch.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Effects\Pixelate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dialogue\Tree\DialogueArea.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Treasures\Base\Treasure.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Treasures\SecretTreasure.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\HealthPickup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Big_Key.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\DevEaster.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\HugeFuckingStag.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Rock.cs" />

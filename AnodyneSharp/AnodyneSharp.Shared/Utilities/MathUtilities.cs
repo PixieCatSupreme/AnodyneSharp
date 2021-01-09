@@ -35,6 +35,16 @@ namespace AnodyneSharp.Utilities
             return v == target;
         }
 
+        public static void RotateAround(Vector2 Center, ref Vector2 rotator, float rotation_speed, float radius)
+        {
+            Vector2 dir = rotator - Center;
+            dir.Normalize();
+
+            dir = Vector2.Transform(dir, Matrix.CreateRotationZ(rotation_speed * GameTimes.DeltaTime));
+
+            rotator = Center + dir * radius;
+        }
+
         public static string IntToString(int num)
         {
             switch (num)

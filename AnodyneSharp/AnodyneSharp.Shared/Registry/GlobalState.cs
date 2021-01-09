@@ -149,13 +149,14 @@ namespace AnodyneSharp.Registry
 
         public static FadeEffect death_fadein = new FadeEffect() { fadeColor = Color.Black };
         public static FadeEffect black_overlay = new FadeEffect() { fadeColor = Color.Black };
+        public static FlashEffect flash = new();
 
         public static Pixelate pixelation = new Pixelate();
 
         public static Wave wave = new Wave();
 
         public static List<IFullScreenEffect> gameEffects = new List<IFullScreenEffect>() { new Static(), darkness };
-        public static List<IFullScreenEffect> fullScreenEffects = new List<IFullScreenEffect>() { death_fadein, black_overlay, new Glitch(), new GrayScale(), pixelation, wave, screenShake };
+        public static List<IFullScreenEffect> fullScreenEffects = new List<IFullScreenEffect>() { death_fadein, black_overlay, new Glitch(), new GrayScale(), pixelation, wave, flash, screenShake };
         public static IEnumerable<IFullScreenEffect> AllEffects
         {
             get
