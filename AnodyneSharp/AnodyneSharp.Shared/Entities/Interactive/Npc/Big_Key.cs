@@ -57,7 +57,7 @@ namespace AnodyneSharp.Entities.Interactive
             shadow.visible = true;
             radius = (Position - _player.Center).Length();
 
-            while (!new bool[] { MathUtilities.MoveTo(ref offset.Y, 16, 6.6f), MathUtilities.MoveTo(ref radius, 40, 15f) }.All(t=>t))
+            while (!(MathUtilities.MoveTo(ref offset.Y, 16, 6.6f) & MathUtilities.MoveTo(ref radius, 40, 15f)))
             {
                 MathUtilities.RotateAround(_player.Center, ref Position, 3f, radius);
                 yield return "RotateBig";
@@ -65,7 +65,7 @@ namespace AnodyneSharp.Entities.Interactive
 
             shadow.SetFrame(2);
 
-            while (!new bool[] { MathUtilities.MoveTo(ref offset.Y, 64, 11f), MathUtilities.MoveTo(ref radius, 2, 9f) }.All(t => t))
+            while (!(MathUtilities.MoveTo(ref offset.Y, 64, 11f) & MathUtilities.MoveTo(ref radius, 2, 9f)))
             {
                 MathUtilities.RotateAround(_player.Center, ref Position, 6.3f, radius);
                 yield return "RotateFast";
