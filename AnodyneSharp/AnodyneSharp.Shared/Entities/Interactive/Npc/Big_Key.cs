@@ -25,7 +25,7 @@ namespace AnodyneSharp.Entities.Interactive
         Player _player;
         float radius;
 
-        IState state;
+        IEnumerator<string> state;
 
         public Big_Key(EntityPreset preset, Player p) : base(preset.Position, "key_green", 16,16,Drawing.DrawOrder.ENTITIES)
         {
@@ -43,60 +43,53 @@ namespace AnodyneSharp.Entities.Interactive
 
             _sparkles = new(3, () => new());
 
-            state = new StateMachineBuilder()
-                .State("RotateBig")
-                    .Enter((s) =>
-                    {
-                        shadow.SetFrame(0);
-                        shadow.visible = true;
-                        radius = (Position - _player.Center).Length();
-                    })
-                    .Update((s,t) =>
-                    {
-                        MathUtilities.RotateAround(_player.Center, ref Position, 3f, radius);
-                        bool[] moves = { MathUtilities.MoveTo(ref offset.Y, 16, 6.6f), MathUtilities.MoveTo(ref radius, 40, 15f) };
-                        if(moves.All(t=>t))
-                        {
-                            state.ChangeState("RotateFast");
-                        }
-                    })
-                .End()
-                .State("RotateFast")
-                    .Enter((s) => shadow.SetFrame(2))
-                    .Update((s,t) =>
-                    {
-                        MathUtilities.RotateAround(_player.Center, ref Position, 6.3f, radius);
-                        bool[] moves = { MathUtilities.MoveTo(ref offset.Y, 64, 11f), MathUtilities.MoveTo(ref radius, 2, 9f) };
-                        if (moves.All(t=>t))
-                        {
-                            state.ChangeState("MoveUp");
-                        }
-                    })
-                .End()
-                .State("MoveUp")
-                    .Update((s,t) =>
-                    {
-                        if(MathUtilities.MoveTo(ref offset.Y, 70, 3f))
-                        {
-                            state.ChangeState("MoveIn");
-                        }
-                    })
-                .End()
-                .State("MoveIn")
-                    .Update((s,t) =>
-                    {
-                        if(MathUtilities.MoveTo(ref offset.Y,16,135f))
-                        {
-                            GlobalState.flash.Flash(2f, Color.White);
-                            GlobalState.screenShake.Shake(0.02f, 0.4f);
-                            SoundManager.PlaySoundEffect("sun_guy_death_long");
-                            _player.state = PlayerState.GROUND;
-                            GlobalState.disable_menu = false;
-                            exists = false;
-                        }
-                    })
-                .End()
-                .Build();
+            state = States();
+        }
+
+        private IEnumerator<string> States()
+        {
+            while (!activated)
+            {
+                yield return "Start";
+            }
+
+            shadow.SetFrame(0);
+            shadow.visible = true;
+            radius = (Position - _player.Center).Length();
+
+            while (!new bool[] { MathUtilities.MoveTo(ref offset.Y, 16, 6.6f), MathUtilities.MoveTo(ref radius, 40, 15f) }.All(t=>t))
+            {
+                MathUtilities.RotateAround(_player.Center, ref Position, 3f, radius);
+                yield return "RotateBig";
+            }
+
+            shadow.SetFrame(2);
+
+            while (!new bool[] { MathUtilities.MoveTo(ref offset.Y, 64, 11f), MathUtilities.MoveTo(ref radius, 2, 9f) }.All(t => t))
+            {
+                MathUtilities.RotateAround(_player.Center, ref Position, 6.3f, radius);
+                yield return "RotateFast";
+            }
+
+            while(!MathUtilities.MoveTo(ref offset.Y, 70, 3f))
+            {
+                yield return "MoveUp";
+            }
+
+            while(!MathUtilities.MoveTo(ref offset.Y, 16, 135f))
+            {
+                yield return "MoveIn";
+            }
+
+            GlobalState.flash.Flash(2f, Color.White);
+            GlobalState.screenShake.Shake(0.02f, 0.4f);
+            SoundManager.PlaySoundEffect("sun_guy_death_long");
+            _player.state = PlayerState.GROUND;
+            GlobalState.disable_menu = false;
+            exists = false;
+
+            yield break;
+
         }
 
         public override void Update()
@@ -108,7 +101,7 @@ namespace AnodyneSharp.Entities.Interactive
                 sparkle_timer = 0f;
                 _sparkles.Spawn((s) => s.Spawn(this));
             }
-            state.Update(GameTimes.DeltaTime);
+            state.MoveNext();
         }
 
         public override void Collided(Entity other)
@@ -121,7 +114,6 @@ namespace AnodyneSharp.Entities.Interactive
         {
             activated = true;
             _preset.Alive = false;
-            state.ChangeState("RotateBig");
 
             InventoryManager.BigKeyStatus[_curAnim.Frame / 2] = true;
             GlobalState.disable_menu = true;
