@@ -241,10 +241,10 @@ namespace AnodyneSharp.Entities
             return frames;
         }
 
-        protected virtual bool SetTexture(string textureName, int frameWidth, int frameHeight, bool ignoreChaos = false)
+        protected virtual bool SetTexture(string textureName, int frameWidth, int frameHeight, bool ignoreChaos = false, bool allowFailure = false)
         {
             this.textureName = textureName;
-            sprite = new Spritesheet(ResourceManager.GetTexture(textureName, ignoreChaos), frameWidth, frameHeight);
+            sprite = new Spritesheet(ResourceManager.GetTexture(textureName, ignoreChaos,allowFailure), frameWidth, frameHeight);
 
             SetFrame(0);
 

@@ -22,7 +22,7 @@ namespace AnodyneSharp.Entities
 
         public void OnMapChange()
         {
-            if (!SetTexture($"overlay_{GlobalState.CURRENT_MAP_NAME}_water", 24, 24))
+            if (!SetTexture($"overlay_{GlobalState.CURRENT_MAP_NAME}_water", 24, 24,allowFailure:true))
             {
                 SetTexture("overlay_water", 24, 24);
                 offset.Y = 0;
