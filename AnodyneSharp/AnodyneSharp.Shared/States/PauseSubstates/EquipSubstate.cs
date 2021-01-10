@@ -10,11 +10,12 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace AnodyneSharp.States.PauseSubstates
 {
-    public class EquipSubstate : PauseSubstate
+    public class EquipSubstate : DialogueSubstate
     {
         private enum EquipState
         {
@@ -34,8 +35,15 @@ namespace AnodyneSharp.States.PauseSubstates
         private Equipment _broomWiden;
         private Equipment _transformer;
 
+        private UIEntity _jump;
+        private UIEntity _item;
+        private UIEntity[] _keys;
+
         private EquipState _state;
         private EquipState _lastState;
+
+        List<EquipState> bottom_row_enabled = new() { EquipState.Key1, EquipState.Key2, EquipState.Key3 };
+        int current_bottom_index = 0;
 
         public EquipSubstate()
         {
@@ -47,6 +55,23 @@ namespace AnodyneSharp.States.PauseSubstates
             _broomWiden = new Equipment(new Vector2(x, y + 24 * 2), "wide_icon", InventoryManager.HasWiden ? DialogueManager.GetDialogue("misc", "any", "items", 4) : "-");
             _transformer = new Equipment(new Vector2(x, y + 24 * 3), "transformer_icon", InventoryManager.HasTransformer ? DialogueManager.GetDialogue("misc", "any", "items", 2) : "-");
 
+            _jump = new UIEntity(new Vector2(62, 130), "item_jump_shoes", 0, 16, 16, Drawing.DrawOrder.EQUIPMENT_ICON) { visible = false };
+            _item = new UIEntity(new Vector2(78, 130), "fields_npcs", 16, 16, Drawing.DrawOrder.EQUIPMENT_ICON) { visible = false };
+
+            if (InventoryManager.tradeState != InventoryManager.TradeState.NONE)
+            {
+                bottom_row_enabled.Insert(0, EquipState.Item);
+                _item.SetFrame(InventoryManager.tradeState == InventoryManager.TradeState.BOX ? 31 : 56);
+                _item.visible = true;
+            }
+
+            if (InventoryManager.CanJump)
+            {
+                bottom_row_enabled.Insert(0, EquipState.Shoes);
+                _jump.visible = true;
+            }
+
+            _keys = Enumerable.Range(0, 3).Select(i => new UIEntity(new Vector2(95 + 16 * i, 130), "key_green", InventoryManager.BigKeyStatus[i] ? i * 2 : i * 2 + 1, 16, 16, Drawing.DrawOrder.EQUIPMENT_ICON)).ToArray();
 
             SetEquipped();
         }
@@ -68,6 +93,8 @@ namespace AnodyneSharp.States.PauseSubstates
 
         public override void Update()
         {
+            base.Update();
+
             if (_lastState != _state)
             {
                 _lastState = _state;
@@ -75,21 +102,29 @@ namespace AnodyneSharp.States.PauseSubstates
                 SoundManager.PlaySoundEffect("menu_move");
             }
 
-            base.Update();
         }
 
         public override void DrawUI()
         {
+            base.DrawUI();
             _broom.Draw();
             _broomExtend.Draw();
             _broomWiden.Draw();
             _transformer.Draw();
+            _item.Draw();
+            _jump.Draw();
+            foreach (var key in _keys)
+            {
+                key.Draw();
+            }
 
             _selector.Draw();
         }
 
         public override void HandleInput()
         {
+            if (InDialogueMode) return;
+
             if (KeyInput.JustPressedRebindableKey(KeyFunctions.Up))
             {
                 if (_state == EquipState.Broom)
@@ -112,20 +147,28 @@ namespace AnodyneSharp.States.PauseSubstates
                     return;
                 }
 
-                _state++;
+                if (_state == EquipState.Transformer)
+                {
+                    _state = bottom_row_enabled[0];
+                    current_bottom_index = 0;
+                }
+                else if (_state < EquipState.Transformer)
+                {
+                    _state++;
+                }
             }
             else if (_state >= EquipState.Shoes && KeyInput.JustPressedRebindableKey(KeyFunctions.Right))
             {
-                if (_state == EquipState.Key3)
+                if (current_bottom_index == bottom_row_enabled.Count - 1)
                 {
                     return;
                 }
 
-                _state++;
+                _state = bottom_row_enabled[++current_bottom_index];
             }
-            else if (_state > EquipState.Shoes && KeyInput.JustPressedRebindableKey(KeyFunctions.Left))
+            else if (_state > EquipState.Shoes && current_bottom_index > 0 && KeyInput.JustPressedRebindableKey(KeyFunctions.Left))
             {
-                _state--;
+                _state = bottom_row_enabled[--current_bottom_index];
             }
             else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept))
             {
@@ -154,14 +197,28 @@ namespace AnodyneSharp.States.PauseSubstates
                     EquipBroom(BroomType.Transformer);
                     break;
                 case EquipState.Shoes:
+                    SetDialogue(DialogueManager.GetDialogue("misc", "any", "items", 5));
                     break;
                 case EquipState.Item:
+                    SetDialogue(DialogueManager.GetDialogue("misc", "any", "items", InventoryManager.tradeState == InventoryManager.TradeState.SHOES ? 6 : 7));
                     break;
                 case EquipState.Key1:
+                    if(InventoryManager.BigKeyStatus[0])
+                    {
+                        SetDialogue(DialogueManager.GetDialogue("misc", "any", "items", 8));
+                    }
                     break;
                 case EquipState.Key2:
+                    if (InventoryManager.BigKeyStatus[1])
+                    {
+                        SetDialogue(DialogueManager.GetDialogue("misc", "any", "items", 9));
+                    }
                     break;
                 case EquipState.Key3:
+                    if (InventoryManager.BigKeyStatus[2])
+                    {
+                        SetDialogue(DialogueManager.GetDialogue("misc", "any", "items", 10));
+                    }
                     break;
             }
         }
@@ -192,25 +249,30 @@ namespace AnodyneSharp.States.PauseSubstates
                     break;
                 case EquipState.Shoes:
                     ignoreOffset = true;
+                    _selector.Position = _jump.Position;
                     break;
                 case EquipState.Item:
                     ignoreOffset = true;
+                    _selector.Position = _item.Position;
                     break;
                 case EquipState.Key1:
                     ignoreOffset = true;
+                    _selector.Position = _keys[0].Position;
                     break;
                 case EquipState.Key2:
                     ignoreOffset = true;
+                    _selector.Position = _keys[1].Position;
                     break;
                 case EquipState.Key3:
                     ignoreOffset = true;
+                    _selector.Position = _keys[2].Position;
                     break;
             }
 
-            _selector.Position -= new Vector2(_selector.sprite.Width, -2);
 
             if (!ignoreOffset)
             {
+                _selector.Position -= new Vector2(_selector.sprite.Width, -2);
                 _selector.Position.Y += CursorOffset;
             }
         }

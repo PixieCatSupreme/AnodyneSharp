@@ -1539,8 +1539,8 @@ A pair of spring-loaded shoes - press [SOMEKEY-X] to jump!
 A pair of shoes for biking.
 An empty cardboard box.
 A key found in the Temple of the Seeing One.
-#10
 A key found in a red, underground cave.
+#10
 A key found in a mountain cave.
 		end scene
 		

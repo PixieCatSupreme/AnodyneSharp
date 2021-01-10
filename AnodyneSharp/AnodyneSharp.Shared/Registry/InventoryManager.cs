@@ -97,6 +97,15 @@ namespace AnodyneSharp.Registry
 
         public static bool CanJump = false;
 
+        public enum TradeState
+        {
+            NONE,
+            SHOES,
+            BOX
+        };
+
+        public static TradeState tradeState;
+
         public static bool[] CardStatus;
         public static bool[] SecretStatus;
         public static bool[] BigKeyStatus;
@@ -118,6 +127,8 @@ namespace AnodyneSharp.Registry
             HasLenghten = false;
             HasWiden = false;
             HasTransformer = false;
+
+            tradeState = TradeState.NONE;
 
             CanJump = false;
         }
