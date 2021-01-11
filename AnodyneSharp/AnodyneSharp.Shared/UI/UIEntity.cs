@@ -35,9 +35,9 @@ namespace AnodyneSharp.UI
             }
         }
 
-        protected override bool SetTexture(string textureName, int width, int height, bool ignoreChaos = false)
+        protected override bool SetTexture(string textureName, int width, int height, bool ignoreChaos = false, bool allowFailure = true)
         {
-            return base.SetTexture(textureName, width, height, true);
+            return base.SetTexture(textureName, width, height, true, allowFailure);
         }
 
         public override void ReloadTexture(bool ignoreChaos = false)

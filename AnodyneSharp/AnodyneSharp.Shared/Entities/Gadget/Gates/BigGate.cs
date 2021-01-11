@@ -13,6 +13,7 @@ namespace AnodyneSharp.Entities.Gadget
     {
         private class OpenState : TimerState
         {
+            public IEnumerator<string> state;
             public OpenState()
             {
                 AddTimer(0.8f, "open");
@@ -30,27 +31,29 @@ namespace AnodyneSharp.Entities.Gadget
 
             _state = new StateMachineBuilder()
                 .State<OpenState>("Open")
+                    .Enter(s =>
+                    {
+                        s.state = openSequence();
+
+                        IEnumerator<string> openSequence()
+                        {
+                            yield return "Start";
+                            for(int i = 0; i <= 4; ++i)
+                            {
+                                GlobalState.screenShake.Shake(0.02f, 0.3f);
+                                SoundManager.PlaySoundEffect("hit_ground_1");
+                                SetFrame(i);
+                                yield return $"Open {i}";
+                            }
+                            SoundManager.PlaySoundEffect("open");
+                            _player.state = PlayerState.GROUND;
+                            exists = false;
+                            yield break;
+                        }
+                    })
                     .Event("open", (s) =>
                     {
-                        if (_curAnim.Frame != 4)
-                        {
-                            GlobalState.screenShake.Shake(0.02f, 0.3f);
-                            SoundManager.PlaySoundEffect("hit_ground_1");
-                        }
-                        switch (_curAnim.Frame)
-                        {
-                            case < 4:
-                                SetFrame(_curAnim.Frame + 1);
-                                break;
-                            case > 4:
-                                SetFrame(0);
-                                break;
-                            case 4:
-                                SoundManager.PlaySoundEffect("open");
-                                _player.state = PlayerState.GROUND;
-                                exists = false;
-                                break;
-                        }
+                        s.state.MoveNext();
                     })
                 .End()
                 .Build();
