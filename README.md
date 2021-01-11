@@ -6,7 +6,7 @@ It's based on the original game's source code, which can be found over here: htt
 
 The aim is to be faithful to the original, with some UX improvements and a more modular/moddable codebase.
 
-Overview of changes for players
+Overview of changes
 ---------------
 
  - Render at 60 FPS using OpenGL/DirectX, effects are done using shaders instead of CPU-side computation
