@@ -202,7 +202,7 @@ namespace AnodyneSharp.Dialogue
                         }
                         if (line == "LOOP")
                         {
-                            loopID = dialogue.Count - 1;
+                            loopID = dialogue.Count;
                             continue;
                         }
                         dialogue.Add(line);

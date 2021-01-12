@@ -88,6 +88,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Rock.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Sage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Decorations\Eye_Light.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Sadbro.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Statue.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Lights\Light.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Player\Broom.cs" />
