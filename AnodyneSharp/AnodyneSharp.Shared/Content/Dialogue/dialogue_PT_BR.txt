@@ -541,21 +541,21 @@ end npc
 # Statue (wise crackin' statue) 
 npc statue
 	area NEXUS
-		scene enter_nexus
+		scene one
 Estátua:O Ancião do Vilarejo é apenas em nome, pois ambos ele não é.
 #Statue:The Village Elder in name only, for he is neither.		
 		end scene
 	end area
 	area OVERWORLD
 
-		scene bedroom_entrance
+		scene one
 Estátua:Eu vi uma vassoura em uma lenda... estava no mapa de um armário de zelador. 
 #Statue:I’ve seen a broom in a legend... it was on the map of a janitor closet.		
 		end scene
 	end area
 	area BEDROOM
 
-		scene after_boss
+		scene one
 Estátua:Adquirir cartas é vital para sua jornada. Adquirir cartões é vital para outras jornadas, como conseguir crédito.
 #Statue:Acquiring cards is vital to your quest. Acquiring cards is also vital for other quests, such as earning credit or purchasing alcoholic beverages.		
 		end scene

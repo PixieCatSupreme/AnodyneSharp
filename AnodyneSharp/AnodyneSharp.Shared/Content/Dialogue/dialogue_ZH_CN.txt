@@ -574,21 +574,21 @@ end npc
 ### Statue (wise crackin' statue) 
 npc statue
 	area NEXUS
-		scene enter_nexus
+		scene one
 #Statue: The Village Elder in name only, for he is neither.
 雕像：那个村庄长者只不过是名义上的角色罢了。
 		end scene
 	end area
 	
 	area OVERWORLD
-		scene bedroom_entrance
+		scene one
 #Statue: I’ve seen a broom in a legend... it was on the map of a janitor closet. 	
 雕像：我见过一把传说的扫帚… 它在看门人衣橱里的地图上。
 		end scene
 	end area
 	
 	area BEDROOM
-		scene after_boss
+		scene one
 #Statue: Acquiring cards is vital to your quest.  Acquiring cards is also vital for other quests, such as earning credit or purchasing alcoholic beverages.		
 雕像：获得卡片对你而言至关重要。 当然，它们在其它方面也很重要。 比如获取分数或是购买酒精饮料什么的。
 		end scene

@@ -399,19 +399,19 @@ end npc
 ### Statue (wise crackin' statue) 
 npc statue
 	area NEXUS
-		scene enter_nexus
+		scene one
 Statue: The Village Elder in name only, for he is neither.		
 		end scene
 	end area
 	
 	area OVERWORLD
-		scene bedroom_entrance
+		scene one
 Statue: I’ve seen a broom in a legend... it was on the map of a janitor closet.		
 		end scene
 	end area
 	
 	area BEDROOM
-		scene after_boss
+		scene one
 Statue: Acquiring cards is vital to your quest.  Acquiring cards is also vital for other quests, such as earning credit or purchasing alcoholic beverages.		
 		end scene
 	end area

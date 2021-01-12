@@ -574,21 +574,21 @@ end npc
 ### Statue (wise crackin' statue) 
 npc statue
 	area NEXUS
-		scene enter_nexus
+		scene one
 #Statue: The Village Elder in name only, for he is neither.
 Estatua: El Anciano del Pueblo sólo en nombre, pues no es ninguno.
 		end scene
 	end area
 	
 	area OVERWORLD
-		scene bedroom_entrance
+		scene one
 #Statue: I’ve seen a broom in a legend... it was on the map of a janitor closet. 	
 Estatua: He visto una escoba en una leyenda... que estaba en el plano del armario de un conserje.
 		end scene
 	end area
 	
 	area BEDROOM
-		scene after_boss
+		scene one
 #Statue: Acquiring cards is vital to your quest.  Acquiring cards is also vital for other quests, such as earning credit or purchasing alcoholic beverages.		
 Estatua: Adquirir tarjetas es vital para tu búsqueda.  Adquirir tarjetas también es vital para otros fines, como obtener crédito o comprar bebidas alcohólicas.
 		end scene
