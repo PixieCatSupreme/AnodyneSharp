@@ -97,7 +97,6 @@ namespace AnodyneSharp.Registry
         public static bool WARP = false;
         public static string NEXT_MAP_NAME;
         public static DoorMapPair ReturnTarget = null;
-        public static bool SeenNexus = false;
         public static Vector2 PLAYER_WARP_TARGET;
 
         public static bool RefreshKeyCount = false;

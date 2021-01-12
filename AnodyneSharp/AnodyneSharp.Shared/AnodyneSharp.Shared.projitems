@@ -102,6 +102,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Map\Tiles\AnimatedTile.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Map\Tiles\CollissionData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Registry\AchievementManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Registry\EventRegister.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Registry\InventoryManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Resources\CardDataManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Resources\ContentLoader.cs" />

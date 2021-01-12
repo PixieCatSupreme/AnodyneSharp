@@ -766,12 +766,15 @@ namespace AnodyneSharp.States
         {
             if (GlobalState.CURRENT_MAP_NAME != GlobalState.NEXT_MAP_NAME)
             {
+
+                EventRegister.VisitedMaps.Add(GlobalState.NEXT_MAP_NAME);
+                if(EventRegister.BossDefeated.Contains(GlobalState.CURRENT_MAP_NAME))
+                {
+                    EventRegister.LeftAfterBoss.Add(GlobalState.CURRENT_MAP_NAME);
+                }
+
                 GlobalState.CURRENT_MAP_NAME = GlobalState.NEXT_MAP_NAME;
 
-                if (GlobalState.CURRENT_MAP_NAME == "NEXUS")
-                {
-                    GlobalState.SeenNexus = true;
-                }
                 GlobalState.ReturnTarget = EntityManager.GetNexusGateForCurrentMap();
 
                 TileData.SetTileset(GlobalState.CURRENT_MAP_NAME);
