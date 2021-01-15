@@ -35,4 +35,68 @@ namespace AnodyneSharp.Entities.Lights
         }
     }
 
+    [NamedEntity("Event","bedroom_bounce"), Collision(typeof(Player),KeepOnScreen = true)]
+    public class BedRoomBounceLight : Light
+    {
+        private float lock_on_timer = 2.0f;
+        private bool locked_on = false;
+        private Player followee;
+        private EntityPreset preset;
+
+        public BedRoomBounceLight(EntityPreset preset, Player p) : base(p.Position,"glow-light",64,64)
+        {
+            scale = 2;
+            followee = p;
+            this.preset = preset;
+            width = height = 32;
+
+            velocity = Vector2.One * 30f;
+            int vel_decider = GlobalState.RNG.Next(0, 4);
+            if(vel_decider % 2 == 0)
+            {
+                velocity.X *= -1;
+            }
+            if(vel_decider/2 == 0)
+            {
+                velocity.Y *= -1;
+            }
+        }
+
+        public override void Update()
+        {
+            base.Update();
+            
+            if (EventRegister.BossDefeated.Contains("BEDROOM"))
+            {
+                preset.Alive = exists = false;
+                return;
+            }
+
+            if (locked_on)
+            {
+                MoveTowards(followee.Position, 30f);
+            }
+            else
+            {
+                if ((touching & (Touching.LEFT | Touching.RIGHT)) != Touching.NONE)
+                {
+                    velocity.X *= -1;
+                }
+                if ((touching & (Touching.UP | Touching.DOWN)) != Touching.NONE)
+                {
+                    velocity.Y *= -1;
+                }
+
+                velocity.X += (float)GlobalState.RNG.NextDouble() * 2 - 1;
+                velocity.Y += (float)GlobalState.RNG.NextDouble() * 2 - 1;
+                lock_on_timer -= GameTimes.DeltaTime;
+            }
+        }
+
+        public override void Collided(Entity other)
+        {
+            if (lock_on_timer < 0) locked_on = true;
+        }
+    }
+
 }

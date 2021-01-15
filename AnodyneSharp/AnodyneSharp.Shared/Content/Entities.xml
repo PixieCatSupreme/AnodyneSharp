@@ -523,7 +523,7 @@
     <Event x="800" y="0." guid="58255FDB-2DE7-3D8D-CFCC-012BE3F298D0" frame="1" type="1.0" />
     <Eye_Light x="768" y="592" guid="DC670857-A445-F68A-2E29-4C0C221CFAD6" frame="5"/>
     <Eye_Light x="656" y="528" guid="00CF0DFB-0DBF-D196-1789-0178D392C9D6" frame="5"/>
-    <Event x="336" y="32" guid="CEE0E538-948A-9AB5-1CE7-45926AE15DE0" frame="0" type="0.2" />
+    <Event x="320" y="16" guid="CEE0E538-948A-9AB5-1CE7-45926AE15DE0" frame="0" type="0.2" />
     <Event x="320" y="480" guid="EA5C339D-1E3D-EF12-7989-7FB3501565B2" frame="0" type="0.0" />
     <Event x="160" y="640" guid="A2DF1F6E-B152-9576-87CF-BABB983321B2" frame="0" type="0.0" />
     <Event x="0." y="496" guid="70366AD1-A0A4-3E11-A6B8-FD79708E468C" frame="0" type="0.0" />
@@ -580,6 +580,9 @@
     <NPC x="1072" y="384" guid="10AE67AA-BED6-010A-4286-6E2F3322CA21" frame="2" type="rock" />
     <Solid_Sprite x="703" y="796" guid="AEE52F53-8442-4A0F-9C99-4CBA167A5C3F" frame="5" type="blocker" />
     <Eye_Light x="672" y="720" guid="37B5CA73-3420-140E-4CA1-B9398F41E316" frame="0"/>
+    <Event x="160" y="512" guid="9A5D80EB-1A90-548C-C9D5-59B5C351ED08" frame="6" type="bedroom_bounce" />
+    <Event x="320" y="656" guid="8F721587-2704-6C87-6C4F-99D0EC35805D" frame="6" type="bedroom_bounce" />
+    <Event x="320" y="32" guid="45B36C19-2761-FFBB-6E0B-8CD47B687742" frame="6" type="bedroom_bounce" />
   </map>
   <map name="BLANK" type="Stateful">
     <Door x="390" y="434" guid="F82E7C7D-9BE9-2A87-ECD5-9966F2799C1E" frame="6" type="4" />
@@ -2914,6 +2917,10 @@
     <Button x="448" y="928" guid="9C02AA66-2804-77CA-9B19-2206B2F93EFB" frame="0"/>
     <Event x="0." y="960" guid="441C22BD-0BD0-2993-558B-8B77A47AC5BD" frame="4"/>
     <Event x="480" y="800" guid="C657B296-92F2-A5BD-0B59-ADE5A269627F" frame="4"/>
+    <Event x="0." y="800" guid="F92C897F-515F-59C8-F07E-AF27F6B5E051" frame="0" type="0.8" />
+    <Event x="160" y="800" guid="49FABD7D-32B1-DC71-E0F0-F496C95003F8" frame="0" type="0.8" />
+    <Event x="160" y="960" guid="7DDADFD0-E746-5A52-C744-D2A5F7E1EE2D" frame="0" type="0.8" />
+    <Event x="0." y="1120" guid="62780AEB-18CC-48F0-26DF-0AAB1358C531" frame="0" type="0.8" />
   </map>
   <map name="SUBURB" type="Stateful">
     <Suburb_Killer x="80" y="256" guid="08FA88AD-FF2E-2244-A732-2030DCD9718C" frame="0"/>

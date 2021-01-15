@@ -109,12 +109,12 @@ namespace AnodyneSharp.Entities
 
             foreach(Entity e in _keepOnScreen.Where(e=>e.exists))
             {
-                if (e.Hitbox.Right < roomUpLeft.X)
+                if (e.Hitbox.Left < roomUpLeft.X)
                 {
                     e.Position.X = roomUpLeft.X;
                     e.touching |= Touching.LEFT;
                 }
-                else if(e.Hitbox.Left > roomBottomRight.X)
+                else if(e.Hitbox.Right > roomBottomRight.X)
                 {
                     e.Position.X = roomBottomRight.X - e.width;
                     e.touching |= Touching.RIGHT;
