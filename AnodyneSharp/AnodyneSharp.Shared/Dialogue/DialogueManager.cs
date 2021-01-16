@@ -75,6 +75,8 @@ namespace AnodyneSharp.Dialogue
                 return $"Missing scene {scene}";
             }
 
+            GlobalState.DialogueTop = s.AlignTop;
+
             return ReplaceKeys(s.GetDialogue(id));
         }
 

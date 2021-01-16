@@ -31,8 +31,10 @@ namespace AnodyneSharp.Registry
             {
                 _dialogue = value;
                 SetDialogueMode = value != "";
+                if (value == "") DialogueTop = false;
             }
         }
+        public static bool DialogueTop = false;
 
         public static Vector2 CurrentMapGrid
         {

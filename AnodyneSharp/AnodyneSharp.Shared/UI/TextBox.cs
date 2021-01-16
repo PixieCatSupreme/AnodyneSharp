@@ -32,7 +32,7 @@ namespace AnodyneSharp.UI
         public TextBox(bool useMenuBox)
         {
             blinky_box_timer = blinky_box_timer_max;
-            Set_box_position();
+            Set_box_position((!useMenuBox && GlobalState.DialogueTop) ? Touching.UP : Touching.DOWN);
 
             _boxTexture = ResourceManager.GetTexture(!useMenuBox ? "dialogue_box" : "menudialogue_box",true);
             blinky_box = ResourceManager.GetTexture("dialogue_blinky_box", true);
