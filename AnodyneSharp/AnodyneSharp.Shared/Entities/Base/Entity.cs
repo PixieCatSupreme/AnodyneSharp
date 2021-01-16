@@ -270,6 +270,19 @@ namespace AnodyneSharp.Entities
             };
         }
 
+        public void FaceTowards(Vector2 target)
+        {
+            Vector2 dir = target - Position;
+            if(MathF.Abs(dir.X) > MathF.Abs(dir.Y))
+            {
+                facing = dir.X > 0 ? Facing.RIGHT : Facing.LEFT;
+            }
+            else
+            {
+                facing = dir.Y > 0 ? Facing.DOWN : Facing.UP;
+            }
+        }
+
         public static Vector2 FacingDirection(Facing f)
         {
             return new Vector2(

@@ -35,6 +35,8 @@ namespace AnodyneSharp.Registry
             }
         }
         public static bool DialogueTop = false;
+        public static bool DialogueJustFinished = false;
+        public static bool SetDialogueMode = false;
 
         public static Vector2 CurrentMapGrid
         {
@@ -63,9 +65,6 @@ namespace AnodyneSharp.Registry
         public static Language CurrentLanguage { get; set; }
         public static bool FishermanDead { get; set; }
 
-        public static bool SetDialogueMode = false;
-
-        public static bool BOI = false; // BOI Sprites on in easter egg redcave
         public static float music_volume_scale =
 #if DEBUG
             0.1f;
@@ -75,6 +74,7 @@ namespace AnodyneSharp.Registry
         public static float sfx_volume_scale = 1.0f;
 
         public static bool pillar_switch_state = false; //Reset when entering a map with different name
+        public static bool ScreenTransition = false; //Whether a screen transition is happening right now
         public static int ENTRANCE_GRID_X;
         public static int ENTRANCE_GRID_Y;
         public static int PLAYER_X;

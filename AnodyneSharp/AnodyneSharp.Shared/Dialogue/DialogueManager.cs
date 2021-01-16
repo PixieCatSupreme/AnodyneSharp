@@ -38,8 +38,6 @@ namespace AnodyneSharp.Dialogue
 
         private static Dictionary<string, DialogueNPC> _sceneTree;
 
-        private static int _lastPlayedChunk;
-
         public static void LoadDialogue(Language lang)
         {
             GlobalState.CurrentLanguage = lang;
@@ -47,33 +45,26 @@ namespace AnodyneSharp.Dialogue
             ReadFile();
         }
 
-        public static string GetDialogue(string npc, string scene, int id = -1)
+        private static DialogueScene GetScene(string npc, string area, string scene)
         {
-            return GetDialogue(npc, GlobalState.CURRENT_MAP_NAME, scene, id);
-        }
-
-        public static string GetDialogue(string npc, string area, string scene, int id = -1)
-        {
-            if (!_sceneTree.ContainsKey(npc))
-            {
-                return $"Missing npc {npc}";
-            }
-
             DialogueNPC dn = _sceneTree[npc];
 
             DialogueArea a = dn.GetArea(area);
 
-            if (a == null)
-            {
-                return $"Missing area {area}";
-            }
+            return a.GetScene(scene);
+        }
 
-            DialogueScene s = a.GetScene(scene);
+        public static bool IsSceneDirty(string npc, string scene) => IsSceneDirty(npc, GlobalState.CURRENT_MAP_NAME, scene);
+        public static bool IsSceneDirty(string npc, string area, string scene) => GetScene(npc, area, scene).state.dirty;
 
-            if (s == null)
-            {
-                return $"Missing scene {scene}";
-            }
+        public static bool IsSceneFinished(string npc, string scene) => IsSceneFinished(npc, GlobalState.CURRENT_MAP_NAME, scene);
+        public static bool IsSceneFinished(string npc, string area, string scene) => GetScene(npc, area, scene).state.finished;
+
+        public static string GetDialogue(string npc, string scene, int id = -1) => GetDialogue(npc, GlobalState.CURRENT_MAP_NAME, scene, id);
+
+        public static string GetDialogue(string npc, string area, string scene, int id = -1)
+        {
+            DialogueScene s = GetScene(npc, area, scene);
 
             GlobalState.DialogueTop = s.AlignTop;
 

@@ -494,6 +494,7 @@ namespace AnodyneSharp.States
 
             if (_state == PlayStateState.S_TRANSITION)
             {
+                GlobalState.ScreenTransition = true;
                 _player.grid_entrance = _player.Position;
                 _player.dontMove = true;
 
@@ -517,6 +518,7 @@ namespace AnodyneSharp.States
                 FinalizeTransition();
 
                 _state = PlayStateState.S_NORMAL;
+                GlobalState.ScreenTransition = false;
             }
         }
 
