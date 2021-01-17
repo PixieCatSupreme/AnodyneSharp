@@ -434,6 +434,7 @@ namespace AnodyneSharp.Entities
                 case PlayerState.AUTO_JUMP:
                     break;
                 case PlayerState.INTERACT:
+                    velocity = Vector2.Zero;
                     break;
                 case PlayerState.ENTER_FALL:
                     break;

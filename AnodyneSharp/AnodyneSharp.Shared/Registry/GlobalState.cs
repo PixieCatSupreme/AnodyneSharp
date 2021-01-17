@@ -31,11 +31,12 @@ namespace AnodyneSharp.Registry
             {
                 _dialogue = value;
                 SetDialogueMode = value != "";
+                LastDialogueFinished = value == "";
                 if (value == "") DialogueTop = false;
             }
         }
         public static bool DialogueTop = false;
-        public static bool DialogueJustFinished = false;
+        public static bool LastDialogueFinished = false;
         public static bool SetDialogueMode = false;
 
         public static Vector2 CurrentMapGrid

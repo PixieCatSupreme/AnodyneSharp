@@ -7,14 +7,14 @@ using System.Collections;
 
 namespace AnodyneSharp.Entities
 {
-    [NamedEntity(xmlName: "Sage", map: "NEXUS"), Collision(typeof(Player))]
-    class SageNexus : Entity, Interactable
+    [Collision(typeof(Player))]
+    abstract class Sage : Entity, Interactable
     {
-        Player _player;
-        EntityPreset _preset;
+        protected Player _player;
+        protected EntityPreset _preset;
         IEnumerator _state;
 
-        public SageNexus(EntityPreset preset, Player p) : base(preset.Position,"sage",16,16,DrawOrder.ENTITIES)
+        public Sage(EntityPreset preset, Player p) : base(preset.Position, "sage", 16, 16, DrawOrder.ENTITIES)
         {
             _player = p;
             _preset = preset;
@@ -35,24 +35,24 @@ namespace AnodyneSharp.Entities
 
             Play("idle_d");
 
-            if(EventRegister.BossDefeated.Contains("TERMINAL"))
-            {
-                preset.Alive = exists = false;
-            }
             _state = StateLogic();
         }
+
+        protected abstract IEnumerator StateLogic();
+        protected abstract string GetInteractionText();
 
         public override void Update()
         {
             base.Update();
-            _state.MoveNext();
+            if(!GlobalState.ScreenTransition)
+                _state.MoveNext();
             FaceTowards(_player.Position);
             PlayFacing(velocity == Vector2.Zero ? "idle" : "walk");
         }
 
         protected override void AnimationChanged(string name)
         {
-            if(name == "walk_l" || name == "idle_l")
+            if (name == "walk_l" || name == "idle_l")
             {
                 _flip = SpriteEffects.FlipHorizontally;
             }
@@ -62,16 +62,40 @@ namespace AnodyneSharp.Entities
             }
         }
 
-        protected IEnumerator StateLogic()
+        public override void Collided(Entity other)
+        {
+            Separate(this, other);
+        }
+
+        public bool PlayerInteraction(Facing player_direction)
+        {
+            GlobalState.Dialogue = GetInteractionText();
+            return true;
+        }
+    }
+
+    [NamedEntity(xmlName: "Sage", map: "NEXUS")]
+    class SageNexus : Sage
+    {
+        public SageNexus(EntityPreset preset, Player p) : base(preset, p)
+        {
+            if(EventRegister.BossDefeated.Contains("TERMINAL"))
+            {
+                preset.Alive = exists = false;
+            }
+        }
+
+        protected override IEnumerator StateLogic()
         {
             if (DialogueManager.IsSceneDirty("sage", "enter_nexus"))
                 yield break;
 
-            while(GlobalState.ScreenTransition || _player.state == PlayerState.AIR || (_player.Position - Position).Length() > 64)
+            while(_player.state == PlayerState.AIR || (_player.Position - Position).Length() > 64)
             {
                 yield return null;
             }
             
+            GlobalState.disable_menu = true;
             _player.state = PlayerState.INTERACT;
             MoveTowards(_player.Position, 20);
             
@@ -80,6 +104,7 @@ namespace AnodyneSharp.Entities
                 yield return null;
             }
 
+            GlobalState.disable_menu = false;
             _player.state = PlayerState.GROUND;
             velocity = Vector2.Zero;
 
@@ -88,15 +113,125 @@ namespace AnodyneSharp.Entities
             yield break;
         }
 
-        public override void Collided(Entity other)
+        protected override string GetInteractionText()
         {
-            Separate(this, other);
+            return DialogueManager.GetDialogue("sage", "enter_nexus");
+        }
+    }
+
+    [NamedEntity(xmlName: "Sage", map: "OVERWORLD")]
+    class SageOverworld : Sage
+    {
+        public SageOverworld(EntityPreset preset, Player p) : base(preset, p)
+        {
+            if (EventRegister.BossDefeated.Contains("BEDROOM"))
+            {
+                preset.Alive = exists = false;
+            }
         }
 
-        public bool PlayerInteraction(Facing player_direction)
+        protected override IEnumerator StateLogic()
         {
-            GlobalState.Dialogue = DialogueManager.GetDialogue("sage","enter_nexus");
-            return true;
+            if (DialogueManager.IsSceneDirty("sage", "bedroom_entrance"))
+                yield break;
+
+            while (_player.state == PlayerState.AIR || (_player.Position - Position).Length() > 56)
+            {
+                yield return null;
+            }
+            GlobalState.disable_menu = true;
+
+            _player.BeIdle();
+            _player.state = PlayerState.INTERACT;
+            MoveTowards(_player.Position, 20);
+
+            while ((_player.Position - Position).Length() > 28)
+            {
+                yield return null;
+            }
+
+            velocity = Vector2.Zero;
+            
+            //Ask for weapon
+            GlobalState.Dialogue = DialogueManager.GetDialogue("sage", "bedroom_entrance");
+
+            while(!GlobalState.LastDialogueFinished)
+            {
+                yield return null;
+            }
+
+            //wait for broom to be used
+            _player.state = PlayerState.GROUND;
+            _player.dontMove = true;
+
+            while(!_player.broom.exists)
+            {
+                yield return null;
+            }
+
+            while(_player.broom.exists)
+            {
+                yield return null;
+            }
+
+            _player.dontMove = false;
+            GlobalState.disable_menu = false;
+            _player.state = PlayerState.GROUND;
+
+            GlobalState.Dialogue = DialogueManager.GetDialogue("sage", "bedroom_entrance");
+
+            yield break;
+        }
+
+        protected override string GetInteractionText()
+        {
+            return DialogueManager.GetDialogue("sage", "bedroom_entrance");
+        }
+    }
+
+    [NamedEntity(xmlName: "Sage", map: "BEDROOM")]
+    class SageBedroom : Sage
+    {
+        public SageBedroom(EntityPreset preset, Player p) : base(preset, p)
+        {
+            if (EventRegister.LeftAfterBoss.Contains("BEDROOM"))
+            {
+                preset.Alive = exists = false;
+            }
+        }
+
+        protected override IEnumerator StateLogic()
+        {
+            if (DialogueManager.IsSceneDirty("sage", "after_boss"))
+                yield break;
+
+            while (_player.state == PlayerState.AIR || (_player.Position - Position).Length() > 48)
+            {
+                yield return null;
+            }
+            GlobalState.disable_menu = true;
+
+            _player.BeIdle();
+            _player.state = PlayerState.INTERACT;
+            MoveTowards(_player.Position, 20);
+
+            while ((_player.Position - Position).Length() > 24)
+            {
+                yield return null;
+            }
+
+            GlobalState.disable_menu = false;
+            _player.state = PlayerState.GROUND;
+            velocity = Vector2.Zero;
+
+            GlobalState.Dialogue = DialogueManager.GetDialogue("sage", "after_boss");
+
+            yield break;
+        }
+
+        protected override string GetInteractionText()
+        {
+            return DialogueManager.GetDialogue("sage", "after_boss");
         }
     }
 
