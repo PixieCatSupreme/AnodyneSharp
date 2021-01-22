@@ -63,6 +63,11 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
             }
         }
 
+        internal void ReceiveDamage(int damage)
+        {
+            _health -= damage;
+        }
+
         public override void Update()
         {
             base.Update();
