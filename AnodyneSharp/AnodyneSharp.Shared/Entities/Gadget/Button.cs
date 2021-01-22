@@ -1,11 +1,12 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Enemy.Bedroom;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 
 namespace AnodyneSharp.Entities.Gadget
 {
     //TODO: Add other entity types buttons collide with
-    [NamedEntity, Collision(typeof(Player))]
+    [NamedEntity, Collision(typeof(Player), typeof(Shieldy))]
     class Button : Entity
     {
         bool pressed = false;
@@ -14,7 +15,7 @@ namespace AnodyneSharp.Entities.Gadget
 
         public Button(EntityPreset preset, Player p) : base(preset.Position, "buttons", 16, 16, DrawOrder.BG_ENTITIES)
         {
-            permanent = preset.Frame == 1;
+            permanent = preset.Frame == 0;
             switch(GlobalState.CURRENT_MAP_NAME)
             {
                 case "STREET":
