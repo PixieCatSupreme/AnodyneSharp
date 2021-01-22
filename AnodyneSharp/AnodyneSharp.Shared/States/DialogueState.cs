@@ -13,7 +13,7 @@ namespace AnodyneSharp.States
 {
     public class DialogueState : State
     {
-        
+
         private class BumpState : TimerState
         {
             public int halfBumps = 0;
@@ -30,6 +30,8 @@ namespace AnodyneSharp.States
         private IState _state;
 
         private int normalSpeed;
+
+        private bool doBlip;
 
         public DialogueState(bool useMenuBox = false)
         {
@@ -64,13 +66,21 @@ namespace AnodyneSharp.States
                     .Enter((state) => _tb.PauseWriting = false)
                     .Exit((state) => _tb.PauseWriting = true)
 
-                    .Update((state, time) => SoundManager.PlaySoundEffect("dialogue_blip"))
+                    .Update((state, time) =>
+                    {
+                        if (doBlip)
+                        {
+                            SoundManager.PlaySoundEffect("dialogue_blip");
+                        }
+
+                        doBlip = !doBlip;
+                    })
                     .Condition(() => _tb.Writer.NextCharacter == '^', (state) =>
                       {
                           _state.PopState();
                           _tb.Writer.SkipCharacter();
                           _state.ChangeState("Waiting"); //Make sure it's in Waiting
-                    })
+                      })
                     .Condition(() => _tb.Writer.AtEndOfBox, (state) => _state.PopState())
                     .Condition(() => _tb.Writer.AtEndOfText, (state) => { _state.PopState(); _state.ChangeState("Waiting"); })
                 .End()
@@ -92,13 +102,14 @@ namespace AnodyneSharp.States
                              state.halfBumps = 0;
                              state.linesBumped++;
                              if (state.linesBumped == _tb.Writer.LinesPerBox) //Bumped all lines, move back to Waiting
-                                _state.ChangeState("Waiting");
+                                 _state.ChangeState("Waiting");
                              _state.PushState("Writing");
                          }
                      })
                 .End()
                 .State("Waiting")
-                    .Event("KeyPressed", (state) => {
+                    .Event("KeyPressed", (state) =>
+                    {
                         SoundManager.PlaySoundEffect("dialogue_bloop");
 
                         if (_tb.Writer.AtEndOfText)
