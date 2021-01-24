@@ -31,7 +31,7 @@ namespace AnodyneSharp.UI
         {
             if (visible)
             {
-                SpriteDrawer.DrawGuiSprite(sprite.Tex, Position - offset, sprite.GetRect(_curAnim.Frame), Z: DrawingUtilities.GetDrawingZ(layer));
+                SpriteDrawer.DrawGuiSprite(sprite.Tex, Position - offset, sprite.GetRect(_curAnim.Frame), Z: DrawingUtilities.GetDrawingZ(layer),color: color * opacity);
             }
         }
 

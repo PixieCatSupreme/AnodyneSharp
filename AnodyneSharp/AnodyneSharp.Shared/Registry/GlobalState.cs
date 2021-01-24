@@ -3,6 +3,7 @@ using AnodyneSharp.Dialogue;
 using AnodyneSharp.Drawing.Effects;
 using AnodyneSharp.Entities;
 using AnodyneSharp.Map;
+using AnodyneSharp.UI;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -63,6 +64,14 @@ namespace AnodyneSharp.Registry
             }
         }
 
+        public static bool IsDungeon
+        {
+            get
+            {
+                return ReturnTarget != null && ReturnTarget.Map != "NEXUS";
+            }
+        }
+
         public static Language CurrentLanguage { get; set; }
         public static bool FishermanDead { get; set; }
 
@@ -120,7 +129,23 @@ namespace AnodyneSharp.Registry
 
         //Health stuff
         public static int CUR_HEALTH = 6;
-        public static int MAX_HEALTH = 6;
+        public static int MAX_HEALTH
+        {
+            get
+            {
+                return _maxHealth;
+            }
+            set
+            {
+                if (value <= 16)
+                {
+                    _maxHealth = value;
+                    RefreshMaxHealth = true;
+                }
+            }
+        }
+
+        private static int _maxHealth = 6;
 
         //Cheatz stuff
         public static bool AlwaysCellGraphics = false;
@@ -178,5 +203,6 @@ namespace AnodyneSharp.Registry
 
         private static string _dialogue;
 
+        public static List<UIEntity> UIEntities = new List<UIEntity>();
     }
 }

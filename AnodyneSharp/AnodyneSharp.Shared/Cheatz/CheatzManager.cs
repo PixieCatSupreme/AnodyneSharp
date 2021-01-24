@@ -55,8 +55,6 @@ namespace AnodyneSharp.Cheatz
             GlobalState.MAX_HEALTH = 16;
             GlobalState.CUR_HEALTH = GlobalState.MAX_HEALTH;
 
-            GlobalState.RefreshMaxHealth = true;
-
             InventoryManager.HasBroom = true;
             InventoryManager.HasLenghten = true;
             InventoryManager.HasWiden = true;

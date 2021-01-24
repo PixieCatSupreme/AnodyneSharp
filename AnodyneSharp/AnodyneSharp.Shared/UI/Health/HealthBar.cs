@@ -11,15 +11,14 @@ namespace AnodyneSharp.UI
 
     public class HealthBar
     {
-        private Vector2 _pos;
+        private static readonly Vector2 Position = new Vector2(155, 2);
+
         private List<HealthBarPiece> _healthPieces;
 
         private int _lastAmount;
 
-        public HealthBar(Vector2 pos)
+        public HealthBar()
         {
-            _pos = pos;
-
             _lastAmount = GlobalState.CUR_HEALTH;
 
             _healthPieces = new List<HealthBarPiece>();
@@ -33,7 +32,7 @@ namespace AnodyneSharp.UI
 
             for (int i = 0; i < GlobalState.MAX_HEALTH; i++)
             {
-                MakeBox(i);
+                _healthPieces.Add(new HealthBarPiece(GetHealthPiecePos(i)));
             }
         }
 
@@ -128,13 +127,11 @@ namespace AnodyneSharp.UI
             return false;
         }
 
-        private void MakeBox(int num)
+        public static Vector2 GetHealthPiecePos(int num)
         {
-            Vector2 pos = new Vector2(
-                _pos.X - HealthBarPiece.BOX_WIDTH - 8 * (7 - num % 8) - 7 * (num / 8),
-                _pos.Y + num / 8 * (HealthBarPiece.BOX_HEIGHT + 1));
-
-            _healthPieces.Add(new HealthBarPiece(pos));
+            return new Vector2(
+                Position.X - HealthBarPiece.BOX_WIDTH - 8 * (7 - num % 8) - 7 * (num / 8),
+                Position.Y + num / 8 * (HealthBarPiece.BOX_HEIGHT + 1));
         }
     }
 }

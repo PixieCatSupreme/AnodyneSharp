@@ -66,7 +66,7 @@ namespace AnodyneSharp.States.PauseSubstates
             if(GlobalState.ReturnTarget != null)
             {
                 DebugLogger.AddInfo(GlobalState.ReturnTarget.Map);
-                _returnLabel.SetText(DialogueManager.GetDialogue("misc", "any", "map", GlobalState.ReturnTarget.Map == "NEXUS" ? 4 : 5));
+                _returnLabel.SetText(DialogueManager.GetDialogue("misc", "any", "map", GlobalState.IsDungeon ? 5 : 4));
                 _returnLabel.IsVisible = true;
             }
 

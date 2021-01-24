@@ -1819,18 +1819,6 @@
 /processorParam:TextureFormat=Color
 /build:textures/sprites/decoration/overlay_APARTMENT_water.png
 
-#begin textures/sprites/decoration/overlay_APARTMENT_water.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:textures/sprites/decoration/overlay_APARTMENT_water.png
-
 #begin textures/sprites/decoration/overlay_CIRCUS_water.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -4434,6 +4422,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:textures/sprites/inventory/life_cicada.png
+
+#begin textures/sprites/inventory/life_cicada_particle.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:textures/sprites/inventory/life_cicada_particle.png
 
 #begin textures/sprites/inventory/long_attack_h.png
 /importer:TextureImporter

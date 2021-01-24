@@ -101,7 +101,7 @@ namespace AnodyneSharp.States
             _camera = camera;
 
             _player = new Player();
-            _healthBar = new HealthBar(new Vector2(155, 2));
+            _healthBar = new HealthBar();
 
             _iconPos = new Vector2(2, 3);
 
@@ -203,6 +203,12 @@ namespace AnodyneSharp.States
                 mm.Draw(_miniminimap, new Vector2(55, 0) - new Vector2(x, y) * _miniminimap.Width, new Rectangle(x, y, 5, 4));
             }
 
+            foreach (var UiEntity in GlobalState.UIEntities)
+            {
+                UiEntity.Draw();
+            }
+
+            GlobalState.UIEntities.Clear();
         }
 
         public override void Update()
