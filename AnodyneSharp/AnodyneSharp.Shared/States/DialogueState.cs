@@ -31,8 +31,6 @@ namespace AnodyneSharp.States
 
         private int normalSpeed;
 
-        private bool doBlip;
-
         public DialogueState(bool useMenuBox = false)
         {
             _tb = new TextBox(useMenuBox);
@@ -66,14 +64,9 @@ namespace AnodyneSharp.States
                     .Enter((state) => _tb.PauseWriting = false)
                     .Exit((state) => _tb.PauseWriting = true)
 
-                    .Update((state, time) =>
+                    .Condition(() => _tb.Writer.JustWrittenChar, (state) =>
                     {
-                        if (doBlip)
-                        {
-                            SoundManager.PlaySoundEffect("dialogue_blip");
-                        }
-
-                        doBlip = !doBlip;
+                        SoundManager.PlaySoundEffect("dialogue_blip");
                     })
                     .Condition(() => _tb.Writer.NextCharacter == '^', (state) =>
                       {
@@ -85,6 +78,7 @@ namespace AnodyneSharp.States
                     .Condition(() => _tb.Writer.AtEndOfText, (state) => { _state.PopState(); _state.ChangeState("Waiting"); })
                 .End()
                 .State<BumpState>("Bump")
+                    .Enter((s) => s.linesBumped = 0)
                     .Event("doBump", (state) =>
                      {
                          if (state.halfBumps == 0)

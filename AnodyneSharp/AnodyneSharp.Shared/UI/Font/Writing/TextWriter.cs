@@ -81,6 +81,8 @@ namespace AnodyneSharp.UI.Text
 
         public bool IgnoreSoftLineBreaks { get; set; }
 
+        public bool JustWrittenChar => _stepProgress == 0;
+
         public int LinesPerBox => writeArea.Height / spriteFont.lineSeparation;
 
         public DrawOrder drawLayer;
@@ -190,7 +192,7 @@ namespace AnodyneSharp.UI.Text
 
                 while (_stepProgress >= 1f)
                 {
-                    _stepProgress--;
+                    _stepProgress = 0;
 
                     ProgressText();
 
