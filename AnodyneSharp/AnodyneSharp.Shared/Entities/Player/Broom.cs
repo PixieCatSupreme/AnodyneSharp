@@ -120,7 +120,7 @@ namespace AnodyneSharp.Entities
             width = height = 16;
             offset = Vector2.Zero;
 
-            if (GlobalState.UseCellBroom)
+            if (GlobalState.IsCell)
             {
                 SetTexture(Cell_Sprite, sprite.Width, sprite.Height);
             }

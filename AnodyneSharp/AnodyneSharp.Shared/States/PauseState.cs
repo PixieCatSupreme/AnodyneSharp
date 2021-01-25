@@ -83,6 +83,12 @@ namespace AnodyneSharp.States
 
         public override void Update()
         {
+            if (GlobalState.CUR_HEALTH == 0)
+            {
+                Exit = true;
+                return;
+            }
+
             if (GlobalState.RefreshLabels)
             {
                 GlobalState.RefreshLabels = false;
@@ -133,7 +139,6 @@ namespace AnodyneSharp.States
             {
                 StateChanged();
             }
-
         }
 
         public override void DrawUI()
@@ -258,7 +263,7 @@ namespace AnodyneSharp.States
                     inputPos.Y -= 1;
                 }
             }
-            _inputLabel = new UILabel(inputPos, new Color(143, 153, 176, 255), false);
+            _inputLabel = new UILabel(inputPos, false, new Color(143, 153, 176, 255));
 
             _mapLabel.Initialize();
             _itemsLabel.Initialize();

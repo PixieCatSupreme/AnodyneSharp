@@ -52,11 +52,11 @@ namespace AnodyneSharp.Registry
         {
             get
             {
-                return !UseCellBroom && CURRENT_MAP_NAME != "SUBURB";
+                return !IsCell && CURRENT_MAP_NAME != "SUBURB";
             }
         }
 
-        public static bool UseCellBroom
+        public static bool IsCell
         {
             get
             {
@@ -128,7 +128,18 @@ namespace AnodyneSharp.Registry
         public static bool FUCK_IT_MODE_ON = false;
 
         //Health stuff
-        public static int CUR_HEALTH = 6;
+        public static int CUR_HEALTH
+        {
+            get
+            {
+                return _curHealth;
+            }
+            set
+            {
+                _curHealth = value > 0 ? value : 0;
+            }
+        }
+
         public static int MAX_HEALTH
         {
             get
@@ -137,14 +148,12 @@ namespace AnodyneSharp.Registry
             }
             set
             {
-                if (value <= 16)
-                {
-                    _maxHealth = value;
-                    RefreshMaxHealth = true;
-                }
+                _maxHealth = value <= 16 ? value : 16;
+                RefreshMaxHealth = true;
             }
         }
 
+        private static int _curHealth = 6;
         private static int _maxHealth = 6;
 
         //Cheatz stuff
@@ -174,7 +183,6 @@ namespace AnodyneSharp.Registry
         public static Darkness darkness = new Darkness();
         public static ScreenShake screenShake = new();
 
-        public static FadeEffect death_fadein = new FadeEffect() { fadeColor = Color.Black };
         public static FadeEffect black_overlay = new FadeEffect() { fadeColor = Color.Black };
         public static FlashEffect flash = new();
 
@@ -183,7 +191,7 @@ namespace AnodyneSharp.Registry
         public static Wave wave = new Wave();
 
         public static List<IFullScreenEffect> gameEffects = new List<IFullScreenEffect>() { new Static(), darkness };
-        public static List<IFullScreenEffect> fullScreenEffects = new List<IFullScreenEffect>() { death_fadein, black_overlay, new Glitch(), new GrayScale(), pixelation, wave, flash, screenShake };
+        public static List<IFullScreenEffect> fullScreenEffects = new List<IFullScreenEffect>() { black_overlay, new Glitch(), new GrayScale(), pixelation, wave, flash, screenShake };
         public static IEnumerable<IFullScreenEffect> AllEffects
         {
             get

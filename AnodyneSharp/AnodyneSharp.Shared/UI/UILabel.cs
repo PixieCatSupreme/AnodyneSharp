@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Resources;
+﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Resources;
 using AnodyneSharp.UI.Font;
 using AnodyneSharp.UI.Text;
 using Microsoft.Xna.Framework;
@@ -35,13 +36,13 @@ namespace AnodyneSharp.UI
         private Color _color;
         private bool _drawShadow;
 
-        public UILabel(Vector2 position, bool drawShadow)
+        public UILabel(Vector2 position, bool drawShadow, Color? color = null, DrawOrder layer = DrawOrder.MENUTEXT)
         {
             Position = position;
 
             Writer = new TextWriter((int)position.X, (int)position.Y)
             {
-                drawLayer = Drawing.DrawOrder.MENUTEXT
+                drawLayer = layer
             };
 
             _oldSize = Writer.WriteAreaSize;
@@ -49,25 +50,7 @@ namespace AnodyneSharp.UI
 
             IsVisible = true;
 
-            _color = Color.White;
-            _drawShadow = drawShadow;
-        }
-
-        public UILabel(Vector2 position, Color color, bool drawShadow)
-        {
-            Position = position;
-
-            Writer = new TextWriter((int)position.X, (int)position.Y)
-            {
-                drawLayer = Drawing.DrawOrder.MENUTEXT
-            };
-
-            _oldSize = Writer.WriteAreaSize;
-            _oldString = Writer.Text;
-
-            IsVisible = true;
-
-            _color = color;
+            _color = color ?? Color.White;
             _drawShadow = drawShadow;
         }
 

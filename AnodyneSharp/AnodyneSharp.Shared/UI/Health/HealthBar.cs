@@ -54,25 +54,20 @@ namespace AnodyneSharp.UI
         }
 
         /// <summary>
-        /// Updates health to the current value. Returns false if player died, true if full and null otherwise.
+        /// Updates health to the current value.
         /// </summary>
         /// <returns></returns>
-        public bool? UpdateHealth()
+        public void UpdateHealth()
         {
-            bool? result = null;
             int change = GlobalState.CUR_HEALTH - _lastAmount;
-
-            if (change == 0)
+            
+            if (change < 0)
             {
-                return null;
-            }
-            else if (change < 0)
-            {
-                result = LowerHealth(change) ? false : result;
+                LowerHealth(change);
             }
             else
             {
-                result = IncreaseHealth(change) ? true : result;
+                IncreaseHealth(change);
             }
 
             _lastAmount = GlobalState.CUR_HEALTH;
@@ -85,46 +80,30 @@ namespace AnodyneSharp.UI
             {
                 _healthPieces[0].Play("full");
             }
-
-            return result;
         }
 
 
-        private bool LowerHealth(int change)
+        private void LowerHealth(int change)
         {
             int cur_health = GlobalState.CUR_HEALTH;
 
-
             for (int i = cur_health - change; i > cur_health; i--)
             {
-                if (i <= 0)
-                {
-                    return true;
-                }
                 var h = _healthPieces[i-1];
                 h.Play("empty");
             }
-
-            return false;
         }
 
-        private bool IncreaseHealth(int change)
+        private void IncreaseHealth(int change)
         {
             int cur_health = GlobalState.CUR_HEALTH;
 
 
             for (int i = cur_health; i > cur_health - change; i--)
             {
-                if (i > GlobalState.MAX_HEALTH)
-                {
-                    GlobalState.CUR_HEALTH = GlobalState.MAX_HEALTH;
-                    return true;
-                }
                 var h = _healthPieces[i-1];
                 h.Play("full");
             }
-
-            return false;
         }
 
         public static Vector2 GetHealthPiecePos(int num)

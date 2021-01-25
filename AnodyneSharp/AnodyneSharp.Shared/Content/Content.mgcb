@@ -1711,6 +1711,18 @@
 /processorParam:TextureFormat=Color
 /build:textures/sprites/decoration/briar_BG.png
 
+#begin textures/sprites/decoration/deathFadeIn.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:textures/sprites/decoration/deathFadeIn.png
+
 #begin textures/sprites/decoration/eyelight.png
 /importer:TextureImporter
 /processor:TextureProcessor

@@ -40,6 +40,7 @@ namespace AnodyneSharp.Drawing
         TEXT,               //Text in dialogueBoxes
         SUBMENU_SELECTOR,   //Equipment selector, config selector and card selector
         DEATH_FADEIN,       //A fade-in that happens on player death
+        PLAYER_DIE_DUMMY,   //Player dummy who does the dying animation
         DEATH_TEXT,         //Text that appears on player death
         BLACK_OVERLAY       //Black fadeout on map transition and when player continues after death
     }

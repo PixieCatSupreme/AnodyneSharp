@@ -46,7 +46,7 @@ namespace AnodyneSharp
 
             _currentState = null;
 
-            _fpsLabel = new UILabel(new Vector2(0, GameConstants.HEADER_HEIGHT), Color.LightBlue, false);
+            _fpsLabel = new UILabel(new Vector2(0, GameConstants.HEADER_HEIGHT), false, Color.LightBlue);
 
             GlobalState.START_TIME = DateTime.Now;
 

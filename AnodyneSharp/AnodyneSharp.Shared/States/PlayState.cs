@@ -5,6 +5,7 @@ using AnodyneSharp.Drawing.Effects;
 using AnodyneSharp.Drawing.Spritesheet;
 using AnodyneSharp.Entities;
 using AnodyneSharp.Entities.Enemy;
+using AnodyneSharp.Entities.Events;
 using AnodyneSharp.Input;
 using AnodyneSharp.Map;
 using AnodyneSharp.Map.Tiles;
@@ -89,6 +90,8 @@ namespace AnodyneSharp.States
 
         private Action _map_specific_update;
 
+        private DeathEvent _deathEvent;
+
         public PlayState(Camera camera)
         {
             _map = new MapLayer();
@@ -108,6 +111,8 @@ namespace AnodyneSharp.States
             CreateKeyLabel();
 
             GlobalState.CheckTile = CheckTile;
+
+            _deathEvent = null;
         }
 
         private Touching CheckTile(Vector2 pos)
@@ -209,6 +214,11 @@ namespace AnodyneSharp.States
             }
 
             GlobalState.UIEntities.Clear();
+
+            if (_state == PlayStateState.S_PLAYER_DIED)
+            {
+                _deathEvent.DrawUI();
+            }
         }
 
         public override void Update()
@@ -251,6 +261,7 @@ namespace AnodyneSharp.States
                         StateTransition();
                         break;
                     case PlayStateState.S_PLAYER_DIED:
+                        _deathEvent.Update();
                         break;
                     case PlayStateState.S_MAP_EXIT:
                         GlobalState.pixelation.AddPixelation(pixelation_per_second);
@@ -462,8 +473,6 @@ namespace AnodyneSharp.States
                     SetBroom(BroomType.Transformer);
                 }
             }
-
-            //TODO check if player is unalive
         }
 
         private void CheckForTransition()
@@ -731,11 +740,18 @@ namespace AnodyneSharp.States
 
         private void UpdateHealth()
         {
-            var result = _healthBar.UpdateHealth();
+            _healthBar.UpdateHealth();
 
-            if (result == false)
+            if (_state != PlayStateState.S_PLAYER_DIED && GlobalState.CUR_HEALTH == 0)
             {
-                //DIE
+                _player.dontMove = true;
+                _player.visible = false;
+                _player.exists = false;
+                GlobalState.disable_menu = true;
+
+                _state = PlayStateState.S_PLAYER_DIED;
+
+                _deathEvent = new DeathEvent(_player.Position);
             }
         }
 
@@ -753,7 +769,7 @@ namespace AnodyneSharp.States
             switch (broom)
             {
                 case BroomType.Normal:
-                    tex = GlobalState.UseCellBroom ? "Cell" : "Normal";
+                    tex = GlobalState.IsCell ? "Cell" : "Normal";
                     break;
                 case BroomType.Wide:
                     tex = "Wide";

@@ -132,7 +132,6 @@ namespace AnodyneSharp.Entities
             AddAnimation("attack_u", CreateAnimFrameArray(12, 13), 10, false);
             AddAnimation("attack_l", CreateAnimFrameArray(14, 15), 10, false);
             AddAnimation("fall", CreateAnimFrameArray(28, 29, 30, 31), 5, false);
-            AddAnimation("die", CreateAnimFrameArray(25, 26, 27, 24, 25, 26, 27, 24, 25, 26, 27, 32), 6, false);
             AddAnimation("slumped", CreateAnimFrameArray(32));
 
             AddAnimation("whirl", CreateAnimFrameArray(25, 26, 27, 24), 12, true);
