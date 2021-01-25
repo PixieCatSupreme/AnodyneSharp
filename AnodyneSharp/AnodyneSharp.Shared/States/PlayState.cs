@@ -30,8 +30,7 @@ namespace AnodyneSharp.States
     {
         S_NORMAL,
         S_TRANSITION,
-        S_PLAYER_DIED = 4,
-        S_MAP_EXIT,
+        S_MAP_EXIT = 5,
         S_MAP_ENTER,
         S_DIRECT_CONTROLS,
         S_CUTSCENE
@@ -90,8 +89,6 @@ namespace AnodyneSharp.States
 
         private Action _map_specific_update;
 
-        private DeathEvent _deathEvent;
-
         public PlayState(Camera camera)
         {
             _map = new MapLayer();
@@ -111,8 +108,6 @@ namespace AnodyneSharp.States
             CreateKeyLabel();
 
             GlobalState.CheckTile = CheckTile;
-
-            _deathEvent = null;
         }
 
         private Touching CheckTile(Vector2 pos)
@@ -214,11 +209,6 @@ namespace AnodyneSharp.States
             }
 
             GlobalState.UIEntities.Clear();
-
-            if (_state == PlayStateState.S_PLAYER_DIED)
-            {
-                _deathEvent.DrawUI();
-            }
         }
 
         public override void Update()
@@ -239,6 +229,7 @@ namespace AnodyneSharp.States
                 {
                     _childState = null;
                     _player.dontMove = false;
+                    _player.exists = true;
                     _player.actions_disabled = false;
                     _player.skipBroom = true;
                 }
@@ -259,9 +250,6 @@ namespace AnodyneSharp.States
                     case PlayStateState.S_TRANSITION:
                         //Registry.sound_data.current_song.volume = FlxG.volume * Registry.volume_scale;
                         StateTransition();
-                        break;
-                    case PlayStateState.S_PLAYER_DIED:
-                        _deathEvent.Update();
                         break;
                     case PlayStateState.S_MAP_EXIT:
                         GlobalState.pixelation.AddPixelation(pixelation_per_second);
@@ -742,16 +730,15 @@ namespace AnodyneSharp.States
         {
             _healthBar.UpdateHealth();
 
-            if (_state != PlayStateState.S_PLAYER_DIED && GlobalState.CUR_HEALTH == 0)
+            if (_childState == null && GlobalState.CUR_HEALTH == 0)
             {
+                SoundManager.StopSong();
+
                 _player.dontMove = true;
-                _player.visible = false;
                 _player.exists = false;
                 GlobalState.disable_menu = true;
 
-                _state = PlayStateState.S_PLAYER_DIED;
-
-                _deathEvent = new DeathEvent(_player.Position);
+                _childState = new DeathState(_player);
             }
         }
 
@@ -792,7 +779,7 @@ namespace AnodyneSharp.States
             {
 
                 EventRegister.VisitedMaps.Add(GlobalState.NEXT_MAP_NAME);
-                if(EventRegister.BossDefeated.Contains(GlobalState.CURRENT_MAP_NAME))
+                if (EventRegister.BossDefeated.Contains(GlobalState.CURRENT_MAP_NAME))
                 {
                     EventRegister.LeftAfterBoss.Add(GlobalState.CURRENT_MAP_NAME);
                 }

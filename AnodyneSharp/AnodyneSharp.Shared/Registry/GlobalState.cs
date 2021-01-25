@@ -52,7 +52,7 @@ namespace AnodyneSharp.Registry
         {
             get
             {
-                return !IsCell && CURRENT_MAP_NAME != "SUBURB";
+                return !InDeathRoom && !IsCell && CURRENT_MAP_NAME != "SUBURB";
             }
         }
 

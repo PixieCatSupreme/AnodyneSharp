@@ -407,7 +407,7 @@ namespace AnodyneSharp.Entities
 
                     //update_sentinels();
 
-                    if (!hasFallen && !actions_disabled)
+                    if (!hasFallen && !actions_disabled && !GlobalState.InDeathRoom)
                     {
                         Update_actions();
                     }
@@ -635,6 +635,12 @@ namespace AnodyneSharp.Entities
                     }
                     break;
                 case PlayerAnimState.as_slumped:
+                    Play("slumped");
+                    if (velocity != Vector2.Zero)
+                    {
+                        ANIM_STATE = PlayerAnimState.as_walk;
+                        PlayFacing("walk");
+                    }
                     break;
                 default:
                     break;

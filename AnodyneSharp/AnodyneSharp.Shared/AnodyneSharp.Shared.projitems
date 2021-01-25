@@ -53,7 +53,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Etc\FollowerBro.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Etc\SpaceFace.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\DarknessChange.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\DeathEvent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\DeathState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\DungeonEntrance.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Gates\BigCardGate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Button.cs" />
@@ -197,8 +197,6 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\DEBUG\FG.csv" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\DEBUG\TileAnims\conveyer_anim_tiles.dat" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\DRAWER\BG.csv" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\DRAWER\BG2.csv" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\DRAWER\FG.csv" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\FIELDS\BG.csv" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\FIELDS\FG.csv" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\FIELDS\TileAnims\conveyer_anim_tiles.dat" />
