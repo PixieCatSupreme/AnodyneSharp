@@ -12,42 +12,31 @@ namespace AnodyneSharp.Sounds
 {
     public static class SoundManager
     {
-        public static Song CurrentSong { get; private set; }
         public static string CurrentSongName { get; private set; }
 
         public static bool IsPlayingSong
         {
             get
             {
-                return CurrentSong != null;
+                return CurrentSongName != "";
             }
         }
 
-        public static float Volume
-        {
-            get
-            {
-                return MediaPlayer.Volume;
-            }
-        }
+        private static SongPlayer bgm = new();
 
         static SoundManager()
         {
-
             CurrentSongName = "";
         }
 
         public static bool PlaySong(string name, float volume = 1f, bool isRepeating = true)
         {
-            Song song = ResourceManager.GetMusic(name);
+            string song = ResourceManager.GetMusicPath(name);
             if (song != null)
             {
-                MediaPlayer.Volume = volume * GlobalState.music_volume_scale;
-                MediaPlayer.IsRepeating = isRepeating;
-                MediaPlayer.Play(song);
-                CurrentSong = song;
                 CurrentSongName = name;
-
+                SetSongVolume(volume);
+                bgm.Play(song);
                 return true;
             }
             else
@@ -55,55 +44,20 @@ namespace AnodyneSharp.Sounds
                 StopSong();
                 return false;
             }
-
         }
 
-        public static bool PauseSong()
+        public static void SetSongVolume(float volume)
         {
-            if (CurrentSong != null)
-            {
-                MediaPlayer.Pause();
-                return true;
-            }
-            return false;
+            bgm.SetVolume(volume * GlobalState.music_volume_scale);
         }
 
-        public static bool ResumeSong()
-        {
-            if (CurrentSong != null)
-            {
-                MediaPlayer.Resume();
-                return true;
-            }
-            return false;
-        }
-
-        public static bool SetSongVolume(float volume)
-        {
-            if (CurrentSong != null)
-            {
-                MediaPlayer.Volume = volume;
-                return true;
-            }
-            return false;
-        }
-
-        public static bool SetSongVolume()
-        {
-            if (CurrentSong != null)
-            {
-                MediaPlayer.Volume = GlobalState.music_volume_scale;
-                return true;
-            }
-            return false;
-        }
+        public static void SetSongVolume() => SetSongVolume(1f);
 
         public static bool StopSong()
         {
-            if (CurrentSong != null)
+            if (IsPlayingSong)
             {
-                MediaPlayer.Stop();
-                CurrentSong = null;
+                bgm.Stop();
                 CurrentSongName = "";
                 return true;
             }

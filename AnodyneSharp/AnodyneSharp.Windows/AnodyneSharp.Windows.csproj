@@ -28,6 +28,9 @@
   <ItemGroup>
     <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.0.1375-develop" />
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.0.1375-develop" />
+    <PackageReference Include="NVorbis" Version="0.10.1">
+      <Aliases>MyVorbis</Aliases>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Fluent-State-Machine\Fluent-State-Machine.csproj" />

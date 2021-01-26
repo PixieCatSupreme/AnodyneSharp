@@ -15,14 +15,14 @@ namespace AnodyneSharp.Resources
     public static class ResourceManager
     {
         private static Dictionary<string, Texture2D> _textures;
-        private static Dictionary<string, Song> _music;
+        private static Dictionary<string, string> _music;
         private static Dictionary<string, SoundEffect> _sfx;
 
 
         static ResourceManager()
         {
             _textures = new Dictionary<string, Texture2D>();
-            _music = new Dictionary<string, Song>();
+            _music = new Dictionary<string, string>();
             _sfx = new Dictionary<string, SoundEffect>();
         }
 
@@ -37,7 +37,7 @@ namespace AnodyneSharp.Resources
             DirectoryInfo[] directories = dir.GetDirectories();
 
             LoadTextures(content, directories.First(d => d.Name == "textures"));
-            LoadMusic(content, directories.First(d => d.Name == "mp3"));
+            LoadMusic(content, directories.First(d => d.Name == "bgm"));
             LoadSFX(content, directories.First(d => d.Name == "sfx"));
 
             return true;
@@ -62,11 +62,11 @@ namespace AnodyneSharp.Resources
             return _textures[textureName];
         }
 
-        public static Song GetMusic(string musicName)
+        public static string GetMusicPath(string musicName)
         {
             if (!_music.ContainsKey(musicName))
             {
-                DebugLogger.AddWarning($"Music file called {musicName}.mp3 not found!");
+                DebugLogger.AddWarning($"Music file called {musicName}.ogg not found!");
                 return null;
             }
 
@@ -104,7 +104,7 @@ namespace AnodyneSharp.Resources
             {
                 string key = Path.GetFileNameWithoutExtension(file.Name);
 
-                _music[key] = content.Load<Song>(GetFolderTree(file) + key);
+                _music[key] = file.FullName;
             }
         }
 

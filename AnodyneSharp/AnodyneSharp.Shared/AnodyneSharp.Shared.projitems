@@ -136,6 +136,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Registry\GlobalState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\EntityManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Resources\Writing\InputConfigWriter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sounds\SongPlayer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sounds\SoundManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\DialogueState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\PauseState.cs" />
@@ -303,56 +304,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Content\effects\blackwhite.fx" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\anodyne_TRAILER_1.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\apartment-boss.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\apartment.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\beach.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\bedroom-boss.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\bedroom.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\blank.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\blue.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\boss.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\briar-fight.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\circus-boss.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\circus.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\cliff.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\crowd.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\crowd_boss.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\ending.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\fields.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\forest.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\gameover.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\go.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\happy-init.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\happy.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\hotel-boss.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\hotel.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\mitra.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\nexus.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\OLD\gladys-esque.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\OLD\old-bedroom.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\OLD\old-boss.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\OLD\old-terminal.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\OLD\old-white-palace.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\OLD\older-terminal.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\OLD\older-white-palace.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\OLD\old_happy.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\overworld.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\pre_terminal.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\redcave-boss.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\redcave.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\redsea.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\roof.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\sacrificial.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\sagefight.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\soft.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\space.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\street.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\suburb.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\terminal.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\title.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\train.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\mp3\windmill.mp3" />
     <Content Include="$(MSBuildThisFileDirectory)Content\sfx\4sht_pop.mp3" />
     <Content Include="$(MSBuildThisFileDirectory)Content\sfx\4sht_shoot.mp3" />
     <Content Include="$(MSBuildThisFileDirectory)Content\sfx\big_door_locked.mp3" />
@@ -938,5 +889,134 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\MiniMaps\Minimap_STREET.csv" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\MiniMaps\Minimap_SUBURB.csv" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\MiniMaps\Minimap_TERMINAL.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\anodyne_TRAILER_1.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\apartment-boss.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\apartment.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\beach.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\bedroom-boss.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\bedroom.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\blank.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\blue.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\boss.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\briar-fight.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\cell.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\circus-boss.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\circus.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\circus2.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\cliff.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\crowd.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\crowd_boss.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\ending.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\fields.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\forest.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\gameover.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\go.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\happy-init.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\happy.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\hotel-boss.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\hotel.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\mitra.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\nexus.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\overworld.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\pre_terminal.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\redcave-boss.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\redcave.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\redsea.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\roof.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\sacrificial.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\sagefight.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\soft.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\space.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\street.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\suburb.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\terminal.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\title.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\windmill.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>
