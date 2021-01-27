@@ -64,29 +64,27 @@ namespace AnodyneSharp.Sounds
             return false;
         }
 
-        public static bool PlaySoundEffect(params string[] names)
+        public static void PlaySoundEffect(params string[] names)
         {
-            string name = names[GlobalState.RNG.Next(0, names.Length)];
-            return CreateSoundInstance(name);
+            var sfx = names.Select((n) => ResourceManager.GetSFX(n)).Where((n) => n != null).ToArray();
+            if (sfx.Length == 0) return;
+
+            CreateSoundInstance(sfx[GlobalState.RNG.Next(0,sfx.Length)]);
         }
 
-        public static bool PlayPitchedSoundEffect(string name, float pitch, float volume = 1)
+        public static void PlayPitchedSoundEffect(string name, float pitch, float volume = 1)
         {
-            return CreateSoundInstance(name, volume, pitch);
+            CreateSoundInstance(ResourceManager.GetSFX(name), volume, pitch);
         }
 
-        private static bool CreateSoundInstance(string name, float volume = 1, float pitch = 0)
+        private static void CreateSoundInstance(SoundEffectInstance sfx, float volume = 1, float pitch = 0)
         {
-            SoundEffect sfx = ResourceManager.GetSFX(name);
             if (sfx != null)
             {
-                SoundEffectInstance instance = sfx.CreateInstance();
-
-                instance.Pitch = pitch;
-                instance.Volume = volume * GlobalState.sfx_volume_scale;
-                instance.Play();
+                sfx.Pitch = pitch;
+                sfx.Volume = volume * GlobalState.sfx_volume_scale;
+                sfx.Play();
             }
-            return false;
         }
     }
 }

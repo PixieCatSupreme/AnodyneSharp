@@ -22,9 +22,9 @@ namespace AnodyneSharp.Entities.Interactive
 
         private BoxFX[] _particles;
 
-        private bool _chirp;
-
         IEnumerator<string> _state;
+
+        private bool _chirp;
 
         public HealthCicada(HealthCicadaSentinel parent, EntityPreset preset, Player player)
             : base(new Vector2(-16, 30), "life_cicada", 16, 16, DrawOrder.HEALTH_UPGRADE)
@@ -57,11 +57,10 @@ namespace AnodyneSharp.Entities.Interactive
         {
             base.Update();
 
-            //TODO enable after sfx limiting
-            //if (_chirp)
-            //{
-            //    SoundManager.PlaySoundEffect("cicada_chirp");
-            //}
+            if (_chirp)
+            {
+                SoundManager.PlaySoundEffect("cicada_chirp");
+            }
 
             _state.MoveNext();
 

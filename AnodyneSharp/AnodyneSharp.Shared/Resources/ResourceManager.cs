@@ -1,5 +1,6 @@
 ﻿using AnodyneSharp.Logging;
 using AnodyneSharp.Registry;
+using AnodyneSharp.Sounds;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -16,14 +17,14 @@ namespace AnodyneSharp.Resources
     {
         private static Dictionary<string, Texture2D> _textures;
         private static Dictionary<string, string> _music;
-        private static Dictionary<string, SoundEffect> _sfx;
+        private static Dictionary<string, SFXLimiter> _sfx;
 
 
         static ResourceManager()
         {
             _textures = new Dictionary<string, Texture2D>();
             _music = new Dictionary<string, string>();
-            _sfx = new Dictionary<string, SoundEffect>();
+            _sfx = new Dictionary<string, SFXLimiter>();
         }
 
         public static bool LoadResources(ContentManager content)
@@ -73,7 +74,7 @@ namespace AnodyneSharp.Resources
             return _music[musicName];
         }
 
-        public static SoundEffect GetSFX(string sfxName)
+        public static SoundEffectInstance GetSFX(string sfxName)
         {
             if (!_sfx.ContainsKey(sfxName))
             {
@@ -81,7 +82,7 @@ namespace AnodyneSharp.Resources
                 return null;
             }
 
-            return _sfx[sfxName];
+            return _sfx[sfxName].Get();
         }
 
         private static void LoadTextures(ContentManager content, DirectoryInfo directory)
@@ -116,7 +117,9 @@ namespace AnodyneSharp.Resources
             {
                 string key = Path.GetFileNameWithoutExtension(file.Name);
 
-                _sfx[key] = content.Load<SoundEffect>(GetFolderTree(file) + key);
+                _ = int.TryParse(file.Directory.Name, out int limit);
+
+                _sfx[key] = new(content.Load<SoundEffect>(GetFolderTree(file) + key), limit);
             }
         }
 
