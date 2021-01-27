@@ -238,6 +238,11 @@ namespace AnodyneSharp.States
                     _player.dontMove = true;
                     _player.actions_disabled = true;
                 }
+
+                if(updateEntities)
+                {
+                    DoCollisions();
+                }
             }
             else
             {
@@ -273,6 +278,7 @@ namespace AnodyneSharp.States
                             _state = PlayStateState.S_NORMAL;
                             _player.dontMove = false;
                             _player.invincible = false;
+                            _player.actions_disabled = false;
                         }
                         break;
                     case PlayStateState.S_DIRECT_CONTROLS:
@@ -427,6 +433,7 @@ namespace AnodyneSharp.States
                 GlobalState.WARP = false;
                 _player.invincible = true;
                 _player.dontMove = true;
+                _player.actions_disabled = true;
                 _state = PlayStateState.S_MAP_EXIT;
                 return;
             }
