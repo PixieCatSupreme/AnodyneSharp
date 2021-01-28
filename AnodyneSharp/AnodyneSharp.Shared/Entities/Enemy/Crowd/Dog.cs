@@ -196,7 +196,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
                     {
                         Die();
 
-                        //TODO: Explosion!
+                        GlobalState.SpawnEntity(new Explosion(this));
                     }
                 }
             }

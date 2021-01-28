@@ -73,6 +73,8 @@ namespace AnodyneSharp.States
         private List<Entity> _gridEntities; //Holds entities that stay on the current grid coordinate
         private List<Entity> _oldEntities; //Holds entities that will despawn after a screen transition is complete
 
+        private List<Entity> _newlySpawned = new(); //Entities that are spawned during update
+
         private State _childState;
 
         private UILabel _keyValueLabel;
@@ -108,6 +110,12 @@ namespace AnodyneSharp.States
             CreateKeyLabel();
 
             GlobalState.CheckTile = CheckTile;
+            GlobalState.SpawnEntity = SpawnEntity;
+        }
+
+        private void SpawnEntity(Entity t)
+        {
+            _newlySpawned.AddRange(SubEntities(t));
         }
 
         private Touching CheckTile(Vector2 pos)
@@ -217,6 +225,13 @@ namespace AnodyneSharp.States
 
             if (_background != null) _background.Update();
             if (_dec_over != null) _dec_over.Update();
+
+            foreach(Entity e in _newlySpawned)
+            {
+                _gridEntities.Add(e);
+                _groups.Register(e);
+            }
+            _newlySpawned.Clear();
 
             bool updateEntities = true;
 

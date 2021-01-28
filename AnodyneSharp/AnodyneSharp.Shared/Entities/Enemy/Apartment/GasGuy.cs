@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Gadget;
 using AnodyneSharp.FSM;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
@@ -145,7 +146,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
                     {
                         Die();
 
-                        //TODO: Explosion!
+                        GlobalState.SpawnEntity(new Explosion(this));
                     }
                 }
             }

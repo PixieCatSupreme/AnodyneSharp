@@ -100,6 +100,9 @@ namespace AnodyneSharp.Registry
         public delegate Touching MapChecker(Vector2 pos);
         public static MapChecker CheckTile;
 
+        public delegate void Spawn(Entity e);
+        public static Spawn SpawnEntity;
+
         public static MinimapTracker minimaps = new MinimapTracker();
 
         public static Minimap CurrentMinimap => minimaps.GetMinimap(CURRENT_MAP_NAME);

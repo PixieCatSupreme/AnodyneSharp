@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Gadget;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 using Microsoft.Xna.Framework;
@@ -83,7 +84,7 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
 
             if (_health <= 0)
             {
-                //TODO explosion
+                GlobalState.SpawnEntity(new Explosion(this));
                 Die();
             }
 
