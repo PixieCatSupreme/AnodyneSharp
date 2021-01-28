@@ -80,5 +80,20 @@ namespace AnodyneSharp.UI.Font
 
             return new SpriteFont(height, width, fileName, lString, color);
         }
+
+        public static int GetCharacterWidth(bool forceEnglish = false)
+        {
+
+            Language lang = forceEnglish ? Language.EN : GlobalState.CurrentLanguage;
+
+            return lang switch
+            {
+                Language.ES or Language.PT_BR or Language.IT => 6,
+                Language.ZH_CN => 11,
+                Language.KR => 8,
+                Language.JP => 8,
+                _ => 7,
+            };
+        }
     }
 }

@@ -2228,7 +2228,9 @@ npc misc
 # [SOMEKEY-C]
 #when done.
 ANODYNE 镇痛
-Melos Han-Tani\nMarina Kittaka 
+Original game by:
+Melos Han-Tani
+Marina Kittaka 
 #any key
 任意键
 #5

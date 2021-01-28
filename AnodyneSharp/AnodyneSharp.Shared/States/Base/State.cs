@@ -6,10 +6,14 @@ using System.Text;
 
 namespace AnodyneSharp.States
 {
+    public delegate void ChangeState(AnodyneGame.GameState state);
+
     public class State
     {
         public bool Exit { get; protected set; } = false;
         public bool UpdateEntities { get; protected set; } = true;
+
+        public ChangeState ChangeStateEvent;
 
         public virtual void Create()
         {

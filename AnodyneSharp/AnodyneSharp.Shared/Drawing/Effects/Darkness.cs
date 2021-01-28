@@ -1,6 +1,7 @@
 ﻿using AnodyneSharp.Entities.Lights;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Resources;
+using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -23,7 +24,8 @@ namespace AnodyneSharp.Drawing.Effects
         Camera camera;
         List<Light> lights = new List<Light>();
 
-        static readonly BlendState screenblend = new BlendState() {
+        static readonly BlendState screenblend = new BlendState()
+        {
             ColorBlendFunction = BlendFunction.Add,
             ColorSourceBlend = Blend.One,
             ColorDestinationBlend = Blend.InverseSourceColor,
@@ -49,7 +51,7 @@ namespace AnodyneSharp.Drawing.Effects
         public void TargetAlpha(float d)
         {
             target_alpha = d;
-            if(alpha == 0f)
+            if (alpha == 0f)
             {
                 alpha = 0.1f;
             }
@@ -67,17 +69,7 @@ namespace AnodyneSharp.Drawing.Effects
 
         public void Update()
         {
-            if (alpha != target_alpha)
-            {
-                if (alpha > target_alpha)
-                {
-                    alpha = Math.Max(alpha - 0.8f * GameTimes.DeltaTime, target_alpha);
-                }
-                else
-                {
-                    alpha = Math.Min(alpha + 0.8f * GameTimes.DeltaTime, target_alpha);
-                }
-            }
+            MathUtilities.MoveTo(ref alpha, target_alpha, 0.8f);
         }
 
         public void Load(ContentManager content, GraphicsDevice graphicsDevice)
@@ -98,7 +90,7 @@ namespace AnodyneSharp.Drawing.Effects
             device.SetRenderTarget(lights_applied);
             device.Clear(Color.Transparent);
 
-            if(darkness != null)
+            if (darkness != null)
             {
                 batch.Begin();
                 batch.Draw(darkness, screen.Bounds, Color.White);
@@ -109,9 +101,9 @@ namespace AnodyneSharp.Drawing.Effects
                 device.Clear(Color.Black);
             }
 
-            if(lights.Count > 0)
+            if (lights.Count > 0)
             {
-                batch.Begin(SpriteSortMode.Immediate, blendState: screenblend, samplerState: SamplerState.PointClamp, transformMatrix:camera.Transform);
+                batch.Begin(SpriteSortMode.Immediate, blendState: screenblend, samplerState: SamplerState.PointClamp, transformMatrix: camera.Transform);
                 foreach (Light light in lights)
                 {
                     light.DrawLight();
@@ -133,7 +125,7 @@ namespace AnodyneSharp.Drawing.Effects
             {
                 device.Clear(Color.White);
 
-                batch.Begin(SpriteSortMode.Immediate, blendState:multiply, samplerState: SamplerState.PointClamp);
+                batch.Begin(SpriteSortMode.Immediate, blendState: multiply, samplerState: SamplerState.PointClamp);
                 batch.Draw(screen, screen.Bounds, Color.White);
                 batch.Draw(lights_applied, lights_applied.Bounds, Color.White);
                 batch.End();
@@ -170,7 +162,7 @@ namespace AnodyneSharp.Drawing.Effects
                 blend.Parameters["HardLight"].SetValue(true);
             }
 
-            if(darkness == null)
+            if (darkness == null)
             {
                 alpha = 0;
             }

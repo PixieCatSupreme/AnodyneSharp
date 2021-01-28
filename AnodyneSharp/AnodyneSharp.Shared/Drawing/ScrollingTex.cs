@@ -25,6 +25,13 @@ namespace AnodyneSharp.Drawing
             _layer = layer;
         }
 
+        public void DrawUI()
+        {
+            Vector2 topleft = Position;
+            Rectangle pos = new Rectangle((int)topleft.X, (int)topleft.Y, Texture.Width, Texture.Height);
+            SpriteDrawer.DrawGuiSprite(Texture, pos, Z: DrawingUtilities.GetDrawingZ(_layer));
+        }
+
         public void Draw(Camera c)
         {
             Vector2 topleft = Position + c.Position2D;
@@ -44,6 +51,10 @@ namespace AnodyneSharp.Drawing
             if (Position.Y > 0)
             {
                 Position.Y = -Texture.Height / 2;
+            }
+            else if (Position.Y < -Texture.Height /2)
+            {
+                Position.Y = 0;
             }
         }
     }

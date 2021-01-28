@@ -29,6 +29,17 @@ namespace AnodyneSharp.UI
         public TextWriter Writer { get; set; }
 
         public bool SizeChanged { get; private set; }
+        public float Opacity
+        {
+            get
+            {
+                return Writer.Opacity;
+            }
+            set
+            {
+                Writer.Opacity = value;
+            }
+        }
 
         private Vector2 _oldSize;
         private string _oldString;

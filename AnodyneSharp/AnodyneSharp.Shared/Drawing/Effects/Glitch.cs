@@ -17,7 +17,7 @@ namespace AnodyneSharp.Drawing.Effects
 
         public bool Active()
         {
-            return !new Rectangle(0, 0, GlobalState.MAP_GRID_WIDTH, GlobalState.MAP_GRID_HEIGHT).Contains(GlobalState.CURRENT_GRID_X, GlobalState.CURRENT_GRID_Y);
+            return GlobalState.MAP_GRID_WIDTH != 0 && GlobalState.MAP_GRID_HEIGHT != 0 && !(new Rectangle(0, 0, GlobalState.MAP_GRID_WIDTH, GlobalState.MAP_GRID_HEIGHT).Contains(GlobalState.CURRENT_GRID_X, GlobalState.CURRENT_GRID_Y));
         }
 
         public void Load(ContentManager content, GraphicsDevice graphicsDevice)

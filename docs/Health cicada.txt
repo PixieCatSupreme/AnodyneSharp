@@ -1,0 +1,43 @@
+s_invisible
+ctr -1:	Wait for boss conditions,
+		set start and target pos
+
+s_visible (also play chirp)
+ctr 0:	player colission, 
+		disable player,
+		switches to animating 0
+		
+ctr 1:	fly away if player is too far,
+		set velocity Y to -100,
+		fade out,
+		stays in ctr 1
+
+s_animating
+ctr -1:	move to start point, 
+		set ctr to 0 and state to visible
+
+ctr 0:	Player heals, then upgrade health, 
+		then set target pos to new health blip (invisible), 
+		set ctr to 1
+		
+ctr 1:	move to target health blip, 
+		then play gnaw anim, 
+		set ctr to 2
+		
+ctr 2:	spawn box particles three times on a timer (set_boxes), 
+		after 3 times play fly anim, 
+		set velocity to -40,
+		set ctr to 3
+
+ctr 3:	fade out boxes,
+		fade out,
+		enable player after invisible,
+		exists = false
+		
+s_invisible	-1
+s_animating	-1
+s_visible	0	->	s_visible	1
+s_animating	0
+s_animating	1
+s_animating	2
+s_animating	3

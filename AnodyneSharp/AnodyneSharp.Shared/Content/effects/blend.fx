@@ -34,7 +34,7 @@ struct VertexShaderOutput
 float4 MainPS(VertexShaderOutput input) : COLOR
 {
 	float4 color = tex2D(TextureSampler, input.Tex);
-	float4 blend = tex2D(OverlaySampler, input.Position.xy / 160);
+	float4 blend = tex2D(OverlaySampler, input.Tex);
 	if (blend.a == 0)
 		return color;
 	blend.rgb /= blend.a;

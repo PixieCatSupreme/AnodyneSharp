@@ -14,6 +14,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Cheatz\CheatzManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Effects\Darkness.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Effects\FlashEffect.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Drawing\Effects\FullscreenOverlay.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Effects\Glitch.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Effects\Pixelate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dialogue\Tree\DialogueArea.cs" />
@@ -142,6 +143,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Sounds\SongPlayer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sounds\SoundManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\DialogueState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\MainMenu\MainMenuState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\MainMenu\TitleState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\PauseState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\BaseSubstates\GridSubstate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\AchievementsSubstate.cs" />
@@ -155,7 +158,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\BaseSubstates\PauseSubstate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\SaveSubstate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\PlayState.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)States\State.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\Base\State.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\Font\FontManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\Font\SpriteFont.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\Font\Writing\TextCharacter.cs" />
@@ -289,6 +292,7 @@
     <Folder Include="$(MSBuildThisFileDirectory)Content\Maps\SPACE\" />
     <Folder Include="$(MSBuildThisFileDirectory)Content\Maps\STREET\" />
     <Folder Include="$(MSBuildThisFileDirectory)Entities\Gadget\Treasures\Base\" />
+    <Folder Include="$(MSBuildThisFileDirectory)States\Base\" />
     <Folder Include="$(MSBuildThisFileDirectory)UI\Health\" />
   </ItemGroup>
   <ItemGroup>

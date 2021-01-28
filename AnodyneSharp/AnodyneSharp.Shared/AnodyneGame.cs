@@ -10,6 +10,7 @@ using AnodyneSharp.Resources;
 using AnodyneSharp.Resources.Loading;
 using AnodyneSharp.Resources.Writing;
 using AnodyneSharp.States;
+using AnodyneSharp.States.MainMenu;
 using AnodyneSharp.UI;
 using AnodyneSharp.UI.Font;
 using AnodyneSharp.Utilities;
@@ -30,6 +31,13 @@ namespace AnodyneSharp
     /// </summary>
     public class AnodyneGame : Game
     {
+        public enum GameState
+        {
+            TitleScreen,
+            MainMenu,
+            Game
+        }
+
         GraphicsDeviceManager graphics;
 
         State _currentState;
@@ -61,15 +69,6 @@ namespace AnodyneSharp
 #endif
         }
 
-        private void InitGraphics()
-        {
-            graphics.GraphicsProfile = GraphicsProfile.HiDef;
-            graphics.PreferredBackBufferWidth = 480;
-            graphics.PreferredBackBufferHeight = 540;
-
-            graphics.ApplyChanges();
-        }
-
         /// <summary>
         /// 
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -94,8 +93,7 @@ namespace AnodyneSharp
 
             base.Initialize();
 
-            _currentState = new PlayState(_camera);
-            _currentState.Create();
+            SetState(GameState.TitleScreen);
 
             _fpsLabel.Initialize();
 
@@ -126,15 +124,15 @@ namespace AnodyneSharp
                 inputConfigWriter.WriteInputConfig();
             }
 
-            DialogueManager.LoadDialogue( Language.EN);
+            DialogueManager.LoadDialogue(Language.EN);
 
             FG_Blend.Load(Content);
 
-            foreach(var effect in GlobalState.AllEffects)
+            foreach (var effect in GlobalState.AllEffects)
             {
                 effect.Load(Content, graphics.GraphicsDevice);
             }
-            
+
         }
 
         /// <summary>
@@ -193,6 +191,37 @@ namespace AnodyneSharp
             SpriteDrawer.EndGUIDraw();
 
             SpriteDrawer.Render();
+        }
+
+        private void SetState(GameState state)
+        {
+            switch (state)
+            {
+                case GameState.TitleScreen:
+                    _currentState = new TitleState();
+                    break;
+                case GameState.MainMenu:
+                    break;
+                case GameState.Game:
+                    _currentState = new PlayState(_camera);
+
+                    break;
+            }
+
+            if (_currentState != null)
+            {
+                _currentState.Create();
+                _currentState.ChangeStateEvent = SetState;
+            }
+        }
+
+        private void InitGraphics()
+        {
+            graphics.GraphicsProfile = GraphicsProfile.HiDef;
+            graphics.PreferredBackBufferWidth = 480;
+            graphics.PreferredBackBufferHeight = 540;
+
+            graphics.ApplyChanges();
         }
 
         private void SetDefaultKeys()

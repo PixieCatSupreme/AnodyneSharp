@@ -2234,7 +2234,9 @@ Premi le\nfrecce direzionali per ridimensionare\nla finestra finché\nnon riesci
 #when done.
 
 ANODYNE
-Melos Han-Tani\nMarina Kittaka 
+Original game by:
+Melos Han-Tani
+Marina Kittaka
 #any key
 Qualunque tasto
 #5

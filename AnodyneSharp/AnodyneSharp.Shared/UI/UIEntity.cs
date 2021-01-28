@@ -1,5 +1,6 @@
 ﻿using AnodyneSharp.Drawing;
 using AnodyneSharp.Entities;
+using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -31,7 +32,14 @@ namespace AnodyneSharp.UI
         {
             if (visible)
             {
-                SpriteDrawer.DrawGuiSprite(sprite.Tex, Position - offset, sprite.GetRect(_curAnim.Frame), Z: DrawingUtilities.GetDrawingZ(layer),color: color * opacity);
+                Rectangle srect = sprite.GetRect(_curAnim.Frame);
+
+                SpriteDrawer.DrawGuiSprite(sprite.Tex, 
+                    MathUtilities.CreateRectangle(Position.X - offset.X * scale, Position.Y - offset.Y * scale + (int)y_push, srect.Width * scale, srect.Height * scale),
+                    srect, 
+                    color * opacity, 
+                    rotation, 
+                    Z: DrawingUtilities.GetDrawingZ(layer));
             }
         }
 

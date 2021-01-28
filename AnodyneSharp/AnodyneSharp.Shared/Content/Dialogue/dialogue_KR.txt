@@ -2029,7 +2029,9 @@ npc misc
 # [SOMEKEY-C]
 #when done.
 ANODYNE
-Melos Han-Tani\nMarina Kittaka 
+Original game by:
+Melos Han-Tani
+Marina Kittaka
 # any key
 아무버튼이나 누르세요
 #5

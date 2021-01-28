@@ -1991,7 +1991,9 @@ npc misc
 #when done.
 ANODYNE
 #This is intentionally left in English
-Melos Han-Tani\nMarina Kittaka
+Original game by:
+Melos Han-Tani
+Marina Kittaka
 #This is intentionally left in English 
 any key
 #This is intentionally left in English, as these strings usually stay in English in Japanese games as well.

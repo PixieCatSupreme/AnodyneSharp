@@ -2227,7 +2227,9 @@ Por favor, usa las\nteclas de dirección para redimensionar\nla ventana hasta qu
 #when done.
 [SOMEKEY-C] cuando acabes.
 ANODYNE
-Melos Han-Tani\nMarina Kittaka 
+Original game by:
+Melos Han-Tani
+Marina Kittaka 
 #any key
 cualquier tecla
 #5

@@ -1493,7 +1493,9 @@ Press [SOMEKEY-ENTER] to exit. \n[SOMEKEY-LEFT] to set controls.
 		scene title
 Please use the\narrow keys to resize\nthe window until\nyou cannot see\nany black around\n the borders.\n\nPress [SOMEKEY-C] when done.
 ANODYNE
-Melos Han-Tani\nMarina Kittaka 
+Original game by:
+Melos Han-Tani
+Marina Kittaka
 any key
 #5
 Press [SOMEKEY-C] to start

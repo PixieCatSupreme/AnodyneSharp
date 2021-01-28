@@ -25,7 +25,7 @@ namespace AnodyneSharp.UI.Text
             }
             set
             {
-                _text = Regex.Unescape(value).Trim();
+                _text = value;
                 ResetTextProgress();
             }
         }
@@ -95,6 +95,8 @@ namespace AnodyneSharp.UI.Text
             }
         }
 
+        public float Opacity { get; set; }
+
         private int letterProgress;
 
         private List<List<TextCharacter>> characterLines;
@@ -118,6 +120,7 @@ namespace AnodyneSharp.UI.Text
 
         public TextWriter(int x, int y, int width, int height)
         {
+            Opacity = 1;
             Speed = DefaultTextSpeed;
             _text = "";
 
@@ -168,10 +171,10 @@ namespace AnodyneSharp.UI.Text
                     }
                     else
                     {
-                        SpriteDrawer.DrawGuiSprite(spriteFont.texture, WriteAreaTopLeft + new Vector2(c.X, currentY), c.Crop, spriteFont.color, Z: z);
+                        SpriteDrawer.DrawGuiSprite(spriteFont.texture, WriteAreaTopLeft + new Vector2(c.X, currentY), c.Crop, spriteFont.color * Opacity, Z: z);
                         if (DrawShadow)
                         {
-                            SpriteDrawer.DrawGuiSprite(spriteFont.texture, WriteAreaTopLeft + new Vector2(c.X, currentY + 1), c.Crop, color: Color.Black, Z: shadowZ);
+                            SpriteDrawer.DrawGuiSprite(spriteFont.texture, WriteAreaTopLeft + new Vector2(c.X, currentY + 1), c.Crop, color: Color.Black * Opacity, Z: shadowZ);
                         }
                     }
                 }

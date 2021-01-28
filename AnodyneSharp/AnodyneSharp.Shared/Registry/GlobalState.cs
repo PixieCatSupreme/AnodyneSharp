@@ -75,12 +75,7 @@ namespace AnodyneSharp.Registry
         public static Language CurrentLanguage { get; set; }
         public static bool FishermanDead { get; set; }
 
-        public static float music_volume_scale =
-#if DEBUG
-            0.1f;
-#else
-            1.0f;
-#endif
+        public static float music_volume_scale = 1.0f;
         public static float sfx_volume_scale = 1.0f;
 
         public static bool pillar_switch_state = false; //Reset when entering a map with different name
@@ -166,12 +161,7 @@ namespace AnodyneSharp.Registry
 
         public static Random RNG = new Random();
 
-        public static bool ShowFPS =
-#if DEBUG
-            true;
-#else
-            false;
-#endif
+        public static bool ShowFPS = false;
 
         //Cool new debug values
 #if DEBUG
@@ -184,6 +174,8 @@ namespace AnodyneSharp.Registry
 #endif
 
         public static Darkness darkness = new Darkness();
+        public static FullscreenOverlay FullscreenDarkness = new FullscreenOverlay();
+
         public static ScreenShake screenShake = new();
 
         public static FadeEffect black_overlay = new FadeEffect() { fadeColor = Color.Black };
@@ -194,7 +186,7 @@ namespace AnodyneSharp.Registry
         public static Wave wave = new Wave();
 
         public static List<IFullScreenEffect> gameEffects = new List<IFullScreenEffect>() { new Static(), darkness };
-        public static List<IFullScreenEffect> fullScreenEffects = new List<IFullScreenEffect>() { black_overlay, new Glitch(), new GrayScale(), pixelation, wave, flash, screenShake };
+        public static List<IFullScreenEffect> fullScreenEffects = new List<IFullScreenEffect>() { black_overlay, new Glitch(), new GrayScale(), FullscreenDarkness, pixelation, wave, flash, screenShake };
         public static IEnumerable<IFullScreenEffect> AllEffects
         {
             get
