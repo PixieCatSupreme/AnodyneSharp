@@ -55,6 +55,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Etc\SpaceFace.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\Checkpoint.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\DarknessChange.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\VolumeEvent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Explosion.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sounds\SFXLimiter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\DeathState.cs" />

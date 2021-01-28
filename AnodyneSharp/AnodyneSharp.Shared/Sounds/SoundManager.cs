@@ -51,6 +51,11 @@ namespace AnodyneSharp.Sounds
             bgm.SetVolume(volume * GlobalState.music_volume_scale);
         }
 
+        public static float GetVolume()
+        {
+            return bgm.GetVolume() / GlobalState.music_volume_scale;
+        }
+
         public static void SetSongVolume() => SetSongVolume(1f);
 
         public static bool StopSong()

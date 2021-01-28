@@ -47,6 +47,11 @@ namespace AnodyneSharp.Sounds
             }
         }
 
+        internal float GetVolume()
+        {
+            return player.Volume;
+        }
+
         public void Play(string song)
         {
             if (reader != null) reader.Dispose();
