@@ -42,6 +42,8 @@ namespace AnodyneSharp.States.MainMenu
 
         private List<(int, int)> notVisibleYet;
 
+        private bool _secondNames;
+
         class TextDrawTimer : TimerState
         {
             public TextDrawTimer()
@@ -169,7 +171,23 @@ namespace AnodyneSharp.States.MainMenu
                         }
                     })
                     .Condition(() => AnyKeyPressed, (s) => _state.ChangeState("PressStart"))
-                    .Event("EndFade", (state) => _state.ChangeState("ScollUp"))
+                    .Event("EndFade", (state) =>
+                    {
+                        if (_secondNames)
+                        {
+                            _state.ChangeState("ScollUp");
+                        }
+                        else
+                        {
+                            _secondNames = true;
+
+                            names[0] = "Fan remake by:";
+                            names[1] = "Cynthia Steenvoorden";
+                            names[2] = "Seph De Busser";
+                            _state.ChangeState("CreditsWrite");
+                        }
+                        
+                    })
                 .End()
                 .State("ScollUp")
                     .Enter((state) =>
