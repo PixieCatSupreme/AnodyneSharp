@@ -126,7 +126,7 @@ namespace AnodyneSharp.States
 
                     if (yesSelected)
                     {
-                        //TODO load checkpoint
+                        (GlobalState.NEXT_MAP_NAME, GlobalState.PLAYER_WARP_TARGET) = GlobalState.checkpoint;
                     }
                     else
                     {

@@ -118,7 +118,7 @@ namespace AnodyneSharp.Registry
         public static bool[] ActivatedNexusPortals { get; private set; } = Enumerable.Repeat(false, 21).ToArray();
 
         public static bool autosave_on = true;
-        //public static var checkpoint:Object = { x: 0, y: 0, area: "" };
+        public static (string, Vector2) checkpoint = ("",Vector2.Zero);
 
         /**
          * Used for disabling the menu during an event because you could potentially break the game  otherwise
