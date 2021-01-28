@@ -82,8 +82,8 @@ namespace AnodyneSharp.States.MainMenu
                     .Enter((state) =>
                     {
                         GlobalState.flash.Flash(2f, Color.Black);
-                        GlobalState.FullscreenDarkness.Darkness = ResourceManager.GetTexture("title_overlay1");
-                        GlobalState.FullscreenDarkness.ForceAlpha(1);
+                        GlobalState.TitleScreenFinish.Darkness = ResourceManager.GetTexture("title_overlay1");
+                        GlobalState.TitleScreenFinish.ForceAlpha(1);
                     })
                     .Condition(() => AnyKeyPressed, (s) => _state.ChangeState("PressStart"))
                     .Condition(() => !GlobalState.flash.Active(), (s) => _state.ChangeState("CreditsWrite"))
@@ -95,11 +95,13 @@ namespace AnodyneSharp.States.MainMenu
                         int center = GameConstants.SCREEN_WIDTH_IN_PIXELS / 2;
                         int charWidth = FontManager.GetCharacterWidth(true);
 
+                        Color color = new Color(68, 109, 113);
+
                         nameLabels = new UILabel[]
                         {
-                            new UILabel(new Vector2(center - (names[0].Length * charWidth)/2, 88 -lineH-4), false, new Color(117, 141, 145)),
-                            new UILabel(new Vector2(center - (names[1].Length * charWidth)/2, 88), false, new Color(117, 141, 145)),
-                            new UILabel(new Vector2(center - (names[2].Length * charWidth)/2, 88 + lineH), false, new Color(117, 141, 145))
+                            new UILabel(new Vector2(center - (names[0].Length * charWidth)/2, 88 -lineH-4), false, color),
+                            new UILabel(new Vector2(center - (names[1].Length * charWidth)/2, 88), false, color),
+                            new UILabel(new Vector2(center - (names[2].Length * charWidth)/2, 88 + lineH), false, color)
                         };
 
                         for (int i = 0; i < names.Length; i++)
@@ -108,6 +110,8 @@ namespace AnodyneSharp.States.MainMenu
                             label.Initialize(true);
                             label.SetText(new string(' ', names[i].Length));
                         }
+
+                        GlobalState.TitleScreenFinish.Labels = nameLabels.ToList();
 
                         notVisibleYet = Enumerable.Range(0, names.Length).SelectMany((i) => Enumerable.Range(0, names[i].Length).Select((j) => (i, j))).ToList();
                     })
@@ -177,7 +181,7 @@ namespace AnodyneSharp.States.MainMenu
                 .State<PressEnterTimer>("PressStart")
                     .Enter((state) =>
                     {
-                        GlobalState.FullscreenDarkness.Darkness = ResourceManager.GetTexture("title_overlay2");
+                        GlobalState.TitleScreenFinish.Darkness = ResourceManager.GetTexture("title_overlay2");
 
                         nexusImage.Position.Y = 180 - nexusImage.height;
                         nexusImage.velocity.Y = 0;
@@ -208,7 +212,11 @@ namespace AnodyneSharp.States.MainMenu
                     .Event("BlinkEnter", (state) => pressEnter.visible = !pressEnter.visible)
                     .Condition(() => AnyKeyPressed, (s) =>
                     {
-                        GlobalState.FullscreenDarkness.ForceAlpha(0);
+                        GlobalState.TitleScreenFinish.ForceAlpha(0);
+
+                        GlobalState.TitleScreenFinish.Entities.Clear();
+                        GlobalState.TitleScreenFinish.Labels.Clear();
+
                         ChangeStateEvent(AnodyneGame.GameState.Game);
                     })
                 .End()
@@ -254,6 +262,10 @@ namespace AnodyneSharp.States.MainMenu
                 visible = false
             };
 
+            pressEnter.Draw();
+
+            GlobalState.TitleScreenFinish.Entities.Add(pressEnter);
+
             SoundManager.PlaySong("title");
         }
 
@@ -296,12 +308,8 @@ namespace AnodyneSharp.States.MainMenu
             doorSpin2.Draw();
             title.Draw();
             titleOverlay.Draw();
-            pressEnter.Draw();
 
-            foreach (var label in nameLabels)
-            {
-                label.Draw();
-            }
+            //The UI labels get drawn in the TitleScreen overlay
         }
     }
 }

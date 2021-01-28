@@ -104,7 +104,7 @@ namespace AnodyneSharp.Drawing
             foreach (IFullScreenEffect effect in GlobalState.fullScreenEffects.Where(e => e.Active()))
             {
                 _graphicsDevice.SetRenderTarget(_render2);
-                effect.Render(_spriteBatch, _render);
+                effect.Render(_guiSpriteBatch, _render);
                 (_render, _render2) = (_render2, _render);
             }
         }

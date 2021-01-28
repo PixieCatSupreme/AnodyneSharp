@@ -174,7 +174,7 @@ namespace AnodyneSharp.Registry
 #endif
 
         public static Darkness darkness = new Darkness();
-        public static FullscreenOverlay FullscreenDarkness = new FullscreenOverlay();
+        public static TitleScreenOverlay TitleScreenFinish = new TitleScreenOverlay();
 
         public static ScreenShake screenShake = new();
 
@@ -186,7 +186,7 @@ namespace AnodyneSharp.Registry
         public static Wave wave = new Wave();
 
         public static List<IFullScreenEffect> gameEffects = new List<IFullScreenEffect>() { new Static(), darkness };
-        public static List<IFullScreenEffect> fullScreenEffects = new List<IFullScreenEffect>() { black_overlay, new Glitch(), new GrayScale(), FullscreenDarkness, pixelation, wave, flash, screenShake };
+        public static List<IFullScreenEffect> fullScreenEffects = new List<IFullScreenEffect>() { black_overlay, new Glitch(), new GrayScale(), TitleScreenFinish, pixelation, wave, flash, screenShake };
         public static IEnumerable<IFullScreenEffect> AllEffects
         {
             get

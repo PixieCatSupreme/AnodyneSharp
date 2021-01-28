@@ -14,7 +14,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Cheatz\CheatzManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Effects\Darkness.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Effects\FlashEffect.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Drawing\Effects\FullscreenOverlay.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Drawing\Effects\TitleScreenOverlay.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Effects\Glitch.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Effects\Pixelate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dialogue\Tree\DialogueArea.cs" />

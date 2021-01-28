@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Utilities;
+﻿using AnodyneSharp.UI;
+using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -8,7 +9,7 @@ using System.Text;
 
 namespace AnodyneSharp.Drawing.Effects
 {
-    public class FullscreenOverlay : IFullScreenEffect
+    public class TitleScreenOverlay : IFullScreenEffect
     {
         public Texture2D Darkness
         {
@@ -17,6 +18,9 @@ namespace AnodyneSharp.Drawing.Effects
                 blend.Parameters["OverlayTex"].SetValue(value);
             }
         }
+
+        public List<UIEntity> Entities = new ();
+        public List<UILabel> Labels = new ();
 
         float alpha;
         float target_alpha;
@@ -69,6 +73,20 @@ namespace AnodyneSharp.Drawing.Effects
                 batch.Draw(screen, screen.Bounds, Color.White * (1 - alpha));
                 batch.End();
             }
+
+            batch.Begin(samplerState: SamplerState.PointClamp);
+
+            foreach (var entity in Entities)
+            {
+                entity.Draw();
+            }
+
+            foreach (var label in Labels)
+            {
+                label.Draw();
+            }
+
+            batch.End();
         }
     }
 }
