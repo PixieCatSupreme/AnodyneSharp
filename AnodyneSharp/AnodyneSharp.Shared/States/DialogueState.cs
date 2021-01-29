@@ -68,14 +68,27 @@ namespace AnodyneSharp.States
                     {
                         SoundManager.PlaySoundEffect("dialogue_blip");
                     })
-                    .Condition(() => _tb.Writer.NextCharacter == '^', (state) =>
+                    .Condition(() => _tb.Writer.AtEndOfText || _tb.Writer.AtEndOfBox || _tb.Writer.NextCharacter == '^', (state) =>
                       {
+                          if (_tb.Writer.NextCharacter == '^')
+                          {
+                              _tb.Writer.SkipCharacter();
+                              _state.ChangeState("WaitCaret");
+                              return;
+                          }
                           _state.PopState();
-                          _tb.Writer.SkipCharacter();
-                          _state.ChangeState("Waiting"); //Make sure it's in Waiting
+                          if(_tb.Writer.AtEndOfText)
+                          {
+                              _state.ChangeState("Waiting");
+                          }
                       })
-                    .Condition(() => _tb.Writer.AtEndOfBox, (state) => _state.PopState())
-                    .Condition(() => _tb.Writer.AtEndOfText, (state) => { _state.PopState(); _state.ChangeState("Waiting"); })
+                .End()
+                .State("WaitCaret")
+                    .Event("KeyPressed",(state) =>
+                    {
+                        SoundManager.PlaySoundEffect("dialogue_bloop");
+                        _state.ChangeState("Writing");
+                    })
                 .End()
                 .State<BumpState>("Bump")
                     .Enter((s) => s.linesBumped = 0)
