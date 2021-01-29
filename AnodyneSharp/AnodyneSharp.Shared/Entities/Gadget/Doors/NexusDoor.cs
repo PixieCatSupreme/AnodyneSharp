@@ -15,6 +15,8 @@ namespace AnodyneSharp.Entities.Gadget.Doors
         NexusPreview _preview;
         Entity _nexusGem;
 
+        bool activated = false;
+
         public NexusDoor(EntityPreset preset, Player player)
             : base(preset, player, "teleport_up")
         {
@@ -35,12 +37,22 @@ namespace AnodyneSharp.Entities.Gadget.Doors
             _nexusGem.visible = CardDataManager.GotAllNormalCards(LinkedMapName);
         }
 
+        public override void Update()
+        {
+            base.Update();
+            if(activated && _player.just_landed)
+            {
+                TeleportPlayer();
+                activated = false;
+            }
+        }
+
         public bool PlayerInteraction(Facing player_direction)
         {
             if (_preview.exists && player_direction == Facing.UP)
             {
-                //TODO: Force player jump
-                TeleportPlayer();
+                activated = true;
+                _player.AutoJump(0.4f,_player.Position - Vector2.UnitY*16);
                 return true;
             }
             return false;
@@ -50,7 +62,6 @@ namespace AnodyneSharp.Entities.Gadget.Doors
         {
             return new List<Entity>() { _preview, _nexusGem };
         }
-
 
         public override void Collided(Entity other)
         {

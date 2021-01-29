@@ -5,6 +5,7 @@ using AnodyneSharp.States;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace AnodyneSharp.Entities
@@ -60,7 +61,6 @@ namespace AnodyneSharp.Entities
         private const int HITBOX_WIDTH = 10;
 
         private int walkSpeed = 70;
-        private bool anim_air_did_up;
 
         /* Animation state */
         public PlayerAnimState ANIM_STATE;
@@ -88,9 +88,8 @@ namespace AnodyneSharp.Entities
 
         public bool actions_disabled;
         public bool skipBroom;
-        private bool just_landed;
-        private bool anim_air_did_down;
-        private float jump_timer;
+        private IEnumerator jump_anim;
+        public bool just_landed { get; private set; }
         private bool sinking;
         private bool dashing;
 
@@ -204,8 +203,8 @@ namespace AnodyneSharp.Entities
             }
             else
             {
+                if(walkSpeed != 70) Solid = true;
                 walkSpeed = 70;
-                Solid = true;
             }
 
             if (!CommonConditions())
@@ -425,12 +424,17 @@ namespace AnodyneSharp.Entities
                     else
                     {
                         AirMovement();
-                        AirAnimation();
+                        jump_anim.MoveNext();
                     }
 
                     //dash_logic();
                     break;
                 case PlayerState.AUTO_JUMP:
+                    if(!jump_anim.MoveNext())
+                    {
+                        state = PlayerState.GROUND;
+
+                    }
                     break;
                 case PlayerState.INTERACT:
                     velocity = Vector2.Zero;
@@ -572,6 +576,7 @@ namespace AnodyneSharp.Entities
                 if (KeyInput.JustPressedRebindableKey(KeyFunctions.Cancel) && !sinking)
                 {
                     state = PlayerState.AIR;
+                    jump_anim = JumpAnim(jump_period);
                     shadow.visible = true;
                     broom.exists = false;
                     isSlipping = false;
@@ -647,54 +652,70 @@ namespace AnodyneSharp.Entities
             }
         }
 
-        private void AirAnimation()
+        private IEnumerator JumpAnim(float period, Vector2? target_pos = null)
         {
-            if (!anim_air_did_up)
+            Vector2 base_pos = Position;
+            broom.exists = false;
+            if(ON_CONVEYOR)
             {
-                broom.exists = false;
-                anim_air_did_up = true;
+                SoundManager.PlaySoundEffect("puddle_up");
+            }
+            else
+            {
+                SoundManager.PlaySoundEffect("player_jump_up");
+            }
+            shadow.Play("get_small");
+            ANIM_STATE = PlayerAnimState.as_idle; // Always land in idle state.
+            PlayFacing("jump");
 
-                if (ON_CONVEYOR)
-                {
-                    SoundManager.PlaySoundEffect("puddle_up");
-                }
-                else
-                {
-                    SoundManager.PlaySoundEffect("player_jump_up");
-                }
+            bool did_down = false;
 
-                shadow.Play("get_small");
-                ANIM_STATE = PlayerAnimState.as_idle; // Always land in idle state.
-                PlayFacing("jump");
+            float timer = 0.0f;
+
+            while(timer < period)
+            {
+                timer += GameTimes.DeltaTime;
+                offset.Y = DEFAULT_Y_OFFSET + (((-4 * 24) / (period * period)) * timer * (timer - period));
+                if(target_pos.HasValue)
+                {
+                    Position.X = MathHelper.Lerp(base_pos.X, target_pos.Value.X, timer/period);
+                    Position.Y = MathHelper.Lerp(base_pos.Y, target_pos.Value.Y, timer/period);
+                }
+                if(!did_down && timer > period/2)
+                {
+                    shadow.Play("get_big");
+                    did_down = true;
+                }
+                yield return null;
             }
 
-            if (!anim_air_did_down && jump_timer > jump_period / 2)
+            if (ON_CONVEYOR)
             {
-                shadow.Play("get_big");
-                anim_air_did_down = true;
+                SoundManager.PlaySoundEffect("puddle_down");
+            }
+            else
+            {
+                SoundManager.PlaySoundEffect("player_jump_down");
             }
 
-            offset.Y = DEFAULT_Y_OFFSET + (((-4 * 24) / (jump_period * jump_period)) * jump_timer * (jump_timer - jump_period));
-            jump_timer += GameTimes.DeltaTime;
+            //my_shadow.visible = false;
+            offset.Y = DEFAULT_Y_OFFSET;
+            just_landed = true;
 
-            if (jump_timer > jump_period)
-            {
-                jump_timer = 0;
-                if (ON_CONVEYOR)
-                {
-                    SoundManager.PlaySoundEffect("puddle_down");
-                }
-                else
-                {
-                    SoundManager.PlaySoundEffect("player_jump_down");
-                }
-                state = PlayerState.GROUND;
+            yield return null;
 
-                //my_shadow.visible = false;
-                offset.Y = DEFAULT_Y_OFFSET;
-                just_landed = true;
-                anim_air_did_down = anim_air_did_up = false;
-            }
+            state = PlayerState.GROUND;
+            Solid = true;
+
+            yield break;
+        }
+
+        public void AutoJump(float period, Vector2 target)
+        {
+            jump_anim = JumpAnim(period, target);
+            Solid = false;
+            state = PlayerState.AUTO_JUMP;
+            velocity = Vector2.Zero;
         }
 
         protected override void AnimationChanged(string name)

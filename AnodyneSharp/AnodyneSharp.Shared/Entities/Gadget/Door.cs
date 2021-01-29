@@ -26,7 +26,7 @@ namespace AnodyneSharp.Entities.Gadget
         protected Vector2 teleportOffset;
 
         private bool player_on_door;
-        private Player _player;
+        protected Player _player;
 
         private string? _sfx;
 
