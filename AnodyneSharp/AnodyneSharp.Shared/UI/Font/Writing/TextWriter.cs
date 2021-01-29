@@ -25,7 +25,7 @@ namespace AnodyneSharp.UI.Text
             }
             set
             {
-                _text = value;
+                _text = Regex.Unescape(value);
                 ResetTextProgress();
             }
         }
