@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Drawing.Spritesheet;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Resources;
 using AnodyneSharp.Sounds;
@@ -20,11 +21,13 @@ namespace AnodyneSharp.UI.PauseMenu.Config
         private float current;
         private float start;
 
-        private Texture2D _slider;
+        private Spritesheet _slider;
         private Texture2D _sliderInside;
         private Texture2D _sliderBg;
 
-        public AudioSlider(Vector2 pos, float current, float min, float max, float stepSize)
+        private bool _useMainMenuFrame;
+
+        public AudioSlider(Vector2 pos, float current, float min, float max, float stepSize, bool useMainMenuFrame)
             : base(pos, 68)
         {
             this.min = min;
@@ -33,9 +36,11 @@ namespace AnodyneSharp.UI.PauseMenu.Config
             this.current = current;
             start = current;
 
-            _slider = ResourceManager.GetTexture("volume_bar", true);
+            _slider = new Spritesheet(ResourceManager.GetTexture("volume_bar", true), 60, 11);
             _sliderInside = ResourceManager.GetTexture("volume_bar_inside", true);
             _sliderBg = ResourceManager.GetTexture("volume_bar_bg", true);
+
+            _useMainMenuFrame = useMainMenuFrame;
         }
 
         public override void ResetValue()
@@ -84,22 +89,24 @@ namespace AnodyneSharp.UI.PauseMenu.Config
             base.DrawUI();
 
             SpriteDrawer.DrawGuiSprite(_sliderBg, new Rectangle(
-                (int)((position.X + BarOffset) ),
-                (int)(position.Y ),
-                (int)(_slider.Width ),
-                (int)(_slider.Height )),
+                (int)(position.X + BarOffset - _slider.Width / 2),
+                (int)(position.Y - _slider.Height / 2),
+                (int)(_slider.Width),
+                (int)(_slider.Height)),
                 Z: DrawingUtilities.GetDrawingZ(DrawOrder.AUDIO_SLIDER_BG));
 
 
-            SpriteDrawer.DrawGuiSprite(_slider, position + new Vector2(BarOffset, 0), Z: DrawingUtilities.GetDrawingZ(DrawOrder.AUDIO_SLIDER));
+            SpriteDrawer.DrawGuiSprite(_slider.Tex, position + new Vector2(BarOffset, 0), _slider.GetRect(_useMainMenuFrame ? 1 : 0), Z: DrawingUtilities.GetDrawingZ(DrawOrder.AUDIO_SLIDER));
 
             if (current > min)
             {
+                int width = (int)(_slider.Width * (current - min) / (max - min));
+
                 SpriteDrawer.DrawGuiSprite(_sliderInside, new Rectangle(
-                    (int)((position.X + BarOffset) ),
-                    (int)(position.Y ),
-                    (int)(_slider.Width  * (current - min) / (max - min)),
-                    (int)(_slider.Height )),
+                    (int)(position.X + BarOffset - width / 2),
+                    (int)(position.Y - _slider.Height / 2),
+                    (int)(width),
+                    (int)(_slider.Height)),
                     Z: DrawingUtilities.GetDrawingZ(DrawOrder.AUDIO_SLIDER_BAR));
             }
         }

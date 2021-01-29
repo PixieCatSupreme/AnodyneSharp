@@ -146,18 +146,19 @@
     <Compile Include="$(MSBuildThisFileDirectory)States\DialogueState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\MainMenu\MainMenuState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\MainMenu\TitleState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\MenuSubstates\MainMenu\FileSubstate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\PauseState.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\BaseSubstates\GridSubstate.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\AchievementsSubstate.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\SecretSubstate.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\CardSubstate.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\CheatzSubstate.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\ConfigSubstate.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\BaseSubstates\DialogueSubstate.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\EquipSubstate.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\MapSubstate.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\BaseSubstates\PauseSubstate.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)States\PauseSubstates\SaveSubstate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\MenuSubstates\BaseSubstates\GridSubstate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\MenuSubstates\PauseMenu\AchievementsSubstate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\MenuSubstates\PauseMenu\SecretSubstate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\MenuSubstates\PauseMenu\CardSubstate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\MenuSubstates\PauseMenu\CheatzSubstate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\MenuSubstates\ConfigSubstate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\MenuSubstates\BaseSubstates\DialogueSubstate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\MenuSubstates\PauseMenu\EquipSubstate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\MenuSubstates\PauseMenu\MapSubstate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\MenuSubstates\BaseSubstates\PauseSubstate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\MenuSubstates\PauseMenu\SaveSubstate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\PlayState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\Base\State.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\Font\FontManager.cs" />
@@ -294,6 +295,7 @@
     <Folder Include="$(MSBuildThisFileDirectory)Content\Maps\STREET\" />
     <Folder Include="$(MSBuildThisFileDirectory)Entities\Gadget\Treasures\Base\" />
     <Folder Include="$(MSBuildThisFileDirectory)States\Base\" />
+    <Folder Include="$(MSBuildThisFileDirectory)States\MenuSubstates\PauseMenu\" />
     <Folder Include="$(MSBuildThisFileDirectory)UI\Health\" />
   </ItemGroup>
   <ItemGroup>

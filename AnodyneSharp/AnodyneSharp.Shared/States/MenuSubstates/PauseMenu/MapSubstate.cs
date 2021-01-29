@@ -15,9 +15,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace AnodyneSharp.States.PauseSubstates
+namespace AnodyneSharp.States.MenuSubstates
 {
-    public class MapSubstate : PauseSubstate
+    public class MapSubstate : Substate
     {
         private enum MapState
         {

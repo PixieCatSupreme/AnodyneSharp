@@ -2231,6 +2231,9 @@ ANODYNE 镇痛
 Original game by:
 Melos Han-Tani
 Marina Kittaka 
+Fan remake by:
+Cynthia Steenvoorden
+Seph De Busser
 #any key
 任意键
 #5

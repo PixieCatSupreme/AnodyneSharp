@@ -4,7 +4,7 @@ using AnodyneSharp.Input;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Resources;
 using AnodyneSharp.Sounds;
-using AnodyneSharp.States.PauseSubstates;
+using AnodyneSharp.States.MenuSubstates;
 using AnodyneSharp.UI;
 using AnodyneSharp.UI.PauseMenu;
 using Microsoft.Xna.Framework;
@@ -66,7 +66,7 @@ namespace AnodyneSharp.States
 
         private bool _inSubstate;
 
-        private PauseSubstate _substate;
+        private Substate _substate;
 
         public PauseState()
         {
@@ -177,7 +177,7 @@ namespace AnodyneSharp.States
                 PauseStateState.Achievements => new AchievementsSubstate(),
                 PauseStateState.Secretz => new SecretSubstate(),
                 PauseStateState.Cheatz => new CheatzSubstate(),
-                _ => new PauseSubstate(),
+                _ => new Substate(),
             };
         }
 

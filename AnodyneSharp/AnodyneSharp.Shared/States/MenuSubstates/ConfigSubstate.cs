@@ -12,9 +12,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace AnodyneSharp.States.PauseSubstates
+namespace AnodyneSharp.States.MenuSubstates
 {
-    public class ConfigSubstate : PauseSubstate
+    public class ConfigSubstate : Substate
     {
         private enum ConfigState
         {
@@ -51,8 +51,12 @@ namespace AnodyneSharp.States.PauseSubstates
         private AudioSlider _musicSlider;
         private AudioSlider _sfxSlider;
 
-        public ConfigSubstate()
+        private bool _isInMainMenu;
+
+        public ConfigSubstate(bool isInMainMenu = false)
         {
+            _isInMainMenu = isInMainMenu;
+
             SetLabels();
         }
 
@@ -150,19 +154,21 @@ namespace AnodyneSharp.States.PauseSubstates
 
         private void SetLabels()
         {
-            float x = 69;
+            float x = 60 + (_isInMainMenu ? 0 :9);
             float y = 28 - GameConstants.LineOffset - (GlobalState.CurrentLanguage == Language.ZH_CN ? 1 : 0);
             float yStep = GameConstants.FONT_LINE_HEIGHT - GameConstants.LineOffset;
 
-            _keybindsLabel = new UILabel(new Vector2(x, y), true);
+            Color color = _isInMainMenu ? new Color(116, 140, 144) : Color.White;
 
-            _bgmLabel = new UILabel(new Vector2(x, _keybindsLabel.Position.Y + yStep * 2), true);
-            _sfxLabel = new UILabel(new Vector2(x, _bgmLabel.Position.Y + 12), true);
+            _keybindsLabel = new UILabel(new Vector2(x, y), true, color);
 
-            _autosaveLabel = new UILabel(new Vector2(x, _sfxLabel.Position.Y + yStep * 2), true);
-            _resolutionLabel = new UILabel(new Vector2(x, _autosaveLabel.Position.Y + yStep * 4), true);
-            _scalingLabel = new UILabel(new Vector2(x, _resolutionLabel.Position.Y + yStep * 3), true);
-            _languageLabel = new UILabel(new Vector2(x, _scalingLabel.Position.Y + yStep * 2), true);
+            _bgmLabel = new UILabel(new Vector2(x, _keybindsLabel.Position.Y + yStep * 2), true, color);
+            _sfxLabel = new UILabel(new Vector2(x, _bgmLabel.Position.Y + 12), true, color);
+
+            _autosaveLabel = new UILabel(new Vector2(x, _sfxLabel.Position.Y + yStep * 2), true, color);
+            _resolutionLabel = new UILabel(new Vector2(x, _autosaveLabel.Position.Y + yStep * 4), true, color);
+            _scalingLabel = new UILabel(new Vector2(x, _resolutionLabel.Position.Y + yStep * 3), true, color);
+            _languageLabel = new UILabel(new Vector2(x, _scalingLabel.Position.Y + yStep * 2), true, color);
 
             _keybindsLabel.Initialize();
 
@@ -184,12 +190,12 @@ namespace AnodyneSharp.States.PauseSubstates
             _scalingLabel.SetText(DialogueManager.GetDialogue("misc", "any", "config", 16));
             _languageLabel.SetText(DialogueManager.GetDialogue("misc", "any", "config", 17));
 
-            _musicSlider = new AudioSlider(new Vector2(_bgmLabel.Position.X + _bgmLabel.Writer.WriteArea.Width - 5, _bgmLabel.Position.Y), GlobalState.music_volume_scale, 0f, 1f, 0.1f)
+            _musicSlider = new AudioSlider(new Vector2(_bgmLabel.Position.X + _bgmLabel.Writer.WriteArea.Width - 5, _bgmLabel.Position.Y), GlobalState.music_volume_scale, 0f, 1f, 0.1f, _isInMainMenu)
             {
                 ValueChangedEvent = BgmValueChanged
             };
 
-            _sfxSlider = new AudioSlider(new Vector2(_sfxLabel.Position.X + _sfxLabel.Writer.WriteArea.Width - 5, _sfxLabel.Position.Y), GlobalState.sfx_volume_scale, 0f, 1f, 0.1f)
+            _sfxSlider = new AudioSlider(new Vector2(_sfxLabel.Position.X + _sfxLabel.Writer.WriteArea.Width - 5, _sfxLabel.Position.Y), GlobalState.sfx_volume_scale, 0f, 1f, 0.1f, _isInMainMenu)
             {
                 ValueChangedEvent = SfxValueChanged
             };

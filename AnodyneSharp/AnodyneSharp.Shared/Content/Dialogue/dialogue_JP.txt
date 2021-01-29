@@ -1994,6 +1994,9 @@ ANODYNE
 Original game by:
 Melos Han-Tani
 Marina Kittaka
+Fan remake by:
+Cynthia Steenvoorden
+Seph De Busser
 #This is intentionally left in English 
 any key
 #This is intentionally left in English, as these strings usually stay in English in Japanese games as well.

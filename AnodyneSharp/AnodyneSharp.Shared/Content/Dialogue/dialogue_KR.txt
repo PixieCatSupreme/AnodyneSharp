@@ -2032,6 +2032,9 @@ ANODYNE
 Original game by:
 Melos Han-Tani
 Marina Kittaka
+Fan remake by:
+Cynthia Steenvoorden
+Seph De Busser
 # any key
 아무버튼이나 누르세요
 #5

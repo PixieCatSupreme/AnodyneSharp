@@ -36,9 +36,9 @@ namespace AnodyneSharp.States.MainMenu
 
         private IState _state;
 
-        private string[] names;
+        private string[] credits;
 
-        private UILabel[] nameLabels;
+        private UILabel[] creditsLabels;
 
         private List<(int, int)> notVisibleYet;
 
@@ -70,14 +70,14 @@ namespace AnodyneSharp.States.MainMenu
 
         public TitleState()
         {
-            names = new string[]
+            credits = new string[]
             {
                 DialogueManager.GetDialogue("misc", "any", "title", 2),
                 DialogueManager.GetDialogue("misc", "any", "title", 3),
                 DialogueManager.GetDialogue("misc", "any", "title", 4)
             };
 
-            nameLabels = Array.Empty<UILabel>();
+            creditsLabels = Array.Empty<UILabel>();
 
             _state = new StateMachineBuilder()
                 .State("IntroFade")
@@ -99,23 +99,23 @@ namespace AnodyneSharp.States.MainMenu
 
                         Color color = new Color(68, 109, 113);
 
-                        nameLabels = new UILabel[]
+                        creditsLabels = new UILabel[]
                         {
-                            new UILabel(new Vector2(center - (names[0].Length * charWidth)/2, 88 -lineH-4), false, color),
-                            new UILabel(new Vector2(center - (names[1].Length * charWidth)/2, 88), false, color),
-                            new UILabel(new Vector2(center - (names[2].Length * charWidth)/2, 88 + lineH), false, color)
+                            new UILabel(new Vector2(center - (credits[0].Length * charWidth)/2, 88 -lineH-4), false, color),
+                            new UILabel(new Vector2(center - (credits[1].Length * charWidth)/2, 88), false, color),
+                            new UILabel(new Vector2(center - (credits[2].Length * charWidth)/2, 88 + lineH), false, color)
                         };
 
-                        for (int i = 0; i < names.Length; i++)
+                        for (int i = 0; i < credits.Length; i++)
                         {
-                            UILabel label = nameLabels[i];
+                            UILabel label = creditsLabels[i];
                             label.Initialize(true);
-                            label.SetText(new string(' ', names[i].Length));
+                            label.SetText(new string(' ', credits[i].Length));
                         }
 
-                        GlobalState.TitleScreenFinish.Labels = nameLabels.ToList();
+                        GlobalState.TitleScreenFinish.Labels = creditsLabels.ToList();
 
-                        notVisibleYet = Enumerable.Range(0, names.Length).SelectMany((i) => Enumerable.Range(0, names[i].Length).Select((j) => (i, j))).ToList();
+                        notVisibleYet = Enumerable.Range(0, credits.Length).SelectMany((i) => Enumerable.Range(0, credits[i].Length).Select((j) => (i, j))).ToList();
                     })
                     .Event("DrawText", (state) =>
                     {
@@ -123,10 +123,10 @@ namespace AnodyneSharp.States.MainMenu
 
                         (int label, int s_index) = notVisibleYet[index];
 
-                        UILabel l = nameLabels[label];
+                        UILabel l = creditsLabels[label];
 
                         char[] text = l.Text.ToCharArray();
-                        text[s_index] = names[label][s_index];
+                        text[s_index] = credits[label][s_index];
 
                         l.SetText(new string(text));
 
@@ -139,7 +139,7 @@ namespace AnodyneSharp.States.MainMenu
                     .Update((state, t) =>
                     {
                         bool endFade = false;
-                        foreach (var label in nameLabels)
+                        foreach (var label in creditsLabels)
                         {
                             float o = label.Opacity;
 
@@ -161,7 +161,7 @@ namespace AnodyneSharp.States.MainMenu
                 .State<TextFadeTimer>("CreditsFadeEnd")
                     .Update((state, t) =>
                     {
-                        foreach (var label in nameLabels)
+                        foreach (var label in creditsLabels)
                         {
                             float o = label.Opacity;
 
@@ -181,12 +181,13 @@ namespace AnodyneSharp.States.MainMenu
                         {
                             _secondNames = true;
 
-                            names[0] = "Fan remake by:";
-                            names[1] = "Cynthia Steenvoorden";
-                            names[2] = "Seph De Busser";
+                            credits[0] = DialogueManager.GetDialogue("misc", "any", "title", 5);
+                            credits[1] = DialogueManager.GetDialogue("misc", "any", "title", 6);
+                            credits[2] = DialogueManager.GetDialogue("misc", "any", "title", 7);
+
                             _state.ChangeState("CreditsWrite");
                         }
-                        
+
                     })
                 .End()
                 .State("ScollUp")
@@ -199,6 +200,11 @@ namespace AnodyneSharp.States.MainMenu
                 .State<PressEnterTimer>("PressStart")
                     .Enter((state) =>
                     {
+                        foreach (var label in creditsLabels)
+                        {
+                            label.IsVisible = false;
+                        }
+
                         GlobalState.TitleScreenFinish.Darkness = ResourceManager.GetTexture("title_overlay2");
 
                         nexusImage.Position.Y = 180 - nexusImage.height;
@@ -228,14 +234,35 @@ namespace AnodyneSharp.States.MainMenu
                         MathUtilities.MoveTo(ref titleOverlay.opacity, 0, 0.4f);
                     })
                     .Event("BlinkEnter", (state) => pressEnter.visible = !pressEnter.visible)
-                    .Condition(() => AnyKeyPressed, (s) =>
+                    .Condition(() => AnyKeyPressed, (s) => _state.ChangeState("Pixelate"))
+                .End()
+                .State("Pixelate")
+                    .Update((state, t) =>
                     {
+                        GlobalState.pixelation.AddPixelation(15);
+                        GlobalState.black_overlay.ChangeAlpha(0.36f);
+                    })
+                    .Condition(() => GlobalState.pixelation.Pixelation >= 15f, (state) => _state.ChangeState("FadeOut"))
+                .End()
+                .State("FadeOut")
+                    .Update((state, t) =>
+                    {
+                        GlobalState.pixelation.AddPixelation(15);
+                        GlobalState.black_overlay.ChangeAlpha(0.72f);
+                    })
+                    .Condition(() => GlobalState.black_overlay.alpha >= 1f, (state) =>
+                    {
+                        GlobalState.pixelation.SetPixelation(0);
+                        GlobalState.black_overlay.alpha = 0;
+
+
+                        GlobalState.flash.ForceAlpha(0);
                         GlobalState.TitleScreenFinish.ForceAlpha(0);
 
                         GlobalState.TitleScreenFinish.Entities.Clear();
                         GlobalState.TitleScreenFinish.Labels.Clear();
 
-                        ChangeStateEvent(AnodyneGame.GameState.Game);
+                        ChangeStateEvent(AnodyneGame.GameState.MainMenu);
                     })
                 .End()
                 .Build();

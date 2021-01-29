@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace AnodyneSharp.States.PauseSubstates
+namespace AnodyneSharp.States.MenuSubstates
 {
     public class EquipSubstate : DialogueSubstate
     {

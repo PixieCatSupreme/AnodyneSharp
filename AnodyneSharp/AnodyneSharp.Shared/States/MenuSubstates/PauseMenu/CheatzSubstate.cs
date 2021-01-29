@@ -10,9 +10,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace AnodyneSharp.States.PauseSubstates
+namespace AnodyneSharp.States.MenuSubstates
 {
-    public class CheatzSubstate : PauseSubstate
+    public class CheatzSubstate : Substate
     {
         private UILabel _cheatLabel;
 

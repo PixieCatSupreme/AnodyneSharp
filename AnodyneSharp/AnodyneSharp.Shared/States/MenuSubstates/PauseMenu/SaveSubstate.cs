@@ -10,9 +10,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace AnodyneSharp.States.PauseSubstates
+namespace AnodyneSharp.States.MenuSubstates
 {
-    public class SaveSubstate : PauseSubstate
+    public class SaveSubstate : Substate
     {
         private enum SaveState
         {
@@ -58,7 +58,7 @@ namespace AnodyneSharp.States.PauseSubstates
             _quitLabel.SetText(DialogueManager.GetDialogue("misc", "any", "save", 6));
 
             //TODO Add death count
-            _deathsLabel.SetText(DialogueManager.GetDialogue("misc", "any", "save", 7) + "0");
+            _deathsLabel.SetText(DialogueManager.GetDialogue("misc", "any", "save", 7) + GlobalState.DeathCount);
 
         }
 

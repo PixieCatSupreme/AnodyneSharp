@@ -195,6 +195,8 @@ namespace AnodyneSharp.Registry
             }
         }
 
+        public static int DeathCount = 0;
+
 
         //Song deciding bools
         public static bool OnRoof;

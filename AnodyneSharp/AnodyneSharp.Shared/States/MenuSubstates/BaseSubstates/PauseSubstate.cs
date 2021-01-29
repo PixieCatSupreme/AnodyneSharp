@@ -7,9 +7,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace AnodyneSharp.States.PauseSubstates
+namespace AnodyneSharp.States.MenuSubstates
 {
-    public class PauseSubstate : State
+    public class Substate : State
     {
         protected int CursorOffset
         {
@@ -29,7 +29,7 @@ namespace AnodyneSharp.States.PauseSubstates
 
         protected MenuSelector _selector;
 
-        public PauseSubstate()
+        public Substate()
         {
             _selector = new MenuSelector()
             {

@@ -1496,19 +1496,28 @@ ANODYNE
 Original game by:
 Melos Han-Tani
 Marina Kittaka
+Fan remake by:
+Cynthia Steenvoorden
+Seph De Busser
 any key
-#5
 Press [SOMEKEY-C] to start
+#10
 Version
 Continue 
-New Game 
-#10
-Are you sure?\nNo\nYes
-Really?\nNah\nYeah 
-No going back!\nForget it\nI know
-deaths  
-cards
+New Game
+Are you sure?
+No
 #15
+Yes
+Really?
+Nah
+Yeah 
+No going back!
+#20
+Forget it
+I know
+ deaths  
+ cards
 Anodyne supports\nmost controllers.\n\nWill you use one?\n\nYes   No\n\nIf so, connect it now.\n\nMove with arrow keys\n\nSelect with\nC, SPACE, or ENTER\n\nDefaulting to yes in\n
 NOTE\n\nIf you have input\nlag during gameplay,\nreturn to your\nhome screen and\nre-enter Anodyne.\n\nPRESS C TO CONTINUE\n\nGUI displaying wrong?\nPress button below\nthen reorient device.
 Press BACK again\nto exit.\nUnsaved progress\nwill be lost.

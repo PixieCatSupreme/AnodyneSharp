@@ -38,5 +38,10 @@ namespace AnodyneSharp.Drawing.Effects
         {
             effect.Render(batch, screen);
         }
+
+        public void ForceAlpha(float a)
+        {
+            effect.alpha = a;
+        }
     }
 }

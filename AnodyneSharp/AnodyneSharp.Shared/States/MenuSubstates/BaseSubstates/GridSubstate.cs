@@ -10,7 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace AnodyneSharp.States.PauseSubstates.BaseSubstates
+namespace AnodyneSharp.States.MenuSubstates.BaseSubstates
 {
     public class GridSubstate : DialogueSubstate
     {

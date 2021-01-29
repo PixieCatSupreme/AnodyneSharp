@@ -41,6 +41,8 @@ namespace AnodyneSharp.States
 
         public DeathState(Player player)
         {
+            GlobalState.DeathCount++;
+
             _player = player;
             _dieDummy = new PlayerDieDummy(player.Position, GlobalState.IsCell ? Player.Cell_Player_Sprite : Player.Player_Sprite);
 

@@ -9,22 +9,22 @@ namespace AnodyneSharp.Drawing.Effects
     public class Pixelate : IFullScreenEffect
     {
         private Effect effect;
-        private float pixelation = 1f;
+        public float Pixelation { get; private set; } = 1f;
 
         public void AddPixelation(float speed)
         {
-            pixelation += speed * GameTimes.DeltaTime;
-            pixelation = Math.Max(1.0f, pixelation);
+            Pixelation += speed * GameTimes.DeltaTime;
+            Pixelation = Math.Max(1.0f, Pixelation);
         }
 
         public void SetPixelation(float p)
         {
-            pixelation = p;
+            Pixelation = p;
         }
 
         public bool Active()
         {
-            return (int)pixelation > 1;
+            return (int)Pixelation > 1;
         }
 
         public void Load(ContentManager content, GraphicsDevice graphicsDevice)
@@ -43,7 +43,7 @@ namespace AnodyneSharp.Drawing.Effects
 
         public void Update()
         {
-            effect.Parameters["StrideSize"].SetValue((int)pixelation);
+            effect.Parameters["StrideSize"].SetValue((int)Pixelation);
         }
     }
 }

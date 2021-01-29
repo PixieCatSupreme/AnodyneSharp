@@ -195,18 +195,13 @@ namespace AnodyneSharp
 
         private void SetState(GameState state)
         {
-            switch (state)
+            _currentState = state switch
             {
-                case GameState.TitleScreen:
-                    _currentState = new TitleState();
-                    break;
-                case GameState.MainMenu:
-                    break;
-                case GameState.Game:
-                    _currentState = new PlayState(_camera);
-
-                    break;
-            }
+                GameState.TitleScreen => new TitleState(),
+                GameState.MainMenu => new MainMenuState(),
+                GameState.Game => new PlayState(_camera),
+                _ => null
+            };
 
             if (_currentState != null)
             {

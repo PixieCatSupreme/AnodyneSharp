@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace AnodyneSharp.States.PauseSubstates
+namespace AnodyneSharp.States.MenuSubstates
 {
-    public class DialogueSubstate : PauseSubstate
+    public class DialogueSubstate : Substate
     {
         protected bool InDialogueMode { get; private set; }
         private DialogueState _subsubstate;
