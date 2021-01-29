@@ -55,6 +55,7 @@ namespace AnodyneSharp.Sounds
         public void Play(string song)
         {
             if (reader != null) reader.Dispose();
+            player.Stop();
             reader = new VorbisReader(song);
             BufferNeeded(null, null);
             if(player.State != SoundState.Playing)
