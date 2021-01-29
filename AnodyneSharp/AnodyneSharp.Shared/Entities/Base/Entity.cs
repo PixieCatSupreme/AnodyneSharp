@@ -210,7 +210,7 @@ namespace AnodyneSharp.Entities
                     color * opacity,
                     rotation,
                     _flip,
-                    DrawingUtilities.GetDrawingZ(layer, MapUtilities.GetInGridPosition(Position).Y));
+                    DrawingUtilities.GetDrawingZ(layer, MapUtilities.GetInGridPosition(Position).Y+height));
 
                 if (shadow != null)
                 {
