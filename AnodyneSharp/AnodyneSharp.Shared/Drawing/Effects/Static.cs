@@ -39,5 +39,8 @@ namespace AnodyneSharp.Drawing.Effects
                 effect.Parameters["step"].SetValue(static_step);
             }
         }
+
+        public void Deactivate()
+        { }
     }
 }

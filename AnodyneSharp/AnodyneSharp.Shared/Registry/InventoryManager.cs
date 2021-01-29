@@ -128,6 +128,9 @@ namespace AnodyneSharp.Registry
             HasWiden = false;
             HasTransformer = false;
 
+            _equippedBroom = BroomType.NONE;
+
+
             tradeState = TradeState.NONE;
 
             CanJump = false;

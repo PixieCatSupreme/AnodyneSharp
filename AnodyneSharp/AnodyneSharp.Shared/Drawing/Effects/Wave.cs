@@ -41,5 +41,10 @@ namespace AnodyneSharp.Drawing.Effects
             batch.Draw(screen, screen.Bounds, Color.White);
             batch.End();
         }
+
+        public void Deactivate()
+        {
+            active = false;
+        }
     }
 }

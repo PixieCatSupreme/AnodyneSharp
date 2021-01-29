@@ -141,6 +141,11 @@ namespace AnodyneSharp.Drawing.Effects
 
         }
 
+        public void Deactivate()
+        {
+            alpha = 0;
+        }
+
         internal void SetCamera(Camera camera)
         {
             this.camera = camera;

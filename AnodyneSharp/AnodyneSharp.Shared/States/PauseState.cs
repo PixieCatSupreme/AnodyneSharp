@@ -128,6 +128,11 @@ namespace AnodyneSharp.States
                         Exit = true;
                         return;
                     }
+
+                    if (_substate is SaveSubstate s && s.ReturnToTitle)
+                    {
+                        ChangeStateEvent(AnodyneGame.GameState.TitleScreen);
+                    }
                 }
             }
 

@@ -57,6 +57,7 @@ namespace AnodyneSharp.Drawing.Effects
             device = graphicsDevice;
             blend = content.Load<Effect>("effects/blend");
 
+
             blend.Parameters["HardLight"].SetValue(false);
         }
 
@@ -87,6 +88,13 @@ namespace AnodyneSharp.Drawing.Effects
             }
 
             batch.End();
+        }
+
+        public void Deactivate()
+        {
+            alpha = 0;
+
+            blend.Parameters["HardLight"].SetValue(false);
         }
     }
 }

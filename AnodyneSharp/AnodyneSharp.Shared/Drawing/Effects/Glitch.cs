@@ -45,7 +45,9 @@ namespace AnodyneSharp.Drawing.Effects
                 }
             }
         }
-        
+        public void Deactivate()
+        { }
+
         class GlitchRect
         {
             Rectangle source;

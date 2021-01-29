@@ -45,6 +45,11 @@ namespace AnodyneSharp.Drawing.Effects
         {
             effect.Parameters["StrideSize"].SetValue((int)Pixelation);
         }
+
+        public void Deactivate()
+        {
+            Pixelation = 1;
+        }
     }
 }
 

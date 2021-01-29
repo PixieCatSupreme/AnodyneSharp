@@ -20,6 +20,35 @@ namespace AnodyneSharp.Registry
 
     public static class GlobalState
     {
+        public static void ResetValues()
+        {
+            START_TIME = DateTime.Now;
+
+            FishermanDead = false;
+
+            CURRENT_MAP_NAME = "";
+            NEXT_MAP_NAME = "BLANK";
+            PLAYER_WARP_TARGET = new Vector2(23, 130 - 20); //original reports 23,130 but ends up subtracting HEADER_HEIGHT(20) from Y value
+
+            NewMapFacing = Facing.RIGHT;
+
+            _maxHealth = 6;
+            _curHealth = 6;
+
+            RefreshKeyCount = true;
+            RefreshMaxHealth = true;
+
+            AlwaysCellGraphics = false;
+            GameMode = GameMode.Normal;
+
+            OnRoof = false;
+            InDeathRoom = false;
+            HappyStarted = false;
+            SageDead = false;
+            SuburbSoft = false;
+            WindmillOpened = false;
+        }
+
         public static DateTime START_TIME;
 
         public static string Dialogue
@@ -172,6 +201,8 @@ namespace AnodyneSharp.Registry
         public static bool MovingCamera = true;
         public static bool FreeRoamCamera = false;
 #endif
+
+        public static bool ClosingGame = false;
 
         public static Darkness darkness = new Darkness();
         public static TitleScreenOverlay TitleScreenFinish = new TitleScreenOverlay();

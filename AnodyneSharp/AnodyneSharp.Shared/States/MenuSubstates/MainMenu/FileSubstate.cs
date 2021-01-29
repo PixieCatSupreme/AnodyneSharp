@@ -48,8 +48,6 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
 
             confirmState = 0;
 
-            _saveExists = true;
-
             SetLabels();
         }
 
@@ -109,6 +107,10 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
                         else
                         {
                             //TODO create save
+
+                            GlobalState.ResetValues();
+                            InventoryManager.ResetValues();
+                            AchievementManager.ResetValues();
                         }
 
                         LoadedSave = true;

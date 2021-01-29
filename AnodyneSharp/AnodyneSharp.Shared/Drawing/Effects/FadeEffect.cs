@@ -34,5 +34,10 @@ namespace AnodyneSharp.Drawing.Effects
         {
             return alpha != 0f;
         }
+
+        public void Deactivate()
+        {
+            alpha = 0;
+        }
     }
 }

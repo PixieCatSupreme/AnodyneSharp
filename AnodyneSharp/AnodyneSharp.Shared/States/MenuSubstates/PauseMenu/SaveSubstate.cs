@@ -22,6 +22,8 @@ namespace AnodyneSharp.States.MenuSubstates
             QuitLabel
         }
 
+        public bool ReturnToTitle { get; private set; }
+
         private UILabel _saveLabel;
         private UILabel _saveTitleLable;
         private UILabel _saveQuitLabel;
@@ -93,7 +95,34 @@ namespace AnodyneSharp.States.MenuSubstates
             else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept))
             {
                 SoundManager.PlaySoundEffect("menu_select");
-                //TODO Saving
+
+
+                bool save = true;
+
+                switch (_state)
+                {
+                    case SaveState.SaveLabel:
+
+                        break;
+                    case SaveState.SaveTitleLable:
+                        ReturnToTitle = true;
+                        ExitSubState();
+                        break;
+                    case SaveState.SaveQuitLabel:
+                        GlobalState.ClosingGame = true;
+                        break;
+                    case SaveState.QuitLabel:
+                        save = false;
+                        GlobalState.ClosingGame = true;
+                        break;
+                    default:
+                        break;
+                }
+
+                if (save)
+                {
+                    //TODO Saving
+                }
             }
             else
             {

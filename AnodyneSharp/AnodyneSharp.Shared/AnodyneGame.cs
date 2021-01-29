@@ -86,6 +86,7 @@ namespace AnodyneSharp
 
             SpriteDrawer.Initialize(graphics.GraphicsDevice);
 
+            GlobalState.ResetValues();
             InventoryManager.ResetValues();
             AchievementManager.ResetValues();
 
@@ -106,9 +107,6 @@ namespace AnodyneSharp
         /// </summary>
         protected override void LoadContent()
         {
-            GlobalState.NEXT_MAP_NAME = "BLANK";
-            GlobalState.PLAYER_WARP_TARGET = new Vector2(23, 130 - 20); //original reports 23,130 but ends up subtracting HEADER_HEIGHT(20) from Y value
-
             ResourceManager.LoadResources(Content);
             CardDataManager.ReadCardData();
 
@@ -161,6 +159,11 @@ namespace AnodyneSharp
             {
                 GlobalState.ShowFPS = !GlobalState.ShowFPS;
             }
+
+            if (GlobalState.ClosingGame)
+            {
+                Exit();
+            }
         }
 
         /// <summary>
@@ -195,6 +198,11 @@ namespace AnodyneSharp
 
         private void SetState(GameState state)
         {
+            foreach (var effect in GlobalState.AllEffects)
+            {
+                effect.Deactivate();
+            }
+
             _currentState = state switch
             {
                 GameState.TitleScreen => new TitleState(),

@@ -14,6 +14,8 @@ namespace AnodyneSharp.Drawing.Effects
         //Returns true if the effect needs to be applied
         public bool Active();
 
+        public void Deactivate();
+
         public void Update() { }
     }
 }

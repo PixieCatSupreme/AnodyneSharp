@@ -439,6 +439,7 @@ namespace AnodyneSharp.States
             if (KeyInput.JustPressedRebindableKey(KeyFunctions.Pause) && !GlobalState.disable_menu)
             {
                 _childState = new PauseState();
+                _childState.ChangeStateEvent = ChangeStateEvent;
                 SoundManager.PlaySoundEffect("pause_sound");
                 return;
             }
