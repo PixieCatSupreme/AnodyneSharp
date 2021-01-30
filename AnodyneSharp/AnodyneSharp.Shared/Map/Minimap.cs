@@ -10,7 +10,7 @@ namespace AnodyneSharp.Map
 {
     public class Minimap
     {
-        int[] interest;
+        List<int> interest;
         public readonly TileMap tiles;
 
         private int CurrentLoc => GlobalState.CURRENT_GRID_X + GlobalState.CURRENT_GRID_Y * tiles.Width;
@@ -18,10 +18,10 @@ namespace AnodyneSharp.Map
         private const int PlayerIndicator = 27;
         private const int ChestIndicator = 18;
 
-        public Minimap(TileMap map)
+        public Minimap(TileMap map, List<int> interest)
         {
             tiles = map;
-            interest = new int[map.Width * map.Height];
+            this.interest = interest;
         }
 
         public void Update()
@@ -37,13 +37,13 @@ namespace AnodyneSharp.Map
         //Points-of-interest(only chests for now) get added to the minimap and removed if opened.
         public void AddInterest()
         {
-            if(interest.Length > 0)
+            if(interest.Count > 0)
                 interest[CurrentLoc] += 1;
         }
 
         public void RemoveInterest()
         {
-            if(interest.Length > 0)
+            if(interest.Count > 0)
                 interest[CurrentLoc] -= 1;
         }
 

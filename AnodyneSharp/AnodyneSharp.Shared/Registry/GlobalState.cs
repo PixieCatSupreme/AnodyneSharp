@@ -48,6 +48,7 @@ namespace AnodyneSharp.Registry
             SuburbSoft = false;
             WindmillOpened = false;
 
+            minimaps = new();
             events = new();
             inventory = new();
             achievements = new();
@@ -132,7 +133,7 @@ namespace AnodyneSharp.Registry
         public delegate void Spawn(Entity e);
         public static Spawn SpawnEntity;
 
-        private static MinimapTracker minimaps = new MinimapTracker();
+        private static MinimapTracker minimaps = new();
 
         public static Minimap CurrentMinimap => minimaps.GetMinimap(CURRENT_MAP_NAME);
 
@@ -140,8 +141,8 @@ namespace AnodyneSharp.Registry
         public static InventoryManager inventory = new();
         public static AchievementManager achievements = new();
 
-        public static Facing NewMapFacing = Facing.RIGHT;
 
+        public static Facing NewMapFacing = Facing.RIGHT;
         public static bool WARP = false;
         public static string NEXT_MAP_NAME;
         public static DoorMapPair ReturnTarget = null;
