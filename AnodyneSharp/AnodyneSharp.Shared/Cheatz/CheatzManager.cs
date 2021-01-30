@@ -81,9 +81,9 @@ namespace AnodyneSharp.Cheatz
         [Cheat("UDUD121212")]
         public static void UnlockNexusGates()
         {
-            for (int i = 0; i < GlobalState.ActivatedNexusPortals.Length; i++)
+            foreach(var map in (GameConstants.MapOrder[])Enum.GetValues(typeof(GameConstants.MapOrder)))
             {
-                GlobalState.ActivatedNexusPortals[i] = true;
+                GlobalState.events.ActivatedNexusPortals.Add(map.ToString());
             }
 
             SoundManager.PlaySoundEffect("menu_select");

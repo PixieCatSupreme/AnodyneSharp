@@ -152,8 +152,6 @@ namespace AnodyneSharp.Registry
         public static bool RefreshMaxHealth = false;
         public static bool RefreshLabels = false;
 
-        public static bool[] ActivatedNexusPortals { get; private set; } = Enumerable.Repeat(false, 21).ToArray();
-
         public static bool autosave_on = true;
         public static (string, Vector2) checkpoint = ("",Vector2.Zero);
 

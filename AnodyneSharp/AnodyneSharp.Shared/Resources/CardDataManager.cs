@@ -91,7 +91,7 @@ namespace AnodyneSharp.Resources
         {
             if (!_cardLocations.ContainsKey(mapName))
             {
-                return GlobalState.ActivatedNexusPortals[MapUtilities.GetMapID(mapName)];
+                return GlobalState.events.ActivatedNexusPortals.Contains(mapName);
             }
 
             foreach (int cardID in _cardLocations[mapName].Values)

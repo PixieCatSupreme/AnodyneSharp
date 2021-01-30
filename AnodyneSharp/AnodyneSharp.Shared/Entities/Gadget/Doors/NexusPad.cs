@@ -35,7 +35,7 @@ namespace AnodyneSharp.Entities.Gadget.Doors
             }
             Play("off");
 
-            GlobalState.ActivatedNexusPortals[MapUtilities.GetMapID(GlobalState.CURRENT_MAP_NAME)] = true;
+            GlobalState.events.ActivatedNexusPortals.Add(GlobalState.CURRENT_MAP_NAME);
         }
 
         public override void Update()

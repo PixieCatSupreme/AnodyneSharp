@@ -53,6 +53,8 @@ namespace AnodyneSharp.States
 
                         GlobalState.NEXT_MAP_NAME = "BLANK";
 
+                        GlobalState.events.ActivatedNexusPortals.Add("STREET");
+
                         ChangeStateEvent(AnodyneGame.GameState.Game);
                     })
                 .End()

@@ -84,13 +84,12 @@ namespace AnodyneSharp.Entities.Gadget.Doors
             {
                 height += 25;
 
-                int mapID = (int)Enum.Parse(typeof(GameConstants.MapOrder), map);
-
-                if (!GlobalState.ActivatedNexusPortals[mapID])
+                if (!GlobalState.events.ActivatedNexusPortals.Contains(map))
                 {
                     exists = false;
                 }
 
+                int mapID = (int)Enum.Parse(typeof(GameConstants.MapOrder), map);
                 int animStart = mapID * 4;
 
                 AddAnimation("preview", CreateAnimFrameArray(animStart, animStart + 1, animStart + 2, animStart + 3), 10);

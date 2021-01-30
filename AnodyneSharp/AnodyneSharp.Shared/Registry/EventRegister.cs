@@ -8,6 +8,8 @@ namespace AnodyneSharp.Registry
     {
         public HashSet<string> VisitedMaps = new();
 
+        public HashSet<string> ActivatedNexusPortals = new();
+
         public HashSet<string> BossDefeated = new();
 
         public HashSet<string> LeftAfterBoss = new();

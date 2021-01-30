@@ -62,9 +62,6 @@ namespace AnodyneSharp
             //_baseFolder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             _baseFolder = "";
 
-            GlobalState.ActivatedNexusPortals[MapUtilities.GetMapID("STREET")] = true;
-
-
 #if WINDOWS
             InitGraphics();
 #endif
