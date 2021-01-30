@@ -138,7 +138,7 @@ namespace AnodyneSharp.States
 
                         _player.ANIM_STATE = PlayerAnimState.as_slumped;
 
-                        InventoryManager.EquippedBroom =  BroomType.NONE;
+                        GlobalState.inventory.EquippedBroom =  BroomType.NONE;
 
                         GlobalState.InDeathRoom = true;
                     }

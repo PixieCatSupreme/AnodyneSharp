@@ -557,11 +557,11 @@ namespace AnodyneSharp.Entities
             {
                 if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept) && action_latency <= 0 && !skipBroom)
                 {
-                    if(InventoryManager.EquippedBroom == BroomType.Transformer)
+                    if(GlobalState.inventory.EquippedBroom == BroomType.Transformer)
                     {
                         //TODO transformer stuff
                     }
-                    else if (InventoryManager.EquippedBroom != BroomType.NONE && !broom.exists)
+                    else if (GlobalState.inventory.EquippedBroom != BroomType.NONE && !broom.exists)
                     {
                         broom.Attack();
                         action_latency = action_latency_max;

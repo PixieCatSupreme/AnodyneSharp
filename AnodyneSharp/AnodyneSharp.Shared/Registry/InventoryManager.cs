@@ -5,11 +5,11 @@ using System.Linq;
 
 namespace AnodyneSharp.Registry
 {
-    public static class InventoryManager
+    public class InventoryManager
     {
         //Inventory stuff
 
-        public static bool HasAnyBroom
+        public bool HasAnyBroom
         {
             get
             {
@@ -17,7 +17,7 @@ namespace AnodyneSharp.Registry
             }
         }
 
-        public static bool HasEveryBroom
+        public bool HasEveryBroom
         {
             get
             {
@@ -25,7 +25,7 @@ namespace AnodyneSharp.Registry
             }
         }
 
-        public static bool HasBroomType(BroomType type)
+        public bool HasBroomType(BroomType type)
         {
             return type switch
             {
@@ -37,7 +37,7 @@ namespace AnodyneSharp.Registry
             };
         }
 
-        public static BroomType EquippedBroom
+        public BroomType EquippedBroom
         {
             get
             {
@@ -64,7 +64,7 @@ namespace AnodyneSharp.Registry
             }
         }
 
-        public static int CardCount
+        public int CardCount
         {
             get
             {
@@ -72,7 +72,7 @@ namespace AnodyneSharp.Registry
             }
         }
 
-        public static bool UnlockedSecretz
+        public bool UnlockedSecretz
         {
             get
             {
@@ -80,7 +80,7 @@ namespace AnodyneSharp.Registry
             }
         }
 
-        public static bool UnlockedAllSecretz
+        public bool UnlockedAllSecretz
         {
             get
             {
@@ -88,14 +88,14 @@ namespace AnodyneSharp.Registry
             }
         }
 
-        public static bool EquippedBroomChanged = false;
+        public bool EquippedBroomChanged = false;
 
-        public static bool HasBroom = false;
-        public static bool HasLenghten = false;
-        public static bool HasWiden = false;
-        public static bool HasTransformer = false;
+        public bool HasBroom = false;
+        public bool HasLenghten = false;
+        public bool HasWiden = false;
+        public bool HasTransformer = false;
 
-        public static bool CanJump = false;
+        public bool CanJump = false;
 
         public enum TradeState
         {
@@ -104,44 +104,21 @@ namespace AnodyneSharp.Registry
             BOX
         };
 
-        public static TradeState tradeState;
+        public TradeState tradeState = TradeState.NONE;
 
-        public static bool[] CardStatus;
-        public static bool[] SecretStatus;
-        public static bool[] BigKeyStatus;
+        public bool[] CardStatus = Enumerable.Repeat(false, 49).ToArray();
+        public bool[] SecretStatus = Enumerable.Repeat(false, 13).ToArray();
+        public bool[] BigKeyStatus = Enumerable.Repeat(false, 3).ToArray();
 
-        private static Dictionary<string, int> _mapKeys;
-        private static BroomType _equippedBroom = BroomType.NONE;
+        private Dictionary<string, int> _mapKeys = new();
+        private BroomType _equippedBroom = BroomType.NONE;
 
-        public static void ResetValues()
-        {
-            DebugLogger.AddInfo("Setting inventory progress to default");
-
-            _mapKeys = new Dictionary<string, int>();
-
-            CardStatus = Enumerable.Repeat(false, 49).ToArray();
-            SecretStatus = Enumerable.Repeat(false, 13).ToArray();
-            BigKeyStatus = Enumerable.Repeat(false, 3).ToArray();
-
-            HasBroom = false;
-            HasLenghten = false;
-            HasWiden = false;
-            HasTransformer = false;
-
-            _equippedBroom = BroomType.NONE;
-
-
-            tradeState = TradeState.NONE;
-
-            CanJump = false;
-        }
-
-        public static int GetCurrentMapKeys()
+        public int GetCurrentMapKeys()
         {
             return GetMapKeys(GlobalState.CURRENT_MAP_NAME);
         }
 
-        public static int GetMapKeys(string mapName)
+        public int GetMapKeys(string mapName)
         {
             if (!_mapKeys.ContainsKey(mapName))
             {
@@ -151,17 +128,17 @@ namespace AnodyneSharp.Registry
             return _mapKeys[mapName];
         }
 
-        public static int AddCurrentMapKey()
+        public int AddCurrentMapKey()
         {
             return AddMapKey(GlobalState.CURRENT_MAP_NAME, 1);
         }
 
-        public static int RemoveCurrentMapKey()
+        public int RemoveCurrentMapKey()
         {
             return AddMapKey(GlobalState.CURRENT_MAP_NAME, -1);
         }
 
-        public static int AddMapKey(string mapName, int addition)
+        public int AddMapKey(string mapName, int addition)
         {
             GlobalState.RefreshKeyCount = true;
 

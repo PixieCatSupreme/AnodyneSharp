@@ -11,7 +11,6 @@ namespace AnodyneSharp.Entities.Gadget.Doors
     public class DirectionalDoor : Door
     {
         Facing _exitDirection;
-        Player _player;
 
         public DirectionalDoor(EntityPreset preset, Player player, Facing facing, int offsetSize)
             : base(preset, player)
@@ -21,8 +20,6 @@ namespace AnodyneSharp.Entities.Gadget.Doors
             teleportOffset = FacingDirection(facing) * offsetSize;
 
             _exitDirection = facing;
-
-            _player = player;
         }
 
         protected override void TeleportPlayer()

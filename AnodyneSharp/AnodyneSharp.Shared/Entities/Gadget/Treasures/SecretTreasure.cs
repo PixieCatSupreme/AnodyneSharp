@@ -21,11 +21,11 @@ namespace AnodyneSharp.Entities.Gadget.Treasures
         {
             base.GetTreasure();
 
-            InventoryManager.SecretStatus[_secretID] = true;
+            GlobalState.inventory.SecretStatus[_secretID] = true;
 
             DebugLogger.AddInfo($"Got secret {_secretID}");
 
-            AchievementManager.CheckCubeAchievements();
+            GlobalState.achievements.CheckCubeAchievements();
         }
     }
 }

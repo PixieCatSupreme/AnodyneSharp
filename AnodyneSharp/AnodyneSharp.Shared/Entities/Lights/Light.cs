@@ -66,7 +66,7 @@ namespace AnodyneSharp.Entities.Lights
         {
             base.Update();
             
-            if (EventRegister.BossDefeated.Contains("BEDROOM"))
+            if (GlobalState.events.BossDefeated.Contains("BEDROOM"))
             {
                 preset.Alive = exists = false;
                 return;

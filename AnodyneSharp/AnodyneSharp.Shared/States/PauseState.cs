@@ -43,7 +43,7 @@ namespace AnodyneSharp.States
         {
             get
             {
-                return InventoryManager.UnlockedSecretz ? PauseStateState.Secretz : PauseStateState.Achievements;
+                return GlobalState.inventory.UnlockedSecretz ? PauseStateState.Secretz : PauseStateState.Achievements;
             }
         }
 
@@ -292,7 +292,7 @@ namespace AnodyneSharp.States
             _playtimeLabel.SetText("00:00:00");
             _inputLabel.SetText($"{DialogueManager.GetDialogue("misc", "any", "secrets", 13)} {DialogueManager.GetDialogue("misc", "any", "secrets", 14)}");
 
-            _secretsLabel.IsVisible = InventoryManager.UnlockedSecretz;
+            _secretsLabel.IsVisible = GlobalState.inventory.UnlockedSecretz;
         }
     }
 }

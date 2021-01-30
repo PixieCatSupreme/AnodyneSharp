@@ -88,8 +88,6 @@ namespace AnodyneSharp
             SpriteDrawer.Initialize(graphics.GraphicsDevice);
 
             GlobalState.ResetValues();
-            InventoryManager.ResetValues();
-            AchievementManager.ResetValues();
 
             EntityManager.Initialize();
 

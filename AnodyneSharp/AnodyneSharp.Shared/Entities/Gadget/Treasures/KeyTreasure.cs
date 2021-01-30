@@ -17,7 +17,7 @@ namespace AnodyneSharp.Entities.Gadget.Treasures
         {
             base.GetTreasure();
 
-            InventoryManager.AddCurrentMapKey();
+            GlobalState.inventory.AddCurrentMapKey();
         }
     }
 }

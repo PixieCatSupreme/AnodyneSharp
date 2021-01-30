@@ -112,8 +112,6 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
                             NewSave = true;
 
                             GlobalState.ResetValues();
-                            InventoryManager.ResetValues();
-                            AchievementManager.ResetValues();
                         }
 
                         LoadedSave = true;
@@ -328,7 +326,7 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
 
             _timeLabel.SetText("00:00:00");
             _deathLabel.SetText($"{GlobalState.DeathCount} " + DialogueManager.GetDialogue("misc", "any", "title", 22));
-            _cardLabel.SetText($"{InventoryManager.CardCount} " + DialogueManager.GetDialogue("misc", "any", "title", 23));
+            _cardLabel.SetText($"{GlobalState.inventory.CardCount} " + DialogueManager.GetDialogue("misc", "any", "title", 23));
 
             SetConfirmation();
         }

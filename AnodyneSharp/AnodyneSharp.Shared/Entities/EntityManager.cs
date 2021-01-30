@@ -84,7 +84,7 @@ namespace AnodyneSharp.Entities
             }
             catch (Exception e)
             {
-                if(EventRegister.VisitedMaps.Contains("NEXUS"))
+                if(GlobalState.events.VisitedMaps.Contains("NEXUS"))
                 {
                     var t = GetMapEntities("NEXUS").Where(p => p.Type == typeof(DungeonEntrance)).Single();
                     return new DoorMapPair(t, "NEXUS");

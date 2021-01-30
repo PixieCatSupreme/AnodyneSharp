@@ -29,24 +29,16 @@ namespace AnodyneSharp.Registry
         Sub3Hour100Percent  //"100% the game under 3 hours. You 100%'d and finished the game in under 3 hours!"
     }
 
-    public static class AchievementManager
+    public class AchievementManager
     {
-        public static bool[] AchievementStatus;
-        public static bool AchievementsDisabled = false;
+        public bool[] AchievementStatus = Enumerable.Repeat(false, 18).ToArray();
+        public bool AchievementsDisabled = false;
 
-        public static void ResetValues()
-        {
-            DebugLogger.AddInfo("Setting achievement progress to default");
-            AchievementStatus = Enumerable.Repeat(false, 18).ToArray();
-
-            AchievementsDisabled = false;
-        }
-
-        public static void CheckCardAchievements()
+        public void CheckCardAchievements()
         {
             if (!AchievementsDisabled)
             {
-                int cc = InventoryManager.CardCount;
+                int cc = GlobalState.inventory.CardCount;
 
                 if (cc >= 1)
                 {
@@ -68,19 +60,19 @@ namespace AnodyneSharp.Registry
         }
 
         //Will only check after defeating Briar
-        public static void CheckInventoryAchievements()
+        public void CheckInventoryAchievements()
         {
             if (!AchievementsDisabled)
             {
-                int cc = InventoryManager.CardCount;
+                int cc = GlobalState.inventory.CardCount;
 
-                if (GlobalState.MAX_HEALTH == 16 && InventoryManager.HasEveryBroom)
+                if (GlobalState.MAX_HEALTH == 16 && GlobalState.inventory.HasEveryBroom)
                 {
                     if (cc >= 37)
                     {
                         UnlockAchievement(AchievementValue.HundredPercent);
                     }
-                    if (cc >= 49 && InventoryManager.UnlockedAllSecretz)
+                    if (cc >= 49 && GlobalState.inventory.UnlockedAllSecretz)
                     {
                         UnlockAchievement(AchievementValue.TwoHundredPercent);
                     }
@@ -88,12 +80,12 @@ namespace AnodyneSharp.Registry
             }
         }
 
-        public static void CheckCubeAchievements()
+        public void CheckCubeAchievements()
         {
             if (!AchievementsDisabled)
             {
-                bool hasColorCubes = InventoryManager.SecretStatus[11] && InventoryManager.SecretStatus[12] && InventoryManager.SecretStatus[13];
-                bool hasBwCubes = InventoryManager.SecretStatus[10] && InventoryManager.SecretStatus[14];
+                bool hasColorCubes = GlobalState.inventory.SecretStatus[11] && GlobalState.inventory.SecretStatus[12] && GlobalState.inventory.SecretStatus[13];
+                bool hasBwCubes = GlobalState.inventory.SecretStatus[10] && GlobalState.inventory.SecretStatus[14];
 
                 if (hasColorCubes)
                 {
@@ -112,7 +104,7 @@ namespace AnodyneSharp.Registry
             }
         }
 
-        public static void UnlockAchievement(AchievementValue achievement)
+        public void UnlockAchievement(AchievementValue achievement)
         {
             int id = (int)achievement;
 

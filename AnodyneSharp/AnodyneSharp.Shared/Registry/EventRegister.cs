@@ -4,12 +4,12 @@ using System.Text;
 
 namespace AnodyneSharp.Registry
 {
-    public static class EventRegister
+    public class EventRegister
     {
-        public static HashSet<string> VisitedMaps = new();
+        public HashSet<string> VisitedMaps = new();
 
-        public static HashSet<string> BossDefeated = new();
+        public HashSet<string> BossDefeated = new();
 
-        public static HashSet<string> LeftAfterBoss = new();
+        public HashSet<string> LeftAfterBoss = new();
     }
 }

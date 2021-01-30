@@ -79,7 +79,7 @@ namespace AnodyneSharp.Entities
     {
         public SageNexus(EntityPreset preset, Player p) : base(preset, p)
         {
-            if(EventRegister.BossDefeated.Contains("TERMINAL"))
+            if(GlobalState.events.BossDefeated.Contains("TERMINAL"))
             {
                 preset.Alive = exists = false;
             }
@@ -124,7 +124,7 @@ namespace AnodyneSharp.Entities
     {
         public SageOverworld(EntityPreset preset, Player p) : base(preset, p)
         {
-            if (EventRegister.BossDefeated.Contains("BEDROOM"))
+            if (GlobalState.events.BossDefeated.Contains("BEDROOM"))
             {
                 preset.Alive = exists = false;
             }
@@ -194,7 +194,7 @@ namespace AnodyneSharp.Entities
     {
         public SageBedroom(EntityPreset preset, Player p) : base(preset, p)
         {
-            if (EventRegister.LeftAfterBoss.Contains("BEDROOM"))
+            if (GlobalState.events.LeftAfterBoss.Contains("BEDROOM"))
             {
                 preset.Alive = exists = false;
             }

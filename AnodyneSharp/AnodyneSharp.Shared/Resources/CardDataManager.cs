@@ -98,7 +98,7 @@ namespace AnodyneSharp.Resources
             {
                 if (cardID < 36 || cardID == 43)
                 {
-                    if (!InventoryManager.CardStatus[cardID])
+                    if (!GlobalState.inventory.CardStatus[cardID])
                     {
                         return false;
                     }

@@ -26,7 +26,7 @@ namespace AnodyneSharp.Entities.Gadget
             if (visible)
             {
                 visible = false;
-                InventoryManager.AddCurrentMapKey();
+                GlobalState.inventory.AddCurrentMapKey();
                 SoundManager.PlaySoundEffect("keyget");
                 _preset.Alive = false;
             }

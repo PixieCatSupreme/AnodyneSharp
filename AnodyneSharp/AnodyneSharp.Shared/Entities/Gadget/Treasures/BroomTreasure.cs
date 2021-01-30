@@ -39,18 +39,18 @@ namespace AnodyneSharp.Entities.Gadget.Treasures
             switch (_type)
             {
                 case BroomType.Normal:
-                    InventoryManager.HasBroom = true;
-                    InventoryManager.EquippedBroom = BroomType.Normal;
-                    AchievementManager.UnlockAchievement(AchievementValue.GetBroom);
+                    GlobalState.inventory.HasBroom = true;
+                    GlobalState.inventory.EquippedBroom = BroomType.Normal;
+                    GlobalState.achievements.UnlockAchievement(AchievementValue.GetBroom);
                     break;
                 case BroomType.Wide:
-                    InventoryManager.HasLenghten = true;
+                    GlobalState.inventory.HasLenghten = true;
                     break;
                 case BroomType.Long:
-                    InventoryManager.HasWiden = true;
+                    GlobalState.inventory.HasWiden = true;
                     break;
                 case BroomType.Transformer:
-                    InventoryManager.HasTransformer = true;
+                    GlobalState.inventory.HasTransformer = true;
                     break;
             }
         }

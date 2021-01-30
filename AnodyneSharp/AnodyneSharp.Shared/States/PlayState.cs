@@ -137,7 +137,7 @@ namespace AnodyneSharp.States
 
             _state = PlayStateState.S_MAP_ENTER;
             GlobalState.pixelation.SetPixelation(10);
-            GlobalState.black_overlay.alpha  = 1;
+            GlobalState.black_overlay.ForceAlpha(1);
         }
 
         public override void Draw()
@@ -188,7 +188,7 @@ namespace AnodyneSharp.States
             SpriteDrawer.DrawGuiSprite(_header, Vector2.Zero, Z: DrawingUtilities.GetDrawingZ(DrawOrder.HEADER));
 
 
-            if (InventoryManager.EquippedBroom != BroomType.NONE && _equippedBroomIcon != null)
+            if (GlobalState.inventory.EquippedBroom != BroomType.NONE && _equippedBroomIcon != null)
             {
                 SpriteDrawer.DrawGuiSprite(_equippedBroomIcon, _iconPos, Z: DrawingUtilities.GetDrawingZ(DrawOrder.UI_OBJECTS));
             }
@@ -333,9 +333,9 @@ namespace AnodyneSharp.States
 
         private void Refreshes()
         {
-            if (InventoryManager.EquippedBroomChanged)
+            if (GlobalState.inventory.EquippedBroomChanged)
             {
-                InventoryManager.EquippedBroomChanged = false;
+                GlobalState.inventory.EquippedBroomChanged = false;
 
                 UpdateBroomIcon();
             }
@@ -357,7 +357,7 @@ namespace AnodyneSharp.States
             if (GlobalState.RefreshKeyCount)
             {
                 GlobalState.RefreshKeyCount = false;
-                _keyValueLabel.SetText($"x{InventoryManager.GetCurrentMapKeys()}");
+                _keyValueLabel.SetText($"x{GlobalState.inventory.GetCurrentMapKeys()}");
             }
 
             if (GlobalState.GameMode == GameMode.EXTREME_CHAOS)
@@ -718,12 +718,12 @@ namespace AnodyneSharp.States
 #endif
         private void SwitchBroom(bool nextBroom)
         {
-            if (!InventoryManager.HasBroom)
+            if (!GlobalState.inventory.HasBroom)
             {
                 return;
             }
 
-            BroomType broomType = InventoryManager.EquippedBroom;
+            BroomType broomType = GlobalState.inventory.EquippedBroom;
 
             if (!GlobalState.CanChangeBroom)
             {
@@ -735,7 +735,7 @@ namespace AnodyneSharp.States
                 {
                     broomType += nextBroom ? 1 : -1;
                     broomType = (BroomType)(((int)broomType + (int)BroomType.Transformer + 1) % ((int)BroomType.Transformer + 1));
-                } while (!InventoryManager.HasBroomType(broomType));
+                } while (!GlobalState.inventory.HasBroomType(broomType));
             }
 
             SetBroom(broomType);
@@ -744,8 +744,8 @@ namespace AnodyneSharp.States
 
         private void SetBroom(BroomType broom)
         {
-            InventoryManager.EquippedBroom = broom;
-            if (InventoryManager.EquippedBroomChanged)
+            GlobalState.inventory.EquippedBroom = broom;
+            if (GlobalState.inventory.EquippedBroomChanged)
             {
                 SoundManager.PlaySoundEffect("menu_move");
                 UpdateBroomIcon();
@@ -771,14 +771,14 @@ namespace AnodyneSharp.States
 
         private void UpdateBroomIcon()
         {
-            if (InventoryManager.EquippedBroom == BroomType.NONE)
+            if (GlobalState.inventory.EquippedBroom == BroomType.NONE)
             {
                 return;
             }
 
             string tex = "";
 
-            BroomType broom = InventoryManager.EquippedBroom;
+            BroomType broom = GlobalState.inventory.EquippedBroom;
 
             switch (broom)
             {
@@ -805,10 +805,10 @@ namespace AnodyneSharp.States
             if (GlobalState.CURRENT_MAP_NAME != GlobalState.NEXT_MAP_NAME)
             {
 
-                EventRegister.VisitedMaps.Add(GlobalState.NEXT_MAP_NAME);
-                if (EventRegister.BossDefeated.Contains(GlobalState.CURRENT_MAP_NAME))
+                GlobalState.events.VisitedMaps.Add(GlobalState.NEXT_MAP_NAME);
+                if (GlobalState.events.BossDefeated.Contains(GlobalState.CURRENT_MAP_NAME))
                 {
-                    EventRegister.LeftAfterBoss.Add(GlobalState.CURRENT_MAP_NAME);
+                    GlobalState.events.LeftAfterBoss.Add(GlobalState.CURRENT_MAP_NAME);
                 }
 
                 GlobalState.CURRENT_MAP_NAME = GlobalState.NEXT_MAP_NAME;

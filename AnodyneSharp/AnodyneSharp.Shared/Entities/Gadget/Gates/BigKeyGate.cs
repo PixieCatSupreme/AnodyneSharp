@@ -80,7 +80,7 @@ namespace AnodyneSharp.Entities.Gadget
 
         public override bool TryUnlock()
         {
-            if (InventoryManager.BigKeyStatus[_curAnim.Frame - 5])
+            if (GlobalState.inventory.BigKeyStatus[_curAnim.Frame - 5])
             {
                 activated = true;
                 return true;

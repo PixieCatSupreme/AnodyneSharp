@@ -55,27 +55,27 @@ namespace AnodyneSharp.Cheatz
             GlobalState.MAX_HEALTH = 16;
             GlobalState.CUR_HEALTH = GlobalState.MAX_HEALTH;
 
-            InventoryManager.HasBroom = true;
-            InventoryManager.HasLenghten = true;
-            InventoryManager.HasWiden = true;
-            InventoryManager.HasTransformer = true;
-            InventoryManager.CanJump = true;
+            GlobalState.inventory.HasBroom = true;
+            GlobalState.inventory.HasLenghten = true;
+            GlobalState.inventory.HasWiden = true;
+            GlobalState.inventory.HasTransformer = true;
+            GlobalState.inventory.CanJump = true;
 
 #if RELEASE
             AchievementManager.AchievementsDisabled = true;
 #endif
 
-            for (int i = 0; i < InventoryManager.CardStatus.Length; i++)
+            for (int i = 0; i < GlobalState.inventory.CardStatus.Length; i++)
             {
-                InventoryManager.CardStatus[i] = true;
+                GlobalState.inventory.CardStatus[i] = true;
             }
 
-            for (int i = 0; i < InventoryManager.SecretStatus.Length; i++)
+            for (int i = 0; i < GlobalState.inventory.SecretStatus.Length; i++)
             {
-                InventoryManager.SecretStatus[i] = true;
+                GlobalState.inventory.SecretStatus[i] = true;
             }
 
-            InventoryManager.EquippedBroom = InventoryManager.EquippedBroom == Entities.BroomType.NONE ? Entities.BroomType.Normal : InventoryManager.EquippedBroom;
+            GlobalState.inventory.EquippedBroom = GlobalState.inventory.EquippedBroom == Entities.BroomType.NONE ? Entities.BroomType.Normal : GlobalState.inventory.EquippedBroom;
         }
 
         [Cheat("UDUD121212")]
@@ -100,11 +100,11 @@ namespace AnodyneSharp.Cheatz
         [Cheat("12UULLRRDD")]
         public static void GiveKey()
         {
-            InventoryManager.AddCurrentMapKey();
+            GlobalState.inventory.AddCurrentMapKey();
             SoundManager.PlaySoundEffect("keyget");
             GlobalState.RefreshKeyCount = true;
 
-            AchievementManager.AchievementsDisabled = true;
+            GlobalState.achievements.AchievementsDisabled = true;
         }
 
         [Cheat("ULRDDLRU12")]
@@ -149,9 +149,9 @@ namespace AnodyneSharp.Cheatz
             SoundManager.PlaySoundEffect("meow");
 
 #if DEBUG
-            for (int i = 0; i < AchievementManager.AchievementStatus.Length; i++)
+            for (int i = 0; i < GlobalState.achievements.AchievementStatus.Length; i++)
             {
-                AchievementManager.AchievementStatus[i] = true;
+                GlobalState.achievements.AchievementStatus[i] = true;
             }
 #endif
         }

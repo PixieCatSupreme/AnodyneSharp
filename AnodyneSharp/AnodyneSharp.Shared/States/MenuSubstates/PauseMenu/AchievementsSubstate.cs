@@ -19,7 +19,7 @@ namespace AnodyneSharp.States.MenuSubstates
     public class AchievementsSubstate : GridSubstate
     {
         public AchievementsSubstate()
-            :base("achievements", "achievements", AchievementManager.AchievementStatus)
+            :base("achievements", "achievements", GlobalState.achievements.AchievementStatus)
         {
 
         }

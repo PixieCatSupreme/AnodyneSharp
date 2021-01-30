@@ -19,7 +19,7 @@ namespace AnodyneSharp.States.MenuSubstates
     public class SecretSubstate : GridSubstate
     {
         public SecretSubstate()
-            :base("secrets", "secret_trophies", InventoryManager.SecretStatus)
+            :base("secrets", "secret_trophies", GlobalState.inventory.SecretStatus)
         {
 
         }

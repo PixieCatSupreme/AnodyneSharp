@@ -153,11 +153,11 @@ namespace AnodyneSharp.Entities
 
                     o = new Vector2(0, -6);
 
-                    if (InventoryManager.EquippedBroom == BroomType.Wide)
+                    if (GlobalState.inventory.EquippedBroom == BroomType.Wide)
                     {
                         SetWideValues(o, new Vector2(-5, 1));
                     }
-                    else if (InventoryManager.EquippedBroom == BroomType.Long)
+                    else if (GlobalState.inventory.EquippedBroom == BroomType.Long)
                     {
                         SetLongValues(o, new Vector2(-14, 7));
                     }
@@ -177,11 +177,11 @@ namespace AnodyneSharp.Entities
 
                     o = new Vector2(5, -6);
 
-                    if (InventoryManager.EquippedBroom == BroomType.Wide)
+                    if (GlobalState.inventory.EquippedBroom == BroomType.Wide)
                     {
                         SetWideValues(o, new Vector2(2, 3));
                     }
-                    else if (InventoryManager.EquippedBroom == BroomType.Long)
+                    else if (GlobalState.inventory.EquippedBroom == BroomType.Long)
                     {
                         SetLongValues(o, new Vector2(0, 9));
                     }
@@ -200,11 +200,11 @@ namespace AnodyneSharp.Entities
 
                     o = new Vector2(-2, 0);
 
-                    if (InventoryManager.EquippedBroom == BroomType.Wide)
+                    if (GlobalState.inventory.EquippedBroom == BroomType.Wide)
                     {
                         SetWideValues(o, new Vector2(5, -7));
                     }
-                    else if (InventoryManager.EquippedBroom == BroomType.Long)
+                    else if (GlobalState.inventory.EquippedBroom == BroomType.Long)
                     {
                         SetLongValues(o, new Vector2(0, -6));
                     }
@@ -223,11 +223,11 @@ namespace AnodyneSharp.Entities
 
                     o = new Vector2(-2, 4);
 
-                    if (InventoryManager.EquippedBroom == BroomType.Wide)
+                    if (GlobalState.inventory.EquippedBroom == BroomType.Wide)
                     {
                         SetWideValues(o, new Vector2(3, -1));
                     }
-                    else if (InventoryManager.EquippedBroom == BroomType.Long)
+                    else if (GlobalState.inventory.EquippedBroom == BroomType.Long)
                     {
                         SetLongValues(o, new Vector2(-2, 5));
                     }

@@ -47,6 +47,10 @@ namespace AnodyneSharp.Registry
             SageDead = false;
             SuburbSoft = false;
             WindmillOpened = false;
+
+            events = new();
+            inventory = new();
+            achievements = new();
         }
 
         public static DateTime START_TIME;
@@ -65,6 +69,7 @@ namespace AnodyneSharp.Registry
                 if (value == "") DialogueTop = false;
             }
         }
+
         public static bool DialogueTop = false;
         public static bool LastDialogueFinished = false;
         public static bool SetDialogueMode = false;
@@ -127,9 +132,13 @@ namespace AnodyneSharp.Registry
         public delegate void Spawn(Entity e);
         public static Spawn SpawnEntity;
 
-        public static MinimapTracker minimaps = new MinimapTracker();
+        private static MinimapTracker minimaps = new MinimapTracker();
 
         public static Minimap CurrentMinimap => minimaps.GetMinimap(CURRENT_MAP_NAME);
+
+        public static EventRegister events = new();
+        public static InventoryManager inventory = new();
+        public static AchievementManager achievements = new();
 
         public static Facing NewMapFacing = Facing.RIGHT;
 

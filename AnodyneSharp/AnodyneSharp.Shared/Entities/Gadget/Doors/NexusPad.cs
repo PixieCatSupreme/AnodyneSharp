@@ -13,13 +13,9 @@ namespace AnodyneSharp.Entities.Gadget.Doors
     {
         bool playerCollission;
 
-        Player _player;
-
         public NexusPad(EntityPreset preset, Player player)
             : base(preset, player, "nexus_pad", 32, 32, null)
         {
-            _player = player;
-
             width = 22;
             height = 18;
             offset = new Vector2(6,4);

@@ -115,7 +115,7 @@ namespace AnodyneSharp.Entities.Interactive
             activated = true;
             _preset.Alive = false;
 
-            InventoryManager.BigKeyStatus[_curAnim.Frame / 2] = true;
+            GlobalState.inventory.BigKeyStatus[_curAnim.Frame / 2] = true;
             GlobalState.disable_menu = true;
             _player.state = PlayerState.INTERACT;
             _player.BeIdle();

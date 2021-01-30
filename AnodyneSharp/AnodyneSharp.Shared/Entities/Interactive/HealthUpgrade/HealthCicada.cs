@@ -90,7 +90,7 @@ namespace AnodyneSharp.Entities.Interactive
         protected IEnumerator<string> StateLogic()
         {
             //s_invisible ctr -1
-            while (GlobalState.IsDungeon && !EventRegister.BossDefeated.Contains(GlobalState.CURRENT_MAP_NAME))
+            while (GlobalState.IsDungeon && !GlobalState.events.BossDefeated.Contains(GlobalState.CURRENT_MAP_NAME))
             {
                 yield return "WaitForBoss";
             }
