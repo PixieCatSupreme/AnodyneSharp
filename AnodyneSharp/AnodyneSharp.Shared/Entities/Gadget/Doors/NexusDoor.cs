@@ -80,7 +80,7 @@ namespace AnodyneSharp.Entities.Gadget.Doors
             bool _playerInArea;
 
             public NexusPreview(Vector2 position, string map, Player player)
-                : base(position, "nexus_door_preview_overlay", 32, 32, DrawOrder.ENTITIES)
+                : base(position, "nexus_door_preview_overlay", 32, 32, DrawOrder.BG_ENTITIES)
             {
                 height += 25;
 
