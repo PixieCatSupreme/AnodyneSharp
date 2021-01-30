@@ -28,16 +28,21 @@ namespace AnodyneSharp.States
         {
             GlobalState.Dialogue = DialogueManager.GetDialogue("sage", "BLANK", "intro", 0);
 
-
-            _dialogueState = new DialogueState(isIntro: true);
-
             _state = new StateMachineBuilder()
-                .State("Writing")
+                .State<WaitTimer>("WaitStart")
                     .Enter((state) => SoundManager.PlaySong("blank"))
-                    .Update((state, t) => _dialogueState.Update())
-                    .Condition(() => _dialogueState.Exit, (state) => _state.ChangeState("Wait"))
+                    .Event("EndWait", (state) => _state.ChangeState("Writing"))
                 .End()
-                .State<WaitTimer>("Wait")
+                .State("Writing")
+                    .Enter((state) =>
+                    {
+                        _dialogueState = new DialogueState(isIntro: true);
+                        _dialogueState.Create();
+                    })
+                    .Update((state, t) => _dialogueState.Update())
+                    .Condition(() => _dialogueState.Exit, (state) => _state.ChangeState("WaitEnd"))
+                .End()
+                .State<WaitTimer>("WaitEnd")
                     .Enter((state) => _dialogueState = null)
                     .Event("EndWait", (state) =>
                     {
@@ -52,13 +57,8 @@ namespace AnodyneSharp.States
                     })
                 .End()
             .Build();
-        }
 
-        public override void Create()
-        {
-            _dialogueState.Create();
-
-            _state.ChangeState("Writing");
+            _state.ChangeState("WaitStart");
         }
 
         public override void Update()

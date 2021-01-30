@@ -137,7 +137,7 @@ namespace AnodyneSharp.States
 
             _state = PlayStateState.S_MAP_ENTER;
             GlobalState.pixelation.SetPixelation(10);
-            GlobalState.black_overlay.ForceAlpha(1);
+            GlobalState.black_overlay.alpha  = 1;
         }
 
         public override void Draw()

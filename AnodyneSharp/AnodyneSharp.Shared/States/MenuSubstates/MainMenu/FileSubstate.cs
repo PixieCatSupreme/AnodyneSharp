@@ -118,7 +118,7 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
 
                         LoadedSave = true;
 
-                        ExitSubState();
+                        Exit = true;
                     }
                     else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Up))
                     {

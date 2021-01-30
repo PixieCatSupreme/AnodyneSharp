@@ -7,6 +7,7 @@ using AnodyneSharp.States.MenuSubstates.MainMenu;
 using AnodyneSharp.UI;
 using AnodyneSharp.UI.PauseMenu;
 using Microsoft.Xna.Framework;
+using RSG;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -23,7 +24,7 @@ namespace AnodyneSharp.States.MainMenu
             Settings
         }
 
-        private static MenuState _state;
+        private static MenuState _menuState;
 
         private UILabel _save1Label;
         private UILabel _save2Label;
@@ -37,17 +38,72 @@ namespace AnodyneSharp.States.MainMenu
 
         private Substate _substate;
 
+        private IState _state;
+
+        private bool isNewSave;
+
         public MainMenuState()
         {
             _selector = new MenuSelector();
             _selector.Play("enabledRight");
 
-            _lastState = _state;
-
-            SetLabels();
-            StateChanged();
+            _lastState = _menuState;
 
             UpdateEntities = false;
+
+            _state = new StateMachineBuilder()
+                .State("Normal")
+                    .Enter((state) => 
+                    {
+                        SetLabels();
+                        StateChanged();
+                    })
+                    .Update((state, t) =>
+                    {
+                        if (!_inSubstate && KeyInput.JustPressedRebindableKey(KeyFunctions.Cancel))
+                        {
+                            SoundManager.PlayPitchedSoundEffect("pause_sound", -0.1f);
+                            ChangeStateEvent(AnodyneGame.GameState.TitleScreen);
+                        }
+                        else if (!_inSubstate)
+                        {
+                            BrowseInput();
+                        }
+                        else
+                        {
+                            _substate.HandleInput();
+                        }
+
+                        if (_lastState != _menuState)
+                        {
+                            StateChanged();
+                        }
+                    })
+                    .Condition(() => _substate.Exit, (state) =>
+                    {
+                        if (_substate is FileSubstate s && s.LoadedSave)
+                        {
+                            SoundManager.PlaySoundEffect("menu_select");
+                            isNewSave = s.NewSave;
+                            _state.ChangeState("FadeOut");
+                        }
+                        else
+                        {
+                            _selector.Play("enabledRight");
+
+                            _inSubstate = false;
+                            _substate.Exit = false;
+                        }
+                    })
+                    .End()
+                    .State("FadeOut")
+                        .Update((state, t) => GlobalState.black_overlay.ChangeAlpha(0.72f))
+                        .Condition(() => GlobalState.black_overlay.alpha == 1, (state) => ChangeStateEvent(isNewSave ? AnodyneGame.GameState.Intro : AnodyneGame.GameState.Game))
+                    .End()
+                .Build();
+
+            _state.ChangeState("Normal");
+
         }
 
         public override void Update()
@@ -57,38 +113,9 @@ namespace AnodyneSharp.States.MainMenu
             _selector.Update();
             _selector.PostUpdate();
 
-            if (!_inSubstate && KeyInput.JustPressedRebindableKey(KeyFunctions.Cancel))
-            {
-                SoundManager.PlayPitchedSoundEffect("pause_sound", -0.1f);
-                ChangeStateEvent(AnodyneGame.GameState.TitleScreen);
-            }
-            else if (!_inSubstate)
-            {
-                BrowseInput();
-            }
-            else
-            {
-                _substate.HandleInput();
-
-                if (_substate.Exit)
-                {
-                    _inSubstate = false;
-                    _substate.Exit = false;
-                    _selector.Play("enabledRight");
-
-                    if (_substate is FileSubstate s && s.LoadedSave)
-                    {
-                        ChangeStateEvent(s.NewSave ? AnodyneGame.GameState.Intro : AnodyneGame.GameState.Game);
-                    }
-                }
-            }
-
             _substate.Update();
 
-            if (_lastState != _state)
-            {
-                StateChanged();
-            }
+            _state.Update(GameTimes.DeltaTime);
         }
 
 
@@ -117,35 +144,35 @@ namespace AnodyneSharp.States.MainMenu
             }
             else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Up))
             {
-                if (_state == MenuState.Save1)
+                if (_menuState == MenuState.Save1)
                 {
                     SoundManager.PlaySoundEffect("menu_move");
                     return;
                 }
 
                 SoundManager.PlaySoundEffect("menu_move");
-                _state--;
+                _menuState--;
             }
             else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Down))
             {
-                if (_state == MenuState.Settings)
+                if (_menuState == MenuState.Settings)
                 {
                     SoundManager.PlaySoundEffect("menu_move");
                     return;
                 }
 
                 SoundManager.PlaySoundEffect("menu_move");
-                _state++;
+                _menuState++;
             }
         }
 
 
         private void StateChanged()
         {
-            _lastState = _state;
-            _selector.Position = new Vector2(2, 34 + (int)_state * 16);
+            _lastState = _menuState;
+            _selector.Position = new Vector2(2, 34 + (int)_menuState * 16);
 
-            _substate = _state switch
+            _substate = _menuState switch
             {
                 MenuState.Save1 => new FileSubstate(0),
                 MenuState.Save2 => new FileSubstate(1),
