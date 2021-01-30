@@ -2,6 +2,8 @@
 using AnodyneSharp.FSM;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
+using AnodyneSharp.UI;
+using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using RSG;
 using System;
@@ -10,7 +12,7 @@ using System.Text;
 
 namespace AnodyneSharp.Entities.Events
 {
-    [NamedEntity("Event",null,2)]
+    [NamedEntity("Event", null, 2)]
     public class Checkpoint : Entity, Interactable
     {
         class SpawnedOn : AbstractState
@@ -30,7 +32,9 @@ namespace AnodyneSharp.Entities.Events
 
         IState state;
 
-        public Checkpoint(EntityPreset preset, Player p) : base(preset.Position,"checkpoint",16,16,DrawOrder.BG_ENTITIES)
+        SavingIcon saveIcon = new();
+
+        public Checkpoint(EntityPreset preset, Player p) : base(preset.Position, "checkpoint", 16, 16, DrawOrder.BG_ENTITIES)
         {
             width = height = 8;
             offset = Vector2.One * 4;
@@ -50,29 +54,32 @@ namespace AnodyneSharp.Entities.Events
                     .Condition(() => !playerOn(), (s) => state.ChangeState("Wait"))
                 .End()
                 .State("Wait")
-                    .Enter((s)=>Play(Active ? "active" : "inactive"))
+                    .Enter((s) => Play(Active ? "active" : "inactive"))
                     .Condition(playerOn, (s) => state.ChangeState("PlayerOn"))
                 .End()
                 .State("PlayerOn")
-                    .Enter((s)=>Play("stepped_on"))
-                    .Event("Interact", (s) => {
+                    .Enter((s) => Play("stepped_on"))
+                    .Event("Interact", (s) =>
+                    {
                         SoundManager.PlaySoundEffect("button_down");
-                        if(!Active)
+                        if (!Active)
                         {
                             GlobalState.CUR_HEALTH = GlobalState.MAX_HEALTH;
                             GlobalState.checkpoint = new GlobalState.CheckPoint(GlobalState.CURRENT_MAP_NAME, Position);
                         }
                         GlobalState.SaveGame();
+                        saveIcon.opacity = 1f;
+                        saveIcon.visible = true;
                         state.ChangeState("Saved");
                     })
                     .Condition(() => !playerOn(), (s) => state.ChangeState("Wait"))
                 .End()
                 .State("Saved")
                     .Enter((s) => Play("active"))
-                    .Condition(() => !playerOn(),(s) => state.ChangeState("WaitForResave"))
+                    .Condition(() => !playerOn(), (s) => state.ChangeState("WaitForResave"))
                 .End()
                 .State<WaitForResave>()
-                    .Event("save_again",(s) => state.ChangeState("Wait"))
+                    .Event("save_again", (s) => state.ChangeState("Wait"))
                 .End()
                 .Build();
 
@@ -83,12 +90,41 @@ namespace AnodyneSharp.Entities.Events
         {
             state.Update(GameTimes.DeltaTime);
             base.Update();
+            GlobalState.UIEntities.Add(saveIcon);
+            saveIcon.Update();
+        }
+
+        public override void PostUpdate()
+        {
+            base.PostUpdate();
+            saveIcon.PostUpdate();
         }
 
         public bool PlayerInteraction(Facing player_direction)
         {
             state.TriggerEvent("Interact");
             return false; //don't disable broom
+        }
+    }
+
+    class SavingIcon : UIEntity
+    {
+        public SavingIcon() : base(new Vector2(GameConstants.SCREEN_WIDTH_IN_PIXELS / 2 - 32, 20), "autosave_icon", 64, 16, DrawOrder.TEXT)
+        {
+            visible = false;
+            AddAnimation("a", CreateAnimFrameArray(0, 1, 2, 3, 4, 5), 8);
+            Play("a");
+        }
+
+        public override void Update()
+        {
+            if (visible)
+            {
+                if (MathUtilities.MoveTo(ref opacity, 0, 0.33f))
+                {
+                    visible = false;
+                }
+            }
         }
     }
 }
