@@ -16,14 +16,9 @@ namespace AnodyneSharp.Entities
     {
         private const string EntityFilePath = "Content.Entities.xml";
 
-        private static Dictionary<string, List<EntityPreset>> _entities;
-        private static Dictionary<int, DoorPair> _doorPairs;
-
-        static EntityManager()
-        {
-            _entities = new Dictionary<string, List<EntityPreset>>();
-            _doorPairs = new Dictionary<int, DoorPair>();
-        }
+        private static Dictionary<string, List<EntityPreset>> _entities = new();
+        private static Dictionary<int, DoorPair> _doorPairs = new();
+        public static Dictionary<Guid, EntityState> State = new();
 
         /// <summary>
         /// Loads the raw XML entity file. Stateful entities will be edited after save loading.
