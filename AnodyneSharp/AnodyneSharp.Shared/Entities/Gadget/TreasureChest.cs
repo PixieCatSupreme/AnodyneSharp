@@ -40,12 +40,12 @@ namespace AnodyneSharp.Entities.Gadget
             _preset = preset;
             immovable = true;
 
-            if (GlobalState.CURRENT_MAP_NAME == "CELL")
+            if (GlobalState.IsCell)
             {
                 frame = 4;
             }
 
-            if (preset.Frame == -1)
+            if (preset.Activated)
             {
                 frame++;
                 opened = true;
@@ -80,7 +80,7 @@ namespace AnodyneSharp.Entities.Gadget
             _treasure.GetTreasure();
 
             SetFrame(_curAnim.Frame + 1);
-            _preset.Frame = -1;
+            _preset.Activated = true;
             return true;
         }
 

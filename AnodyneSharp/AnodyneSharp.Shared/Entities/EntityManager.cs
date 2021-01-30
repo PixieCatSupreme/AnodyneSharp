@@ -154,13 +154,6 @@ namespace AnodyneSharp.Entities
                                 type = child.Attributes.GetNamedItem("type").Value;
                             }
 
-                            bool alive = true;
-
-                            if (child.Attributes.GetNamedItem("alive") != null)
-                            {
-                                alive = bool.Parse(child.Attributes.GetNamedItem("alive").Value);
-                            }
-
                             var matching = type_lookup[child.Name].FindAll(t => t.check.Matches(frame, type, mapName)).ToList();
                             if (matching.Count == 0)
                             {
@@ -177,7 +170,7 @@ namespace AnodyneSharp.Entities
                             }
                             else
                             {
-                                EntityPreset preset = new(matching[0].type, new Vector2(x, y), id, frame, p, type, alive);
+                                EntityPreset preset = new(matching[0].type, new Vector2(x, y), id, frame, p, type);
 
                                 presets.Add(preset);
 
