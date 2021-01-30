@@ -48,12 +48,12 @@ namespace AnodyneSharp.Sounds
 
         public static void SetSongVolume(float volume)
         {
-            bgm.SetVolume(volume * GlobalState.music_volume_scale);
+            bgm.SetVolume(volume * GlobalState.settings.music_volume_scale);
         }
 
         public static float GetVolume()
         {
-            return bgm.GetVolume() / GlobalState.music_volume_scale;
+            return bgm.GetVolume() / GlobalState.settings.music_volume_scale;
         }
 
         public static void SetSongVolume() => SetSongVolume(1f);
@@ -87,7 +87,7 @@ namespace AnodyneSharp.Sounds
             if (sfx != null)
             {
                 sfx.Pitch = pitch;
-                sfx.Volume = volume * GlobalState.sfx_volume_scale;
+                sfx.Volume = volume * GlobalState.settings.sfx_volume_scale;
                 sfx.Play();
             }
         }

@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework;
 using RSG;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace AnodyneSharp.States.MainMenu
@@ -34,6 +35,8 @@ namespace AnodyneSharp.States.MainMenu
         private MenuSelector _selector;
         private MenuState _lastState;
 
+        private FileSubstate[] files;
+
         private bool _inSubstate;
 
         private Substate _substate;
@@ -44,6 +47,8 @@ namespace AnodyneSharp.States.MainMenu
 
         public MainMenuState()
         {
+            files = Enumerable.Range(0, 3).Select((i) => new FileSubstate(i)).ToArray();
+
             _selector = new MenuSelector();
             _selector.Play("enabledRight");
 
@@ -174,9 +179,9 @@ namespace AnodyneSharp.States.MainMenu
 
             _substate = _menuState switch
             {
-                MenuState.Save1 => new FileSubstate(0),
-                MenuState.Save2 => new FileSubstate(1),
-                MenuState.Save3 => new FileSubstate(2),
+                MenuState.Save1 => files[0],
+                MenuState.Save2 => files[1],
+                MenuState.Save3 => files[2],
                 MenuState.Settings => new ConfigSubstate(true),
                 _ => new Substate(),
             };

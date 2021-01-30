@@ -18,6 +18,8 @@ namespace AnodyneSharp.Dialogue
 
         private List<string> _lines;
 
+        public DialogueScene() { }
+
         public DialogueScene(bool alignTop, int? loopID, List<string> lines)
         {
             AlignTop = alignTop;

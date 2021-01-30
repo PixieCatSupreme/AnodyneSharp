@@ -26,7 +26,7 @@ namespace AnodyneSharp.Entities.Events
             }
         }
 
-        bool Active => GlobalState.checkpoint == (GlobalState.CURRENT_MAP_NAME, Position);
+        bool Active => GlobalState.checkpoint == new GlobalState.CheckPoint(GlobalState.CURRENT_MAP_NAME, Position);
 
         IState state;
 
@@ -60,9 +60,9 @@ namespace AnodyneSharp.Entities.Events
                         if(!Active)
                         {
                             GlobalState.CUR_HEALTH = GlobalState.MAX_HEALTH;
-                            GlobalState.checkpoint = (GlobalState.CURRENT_MAP_NAME, Position);
+                            GlobalState.checkpoint = new GlobalState.CheckPoint(GlobalState.CURRENT_MAP_NAME, Position);
                         }
-                        //TODO: save
+                        GlobalState.SaveGame();
                         state.ChangeState("Saved");
                     })
                     .Condition(() => !playerOn(), (s) => state.ChangeState("Wait"))

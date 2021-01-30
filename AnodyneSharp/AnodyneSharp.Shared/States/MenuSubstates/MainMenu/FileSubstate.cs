@@ -6,6 +6,7 @@ using AnodyneSharp.UI;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace AnodyneSharp.States.MenuSubstates.MainMenu
@@ -27,7 +28,9 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
         private State _lastState;
 
         private int _saveID;
-        private bool _saveExists;
+        private bool SaveExists => Save != null;
+
+        public GlobalState.Save Save { get; private set; }
 
         private int confirmState;
 
@@ -46,6 +49,8 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
         public FileSubstate(int saveID)
         {
             _saveID = saveID;
+
+            Save = GlobalState.Save.getSave($"Save_{saveID + 1}.dat");
 
             confirmState = 0;
 
@@ -68,7 +73,7 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
 
 
             //Healthbar has no visible
-            if (_saveExists)
+            if (SaveExists)
             {
                 healthBar.Draw();
             }
@@ -101,14 +106,15 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
                 case State.Game:
                     if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept))
                     {
-                        if (_saveExists)
+                        GlobalState.CurrentSaveGame = _saveID;
+                        
+                        if (SaveExists)
                         {
-                            //TODO load save
+                            GlobalState.ResetValues();
+                            GlobalState.LoadSave(Save);
                         }
                         else
                         {
-                            //TODO create save
-
                             NewSave = true;
 
                             GlobalState.ResetValues();
@@ -126,7 +132,7 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
                     {
                         moved = true;
 
-                        if (_saveExists)
+                        if (SaveExists)
                         {
                             _state = State.NewGame;
                         }
@@ -264,7 +270,9 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
             _deathLabel.IsVisible = false;
             _cardLabel.IsVisible = false;
 
-            _saveExists = false;
+            File.Delete(Path.GetFullPath($"Save_{_saveID + 1}.dat"));
+
+            Save = null;
         }
 
         private void SetLabels()
@@ -278,7 +286,7 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
             _gameLabel = new UILabel(new Vector2(x, y), false, color);
             _newGameLabel = new UILabel(new Vector2(x, y + yStep), false, color)
             {
-                IsVisible = _saveExists
+                IsVisible = SaveExists
             };
             _confirmLabel = new UILabel(new Vector2(x, y), false, color)
             {
@@ -295,20 +303,20 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
 
             _timeLabel = new UILabel(new Vector2(x, y + yStep * 6), false)
             {
-                IsVisible = _saveExists
+                IsVisible = SaveExists
             };
 
             _deathLabel = new UILabel(new Vector2(x, y + yStep * 7), false)
             {
-                IsVisible = _saveExists
+                IsVisible = SaveExists
             };
 
             _cardLabel = new UILabel(new Vector2(x, y + yStep * 8), false)
             {
-                IsVisible = _saveExists
+                IsVisible = SaveExists
             };
 
-            healthBar = new HealthBar(new Vector2(128, y + yStep * 4));
+            healthBar = new HealthBar(new Vector2(128, y + yStep * 4),Save?.current_health, Save?.max_health);
 
 
             _gameLabel.Initialize();
@@ -321,12 +329,12 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
             _deathLabel.Initialize();
             _cardLabel.Initialize();
 
-            _gameLabel.SetText(DialogueManager.GetDialogue("misc", "any", "title", _saveExists ? 11 : 12));
+            _gameLabel.SetText(DialogueManager.GetDialogue("misc", "any", "title", SaveExists ? 11 : 12));
             _newGameLabel.SetText(DialogueManager.GetDialogue("misc", "any", "title", 12));
 
-            _timeLabel.SetText("00:00:00");
-            _deathLabel.SetText($"{GlobalState.DeathCount} " + DialogueManager.GetDialogue("misc", "any", "title", 22));
-            _cardLabel.SetText($"{GlobalState.inventory.CardCount} " + DialogueManager.GetDialogue("misc", "any", "title", 23));
+            _timeLabel.SetText(Save?.playtime.ToString(@"hh\:mm\:ss")??"00:00:00");
+            _deathLabel.SetText($"{Save?.deaths ?? 0} " + DialogueManager.GetDialogue("misc", "any", "title", 22));
+            _cardLabel.SetText($"{Save?.inventory.CardCount ?? 0} " + DialogueManager.GetDialogue("misc", "any", "title", 23));
 
             SetConfirmation();
         }

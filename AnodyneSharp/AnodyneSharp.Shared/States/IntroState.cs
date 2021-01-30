@@ -49,7 +49,7 @@ namespace AnodyneSharp.States
                         Vector2 startPos = new Vector2(77, 87);
 
                         GlobalState.PLAYER_WARP_TARGET = startPos;
-                        GlobalState.checkpoint = ("BLANK", startPos);
+                        GlobalState.checkpoint = new GlobalState.CheckPoint("BLANK", startPos);
 
                         GlobalState.NEXT_MAP_NAME = "BLANK";
 

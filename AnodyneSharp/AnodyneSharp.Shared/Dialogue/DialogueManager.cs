@@ -41,7 +41,7 @@ namespace AnodyneSharp.Dialogue
 
         public static void LoadDialogue(Language lang)
         {
-            GlobalState.CurrentLanguage = lang;
+            GlobalState.settings.language = lang;
 
             ReadFile();
         }

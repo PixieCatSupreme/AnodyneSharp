@@ -102,7 +102,6 @@ namespace AnodyneSharp.States.MenuSubstates
                 switch (_state)
                 {
                     case SaveState.SaveLabel:
-
                         break;
                     case SaveState.SaveTitleLable:
                         ReturnToTitle = true;
@@ -121,7 +120,7 @@ namespace AnodyneSharp.States.MenuSubstates
 
                 if (save)
                 {
-                    //TODO Saving
+                    GlobalState.SaveGame();
                 }
             }
             else

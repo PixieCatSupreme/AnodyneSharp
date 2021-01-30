@@ -68,6 +68,11 @@ namespace AnodyneSharp.States.MenuSubstates
             SetSelectorPos();
         }
 
+        protected override void OnExit()
+        {
+            GlobalState.settings.Save();
+        }
+
         public override void Update()
         {
             if (_lastState != _state)
@@ -190,12 +195,12 @@ namespace AnodyneSharp.States.MenuSubstates
             _scalingLabel.SetText(DialogueManager.GetDialogue("misc", "any", "config", 16));
             _languageLabel.SetText(DialogueManager.GetDialogue("misc", "any", "config", 17));
 
-            _musicSlider = new AudioSlider(new Vector2(_bgmLabel.Position.X + _bgmLabel.Writer.WriteArea.Width - 5, _bgmLabel.Position.Y), GlobalState.music_volume_scale, 0f, 1f, 0.1f, _isInMainMenu)
+            _musicSlider = new AudioSlider(new Vector2(_bgmLabel.Position.X + _bgmLabel.Writer.WriteArea.Width - 5, _bgmLabel.Position.Y), GlobalState.settings.music_volume_scale, 0f, 1f, 0.1f, _isInMainMenu)
             {
                 ValueChangedEvent = BgmValueChanged
             };
 
-            _sfxSlider = new AudioSlider(new Vector2(_sfxLabel.Position.X + _sfxLabel.Writer.WriteArea.Width - 5, _sfxLabel.Position.Y), GlobalState.sfx_volume_scale, 0f, 1f, 0.1f, _isInMainMenu)
+            _sfxSlider = new AudioSlider(new Vector2(_sfxLabel.Position.X + _sfxLabel.Writer.WriteArea.Width - 5, _sfxLabel.Position.Y), GlobalState.settings.sfx_volume_scale, 0f, 1f, 0.1f, _isInMainMenu)
             {
                 ValueChangedEvent = SfxValueChanged
             };
@@ -211,7 +216,7 @@ namespace AnodyneSharp.States.MenuSubstates
                 autosavePos = new Vector2(x + 16, _autosaveLabel.Position.Y + GameConstants.FONT_LINE_HEIGHT * 2.5f);
             }
 
-            _autosaveSetter = new TextSelector(autosavePos, 40, GlobalState.autosave_on ? 1 : 0, DialogueManager.GetDialogue("misc", "any", "config", 4), DialogueManager.GetDialogue("misc", "any", "config", 5))
+            _autosaveSetter = new TextSelector(autosavePos, 40, GlobalState.settings.autosave_on ? 0 : 1, DialogueManager.GetDialogue("misc", "any", "config", 4), DialogueManager.GetDialogue("misc", "any", "config", 5))
             {
                 ValueChangedEvent = AutoSaveValueChanged
             };
@@ -310,7 +315,7 @@ namespace AnodyneSharp.States.MenuSubstates
         {
             if (float.TryParse(value, out float volume))
             {
-                GlobalState.music_volume_scale = volume;
+                GlobalState.settings.music_volume_scale = volume;
                 SoundManager.SetSongVolume();
             }
         }
@@ -319,13 +324,13 @@ namespace AnodyneSharp.States.MenuSubstates
         {
             if (float.TryParse(value, out float volume))
             {
-                GlobalState.sfx_volume_scale = volume;
+                GlobalState.settings.sfx_volume_scale = volume;
             }
         }
 
         private void AutoSaveValueChanged(string value, int index)
         {
-            GlobalState.autosave_on = value == DialogueManager.GetDialogue("misc", "any", "config", 4);
+            GlobalState.settings.autosave_on = value == DialogueManager.GetDialogue("misc", "any", "config", 4);
         }
 
         private void LanguageValueChanged(string value, int index)

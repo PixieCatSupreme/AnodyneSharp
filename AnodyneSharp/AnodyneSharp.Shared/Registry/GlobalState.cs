@@ -2,12 +2,15 @@
 using AnodyneSharp.Dialogue;
 using AnodyneSharp.Drawing.Effects;
 using AnodyneSharp.Entities;
+using AnodyneSharp.Logging;
 using AnodyneSharp.Map;
 using AnodyneSharp.UI;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text.Json;
 
 namespace AnodyneSharp.Registry
 {
@@ -18,8 +21,69 @@ namespace AnodyneSharp.Registry
         EXTREME_CHAOS
     }
 
+
     public static class GlobalState
     {
+        public class Save
+        {
+            public static JsonSerializerOptions serializerOptions = new()
+            {
+                IncludeFields = true
+            };
+
+            public Dictionary<string, List<int>> minimap_state = GlobalState.minimaps.interest;
+            public Dictionary<Guid, EntityState> entity_state = EntityManager.State;
+            public Dictionary<string, DialogueNPC> dialogue_state = DialogueManager.SceneTree;
+            public EventRegister events = GlobalState.events;
+            public InventoryManager inventory = GlobalState.inventory;
+            public AchievementManager achievements = GlobalState.achievements;
+            public CheckPoint checkpoint = GlobalState.checkpoint;
+            public TimeSpan playtime = PlayTime;
+            public int current_health = _curHealth;
+            public int max_health = _maxHealth;
+            public int deaths = DeathCount;
+
+            public static Save getSave(string path)
+            {
+                try
+                {
+                    string save = File.ReadAllText(path);
+                    return JsonSerializer.Deserialize<Save>(save, serializerOptions);
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        static public int CurrentSaveGame = 0;
+
+        public static void SaveGame()
+        {
+            File.WriteAllText($"Save_{CurrentSaveGame + 1}.dat", JsonSerializer.Serialize<Save>(new Save(), Save.serializerOptions));
+        }
+
+        public static void LoadSave(Save s)
+        {
+            minimaps.interest = s.minimap_state;
+            EntityManager.State = s.entity_state;
+            DialogueManager.SceneTree = s.dialogue_state;
+            DialogueManager.LoadDialogue(settings.language);
+            events = s.events;
+            inventory = s.inventory;
+            achievements = s.achievements;
+            checkpoint = s.checkpoint;
+
+            PLAYER_WARP_TARGET = checkpoint.Position;
+            NEXT_MAP_NAME = checkpoint.map;
+            
+            _totalPreviously = s.playtime;
+            MAX_HEALTH = s.max_health;
+            CUR_HEALTH = s.current_health;
+            DeathCount = s.deaths;
+        }
+
         public static void ResetValues()
         {
             START_TIME = DateTime.Now;
@@ -54,7 +118,10 @@ namespace AnodyneSharp.Registry
             achievements = new();
         }
 
+        private static TimeSpan _totalPreviously;
         public static DateTime START_TIME;
+
+        public static TimeSpan PlayTime => _totalPreviously + (DateTime.Now - START_TIME);
 
         public static string Dialogue
         {
@@ -107,11 +174,10 @@ namespace AnodyneSharp.Registry
             }
         }
 
-        public static Language CurrentLanguage { get; set; }
         public static bool FishermanDead { get; set; }
 
-        public static float music_volume_scale = 1.0f;
-        public static float sfx_volume_scale = 1.0f;
+        public static Settings settings = Settings.Load();
+        public static Language CurrentLanguage => settings.language;
 
         public static bool pillar_switch_state = false; //Reset when entering a map with different name
         public static bool ScreenTransition = false; //Whether a screen transition is happening right now
@@ -152,8 +218,18 @@ namespace AnodyneSharp.Registry
         public static bool RefreshMaxHealth = false;
         public static bool RefreshLabels = false;
 
-        public static bool autosave_on = true;
-        public static (string, Vector2) checkpoint = ("",Vector2.Zero);
+        public record CheckPoint
+        {
+            public string map;
+            public Vector2 Position;
+
+            public CheckPoint(string map, Vector2 position)
+            {
+                this.map = map;
+                Position = position;
+            }
+        }
+        public static CheckPoint checkpoint;
 
         /**
          * Used for disabling the menu during an event because you could potentially break the game  otherwise

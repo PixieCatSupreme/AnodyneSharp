@@ -128,7 +128,7 @@ namespace AnodyneSharp.States
 
                     if (yesSelected)
                     {
-                        (GlobalState.NEXT_MAP_NAME, GlobalState.PLAYER_WARP_TARGET) = GlobalState.checkpoint;
+                        (GlobalState.NEXT_MAP_NAME, GlobalState.PLAYER_WARP_TARGET) = (GlobalState.checkpoint.map,GlobalState.checkpoint.Position);
                     }
                     else
                     {

@@ -348,7 +348,7 @@ namespace AnodyneSharp.States
             if (GlobalState.RefreshMaxHealth)
             {
                 GlobalState.RefreshMaxHealth = false;
-                _healthBar.CreateHealthBoxes();
+                _healthBar.CreateHealthBoxes(GlobalState.MAX_HEALTH);
             }
 
             UpdateHealth();

@@ -19,28 +19,29 @@ namespace AnodyneSharp.UI
 
         private int _lastAmount;
 
-        public HealthBar(Vector2? position = null)
+        public HealthBar(Vector2? position = null, int? cur_health = null, int? max_health = null)
         {
             _position = position ?? DefaultPosition;
 
-            _lastAmount = GlobalState.CUR_HEALTH;
+            _lastAmount = cur_health ?? GlobalState.CUR_HEALTH;
 
             _healthPieces = new List<HealthBarPiece>();
 
-            CreateHealthBoxes();
+            CreateHealthBoxes(max_health ?? GlobalState.MAX_HEALTH);
         }
 
-        public void CreateHealthBoxes()
+        public void CreateHealthBoxes(int max)
         {
             _healthPieces.Clear();
 
-            for (int i = 0; i < GlobalState.MAX_HEALTH; i++)
+            for (int i = 0; i < max; i++)
             {
                 Vector2 pos = new Vector2(
                     _position.X - HealthBarPiece.BOX_WIDTH - 8 * (7 - i % 8) - 7 * (i / 8),
                     _position.Y + i / 8 * (HealthBarPiece.BOX_HEIGHT + 1));
 
-                _healthPieces.Add(new HealthBarPiece(pos));
+                _healthPieces.Add(new HealthBarPiece(pos, i < _lastAmount));
+                
             }
         }
 

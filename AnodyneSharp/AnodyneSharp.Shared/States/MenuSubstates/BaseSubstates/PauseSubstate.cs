@@ -66,12 +66,15 @@ namespace AnodyneSharp.States.MenuSubstates
             _selector.Play("enabledRight");
         }
 
+        protected virtual void OnExit() { }
+
         protected void ExitSubState()
         {
             Exit = true;
             _selector.visible = false;
             SoundManager.PlaySoundEffect("menu_select");
             _selector.Play("disabledRight");
+            OnExit();
         }
     }
 }
