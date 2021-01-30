@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace AnodyneSharp.Dialogue
 {
     public class DialogueNPC
     {
+        [JsonIgnore]
         public bool doesReset;
 
-        Dictionary<string, DialogueArea> _areas;
+        [JsonInclude]
+        public Dictionary<string, DialogueArea> _areas;
 
         public DialogueNPC()
         {

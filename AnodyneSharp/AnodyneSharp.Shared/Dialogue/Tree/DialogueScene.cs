@@ -2,14 +2,18 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace AnodyneSharp.Dialogue
 {
     public class DialogueScene
     {
+        [JsonIgnore]
         public bool AlignTop { get; private set; }
+        [JsonIgnore]
         public int? LoopID { get; private set; }
 
+        [JsonInclude]
         public DialogueState state;
 
         private List<string> _lines;

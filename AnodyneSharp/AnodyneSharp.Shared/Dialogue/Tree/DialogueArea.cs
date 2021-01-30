@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace AnodyneSharp.Dialogue
 {
     public class DialogueArea
     {
-        private Dictionary<string, DialogueScene> _scenes;
+        [JsonInclude]
+        public Dictionary<string, DialogueScene> _scenes;
 
         public DialogueArea()
         {

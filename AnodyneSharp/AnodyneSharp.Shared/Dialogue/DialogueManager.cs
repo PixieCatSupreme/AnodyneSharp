@@ -1,6 +1,7 @@
 ﻿using AnodyneSharp.Entities;
 using AnodyneSharp.Entities.Gadget;
 using AnodyneSharp.Input;
+using AnodyneSharp.Logging;
 using AnodyneSharp.Registry;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -9,7 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-
+using System.Text.Json;
 using static AnodyneSharp.Utilities.TextUtilities;
 
 namespace AnodyneSharp.Dialogue
@@ -36,7 +37,7 @@ namespace AnodyneSharp.Dialogue
 
         private const string DialogueFilePath = "Content.Dialogue.dialogue";
 
-        private static Dictionary<string, DialogueNPC> _sceneTree;
+        public static Dictionary<string, DialogueNPC> SceneTree = null;
 
         public static void LoadDialogue(Language lang)
         {
@@ -47,7 +48,7 @@ namespace AnodyneSharp.Dialogue
 
         private static DialogueScene GetScene(string npc, string area, string scene)
         {
-            DialogueNPC dn = _sceneTree[npc];
+            DialogueNPC dn = SceneTree[npc];
 
             DialogueArea a = dn.GetArea(area);
 
@@ -111,9 +112,10 @@ namespace AnodyneSharp.Dialogue
 
             ParseState state = ParseState.START;
 
-            _sceneTree = new Dictionary<string, DialogueNPC>();
+            Dictionary<string, DialogueNPC> newSceneTree = new Dictionary<string, DialogueNPC>();
 
             DialogueNPC npc = null;
+            string npcName = "";
             string areaName = "";
             string scene = "";
 
@@ -139,7 +141,8 @@ namespace AnodyneSharp.Dialogue
                         {
                             npc = new DialogueNPC();
                             state = ParseState.NPC;
-                            _sceneTree.Add(GetName(line), npc);
+                            npcName = GetName(line);
+                            newSceneTree.Add(npcName, npc);
                         }
                         break;
                     case ParseState.NPC:
@@ -190,7 +193,12 @@ namespace AnodyneSharp.Dialogue
                         if (line == "end scene")
                         {
                             state = ParseState.AREA;
-                            npc.GetArea(areaName).AddScene(scene, new DialogueScene(alignTop, loopID, dialogue));
+                            DialogueScene s = new(alignTop, loopID, dialogue);
+                            npc.GetArea(areaName).AddScene(scene, s);
+                            if(SceneTree != null)
+                            {
+                                s.state = GetScene(npcName, areaName, scene).state;
+                            }
                             continue;
                         }
                         if (line == "LOOP")
@@ -203,6 +211,7 @@ namespace AnodyneSharp.Dialogue
                 }
 
             }
+            SceneTree = newSceneTree;
         }
 
         private static string GetName(string line)

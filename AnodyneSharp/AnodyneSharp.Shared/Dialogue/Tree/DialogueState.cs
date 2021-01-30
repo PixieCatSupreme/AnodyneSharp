@@ -1,20 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace AnodyneSharp.Dialogue.Tree
 {
     public class DialogueState
     {
-        public bool dirty;
-        public bool finished;
-        public int line;
-
-        public DialogueState()
-        {
-            dirty = false;
-            finished = false;
-            line = 0;
-        }
+        [JsonInclude]
+        public bool dirty = false;
+        [JsonInclude]
+        public bool finished = false;
+        [JsonInclude]
+        public int line = 0;
     }
 }
