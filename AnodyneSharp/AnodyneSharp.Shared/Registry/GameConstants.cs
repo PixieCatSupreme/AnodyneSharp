@@ -49,6 +49,8 @@ namespace AnodyneSharp.Registry
         public static object DIALOGUE_STATE;
         //public static const DUNGEON_ENTRANCES:Object = { STREET: new Point(232, 737), BEDROOM: new Point(400, 765), REDCAVE: new Point(555, 764), CROWD: new Point(555, 1239), APARTMENT: new Point(391, 911), HOTEL: new Point(394, 440), CIRCUS: new Point(715, 1396), NEXUS: new Point(710,1090) };
 
+        public const int BUTTON_WIDTH = 13;
+        public const int BUTTON_HEIGHT = 14;
         public static int FONT_LINE_HEIGHT
         {
             get

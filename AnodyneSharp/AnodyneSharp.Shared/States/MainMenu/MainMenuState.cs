@@ -78,7 +78,7 @@ namespace AnodyneSharp.States.MainMenu
 
                     if (_substate is FileSubstate s && s.LoadedSave)
                     {
-                        ChangeStateEvent(AnodyneGame.GameState.Game);
+                        ChangeStateEvent(s.NewSave ? AnodyneGame.GameState.Intro : AnodyneGame.GameState.Game);
                     }
                 }
             }

@@ -71,7 +71,7 @@ namespace AnodyneSharp.Dialogue
             return ReplaceKeys(s.GetDialogue(id));
         }
 
-        private static string ReplaceKeys(string line)
+        public static string ReplaceKeys(string line)
         {
             if (KeyInput.ControllerMode)
             {

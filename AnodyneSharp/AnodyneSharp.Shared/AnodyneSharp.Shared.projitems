@@ -145,6 +145,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Sounds\SongPlayer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sounds\SoundManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\DialogueState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\IntroState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\MainMenu\MainMenuState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\MainMenu\TitleState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\MenuSubstates\MainMenu\FileSubstate.cs" />

@@ -35,6 +35,7 @@ namespace AnodyneSharp
         {
             TitleScreen,
             MainMenu,
+            Intro,
             Game
         }
 
@@ -207,6 +208,7 @@ namespace AnodyneSharp
             {
                 GameState.TitleScreen => new TitleState(),
                 GameState.MainMenu => new MainMenuState(),
+                GameState.Intro => new IntroState(),
                 GameState.Game => new PlayState(_camera),
                 _ => null
             };

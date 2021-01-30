@@ -16,7 +16,21 @@ namespace AnodyneSharp.UI
 
         public float Z { get; set; }
 
-        public Vector2 Position { get; protected set; }
+        public Vector2 Position
+        {
+            get
+            {
+                return _position;
+            }
+            set
+            {
+                _position = value;
+
+                Rectangle r = Writer.WriteArea;
+
+                Writer.SetWriteArea((int)_position.X, (int)_position.Y, r.Width, r.Height);
+            }
+        }
 
         public string Text
         {
@@ -47,9 +61,11 @@ namespace AnodyneSharp.UI
         private Color _color;
         private bool _drawShadow;
 
+        private Vector2 _position;
+
         public UILabel(Vector2 position, bool drawShadow, Color? color = null, DrawOrder layer = DrawOrder.MENUTEXT)
         {
-            Position = position;
+            _position = position;
 
             Writer = new TextWriter((int)position.X, (int)position.Y)
             {

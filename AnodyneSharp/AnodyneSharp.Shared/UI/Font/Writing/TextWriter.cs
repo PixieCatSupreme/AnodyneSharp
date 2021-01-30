@@ -1,6 +1,7 @@
 ﻿using AnodyneSharp.Drawing;
 using AnodyneSharp.Entities.Gadget;
 using AnodyneSharp.Input;
+using AnodyneSharp.Registry;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -167,7 +168,7 @@ namespace AnodyneSharp.UI.Text
                 {
                     if (c.Character == null)
                     {
-                        SpriteDrawer.DrawGuiSprite(buttonSprite, WriteAreaTopLeft + new Vector2(c.X, currentY), c.Crop, Z: z);
+                        SpriteDrawer.DrawGuiSprite(buttonSprite, WriteAreaTopLeft + new Vector2(c.X , currentY - GameConstants.BUTTON_HEIGHT / 4), c.Crop, Z: z);
                     }
                     else
                     {
@@ -285,10 +286,10 @@ namespace AnodyneSharp.UI.Text
                 letterProgress += s.Length + 1;
 
                 int pos = int.Parse(s) + KeyInput.ControllerButtonOffset;
-                int spaceWidth = 13;
-                int lineHeight = 14;
+                int spaceWidth = GameConstants.BUTTON_WIDTH;
+                int lineHeight = GameConstants.BUTTON_HEIGHT;
 
-                characterLines[_line].Add(new TextCharacter(null, currentLineWidth, new Rectangle(pos % 13 * spaceWidth, pos / 13 * lineHeight, spaceWidth, lineHeight)));
+                characterLines[_line].Add(new TextCharacter(null, currentLineWidth, new Rectangle(pos % spaceWidth * spaceWidth, pos / spaceWidth * lineHeight, spaceWidth, lineHeight)));
 
                 output = true;
             }

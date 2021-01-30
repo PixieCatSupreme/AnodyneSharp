@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.FSM;
+﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.FSM;
 using AnodyneSharp.Input;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Resources;
@@ -30,15 +31,18 @@ namespace AnodyneSharp.States
         private IState _state;
 
         private int normalSpeed;
+        private int speedScale;
 
-        public DialogueState(bool useMenuBox = false)
+        public DialogueState(bool useMenuBox = false, bool isIntro = false)
         {
-            _tb = new TextBox(useMenuBox);
+            _tb = new TextBox(useMenuBox, isIntro);
             _tb.Writer.SetSpriteFont(FontManager.InitFont(Color.White), ResourceManager.GetTexture("consoleButtons"));
             _tb.Writer.Text = GlobalState.Dialogue;
             _tb.Writer.DrawShadow = true;
 
             normalSpeed = _tb.Writer.Speed;
+
+            speedScale = isIntro ? 4 : 2;
 
             /*
              * Standard stack:
@@ -115,6 +119,17 @@ namespace AnodyneSharp.States
                      })
                 .End()
                 .State("Waiting")
+                    .Enter((state) =>
+                    {
+                        if (KeyInput.IsRebindableKeyPressed(KeyFunctions.Accept) || KeyInput.IsRebindableKeyPressed(KeyFunctions.Cancel))
+                        {
+                            if (!_tb.Writer.AtEndOfText && _tb.Writer.AtEndOfBox)
+                            {
+                                _state.ChangeState("Bump");
+                                _state.TriggerEvent("doBump");
+                            }
+                        }
+                    })
                     .Event("KeyPressed", (state) =>
                     {
                         SoundManager.PlaySoundEffect("dialogue_bloop");
@@ -147,7 +162,7 @@ namespace AnodyneSharp.States
         {
             if (KeyInput.IsRebindableKeyPressed(KeyFunctions.Accept) || KeyInput.IsRebindableKeyPressed(KeyFunctions.Cancel))
             {
-                _tb.Writer.Speed = normalSpeed * 2;
+                _tb.Writer.Speed = normalSpeed * speedScale;
             }
             else
             {

@@ -134,6 +134,10 @@ namespace AnodyneSharp.States
             _miniminimap = new Spritesheet(ResourceManager.GetTexture("mini_minimap_tiles", true), 5, 5);
 
             Warp();
+
+            _state = PlayStateState.S_MAP_ENTER;
+            GlobalState.pixelation.SetPixelation(10);
+            GlobalState.black_overlay.ForceAlpha(1);
         }
 
         public override void Draw()

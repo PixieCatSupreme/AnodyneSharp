@@ -21,6 +21,7 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
         }
 
         public bool LoadedSave { get; private set; }
+        public bool NewSave { get; private set; }
 
         private State _state;
         private State _lastState;
@@ -107,6 +108,8 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
                         else
                         {
                             //TODO create save
+
+                            NewSave = true;
 
                             GlobalState.ResetValues();
                             InventoryManager.ResetValues();

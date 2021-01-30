@@ -22,6 +22,11 @@ namespace AnodyneSharp.Drawing.Effects
             batch.End();
         }
 
+        public void ForceAlpha(float alpha)
+        {
+            this.alpha = alpha;
+        }
+
         public void ChangeAlpha(float speed)
         {
             alpha = Math.Clamp(alpha + speed * GameTimes.DeltaTime, 0f, 1f);

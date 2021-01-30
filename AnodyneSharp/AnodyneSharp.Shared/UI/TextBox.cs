@@ -1,5 +1,7 @@
-﻿using AnodyneSharp.Drawing;
+﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.Drawing;
 using AnodyneSharp.Entities;
+using AnodyneSharp.Input;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Resources;
 using AnodyneSharp.UI.Text;
@@ -17,6 +19,7 @@ namespace AnodyneSharp.UI
 
         public TextWriter Writer { get; set; }
         public Texture2D blinky_box;
+        public UILabel introPrompt;
 
         public bool PauseWriting;
 
@@ -29,13 +32,20 @@ namespace AnodyneSharp.UI
 
         private Vector2 pos;
 
-        public TextBox(bool useMenuBox)
+        private bool _usePrompt;
+        private bool _isControllerMode;
+
+        public TextBox(bool useMenuBox, bool usePrompt)
         {
             blinky_box_timer = blinky_box_timer_max;
             Set_box_position((!useMenuBox && GlobalState.DialogueTop) ? Touching.UP : Touching.DOWN);
 
-            _boxTexture = ResourceManager.GetTexture(!useMenuBox ? "dialogue_box" : "menudialogue_box",true);
+            _boxTexture = ResourceManager.GetTexture(!useMenuBox ? "dialogue_box" : "menudialogue_box", true);
             blinky_box = ResourceManager.GetTexture("dialogue_blinky_box", true);
+
+            _usePrompt = usePrompt;
+
+            _isControllerMode = KeyInput.ControllerMode;
         }
 
         public void Update()
@@ -58,6 +68,11 @@ namespace AnodyneSharp.UI
             {
                 _drawBlinky = false;
             }
+
+            if (_usePrompt && _isControllerMode != KeyInput.ControllerMode)
+            {
+                UpdatePrompt();
+            }
         }
 
         public void DrawUI()
@@ -67,7 +82,14 @@ namespace AnodyneSharp.UI
 
             if (_drawBlinky)
             {
-                SpriteDrawer.DrawGuiSprite(blinky_box, _blinkyPos, Z: DrawingUtilities.GetDrawingZ(DrawOrder.TEXT));
+                if (_usePrompt)
+                {
+                    introPrompt.Draw();
+                }
+                else
+                {
+                    SpriteDrawer.DrawGuiSprite(blinky_box, _blinkyPos, Z: DrawingUtilities.GetDrawingZ(DrawOrder.TEXT));
+                }
             }
 
         }
@@ -96,7 +118,32 @@ namespace AnodyneSharp.UI
 
             //if (DH.isZH()) dialogue.y = dialogue_box.y + 2;
 
-            _blinkyPos = new Vector2( pos.X + Width - 10, pos.Y + Height - 10);
+            _blinkyPos = new Vector2(pos.X + Width - 10, pos.Y + Height - 10);
+
+
+            introPrompt = new UILabel(new Vector2(pos.X + Width -4, pos.Y + Height - 14), false, new Color(254,33,33), DrawOrder.TEXT);
+            introPrompt.Initialize();
+
+            UpdatePrompt();
+        }
+
+        private void UpdatePrompt()
+        {
+            introPrompt.SetText(DialogueManager.ReplaceKeys("[SOMEKEY-C]"));
+
+            _isControllerMode = KeyInput.ControllerMode;
+
+            if (!KeyInput.ControllerMode)
+            {
+                int width = introPrompt.Text.Length * Font.FontManager.GetCharacterWidth();
+
+                introPrompt.Position = new Vector2(pos.X + Width - width -4, pos.Y + Height - 14);
+
+            }
+            else
+            {
+                introPrompt.Position = new Vector2(pos.X + Width - GameConstants.BUTTON_WIDTH -2, pos.Y + Height - GameConstants.BUTTON_HEIGHT - 1);
+            }
         }
     }
 }
