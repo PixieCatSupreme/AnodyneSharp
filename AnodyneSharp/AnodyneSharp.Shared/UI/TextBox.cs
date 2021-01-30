@@ -20,6 +20,8 @@ namespace AnodyneSharp.UI
         public TextWriter Writer { get; set; }
         public Texture2D blinky_box;
         public UILabel introPrompt;
+        public bool BlinkyEnabled;
+
 
         public bool PauseWriting;
 
@@ -46,6 +48,7 @@ namespace AnodyneSharp.UI
             _usePrompt = usePrompt;
 
             _isControllerMode = KeyInput.ControllerMode;
+            BlinkyEnabled = true;
         }
 
         public void Update()
@@ -55,7 +58,7 @@ namespace AnodyneSharp.UI
                 Writer.Update();
             }
 
-            if (PauseWriting || Writer.AtEndOfBox || Writer.AtEndOfText)
+            if (BlinkyEnabled &&(PauseWriting || Writer.AtEndOfBox || Writer.AtEndOfText))
             {
                 blinky_box_timer -= GameTimes.DeltaTime;
                 if (blinky_box_timer < 0)

@@ -95,7 +95,11 @@ namespace AnodyneSharp.States
                     })
                 .End()
                 .State<BumpState>("Bump")
-                    .Enter((s) => s.linesBumped = 0)
+                    .Enter((s) => 
+                    { 
+                        s.linesBumped = 0;
+                        _tb.BlinkyEnabled = false;
+                    })
                     .Event("doBump", (state) =>
                      {
                          if (state.halfBumps == 0)
@@ -117,6 +121,7 @@ namespace AnodyneSharp.States
                              _state.PushState("Writing");
                          }
                      })
+                    .Exit((state) => _tb.BlinkyEnabled = true)
                 .End()
                 .State("Waiting")
                     .Enter((state) =>
