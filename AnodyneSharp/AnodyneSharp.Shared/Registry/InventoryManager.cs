@@ -110,8 +110,8 @@ namespace AnodyneSharp.Registry
         public bool[] SecretStatus = Enumerable.Repeat(false, 13).ToArray();
         public bool[] BigKeyStatus = Enumerable.Repeat(false, 3).ToArray();
 
-        private Dictionary<string, int> _mapKeys = new();
-        private BroomType _equippedBroom = BroomType.NONE;
+        public Dictionary<string, int> _mapKeys = new();
+        public BroomType _equippedBroom = BroomType.NONE;
 
         public int GetCurrentMapKeys()
         {

@@ -23,7 +23,7 @@ namespace AnodyneSharp.Entities
 
         public override void Collided(Entity other)
         {
-            if(!_curAnim.Finished)
+            if(!_curAnim.Finished && _curAnim.name == "unpoof")
             {
                 exists = false;
                 b.dust = this;

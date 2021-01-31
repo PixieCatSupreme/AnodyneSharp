@@ -18,22 +18,23 @@ namespace AnodyneSharp.Entities.Events
 
         public VolumeEvent(float target) : base(Vector2.Zero,Drawing.DrawOrder.ENTITIES)
         {
-            this.target = target;
+            SetTarget(target);
             visible = false;
         }
 
         public void SetTarget(float t)
         {
             target = t;
+            ReachedTarget = false;
         }
 
-        public bool ReachedTarget => SoundManager.GetVolume() == target;
+        public bool ReachedTarget { get; private set; } = false;
 
         public override void Update()
         {
             //VolumeEvent only changes bgm volume
             float current = SoundManager.GetVolume();
-            MathUtilities.MoveTo(ref current, target, 0.3f);
+            ReachedTarget = MathUtilities.MoveTo(ref current, target, 0.4f);
             SoundManager.SetSongVolume(current);
         }
     }

@@ -277,7 +277,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc
             GlobalState.disable_menu = false;
 
             _player.state = PlayerState.GROUND;
-            exists = false;
+            _preset.Alive = exists = false;
             yield break;
         }
     }

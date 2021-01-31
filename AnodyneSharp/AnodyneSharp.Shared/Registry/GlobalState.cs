@@ -252,7 +252,7 @@ namespace AnodyneSharp.Registry
             }
             set
             {
-                _curHealth = value > 0 ? value : 0;
+                _curHealth = Math.Clamp(value,0,MAX_HEALTH);
             }
         }
 
