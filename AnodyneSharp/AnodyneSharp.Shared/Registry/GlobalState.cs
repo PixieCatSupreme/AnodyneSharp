@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace AnodyneSharp.Registry
 {
@@ -38,6 +39,8 @@ namespace AnodyneSharp.Registry
             public InventoryManager inventory = GlobalState.inventory;
             public AchievementManager achievements = GlobalState.achievements;
             public CheckPoint checkpoint = GlobalState.checkpoint;
+            public CheckPoint ReturnTarget = GlobalState.ReturnTarget;
+
             public long playtime = PlayTime.Ticks;
             public int current_health = _curHealth;
             public int max_health = _maxHealth;
@@ -45,15 +48,16 @@ namespace AnodyneSharp.Registry
 
             public static Save GetSave(string path)
             {
+                string save = null;
                 try
                 {
-                    string save = File.ReadAllText(path);
-                    return JsonSerializer.Deserialize<Save>(save, serializerOptions);
+                    save = File.ReadAllText(path);
                 }
                 catch
                 {
                     return null;
                 }
+                return JsonSerializer.Deserialize<Save>(save, serializerOptions);
             }
 
             public void SaveTo(int id)
@@ -79,6 +83,7 @@ namespace AnodyneSharp.Registry
             inventory = s.inventory;
             achievements = s.achievements;
             checkpoint = s.checkpoint;
+            ReturnTarget = s.ReturnTarget;
 
             PLAYER_WARP_TARGET = checkpoint.Position;
             NEXT_MAP_NAME = checkpoint.map;
@@ -175,7 +180,7 @@ namespace AnodyneSharp.Registry
         {
             get
             {
-                return ReturnTarget != null && ReturnTarget.Map != "NEXUS";
+                return ReturnTarget != null && ReturnTarget.map != "NEXUS";
             }
         }
 
@@ -216,7 +221,6 @@ namespace AnodyneSharp.Registry
         public static Facing NewMapFacing = Facing.RIGHT;
         public static bool WARP = false;
         public static string NEXT_MAP_NAME;
-        public static DoorMapPair ReturnTarget = null;
         public static Vector2 PLAYER_WARP_TARGET;
 
         public static bool RefreshKeyCount = false;
@@ -228,13 +232,28 @@ namespace AnodyneSharp.Registry
             public string map;
             public Vector2 Position;
 
+            [JsonConstructor]
             public CheckPoint(string map, Vector2 position)
             {
                 this.map = map;
                 Position = position;
             }
+
+            public CheckPoint(DoorMapPair doorpair)
+            {
+                map = doorpair.Map;
+                Position = doorpair.Door.Position;
+            }
+
+            public void Warp(Vector2 offset)
+            {
+                GlobalState.NEXT_MAP_NAME = map;
+                GlobalState.PLAYER_WARP_TARGET = Position + offset;
+                GlobalState.WARP = true;
+            }
         }
         public static CheckPoint checkpoint;
+        public static CheckPoint ReturnTarget;
 
         /**
          * Used for disabling the menu during an event because you could potentially break the game  otherwise

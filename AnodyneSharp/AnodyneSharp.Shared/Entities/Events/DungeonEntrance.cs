@@ -14,10 +14,9 @@ namespace AnodyneSharp.Entities
         {
             exists = false;
 
-            if (GlobalState.ReturnTarget.Map == GlobalState.CURRENT_MAP_NAME) return;
+            if (GlobalState.ReturnTarget.map == GlobalState.CURRENT_MAP_NAME) return;
             
-            EntityPreset moved = new EntityPreset(preset.Type, preset.Position - new Vector2(10, 34), preset.EntityID, preset.Frame);
-            GlobalState.ReturnTarget = new DoorMapPair(moved, GlobalState.CURRENT_MAP_NAME);
+            GlobalState.ReturnTarget = new(GlobalState.CURRENT_MAP_NAME, preset.Position - new Vector2(10, 34));
         }
     }
 }

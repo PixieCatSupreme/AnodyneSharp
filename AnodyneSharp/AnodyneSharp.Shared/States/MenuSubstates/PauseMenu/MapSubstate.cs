@@ -65,7 +65,7 @@ namespace AnodyneSharp.States.MenuSubstates
             _returnLabel.IsVisible = false;
             if(GlobalState.ReturnTarget != null)
             {
-                DebugLogger.AddInfo(GlobalState.ReturnTarget.Map);
+                DebugLogger.AddInfo(GlobalState.ReturnTarget.map);
                 _returnLabel.SetText(DialogueManager.GetDialogue("misc", "any", "map", GlobalState.IsDungeon ? 5 : 4));
                 _returnLabel.IsVisible = true;
             }
