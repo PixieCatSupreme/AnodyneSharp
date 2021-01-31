@@ -116,7 +116,7 @@ namespace AnodyneSharp
                 inputConfigWriter.WriteInputConfig();
             }
 
-            DialogueManager.LoadDialogue(Language.EN);
+            DialogueManager.Reload();
 
             FG_Blend.Load(Content);
 

@@ -18,11 +18,18 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
             Game,
             NewGame,
             YesLabel,
-            NoLabel
+            NoLabel,
+            Copy,
+            Save1Label,
+            Save2Label,
+            Save3Label,
+            CancelLabel
         }
 
         public bool LoadedSave { get; private set; }
         public bool NewSave { get; private set; }
+
+        public bool RefreshSaves { get; private set; }
 
         private State _state;
         private State _lastState;
@@ -37,9 +44,17 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
         private UILabel _gameLabel;
         private UILabel _newGameLabel;
         private UILabel _copyLabel;
+
         private UILabel _confirmLabel;
         private UILabel _yesLabel;
         private UILabel _noLabel;
+
+        private UILabel _copyToLabel;
+
+        private UILabel _save1Label;
+        private UILabel _save2Label;
+        private UILabel _save3Label;
+        private UILabel _cancelLabel;
 
         private HealthBar healthBar;
 
@@ -47,15 +62,22 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
         private UILabel _deathLabel;
         private UILabel _cardLabel;
 
+        private bool _showHealth;
+        private bool _copyMode;
+
+        private int copyFileId;
+
         public FileSubstate(int saveID)
         {
             _saveID = saveID;
 
-            Save = GlobalState.Save.getSave($"Save_{saveID + 1}.dat");
+            Save = GlobalState.Save.GetSave($"Save_{saveID + 1}.dat");
 
             confirmState = 0;
 
             SetLabels();
+
+            _showHealth = SaveExists;
         }
 
         public override void DrawUI()
@@ -70,13 +92,19 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
             _yesLabel.Draw();
             _noLabel.Draw();
 
+            _copyToLabel.Draw();
+            _save1Label.Draw();
+            _save2Label.Draw();
+            _save3Label.Draw();
+            _cancelLabel.Draw();
+
             _timeLabel.Draw();
             _deathLabel.Draw();
             _cardLabel.Draw();
 
 
             //Healthbar has no visible
-            if (SaveExists)
+            if (_showHealth)
             {
                 healthBar.Draw();
             }
@@ -97,12 +125,14 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
         {
             base.GetControl();
 
+            RefreshSaves = false;
             SetSelectorPos();
         }
 
         public override void HandleInput()
         {
             bool moved = false;
+            bool selected = false;
 
             switch (_state)
             {
@@ -110,7 +140,9 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
                     if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept))
                     {
                         GlobalState.CurrentSaveGame = _saveID;
-                        
+
+                        selected = true;
+
                         if (SaveExists)
                         {
                             GlobalState.ResetValues();
@@ -149,7 +181,7 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
                     if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept))
                     {
                         _state = State.NoLabel;
-                        SoundManager.PlaySoundEffect("menu_select");
+                        selected = true;
 
                         SetConfirmation();
 
@@ -159,6 +191,7 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
 
                         _gameLabel.IsVisible = false;
                         _newGameLabel.IsVisible = false;
+                        _copyLabel.IsVisible = false;
 
                     }
                     else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Up))
@@ -170,6 +203,8 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
                     else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Down))
                     {
                         moved = true;
+
+                        _state = State.Copy;
                     }
                     else
                     {
@@ -179,11 +214,18 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
                 case State.YesLabel:
                     if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept))
                     {
-                        SoundManager.PlaySoundEffect("menu_select");
+                        selected = true;
 
                         if (confirmState == 2)
                         {
-                            DeletedSave();
+                            if (_copyMode)
+                            {
+                                DoCopy();
+                            }
+                            else
+                            {
+                                DeletedSave();
+                            }
                         }
                         else
                         {
@@ -196,7 +238,16 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
                     }
                     else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Cancel))
                     {
-                        ExitConfirmation();
+                        selected = true;
+
+                        if (_copyMode)
+                        {
+                            EnterCopy();
+                        }
+                        else
+                        {
+                            ExitConfirmation();
+                        }
                     }
                     else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Up))
                     {
@@ -212,7 +263,16 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
                 case State.NoLabel:
                     if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept) || KeyInput.JustPressedRebindableKey(KeyFunctions.Cancel))
                     {
-                        ExitConfirmation();
+                        selected = true;
+
+                        if (_copyMode)
+                        {
+                            EnterCopy();
+                        }
+                        else
+                        {
+                            ExitConfirmation();
+                        }
                     }
                     else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Up))
                     {
@@ -225,16 +285,149 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
                         _state = State.YesLabel;
                     }
                     break;
+                case State.Copy:
+                    if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept))
+                    {
+                        selected = true;
+
+                        EnterCopy();
+                    }
+                    else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Up))
+                    {
+                        moved = true;
+
+                        _state = State.NewGame;
+                    }
+                    else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Down))
+                    {
+                        moved = true;
+                    }
+                    else
+                    {
+                        base.HandleInput();
+                    }
+                    break;
+                case State.Save1Label:
+
+                    if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept))
+                    {
+                        copyFileId = 0;
+                        CopyCheck();
+                    }
+                    else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Cancel))
+                    {
+                        selected = true;
+
+                        ExitCopy();
+                    }
+                    else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Up))
+                    {
+                        moved = true;
+                    }
+                    else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Down))
+                    {
+                        moved = true;
+
+                        _state = _saveID == 1 ? State.Save3Label : State.Save2Label;
+                    }
+                    break;
+                case State.Save2Label:
+                    if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept))
+                    {
+                        copyFileId = 1;
+                        CopyCheck();
+                    }
+                    else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Cancel))
+                    {
+                        selected = true;
+
+                        ExitCopy();
+                    }
+                    else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Up))
+                    {
+                        moved = true;
+
+                        if (_saveID != 0)
+                        {
+                            _state = State.Save1Label;
+                        }
+                    }
+                    else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Down))
+                    {
+                        moved = true;
+
+                        if (_saveID != 2)
+                        {
+                            _state = State.Save3Label;
+                        }
+
+                        _state = _saveID == 2 ? State.CancelLabel : State.Save3Label;
+                    }
+                    break;
+                case State.Save3Label:
+                    if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept))
+                    {
+                        copyFileId = 2;
+                        CopyCheck();
+                    }
+                    else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Cancel))
+                    {
+                        selected = true;
+
+                        ExitCopy();
+                    }
+                    else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Up))
+                    {
+                        moved = true;
+
+                        _state = _saveID == 1 ? State.Save1Label : State.Save2Label;
+                    }
+                    else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Down))
+                    {
+                        moved = true;
+
+                        _state = State.CancelLabel;
+                    }
+                    break;
+                case State.CancelLabel:
+                    if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept) || KeyInput.JustPressedRebindableKey(KeyFunctions.Cancel))
+                    {
+                        selected = true;
+
+                        ExitCopy();
+                    }
+                    else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Up))
+                    {
+                        moved = true;
+
+                        _state = _saveID == 2 ? State.Save2Label : State.Save3Label;
+                    }
+                    else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Down))
+                    {
+                        moved = true;
+                    }
+                    break;
             }
 
             if (moved)
             {
                 SoundManager.PlaySoundEffect("menu_move");
             }
+
+            if (selected)
+            {
+                SoundManager.PlaySoundEffect("menu_select");
+            }
         }
 
         private void SetConfirmation()
         {
+            if (GlobalState.CurrentLanguage == Language.ES && confirmState == 2)
+            {
+                Vector2 offset = new Vector2(0, GameConstants.FONT_LINE_HEIGHT - GameConstants.LineOffset + 2);
+                _yesLabel.Position += offset;
+                _noLabel.Position += offset;
+            }
             _confirmLabel.SetText(DialogueManager.GetDialogue("misc", "any", "title", 13 + confirmState * 3));
             _yesLabel.SetText(DialogueManager.GetDialogue("misc", "any", "title", 15 + confirmState * 3));
             _noLabel.SetText(DialogueManager.GetDialogue("misc", "any", "title", 14 + confirmState * 3));
@@ -242,18 +435,11 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
 
         private void ExitConfirmation()
         {
-            SoundManager.PlaySoundEffect("menu_select");
-
             _state = State.NewGame;
 
             confirmState = 0;
 
-            _confirmLabel.IsVisible = false;
-            _yesLabel.IsVisible = false;
-            _noLabel.IsVisible = false;
-
-            _gameLabel.IsVisible = true;
-            _newGameLabel.IsVisible = true;
+            SetLabels();
             _copyLabel.IsVisible = true;
         }
 
@@ -275,25 +461,122 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
             _deathLabel.IsVisible = false;
             _cardLabel.IsVisible = false;
 
+            _showHealth = false;
+
             File.Delete(Path.GetFullPath($"Save_{_saveID + 1}.dat"));
 
             Save = null;
         }
 
-        private void SetLabels()
+        private void EnterCopy()
         {
-            float x = 60;
+            _state = _saveID == 0 ? State.Save2Label : State.Save1Label;
+
+            confirmState = 0;
+
+            _copyToLabel.IsVisible = true;
+            _save1Label.IsVisible = true;
+            _save2Label.IsVisible = true;
+            _save3Label.IsVisible = true;
+            _cancelLabel.IsVisible = true;
+
+            _gameLabel.IsVisible = false;
+            _newGameLabel.IsVisible = false;
+            _copyLabel.IsVisible = false;
+
+            _confirmLabel.IsVisible = false;
+            _noLabel.IsVisible = false;
+            _yesLabel.IsVisible = false;
+
+            _showHealth = false;
+
+            _copyMode = true;
+        }
+
+        private void ExitCopy()
+        {
+            _state = State.Copy;
+
+            confirmState = 0;
+
+            _copyToLabel.IsVisible = false;
+            _save1Label.IsVisible = false;
+            _save2Label.IsVisible = false;
+            _save3Label.IsVisible = false;
+            _cancelLabel.IsVisible = false;
+
+            _gameLabel.IsVisible = true;
+            _newGameLabel.IsVisible = true;
+            _copyLabel.IsVisible = true;
+
+            _confirmLabel.IsVisible = false;
+            _noLabel.IsVisible = false;
+            _yesLabel.IsVisible = false;
+
+            _showHealth = true;
+
+            _copyMode = false;
+        }
+
+        private void CopyCheck()
+        {
+            SoundManager.PlaySoundEffect("menu_select");
+
+            if (GlobalState.Save.GetSave($"Save_{copyFileId + 1}.dat") == null)
+            {
+                DoCopy();
+            }
+            else
+            {
+                SetConfirmation();
+
+                _copyToLabel.IsVisible = false;
+                _save1Label.IsVisible = false;
+                _save2Label.IsVisible = false;
+                _save3Label.IsVisible = false;
+                _cancelLabel.IsVisible = false;
+
+                _confirmLabel.IsVisible = true;
+                _yesLabel.IsVisible = true;
+                _noLabel.IsVisible = true;
+
+                _state = State.NoLabel;
+            }
+        }
+
+        private void DoCopy()
+        {
+            Save.SaveTo(copyFileId);
+
+            RefreshSaves = true;
+
+            ExitCopy();
+
+        }
+
+        public void SetLabels()
+        {
+            var xOffset = GlobalState.CurrentLanguage switch
+            {
+                Language.ES => -6,
+                Language.IT => -6,
+                Language.PT_BR => -8,
+                _ => 0,
+            };
+
+            float x = 60 + xOffset;
             float y = 28 - GameConstants.LineOffset - (GlobalState.CurrentLanguage == Language.ZH_CN ? 1 : 0);
             float yStep = GameConstants.FONT_LINE_HEIGHT - GameConstants.LineOffset + 2;
 
             Color color = new Color(116, 140, 144);
+            Color colorSelected = Color.White;
 
             _gameLabel = new UILabel(new Vector2(x, y), false, color);
             _newGameLabel = new UILabel(new Vector2(x, y + yStep), false, color)
             {
                 IsVisible = SaveExists
             };
-            _copyLabel = new UILabel(new Vector2(x, y + yStep *2), false, color)
+            _copyLabel = new UILabel(new Vector2(x, y + yStep * 2), false, color)
             {
                 IsVisible = SaveExists
             };
@@ -311,22 +594,44 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
                 IsVisible = false
             };
 
-            _timeLabel = new UILabel(new Vector2(x, y + yStep * 6), false)
+            _copyToLabel = new UILabel(new Vector2(x, y), false, color)
+            {
+                IsVisible = false
+            };
+
+            _save1Label = new UILabel(new Vector2(x, y + yStep), false, _saveID == 0 ? colorSelected : color)
+            {
+                IsVisible = false
+            };
+            _save2Label = new UILabel(new Vector2(x, y + yStep * 2), false, _saveID == 1 ? colorSelected : color)
+            {
+                IsVisible = false
+            };
+            _save3Label = new UILabel(new Vector2(x, y + yStep * 3), false, _saveID == 2 ? colorSelected : color)
+            {
+                IsVisible = false
+            };
+            _cancelLabel = new UILabel(new Vector2(x, y + yStep * 4), false, color)
+            {
+                IsVisible = false
+            };
+
+            _timeLabel = new UILabel(new Vector2(x, y + yStep * 7), false)
             {
                 IsVisible = SaveExists
             };
 
-            _deathLabel = new UILabel(new Vector2(x, y + yStep * 7), false)
+            _deathLabel = new UILabel(new Vector2(x, y + yStep * 8), false)
             {
                 IsVisible = SaveExists
             };
 
-            _cardLabel = new UILabel(new Vector2(x, y + yStep * 8), false)
+            _cardLabel = new UILabel(new Vector2(x, y + yStep * 9), false)
             {
                 IsVisible = SaveExists
             };
 
-            healthBar = new HealthBar(new Vector2(128, y + yStep * 4),Save?.current_health, Save?.max_health);
+            healthBar = new HealthBar(new Vector2(128, y + yStep * 5), Save?.current_health, Save?.max_health);
 
 
             _gameLabel.Initialize();
@@ -337,6 +642,12 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
             _yesLabel.Initialize();
             _noLabel.Initialize();
 
+            _copyToLabel.Initialize();
+            _save1Label.Initialize();
+            _save2Label.Initialize();
+            _save3Label.Initialize();
+            _cancelLabel.Initialize();
+
             _timeLabel.Initialize();
             _deathLabel.Initialize();
             _cardLabel.Initialize();
@@ -344,6 +655,12 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
             _gameLabel.SetText(DialogueManager.GetDialogue("misc", "any", "title", SaveExists ? 11 : 12));
             _copyLabel.SetText(DialogueManager.GetDialogue("misc", "any", "title", 25));
             _newGameLabel.SetText(DialogueManager.GetDialogue("misc", "any", "title", 12));
+
+            _copyToLabel.SetText(DialogueManager.GetDialogue("misc", "any", "title", 27));
+            _save1Label.SetText($"{DialogueManager.GetDialogue("misc", "any", "title", 24)}" + 1);
+            _save2Label.SetText($"{DialogueManager.GetDialogue("misc", "any", "title", 24)}" + 2);
+            _save3Label.SetText($"{DialogueManager.GetDialogue("misc", "any", "title", 24)}" + 3);
+            _cancelLabel.SetText(DialogueManager.GetDialogue("misc", "any", "title", 26));
 
             _timeLabel.SetText(new TimeSpan(Save?.playtime ?? 0).ToString(@"hh\:mm\:ss"));
             _deathLabel.SetText($"{Save?.deaths ?? 0} " + DialogueManager.GetDialogue("misc", "any", "title", 22));
@@ -354,22 +671,19 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
 
         private void SetSelectorPos()
         {
-            switch (_state)
+            _selector.Position = _state switch
             {
-                case State.Game:
-                    _selector.Position = _gameLabel.Position;
-                    break;
-                case State.NewGame:
-                    _selector.Position = _newGameLabel.Position;
-                    break;
-                case State.YesLabel:
-                    _selector.Position = _yesLabel.Position;
-                    break;
-                case State.NoLabel:
-                    _selector.Position = _noLabel.Position;
-                    break;
-            }
-
+                State.Game => _gameLabel.Position,
+                State.NewGame => _newGameLabel.Position,
+                State.YesLabel => _yesLabel.Position,
+                State.NoLabel => _noLabel.Position,
+                State.Copy => _copyLabel.Position,
+                State.Save1Label => _save1Label.Position,
+                State.Save2Label => _save2Label.Position,
+                State.Save3Label => _save3Label.Position,
+                State.CancelLabel => _cancelLabel.Position,
+                _ => Vector2.Zero,
+            };
             _selector.Position -= new Vector2(_selector.sprite.Width, -2 - CursorOffset);
         }
     }

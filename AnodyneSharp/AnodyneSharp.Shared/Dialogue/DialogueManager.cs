@@ -39,13 +39,6 @@ namespace AnodyneSharp.Dialogue
 
         public static Dictionary<string, DialogueNPC> SceneTree = null;
 
-        public static void LoadDialogue(Language lang)
-        {
-            GlobalState.settings.language = lang;
-
-            ReadFile();
-        }
-
         private static DialogueScene GetScene(string npc, string area, string scene)
         {
             DialogueNPC dn = SceneTree[npc];
@@ -104,7 +97,7 @@ namespace AnodyneSharp.Dialogue
 
 
 
-        private static void ReadFile()
+        public static void Reload()
         {
             var assembly = Assembly.GetExecutingAssembly();
 

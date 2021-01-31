@@ -336,7 +336,8 @@ namespace AnodyneSharp.States.MenuSubstates
         private void LanguageValueChanged(string value, int index)
         {
             Language lang = (Language)index;
-            DialogueManager.LoadDialogue(lang);
+            GlobalState.settings.language = lang;
+            DialogueManager.Reload();
 
             SetLabels();
             GlobalState.RefreshLabels = true;

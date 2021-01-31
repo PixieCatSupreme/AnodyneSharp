@@ -2256,16 +2256,26 @@ Continua
 Nuovo gioco
 #10
 #Are you sure?\nNo\nYes
-Sei sicuro?\nNo\nSì
+Sei sicuro?
+No
+Sì
 #Really?\nNah\nYeah 
-Davvero?\nNah\nDai, sì
+Davvero?
+Nah
+Dai, sì
 #No going back!\nForget it\nI know
-Davvero davvero??\nScherzavo\nCerto
+Davvero davvero??
+Scherzavo
+Certo
 #deaths
-morti  
+ morti  
 #cards
-carte
+ carte
 #15
+Save 
+Copy save
+Cancel copy
+Copy to
 #Anodyne supports\nmost controllers.\n\nWill you use one?\n\nYes   No\n\nIf so, connect it now.\n\nMove with arrow keys\n\nSelect with\nC, SPACE, or ENTER\n\nDefaulting to yes in\n
 Anodyne supporta\nla maggior parte dei controller.\n\nNe userai uno?\n\nSì   No\n\nSe sì, connettilo adesso.\n\nMuoviti con le frecce direzionali\n\nSeleziona usando\nC, SPAZIO, o ENTER\n\nSi applicherà sì di default in\n
 

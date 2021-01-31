@@ -2009,16 +2009,26 @@ Continuar
 #Continue 
 Novo Jogo
 #New Game 
-Tem certeza?\nNão\nSim
+Tem certeza?
+Não
+Sim
 #Are you sure?\nNo\nYes
-Mesmo?\nNão\nSim
+Mesmo?
+Não
+Sim
 #Really?\nNah\nYeah 
-Não vai ter volta!\nEsqueça\nEu sei
+Não vai ter volta!
+Esqueça
+Eu sei
 #No going back!\nForget it\nI know
-mortes
+ mortes
 #0 deaths 
-cartas
+ cartas
 #0 cards
+Save 
+Copy save
+Cancel copy
+Copy to
 Anodyne suporta\na maioria dos controles.\n\nDeseja usar um?\n\nSim Não\n\nSe sim, conecte-o agora.\n\nMova com as setas\n\nEscolha com\nC, ESPAÇO, ou ENTER\n\nEscolhendo "sim" em\n
 #Anodyne supports\nmost controllers.\n\nWill you use one?\n\nYes No\n\nIf so, connect it now.\n\nMove with arrow keys\n\nSelect with\nC, SPACE, or ENTER\n\nDefaulting to yes in\n
 AVISO\n\nSe estiver sofrendo atraso dos comandos durante o jogo,\nfeche e\nabra Anodyne novamente.\n\nPRESSIONE C PARA CONTINUAR

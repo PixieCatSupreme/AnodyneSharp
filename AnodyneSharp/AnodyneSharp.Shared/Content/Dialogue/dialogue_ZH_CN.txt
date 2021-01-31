@@ -2249,16 +2249,26 @@ Seph De Busser
 新的游戏
 #10
 #Are you sure?\nNo\nYes
-你确定吗？\n否\n是
+你确定吗？
+否
+是
 #Really?\nNah\nYeah 
-真的吗？\n不是\n是呀
+真的吗？
+不是
+是呀
 #No going back!\nForget it\nI know
-不能后悔哦！\n算了吧\n我知道
+不能后悔哦！
+算了吧
+我知道
 #deaths
 死亡数  
 #cards
 卡牌数
 #15
+Save 
+Copy save
+Cancel copy
+Copy to
 #Anodyne supports\nmost controllers.\n\nWill you use one?\n\nYes   No\n\nIf so, connect it now.\n\nMove with arrow keys\n\nSelect with\nC, SPACE, or ENTER\n\nDefaulting to yes in\n
 《镇痛》支持\n多种手柄。\n\n你打算用手柄玩儿吗？\n\n是   否\n\n如果是的话，请现在连接。\n\n使用方向键移动\n\n使用C键、空格键或回车键\n进行选择\n\n选“是”使用系统默认设置\n
 

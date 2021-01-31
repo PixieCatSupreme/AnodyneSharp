@@ -2222,10 +2222,9 @@ Pulsa
 		
 		scene title
 #Please use the\narrow keys to resize\nthe window until\nyou cannot see\nany black around\n the borders.\n\nPress
-Por favor, usa las\nteclas de dirección para redimensionar\nla ventana hasta que\nno puedas ver\nnada negro alrededor\nde los bordes.\n\nPulsa
+Por favor, usa las\nteclas de dirección para redimensionar\nla ventana hasta que\nno puedas ver\nnada negro alrededor\nde los bordes.\n\nPulsa [SOMEKEY-C] cuando acabes.
 # [SOMEKEY-C]
 #when done.
-[SOMEKEY-C] cuando acabes.
 ANODYNE
 Original game by:
 Melos Han-Tani
@@ -2237,10 +2236,9 @@ Seph De Busser
 cualquier tecla
 #5
 #Press
-Pulsa
 # [SOMEKEY-C]
 #to start
-[SOMEKEY-C] para empezar
+Pulsa [SOMEKEY-C] para empezar
 #Version
 Versión
 #Continue 
@@ -2249,16 +2247,26 @@ Continuar
 Nueva partida
 #10
 #Are you sure?\nNo\nYes
-¿Estás seguro?\nNo\nSí
+¿Estás seguro?
+No
+Sí
 #Really?\nNah\nYeah 
-¿De verdad?\nNah\nSeh
+¿De verdad?
+Nah
+Seh
 #No going back!\nForget it\nI know
-¡No hay vuelta atrás!\nOlvídalo\nLo sé
+¡No hay vuelta\natrás!
+Olvídalo
+Lo sé
 #deaths
-muertes  
+ muertes  
 #cards
-cartas
+ cartas
 #15
+Save 
+Copy save
+Cancel copy
+Copy to
 #Anodyne supports\nmost controllers.\n\nWill you use one?\n\nYes   No\n\nIf so, connect it now.\n\nMove with arrow keys\n\nSelect with\nC, SPACE, or ENTER\n\nDefaulting to yes in\n
 Anodyne soporta\nla mayoría de los mandos.\n\n¿Vas a usar uno?\n\nSí   No\n\nSi es así, conéctalo ahora.\n\nMuévete con las teclas de dirección\n\nSelecciona usando\nC, ESPACIO, o INTRO\n\nSe aplicará 'Sí' por defecto en\n
 

@@ -43,7 +43,7 @@ namespace AnodyneSharp.Registry
             public int max_health = _maxHealth;
             public int deaths = DeathCount;
 
-            public static Save getSave(string path)
+            public static Save GetSave(string path)
             {
                 try
                 {
@@ -55,13 +55,18 @@ namespace AnodyneSharp.Registry
                     return null;
                 }
             }
+
+            public void SaveTo(int id)
+            {
+                File.WriteAllText($"Save_{id + 1}.dat", JsonSerializer.Serialize<Save>(this, serializerOptions));
+            }
         }
 
         static public int CurrentSaveGame = 0;
 
         public static void SaveGame(int? id = null)
         {
-            File.WriteAllText($"Save_{(id ?? CurrentSaveGame) + 1}.dat", JsonSerializer.Serialize<Save>(new Save(), Save.serializerOptions));
+            new Save().SaveTo(id ?? CurrentSaveGame);
         }
 
         public static void LoadSave(Save s)
@@ -69,7 +74,7 @@ namespace AnodyneSharp.Registry
             minimaps.interest = s.minimap_state;
             EntityManager.State = s.entity_state;
             DialogueManager.SceneTree = s.dialogue_state;
-            DialogueManager.LoadDialogue(settings.language);
+            DialogueManager.Reload();
             events = s.events;
             inventory = s.inventory;
             achievements = s.achievements;

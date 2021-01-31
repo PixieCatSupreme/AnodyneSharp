@@ -86,19 +86,27 @@ namespace AnodyneSharp.States.MainMenu
                     })
                     .Condition(() => _substate.Exit, (state) =>
                     {
-                        if (_substate is FileSubstate s && s.LoadedSave)
+                        if (_substate is FileSubstate s)
                         {
-                            SoundManager.PlaySoundEffect("menu_select");
-                            isNewSave = s.NewSave;
-                            _state.ChangeState("FadeOut");
-                        }
-                        else
-                        {
-                            _selector.Play("enabledRight");
+                            if (s.LoadedSave)
+                            {
+                                SoundManager.PlaySoundEffect("menu_select");
+                                isNewSave = s.NewSave;
+                                _state.ChangeState("FadeOut");
 
-                            _inSubstate = false;
-                            _substate.Exit = false;
+                                return;
+                            }
+                            else if (s.RefreshSaves)
+                            {
+                                files = Enumerable.Range(0, 3).Select((i) => new FileSubstate(i)).ToArray();
+                            }
+
                         }
+
+                        _inSubstate = false;
+                        _substate.Exit = false;
+                        _selector.Play("enabledRight");
+
                     })
                     .End()
                     .State("FadeOut")
@@ -114,6 +122,18 @@ namespace AnodyneSharp.States.MainMenu
         public override void Update()
         {
             base.Update();
+
+            if (GlobalState.RefreshLabels)
+            {
+                GlobalState.RefreshLabels = false;
+                SetLabels();
+
+
+                foreach (var state in files)
+                {
+                    state.SetLabels();
+                }
+            }
 
             _selector.Update();
             _selector.PostUpdate();
@@ -207,9 +227,9 @@ namespace AnodyneSharp.States.MainMenu
             _save3Label.Initialize();
             _settingsLabel.Initialize();
 
-            _save1Label.SetText($"{DialogueManager.GetDialogue("misc", "any", "save", 24)}" + 1);
-            _save2Label.SetText($"{DialogueManager.GetDialogue("misc", "any", "save", 24)}" + 2);
-            _save3Label.SetText($"{DialogueManager.GetDialogue("misc", "any", "save", 24)}" + 3);
+            _save1Label.SetText($"{DialogueManager.GetDialogue("misc", "any", "title", 24)}" + 1);
+            _save2Label.SetText($"{DialogueManager.GetDialogue("misc", "any", "title", 24)}" + 2);
+            _save3Label.SetText($"{DialogueManager.GetDialogue("misc", "any", "title", 24)}" + 3);
             _settingsLabel.SetText(DialogueManager.GetDialogue("misc", "any", "config", 0));
         }
     }

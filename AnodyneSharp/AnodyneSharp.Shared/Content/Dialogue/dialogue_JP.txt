@@ -1984,10 +1984,10 @@ npc misc
 #to set controls.
 		end scene 
 		scene title
-黒いエリアが見えなくなるまで\n矢印キーをつかって\nウィンドウの大きさを調節してください\nおわったら
+黒いエリアが見えなくなるまで\n矢印キーをつかって\nウィンドウの大きさを調節してください\nおわったら [SOMEKEY-C] を押してください
 #Please use the arrow keys to resize the window until you cannot see any black around the borders. Press
 # [SOMEKEY-C]
-[SOMEKEY-C] を押してください
+
 #when done.
 ANODYNE
 #This is intentionally left in English
@@ -2008,16 +2008,26 @@ Press [SOMEKEY-C] to start
 #Continue 
 はじめから
 #New Game 
-よろしいですか?\nいいえ\nはい
+よろしいですか?
+いいえ
+はい
 #Are you sure?\nNo\nYes
-ホントに?\nやっぱダメ\nホントに
+ホントに?
+やっぱダメ
+ホントに
 #Really?\nNah\nYeah 
-取り消せませんからね?!\nやっぱやめる\nわかってるって
+取り消せませんからね?!
+やっぱやめる
+わかってるって
 #No going back!\nForget it\nI know
 回死亡しました
 #0 deaths 
 枚カードを集めました
 #0 cards
+Save 
+Copy save
+Cancel copy
+Copy to
 Anodyneは\nコントローラー\nに対応しています\n\n使用しますか?はい いいえ\n\n使用する場合は\n接続してください\n\n矢印キーで移動\nC / スペース / Enterで決定\n\n自動で"はい"に設定:
 #Anodyne supports\nmost controllers.\n\nWill you use one?\n\nYes No\n\nIf so, connect it now.\n\nMove with arrow keys\n\nSelect with\nC, SPACE, or ENTER\n\nDefaulting to yes in\n
 注意\n\n入力にラグが\nある場合は\n一度ホームに\n戻ってください\n\nCで次に進みます
