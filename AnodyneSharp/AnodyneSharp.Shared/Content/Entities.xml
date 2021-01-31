@@ -1530,7 +1530,7 @@
     <WallBoss x="1507" y="981" guid="D1E23614-5958-8D2F-0DA6-1DDFED1CB0F3" frame="0" p="2" alive="true"/>
     <Treasure x="1488" y="832" guid="04E39B10-28E6-B032-C0EE-0E187FD3ED7C" frame="2" alive="true"/>
     <Health_Cicada x="1504" y="1008" guid="E2F6A4D0-1A25-4AE6-132C-B8EDC2E0126D" frame="0" p="2" alive="true"/>
-    <Dungeon_Statue x="1504" y="672" guid="A2CD3467-AAD6-8BE4-30AE-61591F96D3D1" frame="0"/>
+    <Dungeon_Statue x="1504" y="672" guid="A2CD3467-AAD6-8BE4-30AE-61591F96D3D1" frame="2"/>
     <NPC x="1536" y="864" guid="8A32F53B-312A-96BB-9921-D21312423738" frame="4" p="2" alive="true" type="big_key" />
     <NPC x="1408" y="688" guid="0CDE5B83-A276-E41A-1394-0ABC2266B5C2" frame="0" type="rock" />
     <NPC x="544" y="704" guid="E792ACFB-0DCE-7448-C1C9-0E20B4CC37C6" frame="0" p="2" alive="true" type="biofilm" />
@@ -2641,7 +2641,7 @@
     <Gate x="320" y="384" guid="C1FF8227-E82A-7028-642E-6A5D6E943FE5" frame="1" p="2" alive="true" type="0" />
     <Four_Shooter x="400" y="400" guid="64349D7A-B0AB-8F05-43C7-FAE5F20648AE" frame="0" p="2"/>
     <Gate x="624" y="400" guid="266C1928-8306-1803-B690-708B252FD718" frame="0" p="2" alive="true" type="0" />
-    <Dungeon_Statue x="1024" y="384" guid="211F162D-FC2C-F5B6-8B83-BBC82DA3A632" frame="0"/>
+    <Dungeon_Statue x="1024" y="384" guid="211F162D-FC2C-F5B6-8B83-BBC82DA3A632" frame="1"/>
     <Slime x="928" y="416" guid="BEA8B10E-4C8E-29BB-D6D1-5A581260306B" frame="0" p="1" alive="true"/>
     <Annoyer x="352" y="432" guid="147ADB90-D418-1C90-84B2-532976B08C0B" frame="0" alive="true"/>
     <Four_Shooter x="288" y="448" guid="6B30AFC9-75C2-B9B4-DACE-94D63CABA736" frame="0" p="2"/>
