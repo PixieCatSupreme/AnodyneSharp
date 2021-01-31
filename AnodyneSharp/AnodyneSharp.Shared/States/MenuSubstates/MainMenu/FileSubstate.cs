@@ -332,7 +332,7 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
             _gameLabel.SetText(DialogueManager.GetDialogue("misc", "any", "title", SaveExists ? 11 : 12));
             _newGameLabel.SetText(DialogueManager.GetDialogue("misc", "any", "title", 12));
 
-            _timeLabel.SetText(Save?.playtime.ToString(@"hh\:mm\:ss")??"00:00:00");
+            _timeLabel.SetText(new TimeSpan(Save?.playtime ?? 0).ToString(@"hh\:mm\:ss"));
             _deathLabel.SetText($"{Save?.deaths ?? 0} " + DialogueManager.GetDialogue("misc", "any", "title", 22));
             _cardLabel.SetText($"{Save?.inventory.CardCount ?? 0} " + DialogueManager.GetDialogue("misc", "any", "title", 23));
 

@@ -38,7 +38,7 @@ namespace AnodyneSharp.Registry
             public InventoryManager inventory = GlobalState.inventory;
             public AchievementManager achievements = GlobalState.achievements;
             public CheckPoint checkpoint = GlobalState.checkpoint;
-            public TimeSpan playtime = PlayTime;
+            public long playtime = PlayTime.Ticks;
             public int current_health = _curHealth;
             public int max_health = _maxHealth;
             public int deaths = DeathCount;
@@ -78,7 +78,7 @@ namespace AnodyneSharp.Registry
             PLAYER_WARP_TARGET = checkpoint.Position;
             NEXT_MAP_NAME = checkpoint.map;
             
-            _totalPreviously = s.playtime;
+            _totalPreviously = new TimeSpan(s.playtime);
             MAX_HEALTH = s.max_health;
             CUR_HEALTH = s.current_health;
             DeathCount = s.deaths;
@@ -119,7 +119,7 @@ namespace AnodyneSharp.Registry
         }
 
         private static TimeSpan _totalPreviously;
-        public static DateTime START_TIME;
+        private static DateTime START_TIME;
 
         public static TimeSpan PlayTime => _totalPreviously + (DateTime.Now - START_TIME);
 

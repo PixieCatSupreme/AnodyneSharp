@@ -95,7 +95,7 @@ namespace AnodyneSharp.States
                 SetLabels();
             }
 
-            _playtimeLabel.SetText((DateTime.Now - GlobalState.START_TIME).ToString(@"hh\:mm\:ss"));
+            _playtimeLabel.SetText(GlobalState.PlayTime.ToString(@"hh\:mm\:ss"));
 
             if (KeyInput.ControllerModeChanged)
             {
