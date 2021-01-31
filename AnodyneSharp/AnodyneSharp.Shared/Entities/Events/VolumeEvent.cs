@@ -32,10 +32,13 @@ namespace AnodyneSharp.Entities.Events
 
         public override void Update()
         {
-            //VolumeEvent only changes bgm volume
-            float current = SoundManager.GetVolume();
-            ReachedTarget = MathUtilities.MoveTo(ref current, target, 0.4f);
-            SoundManager.SetSongVolume(current);
+            if (!ReachedTarget)
+            {
+                //VolumeEvent only changes bgm volume
+                float current = SoundManager.GetVolume();
+                ReachedTarget = MathUtilities.MoveTo(ref current, target, 0.4f);
+                SoundManager.SetSongVolume(current);
+            }
         }
     }
 }

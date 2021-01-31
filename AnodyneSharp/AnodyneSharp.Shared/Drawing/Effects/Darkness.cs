@@ -16,6 +16,7 @@ namespace AnodyneSharp.Drawing.Effects
         Texture2D darkness;
         float alpha;
         float target_alpha;
+        float vel = 0.8f;
 
         GraphicsDevice device;
         RenderTarget2D lights_applied;
@@ -48,14 +49,17 @@ namespace AnodyneSharp.Drawing.Effects
             lights.Add(light);
         }
 
-        public void TargetAlpha(float d)
+        public void TargetAlpha(float d, float vel = 0.8f)
         {
+            this.vel = vel;
             target_alpha = d;
             if (alpha == 0f)
             {
                 alpha = 0.1f;
             }
         }
+
+        public bool ReachedAlpha => alpha == target_alpha;
 
         public void ForceAlpha(float a)
         {
@@ -69,7 +73,7 @@ namespace AnodyneSharp.Drawing.Effects
 
         public void Update()
         {
-            MathUtilities.MoveTo(ref alpha, target_alpha, 0.8f);
+            MathUtilities.MoveTo(ref alpha, target_alpha, vel);
         }
 
         public void Load(ContentManager content, GraphicsDevice graphicsDevice)

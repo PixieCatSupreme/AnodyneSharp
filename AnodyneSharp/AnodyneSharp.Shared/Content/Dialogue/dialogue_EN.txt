@@ -452,10 +452,10 @@ end npc
 npc sun_guy
 	area BEDROOM
 		scene before_fight
-Oh, isn’t it cute?  Precious little Young, playing the hero.  But I have witnessed every step you have taken in “The Land”, and let me tell you, Young, not everyone here is as honest as me.  Be careful who you trust!
+Oh, isn’t it cute?  Precious little Young, playing the hero.  But I have witnessed every step you have taken in "The Land", and let me tell you, Young, not everyone here is as honest as me.  Be careful who you trust!
 		end scene
 		scene after_fight
-I will be with you, Young, whenever you are alone.  And remember my advice on your little “adventure”.		
+I will be with you, Young, whenever you are alone.  And remember my advice on your little "adventure".		
 		end scene
 	end area
 end npc

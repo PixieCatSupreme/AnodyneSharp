@@ -13,20 +13,26 @@ namespace AnodyneSharp.Entities
         public bool ON_CONVEYOR = false;
         public bool IS_RAFT = false;
 
-        public Dust(EntityPreset preset, Player p) : base(preset.Position,"dust",16,16,Drawing.DrawOrder.BG_ENTITIES)
+        public Dust(EntityPreset preset, Player p) : this(p)
+        {
+            Position = preset.Position;
+            exists = true;
+        }
+
+        public Dust(Player p) : base(Vector2.Zero,"dust",16,16,Drawing.DrawOrder.BG_ENTITIES)
         {
             AddAnimation("poof", CreateAnimFrameArray(0, 1, 2, 3, 4), 13, false);
             AddAnimation("unpoof", CreateAnimFrameArray(3, 2, 1, 0), 13, false);
             SetFrame(0);
             b = p.broom;
+            exists = false;
         }
 
         public override void Collided(Entity other)
         {
-            if(!_curAnim.Finished && _curAnim.name == "unpoof")
+            if(!_curAnim.Finished && _curAnim.name == "unpoof" && b.dust == this)
             {
                 exists = false;
-                b.dust = this;
                 b.just_released_dust = false;
             }
         }
@@ -36,6 +42,10 @@ namespace AnodyneSharp.Entities
             base.PostUpdate();
             velocity = Vector2.Zero;
             ON_CONVEYOR = false;
+            if(_curAnim.Finished && _curAnim.name == "poof")
+            {
+                exists = false;
+            }
         }
 
         public override void Fall(Vector2 fallPoint)
@@ -49,11 +59,6 @@ namespace AnodyneSharp.Entities
                     Play("poof");
                 }
                 return;
-            }
-
-            if(_curAnim.Finished)
-            {
-                exists = false;
             }
         }
 

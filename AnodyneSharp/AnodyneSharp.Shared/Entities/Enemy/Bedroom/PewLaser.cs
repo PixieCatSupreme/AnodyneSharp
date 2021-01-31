@@ -1,5 +1,6 @@
 ﻿using AnodyneSharp.Drawing;
 using AnodyneSharp.FSM;
+using AnodyneSharp.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using RSG;
@@ -17,7 +18,7 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
 
         private EntityPool<Laser> lasers;
 
-        private float _bulletTimer = _bulletTimerMax;
+        private float _bulletTimer = _bulletTimerMax*2f;
 
         public PewLaser(EntityPreset preset, Player player)
             : base(preset.Position, "pew_laser", 16, 16, DrawOrder.ENTITIES)
@@ -108,6 +109,8 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
             {
                 Position = parent.Position;
                 opacity = 1.0f;
+
+                SoundManager.PlaySoundEffect("laser-pew");
 
                 _state.ChangeState("Shoot");
 

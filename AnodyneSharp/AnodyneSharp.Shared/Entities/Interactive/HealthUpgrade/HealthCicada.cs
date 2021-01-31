@@ -51,6 +51,7 @@ namespace AnodyneSharp.Entities.Interactive
             {
                 _particles[i] = new BoxFX(i % 2 == 0);
             }
+            visible = false;
         }
 
         public override void Update()
@@ -194,6 +195,7 @@ namespace AnodyneSharp.Entities.Interactive
             }
 
             GlobalState.MAX_HEALTH++;
+            GlobalState.CUR_HEALTH++;
 
             Play("fly");
             velocity.Y = -40;

@@ -2,7 +2,7 @@
 <project>
   <version/>
   <bgColor>0xcccccc</bgColor>
-  <viewPos x="-924" y="-249.03012048192772"/>
+  <viewPos x="-153" y="91"/>
   <firstLayersTop>false</firstLayersTop>
   <spriteEntries currentId="169">
     <group name="Events SL" idx="1" open="false">
@@ -1763,7 +1763,7 @@
         </sprite>
       </spritelayer>
     </group>
-    <group name="BEDROOM" id="8" xScroll="1" yScroll="1" visible="false" open="true" locked="false" exports="true">
+    <group name="BEDROOM" id="8" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
       <maplayer name="BG" id="8" xScroll="1" yScroll="1" x="0" y="0" width="70" height="50" tileset="textures/tilemaps/bedroom_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0,0,0,0,3,1,1,1,1,1,1,1,1,2,3,1,1,1,1,1,1,1,1,2,3,1,1,1,1,1,1,1,1,2,3,1,1,2,3,1,1,2,9,9,3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2</row>
         <row>0,0,0,0,0,0,0,0,0,0,3,24,19,24,24,24,24,24,24,2,3,21,24,19,24,24,19,24,21,2,3,24,24,19,19,19,24,24,24,2,3,24,24,2,3,24,24,2,9,9,3,24,24,24,37,37,24,24,24,24,24,24,24,24,24,24,24,24,21,2</row>
@@ -1816,7 +1816,7 @@
         <row>3,24,24,24,24,24,24,36,36,2,3,37,24,24,24,24,20,24,37,2,3,24,24,36,36,24,36,24,20,2,3,24,24,24,24,24,24,24,24,2,9,9,9,9,3,24,2,9,9,9,9,9,3,24,24,24,24,2,9,9,9,9,9,9,9,9,9,9,9,9</row>
         <row>9,4,4,4,4,4,4,4,4,9,9,4,4,4,4,4,4,4,4,9,9,4,4,15,36,36,14,4,4,9,9,4,4,4,4,4,4,4,4,9,9,9,9,9,3,24,2,9,9,9,9,9,9,15,24,24,14,9,9,9,9,9,9,9,9,9,9,9,9,9</row>
       </maplayer>
-      <spritelayer name="Stateful" id="9" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateful" id="9" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false" selected="true">
         <sprite guid="20832549-4D6A-DAB4-5965-8A301A184D15" x="208" y="688" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="149" frame="0">
           <properties/>
         </sprite>
@@ -2000,7 +2000,7 @@
         <sprite guid="F94045C8-D9B6-70A6-6912-EE6076F86643" x="496" y="16" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="35">
           <properties/>
         </sprite>
-        <sprite guid="C481EE20-662E-6B02-B010-676AB339FC2D" x="352" y="16" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="36">
+        <sprite guid="C481EE20-662E-6B02-B010-676AB339FC2D" x="368" y="64" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="36">
           <properties/>
         </sprite>
         <sprite guid="99D78FF0-AC27-3CAE-9D9F-1F03AB60D0C5" x="64" y="464" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="53" frame="1">
@@ -8433,7 +8433,7 @@
         </sprite>
       </spritelayer>
     </group>
-    <group name="REDCAVE" id="21" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
+    <group name="REDCAVE" id="21" xScroll="1" yScroll="1" visible="false" open="true" locked="false" exports="true">
       <maplayer name="BG" id="66" xScroll="1" yScroll="1" x="0" y="0" width="70" height="100" tileset="textures/tilemaps/redcave_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="true" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>14,6,15,6,6,6,6,6,6,13,14,6,6,6,6,6,6,6,6,13,14,6,6,6,6,6,6,6,6,13,14,6,6,6,6,6,6,6,6,13,14,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,13,14,6,6,6,6,6,6,6,6,13</row>
         <row>14,27,6,36,45,17,18,44,38,13,14,60,36,37,37,37,37,37,37,6,6,37,37,37,37,38,20,20,20,13,14,27,27,27,27,27,27,27,27,13,14,10,10,27,27,27,27,27,27,27,27,27,27,27,27,27,27,40,42,13,14,27,36,45,28,28,44,38,27,13</row>
@@ -8659,7 +8659,7 @@
           <properties/>
         </tileProperties>
       </maplayer>
-      <spritelayer name="Stateful" id="68" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="true" sort="true" selected="true">
+      <spritelayer name="Stateful" id="68" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="true" sort="true">
         <sprite guid="082409E1-1D7E-3A22-9059-D5D9D0626FB1" x="1024" y="16" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="36">
           <properties/>
         </sprite>

@@ -47,6 +47,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Apartment\GasGuy.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Bedroom\Annoyer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Bedroom\PewLaser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Bedroom\Seer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Bedroom\Shieldy.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Crowd\Dog.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\EnemyAttribute.cs" />

@@ -35,7 +35,7 @@ namespace AnodyneSharp.Entities
 
         protected Shadow shadow;
 
-        protected float scale;
+        public float scale;
 
         protected SpriteEffects _flip;
 

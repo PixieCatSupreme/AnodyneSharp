@@ -2,6 +2,7 @@
 using AnodyneSharp.Dialogue;
 using AnodyneSharp.Drawing.Effects;
 using AnodyneSharp.Entities;
+using AnodyneSharp.Entities.Lights;
 using AnodyneSharp.Logging;
 using AnodyneSharp.Map;
 using AnodyneSharp.UI;
@@ -314,6 +315,8 @@ namespace AnodyneSharp.Registry
 
         public static bool ClosingGame = false;
         public static bool ToTitle = false;
+
+        public static Light PlayerLight = null;
 
         public static Darkness darkness = new Darkness();
         public static TitleScreenOverlay TitleScreenFinish = new TitleScreenOverlay();

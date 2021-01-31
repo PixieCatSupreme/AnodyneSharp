@@ -89,10 +89,10 @@ namespace AnodyneSharp.Entities
 
                 wide_attack.visible = false;
                 long_attack.visible = false;
-                just_released_dust = false;
-                if(dust != null)
+                if(just_released_dust)
                 {
-                    //dust.exists = false;
+                    dust = null;
+                    just_released_dust = false;
                 }
             }
             else
@@ -302,7 +302,6 @@ namespace AnodyneSharp.Entities
                 {
                     dust.exists = true;
                     dust.Play("unpoof",true);
-                    dust = null;
                     just_released_dust = true;
                     //dust-dust check done next frame by dust itself
                 }

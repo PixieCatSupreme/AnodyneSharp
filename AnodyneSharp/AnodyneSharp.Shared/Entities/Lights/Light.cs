@@ -26,6 +26,14 @@ namespace AnodyneSharp.Entities.Lights
         }
     }
 
+    public class ConeLight : Light
+    {
+        public ConeLight(Vector2 pos) : base(pos, "cone-light", 32, 32)
+        {
+            scale = 0.2f;
+        }
+    }
+
     public class FiveFrameGlowLight : Light
     {
         public FiveFrameGlowLight(Vector2 pos) : base(pos, "5-frame-glow", 48, 48)
@@ -35,42 +43,43 @@ namespace AnodyneSharp.Entities.Lights
         }
     }
 
-    [NamedEntity("Event","bedroom_bounce"), Collision(typeof(Player),KeepOnScreen = true)]
+    [NamedEntity("Event", "bedroom_bounce"), Collision(typeof(Player), KeepOnScreen = true)]
     public class BedRoomBounceLight : Light
     {
         private float lock_on_timer = 2.0f;
         private bool locked_on = false;
         private Player followee;
-        private EntityPreset preset;
 
-        public BedRoomBounceLight(EntityPreset preset, Player p) : base(p.Position,"glow-light",64,64)
+        public BedRoomBounceLight(EntityPreset preset, Player p) : base(p.Position, "glow-light", 64, 64)
         {
             scale = 2;
             followee = p;
-            this.preset = preset;
             width = height = 32;
+
+            GlobalState.PlayerLight = this; //some entities need to change this light's properties
 
             velocity = Vector2.One * 30f;
             int vel_decider = GlobalState.RNG.Next(0, 4);
-            if(vel_decider % 2 == 0)
+            if (vel_decider % 2 == 0)
             {
                 velocity.X *= -1;
             }
-            if(vel_decider/2 == 0)
+            if (vel_decider / 2 == 0)
             {
                 velocity.Y *= -1;
             }
-        }
-
-        public override void Update()
-        {
-            base.Update();
             
             if (GlobalState.events.BossDefeated.Contains("BEDROOM"))
             {
                 preset.Alive = exists = false;
                 return;
             }
+        }
+
+        public override void Update()
+        {
+            base.Update();
+
 
             if (locked_on)
             {

@@ -438,7 +438,7 @@
     <Pew_Laser x="448" y="688" guid="33D48EE6-F83B-6322-6758-EDC1C887C31D" frame="3"/>
     <Sage x="544" y="80" guid="5F991DE1-6C84-118A-DB8F-0B4087125CB1" frame="0" p="2"/>
     <NPC x="496" y="16" guid="F94045C8-D9B6-70A6-6912-EE6076F86643" frame="0" type="statue" />
-    <Health_Cicada x="352" y="16" guid="C481EE20-662E-6B02-B010-676AB339FC2D" frame="0" p="2" alive="true"/>
+    <Health_Cicada x="368" y="64" guid="C481EE20-662E-6B02-B010-676AB339FC2D" frame="0" p="2" alive="true"/>
     <Gate x="64" y="464" guid="99D78FF0-AC27-3CAE-9D9F-1F03AB60D0C5" frame="1" p="2" alive="true" type="0" />
     <Gate x="80" y="464" guid="99CE6117-392D-3508-35F3-228EA4127BF4" frame="1" p="2" alive="true" type="0" />
     <Gate x="48" y="320" guid="E3A5D836-1BC0-13FE-E7C6-54F14D996064" frame="1" p="2" alive="true" type="0" />
