@@ -126,6 +126,8 @@ namespace AnodyneSharp.Registry
             events = new();
             inventory = new();
             achievements = new();
+
+            disable_menu = false;
         }
 
         private static TimeSpan _totalPreviously;
@@ -311,6 +313,7 @@ namespace AnodyneSharp.Registry
 #endif
 
         public static bool ClosingGame = false;
+        public static bool ToTitle = false;
 
         public static Darkness darkness = new Darkness();
         public static TitleScreenOverlay TitleScreenFinish = new TitleScreenOverlay();

@@ -246,6 +246,11 @@ namespace AnodyneSharp.States
 
                 if (_childState.Exit)
                 {
+                    if (_childState is DeathState d)
+                    {
+                        PlayMapMusic();
+                    }
+
                     _childState = null;
                     _player.dontMove = false;
                     _player.exists = true;
@@ -433,6 +438,15 @@ namespace AnodyneSharp.States
 
         private void StateNormal()
         {
+            if (GlobalState.ToTitle)
+            {
+                GlobalState.ToTitle = false;
+                ChangeStateEvent(AnodyneGame.GameState.TitleScreen);
+
+                GlobalState.CURRENT_MAP_NAME = "";
+                return;
+            }
+
             if (GlobalState.SetDialogueMode)
             {
                 _childState = new DialogueState();
@@ -760,10 +774,6 @@ namespace AnodyneSharp.States
             if (_childState == null && GlobalState.CUR_HEALTH == 0)
             {
                 SoundManager.StopSong();
-
-                _player.dontMove = true;
-                _player.exists = false;
-                GlobalState.disable_menu = true;
 
                 _childState = new DeathState(_player);
             }

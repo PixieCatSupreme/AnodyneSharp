@@ -58,6 +58,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\VolumeEvent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Explosion.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\DungeonStatue.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\DeathPlace.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Mitra.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Registry\Settings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sounds\SFXLimiter.cs" />

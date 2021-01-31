@@ -158,7 +158,7 @@ namespace AnodyneSharp.Map
                                         Rectangle actualHitbox = t.Hitbox;
                                         actualHitbox.Y += 6; actualHitbox.Height = 6;
                                         actualHitbox.X += 6; actualHitbox.Width = 5;
-                                        if (ent is Player p && p.state != PlayerState.AIR && actualHitbox.Intersects(p.Hitbox)) p.ReceiveDamage(1);
+                                        if (ent is Player p && p.state != PlayerState.AIR && actualHitbox.Intersects(p.Hitbox)) p.ReceiveDamage(1, false);
                                     }
                                     break;
                                 case CollisionEventType.LADDER:

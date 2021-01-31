@@ -31,7 +31,7 @@ namespace AnodyneSharp.Entities
         as_slumped
     }
 
-    [Collision(typeof(Dust),MapCollision = true)]
+    [Collision(typeof(Dust), MapCollision = true)]
     public class Player : Entity
     {
         public const string Player_Sprite = "young_player";
@@ -119,7 +119,7 @@ namespace AnodyneSharp.Entities
             : base(Vector2.Zero, Player_Sprite, ORIGINAL_WIDTH, ORIGINAL_HEIGHT, Drawing.DrawOrder.ENTITIES)
         {
             DEATH_FRAME = 32;
-            
+
 
             AddAnimation("walk_d", CreateAnimFrameArray(1, 0), 6, true);
             AddAnimation("walk_r", CreateAnimFrameArray(2, 3), 8, true);
@@ -203,7 +203,7 @@ namespace AnodyneSharp.Entities
             }
             else
             {
-                if(walkSpeed != 70) Solid = true;
+                if (walkSpeed != 70) Solid = true;
                 walkSpeed = 70;
             }
 
@@ -298,7 +298,7 @@ namespace AnodyneSharp.Entities
         {
             ON_CONVEYOR = true;
             const float CONVEYOR_VEL = 35f;
-            if(state != PlayerState.AIR)
+            if (state != PlayerState.AIR)
             {
                 additionalVel = direction switch
                 {
@@ -319,9 +319,9 @@ namespace AnodyneSharp.Entities
 
         public override void Collided(Entity other)
         {
-            if(other is Dust d)
+            if (other is Dust d)
             {
-                if(raft == null && d.Hitbox.Contains(this.Center) && d.ON_CONVEYOR && ON_CONVEYOR)
+                if (raft == null && d.Hitbox.Contains(this.Center) && d.ON_CONVEYOR && ON_CONVEYOR)
                 {
                     raft = d;
                     d.IS_RAFT = true;
@@ -337,7 +337,7 @@ namespace AnodyneSharp.Entities
             {
                 case PlayerState.GROUND:
                     shadow.visible = false;
-                    
+
                     if (dontMove)
                     {
                         velocity = Vector2.Zero;
@@ -367,13 +367,13 @@ namespace AnodyneSharp.Entities
                             y_push = 0;
                         }
 
-                        if(raft != null)
+                        if (raft != null)
                         {
                             if (ON_CONVEYOR)
                             {
                                 raft.Position = Position - new Vector2(2, 2);
                             }
-                            else if(velocity != Vector2.Zero && !isSlipping && !hasFallen)
+                            else if (velocity != Vector2.Zero && !isSlipping && !hasFallen)
                             {
                                 Vector2 vel = velocity;
                                 vel.Normalize();
@@ -384,7 +384,7 @@ namespace AnodyneSharp.Entities
                         }
                     }
 
-                    if(raft != null && ON_CONVEYOR)
+                    if (raft != null && ON_CONVEYOR)
                     {
                         raft.Position = Position - Vector2.One * 2;
                     }
@@ -430,7 +430,7 @@ namespace AnodyneSharp.Entities
                     //dash_logic();
                     break;
                 case PlayerState.AUTO_JUMP:
-                    if(!jump_anim.MoveNext())
+                    if (!jump_anim.MoveNext())
                     {
                         state = PlayerState.GROUND;
 
@@ -496,7 +496,7 @@ namespace AnodyneSharp.Entities
         private void SinkingLogic()
         {
             y_push += GameTimes.DeltaTime * 16 / 3;
-            if(y_push > 16)
+            if (y_push > 16)
             {
                 y_push = 0;
                 Position = grid_entrance;
@@ -557,7 +557,7 @@ namespace AnodyneSharp.Entities
             {
                 if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept) && action_latency <= 0 && !skipBroom)
                 {
-                    if(GlobalState.inventory.EquippedBroom == BroomType.Transformer)
+                    if (GlobalState.inventory.EquippedBroom == BroomType.Transformer)
                     {
                         //TODO transformer stuff
                     }
@@ -565,7 +565,7 @@ namespace AnodyneSharp.Entities
                     {
                         broom.Attack();
                         action_latency = action_latency_max;
-                        
+
                         ANIM_STATE = PlayerAnimState.ANIM_ATK;
                     }
 
@@ -656,7 +656,7 @@ namespace AnodyneSharp.Entities
         {
             Vector2 base_pos = Position;
             broom.exists = false;
-            if(ON_CONVEYOR)
+            if (ON_CONVEYOR)
             {
                 SoundManager.PlaySoundEffect("puddle_up");
             }
@@ -672,16 +672,16 @@ namespace AnodyneSharp.Entities
 
             float timer = 0.0f;
 
-            while(timer < period)
+            while (timer < period)
             {
                 timer += GameTimes.DeltaTime;
                 offset.Y = DEFAULT_Y_OFFSET + (((-4 * 24) / (period * period)) * timer * (timer - period));
-                if(target_pos.HasValue)
+                if (target_pos.HasValue)
                 {
-                    Position.X = MathHelper.Lerp(base_pos.X, target_pos.Value.X, timer/period);
-                    Position.Y = MathHelper.Lerp(base_pos.Y, target_pos.Value.Y, timer/period);
+                    Position.X = MathHelper.Lerp(base_pos.X, target_pos.Value.X, timer / period);
+                    Position.Y = MathHelper.Lerp(base_pos.Y, target_pos.Value.Y, timer / period);
                 }
-                if(!did_down && timer > period/2)
+                if (!did_down && timer > period / 2)
                 {
                     shadow.Play("get_big");
                     did_down = true;
@@ -768,7 +768,7 @@ namespace AnodyneSharp.Entities
             {
                 if (ON_CONVEYOR)
                 {
-                    raft.Position = Position - Vector2.One*2;
+                    raft.Position = Position - Vector2.One * 2;
                 }
             }
 
@@ -891,19 +891,23 @@ namespace AnodyneSharp.Entities
             if (!invincible)
             {
                 GlobalState.CUR_HEALTH -= amount;
-                invincible = true;
-                invincibility_time = INVINCIBLE_MAX;
-                Flicker(INVINCIBLE_MAX);
 
                 if (playSound)
                 {
                     SoundManager.PlaySoundEffect("player_hit_1");
                 }
-                if (knockback)
-                {
-                    bump_timer = BUMP_TIMER_MAX;
-                }
 
+                if (GlobalState.CUR_HEALTH > 0)
+                {
+                    invincible = true;
+                    invincibility_time = INVINCIBLE_MAX;
+                    Flicker(INVINCIBLE_MAX);
+
+                    if (knockback)
+                    {
+                        bump_timer = BUMP_TIMER_MAX;
+                    }
+                }
             }
         }
 

@@ -44,6 +44,8 @@ namespace AnodyneSharp.States
             GlobalState.DeathCount++;
 
             _player = player;
+            _player.velocity = Vector2.Zero;
+
             _dieDummy = new PlayerDieDummy(player.Position, GlobalState.IsCell ? Player.Cell_Player_Sprite : Player.Player_Sprite);
 
             _deathFade = new DeathFadeIn(GlobalState.IsCell ? Color.Black : Color.White);
@@ -74,6 +76,10 @@ namespace AnodyneSharp.States
             UpdateEntities = false;
 
             state = CurrentState.FadeIn;
+
+            _player.dontMove = true;
+            _player.exists = false;
+            GlobalState.disable_menu = true;
         }
 
         public override void Update()
@@ -129,6 +135,10 @@ namespace AnodyneSharp.States
                     if (yesSelected)
                     {
                         (GlobalState.NEXT_MAP_NAME, GlobalState.PLAYER_WARP_TARGET) = (GlobalState.checkpoint.map,GlobalState.checkpoint.Position);
+
+                        _player.dontMove = false;
+                        _player.exists = true;
+                        GlobalState.disable_menu = false;
                     }
                     else
                     {
