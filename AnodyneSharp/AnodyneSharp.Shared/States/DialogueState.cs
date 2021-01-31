@@ -81,22 +81,22 @@ namespace AnodyneSharp.States
                               return;
                           }
                           _state.PopState();
-                          if(_tb.Writer.AtEndOfText)
+                          if (_tb.Writer.AtEndOfText)
                           {
                               _state.ChangeState("Waiting");
                           }
                       })
                 .End()
                 .State("WaitCaret")
-                    .Event("KeyPressed",(state) =>
-                    {
-                        SoundManager.PlaySoundEffect("dialogue_bloop");
-                        _state.ChangeState("Writing");
-                    })
+                    .Condition(() => KeyInput.IsRebindableKeyPressed(KeyFunctions.Accept) || KeyInput.IsRebindableKeyPressed(KeyFunctions.Cancel), (s) =>
+                        {
+                            SoundManager.PlaySoundEffect("dialogue_bloop");
+                            _state.ChangeState("Writing");
+                        })
                 .End()
                 .State<BumpState>("Bump")
-                    .Enter((s) => 
-                    { 
+                    .Enter((s) =>
+                    {
                         s.linesBumped = 0;
                         _tb.BlinkyEnabled = false;
                     })
@@ -116,7 +116,7 @@ namespace AnodyneSharp.States
                          {
                              state.halfBumps = 0;
                              state.linesBumped++;
-                             if (state.linesBumped == _tb.Writer.LinesPerBox) //Bumped all lines, move back to Waiting
+                             if (state.linesBumped == _tb.Writer.LinesPerBox) //Bumped all lines, move back to Waiting after writing said last line
                                  _state.ChangeState("Waiting");
                              _state.PushState("Writing");
                          }
@@ -124,26 +124,15 @@ namespace AnodyneSharp.States
                     .Exit((state) => _tb.BlinkyEnabled = true)
                 .End()
                 .State("Waiting")
-                    .Enter((state) =>
-                    {
-                        if (KeyInput.IsRebindableKeyPressed(KeyFunctions.Accept) || KeyInput.IsRebindableKeyPressed(KeyFunctions.Cancel))
-                        {
-                            if (!_tb.Writer.AtEndOfText && _tb.Writer.AtEndOfBox)
-                            {
-                                _state.ChangeState("Bump");
-                                _state.TriggerEvent("doBump");
-                            }
-                        }
-                    })
-                    .Event("KeyPressed", (state) =>
+                    .Condition(() => _tb.Writer.AtEndOfText && (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept) || KeyInput.JustPressedRebindableKey(KeyFunctions.Cancel)), (state) =>
                     {
                         SoundManager.PlaySoundEffect("dialogue_bloop");
-
-                        if (_tb.Writer.AtEndOfText)
-                        {
-                            _state.ChangeState("Done");
-                        }
-                        else if (_tb.Writer.AtEndOfBox)
+                        _state.ChangeState("Done");
+                    })
+                    .Condition(() => !_tb.Writer.AtEndOfText && (KeyInput.IsRebindableKeyPressed(KeyFunctions.Accept) || KeyInput.IsRebindableKeyPressed(KeyFunctions.Cancel)), (s) =>
+                    {
+                        SoundManager.PlaySoundEffect("dialogue_bloop");
+                        if (_tb.Writer.AtEndOfBox)
                         {
                             _state.ChangeState("Bump");
                             _state.TriggerEvent("doBump");
@@ -173,9 +162,6 @@ namespace AnodyneSharp.States
             {
                 _tb.Writer.Speed = normalSpeed;
             }
-
-            if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept) || KeyInput.JustPressedRebindableKey(KeyFunctions.Cancel))
-                _state.TriggerEvent("KeyPressed");
 
             _tb.Update();
 
