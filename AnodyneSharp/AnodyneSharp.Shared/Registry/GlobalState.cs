@@ -247,9 +247,9 @@ namespace AnodyneSharp.Registry
 
             public void Warp(Vector2 offset)
             {
-                GlobalState.NEXT_MAP_NAME = map;
-                GlobalState.PLAYER_WARP_TARGET = Position + offset;
-                GlobalState.WARP = true;
+                NEXT_MAP_NAME = map;
+                PLAYER_WARP_TARGET = Position + offset;
+                WARP = true;
             }
         }
         public static CheckPoint checkpoint;
