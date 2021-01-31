@@ -36,6 +36,7 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
 
         private UILabel _gameLabel;
         private UILabel _newGameLabel;
+        private UILabel _copyLabel;
         private UILabel _confirmLabel;
         private UILabel _yesLabel;
         private UILabel _noLabel;
@@ -63,6 +64,8 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
 
             _gameLabel.Draw();
             _newGameLabel.Draw();
+            _copyLabel.Draw();
+
             _confirmLabel.Draw();
             _yesLabel.Draw();
             _noLabel.Draw();
@@ -251,6 +254,7 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
 
             _gameLabel.IsVisible = true;
             _newGameLabel.IsVisible = true;
+            _copyLabel.IsVisible = true;
         }
 
         private void DeletedSave()
@@ -261,6 +265,7 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
 
             _gameLabel.IsVisible = true;
             _newGameLabel.IsVisible = false;
+            _copyLabel.IsVisible = false;
 
             _confirmLabel.IsVisible = false;
             _yesLabel.IsVisible = false;
@@ -288,6 +293,11 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
             {
                 IsVisible = SaveExists
             };
+            _copyLabel = new UILabel(new Vector2(x, y + yStep *2), false, color)
+            {
+                IsVisible = SaveExists
+            };
+
             _confirmLabel = new UILabel(new Vector2(x, y), false, color)
             {
                 IsVisible = false
@@ -321,6 +331,8 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
 
             _gameLabel.Initialize();
             _newGameLabel.Initialize();
+            _copyLabel.Initialize();
+
             _confirmLabel.Initialize();
             _yesLabel.Initialize();
             _noLabel.Initialize();
@@ -330,6 +342,7 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
             _cardLabel.Initialize();
 
             _gameLabel.SetText(DialogueManager.GetDialogue("misc", "any", "title", SaveExists ? 11 : 12));
+            _copyLabel.SetText(DialogueManager.GetDialogue("misc", "any", "title", 25));
             _newGameLabel.SetText(DialogueManager.GetDialogue("misc", "any", "title", 12));
 
             _timeLabel.SetText(new TimeSpan(Save?.playtime ?? 0).ToString(@"hh\:mm\:ss"));

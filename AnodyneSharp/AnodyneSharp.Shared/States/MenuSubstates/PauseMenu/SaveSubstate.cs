@@ -102,6 +102,7 @@ namespace AnodyneSharp.States.MenuSubstates
                 switch (_state)
                 {
                     case SaveState.SaveLabel:
+                        _saveLabel.SetText(DialogueManager.GetDialogue("misc", "any", "save", 1));
                         break;
                     case SaveState.SaveTitleLable:
                         ReturnToTitle = true;

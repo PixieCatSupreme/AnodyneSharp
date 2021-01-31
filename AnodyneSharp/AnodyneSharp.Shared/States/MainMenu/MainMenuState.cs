@@ -58,7 +58,7 @@ namespace AnodyneSharp.States.MainMenu
 
             _state = new StateMachineBuilder()
                 .State("Normal")
-                    .Enter((state) => 
+                    .Enter((state) =>
                     {
                         SetLabels();
                         StateChanged();
@@ -207,9 +207,9 @@ namespace AnodyneSharp.States.MainMenu
             _save3Label.Initialize();
             _settingsLabel.Initialize();
 
-            _save1Label.SetText("Save 1");
-            _save2Label.SetText("Save 2");
-            _save3Label.SetText("Save 3");
+            _save1Label.SetText($"{DialogueManager.GetDialogue("misc", "any", "save", 24)}" + 1);
+            _save2Label.SetText($"{DialogueManager.GetDialogue("misc", "any", "save", 24)}" + 2);
+            _save3Label.SetText($"{DialogueManager.GetDialogue("misc", "any", "save", 24)}" + 3);
             _settingsLabel.SetText(DialogueManager.GetDialogue("misc", "any", "config", 0));
         }
     }

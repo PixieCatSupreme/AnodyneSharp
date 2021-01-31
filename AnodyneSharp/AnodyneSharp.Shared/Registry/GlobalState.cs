@@ -59,9 +59,9 @@ namespace AnodyneSharp.Registry
 
         static public int CurrentSaveGame = 0;
 
-        public static void SaveGame()
+        public static void SaveGame(int? id = null)
         {
-            File.WriteAllText($"Save_{CurrentSaveGame + 1}.dat", JsonSerializer.Serialize<Save>(new Save(), Save.serializerOptions));
+            File.WriteAllText($"Save_{(id ?? CurrentSaveGame) + 1}.dat", JsonSerializer.Serialize<Save>(new Save(), Save.serializerOptions));
         }
 
         public static void LoadSave(Save s)
@@ -77,7 +77,7 @@ namespace AnodyneSharp.Registry
 
             PLAYER_WARP_TARGET = checkpoint.Position;
             NEXT_MAP_NAME = checkpoint.map;
-            
+
             _totalPreviously = new TimeSpan(s.playtime);
             MAX_HEALTH = s.max_health;
             CUR_HEALTH = s.current_health;
