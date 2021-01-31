@@ -137,8 +137,8 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
                         width = 8;
                         height = 16;
 
-                        Position += new Vector2(8, 2);
-                        offset = new Vector2(4, -2);
+                        Position += new Vector2(8, 0);
+                        offset = new Vector2(4, -4);
                         rotation = MathF.PI / 2;
                         break;
                     default:
