@@ -44,7 +44,8 @@ namespace AnodyneSharp.States
             GlobalState.DeathCount++;
 
             _player = player;
-            _player.velocity = Vector2.Zero;
+
+            player.Reset();
 
             _dieDummy = new PlayerDieDummy(player.Position, GlobalState.IsCell ? Player.Cell_Player_Sprite : Player.Player_Sprite);
 

@@ -67,7 +67,6 @@ namespace AnodyneSharp.Entities
         private int idle_ticks = 0;
 
         private int[] last_frame = { 0, 0, 0, 0 };
-        public int DEATH_FRAME;
 
         public PlayerState state;
         internal bool invincible;
@@ -118,8 +117,6 @@ namespace AnodyneSharp.Entities
         public Player()
             : base(Vector2.Zero, Player_Sprite, ORIGINAL_WIDTH, ORIGINAL_HEIGHT, Drawing.DrawOrder.ENTITIES)
         {
-            DEATH_FRAME = 32;
-
 
             AddAnimation("walk_d", CreateAnimFrameArray(1, 0), 6, true);
             AddAnimation("walk_r", CreateAnimFrameArray(2, 3), 8, true);
@@ -160,8 +157,23 @@ namespace AnodyneSharp.Entities
             foot_overlay = new Foot_Overlay(this);
         }
 
-        public void Reset()
+        public void Reset(bool fullReset = true)
         {
+            if (fullReset)
+            {
+                BeIdle();
+
+                broom.UpdateBroomType();
+                broom.dust = null;
+                foot_overlay.OnMapChange();
+
+                velocity = Vector2.Zero;
+                state = PlayerState.GROUND;
+                offset = new Vector2(3, DEFAULT_Y_OFFSET);
+
+                broom.exists = false;
+            }
+
             if (GlobalState.AlwaysCellGraphics || GlobalState.CURRENT_MAP_NAME == "CELL")
             {
                 SetTexture(Cell_Player_Sprite, 16, 16);
@@ -170,10 +182,6 @@ namespace AnodyneSharp.Entities
             {
                 SetTexture(Player_Sprite, 16, 16);
             }
-
-            broom.UpdateBroomType();
-            broom.dust = null;
-            foot_overlay.OnMapChange();
         }
 
         public override void Draw()

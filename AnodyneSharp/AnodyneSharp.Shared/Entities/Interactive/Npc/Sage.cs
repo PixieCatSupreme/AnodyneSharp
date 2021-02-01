@@ -96,8 +96,10 @@ namespace AnodyneSharp.Entities
             }
             
             GlobalState.disable_menu = true;
+            _player.BeIdle();
             _player.state = PlayerState.INTERACT;
             MoveTowards(_player.Position, 20);
+
             
             while((_player.Position-Position).Length() > 32)
             {

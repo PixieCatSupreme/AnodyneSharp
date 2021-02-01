@@ -22,7 +22,7 @@ namespace AnodyneSharp.States
 
             public BumpState()
             {
-                AddTimer(0.2f, "doBump");
+                AddTimer(0.1f, "doBump");
             }
         }
 

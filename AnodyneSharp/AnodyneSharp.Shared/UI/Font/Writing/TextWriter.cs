@@ -13,7 +13,7 @@ namespace AnodyneSharp.UI.Text
 {
     public class TextWriter
     {
-        private const int DefaultTextSpeed = 30;
+        private const int DefaultTextSpeed = 50;
         public static char[] LineBreaks = new char[] { '\n', '\r' };
         public static char[] SoftLinebreak = new char[] { '.', '!', '。', '…', '？', '！', '?' };
         public static char[] WordBreaks = new char[] { ' ', '¶', '\n' };

@@ -224,7 +224,7 @@ namespace AnodyneSharp.Registry
         public static AchievementManager achievements = new();
 
 
-        public static Facing NewMapFacing = Facing.RIGHT;
+        public static Facing? NewMapFacing = Facing.RIGHT;
         public static bool WARP = false;
         public static string NEXT_MAP_NAME;
         public static Vector2 PLAYER_WARP_TARGET;
