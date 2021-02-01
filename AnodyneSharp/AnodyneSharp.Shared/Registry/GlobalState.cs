@@ -111,6 +111,8 @@ namespace AnodyneSharp.Registry
             _maxHealth = 6;
             _curHealth = 6;
 
+            DeathCount = 0;
+
             RefreshKeyCount = true;
             RefreshMaxHealth = true;
 
@@ -128,6 +130,8 @@ namespace AnodyneSharp.Registry
             events = new();
             inventory = new();
             achievements = new();
+            DialogueManager.SceneTree = null;
+            DialogueManager.Reload();
             EntityManager.State = new();
             PauseState.Reset();
 
