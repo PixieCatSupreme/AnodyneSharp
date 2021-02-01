@@ -31,7 +31,7 @@ namespace AnodyneSharp.Drawing.Effects
         public void Shake(float intensity, float time, Directions shakeDir = Directions.Both)
         {
             _time = time;
-            _intensity = intensity * 2f;
+            _intensity = intensity;
             _dir = shakeDir;
             _pos = new();
         }
