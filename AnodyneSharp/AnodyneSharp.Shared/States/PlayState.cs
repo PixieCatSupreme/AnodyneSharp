@@ -823,8 +823,11 @@ namespace AnodyneSharp.States
 
                 GlobalState.CURRENT_MAP_NAME = GlobalState.NEXT_MAP_NAME;
 
-                if(GlobalState.ReturnTarget == null || GlobalState.ReturnTarget.map != GlobalState.CURRENT_MAP_NAME || GlobalState.CURRENT_MAP_NAME == "NEXUS")
-                    GlobalState.ReturnTarget = new(EntityManager.GetNexusGateForCurrentMap());
+                if (GlobalState.ReturnTarget == null || GlobalState.ReturnTarget.map != GlobalState.CURRENT_MAP_NAME || GlobalState.CURRENT_MAP_NAME == "NEXUS")
+                {
+                    var gate = EntityManager.GetNexusGateForCurrentMap();
+                    GlobalState.ReturnTarget = (gate != null) ? new(gate) : null;
+                }
 
                 TileData.SetTileset(GlobalState.CURRENT_MAP_NAME);
                 _map.LoadMap(MapLoader.GetMapLayer(GlobalState.CURRENT_MAP_NAME), TileData.Tiles, DrawOrder.MAP_BG);

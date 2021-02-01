@@ -43,7 +43,7 @@ namespace AnodyneSharp.Cheatz
             GlobalState.FUCK_IT_MODE_ON = !GlobalState.FUCK_IT_MODE_ON;
 
 #if RELEASE
-            AchievementManager.AchievementsDisabled = true;
+            GlobalState.achievements.AchievementsDisabled = true;
 #endif
         }
 
@@ -62,7 +62,7 @@ namespace AnodyneSharp.Cheatz
             GlobalState.inventory.CanJump = true;
 
 #if RELEASE
-            AchievementManager.AchievementsDisabled = true;
+            GlobalState.achievements.AchievementsDisabled = true;
 #endif
 
             for (int i = 0; i < GlobalState.inventory.CardStatus.Length; i++)

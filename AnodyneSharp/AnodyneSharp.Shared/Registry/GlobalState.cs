@@ -5,6 +5,7 @@ using AnodyneSharp.Entities;
 using AnodyneSharp.Entities.Lights;
 using AnodyneSharp.Logging;
 using AnodyneSharp.Map;
+using AnodyneSharp.States;
 using AnodyneSharp.UI;
 using Microsoft.Xna.Framework;
 using System;
@@ -127,6 +128,8 @@ namespace AnodyneSharp.Registry
             events = new();
             inventory = new();
             achievements = new();
+            EntityManager.State = new();
+            PauseState.Reset();
 
             disable_menu = false;
         }

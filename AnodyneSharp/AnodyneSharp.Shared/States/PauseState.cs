@@ -47,6 +47,11 @@ namespace AnodyneSharp.States
             }
         }
 
+        public static void Reset()
+        {
+            _state = PauseStateState.Map;
+        }
+
         private Texture2D _bg;
 
         private UILabel _mapLabel;

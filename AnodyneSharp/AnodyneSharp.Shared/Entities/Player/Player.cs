@@ -573,7 +573,7 @@ namespace AnodyneSharp.Entities
                 skipBroom = false;
 
 
-                if (KeyInput.JustPressedRebindableKey(KeyFunctions.Cancel) && !sinking)
+                if (KeyInput.JustPressedRebindableKey(KeyFunctions.Cancel) && !sinking && GlobalState.inventory.CanJump)
                 {
                     state = PlayerState.AIR;
                     jump_anim = JumpAnim(jump_period);
