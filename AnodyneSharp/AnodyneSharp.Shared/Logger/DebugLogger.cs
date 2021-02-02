@@ -103,7 +103,7 @@ namespace AnodyneSharp.Logging
 
             var assembly = Assembly.GetCallingAssembly();
 
-            using (StreamWriter writer = new StreamWriter(new FileStream($"{Path.GetDirectoryName( assembly.Location)}/{LogPath}", FileMode.Append)))
+            using (StreamWriter writer = new StreamWriter(new FileStream(LogPath, FileMode.Append)))
             {
                 if (showStack)
                 {
