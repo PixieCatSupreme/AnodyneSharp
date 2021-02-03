@@ -256,9 +256,11 @@ namespace AnodyneSharp.States
                     _player.exists = true;
                     _player.actions_disabled = false;
                     _player.skipBroom = true;
+                    _player.invincible = false;
                 }
                 else
                 {
+                    _player.invincible = true;
                     _player.dontMove = true;
                     _player.actions_disabled = true;
                 }
