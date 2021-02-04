@@ -32,6 +32,8 @@ namespace AnodyneSharp.States.MainMenu
         private UILabel _save3Label;
         private UILabel _settingsLabel;
 
+        private UILabel _inputLabel;
+
         private MenuSelector _selector;
         private MenuState _lastState;
 
@@ -155,6 +157,8 @@ namespace AnodyneSharp.States.MainMenu
             _save3Label.Draw();
             _settingsLabel.Draw();
 
+            _inputLabel.Draw();
+
             _substate.DrawUI();
         }
 
@@ -220,17 +224,34 @@ namespace AnodyneSharp.States.MainMenu
             _save3Label = new UILabel(new Vector2(x, startY + yStep * 2), false, color);
             _settingsLabel = new UILabel(new Vector2(x, startY + yStep * 3), false, color);
 
-
+            Vector2 inputPos = Vector2.Zero;
+            if (GlobalState.CurrentLanguage == Language.ZH_CN)
+            {
+                inputPos = new Vector2(2, 168 - GameConstants.LineOffset + 1);
+            }
+            else
+            {
+                inputPos = new Vector2(2, 168);
+                if (GlobalState.CurrentLanguage == Language.KR)
+                {
+                    inputPos.Y -= 1;
+                }
+            }
+            _inputLabel = new UILabel(inputPos, false, color);
 
             _save1Label.Initialize();
             _save2Label.Initialize();
             _save3Label.Initialize();
             _settingsLabel.Initialize();
 
+            _inputLabel.Initialize();
+
             _save1Label.SetText($"{DialogueManager.GetDialogue("misc", "any", "title", 24)}" + 1);
             _save2Label.SetText($"{DialogueManager.GetDialogue("misc", "any", "title", 24)}" + 2);
             _save3Label.SetText($"{DialogueManager.GetDialogue("misc", "any", "title", 24)}" + 3);
             _settingsLabel.SetText(DialogueManager.GetDialogue("misc", "any", "config", 0));
+
+            _inputLabel.SetText($"{DialogueManager.GetDialogue("misc", "any", "secrets", 13)} {DialogueManager.GetDialogue("misc", "any", "secrets", 14)}");
         }
     }
 }
