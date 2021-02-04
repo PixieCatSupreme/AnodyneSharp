@@ -52,7 +52,7 @@ namespace AnodyneSharp
 
         public AnodyneGame()
         {
-            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en-US");
+            Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
 
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";

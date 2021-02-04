@@ -60,6 +60,11 @@ namespace AnodyneSharp.Dialogue
         {
             DialogueScene s = GetScene(npc, area, scene);
 
+            if(s == null)
+            {
+                return "No text available.";
+            }
+
             GlobalState.DialogueTop = s.AlignTop;
 
             return ReplaceKeys(s.GetDialogue(id));
