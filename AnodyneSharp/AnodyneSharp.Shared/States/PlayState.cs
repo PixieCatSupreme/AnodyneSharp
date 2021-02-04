@@ -402,14 +402,15 @@ namespace AnodyneSharp.States
             {
                 _player.skipBroom = true;
             }
-            _player.Update();
-            _player.PostUpdate();
 
             foreach (Entity gridEntity in _gridEntities.Where(e => e.exists))
             {
                 gridEntity.Update();
                 gridEntity.PostUpdate();
             }
+
+            _player.Update();
+            _player.PostUpdate();
         }
 
         private bool CheckInteraction()

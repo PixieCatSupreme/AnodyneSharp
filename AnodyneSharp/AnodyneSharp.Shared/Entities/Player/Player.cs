@@ -172,6 +172,23 @@ namespace AnodyneSharp.Entities
                 offset = new Vector2(3, DEFAULT_Y_OFFSET);
 
                 broom.exists = false;
+
+                actions_disabled = false;
+                fallingDisabled = false;
+
+                isSlipping = false;
+                hasFallen = false;
+                justFell = false;
+
+                sinking = false;
+                dashing = false;
+
+                just_landed = false;
+                dontMove = false;
+
+                reversed = false;
+
+                slowMul = 1;
             }
 
             if (GlobalState.AlwaysCellGraphics || GlobalState.CURRENT_MAP_NAME == "CELL")

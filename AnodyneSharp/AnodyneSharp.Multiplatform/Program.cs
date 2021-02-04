@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AnodyneSharp.Logging;
+using System;
 
 namespace AnodyneSharp.Multiplatform
 {
@@ -7,8 +8,16 @@ namespace AnodyneSharp.Multiplatform
         [STAThread]
         static void Main()
         {
-            using AnodyneGame game = new AnodyneGame();
-            game.Run();
+            try
+            {
+                using AnodyneGame game = new AnodyneGame();
+                game.Run();
+            }
+            catch (Exception ex)
+            {
+                DebugLogger.AddException(ex);
+            }
+
         }
     }
 }
