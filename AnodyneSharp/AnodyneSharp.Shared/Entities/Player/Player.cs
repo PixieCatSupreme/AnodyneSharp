@@ -525,7 +525,7 @@ namespace AnodyneSharp.Entities
             {
                 y_push = 0;
                 Position = grid_entrance;
-                ReceiveDamage(1);
+                ReceiveDamage(1,knockback:false);
             }
         }
 

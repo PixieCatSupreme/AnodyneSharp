@@ -22,6 +22,11 @@ namespace AnodyneSharp.FSM
             timers = new SortedDictionary<float, Timer>();
         }
 
+        public void Advance(float time)
+        {
+            current += time;
+        }
+
         public void AddTimer(float time, string name)
         {
             timers.Add(current+time,new Timer() { max=time, name=name });

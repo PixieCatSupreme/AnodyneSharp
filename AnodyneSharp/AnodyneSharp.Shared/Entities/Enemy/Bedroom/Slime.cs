@@ -34,6 +34,11 @@ namespace AnodyneSharp.Entities.Enemy
         private class MoveState : TimerState
         {
             public bool move_frame_sound_sync = false;
+            public DateTime exit_time = DateTime.Now;
+            public MoveState()
+            {
+                AddTimer(0.5f, "MoveTimer");
+            }
         }
 
         private float _speed = 20f;
@@ -69,8 +74,7 @@ namespace AnodyneSharp.Entities.Enemy
                     .Enter((state) =>
                     {
                         Play("Move");
-                        state.Reset();
-                        state.AddTimer(0.5f, "MoveTimer");
+                        state.Advance((float)(DateTime.Now - state.exit_time).TotalSeconds);
                         if (_type == SlimeType.Bullet)
                         {
                             state.AddTimer(1.8f, "ShootTimer");
@@ -81,6 +85,10 @@ namespace AnodyneSharp.Entities.Enemy
                     .Event("MoveTimer", (state) => ChangeDir())
                     .Event<CollisionEvent<Player>>("Player", (state, p) => p.entity.ReceiveDamage(1))
                     .Event<CollisionEvent<Broom>>("Hit", (state, b) => GetHit(b.entity))
+                    .Exit((s) =>
+                    {
+                        s.exit_time = DateTime.Now;
+                    })
                 .End()
                 .State("Hurt")
                     .Enter((state) => Play("Hurt"))
