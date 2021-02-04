@@ -864,7 +864,7 @@ namespace AnodyneSharp.States
                 GlobalState.RefreshKeyCount = true;
             }
 
-            _player.Position = GlobalState.PLAYER_WARP_TARGET == Vector2.Zero ? _map.GetFirstWalkable(_map_bg_2) * TILE_WIDTH : GlobalState.PLAYER_WARP_TARGET;
+            _player.Position = _player.grid_entrance =  GlobalState.PLAYER_WARP_TARGET == Vector2.Zero ? _map.GetFirstWalkable(_map_bg_2) * TILE_WIDTH : GlobalState.PLAYER_WARP_TARGET;
             _player.facing = GlobalState.NewMapFacing ?? _player.facing;
 
             GlobalState.NewMapFacing = null;

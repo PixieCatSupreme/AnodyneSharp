@@ -201,10 +201,6 @@ namespace AnodyneSharp.Registry
 
         public static bool pillar_switch_state = false; //Reset when entering a map with different name
         public static bool ScreenTransition = false; //Whether a screen transition is happening right now
-        public static int ENTRANCE_GRID_X;
-        public static int ENTRANCE_GRID_Y;
-        public static int PLAYER_X;
-        public static int PLAYER_Y;
         public static int CURRENT_GRID_X;
         public static int CURRENT_GRID_Y;
         public static int MAP_GRID_WIDTH;
