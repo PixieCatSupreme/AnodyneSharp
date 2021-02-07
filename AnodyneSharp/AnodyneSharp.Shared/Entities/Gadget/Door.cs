@@ -34,7 +34,7 @@ namespace AnodyneSharp.Entities.Gadget
             : this(preset, player, "doors", 16, 16, sfx)
         { }
 
-        public Door(EntityPreset preset, Player player, string textureName, int width, int height, string? sfx = "enter_Door")
+        public Door(EntityPreset preset, Player player, string textureName, int width, int height, string? sfx = "enter_door")
             : base(preset.Position, textureName, width, height, DrawOrder.BG_ENTITIES)
         {
             _linkedDoor = EntityManager.GetLinkedDoor(preset);

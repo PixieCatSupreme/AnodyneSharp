@@ -11,7 +11,7 @@ namespace AnodyneSharp.Drawing.Effects
 
         public bool Active()
         {
-            return GlobalState.CURRENT_MAP_NAME == "SUBURB";
+            return GlobalState.staticEffect.Active();
         }
 
         public void Load(ContentManager content, GraphicsDevice graphicsDevice)
