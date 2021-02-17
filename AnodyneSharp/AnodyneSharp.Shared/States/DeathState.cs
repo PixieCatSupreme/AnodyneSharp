@@ -57,18 +57,11 @@ namespace AnodyneSharp.States
 
             Color textColor = GlobalState.IsCell ? Color.White : Color.Black;
 
-            _continueLabel = new UILabel(new Vector2(x, y), false, textColor, DrawOrder.DEATH_TEXT);
-            _yesLabel = new UILabel(new Vector2(x + 19, y + yStep), false, textColor, DrawOrder.DEATH_TEXT);
-            _noLabel = new UILabel(new Vector2(x + 17, y + yStep * 2), false, textColor, DrawOrder.DEATH_TEXT);
-
-            _continueLabel.Initialize();
-            _yesLabel.Initialize();
-            _noLabel.Initialize();
-
             //TODO Not localized, see if it's on purpose
-            _continueLabel.SetText("Continue?");
-            _yesLabel.SetText("Yes");
-            _noLabel.SetText("No..");
+            _continueLabel = new UILabel(new Vector2(x, y), false, "Continue?", textColor, DrawOrder.DEATH_TEXT);
+            _yesLabel = new UILabel(new Vector2(x + 19, y + yStep), false, "Yes", textColor, DrawOrder.DEATH_TEXT);
+            _noLabel = new UILabel(new Vector2(x + 17, y + yStep * 2), false, "No..", textColor, DrawOrder.DEATH_TEXT);
+
 
             _selector = new MenuSelector(DrawOrder.DEATH_TEXT);
 

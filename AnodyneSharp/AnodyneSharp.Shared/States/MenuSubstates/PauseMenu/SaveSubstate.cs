@@ -40,28 +40,11 @@ namespace AnodyneSharp.States.MenuSubstates
             float y = 28 - GameConstants.LineOffset - (GlobalState.CurrentLanguage == Language.ZH_CN ? 1 : 0);
             float yStep = GameConstants.FONT_LINE_HEIGHT;
 
-            _saveLabel = new UILabel(new Vector2(x, y), true);
-            _saveTitleLable= new UILabel(new Vector2(x, _saveLabel.Position.Y + yStep * 2-4), true);
-            _saveQuitLabel= new UILabel(new Vector2(x, _saveTitleLable.Position.Y + yStep * 3 - 2), true);
-            _quitLabel= new UILabel(new Vector2(x, _saveQuitLabel.Position.Y + yStep * 2 - 2), true);
-            _deathsLabel= new UILabel(new Vector2(x, _quitLabel.Position.Y + yStep * 4 - 2), true);
-
-            _saveLabel.Initialize();
-            _saveTitleLable.Initialize();
-            _saveQuitLabel.Initialize();
-            _quitLabel.Initialize();
-            _deathsLabel.Initialize();
-
-
-
-            _saveLabel.SetText(DialogueManager.GetDialogue("misc", "any", "save", 0));
-            _saveTitleLable.SetText(DialogueManager.GetDialogue("misc", "any", "save", 3));
-            _saveQuitLabel.SetText(DialogueManager.GetDialogue("misc", "any", "save", 5));
-            _quitLabel.SetText(DialogueManager.GetDialogue("misc", "any", "save", 6));
-
-            //TODO Add death count
-            _deathsLabel.SetText(DialogueManager.GetDialogue("misc", "any", "save", 7) + GlobalState.DeathCount);
-
+            _saveLabel = new UILabel(new Vector2(x, y), true, DialogueManager.GetDialogue("misc", "any", "save", 0));
+            _saveTitleLable = new UILabel(new Vector2(x, _saveLabel.Position.Y + yStep * 2 - 4), true, DialogueManager.GetDialogue("misc", "any", "save", 3));
+            _saveQuitLabel = new UILabel(new Vector2(x, _saveTitleLable.Position.Y + yStep * 3 - 2), true, DialogueManager.GetDialogue("misc", "any", "save", 5));
+            _quitLabel = new UILabel(new Vector2(x, _saveQuitLabel.Position.Y + yStep * 2 - 2), true, DialogueManager.GetDialogue("misc", "any", "save", 6));
+            _deathsLabel = new UILabel(new Vector2(x, _quitLabel.Position.Y + yStep * 4 - 2), true, DialogueManager.GetDialogue("misc", "any", "save", 7) + GlobalState.DeathCount);
         }
 
         public override void GetControl()

@@ -571,100 +571,69 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
             Color color = new Color(116, 140, 144);
             Color colorSelected = Color.White;
 
-            _gameLabel = new UILabel(new Vector2(x, y), false, color);
-            _newGameLabel = new UILabel(new Vector2(x, y + yStep), false, color)
+            _gameLabel = new UILabel(new Vector2(x, y), false, DialogueManager.GetDialogue("misc", "any", "title", SaveExists ? 11 : 12), color);
+            _newGameLabel = new UILabel(new Vector2(x, y + yStep), false, DialogueManager.GetDialogue("misc", "any", "title", 12), color)
             {
                 IsVisible = SaveExists
             };
-            _copyLabel = new UILabel(new Vector2(x, y + yStep * 2), false, color)
-            {
-                IsVisible = SaveExists
-            };
-
-            _confirmLabel = new UILabel(new Vector2(x, y), false, color)
-            {
-                IsVisible = false
-            };
-            _noLabel = new UILabel(new Vector2(x, y + yStep), false, color)
-            {
-                IsVisible = false
-            };
-            _yesLabel = new UILabel(new Vector2(x, y + yStep * 2), false, color)
-            {
-                IsVisible = false
-            };
-
-            _copyToLabel = new UILabel(new Vector2(x, y), false, color)
-            {
-                IsVisible = false
-            };
-
-            _save1Label = new UILabel(new Vector2(x, y + yStep), false, _saveID == 0 ? colorSelected : color)
-            {
-                IsVisible = false
-            };
-            _save2Label = new UILabel(new Vector2(x, y + yStep * 2), false, _saveID == 1 ? colorSelected : color)
-            {
-                IsVisible = false
-            };
-            _save3Label = new UILabel(new Vector2(x, y + yStep * 3), false, _saveID == 2 ? colorSelected : color)
-            {
-                IsVisible = false
-            };
-            _cancelLabel = new UILabel(new Vector2(x, y + yStep * 4), false, color)
-            {
-                IsVisible = false
-            };
-
-            _timeLabel = new UILabel(new Vector2(x, y + yStep * 7), false)
+            _copyLabel = new UILabel(new Vector2(x, y + yStep * 2), false, DialogueManager.GetDialogue("misc", "any", "title", 25), color)
             {
                 IsVisible = SaveExists
             };
 
-            _deathLabel = new UILabel(new Vector2(x, y + yStep * 8), false)
+            _confirmLabel = new UILabel(new Vector2(x, y), false, "", color)
+            {
+                IsVisible = false
+            };
+            _noLabel = new UILabel(new Vector2(x, y + yStep), false, "", color)
+            {
+                IsVisible = false
+            };
+            _yesLabel = new UILabel(new Vector2(x, y + yStep * 2), false, "", color)
+            {
+                IsVisible = false
+            };
+
+            _copyToLabel = new UILabel(new Vector2(x, y), false, DialogueManager.GetDialogue("misc", "any", "title", 27), color)
+            {
+                IsVisible = false
+            };
+
+            string save = DialogueManager.GetDialogue("misc", "any", "title", 24);
+
+            _save1Label = new UILabel(new Vector2(x, y + yStep), false, save + 1, _saveID == 0 ? colorSelected : color)
+            {
+                IsVisible = false
+            };
+            _save2Label = new UILabel(new Vector2(x, y + yStep * 2), false, save + 2, _saveID == 1 ? colorSelected : color)
+            {
+                IsVisible = false
+            };
+            _save3Label = new UILabel(new Vector2(x, y + yStep * 3), false, save + 3, _saveID == 2 ? colorSelected : color)
+            {
+                IsVisible = false
+            };
+            _cancelLabel = new UILabel(new Vector2(x, y + yStep * 4), false, DialogueManager.GetDialogue("misc", "any", "title", 26), color)
+            {
+                IsVisible = false
+            };
+
+            _timeLabel = new UILabel(new Vector2(x, y + yStep * 7), false, new TimeSpan(Save?.playtime ?? 0).ToString(@"hh\:mm\:ss"))
             {
                 IsVisible = SaveExists
             };
 
-            _cardLabel = new UILabel(new Vector2(x, y + yStep * 9), false)
+            _deathLabel = new UILabel(new Vector2(x, y + yStep * 8), false, $"{Save?.deaths ?? 0} " + DialogueManager.GetDialogue("misc", "any", "title", 22))
+            {
+                IsVisible = SaveExists
+            };
+
+            _cardLabel = new UILabel(new Vector2(x, y + yStep * 9), false, $"{Save?.inventory.CardCount ?? 0} " + DialogueManager.GetDialogue("misc", "any", "title", 23))
             {
                 IsVisible = SaveExists
             };
 
             healthBar = new HealthBar(new Vector2(128, y + yStep * 5), Save?.current_health, Save?.max_health);
-
-
-            _gameLabel.Initialize();
-            _newGameLabel.Initialize();
-            _copyLabel.Initialize();
-
-            _confirmLabel.Initialize();
-            _yesLabel.Initialize();
-            _noLabel.Initialize();
-
-            _copyToLabel.Initialize();
-            _save1Label.Initialize();
-            _save2Label.Initialize();
-            _save3Label.Initialize();
-            _cancelLabel.Initialize();
-
-            _timeLabel.Initialize();
-            _deathLabel.Initialize();
-            _cardLabel.Initialize();
-
-            _gameLabel.SetText(DialogueManager.GetDialogue("misc", "any", "title", SaveExists ? 11 : 12));
-            _copyLabel.SetText(DialogueManager.GetDialogue("misc", "any", "title", 25));
-            _newGameLabel.SetText(DialogueManager.GetDialogue("misc", "any", "title", 12));
-
-            _copyToLabel.SetText(DialogueManager.GetDialogue("misc", "any", "title", 27));
-            _save1Label.SetText($"{DialogueManager.GetDialogue("misc", "any", "title", 24)}" + 1);
-            _save2Label.SetText($"{DialogueManager.GetDialogue("misc", "any", "title", 24)}" + 2);
-            _save3Label.SetText($"{DialogueManager.GetDialogue("misc", "any", "title", 24)}" + 3);
-            _cancelLabel.SetText(DialogueManager.GetDialogue("misc", "any", "title", 26));
-
-            _timeLabel.SetText(new TimeSpan(Save?.playtime ?? 0).ToString(@"hh\:mm\:ss"));
-            _deathLabel.SetText($"{Save?.deaths ?? 0} " + DialogueManager.GetDialogue("misc", "any", "title", 22));
-            _cardLabel.SetText($"{Save?.inventory.CardCount ?? 0} " + DialogueManager.GetDialogue("misc", "any", "title", 23));
 
             SetConfirmation();
         }

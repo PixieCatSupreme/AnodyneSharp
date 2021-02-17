@@ -59,8 +59,6 @@ namespace AnodyneSharp
 
             _currentState = null;
 
-            _fpsLabel = new UILabel(new Vector2(0, GameConstants.HEADER_HEIGHT), false, Color.LightBlue);
-
             //_baseFolder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             _baseFolder = "";
 
@@ -94,7 +92,7 @@ namespace AnodyneSharp
 
             SetState(GameState.TitleScreen);
 
-            _fpsLabel.Initialize();
+            _fpsLabel = new UILabel(new Vector2(0, GameConstants.HEADER_HEIGHT), false, "", Color.LightBlue);
 
             GlobalState.darkness.SetCamera(_camera);
         }

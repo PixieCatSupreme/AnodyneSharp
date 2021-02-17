@@ -25,11 +25,7 @@ namespace AnodyneSharp.UI.PauseMenu.Config
             this.startIndex = startIndex;
             index = startIndex;
 
-            _textLabel = new UILabel(new Vector2(pos.X + 8, pos.Y - (GlobalState.CurrentLanguage == Dialogue.Language.ZH_CN ? GameConstants.LineOffset - 1 : 0)), true);
-
-            _textLabel.Initialize();
-
-            SetText();
+            _textLabel = new UILabel(new Vector2(pos.X + 8, pos.Y - (GlobalState.CurrentLanguage == Dialogue.Language.ZH_CN ? GameConstants.LineOffset - 1 : 0)), true, _options[index]);
         }
 
         public override void DrawUI()

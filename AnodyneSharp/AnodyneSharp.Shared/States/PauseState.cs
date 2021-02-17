@@ -249,16 +249,15 @@ namespace AnodyneSharp.States
             float startY = GameConstants.HEADER_HEIGHT - GameConstants.LineOffset + 11 + (GlobalState.CurrentLanguage == Language.ZH_CN ? 1 : 0) ;
             float yStep = (GameConstants.FONT_LINE_HEIGHT - GameConstants.LineOffset ) * 2;
 
-            _mapLabel = new UILabel(new Vector2(x, startY), true);
-            _itemsLabel = new UILabel(new Vector2(x, startY + yStep), true);
-            _cardsLabel = new UILabel(new Vector2(x, startY + yStep * 2), true);
-            _saveLabel = new UILabel(new Vector2(x, startY + yStep * 3), true);
-            _configLabel = new UILabel(new Vector2(x, startY + yStep * 4), true);
-            _achievementsLabel = new UILabel(new Vector2(x, startY + yStep * 5), true);
-            _secretsLabel = new UILabel(new Vector2(x, startY + yStep * 6), true);
+            _mapLabel = new UILabel(new Vector2(x, startY), true, DialogueManager.GetDialogue("misc", "any", "map", 0));
+            _itemsLabel = new UILabel(new Vector2(x, startY + yStep), true, DialogueManager.GetDialogue("misc", "any", "items", 0));
+            _cardsLabel = new UILabel(new Vector2(x, startY + yStep * 2), true, DialogueManager.GetDialogue("misc", "any", "cards", 0));
+            _saveLabel = new UILabel(new Vector2(x, startY + yStep * 3), true, DialogueManager.GetDialogue("misc", "any", "save", 0));
+            _configLabel = new UILabel(new Vector2(x, startY + yStep * 4), true, DialogueManager.GetDialogue("misc", "any", "config", 0));
+            _achievementsLabel = new UILabel(new Vector2(x, startY + yStep * 5), true, "Feats", forceEnglish: true);
+            _secretsLabel = new UILabel(new Vector2(x, startY + yStep * 6), true, "???", forceEnglish: true);
 
-
-            _playtimeLabel = new UILabel(new Vector2(1, 154), true);
+            _playtimeLabel = new UILabel(new Vector2(1, 154), true, "00:00:00", forceEnglish: true);
 
             Vector2 inputPos = Vector2.Zero;
             if (GlobalState.CurrentLanguage == Language.ZH_CN)
@@ -273,29 +272,8 @@ namespace AnodyneSharp.States
                     inputPos.Y -= 1;
                 }
             }
-            _inputLabel = new UILabel(inputPos, false, new Color(143, 153, 176, 255));
+            _inputLabel = new UILabel(inputPos, false, $"{DialogueManager.GetDialogue("misc", "any", "secrets", 13)} {DialogueManager.GetDialogue("misc", "any", "secrets", 14)}", new Color(143, 153, 176, 255));
 
-            _mapLabel.Initialize();
-            _itemsLabel.Initialize();
-            _cardsLabel.Initialize();
-            _saveLabel.Initialize();
-            _configLabel.Initialize();
-            _achievementsLabel.Initialize();
-            _secretsLabel.Initialize();
-
-            _playtimeLabel.Initialize(true);
-            _inputLabel.Initialize();
-
-            _mapLabel.SetText(DialogueManager.GetDialogue("misc", "any", "map", 0));
-            _itemsLabel.SetText(DialogueManager.GetDialogue("misc", "any", "items", 0));
-            _cardsLabel.SetText(DialogueManager.GetDialogue("misc", "any", "cards", 0));
-            _saveLabel.SetText(DialogueManager.GetDialogue("misc", "any", "save", 0));
-            _configLabel.SetText(DialogueManager.GetDialogue("misc", "any", "config", 0));
-            _achievementsLabel.SetText("Feats");
-            _secretsLabel.SetText("???");
-
-            _playtimeLabel.SetText("00:00:00");
-            _inputLabel.SetText($"{DialogueManager.GetDialogue("misc", "any", "secrets", 13)} {DialogueManager.GetDialogue("misc", "any", "secrets", 14)}");
 
             _secretsLabel.IsVisible = GlobalState.inventory.UnlockedSecretz;
         }

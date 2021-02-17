@@ -45,33 +45,17 @@ namespace AnodyneSharp.States.MenuSubstates
             float x = 73;
             float y = 144 - GameConstants.LineOffset - (GlobalState.CurrentLanguage == Language.ZH_CN ? 1 : 0);
 
-            _noMapLabel = new UILabel(new Vector2(x + 14, GameConstants.HEADER_HEIGHT + 11), true);
+            _noMapLabel = new UILabel(new Vector2(x + 14, GameConstants.HEADER_HEIGHT + 11), true, DialogueManager.GetDialogue("misc", "any", "map", 3));
 
-            _returnLabel = new UILabel(new Vector2(x, y - GameConstants.FONT_LINE_HEIGHT * 2), true);
+            _returnLabel = new UILabel(new Vector2(x, y - GameConstants.FONT_LINE_HEIGHT * 2), true, DialogueManager.GetDialogue("misc", "any", "map", GlobalState.IsDungeon ? 5 : 4))
+            {
+                IsVisible = GlobalState.ReturnTarget != null
+            };
 
             y += 4;
 
-            _yesLabel = new UILabel(new Vector2(x, y), true);
-            _noLabel = new UILabel(new Vector2(x + 56, y), true);
-
-            _noMapLabel.Initialize();
-            _returnLabel.Initialize();
-            _yesLabel.Initialize();
-            _noLabel.Initialize();
-
-
-            _noMapLabel.SetText(DialogueManager.GetDialogue("misc","any","map", 3));
-
-            _returnLabel.IsVisible = false;
-            if(GlobalState.ReturnTarget != null)
-            {
-                DebugLogger.AddInfo(GlobalState.ReturnTarget.map);
-                _returnLabel.SetText(DialogueManager.GetDialogue("misc", "any", "map", GlobalState.IsDungeon ? 5 : 4));
-                _returnLabel.IsVisible = true;
-            }
-
-            _yesLabel.SetText(DialogueManager.GetDialogue("misc","any", "checkpoint", 1));
-            _noLabel.SetText(DialogueManager.GetDialogue("misc","any", "checkpoint", 2));
+            _yesLabel = new UILabel(new Vector2(x, y), true, DialogueManager.GetDialogue("misc", "any", "checkpoint", 1));
+            _noLabel = new UILabel(new Vector2(x + 56, y), true, DialogueManager.GetDialogue("misc", "any", "checkpoint", 2));
 
             _mapSheet = new Spritesheet(ResourceManager.GetTexture("minimap_tiles",true,true),7,7);
         }

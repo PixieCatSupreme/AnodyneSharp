@@ -63,7 +63,7 @@ namespace AnodyneSharp.UI
 
         private Vector2 _position;
 
-        public UILabel(Vector2 position, bool drawShadow, Color? color = null, DrawOrder layer = DrawOrder.MENUTEXT)
+        public UILabel(Vector2 position, bool drawShadow, string text, Color? color = null, DrawOrder layer = DrawOrder.MENUTEXT, bool forceEnglish = false)
         {
             _position = position;
 
@@ -79,14 +79,12 @@ namespace AnodyneSharp.UI
 
             _color = color ?? Color.White;
             _drawShadow = drawShadow;
-        }
-
-
-        public void Initialize(bool forceEnglish = false)
-        {
+            
             Writer.SetSpriteFont(FontManager.InitFont(_color, forceEnglish), ResourceManager.GetTexture("consoleButtons"));
             Writer.IgnoreSoftLineBreaks = true;
             Writer.DrawShadow = _drawShadow;
+
+            SetText(text);
         }
 
         public void Update()

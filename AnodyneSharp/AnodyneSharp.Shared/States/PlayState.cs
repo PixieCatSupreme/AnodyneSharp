@@ -350,6 +350,7 @@ namespace AnodyneSharp.States
             if (GlobalState.RefreshLabels)
             {
                 CreateKeyLabel();
+                GlobalState.RefreshKeyCount = true;
             }
 
             if (GlobalState.RefreshMaxHealth)
@@ -577,8 +578,7 @@ namespace AnodyneSharp.States
 
         private void CreateKeyLabel()
         {
-            _keyValueLabel = new UILabel(new Vector2(37, 5 - LineOffset + (GlobalState.CurrentLanguage == Language.ZH_CN ? 1 : 0)), false);
-            _keyValueLabel.Writer.SetSpriteFont(FontManager.InitFont(new Color(124, 163, 177, 255)), ResourceManager.GetTexture("consoleButtons"));
+            _keyValueLabel = new UILabel(new Vector2(37, 5 - LineOffset + (GlobalState.CurrentLanguage == Language.ZH_CN ? 1 : 0)), false, "", new Color(124, 163, 177, 255));
         }
 
         private void UpdateScreenBorders()

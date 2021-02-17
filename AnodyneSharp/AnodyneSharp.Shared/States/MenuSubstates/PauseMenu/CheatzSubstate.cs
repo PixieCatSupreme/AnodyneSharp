@@ -18,9 +18,7 @@ namespace AnodyneSharp.States.MenuSubstates
 
         public CheatzSubstate()
         {
-            _cheatLabel = new UILabel(new Vector2(69, 28 + GameConstants.FONT_LINE_HEIGHT * 2), true);
-            _cheatLabel.Initialize(true);
-            _cheatLabel.SetText("");
+            _cheatLabel = new UILabel(new Vector2(69, 28 + GameConstants.FONT_LINE_HEIGHT * 2), true, "", forceEnglish: true);
 
             _selector.Position = _cheatLabel.Position - new Vector2(_selector.sprite.Width, -2);
         }

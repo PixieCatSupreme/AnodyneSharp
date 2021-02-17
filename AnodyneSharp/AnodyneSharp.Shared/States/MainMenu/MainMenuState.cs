@@ -219,10 +219,12 @@ namespace AnodyneSharp.States.MainMenu
 
             Color color = new Color(116, 140, 144);
 
-            _save1Label = new UILabel(new Vector2(x, startY), false, color);
-            _save2Label = new UILabel(new Vector2(x, startY + yStep), false, color);
-            _save3Label = new UILabel(new Vector2(x, startY + yStep * 2), false, color);
-            _settingsLabel = new UILabel(new Vector2(x, startY + yStep * 3), false, color);
+            string save = DialogueManager.GetDialogue("misc", "any", "title", 24);
+
+            _save1Label = new UILabel(new Vector2(x, startY), false, save + 1, color);
+            _save2Label = new UILabel(new Vector2(x, startY + yStep), false, save + 2, color);
+            _save3Label = new UILabel(new Vector2(x, startY + yStep * 2), false, save + 3, color);
+            _settingsLabel = new UILabel(new Vector2(x, startY + yStep * 3), false, DialogueManager.GetDialogue("misc", "any", "config", 0), color);
 
             Vector2 inputPos = Vector2.Zero;
             if (GlobalState.CurrentLanguage == Language.ZH_CN)
@@ -237,21 +239,7 @@ namespace AnodyneSharp.States.MainMenu
                     inputPos.Y -= 1;
                 }
             }
-            _inputLabel = new UILabel(inputPos, false, color);
-
-            _save1Label.Initialize();
-            _save2Label.Initialize();
-            _save3Label.Initialize();
-            _settingsLabel.Initialize();
-
-            _inputLabel.Initialize();
-
-            _save1Label.SetText($"{DialogueManager.GetDialogue("misc", "any", "title", 24)}" + 1);
-            _save2Label.SetText($"{DialogueManager.GetDialogue("misc", "any", "title", 24)}" + 2);
-            _save3Label.SetText($"{DialogueManager.GetDialogue("misc", "any", "title", 24)}" + 3);
-            _settingsLabel.SetText(DialogueManager.GetDialogue("misc", "any", "config", 0));
-
-            _inputLabel.SetText($"{DialogueManager.GetDialogue("misc", "any", "secrets", 13)} {DialogueManager.GetDialogue("misc", "any", "secrets", 14)}");
+            _inputLabel = new UILabel(inputPos, false, $"{DialogueManager.GetDialogue("misc", "any", "secrets", 13)} {DialogueManager.GetDialogue("misc", "any", "secrets", 14)}", color);
         }
     }
 }

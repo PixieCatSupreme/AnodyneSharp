@@ -124,8 +124,7 @@ namespace AnodyneSharp.UI
             _blinkyPos = new Vector2(pos.X + Width - 10, pos.Y + Height - 10);
 
 
-            introPrompt = new UILabel(new Vector2(pos.X + Width -4, pos.Y + Height - 14), false, new Color(254,33,33), DrawOrder.TEXT);
-            introPrompt.Initialize();
+            introPrompt = new UILabel(new Vector2(pos.X + Width -4, pos.Y + Height - 14), false, "", new Color(254,33,33), DrawOrder.TEXT);
 
             UpdatePrompt();
         }

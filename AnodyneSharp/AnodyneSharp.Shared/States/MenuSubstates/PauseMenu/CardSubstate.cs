@@ -34,9 +34,7 @@ namespace AnodyneSharp.States.MenuSubstates
             page = 0;
             selectedID = 0;
 
-            cardsLabel = new UILabel(new Vector2(70, 146 - GameConstants.LineOffset - (GlobalState.CurrentLanguage == Language.ZH_CN ? 1 : 0)), true);
-            cardsLabel.Initialize();
-            cardsLabel.SetText($"{GlobalState.inventory.CardCount} {DialogueManager.GetDialogue("misc", "any", "cards", 1)}");
+            cardsLabel = new UILabel(new Vector2(70, 146 - GameConstants.LineOffset - (GlobalState.CurrentLanguage == Language.ZH_CN ? 1 : 0)), true, $"{GlobalState.inventory.CardCount} {DialogueManager.GetDialogue("misc", "any", "cards", 1)}");
 
             _pageSetter = new TextSelector(new Vector2(91, 156), 32, 0, "1/4", "2/4", "3/4", "4/4")
             {

@@ -159,41 +159,21 @@ namespace AnodyneSharp.States.MenuSubstates
 
         private void SetLabels()
         {
-            float x = 60 + (_isInMainMenu ? 0 :9);
+            float x = 60 + (_isInMainMenu ? 0 : 9);
             float y = 28 - GameConstants.LineOffset - (GlobalState.CurrentLanguage == Language.ZH_CN ? 1 : 0);
             float yStep = GameConstants.FONT_LINE_HEIGHT - GameConstants.LineOffset;
 
             Color color = _isInMainMenu ? new Color(116, 140, 144) : Color.White;
 
-            _keybindsLabel = new UILabel(new Vector2(x, y), true, color);
+            _keybindsLabel = new UILabel(new Vector2(x, y), true, DialogueManager.GetDialogue("misc", "any", "config", 1), color);
 
-            _bgmLabel = new UILabel(new Vector2(x, _keybindsLabel.Position.Y + yStep * 2), true, color);
-            _sfxLabel = new UILabel(new Vector2(x, _bgmLabel.Position.Y + 12), true, color);
+            _bgmLabel = new UILabel(new Vector2(x, _keybindsLabel.Position.Y + yStep * 2), true, "BGM", color, forceEnglish: true);
+            _sfxLabel = new UILabel(new Vector2(x, _bgmLabel.Position.Y + 12), true, "SFX", color, forceEnglish: true);
 
-            _autosaveLabel = new UILabel(new Vector2(x, _sfxLabel.Position.Y + yStep * 2), true, color);
-            _resolutionLabel = new UILabel(new Vector2(x, _autosaveLabel.Position.Y + yStep * 4), true, color);
-            _scalingLabel = new UILabel(new Vector2(x, _resolutionLabel.Position.Y + yStep * 3), true, color);
-            _languageLabel = new UILabel(new Vector2(x, _scalingLabel.Position.Y + yStep * 2), true, color);
-
-            _keybindsLabel.Initialize();
-
-            _bgmLabel.Initialize(true);
-            _sfxLabel.Initialize(true);
-
-            _autosaveLabel.Initialize();
-            _resolutionLabel.Initialize();
-            _scalingLabel.Initialize();
-            _languageLabel.Initialize();
-
-            _keybindsLabel.SetText(DialogueManager.GetDialogue("misc", "any", "config", 1));
-
-            _bgmLabel.SetText("BGM");
-            _sfxLabel.SetText("SFX");
-
-            _autosaveLabel.SetText(DialogueManager.GetDialogue("misc", "any", "config", 3));
-            _resolutionLabel.SetText(DialogueManager.GetDialogue("misc", "any", "config", 6));
-            _scalingLabel.SetText(DialogueManager.GetDialogue("misc", "any", "config", 16));
-            _languageLabel.SetText(DialogueManager.GetDialogue("misc", "any", "config", 17));
+            _autosaveLabel = new UILabel(new Vector2(x, _sfxLabel.Position.Y + yStep * 2), true, DialogueManager.GetDialogue("misc", "any", "config", 3),color);
+            _resolutionLabel = new UILabel(new Vector2(x, _autosaveLabel.Position.Y + yStep * 4), true, DialogueManager.GetDialogue("misc", "any", "config", 6), color);
+            _scalingLabel = new UILabel(new Vector2(x, _resolutionLabel.Position.Y + yStep * 3), true, DialogueManager.GetDialogue("misc", "any", "config", 16), color);
+            _languageLabel = new UILabel(new Vector2(x, _scalingLabel.Position.Y + yStep * 2), true, DialogueManager.GetDialogue("misc", "any", "config", 17), color);
 
             _musicSlider = new AudioSlider(new Vector2(_bgmLabel.Position.X + _bgmLabel.Writer.WriteArea.Width - 5, _bgmLabel.Position.Y), GlobalState.settings.music_volume_scale, 0f, 1f, 0.1f, _isInMainMenu)
             {

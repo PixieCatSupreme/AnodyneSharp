@@ -101,17 +101,10 @@ namespace AnodyneSharp.States.MainMenu
 
                         creditsLabels = new UILabel[]
                         {
-                            new UILabel(new Vector2(center - (credits[0].Length * charWidth)/2, 88 -lineH-4), false, color),
-                            new UILabel(new Vector2(center - (credits[1].Length * charWidth)/2, 88), false, color),
-                            new UILabel(new Vector2(center - (credits[2].Length * charWidth)/2, 88 + lineH), false, color)
+                            new UILabel(new Vector2(center - (credits[0].Length * charWidth)/2, 88 -lineH-4), false, new string(' ', credits[0].Length), color, forceEnglish:true),
+                            new UILabel(new Vector2(center - (credits[1].Length * charWidth)/2, 88), false, new string(' ', credits[1].Length), color, forceEnglish:true),
+                            new UILabel(new Vector2(center - (credits[2].Length * charWidth)/2, 88 + lineH), false, new string(' ', credits[2].Length), color, forceEnglish:true)
                         };
-
-                        for (int i = 0; i < credits.Length; i++)
-                        {
-                            UILabel label = creditsLabels[i];
-                            label.Initialize(true);
-                            label.SetText(new string(' ', credits[i].Length));
-                        }
 
                         GlobalState.TitleScreenFinish.Labels = creditsLabels.ToList();
 
