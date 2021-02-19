@@ -36,7 +36,7 @@ namespace AnodyneSharp.States.MenuSubstates
 
             cardsLabel = new UILabel(new Vector2(70, 146 - GameConstants.LineOffset - (GlobalState.CurrentLanguage == Language.ZH_CN ? 1 : 0)), true, $"{GlobalState.inventory.CardCount} {DialogueManager.GetDialogue("misc", "any", "cards", 1)}");
 
-            _pageSetter = new TextSelector(new Vector2(91, 156), 32, 0, "1/4", "2/4", "3/4", "4/4")
+            _pageSetter = new TextSelector(new Vector2(91, 156), 32, 0, true, "1/4", "2/4", "3/4", "4/4")
             {
                 ValueChangedEvent = PageValueChanged,
                 noConfirm = true,
@@ -55,6 +55,13 @@ namespace AnodyneSharp.States.MenuSubstates
 
             bool moved = false;
 
+            if (KeyInput.JustPressedRebindableKey(KeyFunctions.Cancel))
+            {
+                _pageSetter.Enabled = false;
+                ExitSubState();
+                return;
+            }
+
             if (_pageSetter.Enabled)
             {
                 if (KeyInput.JustPressedRebindableKey(KeyFunctions.Up))
@@ -62,10 +69,13 @@ namespace AnodyneSharp.States.MenuSubstates
                     _pageSetter.Enabled = false;
                     _selector.visible = true;
                     SoundManager.PlaySoundEffect("menu_select");
-                    return;
+                }
+                else
+                {
+                    _pageSetter.Update();
                 }
 
-                _pageSetter.Update();
+                return;
             }
 
             if (KeyInput.JustPressedRebindableKey(KeyFunctions.Right))
@@ -84,7 +94,6 @@ namespace AnodyneSharp.States.MenuSubstates
                 else
                 {
                     selectedID++;
-
                 }
 
                 moved = true;
@@ -126,22 +135,15 @@ namespace AnodyneSharp.States.MenuSubstates
 
                 if (selectedID > 8)
                 {
-                    if (!_pageSetter.Enabled)
-                    {
-                        _pageSetter.Enabled = true;
-                        _selector.visible = false;
-                        SoundManager.PlaySoundEffect("menu_select");
-                    }
+                    _pageSetter.Enabled = true;
+                    _selector.visible = false;
+                    SoundManager.PlaySoundEffect("menu_select");
                     return;
                 }
 
                 selectedID += 3;
 
                 moved = true;
-            }
-            else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Cancel))
-            {
-                ExitSubState();
             }
             else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept))
             {

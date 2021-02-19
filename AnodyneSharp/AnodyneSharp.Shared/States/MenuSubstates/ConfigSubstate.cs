@@ -198,12 +198,12 @@ namespace AnodyneSharp.States.MenuSubstates
                 autosavePos = new Vector2(x + 16, _autosaveLabel.Position.Y + GameConstants.FONT_LINE_HEIGHT * 2.5f);
             }
 
-            _autosaveSetter = new TextSelector(autosavePos, 40, GlobalState.settings.autosave_on ? 0 : 1, DialogueManager.GetDialogue("misc", "any", "config", 4), DialogueManager.GetDialogue("misc", "any", "config", 5))
+            _autosaveSetter = new TextSelector(autosavePos, 40, GlobalState.settings.autosave_on ? 0 : 1, false, DialogueManager.GetDialogue("misc", "any", "config", 4), DialogueManager.GetDialogue("misc", "any", "config", 5))
             {
                 ValueChangedEvent = AutoSaveValueChanged
             };
 
-            _languageSetter = new TextSelector(new Vector2(x + _languageLabel.Writer.WriteArea.Width - 8, _languageLabel.Position.Y + GameConstants.LineOffset), GlobalState.CurrentLanguage == Language.ZH_CN ? 40 : 30, (int)GlobalState.CurrentLanguage, Enum.GetNames(GlobalState.CurrentLanguage.GetType()).Select(s => s.ToLower().Replace('_', '-')).ToArray())
+            _languageSetter = new TextSelector(new Vector2(x + _languageLabel.Writer.WriteArea.Width - 8, _languageLabel.Position.Y + GameConstants.LineOffset), GlobalState.CurrentLanguage == Language.ZH_CN ? 40 : 30, (int)GlobalState.CurrentLanguage, true, Enum.GetNames(GlobalState.CurrentLanguage.GetType()).Select(s => s.ToLower().Replace('_', '-')).ToArray())
             {
                 ValueChangedEvent = LanguageValueChanged
             };
