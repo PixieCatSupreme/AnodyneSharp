@@ -53,7 +53,9 @@ namespace AnodyneSharp.States.MenuSubstates
 
         private bool _isInMainMenu;
 
-        public ConfigSubstate(bool isInMainMenu = false)
+        public ConfigSubstate() : this(false) { }
+
+        public ConfigSubstate(bool isInMainMenu)
         {
             _isInMainMenu = isInMainMenu;
 
