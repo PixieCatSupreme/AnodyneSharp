@@ -136,7 +136,8 @@ namespace AnodyneSharp.Input
                         SwapFaceButtons();
                     }
                 }
-                else if (displayName.Contains("sony"))
+                else if (displayName.Contains("sony") || displayName.Contains("playstation") || 
+                    displayName.Contains("ps3") || displayName.Contains("ps4") || displayName.Contains("ps5"))
                 {
                     ControllerButtonOffset = 52;
                     CurrentControlerKind = ControllerKind.SONY;

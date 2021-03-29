@@ -13,5 +13,7 @@ namespace AnodyneSharp.Registry
         public HashSet<string> BossDefeated = new();
 
         public HashSet<string> LeftAfterBoss = new();
+
+        //TODO rock scrawlings
     }
 }
