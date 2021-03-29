@@ -263,6 +263,18 @@ namespace AnodyneSharp
                 [KeyFunctions.NextPage] = new RebindableKey(
                     new List<Keys> { Keys.PageUp },
                     new List<Buttons> { Buttons.RightShoulder, Buttons.RightTrigger }
+                    ),
+                [KeyFunctions.Broom1] = new RebindableKey(
+                    new List<Keys> { Keys.D1 }
+                    ),
+                [KeyFunctions.Broom2] = new RebindableKey(
+                    new List<Keys> { Keys.D2 }
+                    ),
+                [KeyFunctions.Broom3] = new RebindableKey(
+                    new List<Keys> { Keys.D3 }
+                    ),
+                [KeyFunctions.Broom4] = new RebindableKey(
+                    new List<Keys> { Keys.D4 }
                     )
             };
         }

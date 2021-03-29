@@ -489,19 +489,19 @@ namespace AnodyneSharp.States
                     SwitchBroom(false);
                 }
 
-                if (KeyInput.JustPressedKey(Keys.D1))
+                if (KeyInput.JustPressedRebindableKey(KeyFunctions.Broom1))
                 {
                     SetBroom(BroomType.Normal);
                 }
-                else if (KeyInput.JustPressedKey(Keys.D3))
+                else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Broom2))
                 {
                     SetBroom(BroomType.Wide);
                 }
-                else if (KeyInput.JustPressedKey(Keys.D2))
+                else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Broom3))
                 {
                     SetBroom(BroomType.Long);
                 }
-                else if (KeyInput.JustPressedKey(Keys.D4))
+                else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Broom4))
                 {
                     SetBroom(BroomType.Transformer);
                 }

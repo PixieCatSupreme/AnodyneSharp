@@ -53,6 +53,8 @@ namespace AnodyneSharp.States.MenuSubstates
 
         private bool _isInMainMenu;
 
+        private ControlsSubstate _substate;
+
         public ConfigSubstate() : this(false) { }
 
         public ConfigSubstate(bool isInMainMenu)
@@ -89,6 +91,18 @@ namespace AnodyneSharp.States.MenuSubstates
 
         public override void HandleInput()
         {
+            if (_substate != null)
+            {
+                _substate.HandleInput();
+
+                if (_substate.Exit)
+                {
+                    _substate = null;
+                }
+
+                return;
+            }
+
             if (_selectedOption != null)
             {
                 _selectedOption.Update();
@@ -156,7 +170,14 @@ namespace AnodyneSharp.States.MenuSubstates
 
             _languageSetter.DrawUI();
 
-            _selector.Draw();
+            if (_substate != null)
+            {
+                _substate.DrawUI();
+            }
+            else
+            {
+                _selector.Draw();
+            }
         }
 
         private void SetLabels()
@@ -215,9 +236,9 @@ namespace AnodyneSharp.States.MenuSubstates
         {
             switch (_state)
             {
-                //case ConfigState.KeybindsLabel:
-                //    _state = ConfigState.SettingKeyBinds;
-                //break;
+                case ConfigState.KeybindsLabel:
+                    _substate = new ControlsSubstate();
+                    break;
                 case ConfigState.SetBgmLabel:
                     _selectedOption = _musicSlider;
                     break;

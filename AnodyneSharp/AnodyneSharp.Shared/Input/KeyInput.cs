@@ -16,7 +16,11 @@ namespace AnodyneSharp.Input
         Cancel,
         Pause,
         PreviousPage,
-        NextPage
+        NextPage,
+        Broom1,
+        Broom2,
+        Broom3,
+        Broom4
     }
 
     /// <summary>

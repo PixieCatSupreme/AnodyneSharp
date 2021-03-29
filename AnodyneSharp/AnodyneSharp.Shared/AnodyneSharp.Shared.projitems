@@ -152,6 +152,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)States\IntroState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\MainMenu\MainMenuState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\MainMenu\TitleState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\MenuSubstates\ControlsSubstate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\MenuSubstates\MainMenu\FileSubstate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\PauseState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\MenuSubstates\BaseSubstates\GridSubstate.cs" />

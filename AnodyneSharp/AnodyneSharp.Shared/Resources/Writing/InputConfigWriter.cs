@@ -21,15 +21,9 @@ namespace AnodyneSharp.Resources.Writing
 
                 WriteLine('{');
 
-                if (rKey.Value.Keys.Count > 0)
-                {
-                    WriteKeys(rKey.Value);
-                }
+                WriteKeys(rKey.Value);
 
-                if (rKey.Value.Buttons.Count > 0)
-                {
-                    WriteButtons(rKey.Value);
-                }
+                WriteButtons(rKey.Value);
 
                 WriteLine('}');
             }
