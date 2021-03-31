@@ -2367,7 +2367,7 @@ Copy to
 #Set volume 
 设置音量
 #Autosave at\ncheckpoints:
-在保存点可\n自动保存：
+在保存点可\n自动保存
 #On
 开启
 # 5

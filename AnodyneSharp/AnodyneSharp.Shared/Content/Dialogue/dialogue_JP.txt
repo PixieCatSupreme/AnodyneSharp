@@ -2125,7 +2125,7 @@ xカード
 #Set keybinds
 音の大きさ
 #Set volume 
-チェックポイントで\n自動セーブ:
+チェックポイントで\n自動セーブ
 #Autosave at checkpoints
 オン
 #On

@@ -8,14 +8,8 @@ using System.Text;
 
 namespace AnodyneSharp.UI.PauseMenu.Config
 {
-    public delegate void ValueChanged(string newValue, int index);
-    public abstract class OptionSelector
+    public abstract class OptionSelector : UIOption
     {
-        public bool Enabled;
-        public bool Exit;
-
-        public ValueChanged ValueChangedEvent;
-
         protected Vector2 position;
 
         private MenuSelector _leftArrow;
@@ -67,7 +61,7 @@ namespace AnodyneSharp.UI.PauseMenu.Config
 
         public abstract void ResetValue();
 
-        public virtual void DrawUI()
+        public override void DrawUI()
         {
             if (Enabled)
             {

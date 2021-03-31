@@ -2125,7 +2125,7 @@ Definir control
 #Set keybinds
 Definir volume
 #Set volume 
-Salvar em\ncheckpoints:
+Salvar em\ncheckpoints
 #Autosave at checkpoints
 Ligado
 #On

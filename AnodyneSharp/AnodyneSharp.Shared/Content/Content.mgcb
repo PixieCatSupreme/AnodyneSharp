@@ -4489,6 +4489,18 @@
 /processorParam:TextureFormat=Color
 /build:textures/sprites/menu/cards_page example.png
 
+#begin textures/sprites/menu/checkbox.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:textures/sprites/menu/checkbox.png
+
 #begin textures/sprites/menu/dialogue_blinky_box.png
 /importer:TextureImporter
 /processor:TextureProcessor

@@ -40,7 +40,7 @@ namespace AnodyneSharp.States.MenuSubstates
         private UILabel _scalingLabel;
         private UILabel _languageLabel;
 
-        private TextSelector _autosaveSetter;
+        private CheckBox _autosaveSetter;
 
         private TextSelector _languageSetter;
 
@@ -182,7 +182,7 @@ namespace AnodyneSharp.States.MenuSubstates
 
         private void SetLabels()
         {
-            float x = 60 + (_isInMainMenu ? 0 : 9);
+            float x = 60 + (_isInMainMenu ? 0 : (GlobalState.CurrentLanguage == Language.IT ? 4 : 9));
             float y = 28 - GameConstants.LineOffset - (GlobalState.CurrentLanguage == Language.ZH_CN ? 1 : 0);
             float yStep = GameConstants.FONT_LINE_HEIGHT - GameConstants.LineOffset;
 
@@ -193,7 +193,7 @@ namespace AnodyneSharp.States.MenuSubstates
             _bgmLabel = new UILabel(new Vector2(x, _keybindsLabel.Position.Y + yStep * 2), true, "BGM", color, forceEnglish: true);
             _sfxLabel = new UILabel(new Vector2(x, _bgmLabel.Position.Y + 12), true, "SFX", color, forceEnglish: true);
 
-            _autosaveLabel = new UILabel(new Vector2(x, _sfxLabel.Position.Y + yStep * 2), true, DialogueManager.GetDialogue("misc", "any", "config", 3),color);
+            _autosaveLabel = new UILabel(new Vector2(x, _sfxLabel.Position.Y + yStep * 2), true, DialogueManager.GetDialogue("misc", "any", "config", 3), color);
             _resolutionLabel = new UILabel(new Vector2(x, _autosaveLabel.Position.Y + yStep * 4), true, DialogueManager.GetDialogue("misc", "any", "config", 6), color);
             _scalingLabel = new UILabel(new Vector2(x, _resolutionLabel.Position.Y + yStep * 3), true, DialogueManager.GetDialogue("misc", "any", "config", 16), color);
             _languageLabel = new UILabel(new Vector2(x, _scalingLabel.Position.Y + yStep * 2), true, DialogueManager.GetDialogue("misc", "any", "config", 17), color);
@@ -212,14 +212,18 @@ namespace AnodyneSharp.States.MenuSubstates
 
             if (GlobalState.CurrentLanguage == Language.ZH_CN)
             {
-                autosavePos = new Vector2(x + 44, _autosaveLabel.Position.Y + GameConstants.FONT_LINE_HEIGHT + 5);
+                autosavePos = new Vector2(x + 48, _autosaveLabel.Position.Y + GameConstants.FONT_LINE_HEIGHT + 5);
+            }
+            else if (GlobalState.CurrentLanguage == Language.IT)
+            {
+                autosavePos = new Vector2(x + 84, _autosaveLabel.Position.Y + GameConstants.FONT_LINE_HEIGHT + 2);
             }
             else
             {
-                autosavePos = new Vector2(x + 16, _autosaveLabel.Position.Y + GameConstants.FONT_LINE_HEIGHT * 2.5f);
+                autosavePos = new Vector2(x + 78, _autosaveLabel.Position.Y + GameConstants.FONT_LINE_HEIGHT + 2);
             }
 
-            _autosaveSetter = new TextSelector(autosavePos, 40, GlobalState.settings.autosave_on ? 0 : 1, false, DialogueManager.GetDialogue("misc", "any", "config", 4), DialogueManager.GetDialogue("misc", "any", "config", 5))
+            _autosaveSetter = new CheckBox(autosavePos, GlobalState.settings.autosave_on, _isInMainMenu)
             {
                 ValueChangedEvent = AutoSaveValueChanged
             };
@@ -246,7 +250,7 @@ namespace AnodyneSharp.States.MenuSubstates
                     _selectedOption = _sfxSlider;
                     break;
                 case ConfigState.AutosaveLabel:
-                    _selectedOption = _autosaveSetter;
+                    _autosaveSetter.Toggle();
                     break;
                 //case ConfigState.ResolutionLabel:
                 //    _state = ConfigState.SettingResolution;
@@ -333,7 +337,7 @@ namespace AnodyneSharp.States.MenuSubstates
 
         private void AutoSaveValueChanged(string value, int index)
         {
-            GlobalState.settings.autosave_on = value == DialogueManager.GetDialogue("misc", "any", "config", 4);
+            GlobalState.settings.autosave_on = value == "True";
         }
 
         private void LanguageValueChanged(string value, int index)

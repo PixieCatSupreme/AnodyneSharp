@@ -2374,7 +2374,7 @@ Imposta comandi
 #Set volume 
 Imposta volume
 #Autosave at\ncheckpoints:
-Autosalvataggio nei\ncheckpoint:
+Autosalvataggio\nnei checkpoint
 #On
 Attivato
 # 5
