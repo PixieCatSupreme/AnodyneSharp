@@ -284,7 +284,9 @@ namespace AnodyneSharp.Entities
             Play("stab", true);
             SoundManager.PlaySoundEffect("swing_broom_1", "swing_broom_2", "swing_broom_3");
 
-            if(dust != null)
+            UpdatePos();
+
+            if (dust != null)
             {
                 dust.Position = _root.Position + FacingDirection(_root.facing) * 16;
                 int x = (int)dust.Position.X;

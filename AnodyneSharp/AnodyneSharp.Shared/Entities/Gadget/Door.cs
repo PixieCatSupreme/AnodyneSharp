@@ -30,7 +30,7 @@ namespace AnodyneSharp.Entities.Gadget
 
         private string? _sfx;
 
-        public Door(EntityPreset preset, Player player, string? sfx = "enter_Door")
+        public Door(EntityPreset preset, Player player, string? sfx = "enter_door")
             : this(preset, player, "doors", 16, 16, sfx)
         { }
 
