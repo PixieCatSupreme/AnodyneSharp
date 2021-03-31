@@ -61,10 +61,13 @@ namespace AnodyneSharp.UI
         private Color _color;
         private bool _drawShadow;
 
+        public bool ForcedEnglish { get; private set; }
+
         private Vector2 _position;
 
         public UILabel(Vector2 position, bool drawShadow, string text, Color? color = null, DrawOrder layer = DrawOrder.MENUTEXT, bool forceEnglish = false)
         {
+            ForcedEnglish = forceEnglish;
             _position = position;
 
             Writer = new TextWriter((int)position.X, (int)position.Y)

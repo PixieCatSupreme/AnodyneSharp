@@ -5,14 +5,14 @@ using System.Text;
 
 namespace AnodyneSharp.UI.PauseMenu.Config
 {
-    public delegate void ValueChanged(string newValue, int index);
     public abstract class UIOption
     {
-        public bool Enabled;
         public bool Exit;
 
-        public ValueChanged ValueChangedEvent;
+        public abstract void Update();
+        public abstract void Draw();
 
-        public abstract void DrawUI();
+        public abstract void GetControl();
+        public abstract void LoseControl();
     }
 }

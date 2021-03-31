@@ -57,16 +57,17 @@ namespace AnodyneSharp.States.MenuSubstates
 
             if (KeyInput.JustPressedRebindableKey(KeyFunctions.Cancel))
             {
-                _pageSetter.Enabled = false;
+                _pageSetter.LoseControl();
                 ExitSubState();
                 return;
             }
 
-            if (_pageSetter.Enabled)
+            if (selectedID < 0)
             {
                 if (KeyInput.JustPressedRebindableKey(KeyFunctions.Up))
                 {
-                    _pageSetter.Enabled = false;
+                    _pageSetter.LoseControl();
+                    selectedID = -selectedID;
                     _selector.visible = true;
                     SoundManager.PlaySoundEffect("menu_select");
                 }
@@ -135,8 +136,9 @@ namespace AnodyneSharp.States.MenuSubstates
 
                 if (selectedID > 8)
                 {
-                    _pageSetter.Enabled = true;
+                    _pageSetter.GetControl();
                     _selector.visible = false;
+                    selectedID = -selectedID;
                     SoundManager.PlaySoundEffect("menu_select");
                     return;
                 }
@@ -203,7 +205,7 @@ namespace AnodyneSharp.States.MenuSubstates
                 card.Draw();
             }
 
-            _pageSetter.DrawUI();
+            _pageSetter.Draw();
             cardsLabel.Draw();
         }
 

@@ -11,7 +11,7 @@ using System.Text;
 
 namespace AnodyneSharp.UI.PauseMenu.Config
 {
-    public class AudioSlider : OptionSelector
+    public class AudioSlider : OptionSelector<float>
     {
         private const float BarOffset = 8f;
 
@@ -46,7 +46,7 @@ namespace AnodyneSharp.UI.PauseMenu.Config
         public override void ResetValue()
         {
             current = start;
-            ValueChangedEvent?.Invoke(current.ToString(), -1);
+            ValueChangedEvent?.Invoke(current, -1);
             SoundManager.PlaySoundEffect("menu_select");
         }
 
@@ -67,7 +67,7 @@ namespace AnodyneSharp.UI.PauseMenu.Config
 
             SoundManager.PlaySoundEffect("menu_move");
 
-            ValueChangedEvent?.Invoke(current.ToString(), -1);
+            ValueChangedEvent?.Invoke(current, -1);
         }
 
         protected override void RightPressed()
@@ -81,12 +81,12 @@ namespace AnodyneSharp.UI.PauseMenu.Config
 
             SoundManager.PlaySoundEffect("menu_move");
 
-            ValueChangedEvent?.Invoke(current.ToString(), -1);
+            ValueChangedEvent?.Invoke(current, -1);
         }
 
-        public override void DrawUI()
+        public override void Draw()
         {
-            base.DrawUI();
+            base.Draw();
 
             SpriteDrawer.DrawGuiSprite(_sliderBg, new Rectangle(
                 (int)(position.X + BarOffset - _slider.Width / 2),

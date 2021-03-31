@@ -7,7 +7,7 @@ using System.Text;
 
 namespace AnodyneSharp.UI.PauseMenu.Config
 {
-    public class TextSelector : OptionSelector
+    public class TextSelector : OptionSelector<string>
     {
         public bool noConfirm;
         public bool noLoop;
@@ -25,12 +25,12 @@ namespace AnodyneSharp.UI.PauseMenu.Config
             this.startIndex = startIndex;
             index = startIndex;
 
-            _textLabel = new UILabel(new Vector2(pos.X + 8, pos.Y - (GlobalState.CurrentLanguage == Dialogue.Language.ZH_CN ? GameConstants.LineOffset - 1 : 0)), true, _options[index], forceEnglish: forceEnglish);
+            _textLabel = new UILabel(new Vector2(pos.X + 8, pos.Y - (!forceEnglish && GlobalState.CurrentLanguage == Dialogue.Language.ZH_CN ? GameConstants.LineOffset - 1 : 0)), true, _options[index], forceEnglish: forceEnglish);
         }
 
-        public override void DrawUI()
+        public override void Draw()
         {
-            base.DrawUI();
+            base.Draw();
 
             _textLabel.Draw();
         }

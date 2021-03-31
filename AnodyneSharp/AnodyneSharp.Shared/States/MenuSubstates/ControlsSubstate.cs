@@ -13,8 +13,6 @@ using static AnodyneSharp.Utilities.TextUtilities;
 
 namespace AnodyneSharp.States.MenuSubstates
 {
-
-
     public class ControlsSubstate : Substate
     {
         List<(UILabel function, UILabel keyboard, UILabel controller, KeyFunctions keyFunction)> keyBinds;

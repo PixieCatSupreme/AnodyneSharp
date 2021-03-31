@@ -10,6 +10,10 @@ namespace AnodyneSharp.UI.PauseMenu.Config
 {
     public class CheckBox : UIOption
     {
+        public delegate void ValueChanged(bool newValue);
+
+        public ValueChanged ValueChangedEvent;
+
         private Spritesheet _box;
 
         private Vector2 _pos;
@@ -30,15 +34,29 @@ namespace AnodyneSharp.UI.PauseMenu.Config
         public void Toggle()
         {
             _turnedOn = !_turnedOn;
-            ValueChangedEvent?.Invoke(_turnedOn.ToString(), -1);
+            ValueChangedEvent?.Invoke(_turnedOn);
         }
 
-        public override void DrawUI()
+        public override void Update()
+        {
+        }
+
+        public override void Draw()
         {
             SpriteDrawer.DrawGuiSprite(_box.Tex, _pos,
                 _box.GetRect((_turnedOn ? 1 : 0) + (_useMainMenuFrame ? 2 : 0)), 
                 Z: DrawingUtilities.GetDrawingZ(DrawOrder.AUDIO_SLIDER));
 
+        }
+
+        public override void GetControl()
+        {
+            Toggle();
+            Exit = true;
+        }
+
+        public override void LoseControl()
+        {
         }
     }
 }
