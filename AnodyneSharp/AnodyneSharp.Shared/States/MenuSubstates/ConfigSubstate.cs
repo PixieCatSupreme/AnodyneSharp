@@ -2,6 +2,7 @@
 using AnodyneSharp.Input;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
+using AnodyneSharp.States.MenuSubstates.ConfigSubstates;
 using AnodyneSharp.UI;
 using AnodyneSharp.UI.PauseMenu;
 using AnodyneSharp.UI.PauseMenu.Config;
@@ -14,125 +15,25 @@ using System.Text;
 
 namespace AnodyneSharp.States.MenuSubstates
 {
-    public class ConfigSubstate : Substate
+    public class ConfigSubstate : ListSubstate
     {
-        private enum ConfigState
-        {
-            KeybindsLabel,
-            SetBgmLabel,
-            SetSfxLabel,
-            AutosaveLabel,
-            ResolutionLabel,
-            ScalingLabel,
-            LanguageLabel
-        }
-
-        private List<(UILabel label, UIOption option)> options;
-        private int _state = 0;
-        private int _lastState = 0;
-
-        private UIOption _selectedOption;
-
         private bool _isInMainMenu;
 
         public ConfigSubstate() : this(false) { }
 
-        public ConfigSubstate(bool isInMainMenu)
+        public ConfigSubstate(bool isInMainMenu) : base(true)
         {
             _isInMainMenu = isInMainMenu;
-
             SetLabels();
-        }
-
-        public override void GetControl()
-        {
-            base.GetControl();
-            _lastState = _state;
-
-            SetSelectorPos();
         }
 
         protected override void OnExit()
         {
             GlobalState.settings.Save();
+            base.OnExit();
         }
 
-        public override void Update()
-        {
-            if (_lastState != _state)
-            {
-                _lastState = _state;
-                SetSelectorPos();
-                SoundManager.PlaySoundEffect("menu_move");
-            }
-
-            base.Update();
-        }
-
-        public override void HandleInput()
-        {
-            if (_selectedOption != null)
-            {
-                _selectedOption.Update();
-
-                if (_selectedOption.Exit)
-                {
-                    _selector.visible = true;
-
-                    _selectedOption.LoseControl();
-                    _selectedOption.Exit = false;
-                    _selectedOption = null;
-                    _state = _lastState;
-                    SetSelectorPos();
-                }
-            }
-            else
-            {
-                if (KeyInput.JustPressedRebindableKey(KeyFunctions.Up))
-                {
-                    if (_state == 0)
-                    {
-                        return;
-                    }
-
-                    _state--;
-                }
-                else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Down))
-                {
-                    if (_state >= options.Count - 1)
-                    {
-                        return;
-                    }
-
-                    _state++;
-                }
-                else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept))
-                {
-                    SetSettingsState();
-                }
-                else
-                {
-                    base.HandleInput();
-                }
-            }
-        }
-
-
-        public override void DrawUI()
-        {
-            foreach (var (label, option) in options)
-            {
-                label.Draw();
-                option.Draw();
-            }
-
-            if (_selectedOption == null)
-            {
-                _selector.Draw();
-            }
-        }
-
-        private void SetLabels()
+        protected override void SetLabels()
         {
             float x = 60 + (_isInMainMenu ? 0 : (GlobalState.CurrentLanguage == Language.IT ? 4 : 9));
             float y = 28 - GameConstants.LineOffset - (GlobalState.CurrentLanguage == Language.ZH_CN ? 1 : 0);
@@ -146,9 +47,11 @@ namespace AnodyneSharp.States.MenuSubstates
             var sfxLabel = new UILabel(new Vector2(x, bgmLabel.Position.Y + 12), true, "SFX", color, forceEnglish: true);
 
             var autosaveLabel = new UILabel(new Vector2(x, sfxLabel.Position.Y + yStep * 2), true, DialogueManager.GetDialogue("misc", "any", "config", 3), color);
-            var resolutionLabel = new UILabel(new Vector2(x, autosaveLabel.Position.Y + yStep * 4), true, DialogueManager.GetDialogue("misc", "any", "config", 6), color);
-            var scalingLabel = new UILabel(new Vector2(x, resolutionLabel.Position.Y + yStep * 3), true, DialogueManager.GetDialogue("misc", "any", "config", 16), color);
-            var languageLabel = new UILabel(new Vector2(x, scalingLabel.Position.Y + yStep * 2), true, DialogueManager.GetDialogue("misc", "any", "config", 17), color);
+
+            //TODO: localize
+            var graphicsLabel = new UILabel(new Vector2(x, autosaveLabel.Position.Y + yStep * 4), true, "Graphics", color, forceEnglish: true);
+            
+            var languageLabel = new UILabel(new Vector2(x, graphicsLabel.Position.Y + yStep * 2), true, DialogueManager.GetDialogue("misc", "any", "config", 17), color);
 
             var musicSlider = new AudioSlider(new Vector2(bgmLabel.Position.X + bgmLabel.Writer.WriteArea.Width - 5, bgmLabel.Position.Y), GlobalState.settings.music_volume_scale, 0f, 1f, 0.1f, _isInMainMenu)
             {
@@ -191,34 +94,9 @@ namespace AnodyneSharp.States.MenuSubstates
                 (bgmLabel, musicSlider),
                 (sfxLabel, sfxSlider),
                 (autosaveLabel, autosaveSetter),
-                //TODO: give these their own menu
-                (resolutionLabel, new SubstateOption<ControlsSubstate>()),
-                (scalingLabel, new SubstateOption<ControlsSubstate>()),
+                (graphicsLabel, new SubstateOption<GraphicsMenu>()),
                 (languageLabel, languageSetter)
             };
-
-            _state = _lastState;
-        }
-
-        private void SetSettingsState()
-        {
-            _selector.visible = false;
-            _selectedOption = options[_state].option;
-            _selectedOption.GetControl();
-
-            SoundManager.PlaySoundEffect("menu_select");
-
-            SetSelectorPos();
-        }
-
-        private void SetSelectorPos()
-        {
-            _selector.Position = options[_state].label.Position - new Vector2(_selector.sprite.Width, -2);
-
-            if (!options[_state].label.ForcedEnglish)
-            {
-                _selector.Position.Y += CursorOffset;
-            }
         }
 
         private void BgmValueChanged(float value, int index)

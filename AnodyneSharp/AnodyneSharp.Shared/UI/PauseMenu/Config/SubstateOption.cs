@@ -20,6 +20,7 @@ namespace AnodyneSharp.UI.PauseMenu.Config
         public override void GetControl()
         {
             substate = new();
+            substate.GetControl();
         }
 
         public override void LoseControl()

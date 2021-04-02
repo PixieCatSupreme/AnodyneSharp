@@ -7,7 +7,7 @@ namespace AnodyneSharp.States.MenuSubstates
 {
     public class DialogueSubstate : Substate
     {
-        protected bool InDialogueMode { get; private set; }
+        protected bool InDialogueMode => _subsubstate != null;
         private DialogueState _subsubstate;
 
         public override void Update()
@@ -20,7 +20,6 @@ namespace AnodyneSharp.States.MenuSubstates
 
                 if (_subsubstate.Exit)
                 {
-                    InDialogueMode = false;
                     _subsubstate = null;
                 }
             }
@@ -42,8 +41,6 @@ namespace AnodyneSharp.States.MenuSubstates
             GlobalState.SetDialogueMode = false;
 
             _subsubstate = new DialogueState(true);
-
-            InDialogueMode = true;
         }
     }
 }

@@ -18,14 +18,19 @@ namespace AnodyneSharp.UI.PauseMenu.Config
 
         private UILabel _textLabel;
 
-        public TextSelector(Vector2 pos, float width, int startIndex, bool forceEnglish, params string[] options)
-            : base(pos, width)
+        public TextSelector(Vector2 pos, float width, int startIndex, bool forceEnglish, Drawing.DrawOrder layer, params string[] options)
+            :base(pos,width)
         {
             _options = options;
             this.startIndex = startIndex;
             index = startIndex;
 
-            _textLabel = new UILabel(new Vector2(pos.X + 8, pos.Y - (!forceEnglish && GlobalState.CurrentLanguage == Dialogue.Language.ZH_CN ? GameConstants.LineOffset - 1 : 0)), true, _options[index], forceEnglish: forceEnglish);
+            _textLabel = new UILabel(new Vector2(pos.X + 8, pos.Y - (!forceEnglish && GlobalState.CurrentLanguage == Dialogue.Language.ZH_CN ? GameConstants.LineOffset - 1 : 0)), true, _options[index], layer:layer, forceEnglish: forceEnglish);
+        }
+
+        public TextSelector(Vector2 pos, float width, int startIndex, bool forceEnglish, params string[] options)
+            : this(pos,width,startIndex,forceEnglish,Drawing.DrawOrder.MENUTEXT,options)
+        {
         }
 
         public override void Draw()
