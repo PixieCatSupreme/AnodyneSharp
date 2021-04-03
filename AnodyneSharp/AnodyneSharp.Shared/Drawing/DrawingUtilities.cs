@@ -28,9 +28,7 @@ namespace AnodyneSharp.Drawing
         PAUSE_BG,           //Background for pause menu. Needs to be drawn over health upgrades. 
         EQUIPMENT_ICON,     //The inventory items for the broom types
         EQUIPPED_ICON,      //The small equipped indicator for the broom types
-        AUDIO_SLIDER_BG,    //The black background of the audio slider
-        AUDIO_SLIDER_BAR,   //The red bar to show progress of slider
-        AUDIO_SLIDER,       //The slider itself.
+        AUDIO_SLIDER,       //Audio slider
         PAUSE_SELECTOR,     //Pause menu option selector
         MENUTEXT,           //Text in pause menu
         MINIMAP,            //Minimap in pause menu and header
@@ -38,6 +36,7 @@ namespace AnodyneSharp.Drawing
         MINIMAP_CHEST,      //Minimap chest indicator
         TEXTBOX,            //Textboxes
         TEXT,               //Text in dialogueBoxes
+        SUBMENU_SLIDER,     //Sliders in submenu
         SUBMENU_SELECTOR,   //Equipment selector, config selector and card selector
         DEATH_FADEIN,       //A fade-in that happens on player death
         PLAYER_DIE_DUMMY,   //Player dummy who does the dying animation

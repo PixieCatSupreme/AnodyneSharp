@@ -177,6 +177,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)UI\Health\HealthBar.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\Health\HealthBarPiece.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\PauseMenu\Config\AudioSlider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\PauseMenu\Config\ActionOption.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\PauseMenu\Config\OptionSelector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\PauseMenu\Config\CheckBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\PauseMenu\Config\SubstateOption.cs" />

@@ -17,11 +17,17 @@ namespace AnodyneSharp.Registry
     public class Settings
     {
         public Language language { get; set; } = Language.EN;
+        
         public float music_volume_scale { get; set; } = 1.0f;
         public float sfx_volume_scale { get; set; } = 1.0f;
+        
         public bool autosave_on { get; set; } = true;
+        
         public Resolution resolution { get; set; } = Resolution.Windowed;
         public int scale { get; set; } = 3;
+
+        public float flash_brightness { get; set; } = 1.0f;
+        public float flash_easing { get; set; } = 0.0f;
 
         public static Settings Load()
         {

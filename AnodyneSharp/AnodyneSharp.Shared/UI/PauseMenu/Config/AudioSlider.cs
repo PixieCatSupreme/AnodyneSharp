@@ -21,19 +21,22 @@ namespace AnodyneSharp.UI.PauseMenu.Config
         private float current;
         private float start;
 
+        private DrawOrder layer;
+
         private Spritesheet _slider;
         private Texture2D _sliderInside;
         private Texture2D _sliderBg;
 
         private bool _useMainMenuFrame;
 
-        public AudioSlider(Vector2 pos, float current, float min, float max, float stepSize, bool useMainMenuFrame)
+        public AudioSlider(Vector2 pos, float current, float min, float max, float stepSize, bool useMainMenuFrame, DrawOrder drawOrder = DrawOrder.AUDIO_SLIDER)
             : base(pos, 68)
         {
             this.min = min;
             this.max = max;
             this.stepSize = stepSize;
             this.current = current;
+            layer = drawOrder;
             start = current;
 
             _slider = new Spritesheet(ResourceManager.GetTexture("volume_bar", true), 60, 11);
@@ -88,15 +91,18 @@ namespace AnodyneSharp.UI.PauseMenu.Config
         {
             base.Draw();
 
+            float z = DrawingUtilities.GetDrawingZ(layer);
+            float max_z = DrawingUtilities.GetDrawingZ(layer + 1);
+
             SpriteDrawer.DrawGuiSprite(_sliderBg, new Rectangle(
                 (int)(position.X + BarOffset - _slider.Width / 2),
                 (int)(position.Y - _slider.Height / 2),
                 (int)(_slider.Width),
                 (int)(_slider.Height)),
-                Z: DrawingUtilities.GetDrawingZ(DrawOrder.AUDIO_SLIDER_BG));
+                Z: z);
 
 
-            SpriteDrawer.DrawGuiSprite(_slider.Tex, position + new Vector2(BarOffset, 0), _slider.GetRect(_useMainMenuFrame ? 1 : 0), Z: DrawingUtilities.GetDrawingZ(DrawOrder.AUDIO_SLIDER));
+            SpriteDrawer.DrawGuiSprite(_slider.Tex, position + new Vector2(BarOffset, 0), _slider.GetRect(_useMainMenuFrame ? 1 : 0), Z: z + 2*(max_z - z)/3);
 
             if (current > min)
             {
@@ -107,7 +113,7 @@ namespace AnodyneSharp.UI.PauseMenu.Config
                     (int)(position.Y - _slider.Height / 2),
                     (int)(width),
                     (int)(_slider.Height)),
-                    Z: DrawingUtilities.GetDrawingZ(DrawOrder.AUDIO_SLIDER_BAR));
+                    Z: z + (max_z-z)/3);
             }
         }
     }
