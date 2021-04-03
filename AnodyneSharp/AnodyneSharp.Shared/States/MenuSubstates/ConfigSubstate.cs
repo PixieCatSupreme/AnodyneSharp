@@ -55,12 +55,12 @@ namespace AnodyneSharp.States.MenuSubstates
 
             var musicSlider = new AudioSlider(new Vector2(bgmLabel.Position.X + bgmLabel.Writer.WriteArea.Width - 5, bgmLabel.Position.Y), GlobalState.settings.music_volume_scale, 0f, 1f, 0.1f, _isInMainMenu)
             {
-                ValueChangedEvent = BgmValueChanged
+                ValueChangedEvent = (value,index) => { float vol = SoundManager.GetVolume(); GlobalState.settings.music_volume_scale = value; SoundManager.SetSongVolume(vol); }
             };
 
             var sfxSlider = new AudioSlider(new Vector2(sfxLabel.Position.X + sfxLabel.Writer.WriteArea.Width - 5, sfxLabel.Position.Y), GlobalState.settings.sfx_volume_scale, 0f, 1f, 0.1f, _isInMainMenu)
             {
-                ValueChangedEvent = SfxValueChanged
+                ValueChangedEvent = (value,index) => { GlobalState.settings.sfx_volume_scale = value; }
             };
 
             Vector2 autosavePos = Vector2.Zero;
@@ -80,7 +80,7 @@ namespace AnodyneSharp.States.MenuSubstates
 
             var autosaveSetter = new CheckBox(autosavePos, GlobalState.settings.autosave_on, _isInMainMenu)
             {
-                ValueChangedEvent = AutoSaveValueChanged
+                ValueChangedEvent = (setting) => { GlobalState.settings.autosave_on = setting; }
             };
 
             var languageSetter = new TextSelector(new Vector2(x + languageLabel.Writer.WriteArea.Width - 8, languageLabel.Position.Y + GameConstants.LineOffset), GlobalState.CurrentLanguage == Language.ZH_CN ? 40 : 30, (int)GlobalState.CurrentLanguage, true, Enum.GetNames(GlobalState.CurrentLanguage.GetType()).Select(s => s.ToLower().Replace('_', '-')).ToArray())
@@ -97,22 +97,6 @@ namespace AnodyneSharp.States.MenuSubstates
                 (graphicsLabel, new SubstateOption<GraphicsMenu>()),
                 (languageLabel, languageSetter)
             };
-        }
-
-        private void BgmValueChanged(float value, int index)
-        {
-            GlobalState.settings.music_volume_scale = value;
-            SoundManager.SetSongVolume();
-        }
-
-        private void SfxValueChanged(float value, int index)
-        {
-            GlobalState.settings.sfx_volume_scale = value;
-        }
-
-        private void AutoSaveValueChanged(bool value)
-        {
-            GlobalState.settings.autosave_on = value;
         }
 
         private void LanguageValueChanged(string value, int index)

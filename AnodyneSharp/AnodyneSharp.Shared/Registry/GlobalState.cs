@@ -197,6 +197,7 @@ namespace AnodyneSharp.Registry
         public static bool FishermanDead { get; set; }
 
         public static Settings settings = Settings.Load();
+        public static bool ResolutionDirty = false;
         public static Language CurrentLanguage => settings.language;
 
         public static bool pillar_switch_state = false; //Reset when entering a map with different name

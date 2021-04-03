@@ -19,6 +19,12 @@ namespace AnodyneSharp.States.MenuSubstates.ConfigSubstates
             SetLabels();
         }
 
+        protected override void OnExit()
+        {
+            base.OnExit();
+            GlobalState.settings.Save();
+        }
+
         public override void DrawUI()
         {
             base.DrawUI();
@@ -37,10 +43,18 @@ namespace AnodyneSharp.States.MenuSubstates.ConfigSubstates
             var resolutionLabel = new UILabel(new Vector2(x + 10, y + yStep * 2), true, DialogueManager.GetDialogue("misc", "any", "config", 12), layer: Drawing.DrawOrder.TEXT);
             var scalingLabel = new UILabel(new Vector2(x + 10, resolutionLabel.Position.Y + yStep * 3), true, DialogueManager.GetDialogue("misc", "any", "config", 16), layer: Drawing.DrawOrder.TEXT);
 
-            var resolutionSelect = new TextSelector(resolutionLabel.Position + new Vector2(10, yStep), 90, 0, false, Drawing.DrawOrder.TEXT,
-                DialogueManager.GetDialogue("misc", "any", "config", 13), DialogueManager.GetDialogue("misc", "any", "config", 14), DialogueManager.GetDialogue("misc", "any", "config", 15));
+            var resolutionSelect = new TextSelector(resolutionLabel.Position + new Vector2(10, yStep), 90,(int)GlobalState.settings.resolution, false, Drawing.DrawOrder.TEXT,
+                DialogueManager.GetDialogue("misc", "any", "config", 13), DialogueManager.GetDialogue("misc", "any", "config", 14), DialogueManager.GetDialogue("misc", "any", "config", 15))
+            {
+                ValueChangedEvent = (s,index) => { GlobalState.ResolutionDirty = GlobalState.settings.resolution != (Resolution)index; GlobalState.settings.resolution = (Resolution)index; }
+            };
 
-            var scalingSelect = new TextSelector(scalingLabel.Position + new Vector2(50,0), 20, 0, true, Drawing.DrawOrder.TEXT, "1x", "2x", "3x", "4x");
+            var scalingSelect = new TextSelector(scalingLabel.Position + new Vector2(50, 0), 20, GlobalState.settings.scale - 1, true, Drawing.DrawOrder.TEXT, "1x", "2x", "3x", "4x")
+            {
+                ValueChangedEvent = (s, index) => { GlobalState.ResolutionDirty = GlobalState.settings.scale != index + 1; GlobalState.settings.scale = index + 1; },
+                noLoop = true,
+                noConfirm = true
+            };
 
             options = new()
             {

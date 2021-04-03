@@ -112,10 +112,23 @@ namespace AnodyneSharp.Drawing
         public static void Render(Effect effect = null)
         {
             _graphicsDevice.SetRenderTarget(null);
+            _graphicsDevice.Clear(Color.Black);
 
             _spriteBatch.Begin(sortMode: SpriteSortMode.Texture, blendState: BlendState.AlphaBlend, samplerState: SamplerState, effect: effect);
 
-            _spriteBatch.Draw(_render, new Rectangle(0, 0, _graphicsDevice.PresentationParameters.BackBufferWidth, _graphicsDevice.PresentationParameters.BackBufferHeight), FullScreenFade);
+            switch(GlobalState.settings.resolution)
+            {
+                case Resolution.Windowed:
+                    _spriteBatch.Draw(_render, new Rectangle(0, 0, _graphicsDevice.PresentationParameters.BackBufferWidth, _graphicsDevice.PresentationParameters.BackBufferHeight), FullScreenFade);
+                    break;
+                case Resolution.Scaled:
+                    _spriteBatch.Draw(_render, new Rectangle(_graphicsDevice.PresentationParameters.BackBufferWidth / 2 - 160 * GlobalState.settings.scale/2, _graphicsDevice.PresentationParameters.BackBufferHeight / 2 - 180 * GlobalState.settings.scale / 2, 160 * GlobalState.settings.scale, 180 * GlobalState.settings.scale), FullScreenFade);
+                    break;
+                case Resolution.Stretch:
+                    float scale = _graphicsDevice.PresentationParameters.BackBufferHeight / 180.0f;
+                    _spriteBatch.Draw(_render, new Rectangle(_graphicsDevice.PresentationParameters.BackBufferWidth / 2 - (int)(160 * scale)/2, 0, (int)(160*scale), _graphicsDevice.PresentationParameters.BackBufferHeight), FullScreenFade);
+                    break;
+            }
 
             _spriteBatch.End();
         }

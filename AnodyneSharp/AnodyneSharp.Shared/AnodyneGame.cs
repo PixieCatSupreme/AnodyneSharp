@@ -160,6 +160,12 @@ namespace AnodyneSharp
             {
                 Exit();
             }
+
+            if(GlobalState.ResolutionDirty)
+            {
+                InitGraphics();
+                GlobalState.ResolutionDirty = false;
+            }
         }
 
         /// <summary>
@@ -218,8 +224,20 @@ namespace AnodyneSharp
         private void InitGraphics()
         {
             graphics.GraphicsProfile = GraphicsProfile.HiDef;
-            graphics.PreferredBackBufferWidth = 480;
-            graphics.PreferredBackBufferHeight = 540;
+            graphics.IsFullScreen = false;
+            switch(GlobalState.settings.resolution)
+            {
+                case Resolution.Windowed:
+                    graphics.PreferredBackBufferWidth = 160 * GlobalState.settings.scale;
+                    graphics.PreferredBackBufferHeight = 180 * GlobalState.settings.scale;
+                    break;
+                case Resolution.Scaled:
+                case Resolution.Stretch:
+                    graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+                    graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+                    graphics.IsFullScreen = true;
+                    break;
+            }
 
             graphics.ApplyChanges();
         }
