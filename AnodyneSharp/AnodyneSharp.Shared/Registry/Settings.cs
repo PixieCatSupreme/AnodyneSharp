@@ -22,6 +22,10 @@ namespace AnodyneSharp.Registry
         public float sfx_volume_scale { get; set; } = 1.0f;
         
         public bool autosave_on { get; set; } = true;
+        public bool fast_text { get; set; } = false;
+        public bool invincible { get; set; } = false;
+        public bool extended_coyote { get; set; } = false;
+        public bool guaranteed_health { get; set; } = false;
         
         public Resolution resolution { get; set; } = Resolution.Windowed;
         public int scale { get; set; } = 3;

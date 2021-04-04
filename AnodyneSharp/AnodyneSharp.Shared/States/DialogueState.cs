@@ -88,7 +88,7 @@ namespace AnodyneSharp.States
                       })
                 .End()
                 .State("WaitCaret")
-                    .Condition(() => KeyInput.IsRebindableKeyPressed(KeyFunctions.Accept) || KeyInput.IsRebindableKeyPressed(KeyFunctions.Cancel), (s) =>
+                    .Condition(() => GlobalState.settings.fast_text || KeyInput.IsRebindableKeyPressed(KeyFunctions.Accept) || KeyInput.IsRebindableKeyPressed(KeyFunctions.Cancel), (s) =>
                         {
                             SoundManager.PlaySoundEffect("dialogue_bloop");
                             _state.ChangeState("Writing");
@@ -129,7 +129,7 @@ namespace AnodyneSharp.States
                         SoundManager.PlaySoundEffect("dialogue_bloop");
                         _state.ChangeState("Done");
                     })
-                    .Condition(() => !_tb.Writer.AtEndOfText && (KeyInput.IsRebindableKeyPressed(KeyFunctions.Accept) || KeyInput.IsRebindableKeyPressed(KeyFunctions.Cancel)), (s) =>
+                    .Condition(() => !_tb.Writer.AtEndOfText && (GlobalState.settings.fast_text || KeyInput.IsRebindableKeyPressed(KeyFunctions.Accept) || KeyInput.IsRebindableKeyPressed(KeyFunctions.Cancel)), (s) =>
                     {
                         SoundManager.PlaySoundEffect("dialogue_bloop");
                         if (_tb.Writer.AtEndOfBox)
@@ -154,7 +154,7 @@ namespace AnodyneSharp.States
 
         public override void Update()
         {
-            if (KeyInput.IsRebindableKeyPressed(KeyFunctions.Accept) || KeyInput.IsRebindableKeyPressed(KeyFunctions.Cancel))
+            if (GlobalState.settings.fast_text || KeyInput.IsRebindableKeyPressed(KeyFunctions.Accept) || KeyInput.IsRebindableKeyPressed(KeyFunctions.Cancel))
             {
                 _tb.Writer.Speed = normalSpeed * speedScale;
             }

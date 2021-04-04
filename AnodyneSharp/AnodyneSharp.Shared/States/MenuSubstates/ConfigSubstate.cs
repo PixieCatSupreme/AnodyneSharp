@@ -46,10 +46,10 @@ namespace AnodyneSharp.States.MenuSubstates
             var bgmLabel = new UILabel(new Vector2(x, keybindsLabel.Position.Y + yStep * 2), true, "BGM", color, forceEnglish: true);
             var sfxLabel = new UILabel(new Vector2(x, bgmLabel.Position.Y + 12), true, "SFX", color, forceEnglish: true);
 
-            var autosaveLabel = new UILabel(new Vector2(x, sfxLabel.Position.Y + yStep * 2), true, DialogueManager.GetDialogue("misc", "any", "config", 3), color);
-
             //TODO: localize
-            var graphicsLabel = new UILabel(new Vector2(x, autosaveLabel.Position.Y + yStep * 4), true, "Graphics", color, forceEnglish: true);
+            var gameplayLabel = new UILabel(new Vector2(x, sfxLabel.Position.Y + yStep * 2), true, "Gameplay", color, forceEnglish: true);
+
+            var graphicsLabel = new UILabel(new Vector2(x, gameplayLabel.Position.Y + yStep * 2), true, "Graphics", color, forceEnglish: true);
             
             var languageLabel = new UILabel(new Vector2(x, graphicsLabel.Position.Y + yStep * 2), true, DialogueManager.GetDialogue("misc", "any", "config", 17), color);
 
@@ -63,26 +63,6 @@ namespace AnodyneSharp.States.MenuSubstates
                 ValueChangedEvent = (value,index) => { GlobalState.settings.sfx_volume_scale = value; }
             };
 
-            Vector2 autosavePos = Vector2.Zero;
-
-            if (GlobalState.CurrentLanguage == Language.ZH_CN)
-            {
-                autosavePos = new Vector2(x + 48, autosaveLabel.Position.Y + GameConstants.FONT_LINE_HEIGHT + 5);
-            }
-            else if (GlobalState.CurrentLanguage == Language.IT)
-            {
-                autosavePos = new Vector2(x + 84, autosaveLabel.Position.Y + GameConstants.FONT_LINE_HEIGHT + 2);
-            }
-            else
-            {
-                autosavePos = new Vector2(x + 78, autosaveLabel.Position.Y + GameConstants.FONT_LINE_HEIGHT + 2);
-            }
-
-            var autosaveSetter = new CheckBox(autosavePos, GlobalState.settings.autosave_on, _isInMainMenu)
-            {
-                ValueChangedEvent = (setting) => { GlobalState.settings.autosave_on = setting; }
-            };
-
             var languageSetter = new TextSelector(new Vector2(x + languageLabel.Writer.WriteArea.Width - 8, languageLabel.Position.Y + GameConstants.LineOffset), GlobalState.CurrentLanguage == Language.ZH_CN ? 40 : 30, (int)GlobalState.CurrentLanguage, true, Enum.GetNames(GlobalState.CurrentLanguage.GetType()).Select(s => s.ToLower().Replace('_', '-')).ToArray())
             {
                 ValueChangedEvent = LanguageValueChanged
@@ -93,7 +73,7 @@ namespace AnodyneSharp.States.MenuSubstates
                 (keybindsLabel, new SubstateOption<ControlsSubstate>()),
                 (bgmLabel, musicSlider),
                 (sfxLabel, sfxSlider),
-                (autosaveLabel, autosaveSetter),
+                (gameplayLabel, new SubstateOption<GameplayMenu>()),
                 (graphicsLabel, new SubstateOption<GraphicsMenu>()),
                 (languageLabel, languageSetter)
             };

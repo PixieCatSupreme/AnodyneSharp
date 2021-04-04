@@ -43,7 +43,7 @@ namespace AnodyneSharp.Entities
 
         private const float jump_period = 0.4f * 1.15f; //length of jump
 
-        public const float FALL_TIMER_DEFAULT = 0.016f * 8 + 0.001f;
+        public static float FALL_TIMER_DEFAULT => (0.016f * 8 + 0.001f) * (GlobalState.settings.extended_coyote ? 2 : 1);
 
         public const float action_latency_max = 0.24f;
         public const float ATK_DELAY = 0.2f;
@@ -915,7 +915,8 @@ namespace AnodyneSharp.Entities
         {
             if (!invincible)
             {
-                GlobalState.CUR_HEALTH -= amount;
+                if(!GlobalState.settings.invincible) //Setting only disables health change
+                    GlobalState.CUR_HEALTH -= amount;
 
                 if (playSound)
                 {

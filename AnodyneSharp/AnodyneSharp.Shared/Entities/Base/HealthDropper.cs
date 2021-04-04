@@ -32,7 +32,7 @@ namespace AnodyneSharp.Entities
         {
             exists = false;
 
-            if (GlobalState.RNG.NextDouble() < _healthDropChance)
+            if (GlobalState.settings.guaranteed_health || GlobalState.RNG.NextDouble() < _healthDropChance)
             {
                 _health.exists = true;
                 _health.Position = Position;

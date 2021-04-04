@@ -154,6 +154,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)States\MainMenu\TitleState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\MenuSubstates\BaseSubstates\ListSubstate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\MenuSubstates\ConfigSubstates\ControlsSubstate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\MenuSubstates\ConfigSubstates\GameplayMenu.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\MenuSubstates\ConfigSubstates\GraphicsMenu.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\MenuSubstates\MainMenu\FileSubstate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\PauseState.cs" />
