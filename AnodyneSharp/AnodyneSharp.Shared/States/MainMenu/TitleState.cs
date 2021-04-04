@@ -190,7 +190,13 @@ namespace AnodyneSharp.States.MainMenu
                     })
                     .Condition(() => AnyKeyPressed || nexusImage.Position.Y + nexusImage.height <= 180, (s) => _state.ChangeState("PressStart"))
                 .End()
-                .State<PressEnterTimer>("PressStart")
+                .State("PressStart")
+                    .Enter((s) =>
+                    {
+                        GlobalState.flash.Flash(1.5f, Color.White, onFull: () => _state.ChangeState("DisplayTitle"));
+                    })
+                .End()
+                .State<PressEnterTimer>("DisplayTitle")
                     .Enter((state) =>
                     {
                         foreach (var label in creditsLabels)
@@ -219,8 +225,6 @@ namespace AnodyneSharp.States.MainMenu
                         pressEnter.visible = true;
                         title.visible = true;
                         titleOverlay.visible = true;
-
-                        GlobalState.flash.Flash(1.5f, Color.White);
                     })
                     .Update((state, t) =>
                     {

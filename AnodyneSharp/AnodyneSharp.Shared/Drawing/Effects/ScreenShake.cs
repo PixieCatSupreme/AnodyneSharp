@@ -30,7 +30,7 @@ namespace AnodyneSharp.Drawing.Effects
 
         public void Shake(float intensity, float time, Directions shakeDir = Directions.Both)
         {
-            _time = time;
+            _time = GlobalState.settings.screenshake ? time : 0f;
             _intensity = intensity;
             _dir = shakeDir;
             _pos = new();

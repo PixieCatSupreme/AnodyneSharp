@@ -13,19 +13,22 @@ namespace AnodyneSharp.Drawing.Effects
         FadeEffect effect = new();
         private float time = 1f;
         private bool easing = false;
+        private Action onFull = null;
 
-        public void Flash(float time, Color c)
+        public void Flash(float time, Color c, Action onFull = null)
         {
             effect.fadeColor = c * GlobalState.settings.flash_brightness;
             this.time = time;
             if (GlobalState.settings.flash_easing == 0.0f)
             {
                 effect.alpha = 1.0f;
+                onFull?.Invoke();
             }
             else
             {
                 effect.alpha = 0.1f;
                 easing = true;
+                this.onFull = onFull;
             }
         }
 
@@ -34,7 +37,11 @@ namespace AnodyneSharp.Drawing.Effects
             if (easing)
             {
                 effect.ChangeAlpha(1f / GlobalState.settings.flash_easing);
-                if (effect.alpha >= 1f) easing = false;
+                if (effect.alpha >= 1f)
+                {
+                    easing = false;
+                    onFull?.Invoke();
+                }
             }
             else
             {

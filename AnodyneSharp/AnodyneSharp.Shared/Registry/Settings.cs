@@ -28,6 +28,7 @@ namespace AnodyneSharp.Registry
 
         public float flash_brightness { get; set; } = 1.0f;
         public float flash_easing { get; set; } = 0.0f;
+        public bool screenshake { get; set; } = true;
 
         public static Settings Load()
         {
