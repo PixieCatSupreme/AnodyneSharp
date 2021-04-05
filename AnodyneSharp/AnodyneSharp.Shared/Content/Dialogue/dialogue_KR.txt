@@ -2165,7 +2165,7 @@ menu=enter
 # Set volume 
 불륨 설정
 # Autosave at\ncheckpoints:
-체크 포인트에서\n자동 저장
+체크 포인트에서\n자동 저장:
 # On
 켜기
 # 5

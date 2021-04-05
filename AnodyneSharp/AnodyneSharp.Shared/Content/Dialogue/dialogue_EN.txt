@@ -1580,7 +1580,7 @@ Deaths:
 Config
 Set keybinds
 Set volume 
-Autosave at\ncheckpoints
+Autosave at\ncheckpoints:
 On
 # 5
 Off

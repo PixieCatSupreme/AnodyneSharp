@@ -2362,7 +2362,7 @@ Asignar teclas
 #Set volume 
 Ajustar volumen
 #Autosave at\ncheckpoints:
-Autoguardado en\ncheckpoints
+Autoguardado en\ncheckpoints:
 #On
 Activado
 # 5

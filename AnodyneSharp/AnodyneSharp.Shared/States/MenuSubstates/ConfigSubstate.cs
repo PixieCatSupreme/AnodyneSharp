@@ -35,7 +35,7 @@ namespace AnodyneSharp.States.MenuSubstates
 
         protected override void SetLabels()
         {
-            float x = 60 + (_isInMainMenu ? 0 : (GlobalState.CurrentLanguage == Language.IT ? 4 : 9));
+            float x = 60 + (_isInMainMenu ? 0 : 9);
             float y = 28 - GameConstants.LineOffset - (GlobalState.CurrentLanguage == Language.ZH_CN ? 1 : 0);
             float yStep = GameConstants.FONT_LINE_HEIGHT - GameConstants.LineOffset;
 
