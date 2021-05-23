@@ -41,7 +41,7 @@ namespace AnodyneSharp.States.MenuSubstates.ConfigSubstates
             float y = 10;
             float yStep = GameConstants.FONT_LINE_HEIGHT - GameConstants.LineOffset + 3;
 
-            _bgBox = new UIEntity(new Vector2(x, y), "controls", 136, 126, Drawing.DrawOrder.TEXTBOX);
+            _bgBox = new UIEntity(new Vector2(x, y), "pop_menu", 136, 126, Drawing.DrawOrder.TEXTBOX);
 
             var resolutionLabel = new UILabel(new Vector2(menuX, y + yStep), true, DialogueManager.GetDialogue("misc", "any", "config", 12), layer: Drawing.DrawOrder.TEXT);
             var scalingLabel = new UILabel(new Vector2(menuX, resolutionLabel.Position.Y + yStep * 2), true, DialogueManager.GetDialogue("misc", "any", "config", 16), layer: Drawing.DrawOrder.TEXT);

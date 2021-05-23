@@ -39,7 +39,7 @@ namespace AnodyneSharp.States.MenuSubstates.ConfigSubstates
             float y = 10;
             float yStep = GameConstants.FONT_LINE_HEIGHT - GameConstants.LineOffset + 5;
 
-            _bgBox = new UIEntity(new Vector2(x, y), "controls", 136, 126, Drawing.DrawOrder.TEXTBOX);
+            _bgBox = new UIEntity(new Vector2(x, y), "pop_menu", 136, 126, Drawing.DrawOrder.TEXTBOX);
 
             var autosaveLabel = new UILabel(new Vector2(menuX, y + yStep * 1.5f), true, DialogueManager.GetDialogue("misc", "any", "config", 3), layer: Drawing.DrawOrder.TEXT);
 

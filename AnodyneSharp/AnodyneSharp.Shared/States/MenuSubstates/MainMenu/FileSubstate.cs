@@ -640,7 +640,7 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
 
         private void SetSelectorPos()
         {
-            _selector.Position = _state switch
+            selector.Position = _state switch
             {
                 State.Game => _gameLabel.Position,
                 State.NewGame => _newGameLabel.Position,
@@ -653,7 +653,7 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
                 State.CancelLabel => _cancelLabel.Position,
                 _ => Vector2.Zero,
             };
-            _selector.Position -= new Vector2(_selector.sprite.Width, -2 - CursorOffset);
+            selector.Position -= new Vector2(selector.sprite.Width, -2 - CursorOffset);
         }
     }
 }

@@ -9,7 +9,15 @@ namespace AnodyneSharp.Utilities
     {
         public static string GetKeyBoardString(Keys key)
         {
-            return Enum.GetName(typeof(Keys), key);
+            return Enum.GetName(typeof(Keys), key)
+                .Replace("Page", "Pg")
+                .Replace("LeftS", "LS")
+                .Replace("RightS", "RS")
+                .Replace("LeftA", "LA")
+                .Replace("RightA", "RA")
+                .Replace("LeftC", "LC")
+                .Replace("RightC", "RC")
+                .Replace("Escape", "Esc");
         }
 
         public  static string GetButtonString(Buttons button)
@@ -24,8 +32,9 @@ namespace AnodyneSharp.Utilities
                 Buttons.Back => 5,
                 Buttons.LeftShoulder => 6,
                 Buttons.RightShoulder => 7,
-                Buttons.RightTrigger => 8,
-                Buttons.LeftTrigger => 9,
+                Buttons.LeftTrigger => 8,
+                Buttons.RightTrigger => 9,
+
                 Buttons.LeftStick => 10,
                 Buttons.RightStick => 11,
 

@@ -138,7 +138,7 @@ namespace AnodyneSharp.States.MenuSubstates.BaseSubstates
         {
             Vector2 pos = _items[_selectedID].Position + new Vector2(-8, 5);
 
-            _selector.Position = pos;
+            selector.Position = pos;
         }
 
         private void SetItemGrid(bool[] collectedStats)

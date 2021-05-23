@@ -247,27 +247,27 @@ namespace AnodyneSharp
             KeyInput.RebindableKeys = new Dictionary<KeyFunctions, RebindableKey>()
             {
                 [KeyFunctions.Up] = new RebindableKey(
-                    new List<Keys> { Keys.Up },
+                    new List<Keys> { Keys.Up, Keys.W },
                     new List<Buttons> { Buttons.DPadUp, Buttons.LeftThumbstickUp }
                     ),
                 [KeyFunctions.Right] = new RebindableKey(
-                    new List<Keys> { Keys.Right },
+                    new List<Keys> { Keys.Right, Keys.D },
                     new List<Buttons> { Buttons.DPadRight, Buttons.LeftThumbstickRight }
                     ),
                 [KeyFunctions.Down] = new RebindableKey(
-                    new List<Keys> { Keys.Down },
+                    new List<Keys> { Keys.Down, Keys.S },
                     new List<Buttons> { Buttons.DPadDown, Buttons.LeftThumbstickDown }
                     ),
                 [KeyFunctions.Left] = new RebindableKey(
-                    new List<Keys> { Keys.Left },
+                    new List<Keys> { Keys.Left, Keys.A },
                     new List<Buttons> { Buttons.DPadLeft, Buttons.LeftThumbstickLeft }
                     ),
                 [KeyFunctions.Accept] = new RebindableKey(
-                    new List<Keys> { Keys.C },
+                    new List<Keys> { Keys.C, Keys.RightShift },
                     new List<Buttons> { Buttons.A }
                     ),
                 [KeyFunctions.Cancel] = new RebindableKey(
-                    new List<Keys> { Keys.X },
+                    new List<Keys> { Keys.X, Keys.Space },
                     new List<Buttons> { Buttons.B }
                     ),
                 [KeyFunctions.Pause] = new RebindableKey(

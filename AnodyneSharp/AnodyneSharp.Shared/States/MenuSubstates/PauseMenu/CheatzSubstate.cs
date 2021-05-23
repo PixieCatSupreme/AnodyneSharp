@@ -20,13 +20,13 @@ namespace AnodyneSharp.States.MenuSubstates
         {
             _cheatLabel = new UILabel(new Vector2(69, 28 + GameConstants.FONT_LINE_HEIGHT * 2), true, "", forceEnglish: true);
 
-            _selector.Position = _cheatLabel.Position - new Vector2(_selector.sprite.Width, -2);
+            selector.Position = _cheatLabel.Position - new Vector2(selector.sprite.Width, -2);
         }
 
         public override void DrawUI()
         {
             _cheatLabel.Draw();
-            _selector.Draw();
+            selector.Draw();
         }
 
         public override void GetControl()

@@ -52,7 +52,7 @@ namespace AnodyneSharp.States.MenuSubstates
 
                 if (_selectedOption.Exit)
                 {
-                    _selector.visible = true;
+                    selector.visible = true;
 
                     _selectedOption.LoseControl();
                     _selectedOption.Exit = false;
@@ -83,7 +83,7 @@ namespace AnodyneSharp.States.MenuSubstates
                 }
                 else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept))
                 {
-                    _selector.visible = false;
+                    selector.visible = false;
                     _selectedOption = options[_state].option;
                     _selectedOption.GetControl();
 
@@ -108,7 +108,7 @@ namespace AnodyneSharp.States.MenuSubstates
 
             if (_selectedOption == null)
             {
-                _selector.Draw();
+                selector.Draw();
             }
         }
 
@@ -116,11 +116,11 @@ namespace AnodyneSharp.States.MenuSubstates
 
         private void SetSelectorPos()
         {
-            _selector.Position = options[_state].label.Position - new Vector2(_selector.sprite.Width, -2);
+            selector.Position = options[_state].label.Position - new Vector2(selector.sprite.Width, -2);
 
             if (!options[_state].label.ForcedEnglish)
             {
-                _selector.Position.Y += CursorOffset;
+                selector.Position.Y += CursorOffset;
             }
         }
     }

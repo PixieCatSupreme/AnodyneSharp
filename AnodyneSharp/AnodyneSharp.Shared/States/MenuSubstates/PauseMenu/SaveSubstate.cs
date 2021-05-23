@@ -133,7 +133,7 @@ namespace AnodyneSharp.States.MenuSubstates
             _quitLabel.Draw();
             _deathsLabel.Draw();
 
-            _selector.Draw();
+            selector.Draw();
         }
 
         private void SetSelectorPos()
@@ -141,20 +141,20 @@ namespace AnodyneSharp.States.MenuSubstates
             switch (_state)
             {
                 case SaveState.SaveLabel:
-                    _selector.Position = _saveLabel.Position;
+                    selector.Position = _saveLabel.Position;
                     break;
                 case SaveState.SaveTitleLable:
-                    _selector.Position = _saveTitleLable.Position;
+                    selector.Position = _saveTitleLable.Position;
                     break;
                 case SaveState.SaveQuitLabel:
-                    _selector.Position = _saveQuitLabel.Position;
+                    selector.Position = _saveQuitLabel.Position;
                     break;
                 case SaveState.QuitLabel:
-                    _selector.Position = _quitLabel.Position;
+                    selector.Position = _quitLabel.Position;
                     break;
             }
 
-            _selector.Position -= new Vector2(_selector.sprite.Width, -2 - CursorOffset);
+            selector.Position -= new Vector2(selector.sprite.Width, -2 - CursorOffset);
         }
 
     }

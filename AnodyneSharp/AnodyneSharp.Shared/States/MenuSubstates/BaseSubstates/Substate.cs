@@ -27,11 +27,11 @@ namespace AnodyneSharp.States.MenuSubstates
         }
         public new bool Exit { get; set; }
 
-        protected MenuSelector _selector;
+        protected MenuSelector selector;
 
         public Substate()
         {
-            _selector = new MenuSelector()
+            selector = new MenuSelector()
             {
                 visible = false
             };
@@ -41,15 +41,15 @@ namespace AnodyneSharp.States.MenuSubstates
         {
             base.Update();
 
-            _selector.Update();
-            _selector.PostUpdate();
+            selector.Update();
+            selector.PostUpdate();
         }
 
         public override void DrawUI()
         {
             base.DrawUI();
 
-            _selector.Draw();
+            selector.Draw();
         }
 
         public virtual void HandleInput()
@@ -62,8 +62,8 @@ namespace AnodyneSharp.States.MenuSubstates
 
         public virtual void GetControl()
         {
-            _selector.visible = true;
-            _selector.Play("enabledRight");
+            selector.visible = true;
+            selector.Play("enabledRight");
         }
 
         protected virtual void OnExit() { }
@@ -71,7 +71,7 @@ namespace AnodyneSharp.States.MenuSubstates
         protected void ExitSubState()
         {
             Exit = true;
-            _selector.visible = false;
+            selector.visible = false;
             SoundManager.PlaySoundEffect("menu_select");
             OnExit();
         }

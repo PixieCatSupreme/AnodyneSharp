@@ -172,7 +172,7 @@ namespace AnodyneSharp.States.MenuSubstates
             int y = 70 - minimap.tiles.Height * _mapSheet.Height / 2;
             minimap.Draw(_mapSheet,new Vector2(x,y),DrawPlayerIndicator:_playerIndicatorTimer < _playerBlink);
 
-            _selector.Draw();
+            selector.Draw();
         }
 
         private void SetSelectorPos()
@@ -180,17 +180,17 @@ namespace AnodyneSharp.States.MenuSubstates
             switch (_state)
             {
                 case MapState.ReturnToNexusLabel:
-                    _selector.Position = _returnLabel.Position;
+                    selector.Position = _returnLabel.Position;
                     break;
                 case MapState.NoLabel:
-                    _selector.Position = _noLabel.Position;
+                    selector.Position = _noLabel.Position;
                     break;
                 case MapState.YesLabel:
-                    _selector.Position = _yesLabel.Position;
+                    selector.Position = _yesLabel.Position;
                     break;
             }
 
-            _selector.Position -= new Vector2(_selector.sprite.Width, -2 - CursorOffset);
+            selector.Position -= new Vector2(selector.sprite.Width, -2 - CursorOffset);
         }
     }
 }

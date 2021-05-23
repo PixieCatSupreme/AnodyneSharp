@@ -1487,6 +1487,17 @@ Jump
 Attack
 Menu
 #10
+1
+2
+3
+4
+#15
+Next
+Previous
+Movement
+Actions
+Broom
+Selection
 Press [SOMEKEY-ENTER] to exit. \n[SOMEKEY-LEFT] to set controls.
 		end scene 
 		

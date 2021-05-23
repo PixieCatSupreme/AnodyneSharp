@@ -125,6 +125,11 @@ namespace AnodyneSharp.States.MainMenu
         {
             base.Update();
 
+            if (KeyInput.ControllerModeChanged)
+            {
+                _inputLabel.SetText($"{DialogueManager.GetDialogue("misc", "any", "secrets", 13)} {DialogueManager.GetDialogue("misc", "any", "secrets", 14)}");
+            }
+
             if (GlobalState.RefreshLabels)
             {
                 GlobalState.RefreshLabels = false;

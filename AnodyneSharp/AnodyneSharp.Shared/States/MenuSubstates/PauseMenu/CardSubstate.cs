@@ -68,7 +68,7 @@ namespace AnodyneSharp.States.MenuSubstates
                 {
                     _pageSetter.LoseControl();
                     selectedID = -selectedID;
-                    _selector.visible = true;
+                    selector.visible = true;
                     SoundManager.PlaySoundEffect("menu_select");
                 }
                 else
@@ -137,7 +137,7 @@ namespace AnodyneSharp.States.MenuSubstates
                 if (selectedID > 8)
                 {
                     _pageSetter.GetControl();
-                    _selector.visible = false;
+                    selector.visible = false;
                     selectedID = -selectedID;
                     SoundManager.PlaySoundEffect("menu_select");
                     return;
@@ -213,7 +213,7 @@ namespace AnodyneSharp.States.MenuSubstates
         {
             Vector2 pos = cards[selectedID].Position + new Vector2(-10, 8);
 
-            _selector.Position = pos;
+            selector.Position = pos;
         }
 
         private void SetCardPage()

@@ -118,7 +118,7 @@ namespace AnodyneSharp.States.MenuSubstates
                 key.Draw();
             }
 
-            _selector.Draw();
+            selector.Draw();
         }
 
         public override void HandleInput()
@@ -236,44 +236,44 @@ namespace AnodyneSharp.States.MenuSubstates
             switch (_state)
             {
                 case EquipState.Broom:
-                    _selector.Position = _broom.LabelPos;
+                    selector.Position = _broom.LabelPos;
                     break;
                 case EquipState.Extend:
-                    _selector.Position = _broomExtend.LabelPos;
+                    selector.Position = _broomExtend.LabelPos;
                     break;
                 case EquipState.Widen:
-                    _selector.Position = _broomWiden.LabelPos;
+                    selector.Position = _broomWiden.LabelPos;
                     break;
                 case EquipState.Transformer:
-                    _selector.Position = _transformer.LabelPos;
+                    selector.Position = _transformer.LabelPos;
                     break;
                 case EquipState.Shoes:
                     ignoreOffset = true;
-                    _selector.Position = _jump.Position;
+                    selector.Position = _jump.Position;
                     break;
                 case EquipState.Item:
                     ignoreOffset = true;
-                    _selector.Position = _item.Position;
+                    selector.Position = _item.Position;
                     break;
                 case EquipState.Key1:
                     ignoreOffset = true;
-                    _selector.Position = _keys[0].Position;
+                    selector.Position = _keys[0].Position;
                     break;
                 case EquipState.Key2:
                     ignoreOffset = true;
-                    _selector.Position = _keys[1].Position;
+                    selector.Position = _keys[1].Position;
                     break;
                 case EquipState.Key3:
                     ignoreOffset = true;
-                    _selector.Position = _keys[2].Position;
+                    selector.Position = _keys[2].Position;
                     break;
             }
 
 
             if (!ignoreOffset)
             {
-                _selector.Position -= new Vector2(_selector.sprite.Width, -2);
-                _selector.Position.Y += CursorOffset;
+                selector.Position -= new Vector2(selector.sprite.Width, -2);
+                selector.Position.Y += CursorOffset;
             }
         }
 
