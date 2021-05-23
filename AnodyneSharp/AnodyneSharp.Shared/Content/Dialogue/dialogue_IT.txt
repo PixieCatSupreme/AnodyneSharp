@@ -2217,6 +2217,17 @@ Attacca
 #Menu
 Menù
 #10
+1
+2
+3
+4
+#15
+Next
+Previous
+Movement
+Actions
+Broom
+Selection
 #Press
 Premi [SOMEKEY-ENTER] per uscire
 # [SOMEKEY-ENTER]

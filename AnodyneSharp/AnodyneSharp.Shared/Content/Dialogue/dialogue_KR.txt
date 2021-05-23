@@ -2014,6 +2014,17 @@ npc misc
 # Menu
 메뉴
 #10
+1
+2
+3
+4
+#15
+Next
+Previous
+Movement
+Actions
+Broom
+Selection
 # Press
 버튼 [SOMEKEY-ENTER] 을(를) 눌러 나가기
 # [SOMEKEY-ENTER]

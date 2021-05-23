@@ -33,7 +33,7 @@ namespace AnodyneSharp.Registry
                 BroomType.Long => HasLenghten,
                 BroomType.Wide => HasWiden,
                 BroomType.Transformer => HasTransformer,
-                _ => true,
+                _ => false,
             };
         }
 

@@ -159,6 +159,14 @@ namespace AnodyneSharp.States.MenuSubstates
         private void SetLabels()
         {
             int menuWidth = 140;
+            int controlsOffset = 64;
+            int buttonSpacing = 44;
+
+            if (GlobalState.CurrentLanguage == Language.ZH_CN)
+            {
+                controlsOffset -= 20;
+                buttonSpacing += 20;
+            }
 
             float x = GameConstants.SCREEN_WIDTH_IN_PIXELS / 2 - menuWidth / 2;
             float y = 8;
@@ -175,12 +183,12 @@ namespace AnodyneSharp.States.MenuSubstates
             (UILabel function, UILabel keyboard, UILabel controller, KeyFunctions keyFunction) CreateTup(KeyFunctions key, bool isSecond, int num, int pos) => (
                 new UILabel(new Vector2(x + 10, y + yStart + yStep * pos), true, !isSecond ? DialogueManager.GetDialogue("misc", "any", "controls", 1 + num) : "",
                     layer: Drawing.DrawOrder.TEXT),
-                new UILabel(new Vector2(x + 74, y + yStart + yStep * pos), true,
+                new UILabel(new Vector2(x + controlsOffset, y + yStart + yStep * pos), true,
                     !isSecond
                         ? (keys[key].Keys.Any() ? GetKeyBoardString(keys[key].Keys.FirstOrDefault()) : "")
                         : (keys[key].Keys.Count > 1 ? GetKeyBoardString(keys[key].Keys.ElementAtOrDefault(1)) : ""),
                     layer: Drawing.DrawOrder.TEXT),
-                new UILabel(new Vector2(x + 118, y + yStart + yStep * pos), true,
+                new UILabel(new Vector2(x + controlsOffset + buttonSpacing, y + yStart + yStep * pos), true,
                     !isSecond
                         ? (keys[key].Buttons.Any() ? GetButtonString(keys[key].Buttons.FirstOrDefault()) : "")
                         : (keys[key].Buttons.Count > 1 ? GetButtonString(keys[key].Buttons.ElementAtOrDefault(1)) : ""),

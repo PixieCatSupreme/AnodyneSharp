@@ -10,9 +10,10 @@ namespace AnodyneSharp.Utilities
         public static string GetKeyBoardString(Keys key)
         {
             return Enum.GetName(typeof(Keys), key)
-                .Replace("Page", "Pg")
-                .Replace("LeftS", "LS")
-                .Replace("RightS", "RS")
+                .Replace("PageUp", "PgUp")
+                .Replace("PageDown", "PgDwn")
+                .Replace("LeftS", "LShft")
+                .Replace("RightShift", "RShft")
                 .Replace("LeftA", "LA")
                 .Replace("RightA", "RA")
                 .Replace("LeftC", "LC")

@@ -2213,6 +2213,17 @@ npc misc
 #Menu
 菜单
 #10
+1
+2
+3
+4
+#15
+Next
+Previous
+Movement
+Actions
+Broom
+Selection
 #Press
 按下 [SOMEKEY-ENTER] 以退出
 # [SOMEKEY-ENTER]

@@ -1974,7 +1974,20 @@ npc misc
 #Attack
 メニュー
 #Menu
+#10
+1
+2
+3
+4
+#15
+Next
+Previous
+Movement
+Actions
+Broom
+Selection
 しゅうりょうするには
+
 #Press
 # [SOMEKEY-ENTER]
 [SOMEKEY-ENTER] を,操作設定をするには
