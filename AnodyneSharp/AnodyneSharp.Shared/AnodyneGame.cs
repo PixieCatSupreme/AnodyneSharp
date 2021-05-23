@@ -283,16 +283,20 @@ namespace AnodyneSharp
                     new List<Buttons> { Buttons.RightShoulder, Buttons.RightTrigger }
                     ),
                 [KeyFunctions.Broom1] = new RebindableKey(
-                    new List<Keys> { Keys.D1 }
+                    new List<Keys> { Keys.D1 },
+                    new List<Buttons> { Buttons.RightThumbstickUp }
                     ),
                 [KeyFunctions.Broom2] = new RebindableKey(
-                    new List<Keys> { Keys.D2 }
+                    new List<Keys> { Keys.D2 },
+                    new List<Buttons> { Buttons.RightThumbstickRight }
                     ),
                 [KeyFunctions.Broom3] = new RebindableKey(
-                    new List<Keys> { Keys.D3 }
+                    new List<Keys> { Keys.D3 },
+                    new List<Buttons> { Buttons.RightThumbstickDown }
                     ),
                 [KeyFunctions.Broom4] = new RebindableKey(
-                    new List<Keys> { Keys.D4 }
+                    new List<Keys> { Keys.D4 },
+                    new List<Buttons> { Buttons.RightThumbstickLeft }
                     )
             };
         }

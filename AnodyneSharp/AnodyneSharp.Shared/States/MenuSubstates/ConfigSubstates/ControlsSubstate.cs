@@ -159,7 +159,7 @@ namespace AnodyneSharp.States.MenuSubstates
         private void SetLabels()
         {
             int menuWidth = 140;
-            int controlsOffset = 64;
+            int controlsOffset = 70;
             int buttonSpacing = 44;
 
             if (GlobalState.CurrentLanguage == Language.ZH_CN)
@@ -209,10 +209,10 @@ namespace AnodyneSharp.States.MenuSubstates
 
             _keyBindPages.Add(new()
             {
-                CreateTup(KeyFunctions.Accept, false, 5, 1),
-                CreateTup(KeyFunctions.Accept, true, 5, 2),
-                CreateTup(KeyFunctions.Cancel, false, 6, 3),
-                CreateTup(KeyFunctions.Cancel, true, 6, 4),
+                CreateTup(KeyFunctions.Cancel, false, 5, 1),
+                CreateTup(KeyFunctions.Cancel, true, 5, 2),
+                CreateTup(KeyFunctions.Accept, false, 6, 3),
+                CreateTup(KeyFunctions.Accept, true, 6, 4),
                 CreateTup(KeyFunctions.Pause, false, 7, 5),
                 CreateTup(KeyFunctions.Pause, true, 7, 6),
             });
