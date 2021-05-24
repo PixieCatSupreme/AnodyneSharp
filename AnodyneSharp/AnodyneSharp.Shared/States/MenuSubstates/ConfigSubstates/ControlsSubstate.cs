@@ -167,6 +167,8 @@ namespace AnodyneSharp.States.MenuSubstates
                 {
                     SelectKey();
                 }
+
+                SoundManager.PlaySoundEffect("menu_select");
             }
 
 
@@ -275,10 +277,22 @@ namespace AnodyneSharp.States.MenuSubstates
 
         private void ExitRebind(InputChange change)
         {
-            _changes.Add(selectedKey.Value.keyFunction, change);
+            var keyFunc = selectedKey.Value.keyFunction;
+
+            if (_changes.ContainsKey(keyFunc))
+            {
+                _changes[keyFunc] = change;
+            }
+            else
+            {
+                _changes.Add(keyFunc, change);
+            }
+
 
             selectedKey = null;
             selector.Play("enabledRight");
+
+            SoundManager.PlaySoundEffect("menu_select");
         }
 
         private void SelectKey()
