@@ -20,6 +20,8 @@ namespace AnodyneSharp.States.MenuSubstates
     {
         private List<List<(UILabel function, UILabel keyboard, UILabel controller, KeyFunctions keyFunction)>> _keyBindPages;
 
+        private Dictionary<KeyFunctions, (int page, int loc)> _keysToLabel;
+
         (UILabel function, UILabel keyboard, UILabel controller, KeyFunctions keyFunction)? selectedKey;
 
         bool controllerMode;
@@ -30,10 +32,9 @@ namespace AnodyneSharp.States.MenuSubstates
         private UIEntity _bgBox;
         private UILabel pageLabel;
         private UILabel confirmLabel;
+        private bool inConflict = false;
 
         private TextSelector _pageSetter;
-
-
 
         int _page;
         int _selectorPos;
@@ -48,11 +49,63 @@ namespace AnodyneSharp.States.MenuSubstates
 
             SetLabels();
 
+            _keysToLabel = _keyBindPages.SelectMany((page,pageNum) => page.Where((_,index) => index % 2 == 0).Select((e,index) => (e.keyFunction,(pageNum,index))))
+                .ToDictionary((e) => e.keyFunction, (e) => e.Item2);
+
             _pageSetter = new TextSelector(new Vector2(91, 156), 32, 0, true, Drawing.DrawOrder.TEXT, "1/4", "2/4", "3/4", "4/4")
             {
                 noConfirm = true,
                 noLoop = true
             };
+        }
+
+        private Keys? GetKey(KeyFunctions action, int index)
+        {
+            Keys? ret = null;
+            if(_changes.TryGetValue(action,out InputChange val))
+            {
+                ret = val.GetKey(index);
+            }
+            if(!ret.HasValue)
+            {
+                var keys = KeyInput.RebindableKeys[action].Keys;
+                if(keys.Count > index)
+                    ret = KeyInput.RebindableKeys[action].Keys.ElementAtOrDefault(index);
+            }
+            return ret;
+        }
+
+        private void CheckConflicts()
+        {
+            IEnumerable<(KeyFunctions func,int index)> getIndex(int index) => _keysToLabel.Keys.Select(f => (f,index));
+
+            var conflicts = getIndex(0).Concat(getIndex(1)).Select(loc => (loc, GetKey(loc.func, loc.index))).Where(l => l.Item2.HasValue)
+                .GroupBy(l => l.Item2.Value).Where(g => g.Count() > 1).SelectMany(g => g.Select(e => e.loc));
+
+            foreach(var p in _keyBindPages)
+            {
+                foreach(var s in p)
+                {
+                    s.keyboard.Color = Color.White;
+                }
+            }
+
+            foreach(var (func, index) in conflicts)
+            {
+                var (page,loc) = _keysToLabel[func];
+                _keyBindPages[page][loc * 2 + index].keyboard.Color = Color.Red;
+            }
+
+            if(conflicts.Any())
+            {
+                inConflict = true;
+                confirmLabel.Color = Color.Red;
+            }
+            else
+            {
+                inConflict = false;
+                confirmLabel.Color = Color.White;
+            }
         }
 
         public override void GetControl()
@@ -63,7 +116,6 @@ namespace AnodyneSharp.States.MenuSubstates
 
             SetCursorPos(0);
         }
-
 
         public override void DrawUI()
         {
@@ -159,9 +211,12 @@ namespace AnodyneSharp.States.MenuSubstates
             {
                 if (onConfirm)
                 {
-                    SetKeyRebinds();
+                    if (!inConflict)
+                    {
+                        SetKeyRebinds();
 
-                    Exit = true;
+                        Exit = true;
+                    }
                 }
                 else
                 {
@@ -182,7 +237,7 @@ namespace AnodyneSharp.States.MenuSubstates
         {
             foreach (var (keyFunction, change) in _changes)
             {
-                var keyValue = KeyInput.RebindableKeys.FirstOrDefault(k => k.Key == keyFunction).Value;
+                var keyValue = KeyInput.RebindableKeys[keyFunction];
 
                 if (controllerMode)
                 {
@@ -289,6 +344,8 @@ namespace AnodyneSharp.States.MenuSubstates
             }
 
 
+            CheckConflicts();
+
             selectedKey = null;
             selector.Play("enabledRight");
 
@@ -381,61 +438,57 @@ namespace AnodyneSharp.States.MenuSubstates
 
             var keys = KeyInput.RebindableKeys;
 
-            (UILabel function, UILabel keyboard, UILabel controller, KeyFunctions keyFunction) CreateTup(KeyFunctions key, bool isSecond, int num, int pos) => (
-                new UILabel(new Vector2(x + leftPadding, y + yStart + yStep * pos), true, !isSecond ? DialogueManager.GetDialogue("misc", "any", "controls", 1 + num) : "",
+            (UILabel function, UILabel keyboard, UILabel controller, KeyFunctions keyFunction) CreateTup(KeyFunctions key, int num, int pos) => (
+                new UILabel(new Vector2(x + leftPadding, y + yStart + yStep * pos), true, (pos % 2 == 1) ? DialogueManager.GetDialogue("misc", "any", "controls", 1 + num) : "",
                     layer: Drawing.DrawOrder.TEXT),
                 new UILabel(new Vector2(x + leftPadding + controlsOffset, y + yStart + yStep * pos), true,
-                    !isSecond
-                        ? (keys[key].Keys.Any() ? GetKeyBoardString(keys[key].Keys.FirstOrDefault()) : "")
-                        : (keys[key].Keys.Count > 1 ? GetKeyBoardString(keys[key].Keys.ElementAtOrDefault(1)) : ""),
+                        (keys[key].Keys.Count > ((pos-1) % 2) ? GetKeyBoardString(keys[key].Keys[((pos - 1) % 2)]) : ""),
                     layer: Drawing.DrawOrder.TEXT),
                 new UILabel(new Vector2(x + leftPadding + controlsOffset + buttonSpacing, y + yStart + yStep * pos), true,
-                    !isSecond
-                        ? (keys[key].Buttons.Any() ? GetButtonString(keys[key].Buttons.FirstOrDefault()) : "")
-                        : (keys[key].Buttons.Count > 1 ? GetButtonString(keys[key].Buttons.ElementAtOrDefault(1)) : ""),
+                    (keys[key].Buttons.Count > ((pos-1)%2) ? GetButtonString(keys[key].Buttons[((pos - 1) % 2)]) : ""),
                     layer: Drawing.DrawOrder.TEXT),
                 key);
 
             _keyBindPages.Add(new()
             {
-                CreateTup(KeyFunctions.Up, false, 1, 1),
-                CreateTup(KeyFunctions.Up, true, 1, 2),
-                CreateTup(KeyFunctions.Right, false, 4, 3),
-                CreateTup(KeyFunctions.Right, true, 4, 4),
-                CreateTup(KeyFunctions.Down, false, 2, 5),
-                CreateTup(KeyFunctions.Down, true, 2, 6),
-                CreateTup(KeyFunctions.Left, false, 3, 7),
-                CreateTup(KeyFunctions.Left, true, 3, 8),
+                CreateTup(KeyFunctions.Up, 1, 1),
+                CreateTup(KeyFunctions.Up, 1, 2),
+                CreateTup(KeyFunctions.Right, 4, 3),
+                CreateTup(KeyFunctions.Right, 4, 4),
+                CreateTup(KeyFunctions.Down, 2, 5),
+                CreateTup(KeyFunctions.Down, 2, 6),
+                CreateTup(KeyFunctions.Left, 3, 7),
+                CreateTup(KeyFunctions.Left, 3, 8),
             });
 
             _keyBindPages.Add(new()
             {
-                CreateTup(KeyFunctions.Cancel, false, 5, 1),
-                CreateTup(KeyFunctions.Cancel, true, 5, 2),
-                CreateTup(KeyFunctions.Accept, false, 6, 3),
-                CreateTup(KeyFunctions.Accept, true, 6, 4),
-                CreateTup(KeyFunctions.Pause, false, 7, 5),
-                CreateTup(KeyFunctions.Pause, true, 7, 6),
+                CreateTup(KeyFunctions.Cancel, 5, 1),
+                CreateTup(KeyFunctions.Cancel, 5, 2),
+                CreateTup(KeyFunctions.Accept, 6, 3),
+                CreateTup(KeyFunctions.Accept, 6, 4),
+                CreateTup(KeyFunctions.Pause, 7, 5),
+                CreateTup(KeyFunctions.Pause, 7, 6),
             });
 
             _keyBindPages.Add(new()
             {
-                CreateTup(KeyFunctions.Broom1, false, 8, 1),
-                CreateTup(KeyFunctions.Broom1, true, 8, 2),
-                CreateTup(KeyFunctions.Broom2, false, 9, 3),
-                CreateTup(KeyFunctions.Broom2, true, 9, 4),
-                CreateTup(KeyFunctions.Broom3, false, 10, 5),
-                CreateTup(KeyFunctions.Broom3, true, 10, 6),
-                CreateTup(KeyFunctions.Broom4, false, 11, 7),
-                CreateTup(KeyFunctions.Broom4, true, 11, 8),
+                CreateTup(KeyFunctions.Broom1, 8, 1),
+                CreateTup(KeyFunctions.Broom1, 8, 2),
+                CreateTup(KeyFunctions.Broom2, 9, 3),
+                CreateTup(KeyFunctions.Broom2, 9, 4),
+                CreateTup(KeyFunctions.Broom3, 10, 5),
+                CreateTup(KeyFunctions.Broom3, 10, 6),
+                CreateTup(KeyFunctions.Broom4, 11, 7),
+                CreateTup(KeyFunctions.Broom4, 11, 8),
             });
 
             _keyBindPages.Add(new()
             {
-                CreateTup(KeyFunctions.NextPage, false, 12, 1),
-                CreateTup(KeyFunctions.NextPage, true, 12, 2),
-                CreateTup(KeyFunctions.PreviousPage, false, 13, 3),
-                CreateTup(KeyFunctions.PreviousPage, true, 13, 4),
+                CreateTup(KeyFunctions.NextPage, 12, 1),
+                CreateTup(KeyFunctions.NextPage, 12, 2),
+                CreateTup(KeyFunctions.PreviousPage, 13, 3),
+                CreateTup(KeyFunctions.PreviousPage, 13, 4),
             });
         }
 
@@ -444,8 +497,20 @@ namespace AnodyneSharp.States.MenuSubstates
             public Keys? key1;
             public Keys? key2;
 
+            public Keys? GetKey(int index)
+            {
+                if (index == 0) return key1;
+                return key2;
+            }
+
             public Buttons? button1;
             public Buttons? button2;
+
+            public Buttons? GetButton(int index)
+            {
+                if (index == 0) return button1;
+                return button2;
+            }
         }
     }
 }
