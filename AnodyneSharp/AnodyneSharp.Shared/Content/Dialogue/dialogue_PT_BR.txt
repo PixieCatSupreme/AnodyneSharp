@@ -1989,6 +1989,7 @@ Movement
 Actions
 Broom
 Selection
+Confirm
 Pressione [SOMEKEY-ENTER] para sair
 #Press
 # [SOMEKEY-ENTER]

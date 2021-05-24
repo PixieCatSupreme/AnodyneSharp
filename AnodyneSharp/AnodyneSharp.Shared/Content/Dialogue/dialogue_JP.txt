@@ -1986,6 +1986,7 @@ Movement
 Actions
 Broom
 Selection
+Confirm
 しゅうりょうするには
 
 #Press

@@ -1498,6 +1498,7 @@ Movement
 Actions
 Broom
 Selection
+Confirm
 Press [SOMEKEY-ENTER] to exit. \n[SOMEKEY-LEFT] to set controls.
 		end scene 
 		

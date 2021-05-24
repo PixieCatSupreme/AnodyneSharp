@@ -184,6 +184,41 @@ namespace AnodyneSharp.Input
         }
 
         /// <summary>
+        /// Checks if any key is down, returns true and outputs the pressed key.
+        /// </summary>
+        /// <param name="pressed"></param>
+        /// <returns></returns>
+        public static bool IsAnyKeyPressed(out Keys? pressed)
+        {
+            pressed = null;
+
+            if (!KeyState.Any(k => k.Value == InputState.PRESSED))
+            {
+                return false;
+            }
+
+            pressed = KeyState.FirstOrDefault(k => k.Value == InputState.PRESSED).Key;
+
+            return true;
+        }
+
+        public static bool IsAnyButtonPressed(out Buttons? pressed)
+        {
+            pressed = null;
+
+            var t = ControllerState.Where(c => c.Any(b => b.Value == InputState.PRESSED));
+
+            if (!t.Any())
+            {
+                return false;
+            }
+
+            pressed = t.First().First(b => b.Value == InputState.PRESSED).Key;
+
+            return true;
+        }
+
+        /// <summary>
         /// Returns if a rebindable key was just pressed this frame.
         /// </summary>
         /// <param name="functionName"></param>

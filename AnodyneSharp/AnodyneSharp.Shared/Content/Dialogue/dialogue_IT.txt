@@ -2228,6 +2228,7 @@ Movement
 Actions
 Broom
 Selection
+Confirm
 #Press
 Premi [SOMEKEY-ENTER] per uscire
 # [SOMEKEY-ENTER]

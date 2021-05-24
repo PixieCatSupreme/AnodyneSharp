@@ -20,11 +20,20 @@ namespace AnodyneSharp.States.MenuSubstates
     {
         private List<List<(UILabel function, UILabel keyboard, UILabel controller, KeyFunctions keyFunction)>> _keyBindPages;
 
-        private UIEntity _bgBox;
+        (UILabel function, UILabel keyboard, UILabel controller, KeyFunctions keyFunction)? selectedKey;
 
+        bool controllerMode;
+        bool onConfirm;
+
+        private Dictionary<KeyFunctions, InputChange> _changes;
+
+        private UIEntity _bgBox;
         private UILabel pageLabel;
+        private UILabel confirmLabel;
 
         private TextSelector _pageSetter;
+
+
 
         int _page;
         int _selectorPos;
@@ -35,9 +44,11 @@ namespace AnodyneSharp.States.MenuSubstates
 
             _keyBindPages = new();
 
+            _changes = new();
+
             SetLabels();
 
-            _pageSetter = new TextSelector(new Vector2(61, 156), 32, 0, true, Drawing.DrawOrder.TEXT, "1/4", "2/4", "3/4", "4/4")
+            _pageSetter = new TextSelector(new Vector2(91, 156), 32, 0, true, Drawing.DrawOrder.TEXT, "1/4", "2/4", "3/4", "4/4")
             {
                 noConfirm = true,
                 noLoop = true
@@ -53,9 +64,56 @@ namespace AnodyneSharp.States.MenuSubstates
             SetCursorPos(0);
         }
 
-        public override void Update()
+
+        public override void DrawUI()
         {
-            base.Update();
+            base.DrawUI();
+
+            _pageSetter.Draw();
+
+            pageLabel.Draw();
+
+            confirmLabel.Draw();
+
+            foreach (var (function, keyboard, controller, _) in _keyBindPages[_page])
+            {
+                function.Draw();
+                keyboard.Draw();
+                controller.Draw();
+            }
+
+            _bgBox.Draw();
+        }
+
+        public override void HandleInput()
+        {
+            if (selectedKey == null)
+            {
+                SelectionInput();
+            }
+            else
+            {
+                if (controllerMode)
+                {
+                    if (KeyInput.IsAnyButtonPressed(out Buttons? b))
+                    {
+                        ButtonRebind(b.Value);
+                    }
+                }
+                else if (KeyInput.IsAnyKeyPressed(out Keys? key))
+                {
+                    KeyRebind(key.Value);
+                }
+            }
+        }
+
+        private void SelectionInput()
+        {
+            if (KeyInput.JustPressedRebindableKey(KeyFunctions.Cancel))
+            {
+                ExitSubState();
+                return;
+            }
 
             bool moved = false;
 
@@ -97,6 +155,19 @@ namespace AnodyneSharp.States.MenuSubstates
                 _pageSetter.SetValue(_page);
                 PageValueChanged();
             }
+            else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept))
+            {
+                if (onConfirm)
+                {
+                    SetKeyRebinds();
+
+                    Exit = true;
+                }
+                else
+                {
+                    SelectKey();
+                }
+            }
 
 
             if (moved)
@@ -105,44 +176,154 @@ namespace AnodyneSharp.States.MenuSubstates
             }
         }
 
-
-        public override void DrawUI()
+        private void SetKeyRebinds()
         {
-            base.DrawUI();
-
-            _pageSetter.Draw();
-
-            pageLabel.Draw();
-
-            foreach (var (function, keyboard, controller, _) in _keyBindPages[_page])
+            foreach (var (keyFunction, change) in _changes)
             {
-                function.Draw();
-                keyboard.Draw();
-                controller.Draw();
-            }
+                var keyValue = KeyInput.RebindableKeys.FirstOrDefault(k => k.Key == keyFunction).Value;
 
-            _bgBox.Draw();
+                if (controllerMode)
+                {
+                    if (change.button1 != null)
+                    {
+                        if (keyValue.Buttons.Count == 0)
+                        {
+                            keyValue.Buttons.Add(change.button1.Value);
+                        }
+                        else
+                        {
+                            keyValue.Buttons[0] = change.button1.Value;
+                        }
+                    }
+                    else if (change.button2 != null)
+                    {
+                        if (keyValue.Buttons.Count < 1)
+                        {
+                            keyValue.Buttons.Add(change.button2.Value);
+                        }
+                        else
+                        {
+                            keyValue.Buttons[1] = change.button2.Value;
+                        }
+                    }
+                }
+                else
+                {
+                    if (change.key1 != null)
+                    {
+                        if (keyValue.Keys.Count == 0)
+                        {
+                            keyValue.Keys.Add(change.key1.Value);
+                        }
+                        else
+                        {
+                            keyValue.Keys[0] = change.key1.Value;
+                        }
+                    }
+                    else if (change.key2 != null)
+                    {
+                        if (keyValue.Keys.Count < 1)
+                        {
+                            keyValue.Keys.Add(change.key2.Value);
+                        }
+                        else
+                        {
+                            keyValue.Keys[1] = change.key2.Value;
+                        }
+                    }
+                }
+            }
         }
 
-        public override void HandleInput()
+        private void KeyRebind(Keys key)
         {
-            if (KeyInput.JustPressedRebindableKey(KeyFunctions.Cancel) || KeyInput.JustPressedRebindableKey(KeyFunctions.Pause))
+            InputChange change = new();
+
+            //Check of first line is selected
+            if (_selectorPos % 2 == 0)
             {
-                ExitSubState();
+                change.key1 = key;
+            }
+            else
+            {
+                change.key2 = key;
+            }
+
+            _keyBindPages[_page][_selectorPos].keyboard.SetText(GetKeyBoardString(key));
+
+            ExitRebind(change);
+        }
+
+        private void ButtonRebind(Buttons button)
+        {
+            InputChange change = new();
+
+            //Check of first line is selected
+            if (_selectorPos % 2 == 0)
+            {
+                change.button1 = button;
+            }
+            else
+            {
+                change.button2 = button;
+            }
+
+            _keyBindPages[_page][_selectorPos].controller.SetText(GetButtonString(button));
+
+            ExitRebind(change);
+        }
+
+        private void ExitRebind(InputChange change)
+        {
+            _changes.Add(selectedKey.Value.keyFunction, change);
+
+            selectedKey = null;
+            selector.Play("enabledRight");
+        }
+
+        private void SelectKey()
+        {
+            selectedKey = _keyBindPages[_page][_selectorPos];
+
+            if (!selectedKey.HasValue)
+            {
+                return;
+            }
+
+            selector.Play("disabledRight");
+
+            controllerMode = KeyInput.ControllerMode;
+
+            if (controllerMode)
+            {
+                selectedKey.Value.controller.SetText("_");
+            }
+            else
+            {
+                selectedKey.Value.keyboard.SetText("_");
             }
         }
 
         private void SetCursorPos(int newSelectorPos)
         {
-            if (newSelectorPos < 0 || newSelectorPos > _keyBindPages[_page].Count - 1)
+            if (newSelectorPos < 0 || newSelectorPos > _keyBindPages[_page].Count)
             {
                 return;
             }
 
             _selectorPos = newSelectorPos;
 
+            if (newSelectorPos > _keyBindPages[_page].Count - 1)
+            {
+                selector.Position = confirmLabel.Position - new Vector2(selector.sprite.Width, -2);
+                onConfirm = true;
+            }
+            else
+            {
+                selector.Position = _keyBindPages[_page][_selectorPos].function.Position - new Vector2(selector.sprite.Width, -2);
+                onConfirm = false;
+            }
 
-            selector.Position = _keyBindPages[_page][_selectorPos].function.Position - new Vector2(selector.sprite.Width, -2);
             selector.Position.Y += CursorOffset;
         }
 
@@ -150,7 +331,11 @@ namespace AnodyneSharp.States.MenuSubstates
         {
             pageLabel.SetText(DialogueManager.GetDialogue("misc", "any", "controls", 15 + _page));
 
-            if (_selectorPos > _keyBindPages[_page].Count - 1)
+            if (onConfirm)
+            {
+                SetCursorPos(_keyBindPages[_page].Count);
+            }
+            else if (_selectorPos > _keyBindPages[_page].Count - 1)
             {
                 SetCursorPos(_keyBindPages[_page].Count - 1);
             }
@@ -158,6 +343,7 @@ namespace AnodyneSharp.States.MenuSubstates
 
         private void SetLabels()
         {
+            int leftPadding = 10;
             int menuWidth = 140;
             int controlsOffset = 70;
             int buttonSpacing = 44;
@@ -176,19 +362,20 @@ namespace AnodyneSharp.States.MenuSubstates
 
             _bgBox = new UIEntity(new Vector2(x, y), "controls", menuWidth, 160, Drawing.DrawOrder.TEXTBOX);
 
-            pageLabel = new UILabel(new Vector2(x + 10, y + yStart), true, DialogueManager.GetDialogue("misc", "any", "controls", 15), layer: Drawing.DrawOrder.TEXT);
+            pageLabel = new UILabel(new Vector2(x + leftPadding, y + yStart), true, DialogueManager.GetDialogue("misc", "any", "controls", 15), layer: Drawing.DrawOrder.TEXT);
+            confirmLabel = new UILabel(new Vector2(x + leftPadding, 156), true, DialogueManager.GetDialogue("misc", "any", "controls", 19), layer: Drawing.DrawOrder.TEXT);
 
             var keys = KeyInput.RebindableKeys;
 
             (UILabel function, UILabel keyboard, UILabel controller, KeyFunctions keyFunction) CreateTup(KeyFunctions key, bool isSecond, int num, int pos) => (
-                new UILabel(new Vector2(x + 10, y + yStart + yStep * pos), true, !isSecond ? DialogueManager.GetDialogue("misc", "any", "controls", 1 + num) : "",
+                new UILabel(new Vector2(x + leftPadding, y + yStart + yStep * pos), true, !isSecond ? DialogueManager.GetDialogue("misc", "any", "controls", 1 + num) : "",
                     layer: Drawing.DrawOrder.TEXT),
-                new UILabel(new Vector2(x + controlsOffset, y + yStart + yStep * pos), true,
+                new UILabel(new Vector2(x + leftPadding + controlsOffset, y + yStart + yStep * pos), true,
                     !isSecond
                         ? (keys[key].Keys.Any() ? GetKeyBoardString(keys[key].Keys.FirstOrDefault()) : "")
                         : (keys[key].Keys.Count > 1 ? GetKeyBoardString(keys[key].Keys.ElementAtOrDefault(1)) : ""),
                     layer: Drawing.DrawOrder.TEXT),
-                new UILabel(new Vector2(x + controlsOffset + buttonSpacing, y + yStart + yStep * pos), true,
+                new UILabel(new Vector2(x + leftPadding + controlsOffset + buttonSpacing, y + yStart + yStep * pos), true,
                     !isSecond
                         ? (keys[key].Buttons.Any() ? GetButtonString(keys[key].Buttons.FirstOrDefault()) : "")
                         : (keys[key].Buttons.Count > 1 ? GetButtonString(keys[key].Buttons.ElementAtOrDefault(1)) : ""),
@@ -236,6 +423,15 @@ namespace AnodyneSharp.States.MenuSubstates
                 CreateTup(KeyFunctions.PreviousPage, false, 13, 3),
                 CreateTup(KeyFunctions.PreviousPage, true, 13, 4),
             });
+        }
+
+        private struct InputChange
+        {
+            public Keys? key1;
+            public Keys? key2;
+
+            public Buttons? button1;
+            public Buttons? button2;
         }
     }
 }

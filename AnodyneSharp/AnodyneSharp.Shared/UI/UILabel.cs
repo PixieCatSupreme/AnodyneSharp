@@ -55,6 +55,19 @@ namespace AnodyneSharp.UI
             }
         }
 
+        public Color Color
+        {
+            get
+            {
+                return _color;
+            }
+            set
+            {
+                _color = value;
+                Writer.SetColor(_color);
+            }
+        }
+
         private Vector2 _oldSize;
         private string _oldString;
 

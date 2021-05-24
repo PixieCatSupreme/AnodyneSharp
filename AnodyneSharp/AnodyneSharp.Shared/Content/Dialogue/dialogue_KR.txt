@@ -2025,6 +2025,7 @@ Movement
 Actions
 Broom
 Selection
+Confirm
 # Press
 버튼 [SOMEKEY-ENTER] 을(를) 눌러 나가기
 # [SOMEKEY-ENTER]

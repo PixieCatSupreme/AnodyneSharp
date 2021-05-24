@@ -2224,6 +2224,7 @@ Movement
 Actions
 Broom
 Selection
+Confirm
 #Press
 按下 [SOMEKEY-ENTER] 以退出
 # [SOMEKEY-ENTER]

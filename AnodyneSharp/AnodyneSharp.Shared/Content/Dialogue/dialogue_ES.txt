@@ -2221,6 +2221,7 @@ Movement
 Actions
 Broom
 Selection
+Confirm
 #Press
 Pulsa
 # [SOMEKEY-ENTER]

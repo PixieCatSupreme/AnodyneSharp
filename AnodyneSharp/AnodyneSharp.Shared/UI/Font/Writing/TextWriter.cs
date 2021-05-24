@@ -140,6 +140,10 @@ namespace AnodyneSharp.UI.Text
             this.buttonSprite = buttonSprite;
         }
 
+        public void SetColor(Color color)
+        {
+            spriteFont.color = color;
+        }
 
         public int GetLineHeight()
         {
