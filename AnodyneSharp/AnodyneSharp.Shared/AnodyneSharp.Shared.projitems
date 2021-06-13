@@ -61,6 +61,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\DungeonStatue.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\DeathPlace.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Mitra.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\RunningTradeNPCs\OutsideMonster.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Registry\Settings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sounds\SFXLimiter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\DeathState.cs" />
@@ -725,8 +726,10 @@
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\inventory\keyitems.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\inventory\knife.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\inventory\life_cicada.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\inventory\life_cicada_particle.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\inventory\long_attack_h.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\inventory\long_attack_v.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\inventory\pop_menu.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\inventory\selector.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\inventory\settings-selector.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\inventory\settings.png" />

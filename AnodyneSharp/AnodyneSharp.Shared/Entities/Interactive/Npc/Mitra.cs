@@ -150,7 +150,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc
 
         protected override string GetInteractionText()
         {
-            //TODO: set event that Mitra's introduced Wares for FIELDS Mitra
+            GlobalState.events.IncEvent("mitra.wares");
             return DialogueManager.GetDialogue("mitra", "initial_overworld");
         }
 
@@ -284,6 +284,41 @@ namespace AnodyneSharp.Entities.Interactive.Npc
 
             _player.state = PlayerState.GROUND;
             _preset.Alive = exists = false;
+            yield break;
+        }
+    }
+
+    [NamedEntity("Mitra",map:"FIELDS")]
+    public class MitraFields : Mitra
+    {
+        bool initial;
+
+        public MitraFields(EntityPreset preset, Player p) : base(preset, p, false)
+        {
+            initial = !DialogueManager.IsSceneDirty("mitra", "init");
+            bike.exists = true;
+            bike.Position = Position - new Vector2(20, 0);
+        }
+
+        protected override string GetInteractionText()
+        {
+            if(initial)
+            {
+                if(DialogueManager.IsSceneDirty("mitra","init"))
+                {
+                    return DialogueManager.GetDialogue("mitra", "init");
+                }
+                int talked_about_wares = GlobalState.events.GetEvent("mitra.wares");
+                string dialog = DialogueManager.GetDialogue("mitra", "init",1-talked_about_wares);
+                DialogueManager.SetSceneProgress("mitra", "init", 2);
+                return dialog;
+            }
+            //TODO: hints, trade quest,...
+            return DialogueManager.GetDialogue("mitra", "general_banter");
+        }
+
+        protected override IEnumerator StateLogic()
+        {
             yield break;
         }
     }

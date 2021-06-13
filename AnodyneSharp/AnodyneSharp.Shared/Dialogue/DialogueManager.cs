@@ -54,6 +54,8 @@ namespace AnodyneSharp.Dialogue
         public static bool IsSceneFinished(string npc, string scene) => IsSceneFinished(npc, GlobalState.CURRENT_MAP_NAME, scene);
         public static bool IsSceneFinished(string npc, string area, string scene) => GetScene(npc, area, scene).state.finished;
 
+        public static void SetSceneProgress(string npc, string scene, int id) => GetScene(npc, GlobalState.CURRENT_MAP_NAME, scene).state.line = id;
+
         public static string GetDialogue(string npc, string scene, int id = -1) => GetDialogue(npc, GlobalState.CURRENT_MAP_NAME, scene, id);
 
         public static string GetDialogue(string npc, string area, string scene, int id = -1)
