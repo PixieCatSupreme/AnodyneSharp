@@ -23,6 +23,7 @@ namespace AnodyneSharp.Sounds
         }
 
         private static SongPlayer bgm = new();
+        private static float currentVolume = 1f;
 
         static SoundManager()
         {
@@ -48,12 +49,13 @@ namespace AnodyneSharp.Sounds
 
         public static void SetSongVolume(float volume)
         {
-            bgm.SetVolume(volume * GlobalState.settings.music_volume_scale);
+            currentVolume = volume;
+            bgm.SetVolume(currentVolume * GlobalState.settings.music_volume_scale);
         }
 
         public static float GetVolume()
         {
-            return bgm.GetVolume() / GlobalState.settings.music_volume_scale;
+            return currentVolume;
         }
 
         public static void SetSongVolume() => SetSongVolume(1f);

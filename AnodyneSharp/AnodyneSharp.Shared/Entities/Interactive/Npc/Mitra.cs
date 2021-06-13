@@ -79,6 +79,12 @@ namespace AnodyneSharp.Entities.Interactive.Npc
             return true;
         }
 
+        public override void Collided(Entity other)
+        {
+            base.Collided(other);
+            Separate(this, other);
+        }
+
         protected void OnBike()
         {
             SetTexture("mitra_bike", 20, 20);
