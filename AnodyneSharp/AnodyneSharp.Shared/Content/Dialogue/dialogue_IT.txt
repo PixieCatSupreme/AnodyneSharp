@@ -1297,10 +1297,7 @@ npc miao
 	
 		scene init
 #Oh!!  You are Young, The Chosen One!!!  Omigosh, what an honor!  My name is Miao Xiao Tuan Er, Chosen One-in-training!
-Oh!!  Tu sei Young, Il Prescelto!!!!  Ommioddio, che onore!  Io sono Miao Xiao Tuan Er, aspirante Prescelto!
-
-#Could I follow you around for a bit to watch a Chosen One in action? 
-Posso seguirti un po' per vedere un Prescelto in azione?
+Oh!!  Tu sei Young, Il Prescelto!!!!  Ommioddio, che onore!  Io sono Miao Xiao Tuan Er, aspirante Prescelto!\nPosso seguirti un po' per vedere un Prescelto in azione?
 
 LOOP
 #Hello again, Young!  Can I shadow you today? 

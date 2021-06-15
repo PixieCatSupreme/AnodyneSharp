@@ -1228,9 +1228,7 @@ npc miao
 	
 		scene init
 # Oh!!  You are Young, The Chosen One!!!  Omigosh, what an honor!  My name is Miao Xiao Tuan Er, Chosen One-in-training!
-오!!  당신이 선택받은 사람이라고 하던 영이군요!!!  이런 맙소사, 만나서 영광입니다!  제 이름은 미아오 샤오 투안 어, 선택된 훈련자죠!
-# Could I follow you around for a bit to watch a Chosen One in action? 
-제가 조금만 당신은 따라다니면서 선택받은 사람의 기술을 볼 수 있을까요? 
+오!!  당신이 선택받은 사람이라고 하던 영이군요!!!  이런 맙소사, 만나서 영광입니다!  제 이름은 미아오 샤오 투안 어, 선택된 훈련자죠!\n제가 조금만 당신은 따라다니면서 선택받은 사람의 기술을 볼 수 있을까요? 
 LOOP
 # Hello again, Young!  Can I shadow you today? 
 다시 만나서 반가워요, 영!  오늘 당신을 따라다녀도 될까요? 

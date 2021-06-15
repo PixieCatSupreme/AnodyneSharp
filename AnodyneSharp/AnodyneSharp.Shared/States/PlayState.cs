@@ -6,6 +6,7 @@ using AnodyneSharp.Drawing.Spritesheet;
 using AnodyneSharp.Entities;
 using AnodyneSharp.Entities.Enemy;
 using AnodyneSharp.Entities.Events;
+using AnodyneSharp.GameEvents;
 using AnodyneSharp.Input;
 using AnodyneSharp.Map;
 using AnodyneSharp.Map.Tiles;
@@ -69,6 +70,7 @@ namespace AnodyneSharp.States
         private Texture2D _header;
 
         private CollisionGroups _groups; //Deals with entity-map and entity-entity collision
+        private EntityEventRegistry _eventRegistry;
 
         private List<Entity> _gridEntities; //Holds entities that stay on the current grid coordinate
         private List<Entity> _oldEntities; //Holds entities that will despawn after a screen transition is complete
@@ -234,6 +236,7 @@ namespace AnodyneSharp.States
             {
                 _gridEntities.Add(e);
                 _groups.Register(e);
+                _eventRegistry.Register(e);
             }
             _newlySpawned.Clear();
 
@@ -270,8 +273,12 @@ namespace AnodyneSharp.States
                     DoCollisions();
                 }
             }
-            else
+            else if (GlobalState.SetDialogueMode)
             {
+                _childState = new DialogueState();
+                _player.BeIdle();
+            }
+            else {
                 var oldstate = _state;
                 switch (_state)
                 {
@@ -283,6 +290,9 @@ namespace AnodyneSharp.States
                         StateTransition();
                         break;
                     case PlayStateState.S_MAP_EXIT:
+                        _player.invincible = true;
+                        _player.dontMove = true;
+                        _player.actions_disabled = true;
                         GlobalState.pixelation.AddPixelation(pixelation_per_second);
                         GlobalState.black_overlay.ChangeAlpha(1 / transition_out);
                         if (GlobalState.black_overlay.alpha == 1 || GlobalState.FUCK_IT_MODE_ON)
@@ -305,6 +315,7 @@ namespace AnodyneSharp.States
                             _player.dontMove = false;
                             _player.invincible = false;
                             _player.actions_disabled = false;
+                            GlobalState.WARP = false;
                         }
                         break;
                     case PlayStateState.S_DIRECT_CONTROLS:
@@ -451,13 +462,6 @@ namespace AnodyneSharp.States
                 return;
             }
 
-            if (GlobalState.SetDialogueMode)
-            {
-                _childState = new DialogueState();
-                _player.BeIdle();
-                return;
-            }
-
             if (KeyInput.JustPressedRebindableKey(KeyFunctions.Pause) && !GlobalState.disable_menu)
             {
                 _childState = new PauseState();
@@ -468,11 +472,8 @@ namespace AnodyneSharp.States
 
             if (GlobalState.WARP)
             {
-                GlobalState.WARP = false;
-                _player.invincible = true;
-                _player.dontMove = true;
-                _player.actions_disabled = true;
                 _state = PlayStateState.S_MAP_EXIT;
+                _eventRegistry.FireEvent(new StartWarp());
                 return;
             }
 
@@ -543,6 +544,7 @@ namespace AnodyneSharp.States
             if (_state == PlayStateState.S_TRANSITION)
             {
                 GlobalState.ScreenTransition = true;
+                _eventRegistry.FireEvent(new StartScreenTransition());
                 _player.grid_entrance = _player.Position;
                 _player.dontMove = true;
 
@@ -567,6 +569,7 @@ namespace AnodyneSharp.States
 
                 _state = PlayStateState.S_NORMAL;
                 GlobalState.ScreenTransition = false;
+                _eventRegistry.FireEvent(new EndScreenTransition());
             }
         }
 
@@ -988,15 +991,18 @@ namespace AnodyneSharp.States
             GlobalState.PUZZLES_SOLVED = 0;
 
             _groups = new CollisionGroups(GlobalState.ENEMIES_KILLED);
+            _eventRegistry = new();
 
             _gridEntities = gridPresets.Where(preset => preset.Alive)
                 .Select(preset => preset.Create(_player)).Concat(_player.SubEntities()).SelectMany(e => SubEntities(e)).ToList();
 
             _groups.Register(_player);
+            _eventRegistry.Register(_player);
 
             foreach (Entity e in _gridEntities)
             {
                 _groups.Register(e);
+                _eventRegistry.Register(e);
             }
 
         }

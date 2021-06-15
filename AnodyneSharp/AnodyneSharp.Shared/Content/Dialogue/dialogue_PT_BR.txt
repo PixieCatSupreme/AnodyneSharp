@@ -1216,9 +1216,7 @@ end npc
 npc miao
 	area FIELDS
 	scene init
-Ah!! Você é Young, O Escolhido!! Aimeudeus, que honra! Meu nome é Miao Xiao Tuan Er, Escolhido-em-treinamento!
-#Oh!! You are Young, The Chosen One!!! Omigosh, what an honor! My name is Miao Xiao Tuan Er, Chosen One-in-training!
-Posso acompanhá-lo por um tempo para observar O Escolhido em ação?
+Ah!! Você é Young, O Escolhido!! Aimeudeus, que honra! Meu nome é Miao Xiao Tuan Er, Escolhido-em-treinamento!\nPosso acompanhá-lo por um tempo para observar O Escolhido em ação?
 #Could I follow you around for a bit to watch a Chosen One in action? 
 LOOP
 Olá mais uma vez, Young! Posso ser sua sombra hoje?

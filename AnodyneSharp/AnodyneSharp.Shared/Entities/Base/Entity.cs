@@ -1,5 +1,6 @@
 ﻿using AnodyneSharp.Drawing;
 using AnodyneSharp.Drawing.Spritesheet;
+using AnodyneSharp.GameEvents;
 using AnodyneSharp.Logging;
 using AnodyneSharp.Resources;
 using AnodyneSharp.Utilities;
@@ -337,5 +338,7 @@ namespace AnodyneSharp.Entities
         public virtual void Conveyor(Touching direction) { }
 
         public virtual void Grass() { }
+
+        public virtual void OnEvent(GameEvent e) { }
     }
 }

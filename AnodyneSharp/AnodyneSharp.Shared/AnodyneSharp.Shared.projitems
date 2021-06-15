@@ -54,6 +54,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Crowd\Person.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Etc\FollowerBro.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Etc\SpaceFace.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\RunningTradeNPCs\MiaoXiao.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameEvents\EntityEventRegistry.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\Checkpoint.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\DarknessChange.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\VolumeEvent.cs" />
@@ -62,6 +64,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\DeathPlace.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Mitra.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\RunningTradeNPCs\OutsideMonster.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameEvents\Events.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameEvents\EventsAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Registry\Settings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sounds\SFXLimiter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\DeathState.cs" />

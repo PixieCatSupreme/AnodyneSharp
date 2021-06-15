@@ -84,6 +84,7 @@ namespace AnodyneSharp.Entities
         private float action_latency;
 
         public Broom broom;
+        public Entity follower;
 
         public bool actions_disabled;
         public bool skipBroom;
@@ -276,6 +277,7 @@ namespace AnodyneSharp.Entities
         {
             List<Entity> ret = new() { broom, foot_overlay };
             if (raft != null) ret.Add(raft);
+            if (follower != null) ret.Add(follower);
             return ret;
         }
 

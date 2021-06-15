@@ -1294,10 +1294,7 @@ npc miao
 	
 		scene init
 #Oh!!  You are Young, The Chosen One!!!  Omigosh, what an honor!  My name is Miao Xiao Tuan Er, Chosen One-in-training!
-噢！！ 你是扬，那个天选之人啊！！！ 天啦噜，真是荣幸啊！ 我叫苗小团儿，正在接受培训的天选之人！
-
-#Could I follow you around for a bit to watch a Chosen One in action? 
-我能跟着你一小会，看看天选之人是怎样做事的吗？
+噢！！ 你是扬，那个天选之人啊！！！ 天啦噜，真是荣幸啊！ 我叫苗小团儿，正在接受培训的天选之人！\n我能跟着你一小会，看看天选之人是怎样做事的吗？
 
 LOOP
 #Hello again, Young!  Can I shadow you today? 

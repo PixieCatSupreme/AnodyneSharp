@@ -1213,9 +1213,7 @@ end npc
 npc miao
 	area FIELDS
 	scene init
-うわ...! 選ばれし者 ヤングさん!? ウワオ!光栄です!ボクはミャオ・シャオ・テュアン・アイ 選ばれし者見習いです!
-#Oh!! You are Young, The Chosen One!!! Omigosh, what an honor! My name is Miao Xiao Tuan Er, Chosen One-in-training!
-ぜひ少し お供させてください 選ばれし者のカツヤクを生で見たいです!
+うわ...! 選ばれし者 ヤングさん!? ウワオ!光栄です!ボクはミャオ・シャオ・テュアン・アイ 選ばれし者見習いです!\nぜひ少し お供させてください 選ばれし者のカツヤクを生で見たいです!
 #Could I follow you around for a bit to watch a Chosen One in action? 
 LOOP
 ヤングさん! どうもです 今日もお供していいですか?

@@ -928,8 +928,7 @@ npc miao
 	area FIELDS
 	
 		scene init
-Oh!!  You are Young, The Chosen One!!!  Omigosh, what an honor!  My name is Miao Xiao Tuan Er, Chosen One-in-training!
-Could I follow you around for a bit to watch a Chosen One in action? 
+Oh!!  You are Young, The Chosen One!!!  Omigosh, what an honor!  My name is Miao Xiao Tuan Er, Chosen One-in-training!\nCould I follow you around for a bit to watch a Chosen One in action? 
 LOOP
 Hello again, Young!  Can I shadow you today? 
 		end scene
