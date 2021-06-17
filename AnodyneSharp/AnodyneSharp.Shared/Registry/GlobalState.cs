@@ -159,7 +159,7 @@ namespace AnodyneSharp.Registry
         }
 
         public static bool DialogueTop = false;
-        public static bool LastDialogueFinished = false;
+        public static bool LastDialogueFinished = true;
         public static bool SetDialogueMode = false;
 
         public static Vector2 CurrentMapGrid

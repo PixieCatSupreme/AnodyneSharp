@@ -34,7 +34,7 @@ namespace AnodyneSharp.Registry
 
         public int GetEvent(string e)
         {
-            if(eventKeys.TryGetValue(e,out int v))
+            if(e != null && eventKeys.TryGetValue(e,out int v))
             {
                 return v;
             }

@@ -304,6 +304,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc
         {
             if(initial)
             {
+                GlobalState.events.IncEvent("mitra.fieldinit");
                 if(DialogueManager.IsSceneDirty("mitra","init"))
                 {
                     return DialogueManager.GetDialogue("mitra", "init");

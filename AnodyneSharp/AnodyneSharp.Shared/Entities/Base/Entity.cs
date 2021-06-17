@@ -32,6 +32,7 @@ namespace AnodyneSharp.Entities
         public Color color;
 
         protected Anim _curAnim;
+        public string CurAnimName => _curAnim.name;
         public float opacity;
 
         protected Shadow shadow;
