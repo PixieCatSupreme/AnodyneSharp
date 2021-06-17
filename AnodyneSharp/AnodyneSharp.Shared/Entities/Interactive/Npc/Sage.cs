@@ -1,5 +1,6 @@
 ﻿using AnodyneSharp.Dialogue;
 using AnodyneSharp.Drawing;
+using AnodyneSharp.GameEvents;
 using AnodyneSharp.Registry;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -237,7 +238,7 @@ namespace AnodyneSharp.Entities
         }
     }
 
-    [NamedEntity(xmlName:"Sage",map: "BLANK")]
+    [NamedEntity(xmlName:"Sage",map: "BLANK"), Events(typeof(EndScreenTransition))]
     class SageBlank : Entity
     {
         EntityPreset _preset;
@@ -247,7 +248,7 @@ namespace AnodyneSharp.Entities
             _preset = preset;
         }
 
-        public override void Update()
+        public override void OnEvent(GameEvent e)
         {
             GlobalState.Dialogue = DialogueManager.GetDialogue("sage", "intro", _preset.Frame+1);
             exists = _preset.Alive = false;
