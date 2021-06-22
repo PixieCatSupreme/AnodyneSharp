@@ -78,7 +78,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.RunningTradeNPCs
         };
 
 
-        const float dialogue_screen_timeout = 2.5f;
+        const float dialogue_screen_timeout = 1.8f;
         const float hint_timeout = 70f;
 
         float timer = hint_timeout;
@@ -177,7 +177,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.RunningTradeNPCs
 
         public override void OnEvent(GameEvent e)
         {
-            if(e is StartWarp || !boundaries.Contains(GlobalState.CURRENT_GRID_X,GlobalState.CURRENT_GRID_Y))
+            if(e is StartWarp || (e is EndScreenTransition && !boundaries.Contains(GlobalState.CURRENT_GRID_X,GlobalState.CURRENT_GRID_Y)))
             {
                 GlobalState.Dialogue = DialogueManager.GetDialogue("miao", "randoms", 4);
                 exists = false;
