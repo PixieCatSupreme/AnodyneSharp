@@ -443,7 +443,7 @@ namespace AnodyneSharp.States
                 return ret;
             }
 
-            return _gridEntities.OfType<Interactable>().Any(i => (InteractHitbox((Entity)i).Intersects(_player.Hitbox) && i.PlayerInteraction(_player.facing)));
+            return _gridEntities.OfType<Interactable>().Any(i => (((Entity)i).exists && InteractHitbox((Entity)i).Intersects(_player.Hitbox) && i.PlayerInteraction(_player.facing)));
         }
 
         private void DoCollisions()
