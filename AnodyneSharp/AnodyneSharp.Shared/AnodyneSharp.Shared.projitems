@@ -55,6 +55,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Etc\FollowerBro.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Etc\SpaceFace.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\RunningTradeNPCs\MiaoXiao.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\RunningTradeNPCs\ShopKeep.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameEvents\EntityEventRegistry.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\Checkpoint.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\DarknessChange.cs" />

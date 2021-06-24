@@ -314,7 +314,14 @@ namespace AnodyneSharp.Entities.Interactive.Npc
                 DialogueManager.SetSceneProgress("mitra", "init", 2);
                 return dialog;
             }
-            //TODO: hints, trade quest,...
+            
+            if(GlobalState.inventory.tradeState == InventoryManager.TradeState.SHOES)
+            {
+                GlobalState.inventory.tradeState = InventoryManager.TradeState.NONE;
+                GlobalState.inventory.CanJump = true;
+                return DialogueManager.GetDialogue("misc", "any", "mitra", 1);
+            }
+            //TODO: hints
             return DialogueManager.GetDialogue("mitra", "general_banter");
         }
 

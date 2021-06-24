@@ -935,7 +935,7 @@ Hello again, Young!  Can I shadow you today?
 		
 		scene randoms
 # 0. after talk to shopkeep
-Miao: Hey, Young… have you ever stolen anything?
+Miao: Hey, Young... have you ever stolen anything?
 # 1. AFter talk to mitra
 Miao: I like Mitra... and isn’t Wares a handsome bike?
 # 2. Nexus pad
