@@ -151,7 +151,7 @@
           <type typeof="String" name="p" value="2" hidden="false"/>
         </properties>
       </sprite>
-      <sprite name="Mitra" idx="34" className="Mitra" image="textures/sprites/dame/dame_npc_mitra.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="0" canEditFrames="true" lockRotation="false" selected="true">
+      <sprite name="Mitra" idx="34" className="Mitra" image="textures/sprites/dame/dame_npc_mitra.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="0" canEditFrames="true" lockRotation="false">
         <properties>
           <type typeof="Int" name="p" value="2" hidden="false"/>
         </properties>
@@ -203,7 +203,11 @@
           <type typeof="String" name="type" value="Cell_Body" hidden="false"/>
         </properties>
       </sprite>
-      <sprite name="Trade_NPC" idx="44" className="Trade_NPC" image="textures/sprites/dame/dame_trade_npc.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="4" canEditFrames="true" lockRotation="false"/>
+      <sprite name="Trade_NPC" idx="44" className="Trade_NPC" image="textures/sprites/dame/dame_trade_npc.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="4" canEditFrames="true" lockRotation="false" selected="true">
+        <properties>
+          <type typeof="Int" name="p" value="2" hidden="false"/>
+        </properties>
+      </sprite>
       <sprite name="Forest_NPC" idx="45" className="Forest_NPC" image="textures/sprites/npcs/forest_npcs.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="20" canEditFrames="true" lockRotation="false"/>
       <sprite name="Space_NPC" idx="46" className="Space_NPC" image="textures/sprites/npcs/space_npcs.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="12" canEditFrames="true" lockRotation="false"/>
       <sprite name="Redsea_NPC" idx="47" className="Redsea_NPC" image="textures/sprites/npcs/redsea_npcs.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="10" canEditFrames="true" lockRotation="false"/>

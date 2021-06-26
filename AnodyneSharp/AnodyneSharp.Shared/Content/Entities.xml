@@ -1743,10 +1743,10 @@
     <NPC x="1024" y="1216" guid="8C7562BB-D8FF-AC90-C4B2-EC95BFD0E90E" frame="8" type="generic" />
     <Treasure x="1024" y="1456" guid="1D4E36D9-0057-FEAE-C69A-1E30A072CD30" frame="2" alive="true"/>
     <Treasure x="528" y="1344" guid="1AA4FA12-92B4-1CD2-C1C7-694B226576B0" frame="2" alive="true"/>
-    <Trade_NPC x="672" y="528" guid="048B9FEA-DBA4-8EC4-5279-540FD894B83E" frame="0"/>
-    <Trade_NPC x="1360" y="64" guid="7A90D722-B095-7C14-9CB6-0D0E8C79387D" frame="1"/>
-    <Trade_NPC x="1152" y="432" guid="404A2732-2833-8825-3336-497302FA4D4C" frame="2"/>
-    <Trade_NPC x="1184" y="704" guid="64A8D946-84DD-D5BA-0A63-F7BBA4A7D20D" frame="3"/>
+    <Trade_NPC x="672" y="528" guid="048B9FEA-DBA4-8EC4-5279-540FD894B83E" frame="0" p="2"/>
+    <Trade_NPC x="1360" y="64" guid="7A90D722-B095-7C14-9CB6-0D0E8C79387D" frame="1" p="2"/>
+    <Trade_NPC x="1152" y="432" guid="404A2732-2833-8825-3336-497302FA4D4C" frame="2" p="2"/>
+    <Trade_NPC x="1184" y="704" guid="64A8D946-84DD-D5BA-0A63-F7BBA4A7D20D" frame="3" p="2"/>
     <Four_Shooter x="1008" y="1328" guid="9C8F121A-E836-6DF5-8D89-E318E9E92453" frame="0" p="2"/>
     <Four_Shooter x="1056" y="1360" guid="5726F9C6-9AFA-D55E-4031-9E10FA3A569D" frame="0" p="2"/>
     <Frog x="1008" y="1472" guid="7ACCCD66-549A-8CD9-D12D-BCDD21F80C84" frame="3" p="1" alive="true"/>
@@ -1790,7 +1790,7 @@
     <Button x="1296" y="384" guid="B76A5005-8F8B-4517-7BCC-AB228294BC3C" frame="0"/>
     <Shieldy x="272" y="1184" guid="D028E97F-41E1-0919-5785-B961D699802F" frame="4" p="1"/>
     <Frog x="544" y="1056" guid="A030D497-3B6E-E7AD-F629-08B13E3566A3" frame="2" p="1" alive="true"/>
-    <Trade_NPC x="736" y="544" guid="6120DE2B-3295-CCE0-AF71-229A495FFADE" frame="4"/>
+    <Trade_NPC x="736" y="544" guid="6120DE2B-3295-CCE0-AF71-229A495FFADE" frame="4" p="2"/>
     <Treasure x="1360" y="16" guid="34ECE95D-B0F8-5A83-6179-E73D9ECF7C0E" frame="2" alive="true"/>
     <Gate x="1344" y="448" guid="4EBEE6BD-E1CC-1F81-082A-FB9D18DC63F1" frame="5" p="2" alive="true" type="0" />
     <Gate x="1328" y="432" guid="C831F966-B983-40C2-9C95-76F447DD1525" frame="5" p="2" alive="true" type="0" />

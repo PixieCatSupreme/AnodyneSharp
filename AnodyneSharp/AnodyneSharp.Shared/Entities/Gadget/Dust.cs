@@ -1,10 +1,13 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AnodyneSharp.Registry;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace AnodyneSharp.Entities
 {
+    public class DustFallEvent : GameEvents.GameEvent { }
+
     [NamedEntity, Collision(typeof(Dust), MapCollision = true, KeepOnScreen = true)]
     public class Dust : Entity
     {
@@ -13,18 +16,21 @@ namespace AnodyneSharp.Entities
         public bool ON_CONVEYOR = false;
         public bool IS_RAFT = false;
 
-        public Dust(EntityPreset preset, Player p) : this(p)
+        public Dust(EntityPreset preset, Player p) : this(preset.Position, p)
         {
-            Position = preset.Position;
-            exists = true;
         }
 
-        public Dust(Player p) : base(Vector2.Zero,"dust",16,16,Drawing.DrawOrder.BG_ENTITIES)
+        public Dust(Vector2 position, Player p) : base(position, "dust", 16, 16, Drawing.DrawOrder.BG_ENTITIES)
         {
             AddAnimation("poof", CreateAnimFrameArray(0, 1, 2, 3, 4), 13, false);
+            AddAnimation("fallpoof", CreateAnimFrameArray(0, 1, 2, 3, 4), 13, false);
             AddAnimation("unpoof", CreateAnimFrameArray(3, 2, 1, 0), 13, false);
             SetFrame(0);
             b = p.broom;
+        }
+
+        public Dust(Player p) : this(Vector2.Zero,p)
+        {
             exists = false;
         }
 
@@ -42,9 +48,13 @@ namespace AnodyneSharp.Entities
             base.PostUpdate();
             velocity = Vector2.Zero;
             ON_CONVEYOR = false;
-            if(_curAnim.Finished && _curAnim.name == "poof")
+            if(_curAnim.Finished && (_curAnim.name == "fallpoof" || _curAnim.name == "poof"))
             {
                 exists = false;
+                if(_curAnim.name == "fallpoof")
+                {
+                    GlobalState.FireEvent(new DustFallEvent());
+                }
             }
         }
 
@@ -56,7 +66,7 @@ namespace AnodyneSharp.Entities
             {
                 if(_curAnim.Finished)
                 {
-                    Play("poof");
+                    Play("fallpoof");
                 }
                 return;
             }

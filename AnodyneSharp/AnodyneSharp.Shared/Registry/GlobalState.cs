@@ -3,6 +3,7 @@ using AnodyneSharp.Dialogue;
 using AnodyneSharp.Drawing.Effects;
 using AnodyneSharp.Entities;
 using AnodyneSharp.Entities.Lights;
+using AnodyneSharp.GameEvents;
 using AnodyneSharp.Logging;
 using AnodyneSharp.Map;
 using AnodyneSharp.States;
@@ -210,11 +211,11 @@ namespace AnodyneSharp.Registry
         public static int ENEMIES_KILLED;
         public static int PUZZLES_SOLVED;
 
-        public delegate Touching MapChecker(Vector2 pos);
-        public static MapChecker CheckTile;
+        public static Func<Vector2,Touching> CheckTile;
 
-        public delegate void Spawn(Entity e);
-        public static Spawn SpawnEntity;
+        public static Action<Entity> SpawnEntity;
+
+        public static Action<GameEvent> FireEvent;
 
         private static MinimapTracker minimaps = new();
 

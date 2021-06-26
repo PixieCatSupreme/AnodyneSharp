@@ -113,6 +113,12 @@ namespace AnodyneSharp.States
 
             GlobalState.CheckTile = CheckTile;
             GlobalState.SpawnEntity = SpawnEntity;
+            GlobalState.FireEvent = FireEvent;
+        }
+
+        private void FireEvent(GameEvent e)
+        {
+            _eventRegistry.FireEvent(e);
         }
 
         private void SpawnEntity(Entity t)
