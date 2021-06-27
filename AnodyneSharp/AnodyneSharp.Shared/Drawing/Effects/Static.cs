@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace AnodyneSharp.Drawing.Effects
 {
@@ -10,11 +11,12 @@ namespace AnodyneSharp.Drawing.Effects
         private Effect effect;
         private static float static_timer = 0;
         private static int static_step = 0;
+        private static bool deactivated = false;
 
         public bool Active()
         {
             string map = GlobalState.CURRENT_MAP_NAME;
-            return map == "SUBURB" || map == "DRAWER";
+            return !deactivated && (map == "SUBURB" || map == "DRAWER");
         }
 
         public void Load(ContentManager content, GraphicsDevice graphicsDevice)
@@ -41,6 +43,13 @@ namespace AnodyneSharp.Drawing.Effects
         }
 
         public void Deactivate()
-        { }
+        {
+            deactivated = true;
+        }
+
+        internal void MapChange()
+        {
+            deactivated = false;
+        }
     }
 }

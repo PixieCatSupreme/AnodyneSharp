@@ -53,7 +53,7 @@ namespace AnodyneSharp.Drawing.Effects
         {
             this.vel = vel;
             target_alpha = d;
-            if (alpha == 0f)
+            if (alpha == 0f && d != 0f)
             {
                 alpha = 0.1f;
             }
