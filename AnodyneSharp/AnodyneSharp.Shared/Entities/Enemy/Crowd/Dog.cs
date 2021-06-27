@@ -190,7 +190,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
                     _hitTimer = 1.5f;
                     Flicker(_hitTimer);
 
-                    SoundManager.PlaySoundEffect("generic_hurt");
+                    SoundManager.PlaySoundEffect("broom_hit");
 
                     if (_health == 0)
                     {

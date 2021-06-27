@@ -71,7 +71,9 @@ namespace AnodyneSharp.Entities.Interactive.Npc.RunningTradeNPCs
                     else
                     {
                         GlobalState.Dialogue = getDiag(2) + " " + getDiag(11);
-                        //TODO: activate card treasure
+                        Gadget.Treasures.CardTreasure card = new(Position + Vector2.UnitX * 20, 43);
+                        card.GetTreasure();
+                        GlobalState.SpawnEntity(card);
                     }
                 }
                 else
