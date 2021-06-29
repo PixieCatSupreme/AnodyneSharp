@@ -115,7 +115,7 @@ namespace AnodyneSharp.Entities.Enemy.Hotel
 
             public BurstBullet() : base(Vector2.Zero, "burst_plant_bullet", 8, 8, Drawing.DrawOrder.FG_SPRITES)
             {
-                shadow = new Shadow(this, Vector2.Zero, ShadowType.Tiny);
+                shadow = new Shadow(this, new Vector2(3,2), ShadowType.Normal);
 
                 AddAnimation("move",    CreateAnimFrameArray(0, 1), 12);
                 AddAnimation("explode", CreateAnimFrameArray(2, 3, 4, 4), 10, false);
@@ -162,7 +162,7 @@ namespace AnodyneSharp.Entities.Enemy.Hotel
             {
                 Position = parent.Position + Vector2.One * 5;
                 parabola = new Parabola_Thing(this, GlobalState.RNG.Next(24, 34), 1.5f);
-                MoveTowards(p.Position, vel * 2.5f);
+                MoveTowards(p.Center, vel * 2.5f);
                 _state.ChangeState("Move");
             }
 

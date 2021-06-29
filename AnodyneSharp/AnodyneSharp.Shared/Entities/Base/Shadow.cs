@@ -1,5 +1,6 @@
 ﻿using AnodyneSharp.Drawing;
 using Microsoft.Xna.Framework;
+using System;
 
 namespace AnodyneSharp.Entities
 {
@@ -15,6 +16,7 @@ namespace AnodyneSharp.Entities
     public class Shadow : Entity
     {
         private Entity _parent;
+        private int maxFrame = 0;
 
         public Shadow(Entity parent, Vector2 offset, ShadowType type = ShadowType.Normal, float fps = 8)
             : base(parent.Position, DrawOrder.SHADOWS)
@@ -26,15 +28,11 @@ namespace AnodyneSharp.Entities
             {
                 case ShadowType.Normal:
                     SetTexture("8x8_shadow", 8, 8);
-
-                    AddAnimation("get_big", CreateAnimFrameArray(0, 1, 2, 3), fps, false);
-                    AddAnimation("get_small", CreateAnimFrameArray(3, 2, 1, 0), fps, false);
+                    maxFrame = 3;
                     break;
                 case ShadowType.Big:
                     SetTexture("28x10_shadow", 28, 10);
-
-                    AddAnimation("get_big", CreateAnimFrameArray(0, 1, 2, 3, 4), fps, false);
-                    AddAnimation("get_small", CreateAnimFrameArray(4, 3, 2, 1, 0), fps, false);
+                    maxFrame = 4;
                     break;
                 case ShadowType.Tiny:
                     SetTexture("teeny_shadow", 3, 3);
@@ -45,6 +43,24 @@ namespace AnodyneSharp.Entities
                 case ShadowType.RollerVertical:
                     SetTexture("spike_roller_shadow", 16, 128);
                     break;
+            }
+        }
+
+        //jumpHeight between 0 and 1, how high up we are
+        public void UpdateShadow(float jumpHeight)
+        {
+            if(maxFrame > 0)
+            {
+                int frame = (int)MathF.Ceiling(jumpHeight * (maxFrame+1)) - 1;
+                if(frame == -1)
+                {
+                    visible = false;
+                }
+                else
+                {
+                    visible = true;
+                    SetFrame(frame);
+                }
             }
         }
 

@@ -691,27 +691,16 @@ namespace AnodyneSharp.Entities
             {
                 SoundManager.PlaySoundEffect("player_jump_up");
             }
-            shadow.Play("get_small");
+            Parabola_Thing parabola = new(this,24,period);
             ANIM_STATE = PlayerAnimState.as_idle; // Always land in idle state.
             PlayFacing("jump");
 
-            bool did_down = false;
-
-            float timer = 0.0f;
-
-            while (timer < period)
+            while (!parabola.Tick())
             {
-                timer += GameTimes.DeltaTime;
-                offset.Y = DEFAULT_Y_OFFSET + (((-4 * 24) / (period * period)) * timer * (timer - period));
                 if (target_pos.HasValue)
                 {
-                    Position.X = MathHelper.Lerp(base_pos.X, target_pos.Value.X, timer / period);
-                    Position.Y = MathHelper.Lerp(base_pos.Y, target_pos.Value.Y, timer / period);
-                }
-                if (!did_down && timer > period / 2)
-                {
-                    shadow.Play("get_big");
-                    did_down = true;
+                    Position.X = MathHelper.Lerp(base_pos.X, target_pos.Value.X, parabola.Progress());
+                    Position.Y = MathHelper.Lerp(base_pos.Y, target_pos.Value.Y, parabola.Progress());
                 }
                 yield return null;
             }
@@ -725,7 +714,6 @@ namespace AnodyneSharp.Entities
                 SoundManager.PlaySoundEffect("player_jump_down");
             }
 
-            //my_shadow.visible = false;
             offset.Y = DEFAULT_Y_OFFSET;
             just_landed = true;
 
