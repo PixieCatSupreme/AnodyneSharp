@@ -208,6 +208,8 @@ namespace AnodyneSharp.Entities.Interactive.Npc.RunningTradeNPCs
             _player.BeIdle();
             _player.state = PlayerState.INTERACT;
 
+            GlobalState.events.IncEvent("icky.rescued");
+
             velocity = Vector2.UnitX * 20;
             Play("walk_r");
 
