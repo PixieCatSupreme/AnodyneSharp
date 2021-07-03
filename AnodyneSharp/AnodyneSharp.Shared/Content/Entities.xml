@@ -2730,14 +2730,14 @@
     <Slime x="256" y="1184" guid="A9DE9FE9-9C42-740A-D73C-2189325ABFAD" frame="0" p="1" alive="true"/>
     <Gate x="480" y="1200" guid="2C6F3505-19E4-5C9F-AF7A-8FF669DC9B60" frame="2" p="2" alive="true" type="0" />
     <Slime x="208" y="1200" guid="7D1794C8-9E3A-1C6D-4DA1-75A2916E1EF4" frame="0" p="1" alive="true"/>
-    <Dash_Trap x="336" y="1248" guid="980E9536-7F43-BC31-CB1B-4722C627E029" frame="6"/>
+    <Dash_Trap x="336" y="1248" guid="980E9536-7F43-BC31-CB1B-4722C627E029" frame="0"/>
     <Gate x="224" y="1264" guid="ABFA4171-13B7-EAA2-4738-2BF12577F56F" frame="3" p="2" alive="true" type="0" />
     <Slime x="208" y="1328" guid="8538C116-DBE2-9EA1-9A46-546D4D709D96" frame="0" p="1" alive="true"/>
     <Frog x="240" y="1344" guid="1690B673-7C21-5072-01DD-8E2C06603583" frame="0" p="1" alive="true"/>
     <Frog x="224" y="1360" guid="1BF42760-F98B-6AA8-A647-4035C0BCEEEA" frame="0" p="1" alive="true"/>
     <Slime x="256" y="1376" guid="C7F51DFA-8265-7F7F-A752-61E0283D05E2" frame="0" p="1" alive="true"/>
-    <Dash_Trap x="288" y="1408" guid="AAC6C6FF-680C-E3E8-7382-17B2898F21CE" frame="6"/>
-    <Dash_Trap x="176" y="1408" guid="4F6535D0-4736-60F5-345C-0F3596D5E5EB" frame="6"/>
+    <Dash_Trap x="288" y="1408" guid="AAC6C6FF-680C-E3E8-7382-17B2898F21CE" frame="0"/>
+    <Dash_Trap x="176" y="1408" guid="4F6535D0-4736-60F5-345C-0F3596D5E5EB" frame="0"/>
     <Gate x="224" y="1424" guid="50BE37C8-AC53-5F84-C716-184696804642" frame="3" p="2" alive="true" type="0" />
     <Treasure x="384" y="1456" guid="8217475A-B504-C11B-41C7-8781FEB6267C" frame="7" alive="true"/>
     <Frog x="272" y="1472" guid="7866B48B-7084-5BD0-470C-CAAAB37C502B" frame="0" p="1" alive="true"/>

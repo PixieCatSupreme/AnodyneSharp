@@ -44,6 +44,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Decorations\DeathFadeIn.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Decorations\NonSolid.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\DoorPair.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Apartment\Dash_Trap.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Apartment\GasGuy.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Bedroom\Annoyer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Bedroom\PewLaser.cs" />
