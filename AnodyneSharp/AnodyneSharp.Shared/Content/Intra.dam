@@ -2,10 +2,10 @@
 <project>
   <version/>
   <bgColor>0xcccccc</bgColor>
-  <viewPos x="51" y="-704"/>
+  <viewPos x="-291" y="-37"/>
   <firstLayersTop>false</firstLayersTop>
   <spriteEntries currentId="169">
-    <group name="Events SL" idx="1" open="false">
+    <group name="Events SL" idx="1" open="true">
       <group name="Text Events" idx="2" open="false">
         <sprite name="blank2" idx="3" className="Event" image="textures/sprites/dame/dame-events.png" width="16" height="16" preview="3" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="3" canEditFrames="true" lockRotation="false">
           <properties>
@@ -63,7 +63,7 @@
           <type typeof="String" name="type" value="0.0" hidden="false"/>
         </properties>
       </sprite>
-      <sprite name="Dark-Alpha-0.8" idx="14" className="Event" image="textures/sprites/dame/dame-events.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="0" canEditFrames="true" lockRotation="false">
+      <sprite name="Dark-Alpha-0.8" idx="14" className="Event" image="textures/sprites/dame/dame-events.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="0" canEditFrames="true" lockRotation="false" selected="true">
         <properties>
           <type typeof="String" name="type" value="0.8" hidden="false"/>
         </properties>
@@ -1771,7 +1771,7 @@
         </sprite>
       </spritelayer>
     </group>
-    <group name="BEDROOM" id="8" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
+    <group name="BEDROOM" id="8" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
       <maplayer name="BG" id="8" xScroll="1" yScroll="1" x="0" y="0" width="70" height="50" tileset="textures/tilemaps/bedroom_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0,0,0,0,3,1,1,1,1,1,1,1,1,2,3,1,1,1,1,1,1,1,1,2,3,1,1,1,1,1,1,1,1,2,3,1,1,2,3,1,1,2,9,9,3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2</row>
         <row>0,0,0,0,0,0,0,0,0,0,3,24,19,24,24,24,24,24,24,2,3,21,24,19,24,24,19,24,21,2,3,24,24,19,19,19,24,24,24,2,3,24,24,2,3,24,24,2,9,9,3,24,24,24,37,37,24,24,24,24,24,24,24,24,24,24,24,24,21,2</row>
@@ -1824,7 +1824,7 @@
         <row>3,24,24,24,24,24,24,36,36,2,3,37,24,24,24,24,20,24,37,2,3,24,24,36,36,24,36,24,20,2,3,24,24,24,24,24,24,24,24,2,9,9,9,9,3,24,2,9,9,9,9,9,3,24,24,24,24,2,9,9,9,9,9,9,9,9,9,9,9,9</row>
         <row>9,4,4,4,4,4,4,4,4,9,9,4,4,4,4,4,4,4,4,9,9,4,4,15,36,36,14,4,4,9,9,4,4,4,4,4,4,4,4,9,9,9,9,9,3,24,2,9,9,9,9,9,9,15,24,24,14,9,9,9,9,9,9,9,9,9,9,9,9,9</row>
       </maplayer>
-      <spritelayer name="Stateful" id="9" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateful" id="9" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false" selected="true">
         <sprite guid="20832549-4D6A-DAB4-5965-8A301A184D15" x="208" y="688" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="149" frame="0">
           <properties/>
         </sprite>
@@ -2076,6 +2076,9 @@
           <properties/>
         </sprite>
         <sprite guid="A453B8DA-572E-AED9-FF65-091467DC9E84" x="657" y="37" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="23">
+          <properties/>
+        </sprite>
+        <sprite guid="3E2BCEA4-A26F-DF44-58CA-5E56C5273BF7" x="800" y="320" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="14" frame="0">
           <properties/>
         </sprite>
       </spritelayer>
@@ -5121,7 +5124,7 @@
         </sprite>
       </spritelayer>
     </group>
-    <group name="DRAWER" id="46" xScroll="1" yScroll="1" visible="false" open="true" locked="false" exports="true">
+    <group name="DRAWER" id="46" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
       <maplayer name="BG" id="36" xScroll="1" yScroll="1" x="0" y="0" width="60" height="110" tileset="textures/tilemaps/drawer_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0,0,0,0,8,22,22,8,5,6,11,22,22,22,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70</row>
         <row>0,0,16,4,11,7,5,6,0,0,11,2,2,2,2,2,2,2,2,7,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,74,70,70,70,70,70,70,70,70,70,70,70,70,70</row>
@@ -5242,6 +5245,39 @@
           <properties/>
         </sprite>
         <sprite guid="7D6F05E3-5F27-C634-962F-1DDEE87FB65D" x="160" y="672" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="22" frame="4"/>
+        <sprite guid="C57B82A9-1AEB-431F-FFAC-31118949DC68" x="32" y="480" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="16" frame="0">
+          <properties/>
+        </sprite>
+        <sprite guid="79F2160E-E178-010B-F1DB-C6C8DD457F3F" x="160" y="960" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="16" frame="0">
+          <properties/>
+        </sprite>
+        <sprite guid="1ADC0964-4E6A-40F5-B37B-21FC3202B412" x="640" y="1440" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="16" frame="0">
+          <properties/>
+        </sprite>
+        <sprite guid="F8BF4401-BB0D-485D-AE9F-8AC6B1C3E535" x="320" y="1600" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="16" frame="0">
+          <properties/>
+        </sprite>
+        <sprite guid="2036D3DE-9FAE-877D-CEB9-5CBF0F4CEDBB" x="160" y="0" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="16" frame="0">
+          <properties/>
+        </sprite>
+        <sprite guid="20C16619-9A8B-5470-577F-4FC53DA206F6" x="160" y="16" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="25">
+          <properties/>
+        </sprite>
+        <sprite guid="1171E90D-8E5F-B33A-1621-F46B3051F64C" x="32" y="496" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="25">
+          <properties/>
+        </sprite>
+        <sprite guid="405AC7B5-E544-DA35-C27D-F75DF8B7F792" x="160" y="976" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="25">
+          <properties/>
+        </sprite>
+        <sprite guid="F15EE142-6C77-C528-FECC-9AA05CFA9BCD" x="640" y="1456" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="25">
+          <properties/>
+        </sprite>
+        <sprite guid="AEDE98E5-70B5-8509-419F-597DC73E59E5" x="320" y="1616" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="25">
+          <properties/>
+        </sprite>
+        <sprite guid="D0631410-08B1-DD59-17C1-061315AEFC4C" x="320" y="160" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="25">
+          <properties/>
+        </sprite>
       </spritelayer>
       <spritelayer name="Stateful" id="38" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="6B1AC13B-CF0B-7FD1-6786-2F6575467599" x="70" y="624" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="154" frame="79">
@@ -8459,7 +8495,7 @@
         </sprite>
       </spritelayer>
     </group>
-    <group name="REDCAVE" id="21" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
+    <group name="REDCAVE" id="21" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
       <maplayer name="BG" id="66" xScroll="1" yScroll="1" x="0" y="0" width="70" height="100" tileset="textures/tilemaps/redcave_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="true" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>14,6,15,6,6,6,6,6,6,13,14,6,6,6,6,6,6,6,6,13,14,6,6,6,6,6,6,6,6,13,14,6,6,6,6,6,6,6,6,13,14,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,13,14,6,6,6,6,6,6,6,6,13</row>
         <row>14,27,6,36,45,17,18,44,38,13,14,60,36,37,37,37,37,37,37,6,6,37,37,37,37,38,20,20,20,13,14,27,27,27,27,27,27,27,27,13,14,10,10,27,27,27,27,27,27,27,27,27,27,27,27,27,27,40,42,13,14,27,36,45,28,28,44,38,27,13</row>
@@ -8685,7 +8721,7 @@
           <properties/>
         </tileProperties>
       </maplayer>
-      <spritelayer name="Stateful" id="68" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="true" sort="true" selected="true">
+      <spritelayer name="Stateful" id="68" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="true" sort="true">
         <sprite guid="082409E1-1D7E-3A22-9059-D5D9D0626FB1" x="1024" y="16" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="36">
           <properties/>
         </sprite>

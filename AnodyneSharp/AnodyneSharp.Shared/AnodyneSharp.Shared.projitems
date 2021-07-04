@@ -758,6 +758,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\light\beach-screen-light.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\light\cone-light.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\light\glow-light.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\light\player-light.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\map_even.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\menu\achievements.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\menu\achievement_locked.png" />

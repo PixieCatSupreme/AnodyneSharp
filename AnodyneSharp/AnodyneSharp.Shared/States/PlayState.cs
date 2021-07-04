@@ -141,6 +141,7 @@ namespace AnodyneSharp.States
 
             _miniminimap = new Spritesheet(ResourceManager.GetTexture("mini_minimap_tiles", true), 5, 5);
 
+            GlobalState.WARP = true;
             Warp();
 
             _state = PlayStateState.S_MAP_ENTER;

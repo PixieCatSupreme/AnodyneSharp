@@ -11,7 +11,14 @@ namespace AnodyneSharp.Entities.Events
     {
         public DarknessChange(EntityPreset preset, Player p) : base(preset.Position, DrawOrder.ENTITIES)
         {
-            GlobalState.darkness.TargetAlpha(float.Parse(preset.TypeValue));
+            if(GlobalState.WARP)
+            {
+                GlobalState.darkness.ForceAlpha(float.Parse(preset.TypeValue));
+            }
+            else
+            {
+                GlobalState.darkness.TargetAlpha(float.Parse(preset.TypeValue));
+            }
             exists = false;
         }
     }

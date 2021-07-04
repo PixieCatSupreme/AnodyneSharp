@@ -4381,6 +4381,18 @@
 /processorParam:TextureFormat=Color
 /build:textures/sprites/light/glow-light.png
 
+#begin textures/sprites/light/player-light.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:textures/sprites/light/player-light.png
+
 #begin textures/sprites/map_even.png
 /importer:TextureImporter
 /processor:TextureProcessor

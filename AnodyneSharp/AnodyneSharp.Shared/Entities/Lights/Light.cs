@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.GameEvents;
 using AnodyneSharp.Registry;
 using Microsoft.Xna.Framework;
 using System;
@@ -40,6 +41,51 @@ namespace AnodyneSharp.Entities.Lights
         {
             AddAnimation("glow", CreateAnimFrameArray(0, 0, 1, 2, 3, 4, 3, 2, 1, 0, 0, 0), 7);
             Play("glow");
+        }
+    }
+
+    [NamedEntity("Event","player"), Events(typeof(StartWarp))]
+    public class PlayerLight : Light
+    {
+        Player _player;
+        const float flicker_timer_max = 6/30f;
+        float flicker_timer = flicker_timer_max;
+
+        public PlayerLight(EntityPreset preset, Player p) : base(p.Position,"player-light",64,64)
+        {
+            if(p.follower != null)
+            {
+                exists = false;
+                return;
+            }
+            _player = p;
+            scale = 2;
+        }
+
+        public override void Update()
+        {
+            _player.follower = this;
+            base.Update();
+            Position = _player.Center;
+            flicker_timer -= GameTimes.DeltaTime;
+            if(flicker_timer < 0f)
+            {
+                if(scale != 2f)
+                {
+                    scale = 2f;
+                    flicker_timer = flicker_timer_max;
+                }
+                else
+                {
+                    scale += (float)(GlobalState.RNG.NextDouble() * 0.2);
+                    flicker_timer = 0.05f;
+                }
+            }
+        }
+
+        public override void OnEvent(GameEvent e)
+        {
+            _player.follower = null;
         }
     }
 

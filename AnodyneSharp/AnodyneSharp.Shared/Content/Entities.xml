@@ -466,6 +466,7 @@
     <Event x="385" y="693" guid="79FF736D-801D-3211-A23F-914EA18901DF" frame="5" type="entrance" />
     <Event x="700" y="707" guid="2506DEF9-B31E-FE9D-64E9-FF8350F47637" frame="5" type="entrance" />
     <Event x="657" y="37" guid="A453B8DA-572E-AED9-FF65-091467DC9E84" frame="5" type="entrance" />
+    <Event x="800" y="320" guid="3E2BCEA4-A26F-DF44-58CA-5E56C5273BF7" frame="0" type="0.8" />
   </map>
   <map name="BEDROOM" type="Stateless">
     <KeyBlock x="-560" y="128" guid="CA2D8F3E-F229-019B-78B9-F69FD61FE238" frame="0" p="2" alive="true"/>
@@ -1720,6 +1721,17 @@
     <NPC x="336" y="416" guid="BB13E1CE-7DCD-6CB5-7E2C-7F327091B4AE" frame="9" type="generic" />
     <Event x="160" y="640" guid="53D2D415-4126-0690-19BC-F86591B9F7FF" frame="0" type="0.0" />
     <Event x="160" y="672" guid="7D6F05E3-5F27-C634-962F-1DDEE87FB65D" frame="4"/>
+    <Event x="32" y="480" guid="C57B82A9-1AEB-431F-FFAC-31118949DC68" frame="0" type="1.0" />
+    <Event x="160" y="960" guid="79F2160E-E178-010B-F1DB-C6C8DD457F3F" frame="0" type="1.0" />
+    <Event x="640" y="1440" guid="1ADC0964-4E6A-40F5-B37B-21FC3202B412" frame="0" type="1.0" />
+    <Event x="320" y="1600" guid="F8BF4401-BB0D-485D-AE9F-8AC6B1C3E535" frame="0" type="1.0" />
+    <Event x="160" y="0." guid="2036D3DE-9FAE-877D-CEB9-5CBF0F4CEDBB" frame="0" type="1.0" />
+    <Event x="160" y="16" guid="20C16619-9A8B-5470-577F-4FC53DA206F6" frame="6" type="player" />
+    <Event x="32" y="496" guid="1171E90D-8E5F-B33A-1621-F46B3051F64C" frame="6" type="player" />
+    <Event x="160" y="976" guid="405AC7B5-E544-DA35-C27D-F75DF8B7F792" frame="6" type="player" />
+    <Event x="640" y="1456" guid="F15EE142-6C77-C528-FECC-9AA05CFA9BCD" frame="6" type="player" />
+    <Event x="320" y="1616" guid="AEDE98E5-70B5-8509-419F-597DC73E59E5" frame="6" type="player" />
+    <Event x="320" y="160" guid="D0631410-08B1-DD59-17C1-061315AEFC4C" frame="6" type="player" />
   </map>
   <map name="DRAWER" type="Stateful">
     <Door x="70" y="624" guid="6B1AC13B-CF0B-7FD1-6786-2F6575467599" frame="79" type="1" />
