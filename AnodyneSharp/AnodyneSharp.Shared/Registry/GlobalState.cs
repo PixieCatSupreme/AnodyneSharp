@@ -101,8 +101,6 @@ namespace AnodyneSharp.Registry
         {
             START_TIME = DateTime.Now;
 
-            FishermanDead = false;
-
             CURRENT_MAP_NAME = "";
             NEXT_MAP_NAME = "BLANK";
             PLAYER_WARP_TARGET = new Vector2(23, 130 - 20); //original reports 23,130 but ends up subtracting HEADER_HEIGHT(20) from Y value
@@ -194,8 +192,6 @@ namespace AnodyneSharp.Registry
                 return ReturnTarget != null && ReturnTarget.map != "NEXUS";
             }
         }
-
-        public static bool FishermanDead { get; set; }
 
         public static Settings settings = Settings.Load();
         public static bool ResolutionDirty = false;

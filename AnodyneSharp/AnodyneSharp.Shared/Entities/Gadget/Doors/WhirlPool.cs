@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Registry;
+﻿using AnodyneSharp.Entities.Interactive.Npc;
+using AnodyneSharp.Registry;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,8 @@ namespace AnodyneSharp.Entities.Gadget.Doors
     [NamedEntity("Door", "7"), Collision(typeof(Player))]
     public class WhirlPool : Door
     {
+        private EntityPreset _preset;
+
         public WhirlPool(EntityPreset preset, Player player)
             : base(preset, player, "whirlpool", 16, 16, null)
         {
@@ -16,7 +19,9 @@ namespace AnodyneSharp.Entities.Gadget.Doors
             AddAnimation("transition", CreateAnimFrameArray(3, 4, 4), 6, false);
             AddAnimation("whirl_red", CreateAnimFrameArray(4, 5), 6, true);
 
-            if (GlobalState.FishermanDead)
+            _preset = preset;
+
+            if (GlobalState.events.GetEvent("fisherman.dead") != 0)
             {
                 Play("whirl_red");
             }
@@ -29,6 +34,22 @@ namespace AnodyneSharp.Entities.Gadget.Doors
             {
                 teleportOffset = new Vector2(0, -36);
             }
+        }
+
+        public override void Update()
+        {
+            base.Update();
+
+            if (_curAnim.Finished)
+            {
+                Play("whirl_red");
+            }
+        }
+
+        public void DoTransition()
+        {
+            GlobalState.events.IncEvent("fisherman.dead");
+            Play("transition");
         }
     }
 }

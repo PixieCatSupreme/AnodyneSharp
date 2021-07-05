@@ -60,6 +60,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Redcave\Four_Shooter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\StaticOff.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\FieldsEaster.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Fisherman.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Olive.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\QuestNPCs\FieldsQuest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\RunningTradeNPCs\Icky.cs" />
