@@ -1002,8 +1002,10 @@ namespace AnodyneSharp.States
             _groups = new CollisionGroups(GlobalState.ENEMIES_KILLED);
             _eventRegistry = new();
 
+            IEnumerable<Entity> player_subentities = _player.SubEntities(); //Cache first since some entities add themselves to the player on creation
+
             _gridEntities = gridPresets.Where(preset => preset.Alive)
-                .Select(preset => preset.Create(_player)).Concat(_player.SubEntities()).SelectMany(e => SubEntities(e)).ToList();
+                .Select(preset => preset.Create(_player)).Concat(player_subentities).SelectMany(e => SubEntities(e)).ToList();
 
             _groups.Register(_player);
             _eventRegistry.Register(_player);

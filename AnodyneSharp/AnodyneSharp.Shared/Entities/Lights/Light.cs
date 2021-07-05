@@ -60,11 +60,11 @@ namespace AnodyneSharp.Entities.Lights
             }
             _player = p;
             scale = 2;
+            _player.follower = this;
         }
 
         public override void Update()
         {
-            _player.follower = this;
             base.Update();
             Position = _player.Center;
             flicker_timer -= GameTimes.DeltaTime;
