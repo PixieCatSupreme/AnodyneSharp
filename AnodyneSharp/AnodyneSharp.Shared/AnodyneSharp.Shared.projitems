@@ -80,6 +80,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)GameEvents\EventsAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Registry\Settings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sounds\SFXLimiter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\CutsceneState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\DeathState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\DungeonEntrance.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Gates\BigCardGate.cs" />

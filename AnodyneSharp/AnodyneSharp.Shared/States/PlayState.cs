@@ -151,41 +151,43 @@ namespace AnodyneSharp.States
 
         public override void Draw()
         {
-            if (_background != null)
-                _background.Draw(_camera);
-            if (_dec_over != null)
-                _dec_over.Draw(_camera);
+            if (_childState?.DrawPlayState ?? true)
+            {
+                if (_background != null)
+                    _background.Draw(_camera);
+                if (_dec_over != null)
+                    _dec_over.Draw(_camera);
 #if DEBUG
-            if (GlobalState.DrawBG)
-            {
-                _map.Draw(_camera.Bounds);
-            }
-            if (GlobalState.DrawBG2)
-            {
-                _map_bg_2.Draw(_camera.Bounds, true);
-            }
-            if (GlobalState.DrawFG)
-            {
-                _map_fg.Draw(_camera.Bounds, true);
-            }
+                if (GlobalState.DrawBG)
+                {
+                    _map.Draw(_camera.Bounds);
+                }
+                if (GlobalState.DrawBG2)
+                {
+                    _map_bg_2.Draw(_camera.Bounds, true);
+                }
+                if (GlobalState.DrawFG)
+                {
+                    _map_fg.Draw(_camera.Bounds, true);
+                }
 
 #else
-            _map.Draw(_camera.Bounds);
-            _map_bg_2.Draw(_camera.Bounds,true);
-            _map_fg.Draw(_camera.Bounds,true);
+                _map.Draw(_camera.Bounds);
+                _map_bg_2.Draw(_camera.Bounds,true);
+                _map_fg.Draw(_camera.Bounds,true);
 #endif
 
-            _player.Draw();
+                _player.Draw();
 
-            foreach (Entity gridEntity in _gridEntities)
-            {
-                gridEntity.Draw();
+                foreach (Entity gridEntity in _gridEntities)
+                {
+                    gridEntity.Draw();
+                }
+                foreach (Entity gridEntity in _oldEntities)
+                {
+                    gridEntity.Draw();
+                }
             }
-            foreach (Entity gridEntity in _oldEntities)
-            {
-                gridEntity.Draw();
-            }
-
             if (_childState != null)
             {
                 _childState.Draw();
@@ -284,6 +286,11 @@ namespace AnodyneSharp.States
             {
                 _childState = new DialogueState();
                 _player.BeIdle();
+            }
+            else if(GlobalState.StartCutscene != null)
+            {
+                _childState = new CutsceneState(_camera, GlobalState.StartCutscene);
+                GlobalState.StartCutscene = null;
             }
             else {
                 var oldstate = _state;
@@ -664,6 +671,11 @@ namespace AnodyneSharp.States
                 Cheatz.Cheatz.UnlockNexusGates();
             }
 
+            if(KeyInput.JustPressedKey(Keys.NumPad5))
+            {
+                GlobalState.StartCutscene = TestCutscene();
+            }
+
             if (KeyInput.JustPressedKey(Keys.M))
             {
                 int newIndex = MapUtilities.GetMapID(GlobalState.CURRENT_MAP_NAME) + 1;
@@ -741,6 +753,32 @@ namespace AnodyneSharp.States
                     _camera.Move(0, camSpeed);
                 }
             }
+        }
+
+        static IEnumerator<CutsceneState.CutsceneEvent> TestCutscene()
+        {
+            CutsceneState.WarpEvent warpLoc = new("REDSEA", new(2, 4));
+            Entity a = new(warpLoc.Grid.ToVector2() * 160 + Vector2.One * 80, "beach_npcs", 16, 16, DrawOrder.ENTITIES);
+            a.SetFrame(10);
+
+            a.visible = false;
+
+            yield return new CutsceneState.EntityEvent(Enumerable.Repeat(a, 1));
+
+            yield return warpLoc;
+
+            for(int i = 0; i < 5; ++i)
+            {
+                float timer = 0.5f;
+                while(timer > 0)
+                {
+                    timer -= GameTimes.DeltaTime;
+                    yield return null;
+                }
+                a.visible = !a.visible;
+            }
+
+            yield break;
         }
 #endif
         private void SwitchBroom(bool nextBroom)
@@ -842,17 +880,17 @@ namespace AnodyneSharp.States
                     GlobalState.ReturnTarget = (gate != null) ? new(gate) : null;
                 }
 
-                TileData.SetTileset(GlobalState.CURRENT_MAP_NAME);
-                _map.LoadMap(MapLoader.GetMapLayer(GlobalState.CURRENT_MAP_NAME), TileData.Tiles, DrawOrder.MAP_BG);
+                Spritesheet tiles = TileData.GetTileset(GlobalState.CURRENT_MAP_NAME);
+                _map.LoadMap(MapLoader.GetMapLayer(GlobalState.CURRENT_MAP_NAME), tiles, DrawOrder.MAP_BG);
 
                 GlobalState.MAP_GRID_WIDTH = _map.WidthInTiles / 10;
                 GlobalState.MAP_GRID_HEIGHT = _map.HeightInTiles / 10;
 
-                _map_bg_2.LoadMap(MapLoader.GetMapLayer(GlobalState.CURRENT_MAP_NAME, 2), TileData.Tiles, DrawOrder.MAP_BG2);
-                _map_fg.LoadMap(MapLoader.GetMapLayer(GlobalState.CURRENT_MAP_NAME, 3), TileData.Tiles, DrawOrder.MAP_FG);
+                _map_bg_2.LoadMap(MapLoader.GetMapLayer(GlobalState.CURRENT_MAP_NAME, 2), tiles, DrawOrder.MAP_BG2);
+                _map_fg.LoadMap(MapLoader.GetMapLayer(GlobalState.CURRENT_MAP_NAME, 3), tiles, DrawOrder.MAP_FG);
 
                 //Sets tile collission and tile events
-                TileData.SetTileProperties(_map, _map_bg_2);
+                TileData.SetTileProperties(GlobalState.CURRENT_MAP_NAME, _map, _map_bg_2);
 
                 foreach (EntityPreset p in EntityManager.GetMapEntities(GlobalState.CURRENT_MAP_NAME).Where(p => p.Permanence == Permanence.MAP_LOCAL))
                 {
@@ -872,9 +910,9 @@ namespace AnodyneSharp.States
                 GlobalState.RefreshKeyCount = true;
             }
             
-            FG_Blend.MapChange();
-            GlobalState.darkness.MapChange();
-            GlobalState.staticEffect.MapChange();
+            FG_Blend.MapChange(GlobalState.CURRENT_MAP_NAME);
+            GlobalState.darkness.MapChange(GlobalState.CURRENT_MAP_NAME);
+            GlobalState.staticEffect.MapChange(GlobalState.CURRENT_MAP_NAME);
 
             _player.Position = _player.grid_entrance =  GlobalState.PLAYER_WARP_TARGET == Vector2.Zero ? _map.GetFirstWalkable(_map_bg_2) * TILE_WIDTH : GlobalState.PLAYER_WARP_TARGET;
             _player.facing = GlobalState.NewMapFacing ?? _player.facing;

@@ -161,6 +161,8 @@ namespace AnodyneSharp.Registry
         public static bool LastDialogueFinished = true;
         public static bool SetDialogueMode = false;
 
+        public static IEnumerator<CutsceneState.CutsceneEvent> StartCutscene = null;
+
         public static Vector2 CurrentMapGrid
         {
             get
@@ -320,6 +322,8 @@ namespace AnodyneSharp.Registry
         public static Light PlayerLight = null;
 
         public static Darkness darkness = new Darkness();
+        public static FadeEffect gameScreenFade = new() { fadeColor = Color.Black };
+
         public static TitleScreenOverlay TitleScreenFinish = new TitleScreenOverlay();
 
         public static Static staticEffect = new();
@@ -333,7 +337,7 @@ namespace AnodyneSharp.Registry
 
         public static Wave wave = new Wave();
 
-        public static List<IFullScreenEffect> gameEffects = new List<IFullScreenEffect>() { staticEffect, darkness };
+        public static List<IFullScreenEffect> gameEffects = new List<IFullScreenEffect>() { staticEffect, darkness, gameScreenFade };
         public static List<IFullScreenEffect> fullScreenEffects = new List<IFullScreenEffect>() { black_overlay, new Glitch(), new GrayScale(), TitleScreenFinish, pixelation, wave, flash, screenShake };
         public static IEnumerable<IFullScreenEffect> AllEffects
         {

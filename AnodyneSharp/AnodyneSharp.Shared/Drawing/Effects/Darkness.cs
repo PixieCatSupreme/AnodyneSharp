@@ -59,6 +59,8 @@ namespace AnodyneSharp.Drawing.Effects
             }
         }
 
+        public float Alpha => alpha;
+
         public bool ReachedAlpha => alpha == target_alpha;
 
         public void ForceAlpha(float a)
@@ -155,11 +157,11 @@ namespace AnodyneSharp.Drawing.Effects
             this.camera = camera;
         }
 
-        public void MapChange()
+        public void MapChange(string mapName)
         {
             alpha = 1;
 
-            string mapName = GlobalState.CURRENT_MAP_NAME.ToLower();
+            mapName = mapName.ToLower();
             darkness = ResourceManager.GetTexture(mapName + "_overlay", allowUnknown: true);
             if (darkness != null)
             {

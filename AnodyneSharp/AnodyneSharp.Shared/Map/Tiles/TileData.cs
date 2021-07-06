@@ -28,22 +28,15 @@ namespace AnodyneSharp.Map.Tiles
 
     public static class TileData
     {
-        public static Spritesheet Tiles;
-
-        public static void SetTileset(string MapName)
+        public static Spritesheet GetTileset(string MapName)
         {
-            Tiles = new Spritesheet(ResourceManager.GetTexture($"{MapName.ToLower()}_tilemap", true), 16, 16);
-
-            if (Tiles == null)
-            {
-                Tiles = new Spritesheet(ResourceManager.GetTexture("debug_tilemap", true), 16, 16);
-            }
+            return new(ResourceManager.GetTexture($"{MapName.ToLower()}_tilemap", true), 16, 16);
         }
 
-        public static void SetTileProperties(MapLayer map, MapLayer bg2)
+        public static void SetTileProperties(string mapName, MapLayer map, MapLayer bg2)
         {
-            List<CollissionData> data = GetColData();
-            SortedList<int, AnimatedTile> animationData = GetAnimData();
+            List<CollissionData> data = GetColData(mapName);
+            SortedList<int, AnimatedTile> animationData = GetAnimData(mapName);
 
             map.SetAnimationData(animationData);
 
@@ -64,13 +57,13 @@ namespace AnodyneSharp.Map.Tiles
             bg2.SetTileProperties(0, Touching.NONE, CollisionEventType.NONE, Touching.NONE);
         }
 
-        private static SortedList<int, AnimatedTile> GetAnimData()
+        private static SortedList<int, AnimatedTile> GetAnimData(string map)
         {
             SortedList<int, AnimatedTile> animTiles = new SortedList<int, AnimatedTile>();
 
             var assembly = Assembly.GetExecutingAssembly();
 
-            foreach (var path in assembly.GetManifestResourceNames().Where(p => p.StartsWith($"{ assembly.GetName().Name}.Content.Maps.{ GlobalState.CURRENT_MAP_NAME}.TileAnims")))
+            foreach (var path in assembly.GetManifestResourceNames().Where(p => p.StartsWith($"{ assembly.GetName().Name}.Content.Maps.{map}.TileAnims")))
             {
                 string texName = path.Split('.')[^2];
 
@@ -96,13 +89,13 @@ namespace AnodyneSharp.Map.Tiles
             return animTiles;
         }
 
-        private static List<CollissionData> GetColData()
+        private static List<CollissionData> GetColData(string map)
         {
             List<CollissionData> data = new List<CollissionData>();
 
             var assembly = Assembly.GetExecutingAssembly();
 
-            string path = $"{assembly.GetName().Name}.Content.Maps.{GlobalState.CURRENT_MAP_NAME}.TileData.col";
+            string path = $"{assembly.GetName().Name}.Content.Maps.{map}.TileData.col";
 
             using (Stream stream = assembly.GetManifestResourceStream(path))
             {

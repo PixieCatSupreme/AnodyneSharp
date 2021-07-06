@@ -9,14 +9,14 @@ namespace AnodyneSharp.Drawing.Effects
     public class Static : IFullScreenEffect
     {
         private Effect effect;
-        private static float static_timer = 0;
-        private static int static_step = 0;
-        private static bool deactivated = false;
+        private float static_timer = 0;
+        private int static_step = 0;
+        private bool deactivated = false;
+        private string current_map = GlobalState.CURRENT_MAP_NAME;
 
         public bool Active()
         {
-            string map = GlobalState.CURRENT_MAP_NAME;
-            return !deactivated && (map == "SUBURB" || map == "DRAWER");
+            return !deactivated && (current_map == "SUBURB" || current_map == "DRAWER");
         }
 
         public void Load(ContentManager content, GraphicsDevice graphicsDevice)
@@ -47,9 +47,10 @@ namespace AnodyneSharp.Drawing.Effects
             deactivated = true;
         }
 
-        internal void MapChange()
+        internal void MapChange(string mapName)
         {
             deactivated = false;
+            current_map = mapName;
         }
     }
 }

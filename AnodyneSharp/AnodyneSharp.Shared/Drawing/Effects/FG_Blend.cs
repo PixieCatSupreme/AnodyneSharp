@@ -24,10 +24,10 @@ namespace AnodyneSharp.Drawing.Effects
             effect.Parameters["View"].SetValue(c.Transform);
         }
 
-        public static void MapChange()
+        public static void MapChange(string map)
         {
             active = true;
-            switch (GlobalState.CURRENT_MAP_NAME)
+            switch (map)
             {
                 case "SUBURB":
                     effect.Parameters["OverlayTex"].SetValue(ResourceManager.GetTexture("suburb_fg_overlay"));
