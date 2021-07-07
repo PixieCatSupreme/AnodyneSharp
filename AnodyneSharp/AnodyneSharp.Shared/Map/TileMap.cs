@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,9 @@ namespace AnodyneSharp.Map
         private List<int> tiles;
         public readonly int Width;
         public readonly int Height;
+
+        private Dictionary<Point, int> changedTiles = new();
+        private Dictionary<Point, int> oldChangedTiles = new();
 
         public TileMap(string data)
         {
@@ -28,6 +32,34 @@ namespace AnodyneSharp.Map
                 Width = columns.Length;
                 tiles.AddRange(columns);
             }
+        }
+
+        public void OnTransitionStart()
+        {
+            oldChangedTiles = changedTiles;
+            changedTiles = new();
+        }
+
+        public void OnTransitionEnd()
+        {
+            foreach((Point loc, int old) in oldChangedTiles)
+            {
+                tiles[loc.X + loc.Y * Width] = old;
+            }
+        }
+
+        public void ChangeTile(Point loc, int new_val)
+        {
+            int pos = loc.X + loc.Y * Width;
+            if(pos < 0 || pos >= tiles.Count)
+            {
+                return;
+            }
+            if(!changedTiles.ContainsKey(loc))
+            {
+                changedTiles.Add(loc, GetTile(loc.X, loc.Y));
+            }
+            tiles[pos] = new_val;
         }
 
         public int GetTile(int x, int y)

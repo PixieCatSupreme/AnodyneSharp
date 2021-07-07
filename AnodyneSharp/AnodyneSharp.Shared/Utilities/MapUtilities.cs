@@ -7,14 +7,14 @@ namespace AnodyneSharp.Utilities
 {
     public static class MapUtilities
     {
-        public static Vector2 GetRoomCoordinate(Vector2 pos)
+        public static Point GetRoomCoordinate(Vector2 pos)
         {
-            return new Vector2((int)(pos.X / SCREEN_WIDTH_IN_PIXELS), (int)(pos.Y / SCREEN_HEIGHT_IN_PIXELS));
+            return new((int)(pos.X / SCREEN_WIDTH_IN_PIXELS), (int)(pos.Y / SCREEN_HEIGHT_IN_PIXELS));
         }
 
-        public static Vector2 GetRoomUpperLeftPos(Vector2 pos)
+        public static Vector2 GetRoomUpperLeftPos(Point pos)
         {
-            return pos * SCREEN_WIDTH_IN_PIXELS;
+            return pos.ToVector2() * SCREEN_WIDTH_IN_PIXELS;
         }
 
         public static Vector2 GetInGridPosition(Vector2 pos)

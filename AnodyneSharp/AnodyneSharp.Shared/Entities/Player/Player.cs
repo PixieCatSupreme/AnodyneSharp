@@ -84,6 +84,7 @@ namespace AnodyneSharp.Entities
         private float action_latency;
 
         public Broom broom;
+        public Transformer transformer;
         public Entity follower;
 
         public bool actions_disabled;
@@ -154,6 +155,7 @@ namespace AnodyneSharp.Entities
             facing = Facing.UP;
 
             broom = new Broom(this);
+            transformer = new Transformer(this);
             shadow = new Shadow(this, new Vector2(3, -1), fps: 20);
             foot_overlay = new Foot_Overlay(this);
         }
@@ -275,7 +277,7 @@ namespace AnodyneSharp.Entities
 
         public override IEnumerable<Entity> SubEntities()
         {
-            List<Entity> ret = new() { broom, foot_overlay };
+            List<Entity> ret = new() { broom, transformer, foot_overlay };
             if (raft != null) ret.Add(raft);
             if (follower != null) ret.Add(follower);
             return ret;
@@ -586,7 +588,7 @@ namespace AnodyneSharp.Entities
                 {
                     if (GlobalState.inventory.EquippedBroom == BroomType.Transformer)
                     {
-                        //TODO transformer stuff
+                        transformer.OnAction();
                     }
                     else if (GlobalState.inventory.EquippedBroom != BroomType.NONE && !broom.exists)
                     {

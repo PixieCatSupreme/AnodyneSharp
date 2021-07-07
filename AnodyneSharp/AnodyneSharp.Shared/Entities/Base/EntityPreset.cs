@@ -24,7 +24,7 @@ namespace AnodyneSharp.Entities
     public class EntityPreset
     {
 
-        public Vector2 GridPosition
+        public Point GridPosition
         {
             get
             {

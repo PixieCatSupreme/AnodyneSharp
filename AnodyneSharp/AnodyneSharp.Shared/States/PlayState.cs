@@ -114,6 +114,8 @@ namespace AnodyneSharp.States
             GlobalState.CheckTile = CheckTile;
             GlobalState.SpawnEntity = SpawnEntity;
             GlobalState.FireEvent = FireEvent;
+            GlobalState.GetTile = GetTile;
+            GlobalState.ChangeTile = ChangeTile;
         }
 
         private void FireEvent(GameEvent e)
@@ -129,6 +131,16 @@ namespace AnodyneSharp.States
         private Touching CheckTile(Vector2 pos)
         {
             return _map.GetCollisionData(pos) | _map_bg_2.GetCollisionData(pos);
+        }
+
+        private int GetTile(Point pos)
+        {
+            return _map.Data.GetTile(pos.X, pos.Y);
+        }
+
+        private void ChangeTile(Point pos, int new_val)
+        {
+            _map.Data.ChangeTile(pos, new_val);
         }
 
         public override void Create()
@@ -488,6 +500,8 @@ namespace AnodyneSharp.States
             {
                 _state = PlayStateState.S_MAP_EXIT;
                 _eventRegistry.FireEvent(new StartWarp());
+                _map.Data.OnTransitionStart();
+                GlobalState.Swapper = GlobalState.SwapperPolicy.Default;
                 return;
             }
 
@@ -559,6 +573,11 @@ namespace AnodyneSharp.States
             {
                 GlobalState.ScreenTransition = true;
                 _eventRegistry.FireEvent(new StartScreenTransition());
+                _map.Data.OnTransitionStart();
+                if(GlobalState.Swapper == GlobalState.SwapperPolicy.AllowedOnCurrentScreen)
+                {
+                    GlobalState.Swapper = GlobalState.SwapperPolicy.Default;
+                }
                 _player.grid_entrance = _player.Position;
                 _player.dontMove = true;
 
@@ -590,6 +609,7 @@ namespace AnodyneSharp.States
         private void FinalizeTransition()
         {
             //delete old objects
+            _map.Data.OnTransitionEnd();
             _oldEntities.Clear();
         }
 
@@ -919,11 +939,11 @@ namespace AnodyneSharp.States
 
             GlobalState.NewMapFacing = null;
 
-            Vector2 gridPos = MapUtilities.GetRoomCoordinate(_player.Position);
+            Point gridPos = MapUtilities.GetRoomCoordinate(_player.Position);
             Vector2 roomPos = MapUtilities.GetRoomUpperLeftPos(gridPos);
 
-            GlobalState.CURRENT_GRID_X = (int)gridPos.X;
-            GlobalState.CURRENT_GRID_Y = (int)gridPos.Y;
+            GlobalState.CURRENT_GRID_X = gridPos.X;
+            GlobalState.CURRENT_GRID_Y = gridPos.Y;
 
             _player.Reset();
 
@@ -1028,7 +1048,7 @@ namespace AnodyneSharp.States
         {
             _oldEntities = new List<Entity>(_gridEntities);
 
-            List<EntityPreset> gridPresets = EntityManager.GetGridEntities(GlobalState.CURRENT_MAP_NAME, new Vector2(GlobalState.CURRENT_GRID_X, GlobalState.CURRENT_GRID_Y));
+            List<EntityPreset> gridPresets = EntityManager.GetGridEntities(GlobalState.CURRENT_MAP_NAME, new Point(GlobalState.CURRENT_GRID_X, GlobalState.CURRENT_GRID_Y));
             foreach (EntityPreset preset in gridPresets.Where(e => e.Permanence == Permanence.GRID_LOCAL))
             {
                 preset.Alive = true;

@@ -59,6 +59,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Hotel\Burst_Plant.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Redcave\Four_Shooter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\StaticOff.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\SwapperPolicyEvent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\FieldsEaster.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Fisherman.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Olive.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\RunningTradeNPCs\InsideMonster.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\RunningTradeNPCs\MiaoXiao.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\RunningTradeNPCs\ShopKeep.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Player\Transformer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameEvents\EntityEventRegistry.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\Checkpoint.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\DarknessChange.cs" />
@@ -899,7 +901,6 @@
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\title\door_spinglow2.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\title\intraisloading.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\title\press_enter.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\textures\title\selector.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\title\titlepicture.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\title\title_bg.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\title\title_overlay1.png" />

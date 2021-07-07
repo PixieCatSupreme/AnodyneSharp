@@ -52,7 +52,7 @@ namespace AnodyneSharp.Entities
             return _entities[mapName];
         }
 
-        public static List<EntityPreset> GetGridEntities(string mapName, Vector2 grid)
+        public static List<EntityPreset> GetGridEntities(string mapName, Point grid)
         {
             return GetMapEntities(mapName).Where(e => e.GridPosition == grid).ToList();
         }

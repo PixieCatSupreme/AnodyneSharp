@@ -13,14 +13,14 @@ namespace AnodyneSharp.Map
 {
     public class MapLayer
     {
-        public int HeightInTiles => data.Height;
-        public int WidthInTiles => data.Width;
+        public int HeightInTiles => Data.Height;
+        public int WidthInTiles => Data.Width;
 
         public float width;
         public float height;
         private Rectangle?[] _rects;
 
-        protected TileMap data;
+        public TileMap Data { get; protected set; }
         protected SortedList<int, AnimatedTile> animatedTiles;
 
         protected Spritesheet tiles;
@@ -33,7 +33,7 @@ namespace AnodyneSharp.Map
         {
             textureName = tileMap.Tex.Name.Split('/').Last();
 
-            data = mapData;
+            Data = mapData;
 
             tiles = tileMap;
             animatedTiles = new SortedList<int, AnimatedTile>();
@@ -89,8 +89,8 @@ namespace AnodyneSharp.Map
             {
                 for (int x = 0; x < WidthInTiles; ++x)
                 {
-                    int tile = data.GetTile(x, y);
-                    if (tile != 0 && _tileObjects[tile].allowCollisions == Touching.NONE && layered._tileObjects[layered.data.GetTile(x, y)].allowCollisions == Touching.NONE)
+                    int tile = Data.GetTile(x, y);
+                    if (tile != 0 && _tileObjects[tile].allowCollisions == Touching.NONE && layered._tileObjects[layered.Data.GetTile(x, y)].allowCollisions == Touching.NONE)
                         return new Vector2(x, y);
                 }
             }
@@ -107,7 +107,7 @@ namespace AnodyneSharp.Map
                 {
                     if (onlyCurrentScreen && x / GameConstants.SCREEN_WIDTH_IN_TILES != GlobalState.CURRENT_GRID_X) continue;
 
-                    Tile t = _tileObjects[data.GetTile(x, y)];
+                    Tile t = _tileObjects[Data.GetTile(x, y)];
 
                     t.lastPosition.X = t.Position.X = x * GameConstants.TILE_WIDTH;
                     t.lastPosition.Y = t.Position.Y = y * GameConstants.TILE_HEIGHT;
@@ -201,7 +201,7 @@ namespace AnodyneSharp.Map
             {
                 for (int x = bounds.X / GameConstants.TILE_WIDTH - 1; x < bounds.Right / GameConstants.TILE_WIDTH + 1; x++)
                 {
-                    int tile = data.GetTile(x, y);
+                    int tile = Data.GetTile(x, y);
                     Rectangle? rect = _rects[tile];
 
                     if (rect.HasValue)
@@ -228,7 +228,7 @@ namespace AnodyneSharp.Map
         {
             position /= GameConstants.TILE_HEIGHT;
 
-            return _tileObjects[data.GetTile((int)position.X, (int)position.Y)].allowCollisions;
+            return _tileObjects[Data.GetTile((int)position.X, (int)position.Y)].allowCollisions;
         }
 
         public void ReloadTexture()
