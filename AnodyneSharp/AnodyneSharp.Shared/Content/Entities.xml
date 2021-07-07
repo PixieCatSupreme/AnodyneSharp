@@ -305,6 +305,7 @@
     <Nonsolid x="80" y="528" guid="89E4BAB7-2973-3023-A9AA-7F54E6239B69" frame="0" type="Rail_1" />
     <Solid_Sprite x="371" y="957" guid="8E06BDD6-2946-BA72-F1AC-11403D11EC1E" frame="5" type="blocker" />
     <Pillar_Switch x="1373" y="65" guid="2465CEA0-D22D-71A0-1FDC-793DF647833B" frame="0"/>
+    <Event x="1280" y="1120" guid="F662ECF1-2B92-F5E6-437C-E091BC417CA1" frame="3" type="LocalEnabled" />
   </map>
   <map name="BEACH" type="Stateless">
     <Jump_Trigger x="1200" y="576" guid="12E2A801-D1F4-7336-D870-FCFF85133772" frame="0"/>
@@ -643,6 +644,7 @@
   <map name="BLANK" type="Stateless">
     <Sage x="336" y="176" guid="14717F7B-3E0A-959A-BE17-1333AF6CE252" frame="0" p="2"/>
     <Sage x="320" y="0." guid="D28A5024-01D4-2A18-ADD5-935CCB90002C" frame="1" p="2"/>
+    <Event x="160" y="1120" guid="8763A627-CB57-F4E9-D5C8-D054541A5006" frame="3" type="Disabled" />
   </map>
   <map name="BLUE" type="Stateless">
     <Button x="16" y="544" guid="FC137588-56CF-4B5A-E5B0-4C3468806B9F" frame="0"/>
@@ -809,6 +811,7 @@
     <NPC x="608" y="752" guid="A20E6CE2-70B9-2E91-FCA2-126888E6732A" frame="2" type="Cell_Body" />
     <NPC x="400" y="432" guid="C2CEA43D-BC02-29E4-0FF9-C7E71F605585" frame="2" type="Cell_Body" />
     <NPC x="663" y="410" guid="59ABD655-74D9-B678-88F8-96359A07C86D" frame="7" type="generic" />
+    <Event x="0." y="1280" guid="C2609FD3-44DC-E311-7C73-5381F1A21D64" frame="3" type="Disabled" />
   </map>
   <map name="CELL" type="Stateful">
     <NPC x="592" y="496" guid="445C736A-7BF9-8856-6F4B-E9C4C6675770" frame="1" type="rock" />
@@ -1117,6 +1120,7 @@
     <Event x="1280" y="16" guid="67F89273-F5E7-49EA-0B64-FDCDF07BAF9D" frame="0" type="0.0" />
     <Dash_Pad x="528" y="112" guid="FA8A1223-4137-EC1A-B5EE-C51233BDFBF2" frame="0"/>
     <Dash_Pad x="528" y="128" guid="0CA8BEFA-EC12-F0E1-61AC-A5361195842D" frame="0"/>
+    <Event x="1120" y="0." guid="B8E9283A-5628-845B-240A-CB1C9433C715" frame="3" type="LocalEnabled" />
   </map>
   <map name="CIRCUS" type="Stateful">
     <KeyBlock x="720" y="1120" guid="E86E87F0-10D3-10E8-CB06-57A3CCFE24C5" frame="0" p="2" alive="true"/>
@@ -1720,7 +1724,6 @@
   <map name="DRAWER" type="Stateless">
     <NPC x="336" y="416" guid="BB13E1CE-7DCD-6CB5-7E2C-7F327091B4AE" frame="9" type="generic" />
     <Event x="160" y="640" guid="53D2D415-4126-0690-19BC-F86591B9F7FF" frame="0" type="0.0" />
-    <Event x="160" y="672" guid="7D6F05E3-5F27-C634-962F-1DDEE87FB65D" frame="4"/>
     <Event x="32" y="480" guid="C57B82A9-1AEB-431F-FFAC-31118949DC68" frame="0" type="1.0" />
     <Event x="160" y="960" guid="79F2160E-E178-010B-F1DB-C6C8DD457F3F" frame="0" type="1.0" />
     <Event x="640" y="1440" guid="1ADC0964-4E6A-40F5-B37B-21FC3202B412" frame="0" type="1.0" />
@@ -1732,6 +1735,9 @@
     <Event x="640" y="1456" guid="F15EE142-6C77-C528-FECC-9AA05CFA9BCD" frame="6" type="player" />
     <Event x="320" y="1616" guid="AEDE98E5-70B5-8509-419F-597DC73E59E5" frame="6" type="player" />
     <Event x="320" y="160" guid="D0631410-08B1-DD59-17C1-061315AEFC4C" frame="6" type="player" />
+    <Event x="640" y="1472" guid="6E3BDBAC-80BF-A681-A80B-331F9DC6EEB1" frame="3" type="Disabled" />
+    <Event x="320" y="1632" guid="B4D013FC-84A2-33FD-E529-79DBC626B68E" frame="3" type="Disabled" />
+    <Event x="160" y="656" guid="85451304-74DE-ACB7-1717-808C7C54F2C7" frame="4"/>
   </map>
   <map name="DRAWER" type="Stateful">
     <Door x="70" y="624" guid="6B1AC13B-CF0B-7FD1-6786-2F6575467599" frame="79" type="1" />
@@ -2005,6 +2011,7 @@
     <Event x="11" y="189" guid="B59632F3-DB53-AA1C-EBAC-13D4C5255B3D" frame="1" type="0" />
     <Event x="329" y="327" guid="74AF0639-FDDB-77C6-9704-C2C13AF490BD" frame="1" type="1.0" />
     <NPC x="328" y="397" guid="F1565997-6301-874A-AAEB-3A7D45B6A33A" frame="11" type="generic" />
+    <Event x="320" y="496" guid="ACA6B6C3-F5BA-DBC2-D9B8-40D13FD70194" frame="3" type="LocalEnabled" />
   </map>
   <map name="GO" type="Stateful">
     <Go_Detector x="352" y="512" guid="ED2195E9-9798-B9B3-3C15-105C40F7C501" frame="0" alive="true"/>
@@ -2299,6 +2306,7 @@
     <Event x="1136" y="528" guid="7436CDC9-1274-1C4C-DCE2-BEE0B856F82A" frame="2"/>
     <Event x="1488" y="832" guid="1D171F2E-B97F-04C6-3ACC-18B4603D57F4" frame="2"/>
     <Jump_Trigger x="1392" y="1344" guid="4A9C4455-5DD6-2BAE-49DF-C9E163FA2F83" frame="0" type="1" />
+    <Event x="1280" y="1760" guid="821EC3B8-6DAC-BCC2-31FA-038C37D7ED90" frame="3" type="LocalEnabled" />
   </map>
   <map name="HOTEL" type="Stateful">
     <KeyBlock x="368" y="912" guid="6FE49A57-7BCD-B63B-6B64-BD34945C6585" frame="0" p="2" alive="true"/>
@@ -2509,6 +2517,9 @@
     <Solid_Sprite x="566" y="649" guid="8B9B720A-8AC0-EBE7-7334-551074A73406" frame="5" type="blocker" />
     <Event x="703" y="1099" guid="A9204E29-823C-1A2E-2962-351434E57D44" frame="5" type="entrance" />
     <CardGate x="704" y="384" guid="1B5C72F8-5151-CAD4-946C-EF6739759D57" frame="49" p="2"/>
+    <Event x="640" y="320" guid="96EB48C0-E15A-3A4D-78F8-3D2071C6BFCA" frame="3" type="Disabled" />
+    <Event x="640" y="480" guid="4FF7B202-DC68-8B5B-55DC-166433B1C87A" frame="3" type="Disabled" />
+    <Event x="480" y="480" guid="73EE8201-A210-9715-6757-C71A4E2E064A" frame="3" type="Disabled" />
   </map>
   <map name="OVERWORLD" type="Stateless">
     <Event x="352" y="1312" guid="D9B1D93C-EDA8-7EF1-AD56-D62B5DECC038" frame="2"/>
@@ -2927,12 +2938,14 @@
     <Button x="336" y="816" guid="0BD7DE14-7FEF-798A-E3AF-757CDC767C9C" frame="0"/>
     <Button x="448" y="816" guid="43EAF400-FBB9-D447-D1D8-184056A36873" frame="0"/>
     <Button x="448" y="928" guid="9C02AA66-2804-77CA-9B19-2206B2F93EFB" frame="0"/>
-    <Event x="0." y="960" guid="441C22BD-0BD0-2993-558B-8B77A47AC5BD" frame="4"/>
-    <Event x="480" y="800" guid="C657B296-92F2-A5BD-0B59-ADE5A269627F" frame="4"/>
     <Event x="0." y="800" guid="F92C897F-515F-59C8-F07E-AF27F6B5E051" frame="0" type="0.8" />
     <Event x="160" y="800" guid="49FABD7D-32B1-DC71-E0F0-F496C95003F8" frame="0" type="0.8" />
     <Event x="160" y="960" guid="7DDADFD0-E746-5A52-C744-D2A5F7E1EE2D" frame="0" type="0.8" />
     <Event x="0." y="1120" guid="62780AEB-18CC-48F0-26DF-0AAB1358C531" frame="0" type="0.8" />
+    <Event x="320" y="800" guid="A5AEF7BB-15DA-F908-0BF7-EB73C23CEEBC" frame="3" type="Disabled" />
+    <Event x="320" y="640" guid="5E09BEEA-87EF-67C2-0740-0ED41BB19530" frame="3" type="Default" />
+    <Event x="480" y="800" guid="1C686589-B7C8-98B8-EF30-441A8AFB4742" frame="4"/>
+    <Event x="0." y="960" guid="F865E2CE-6A14-B69B-A08A-38CAD1E35DFB" frame="4"/>
   </map>
   <map name="SUBURB" type="Stateful">
     <Suburb_Killer x="80" y="256" guid="08FA88AD-FF2E-2244-A732-2030DCD9718C" frame="0"/>
@@ -3047,6 +3060,8 @@
     <Space_Face x="928" y="912" guid="1460CD5E-D747-1991-6B7C-862E0E273BAE" frame="0"/>
     <Event x="872" y="922" guid="6B0C4FD8-7DBC-8735-C5CC-49324F6C12ED" frame="2"/>
     <Gate x="1104" y="816" guid="37344F1B-C6CC-8E8C-2315-A47FE0B1A4A1" frame="12" p="2" alive="true" type="0" />
+    <Event x="800" y="640" guid="89773693-F4BD-D238-081F-9CA145FD1055" frame="3" type="Default" />
+    <Event x="800" y="800" guid="7601095E-6492-077D-01CB-2DD6D2FBA783" frame="3" type="Disabled" />
   </map>
   <map name="SPACE" type="Stateful">
     <NPC x="544" y="176" guid="F39FE26C-5B1B-95CB-0808-79022884E8A4" frame="4" type="generic" />
