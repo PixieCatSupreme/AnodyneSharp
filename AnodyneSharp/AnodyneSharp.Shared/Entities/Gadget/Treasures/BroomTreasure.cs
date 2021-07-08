@@ -21,13 +21,13 @@ namespace AnodyneSharp.Entities.Gadget.Treasures
                     _dialogueID = 1;
                     break;
                 case BroomType.Wide:
-                    _dialogueID = 6;
+                    _dialogueID = 4;
                     break;
                 case BroomType.Long:
-                    _dialogueID = 7;
+                    _dialogueID = 5;
                     break;
                 case BroomType.Transformer:
-                    _dialogueID = 8;
+                    _dialogueID = 6;
                     break;
             }
         }

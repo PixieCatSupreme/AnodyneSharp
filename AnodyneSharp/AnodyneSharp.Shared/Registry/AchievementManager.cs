@@ -21,7 +21,6 @@ namespace AnodyneSharp.Registry
         Secret,             //"Mega secret. Got a secret!"
         ColorCubes,         //"Got all colored cubes! You must be very patient..."
         BwCubes,            //"Got the Black and White cubes! Just as on T.V.!"
-        Cubes,              //"Got all the cubes! That's all five of them."
         HundredPercent,     //"100% You finished the game with over 37 cards, all the health and broom upgrades!" (37 cards, all upgrades)
         TwoHundredPercent,  //"200% Well aren't you the curious one." (49 cards, all upgrades)
         FastFields,         //"Fast Fields. Reached the Fields in 10 minutes."
@@ -84,8 +83,8 @@ namespace AnodyneSharp.Registry
         {
             if (!AchievementsDisabled)
             {
-                bool hasColorCubes = GlobalState.inventory.SecretStatus[11] && GlobalState.inventory.SecretStatus[12] && GlobalState.inventory.SecretStatus[13];
-                bool hasBwCubes = GlobalState.inventory.SecretStatus[10] && GlobalState.inventory.SecretStatus[14];
+                bool hasColorCubes = GlobalState.inventory.SecretStatus[9] && GlobalState.inventory.SecretStatus[10] && GlobalState.inventory.SecretStatus[11];
+                bool hasBwCubes = GlobalState.inventory.SecretStatus[8] && GlobalState.inventory.SecretStatus[12];
 
                 if (hasColorCubes)
                 {
@@ -95,11 +94,6 @@ namespace AnodyneSharp.Registry
                 if (hasBwCubes)
                 {
                     UnlockAchievement(AchievementValue.BwCubes);
-
-                    if (hasColorCubes)
-                    {
-                        UnlockAchievement(AchievementValue.Cubes);
-                    }
                 }
             }
         }

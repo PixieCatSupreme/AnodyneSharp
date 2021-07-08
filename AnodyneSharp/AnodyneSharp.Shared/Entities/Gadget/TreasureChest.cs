@@ -106,10 +106,16 @@ namespace AnodyneSharp.Entities.Gadget
             switch (_preset.Frame)
             {
                 case 0:
-                case 4:
-                case 5:
-                case 6:
                     _treasureType = TreasureType.BROOM;
+                    break;
+                case 4:
+                    _treasureType = TreasureType.WIDE;
+                    break;
+                case 5:
+                    _treasureType = TreasureType.LONG;
+                    break;
+                case 6:
+                    _treasureType = TreasureType.SWAP;
                     break;
                 case 1:
                     _treasureType = TreasureType.KEY;
