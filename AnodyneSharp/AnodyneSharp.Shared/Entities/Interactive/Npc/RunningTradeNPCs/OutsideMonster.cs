@@ -155,10 +155,17 @@ namespace AnodyneSharp.Entities.Interactive.Npc.RunningTradeNPCs
 
         public bool PlayerInteraction(Facing player_direction)
         {
-            SetFrame(open);
-            Sounds.SoundManager.PlaySoundEffect("broom_hit");
-            GlobalState.Dialogue = DialogueManager.GetDialogue("goldman", "etc", 2);
-            return true;
+            if (GlobalState.events.SpookedMonster)
+            {
+                SetFrame(open);
+                Sounds.SoundManager.PlaySoundEffect("broom_hit");
+                GlobalState.Dialogue = DialogueManager.GetDialogue("goldman", "etc", 2);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 
