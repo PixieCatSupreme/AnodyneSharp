@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Drawing.Effects;
 using AnodyneSharp.Drawing.Spritesheet;
 using AnodyneSharp.Entities;
 using AnodyneSharp.Map;
@@ -55,6 +56,8 @@ namespace AnodyneSharp.States
                 GlobalState.darkness.MapChange(GlobalState.CURRENT_MAP_NAME);
                 GlobalState.darkness.ForceAlpha(oldDarkness);
                 GlobalState.staticEffect.MapChange(GlobalState.CURRENT_MAP_NAME);
+                GlobalState.extraBlend.MapChange(GlobalState.CURRENT_MAP_NAME);
+                FG_Blend.MapChange(GlobalState.CURRENT_MAP_NAME);
             }
             foreach(Entity e in _entities.Where(e=>e.exists))
             {
@@ -73,6 +76,8 @@ namespace AnodyneSharp.States
             UpdateEntities = false;
             GlobalState.staticEffect.MapChange(map);
             GlobalState.darkness.MapChange(map);
+            GlobalState.extraBlend.MapChange(map);
+            FG_Blend.MapChange(map);
         }
 
         public override void Draw()

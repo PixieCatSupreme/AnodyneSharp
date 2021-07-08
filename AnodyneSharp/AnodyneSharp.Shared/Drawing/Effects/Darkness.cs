@@ -21,6 +21,7 @@ namespace AnodyneSharp.Drawing.Effects
         GraphicsDevice device;
         RenderTarget2D lights_applied;
         Effect blend;
+        bool hard_light = false;
 
         Camera camera;
         List<Light> lights = new List<Light>();
@@ -83,9 +84,6 @@ namespace AnodyneSharp.Drawing.Effects
             device = graphicsDevice;
             lights_applied = new RenderTarget2D(graphicsDevice, GameConstants.SCREEN_WIDTH_IN_PIXELS, GameConstants.SCREEN_HEIGHT_IN_PIXELS);
             blend = content.Load<Effect>("effects/blend");
-
-            blend.Parameters["HardLight"].SetValue(false);
-            blend.Parameters["OverlayTex"].SetValue(lights_applied);
         }
 
         public void Render(SpriteBatch batch, Texture2D screen)
@@ -123,6 +121,7 @@ namespace AnodyneSharp.Drawing.Effects
             if (darkness != null)
             {
                 blend.Parameters["OverlayTex"].SetValue(lights_applied);
+                blend.Parameters["HardLight"].SetValue(hard_light);
                 batch.Begin(samplerState: SamplerState.PointClamp, effect: blend);
                 batch.Draw(screen, screen.Bounds, Color.White);
                 batch.End();
@@ -165,12 +164,12 @@ namespace AnodyneSharp.Drawing.Effects
             darkness = ResourceManager.GetTexture(mapName + "_overlay", allowUnknown: true);
             if (darkness != null)
             {
-                blend.Parameters["HardLight"].SetValue(false);
+                hard_light = false;
             }
             else
             {
                 darkness = ResourceManager.GetTexture(mapName + "_hardlight", allowUnknown: true);
-                blend.Parameters["HardLight"].SetValue(true);
+                hard_light = true;
             }
 
             if (darkness == null)

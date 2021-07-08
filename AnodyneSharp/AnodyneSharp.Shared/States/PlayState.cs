@@ -939,6 +939,7 @@ namespace AnodyneSharp.States
             FG_Blend.MapChange(GlobalState.CURRENT_MAP_NAME);
             GlobalState.darkness.MapChange(GlobalState.CURRENT_MAP_NAME);
             GlobalState.staticEffect.MapChange(GlobalState.CURRENT_MAP_NAME);
+            GlobalState.extraBlend.MapChange(GlobalState.CURRENT_MAP_NAME);
 
             _player.Position = _player.grid_entrance =  GlobalState.PLAYER_WARP_TARGET == Vector2.Zero ? _map.GetFirstWalkable(_map_bg_2) * TILE_WIDTH : GlobalState.PLAYER_WARP_TARGET;
             _player.facing = GlobalState.NewMapFacing ?? _player.facing;

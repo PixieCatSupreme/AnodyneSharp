@@ -13,6 +13,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Cheatz\CheatAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Cheatz\CheatzManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Effects\Darkness.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Drawing\Effects\ExtraBlend.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Effects\FlashEffect.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Effects\TitleScreenOverlay.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Effects\Glitch.cs" />
@@ -544,6 +545,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\overlays\redsea_hardlight.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\overlays\space_overlay.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\overlays\street_dec_overlay.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\overlays\suburb_extra_overlay.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\overlays\suburb_fg_overlay.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\overlays\terminal_overlay.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\overlays\windmill_overlay.png" />
