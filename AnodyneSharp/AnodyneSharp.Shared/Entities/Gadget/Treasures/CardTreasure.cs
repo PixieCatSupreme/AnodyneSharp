@@ -33,13 +33,15 @@ namespace AnodyneSharp.Entities.Gadget.Treasures
 
         public override void GetTreasure()
         {
-            if(GlobalState.inventory.CardStatus[_curAnim.Frame])
+            base.GetTreasure();
+
+            if (GlobalState.inventory.CardStatus[_curAnim.Frame])
             {
                 exists = false;
                 GlobalState.FireEvent(new EmptyTreasureEvent());
                 return;
             }
-            base.GetTreasure();
+
 
             GlobalState.inventory.CardStatus[_curAnim.Frame] = true;
 

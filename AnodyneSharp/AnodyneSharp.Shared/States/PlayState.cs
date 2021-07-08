@@ -324,6 +324,12 @@ namespace AnodyneSharp.States
                         if (GlobalState.black_overlay.alpha == 1 || GlobalState.FUCK_IT_MODE_ON)
                         {
                             Warp();
+
+                            //Warp resets player values
+                            _player.invincible = true;
+                            _player.dontMove = true;
+                            _player.actions_disabled = true;
+
                             _state = PlayStateState.S_MAP_ENTER;
                             GlobalState.pixelation.SetPixelation(10f);
                         }
