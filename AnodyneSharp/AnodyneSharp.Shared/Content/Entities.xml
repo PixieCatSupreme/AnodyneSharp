@@ -1999,10 +1999,10 @@
     <Black_Thing x="32" y="32" guid="6E88EAED-2E86-1E64-C025-B0A90E36DEB4" frame="0"/>
   </map>
   <map name="GO" type="Stateless">
-    <Water_Anim x="17" y="353" guid="F37332A8-F662-7545-525B-42F1863C5805" frame="32" p="2"/>
-    <Water_Anim x="177" y="353" guid="29CFA0CA-D3B6-8BEA-1AA1-704E091FBE38" frame="32" p="2"/>
-    <Water_Anim x="513" y="353" guid="1EACCC80-FB21-BBD3-14D3-CBABFC9D3A8C" frame="32" p="2"/>
-    <Water_Anim x="705" y="353" guid="0E2DDF27-1E4B-6471-16DB-43B4C35E119D" frame="32" p="2"/>
+    <Water_Anim x="0." y="368" guid="F37332A8-F662-7545-525B-42F1863C5805" frame="32" p="2"/>
+    <Water_Anim x="160" y="368" guid="29CFA0CA-D3B6-8BEA-1AA1-704E091FBE38" frame="32" p="2"/>
+    <Water_Anim x="624" y="368" guid="1EACCC80-FB21-BBD3-14D3-CBABFC9D3A8C" frame="32" p="2"/>
+    <Water_Anim x="784" y="368" guid="0E2DDF27-1E4B-6471-16DB-43B4C35E119D" frame="32" p="2"/>
     <Water_Anim x="321" y="161" guid="5277B238-8F93-7EDD-6073-279A71AD212F" frame="32" p="2"/>
     <Event x="12" y="6" guid="B0858215-C42C-0D79-5D0E-6BE8B95D745F" frame="0" type="1.0" />
     <Event x="13" y="165" guid="57FD2E6F-FE09-C65F-F71A-259C5871C8D0" frame="0" type="0.0" />
