@@ -1,6 +1,7 @@
 ﻿using AnodyneSharp.Dialogue;
 using AnodyneSharp.Input;
 using AnodyneSharp.Registry;
+using AnodyneSharp.Resources.Writing;
 using AnodyneSharp.Sounds;
 using AnodyneSharp.UI;
 using AnodyneSharp.UI.PauseMenu;
@@ -290,6 +291,9 @@ namespace AnodyneSharp.States.MenuSubstates
                     }
                 }
             }
+
+            using InputConfigWriter inputConfigWriter = new($"{AnodyneGame.BaseFolder}InputConfig.dat");
+            inputConfigWriter.WriteInputConfig();
         }
 
         private void KeyRebind(Keys key)

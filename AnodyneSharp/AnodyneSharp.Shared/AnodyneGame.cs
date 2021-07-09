@@ -32,7 +32,9 @@ namespace AnodyneSharp
     /// This is the main type for your game.
     /// </summary>
     public class AnodyneGame : Game
-    {
+    {        
+        public static string BaseFolder;
+
         public enum GameState
         {
             TitleScreen,
@@ -48,7 +50,7 @@ namespace AnodyneSharp
 
         private UILabel _fpsLabel;
 
-        private string _baseFolder;
+
 
         public AnodyneGame()
         {
@@ -60,7 +62,7 @@ namespace AnodyneSharp
             _currentState = null;
 
             //_baseFolder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            _baseFolder = "";
+            BaseFolder = "";
 
 #if WINDOWS
             InitGraphics();
@@ -108,13 +110,13 @@ namespace AnodyneSharp
 
             if (File.Exists("InputConfig.dat"))
             {
-                using InputConfigLoader inputConfigWriter = new InputConfigLoader($"{_baseFolder}InputConfig.dat");
+                using InputConfigLoader inputConfigWriter = new InputConfigLoader($"{BaseFolder}InputConfig.dat");
                 inputConfigWriter.LoadInputConfig();
             }
             else
             {
                 SetDefaultKeys();
-                using InputConfigWriter inputConfigWriter = new InputConfigWriter($"{_baseFolder}InputConfig.dat");
+                using InputConfigWriter inputConfigWriter = new InputConfigWriter($"{BaseFolder}InputConfig.dat");
                 inputConfigWriter.WriteInputConfig();
             }
 
