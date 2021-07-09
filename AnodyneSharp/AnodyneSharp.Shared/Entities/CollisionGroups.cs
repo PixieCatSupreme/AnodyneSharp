@@ -49,30 +49,28 @@ namespace AnodyneSharp.Entities
         public void Register(Entity e)
         {
             Type t = e.GetType();
-            Get(t).targets.Add(e);
+            for(Type d = t; d != typeof(Entity); d = d.BaseType)
+            {
+                Get(d).targets.Add(e);
+            }
 
             if(t.IsDefined(typeof(EnemyAttribute),false))
             {
                 _enemies.Add(e);
             }
 
-            CollisionAttribute c = t.GetCustomAttribute<CollisionAttribute>();
+            IEnumerable<CollisionAttribute> cs = t.GetCustomAttributes<CollisionAttribute>();
 
-            if (c == null)
-            {
-                return;
-            }
-
-            if (c.MapCollision)
+            if (cs.Any(c=>c.MapCollision))
                 _mapColliders.Add(e);
 
-            if (c.PartOfMap)
+            if (cs.Any(c=>c.PartOfMap))
                 _mapEntities.Add(e);
 
-            if (c.KeepOnScreen)
+            if (cs.Any(c=>c.KeepOnScreen))
                 _keepOnScreen.Add(e);
 
-            foreach(Type target in c.Types)
+            foreach(Type target in cs.SelectMany(c=>c.Types))
             {
                 Get(target).colliders.Add(e);
             }

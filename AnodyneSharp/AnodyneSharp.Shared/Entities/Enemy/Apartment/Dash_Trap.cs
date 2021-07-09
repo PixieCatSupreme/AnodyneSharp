@@ -7,7 +7,7 @@ using System.Text;
 
 namespace AnodyneSharp.Entities.Enemy.Apartment
 {
-    [Collision(typeof(Player), typeof(Dust), typeof(BounceDashTrap), typeof(OnSightDashTrap), KeepOnScreen = true, MapCollision = true)]
+    [Collision(typeof(Player), typeof(Dust), KeepOnScreen = true, MapCollision = true)]
     abstract class DashTrap : Entity
     {
         protected const float DashVel = 80;
@@ -25,13 +25,12 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
 
         public override void Collided(Entity other)
         {
-            if(other is Player p)
+            if (other is Player p)
             {
                 if (p.state != PlayerState.AIR)
                 {
                     p.ReceiveDamage(1);
-                    if(velocity != Microsoft.Xna.Framework.Vector2.Zero)
-                        OnPlayer();
+                    OnPlayer();
                 }
             }
             else
@@ -43,7 +42,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
         public override void Update()
         {
             base.Update();
-            if(touching != Touching.NONE)
+            if (touching != Touching.NONE)
             {
                 OnTouch();
             }
@@ -53,13 +52,13 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
         protected abstract void OnPlayer();
     }
 
-    [NamedEntity("Dash_Trap",null,1,2)]
+    [NamedEntity("Dash_Trap", null, 1, 2)]
     class BounceDashTrap : DashTrap
     {
         public BounceDashTrap(EntityPreset preset, Player p) : base(preset)
         {
             Play("dash");
-            if(preset.Frame == 1)
+            if (preset.Frame == 1)
             {
                 velocity.X = DashVel;
             }
@@ -82,7 +81,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
         }
     }
 
-    [NamedEntity("Dash_Trap",null,0)]
+    [NamedEntity("Dash_Trap", null, 0), Collision(typeof(DashTrap))]
     class OnSightDashTrap : DashTrap
     {
         IState _state;
@@ -96,7 +95,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
             _state = new StateMachineBuilder()
                 .State("Idle")
                     .Enter((s) => Play("idle"))
-                    .Condition(SeePlayer,(s) => _state.ChangeState("Charging"))
+                    .Condition(SeePlayer, (s) => _state.ChangeState("Charging"))
                 .End()
                 .State("Charging")
                     .Enter((s) =>
@@ -106,20 +105,20 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
                         SoundManager.PlaySoundEffect("slasher_atk");
                         Play("dash");
                     })
-                    .Event("bounce",(s) =>
-                    {
-                        SoundManager.PlaySoundEffect("shieldy_ineffective");
-                        velocity = -velocity / 2;
-                        _state.ChangeState("Returning");
-                    })
+                    .Event("bounce", (s) =>
+                     {
+                         SoundManager.PlaySoundEffect("shieldy_ineffective");
+                         velocity = -velocity / 2;
+                         _state.ChangeState("Returning");
+                     })
                 .End()
                 .State("Returning")
-                    .Condition(()=>(_idlepos-Position).LengthSquared() < 4, (s) =>
-                    {
-                        velocity = Vector2.Zero;
-                        Position = _idlepos;
-                        _state.ChangeState("Idle");
-                    })
+                    .Condition(() => (_idlepos - Position).LengthSquared() < 4, (s) =>
+                        {
+                            velocity = Vector2.Zero;
+                            Position = _idlepos;
+                            _state.ChangeState("Idle");
+                        })
                 .End()
             .Build();
             _state.ChangeState("Idle");
