@@ -2846,17 +2846,17 @@
     <NPC x="496" y="976" guid="554B4CE5-5E79-113B-F89B-A36937C38014" frame="3" type="rock" />
     <Treasure x="384" y="432" guid="21B8A756-9B48-3857-D285-A3E66B31F60A" frame="2" alive="true"/>
     <Door x="544" y="368" guid="2158A162-3172-75E8-277C-79CF4EC04DB2" frame="53" type="16" />
-    <Redsea_NPC x="720" y="368" guid="6BC0AF03-0F8B-B9BB-3BB7-DBD557B00EAD" frame="0"/>
-    <Redsea_NPC x="416" y="576" guid="2C44F72A-84D6-5892-C761-C2A10F8B45E7" frame="10"/>
+    <Redsea_NPC x="720" y="368" guid="6BC0AF03-0F8B-B9BB-3BB7-DBD557B00EAD" frame="0" p="2"/>
+    <Redsea_NPC x="416" y="576" guid="2C44F72A-84D6-5892-C761-C2A10F8B45E7" frame="10" p="2"/>
     <Treasure x="32" y="1024" guid="87802506-447B-55C9-B01E-702A3C02480A" frame="2" alive="true"/>
     <Gate x="752" y="272" guid="0A123C3A-35B5-C94A-7EA9-2A07ACD31C5B" frame="5" p="2" alive="true" type="0" />
     <Gate x="288" y="336" guid="118AB26E-95DE-D567-FD53-21D240AF9BB7" frame="5" p="2" alive="true" type="0" />
     <Gate x="608" y="896" guid="48AEABF4-5A04-0B78-A1FB-E3759DC83A89" frame="5" p="2" alive="true" type="0" />
     <Gate x="880" y="688" guid="745AEEAB-76CB-852E-5FF0-FD652633C385" frame="5" p="2" alive="true" type="0" />
-    <Redsea_NPC x="688" y="80" guid="639F2803-AD5F-ED84-7025-8FDEF927DAFA" frame="10"/>
-    <Redsea_NPC x="80" y="352" guid="B1A357F9-27CD-34D3-494C-25A408ACAFD5" frame="10"/>
-    <Redsea_NPC x="1024" y="720" guid="7058B717-A8F9-30FB-30A0-F8AFAA65108F" frame="10"/>
-    <Redsea_NPC x="96" y="32" guid="0EF2BB78-8BBC-1D4F-3CBD-1AC23686530A" frame="10"/>
+    <Redsea_NPC x="688" y="80" guid="639F2803-AD5F-ED84-7025-8FDEF927DAFA" frame="10" p="2"/>
+    <Redsea_NPC x="80" y="352" guid="B1A357F9-27CD-34D3-494C-25A408ACAFD5" frame="10" p="2"/>
+    <Redsea_NPC x="1024" y="720" guid="7058B717-A8F9-30FB-30A0-F8AFAA65108F" frame="10" p="2"/>
+    <Redsea_NPC x="96" y="32" guid="0EF2BB78-8BBC-1D4F-3CBD-1AC23686530A" frame="10" p="2"/>
     <Button x="592" y="848" guid="B8639F58-5DF6-851F-14EF-A2B694BEFCDF" frame="0"/>
     <Button x="848" y="736" guid="71751185-4200-D3FB-8409-7CEA3012C10B" frame="0"/>
     <Button x="720" y="240" guid="2C1A9EFF-D2FD-9899-8978-4C5275A993D7" frame="0"/>

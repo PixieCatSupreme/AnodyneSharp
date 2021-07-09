@@ -78,7 +78,7 @@
       </sprite>
       <sprite name="Static Off" idx="18" className="Event" image="textures/sprites/dame/dame-events.png" width="16" height="16" preview="4" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="-1" canEditFrames="true" lockRotation="false"/>
     </group>
-    <group name="NPC" idx="19" open="false">
+    <group name="NPC" idx="19" open="true">
       <sprite name="Follower_Bro" idx="20" className="Follower_Bro" image="textures/sprites/npcs/follower_bro.png" width="14" height="30" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="14" boundsHeight="30" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="0" canEditFrames="true" lockRotation="false">
         <properties>
           <type typeof="String" name="alive" value="true" hidden="false"/>
@@ -172,7 +172,11 @@
       </sprite>
       <sprite name="Forest_NPC" idx="38" className="Forest_NPC" image="textures/sprites/npcs/forest_npcs.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="20" canEditFrames="true" lockRotation="false"/>
       <sprite name="Space_NPC" idx="39" className="Space_NPC" image="textures/sprites/npcs/space_npcs.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="12" canEditFrames="true" lockRotation="false"/>
-      <sprite name="Redsea_NPC" idx="40" className="Redsea_NPC" image="textures/sprites/npcs/redsea_npcs.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="10" canEditFrames="true" lockRotation="false"/>
+      <sprite name="Redsea_NPC" idx="40" className="Redsea_NPC" image="textures/sprites/npcs/redsea_npcs.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="10" canEditFrames="true" lockRotation="false" selected="true">
+        <properties>
+          <type typeof="Int" name="p" value="2" hidden="false"/>
+        </properties>
+      </sprite>
       <sprite name="Happy_NPC" idx="41" className="Happy_NPC" image="textures/sprites/npcs/happy_npcs.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="18" canEditFrames="true" lockRotation="false"/>
       <sprite name="Huge_Fucking_Stag" idx="42" className="Huge_Fucking_Stag" image="textures/sprites/npcs/forest_stag.png" width="64" height="80" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="64" boundsHeight="80" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="0" canEditFrames="true" lockRotation="false"/>
       <sprite name="Black_Thing" idx="43" className="Black_Thing" image="textures/sprites/dame/dameblackthing.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="-1" canEditFrames="true" lockRotation="false"/>
@@ -6343,7 +6347,7 @@
         <sprite guid="6E88EAED-2E86-1E64-C025-B0A90E36DEB4" x="32" y="32" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="43"/>
       </spritelayer>
     </group>
-    <group name="GO" id="54" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
+    <group name="GO" id="54" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true" selected="true">
       <maplayer name="BG" id="48" xScroll="1" yScroll="1" x="0" y="0" width="50" height="60" tileset="textures/tilemaps/go_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>6,80,81,81,81,81,81,81,82,6,0,0,0,0,0,0,0,0,0,0,130,130,130,130,130,130,130,130,130,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>6,80,91,91,91,91,91,91,82,6,0,0,0,0,0,0,0,0,0,0,130,130,130,130,130,130,130,130,130,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
@@ -6406,7 +6410,7 @@
         <row>0,0,0,0,0,0,0,0,0,0,6,6,11,2,2,2,12,50,13,2,2,2,14,10,90,90,15,11,2,2,2,12,50,13,2,2,2,14,6,6,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,6,6,6,6,6,6,10,50,15,6,6,6,6,10,125,125,15,6,6,6,6,10,50,15,6,6,6,6,6,6,0,0,0,0,0,0,0,0,0,0</row>
       </maplayer>
-      <maplayer name="BG2" id="49" xScroll="1" yScroll="1" x="0" y="0" width="50" height="60" tileset="textures/tilemaps/go_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false" selected="true">
+      <maplayer name="BG2" id="49" xScroll="1" yScroll="1" x="0" y="0" width="50" height="60" tileset="textures/tilemaps/go_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,54,0,0,55,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
@@ -9476,8 +9480,12 @@
         <sprite guid="2158A162-3172-75E8-277C-79CF4EC04DB2" x="544" y="368" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="160" frame="53">
           <properties/>
         </sprite>
-        <sprite guid="6BC0AF03-0F8B-B9BB-3BB7-DBD557B00EAD" x="720" y="368" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="40"/>
-        <sprite guid="2C44F72A-84D6-5892-C761-C2A10F8B45E7" x="416" y="576" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="40" frame="10"/>
+        <sprite guid="6BC0AF03-0F8B-B9BB-3BB7-DBD557B00EAD" x="720" y="368" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="40">
+          <properties/>
+        </sprite>
+        <sprite guid="2C44F72A-84D6-5892-C761-C2A10F8B45E7" x="416" y="576" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="40" frame="10">
+          <properties/>
+        </sprite>
         <sprite guid="87802506-447B-55C9-B01E-702A3C02480A" x="32" y="1024" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="52" frame="2">
           <properties/>
         </sprite>
@@ -9493,10 +9501,18 @@
         <sprite guid="745AEEAB-76CB-852E-5FF0-FD652633C385" x="880" y="688" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="46" frame="5">
           <properties/>
         </sprite>
-        <sprite guid="639F2803-AD5F-ED84-7025-8FDEF927DAFA" x="688" y="80" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="40" frame="10"/>
-        <sprite guid="B1A357F9-27CD-34D3-494C-25A408ACAFD5" x="80" y="352" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="40" frame="10"/>
-        <sprite guid="7058B717-A8F9-30FB-30A0-F8AFAA65108F" x="1024" y="720" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="40" frame="10"/>
-        <sprite guid="0EF2BB78-8BBC-1D4F-3CBD-1AC23686530A" x="96" y="32" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="40" frame="10"/>
+        <sprite guid="639F2803-AD5F-ED84-7025-8FDEF927DAFA" x="688" y="80" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="40" frame="10">
+          <properties/>
+        </sprite>
+        <sprite guid="B1A357F9-27CD-34D3-494C-25A408ACAFD5" x="80" y="352" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="40" frame="10">
+          <properties/>
+        </sprite>
+        <sprite guid="7058B717-A8F9-30FB-30A0-F8AFAA65108F" x="1024" y="720" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="40" frame="10">
+          <properties/>
+        </sprite>
+        <sprite guid="0EF2BB78-8BBC-1D4F-3CBD-1AC23686530A" x="96" y="32" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="40" frame="10">
+          <properties/>
+        </sprite>
         <sprite guid="B8639F58-5DF6-851F-14EF-A2B694BEFCDF" x="592" y="848" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="53" frame="0"/>
         <sprite guid="71751185-4200-D3FB-8409-7CEA3012C10B" x="848" y="736" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="53" frame="0"/>
         <sprite guid="2C1A9EFF-D2FD-9899-8978-4C5275A993D7" x="720" y="240" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="53" frame="0"/>

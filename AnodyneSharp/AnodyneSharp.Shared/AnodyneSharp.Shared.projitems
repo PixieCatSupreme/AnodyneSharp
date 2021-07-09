@@ -65,6 +65,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Fisherman.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Olive.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\QuestNPCs\FieldsQuest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\RedSea\BombDude.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\RedSea\HairDude.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\RunningTradeNPCs\Icky.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\RunningTradeNPCs\InsideMonster.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\RunningTradeNPCs\MiaoXiao.cs" />
