@@ -113,6 +113,14 @@ namespace AnodyneSharp.Entities
             touching = Touching.NONE;
         }
 
+        /**
+         * Slightly changed the original's separation logic below to accomodate for this game's specific usage.
+         * 
+         * 1. No objects in the game go fast enough for the check for overlapLeft/Down < overlapRight/Up to matter in comparison to using the position delta's to determine left/right or down/up
+         *    This is in principle to check for objects completely passing each other in a single update
+         * 2. Entity-Entity vs Entity-Tile collision gives Tiles priority by allowing them to overlap for more pixels before giving up on doing separation.
+         *    Thereby preventing Entity-Entity collisions pushing one out of the map.
+         */
         public static bool Separate(GameObject Object1, GameObject Object2)
         {
             bool separatedX = SeparateX(Object1, Object2);
@@ -140,41 +148,51 @@ namespace AnodyneSharp.Entities
             float overlap = 0;
             float obj1delta = Object1.Position.X - Object1.lastPosition.X;
             float obj2delta = Object2.Position.X - Object2.lastPosition.X;
-            if (obj1delta != obj2delta)
-            {
-                //Check if the X hulls actually overlap
-                float obj1deltaAbs = Math.Abs(obj1delta);
-                float obj2deltaAbs = Math.Abs(obj2delta);
-                Vector2 pos1 = new Vector2(Object1.Position.X - ((obj1delta > 0) ? obj1delta : 0), Object1.lastPosition.Y);
-                Vector2 size1 = new Vector2(Object1.width + obj1deltaAbs, Object1.height);
-                Vector2 pos2 = new Vector2(Object2.Position.X - ((obj2delta > 0) ? obj2delta : 0), Object2.lastPosition.Y);
-                Vector2 size2 = new Vector2(Object2.width + obj2deltaAbs, Object2.height);
-                if ((pos1.X + size1.X > pos2.X) && (pos1.X < pos2.X + size2.X) && (pos1.Y + size1.Y > pos2.Y) && (pos1.Y < pos2.Y + size2.Y))
-                {
-                    float maxOverlap = obj1deltaAbs + obj2deltaAbs + OVERLAP_BIAS;
 
-                    //If they did overlap (and can), figure out by how much and flip the corresponding flags
-                    if (obj1delta > obj2delta)
+            //Check if the X hulls actually overlap
+            float obj1deltaAbs = Math.Abs(obj1delta);
+            float obj2deltaAbs = Math.Abs(obj2delta);
+            Vector2 pos1 = new Vector2(Object1.Position.X - ((obj1delta > 0) ? obj1delta : 0), Object1.lastPosition.Y);
+            Vector2 size1 = new Vector2(Object1.width + obj1deltaAbs, Object1.height);
+            Vector2 pos2 = new Vector2(Object2.Position.X - ((obj2delta > 0) ? obj2delta : 0), Object2.lastPosition.Y);
+            Vector2 size2 = new Vector2(Object2.width + obj2deltaAbs, Object2.height);
+            if ((pos1.X + size1.X > pos2.X) && (pos1.X < pos2.X + size2.X) && (pos1.Y + size1.Y > pos2.Y) && (pos1.Y < pos2.Y + size2.Y))
+            {
+                float maxOverlap = obj1deltaAbs + obj2deltaAbs;
+                //map tiles have priority
+                if(Object2 is Entity)
+                {
+                    maxOverlap += OVERLAP_BIAS / 2;
+                }
+                else
+                {
+                    maxOverlap += OVERLAP_BIAS;
+                }
+
+                //If they did overlap (and can), figure out by how much and flip the corresponding flags
+                float overlapRight = Object1.Position.X + Object1.width - Object2.Position.X;
+                float overlapLeft = Object1.Position.X - Object2.width - Object2.Position.X;
+
+                if (MathF.Abs(overlapRight) < MathF.Abs(overlapLeft))
+                {
+                    overlap = overlapRight;
+                    if ((overlap > maxOverlap) || (Object1.allowCollisions & Touching.RIGHT) == 0 || (Object2.allowCollisions & Touching.LEFT) == 0)
+                        overlap = 0;
+                    else
                     {
-                        overlap = Object1.Position.X + Object1.width - Object2.Position.X;
-                        if ((overlap > maxOverlap) || (Object1.allowCollisions & Touching.RIGHT) == 0 || (Object2.allowCollisions & Touching.LEFT) == 0)
-                            overlap = 0;
-                        else
-                        {
-                            Object1.touching |= Touching.RIGHT;
-                            Object2.touching |= Touching.LEFT;
-                        }
+                        Object1.touching |= Touching.RIGHT;
+                        Object2.touching |= Touching.LEFT;
                     }
-                    else if (obj1delta < obj2delta)
+                }
+                else
+                {
+                    overlap = overlapLeft;
+                    if ((-overlap > maxOverlap) || (Object1.allowCollisions & Touching.LEFT) == 0 || (Object2.allowCollisions & Touching.RIGHT) == 0)
+                        overlap = 0;
+                    else
                     {
-                        overlap = Object1.Position.X - Object2.width - Object2.Position.X;
-                        if ((-overlap > maxOverlap) || (Object1.allowCollisions & Touching.LEFT) == 0 || (Object2.allowCollisions & Touching.RIGHT) == 0)
-                            overlap = 0;
-                        else
-                        {
-                            Object1.touching |= Touching.LEFT;
-                            Object2.touching |= Touching.RIGHT;
-                        }
+                        Object1.touching |= Touching.LEFT;
+                        Object2.touching |= Touching.RIGHT;
                     }
                 }
             }
@@ -192,10 +210,12 @@ namespace AnodyneSharp.Entities
                 else if (!obj1immovable)
                 {
                     Object1.Position.X -= overlap;
+                    Object1.lastPosition.X = Object1.Position.X;
                 }
                 else if (!obj2immovable)
                 {
                     Object2.Position.X += overlap;
+                    Object2.lastPosition.X = Object2.Position.X;
                 }
                 return true;
             }
@@ -223,41 +243,51 @@ namespace AnodyneSharp.Entities
             float overlap = 0;
             float obj1delta = Object1.Position.Y - Object1.lastPosition.Y;
             float obj2delta = Object2.Position.Y - Object2.lastPosition.Y;
-            if (obj1delta != obj2delta)
-            {
-                //Check if the Y hulls actually overlap
-                float obj1deltaAbs = Math.Abs(obj1delta);
-                float obj2deltaAbs = Math.Abs(obj2delta);
-                Vector2 pos1 = new Vector2(Object1.lastPosition.X, Object1.Position.Y -((obj1delta > 0) ? obj1delta : 0));
-                Vector2 size1 = new Vector2(Object1.width, Object1.height + obj1deltaAbs);
-                Vector2 pos2 = new Vector2(Object2.lastPosition.X, Object2.Position.Y - ((obj2delta > 0) ? obj2delta : 0));
-                Vector2 size2 = new Vector2(Object2.width, Object2.height + obj2deltaAbs);
-                if ((pos1.X + size1.X > pos2.X) && (pos1.X < pos2.X + size2.X) && (pos1.Y + size1.Y > pos2.Y) && (pos1.Y < pos2.Y + size2.Y))
-                {
-                    float maxOverlap = obj1deltaAbs + obj2deltaAbs + OVERLAP_BIAS;
 
-                    //If they did overlap (and can), figure out by how much and flip the corresponding flags
-                    if (obj1delta > obj2delta)
+            //Check if the Y hulls actually overlap
+            float obj1deltaAbs = Math.Abs(obj1delta);
+            float obj2deltaAbs = Math.Abs(obj2delta);
+            Vector2 pos1 = new Vector2(Object1.lastPosition.X, Object1.Position.Y -((obj1delta > 0) ? obj1delta : 0));
+            Vector2 size1 = new Vector2(Object1.width, Object1.height + obj1deltaAbs);
+            Vector2 pos2 = new Vector2(Object2.lastPosition.X, Object2.Position.Y - ((obj2delta > 0) ? obj2delta : 0));
+            Vector2 size2 = new Vector2(Object2.width, Object2.height + obj2deltaAbs);
+            if ((pos1.X + size1.X > pos2.X) && (pos1.X < pos2.X + size2.X) && (pos1.Y + size1.Y > pos2.Y) && (pos1.Y < pos2.Y + size2.Y))
+            {
+                float maxOverlap = obj1deltaAbs + obj2deltaAbs;
+                //map tiles have priority
+                if (Object2 is Entity)
+                {
+                    maxOverlap += OVERLAP_BIAS / 2;
+                }
+                else
+                {
+                    maxOverlap += OVERLAP_BIAS;
+                }
+
+                //If they did overlap (and can), figure out by how much and flip the corresponding flags
+                float overlapDown = Object1.Position.Y + Object1.height - Object2.Position.Y;
+                float overlapUp = Object1.Position.Y - Object2.height - Object2.Position.Y;
+
+                if (MathF.Abs(overlapDown) < MathF.Abs(overlapUp))
+                {
+                    overlap = overlapDown;
+                    if ((overlap > maxOverlap) || (Object1.allowCollisions & Touching.DOWN) == 0 || (Object2.allowCollisions & Touching.UP) == 0)
+                        overlap = 0;
+                    else
                     {
-                        overlap = Object1.Position.Y + Object1.height - Object2.Position.Y;
-                        if ((overlap > maxOverlap) || (Object1.allowCollisions & Touching.DOWN) == 0 || (Object2.allowCollisions & Touching.UP) == 0)
-                            overlap = 0;
-                        else
-                        {
-                            Object1.touching |= Touching.DOWN;
-                            Object2.touching |= Touching.UP;
-                        }
+                        Object1.touching |= Touching.DOWN;
+                        Object2.touching |= Touching.UP;
                     }
-                    else if (obj1delta < obj2delta)
+                }
+                else
+                {
+                    overlap = overlapUp;
+                    if ((-overlap > maxOverlap) || (Object1.allowCollisions & Touching.UP) == 0 || (Object2.allowCollisions & Touching.DOWN) == 0)
+                        overlap = 0;
+                    else
                     {
-                        overlap = Object1.Position.Y - Object2.height - Object2.Position.Y;
-                        if ((-overlap > maxOverlap) || (Object1.allowCollisions & Touching.UP) == 0 || (Object2.allowCollisions & Touching.DOWN) == 0)
-                            overlap = 0;
-                        else
-                        {
-                            Object1.touching |= Touching.UP;
-                            Object2.touching |= Touching.DOWN;
-                        }
+                        Object1.touching |= Touching.UP;
+                        Object2.touching |= Touching.DOWN;
                     }
                 }
             }
@@ -274,10 +304,12 @@ namespace AnodyneSharp.Entities
                 else if (!obj1immovable)
                 {
                     Object1.Position.Y -= overlap;
+                    Object1.lastPosition.Y = Object1.Position.Y;
                 }
                 else if (!obj2immovable)
                 {
                     Object2.Position.Y += overlap;
+                    Object2.lastPosition.Y = Object2.Position.Y;
                 }
                 return true;
             }

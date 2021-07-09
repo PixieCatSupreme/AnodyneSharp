@@ -53,11 +53,8 @@ namespace AnodyneSharp.Entities.Interactive.Npc.RedSea
         {
             base.Collided(other);
 
-            if (other.Position != other.lastPosition)
-            {
-                Separate(this, other);
-                touching = Touching.NONE;
-            }
+            Separate(this, other);
+            touching = Touching.NONE;
         }
     }
 }

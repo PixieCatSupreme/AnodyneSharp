@@ -358,8 +358,8 @@ namespace AnodyneSharp.States
                         break;
                 }
 
-                //Single frame non-collision on transition to enable wiggle glitch
-                if (oldstate == _state || _state != PlayStateState.S_TRANSITION)
+                //Single frame non-collision after transition to enable wiggle glitch(no collision during screen transition anyway)
+                if (oldstate == _state && _state != PlayStateState.S_TRANSITION)
                 {
                     DoCollisions();
                 }
