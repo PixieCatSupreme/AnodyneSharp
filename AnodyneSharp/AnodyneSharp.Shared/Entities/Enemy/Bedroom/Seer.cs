@@ -12,7 +12,7 @@ using System.Text;
 
 namespace AnodyneSharp.Entities.Enemy.Bedroom
 {
-    [NamedEntity("Sun_Guy"), Enemy, Collision(typeof(Player), typeof(Broom), MapCollision = true)]
+    [NamedEntity("Sun_Guy"), Enemy, Collision(typeof(Player), typeof(Broom))]
     public class Seer : Entity
     {
         Player _player;
@@ -106,41 +106,11 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
                 yield return null;
             }
 
-            IState stage2_logic = null;
-            IEnumerator stage2_sublogic = null;
-
-            stage2_logic = new StateMachineBuilder()
-                .State("Prepare")
-                    .Update((s, t) => RotateOrbs())
-                    //short-circuit on purpose
-                    .Condition(() => MathUtilities.MoveTo(ref Position.X, _preset.Position.X, 90f) && MathUtilities.MoveTo(ref Position.Y, _preset.Position.Y, 12f), (s) => stage2_logic.ChangeState("Bounce"))
-                .End()
-                .State("Bounce")
-                    .Enter((s) => stage2_sublogic = MoveVertical())
-                    .Update((s, t) =>
-                    {
-                        foreach (var orb in _orbs)
-                        {
-                            MathUtilities.MoveTo(ref orb.radius, 8, 30f);
-                            MathUtilities.MoveTo(ref orb.rotation_speed, 240f, 0.6f);
-                        }
-                        RotateOrbs();
-                        horizontal.MoveNext();
-                    })
-                    //vertical will eventually stop iterating
-                    .Condition(() => !stage2_sublogic.MoveNext(), (s) => stage2_logic.ChangeState("Charge"))
-                .End()
-                .State("Charge")
-                    .Enter((s) => stage2_sublogic = ChargeLogic())
-                    .Condition(() => !stage2_sublogic.MoveNext(), (s) => stage2_logic.ChangeState("Prepare"))
-                .End()
-                .Build();
-
-            stage2_logic.ChangeState("Prepare");
+            IEnumerator stage2 = Stage2Logic();
 
             while (_health > 0)
             {
-                stage2_logic.Update(GameTimes.DeltaTime);
+                stage2.MoveNext();
                 yield return null;
             }
 
@@ -217,6 +187,54 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
             }
         }
 
+        IEnumerator MoveHorizontal()
+        {
+            while (true)
+            {
+                while (!MathUtilities.MoveTo(ref Position.X, _preset.Position.X + 60, 50f))
+                {
+                    yield return null;
+                }
+                while (!MathUtilities.MoveTo(ref Position.X, _preset.Position.X - 50, 50f))
+                {
+                    yield return null;
+                }
+            }
+        }
+
+        IEnumerator Stage2Logic()
+        {
+            while (true)
+            {
+                //Get into position
+                while (!(MathUtilities.MoveTo(ref Position.X, _preset.Position.X, 90f) && MathUtilities.MoveTo(ref Position.Y, _preset.Position.Y, 12f)))
+                {
+                    RotateOrbs();
+                    yield return null;
+                }
+                //Bounce around dropping dust
+                IEnumerator horizontal = MoveHorizontal();
+                IEnumerator movement_logic = MoveVertical();
+                while (movement_logic.MoveNext())
+                {
+                    foreach (var orb in _orbs)
+                    {
+                        MathUtilities.MoveTo(ref orb.radius, 8, 30f);
+                        MathUtilities.MoveTo(ref orb.rotation_speed, 240f, 0.6f);
+                    }
+                    RotateOrbs();
+                    horizontal.MoveNext();
+                    yield return null;
+                }
+                //Charge up and shoot wave
+                movement_logic = ChargeLogic();
+                while (movement_logic.MoveNext())
+                {
+                    yield return null;
+                }
+            }
+        }
+
         IEnumerator MoveVertical()
         {
             for (int i = 0; i <= dusts.Length; ++i)
@@ -241,20 +259,6 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
             yield break;
         }
 
-        IEnumerator MoveHorizontal()
-        {
-            while (true)
-            {
-                while (!MathUtilities.MoveTo(ref Position.X, _preset.Position.X + 60, 50f))
-                {
-                    yield return null;
-                }
-                while (!MathUtilities.MoveTo(ref Position.X, _preset.Position.X - 50, 50f))
-                {
-                    yield return null;
-                }
-            }
-        }
 
         IEnumerator ChargeLogic()
         {
