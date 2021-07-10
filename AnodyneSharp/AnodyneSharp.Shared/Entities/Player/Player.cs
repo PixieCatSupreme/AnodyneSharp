@@ -79,7 +79,7 @@ namespace AnodyneSharp.Entities
         private float bump_timer = 0;
 
         internal Vector2 grid_entrance;
-        private Vector2 additionalVel;
+        public Vector2 additionalVel;
 
         private float action_latency;
 
