@@ -44,6 +44,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\CollisionGroups.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Decorations\DeathFadeIn.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Decorations\NonSolid.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Decorations\RedCaveEntrance.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\DoorPair.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Apartment\Dash_Trap.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Apartment\GasGuy.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Hotel\Burst_Plant.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Redcave\Four_Shooter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Redcave\Mover.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\DoorToggle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\StaticOff.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\SwapperPolicyEvent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\FieldsEaster.cs" />

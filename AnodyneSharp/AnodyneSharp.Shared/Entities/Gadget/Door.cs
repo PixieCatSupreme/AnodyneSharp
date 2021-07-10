@@ -30,6 +30,9 @@ namespace AnodyneSharp.Entities.Gadget
 
         private string? _sfx;
 
+        //Here to be disabled/re-enabled as necessary for eg REDSEA->REDCAVE and CROWD falling door
+        public bool Active = true;
+
         public Door(EntityPreset preset, Player player, string? sfx = "enter_door")
             : this(preset, player, "doors", 16, 16, sfx)
         { }
@@ -65,7 +68,7 @@ namespace AnodyneSharp.Entities.Gadget
 
         public override void Collided(Entity other)
         {
-            if (other is Player p)
+            if (other is Player p && Active)
             {
                 if(!player_on_door)
                     TeleportPlayer();

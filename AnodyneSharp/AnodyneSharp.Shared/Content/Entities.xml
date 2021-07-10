@@ -2838,7 +2838,6 @@
     <Door x="712" y="740" guid="AC435A22-EF17-A8F3-F1A2-FB218E83A28A" frame="7" type="5" />
     <Door x="551" y="581" guid="6A0C574F-2A32-E02F-5B6A-1C65042A1EA1" frame="8" type="5" />
     <Door x="550" y="58" guid="E01078EC-37C4-F824-6E47-FE9B56943364" frame="11" type="7" />
-    <Solid_Sprite x="528" y="688" guid="5F9E0821-5270-0537-9DEA-203DBF53214B" frame="0" type="red_cave_l_ss" />
     <Door x="551" y="739" guid="23EC54F8-6B4B-65B2-2665-530C83C109B4" frame="0" type="5" />
     <NPC x="352" y="416" guid="1C43F9B6-92C5-E954-7050-4E0756DC6476" frame="0" type="rock" />
     <NPC x="560" y="96" guid="9EA28B42-692D-3CCB-D7A6-47A9A1581090" frame="1" type="rock" />
@@ -2893,7 +2892,6 @@
     <Door x="551" y="883" guid="AB684E0E-1882-83E0-773A-D71697B20BF3" frame="67" type="5" />
   </map>
   <map name="REDSEA" type="Stateless">
-    <Solid_Sprite x="528" y="832" guid="F1DB603B-324D-45DF-98B2-3DBFFBB18683" frame="0" type="red_cave_l_ss" />
     <Event x="560" y="208" guid="05C54A60-9430-55BF-6C85-11F3B9E1C816" frame="2"/>
     <Red_Walker x="529" y="1011" guid="B5518D6D-632E-FB35-F509-D02FD3A63A9F" frame="0"/>
     <Red_Walker x="582" y="975" guid="58BF5F35-EE36-D795-EC46-4A927513374E" frame="0"/>
@@ -2902,6 +2900,8 @@
     <Red_Walker x="816" y="832" guid="90F98638-0B2E-317E-8530-DDDF8DBF2EB6" frame="0"/>
     <Red_Walker x="864" y="882" guid="CD34F546-F2E1-EEB5-60E8-235720CB6573" frame="0"/>
     <Red_Walker x="993" y="977" guid="33AD27C4-4A0B-C7FF-E5E9-FAC72F10E159" frame="0"/>
+    <Solid_Sprite x="528" y="688" guid="194A0F7F-A021-E066-C7FC-CC1ACE8F9F8C" frame="0" type="red_cave_c_ss" />
+    <Solid_Sprite x="528" y="832" guid="2219981D-A472-C818-2420-4913E8773FA0" frame="0" type="red_cave_c_ss" />
   </map>
   <map name="SUBURB" type="Stateless">
     <Suburb_Walker x="76" y="121" guid="EDFD94FA-F718-2FF4-58AF-8089DF0C90A9" frame="0" p="1" alive="true"/>

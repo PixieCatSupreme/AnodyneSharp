@@ -2,9 +2,9 @@
 <project>
   <version/>
   <bgColor>0xcccccc</bgColor>
-  <viewPos x="-53" y="-33"/>
+  <viewPos x="-280.55863192182414" y="-475.55405405405406"/>
   <firstLayersTop>false</firstLayersTop>
-  <spriteEntries currentId="162">
+  <spriteEntries currentId="163">
     <group name="Events SL" idx="1" open="false">
       <group name="Alpha" idx="2" open="false">
         <sprite name="Dark-Alpha-0" idx="3" className="Event" image="textures/sprites/dame/dame-events.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="-1" canEditFrames="true" lockRotation="false">
@@ -78,7 +78,7 @@
       </sprite>
       <sprite name="Static Off" idx="18" className="Event" image="textures/sprites/dame/dame-events.png" width="16" height="16" preview="4" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="-1" canEditFrames="true" lockRotation="false"/>
     </group>
-    <group name="NPC" idx="19" open="true">
+    <group name="NPC" idx="19" open="false">
       <sprite name="Follower_Bro" idx="20" className="Follower_Bro" image="textures/sprites/npcs/follower_bro.png" width="14" height="30" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="14" boundsHeight="30" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="0" canEditFrames="true" lockRotation="false">
         <properties>
           <type typeof="String" name="alive" value="true" hidden="false"/>
@@ -172,7 +172,7 @@
       </sprite>
       <sprite name="Forest_NPC" idx="38" className="Forest_NPC" image="textures/sprites/npcs/forest_npcs.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="20" canEditFrames="true" lockRotation="false"/>
       <sprite name="Space_NPC" idx="39" className="Space_NPC" image="textures/sprites/npcs/space_npcs.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="12" canEditFrames="true" lockRotation="false"/>
-      <sprite name="Redsea_NPC" idx="40" className="Redsea_NPC" image="textures/sprites/npcs/redsea_npcs.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="10" canEditFrames="true" lockRotation="false" selected="true">
+      <sprite name="Redsea_NPC" idx="40" className="Redsea_NPC" image="textures/sprites/npcs/redsea_npcs.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="10" canEditFrames="true" lockRotation="false">
         <properties>
           <type typeof="Int" name="p" value="2" hidden="false"/>
         </properties>
@@ -272,13 +272,13 @@
         </properties>
       </sprite>
     </group>
-    <group name="Decoration" idx="74" open="false">
+    <group name="Decoration" idx="74" open="true">
       <sprite name="Sign" idx="75" className="Solid_Sprite" image="textures/sprites/npcs/note_rock.png" width="16" height="16" preview="2" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="4" canEditFrames="true" lockRotation="false">
         <properties>
           <type typeof="String" name="type" value="sign" hidden="false"/>
         </properties>
       </sprite>
-      <group name="Grass" idx="76" open="false">
+      <group name="Grass" idx="76" open="false" selected="true">
         <sprite name="Grass_REDSEA" idx="77" className="Nonsolid" image="textures/sprites/decoration/grass_REDSEA.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="-1" canEditFrames="true" lockRotation="false">
           <properties>
             <type typeof="String" name="type" value="Grass_REDSEA" hidden="false"/>
@@ -321,6 +321,11 @@
         </properties>
       </sprite>
       <sprite name="Terminal_Gate" idx="89" className="Terminal_Gate" image="textures/sprites/dame/dame_terminal_gate.png" width="16" height="64" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="-1" canEditFrames="true" lockRotation="false"/>
+      <sprite name="Red_Cave_C_SS" idx="162" className="Solid_Sprite" image="textures/sprites/decoration/red_cave_left.png" width="64" height="64" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="64" boundsHeight="64" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="-1" canEditFrames="true" lockRotation="false">
+        <properties>
+          <type typeof="String" name="type" value="red_cave_c_ss" hidden="false"/>
+        </properties>
+      </sprite>
     </group>
     <group name="Enemies" idx="90" open="false">
       <group name="etc" idx="91" open="false">
@@ -6347,7 +6352,7 @@
         <sprite guid="6E88EAED-2E86-1E64-C025-B0A90E36DEB4" x="32" y="32" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="43"/>
       </spritelayer>
     </group>
-    <group name="GO" id="54" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true" selected="true">
+    <group name="GO" id="54" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
       <maplayer name="BG" id="48" xScroll="1" yScroll="1" x="0" y="0" width="50" height="60" tileset="textures/tilemaps/go_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>6,80,81,81,81,81,81,81,82,6,0,0,0,0,0,0,0,0,0,0,130,130,130,130,130,130,130,130,130,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>6,80,91,91,91,91,91,91,82,6,0,0,0,0,0,0,0,0,0,0,130,130,130,130,130,130,130,130,130,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
@@ -9287,7 +9292,7 @@
         </sprite>
       </spritelayer>
     </group>
-    <group name="REDSEA" id="20" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
+    <group name="REDSEA" id="20" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
       <maplayer name="BG" id="70" xScroll="1" yScroll="1" x="0" y="0" width="70" height="70" tileset="textures/tilemaps/redsea_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>3,12,1,2,11,12,1,3,4,2,11,12,11,12,1,3,4,3,4,2,61,61,1,2,1,3,4,3,4,3,4,3,4,3,4,2,61,1,2,1,3,4,3,4,2,61,61,1,3,4,2,72,5,63,63,6,7,75,13,11,4,3,12,72,63,63,63,75,13,61</row>
         <row>4,2,11,12,1,2,11,12,11,12,13,71,71,61,11,12,11,12,11,12,1,2,11,12,11,4,3,12,11,4,3,4,3,4,3,4,2,11,4,3,4,3,4,3,4,2,1,3,4,3,12,102,104,104,92,16,17,75,14,1,3,4,2,102,92,63,63,75,13,70</row>
@@ -9456,9 +9461,6 @@
         <sprite guid="E01078EC-37C4-F824-6E47-FE9B56943364" x="550" y="58" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="151" frame="11">
           <properties/>
         </sprite>
-        <sprite guid="5F9E0821-5270-0537-9DEA-203DBF53214B" x="528" y="688" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="86" frame="0">
-          <properties/>
-        </sprite>
         <sprite guid="23EC54F8-6B4B-65B2-2665-530C83C109B4" x="551" y="739" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="149" frame="0">
           <properties/>
         </sprite>
@@ -9606,10 +9608,7 @@
           <properties/>
         </sprite>
       </spritelayer>
-      <spritelayer name="Stateless" id="73" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
-        <sprite guid="F1DB603B-324D-45DF-98B2-3DBFFBB18683" x="528" y="832" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="86" frame="0">
-          <properties/>
-        </sprite>
+      <spritelayer name="Stateless" id="73" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false" selected="true">
         <sprite guid="05C54A60-9430-55BF-6C85-11F3B9E1C816" x="560" y="208" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="14" frame="2"/>
         <sprite guid="B5518D6D-632E-FB35-F509-D02FD3A63A9F" x="528.5" y="1010.5" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="131"/>
         <sprite guid="58BF5F35-EE36-D795-EC46-4A927513374E" x="581.5" y="974.5" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="131"/>
@@ -9618,6 +9617,12 @@
         <sprite guid="90F98638-0B2E-317E-8530-DDDF8DBF2EB6" x="816" y="832" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="131"/>
         <sprite guid="CD34F546-F2E1-EEB5-60E8-235720CB6573" x="863.5" y="881.5" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="131"/>
         <sprite guid="33AD27C4-4A0B-C7FF-E5E9-FAC72F10E159" x="992.5" y="976.5" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="131"/>
+        <sprite guid="194A0F7F-A021-E066-C7FC-CC1ACE8F9F8C" x="528" y="688" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="162">
+          <properties/>
+        </sprite>
+        <sprite guid="2219981D-A472-C818-2420-4913E8773FA0" x="528" y="832" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="162">
+          <properties/>
+        </sprite>
       </spritelayer>
     </group>
     <group name="SUBURB" id="70" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
