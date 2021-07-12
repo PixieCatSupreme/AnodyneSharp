@@ -35,6 +35,7 @@ namespace AnodyneSharp.Entities
 
         public Dust dust;
         public bool just_released_dust;
+        private Dust pickup_candidate = null;
 
         public Entity long_attack;
         public Entity wide_attack;
@@ -83,6 +84,12 @@ namespace AnodyneSharp.Entities
 
         public override void Update()
         {
+            if(pickup_candidate != null)
+            {
+                dust = pickup_candidate;
+                pickup_candidate = null;
+                dust.Play("poof");
+            }
             if (_curAnim.Finished)
             {
                 exists = false;
@@ -314,8 +321,10 @@ namespace AnodyneSharp.Entities
         {
             if(dust == null && !just_released_dust && other is Dust d && !ReferenceEquals(d,_root.raft))
             {
-                dust = d;
-                d.Play("poof");
+                if(pickup_candidate == null || (_root.Center - pickup_candidate.Center).LengthSquared() < (d.Center - _root.Center).LengthSquared())
+                {
+                    pickup_candidate = d;
+                }
             }
         }
     }
