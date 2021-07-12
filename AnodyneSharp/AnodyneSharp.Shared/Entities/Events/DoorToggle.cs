@@ -15,12 +15,16 @@ namespace AnodyneSharp.Entities.Events
             visible = false;
         }
 
+        public override void Update()
+        {
+            //Update happens after collision check, allows for multiple doors to be toggled with this
+            exists = false;
+        }
+
         public override void Collided(Entity other)
         {
             Door d = (Door)other;
             d.Active = !d.Active;
-
-            exists = false;
         }
     }
 }
