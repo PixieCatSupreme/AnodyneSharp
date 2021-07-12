@@ -24,6 +24,7 @@ namespace AnodyneSharp.Drawing
         HEADER,             //Player UI
         UI_OBJECTS,         //Health, keys, mini mini map
         EQUIPPED_BORDER,    //The border of the equipped broom
+        DUST_ICON,          //Icon on HUD showing dust status
         HEALTH_UPGRADE,     //Health cicida. Needs to be drawn on UI so it can fly over the header
         PAUSE_BG,           //Background for pause menu. Needs to be drawn over health upgrades. 
         EQUIPMENT_ICON,     //The inventory items for the broom types

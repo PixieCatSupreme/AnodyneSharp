@@ -85,6 +85,9 @@ namespace AnodyneSharp.States
         private Texture2D _equippedBroomBorder;
         private Texture2D _equippedBroomIcon;
 
+        private DustIcon _dustIcon;
+
+
         private Vector2 _iconPos;
 
         private float _texRandomTimer;
@@ -108,6 +111,8 @@ namespace AnodyneSharp.States
             _healthBar = new HealthBar();
 
             _iconPos = new Vector2(2, 3);
+
+            _dustIcon = new DustIcon(new Vector2(10, 10), _player.broom);
 
             CreateKeyLabel();
 
@@ -218,6 +223,7 @@ namespace AnodyneSharp.States
 
             SpriteDrawer.DrawGuiSprite(_equippedBroomBorder, _iconPos, Z: DrawingUtilities.GetDrawingZ(DrawOrder.EQUIPPED_BORDER));
 
+            _dustIcon.Draw();
 
             _healthBar.Draw();
 
@@ -253,7 +259,10 @@ namespace AnodyneSharp.States
             if (_background != null) _background.Update();
             if (_dec_over != null) _dec_over.Update();
 
-            foreach(Entity e in _newlySpawned)
+            _dustIcon.Update();
+            _dustIcon.PostUpdate();
+
+            foreach (Entity e in _newlySpawned)
             {
                 _gridEntities.Add(e);
                 _groups.Register(e);
@@ -586,6 +595,8 @@ namespace AnodyneSharp.States
                 }
                 _player.grid_entrance = _player.Position;
                 _player.dontMove = true;
+
+                _player.broom.dust = null;
 
                 _player.velocity = Vector2.Zero;
 

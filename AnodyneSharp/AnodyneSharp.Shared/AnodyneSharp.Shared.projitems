@@ -198,6 +198,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)States\MenuSubstates\PauseMenu\SaveSubstate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\PlayState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\Base\State.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\DustIcon.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\Font\FontManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\Font\SpriteFont.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\Font\Writing\TextCharacter.cs" />
