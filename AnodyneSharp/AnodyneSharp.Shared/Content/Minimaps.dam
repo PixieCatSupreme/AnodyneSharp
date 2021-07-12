@@ -2,11 +2,11 @@
 <project>
   <version/>
   <bgColor>0xcccccc</bgColor>
-  <viewPos x="25.913043478260875" y="20.65783294468197"/>
+  <viewPos x="32" y="7"/>
   <firstLayersTop>false</firstLayersTop>
   <spriteEntries currentId="1"/>
   <layers>
-    <group name="Minimap" id="0" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
+    <group name="Minimap" id="0" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true" selected="true">
       <maplayer name="STREET" id="0" xScroll="1" yScroll="1" x="0" y="0" width="7" height="7" tileset="textures/tilemaps/minimap_tiles.png" tileWidth="7" tileHeight="7" visible="false" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="7" tileSpacingY="7" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0</row>
         <row>0,7,13,11,0,0,0</row>
@@ -32,7 +32,7 @@
         <row>4,8,12,5,4,8,12</row>
         <row>0,24,25,14,11,24,0</row>
       </maplayer>
-      <maplayer name="CROWD" id="3" xScroll="1" yScroll="1" x="0" y="0" width="10" height="8" tileset="textures/tilemaps/minimap_tiles.png" tileWidth="7" tileHeight="7" visible="false" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="7" tileSpacingY="7" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false" selected="true">
+      <maplayer name="CROWD" id="3" xScroll="1" yScroll="1" x="0" y="0" width="10" height="8" tileset="textures/tilemaps/minimap_tiles.png" tileWidth="7" tileHeight="7" visible="false" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="7" tileSpacingY="7" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,7,17,13,15</row>
         <row>0,0,0,0,0,0,4,8,15,6</row>
         <row>0,7,17,69,0,1,0,82,12,78</row>
@@ -117,7 +117,7 @@
         <row>0,0,0,0,6,0,0</row>
         <row>0,3,15,5,6,0,0</row>
         <row>31,17,12,6,6,0,0</row>
-        <row>7,16,5,10,12,0,0</row>
+        <row>7,8,15,10,12,0,0</row>
         <row>4,16,6,6,0,0,0</row>
         <row>7,26,12,10,15,0,0</row>
         <row>10,8,13,8,26,0,0</row>
