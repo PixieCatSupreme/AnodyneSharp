@@ -2,11 +2,11 @@
 <project>
   <version/>
   <bgColor>0xcccccc</bgColor>
-  <viewPos x="32" y="7"/>
+  <viewPos x="6.5" y="36.84152300140673"/>
   <firstLayersTop>false</firstLayersTop>
   <spriteEntries currentId="1"/>
   <layers>
-    <group name="Minimap" id="0" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true" selected="true">
+    <group name="Minimap" id="0" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
       <maplayer name="STREET" id="0" xScroll="1" yScroll="1" x="0" y="0" width="7" height="7" tileset="textures/tilemaps/minimap_tiles.png" tileWidth="7" tileHeight="7" visible="false" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="7" tileSpacingY="7" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0</row>
         <row>0,7,13,11,0,0,0</row>
@@ -153,10 +153,10 @@
         <row>22,14,14,14,14,14,14,11</row>
         <row>9,9,9,9,9,9,9,9</row>
       </maplayer>
-      <maplayer name="SPACE" id="14" xScroll="1" yScroll="1" x="0" y="0" width="11" height="8" tileset="textures/tilemaps/minimap_tiles.png" tileWidth="7" tileHeight="7" visible="false" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="7" tileSpacingY="7" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+      <maplayer name="SPACE" id="14" xScroll="1" yScroll="1" x="0" y="0" width="11" height="8" tileset="textures/tilemaps/minimap_tiles.png" tileWidth="7" tileHeight="7" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="7" tileSpacingY="7" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false" selected="true">
         <row>5,9,9,9,9,24,9,9,9,5,9</row>
-        <row>10,15,5,5,9,6,9,5,5,10,15</row>
-        <row>4,14,14,14,13,8,13,14,14,14,12</row>
+        <row>10,15,5,5,9,6,9,7,15,4,15</row>
+        <row>4,14,14,14,13,8,13,14,14,13,12</row>
         <row>9,9,9,9,31,16,9,9,9,9,9</row>
         <row>9,9,9,9,9,2,9,9,9,9,9</row>
         <row>9,9,9,9,9,9,9,9,9,9,9</row>
@@ -319,10 +319,10 @@
     <ForceTilemapPositionChangesInUnits>false</ForceTilemapPositionChangesInUnits>
   </options>
   <exporter name="D:\Projects\AnodyneSharp\AnodyneSharp\AnodyneSharp.Shared\Content\editor_scripts\csvTilemap.lua" spritepos="Top Left" rotatedSpritePos="false" relativePaths="true" useProjectExporterOnly="false">
-    <setting name="LevelName">Entities</setting>
-    <setting name="DataDir">D:\Projects\AnodyneSharp\Project\AnodyneSharp\AnodyneSharp.Shared\Content</setting>
     <setting name="FileExt">csv</setting>
     <setting name="CSVDir">MiniMaps</setting>
+    <setting name="LevelName">Entities</setting>
+    <setting name="DataDir">D:\Projects\AnodyneSharp\Project\AnodyneSharp\AnodyneSharp.Shared\Content</setting>
   </exporter>
   <customPropertyTypes/>
   <guides>
