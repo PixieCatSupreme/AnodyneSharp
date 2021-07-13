@@ -76,17 +76,40 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
             //timer to re-enable being solid to avoid being inside the wall
             private float solid_timer;
 
+            private Vector2 spawn_offset;
+
             public Laser(Facing facing, bool isFast) 
                 : base(Vector2.Zero, "pew_laser_bullet", 16, 8, DrawOrder.FG_SPRITES)
-            {
-                width = 12;
-                height = 8;
-                offset = new Vector2(4, 4);
-
+            {   
                 MapInteraction = false;
 
                 this.facing = facing;
                 _isFast = isFast;
+
+                switch (facing)
+                {
+                    case Facing.DOWN:
+                        spawn_offset = new Vector2(0, 11);
+                        break;
+                    case Facing.UP:
+                        spawn_offset = new Vector2(0, 8);
+                        rotation = MathF.PI;
+                        break;
+                    case Facing.RIGHT:
+                        (width, height) = (height, width);
+
+                        spawn_offset = Vector2.Zero;
+                        offset = new Vector2(4, -4);
+                        rotation = -MathF.PI / 2;
+                        break;
+                    case Facing.LEFT:
+                        (width, height) = (height, width);
+
+                        spawn_offset = new Vector2(8, 0);
+                        offset = new Vector2(4, -4);
+                        rotation = MathF.PI / 2;
+                        break;
+                }
 
                 AddAnimation("shoot", CreateAnimFrameArray(0, 1), 8);
                 AddAnimation("poof", CreateAnimFrameArray(4, 5, 6, 7), 8, looped: false);
@@ -109,7 +132,7 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
 
             public void Spawn(Entity parent)
             {
-                Position = parent.Position;
+                Position = parent.Position + spawn_offset;
                 opacity = 1.0f;
 
                 Solid = false;
@@ -118,40 +141,6 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
                 SoundManager.PlaySoundEffect("laser-pew");
 
                 _state.ChangeState("Shoot");
-
-                switch (facing)
-                {
-                    case Facing.DOWN:
-                        height = 3;
-
-                        Position += new Vector2(2, 11);
-                        offset = new Vector2(2, 4);
-                        break;
-                    case Facing.RIGHT:
-                        height = 3;
-
-                        Position += new Vector2(-6, 8);
-                        offset = new Vector2(0, 4);
-                        rotation = -MathF.PI / 2;
-                        break;
-                    case Facing.UP:
-                        width = 3;
-
-                        Position += new Vector2(5, 6);
-                        offset = new Vector2(5, -1);
-                        rotation = MathF.PI;
-                        break;
-                    case Facing.LEFT:
-                        width = 8;
-                        height = 16;
-
-                        Position += new Vector2(8, 0);
-                        offset = new Vector2(4, -4);
-                        rotation = MathF.PI / 2;
-                        break;
-                    default:
-                        break;
-                }
 
                 velocity = FacingDirection(facing) * (_isFast ? BULLET_FAST_VELOCITY : BULLET_VELOCITY);
             }
