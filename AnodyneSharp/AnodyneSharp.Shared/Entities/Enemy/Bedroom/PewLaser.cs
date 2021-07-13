@@ -73,6 +73,8 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
 
             private IState _state;
             private bool _isFast;
+            //timer to re-enable being solid to avoid being inside the wall
+            private float solid_timer;
 
             public Laser(Facing facing, bool isFast) 
                 : base(Vector2.Zero, "pew_laser_bullet", 16, 8, DrawOrder.FG_SPRITES)
@@ -109,6 +111,9 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
             {
                 Position = parent.Position;
                 opacity = 1.0f;
+
+                Solid = false;
+                solid_timer = _isFast ? 0.2f : 0.4f;
 
                 SoundManager.PlaySoundEffect("laser-pew");
 
@@ -170,6 +175,10 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
             public override void Update()
             {
                 _state.Update(GameTimes.DeltaTime);
+                
+                solid_timer -= GameTimes.DeltaTime;
+                if (solid_timer < 0) Solid = true;
+
                 base.Update();
             }
         }
