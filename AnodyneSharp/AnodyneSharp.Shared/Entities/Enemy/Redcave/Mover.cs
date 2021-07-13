@@ -63,10 +63,15 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
                 //TODO colission with laser
                 .End()
                 .State("Die")
-                    .Enter((state) => Play("Die"))
-                    .Condition(() => _curAnim.Finished, (state) => 
-                    { 
+                    .Enter((state) =>
+                    {
                         _preset.Alive = false;
+
+                        velocity = Vector2.Zero;
+                        Play("Die");
+                    })
+                    .Condition(() => _curAnim.Finished, (state) =>
+                    {
                         exists = false;
 
                         SoundManager.PlaySoundEffect("mover_die");
@@ -92,6 +97,14 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
             if (other is Player p)
             {
                 _state.TriggerEvent("Player", new CollisionEvent<Player>() { entity = p });
+            }
+        }
+
+        internal void Die()
+        {
+            if (_preset.Alive)
+            {
+                _state.ChangeState("Die");
             }
         }
     }
