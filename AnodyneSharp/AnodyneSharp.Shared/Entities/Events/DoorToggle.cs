@@ -10,6 +10,8 @@ namespace AnodyneSharp.Entities.Events
     [Collision(typeof(Door))]
     public class DoorToggle : Entity
     {
+        bool hitDoor = false;
+
         public DoorToggle(Vector2 pos, int w, int h) : base(pos, w, h, Drawing.DrawOrder.ENTITIES)
         {
             visible = false;
@@ -18,13 +20,17 @@ namespace AnodyneSharp.Entities.Events
         public override void Update()
         {
             //Update happens after collision check, allows for multiple doors to be toggled with this
-            exists = false;
+            if (hitDoor)
+            {
+                exists = false;
+            }
         }
 
         public override void Collided(Entity other)
         {
             Door d = (Door)other;
             d.Active = !d.Active;
+            hitDoor = true;
         }
     }
 }
