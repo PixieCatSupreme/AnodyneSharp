@@ -2,6 +2,7 @@
 using AnodyneSharp.Drawing.Spritesheet;
 using AnodyneSharp.GameEvents;
 using AnodyneSharp.Logging;
+using AnodyneSharp.Registry;
 using AnodyneSharp.Resources;
 using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
@@ -219,7 +220,10 @@ namespace AnodyneSharp.Entities
                     shadow.Draw();
                 }
             }
-
+            if(GlobalState.draw_hitboxes && exists)
+            {
+                SpriteDrawer.DrawSprite(ResourceManager.GetTexture("frame_icon"), Hitbox, color:Color.Red, Z: DrawingUtilities.GetDrawingZ(DrawOrder.HITBOX));
+            }
         }
 
         public void SetFrame(int frame)

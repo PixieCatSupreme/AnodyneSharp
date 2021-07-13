@@ -280,6 +280,8 @@ namespace AnodyneSharp.Registry
 
         public static bool FUCK_IT_MODE_ON = false;
 
+        public static bool draw_hitboxes = false;
+
         //Health stuff
         public static int CUR_HEALTH
         {

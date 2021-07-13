@@ -21,6 +21,7 @@ namespace AnodyneSharp.Drawing
         MAP_FG,             //Foreground layer of the map
         DEC_OVER,           //Screen wide effects
         DARKNESS,           //Darkens the screen
+        HITBOX,             //Hitboxes
         HEADER,             //Player UI
         UI_OBJECTS,         //Health, keys, mini mini map
         EQUIPPED_BORDER,    //The border of the equipped broom

@@ -710,7 +710,7 @@ namespace AnodyneSharp.States
 
             if(KeyInput.JustPressedKey(Keys.NumPad5))
             {
-                GlobalState.StartCutscene = TestCutscene();
+                GlobalState.draw_hitboxes = !GlobalState.draw_hitboxes;
             }
 
             if (KeyInput.JustPressedKey(Keys.M))
