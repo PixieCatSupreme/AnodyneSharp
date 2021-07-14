@@ -204,14 +204,6 @@ namespace AnodyneSharp.Entities
             }
         }
 
-        public override void Draw()
-        {
-            base.Draw();
-
-            broom.Draw();
-            foot_overlay.Draw();
-        }
-
         public override void Update()
         {
             if (invincibility_time > 0)
@@ -905,7 +897,7 @@ namespace AnodyneSharp.Entities
 
         internal void ReceiveDamage(int amount, bool knockback = true, bool playSound = true)
         {
-            if (!invincible)
+            if (!invincible && !GlobalState.FUCK_IT_MODE_ON)
             {
                 if(!GlobalState.settings.invincible) //Setting only disables health change
                     GlobalState.CUR_HEALTH -= amount;
