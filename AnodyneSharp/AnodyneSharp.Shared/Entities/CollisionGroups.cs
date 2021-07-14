@@ -52,6 +52,10 @@ namespace AnodyneSharp.Entities
             for(Type d = t; d != typeof(Entity); d = d.BaseType)
             {
                 Get(d).targets.Add(e);
+                if(Get(d).colliders.Count > 0)
+                {
+                    e.HasVisibleHitbox = true;
+                }
             }
 
             if(t.IsDefined(typeof(EnemyAttribute),false))
@@ -61,6 +65,11 @@ namespace AnodyneSharp.Entities
 
             IEnumerable<CollisionAttribute> cs = t.GetCustomAttributes<CollisionAttribute>();
 
+            if(cs.Any())
+            {
+                e.HasVisibleHitbox = true;
+            }
+            
             if (cs.Any(c=>c.MapCollision))
                 _mapColliders.Add(e);
 
@@ -73,6 +82,10 @@ namespace AnodyneSharp.Entities
             foreach(Type target in cs.SelectMany(c=>c.Types))
             {
                 Get(target).colliders.Add(e);
+                if(Get(target).colliders.Count == 1)
+                {
+                    Get(target).targets.ForEach((e) => e.HasVisibleHitbox = true);
+                }
             }
         }
 

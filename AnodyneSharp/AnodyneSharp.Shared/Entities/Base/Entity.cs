@@ -22,6 +22,8 @@ namespace AnodyneSharp.Entities
 
     public class Entity : GameObject
     {
+        public bool HasVisibleHitbox = false;
+
         private const float FlickerLength = 0.05f;
 
         public Spritesheet sprite;
@@ -220,7 +222,7 @@ namespace AnodyneSharp.Entities
                     shadow.Draw();
                 }
             }
-            if(GlobalState.draw_hitboxes && exists)
+            if(GlobalState.draw_hitboxes && HasVisibleHitbox && exists)
             {
                 SpriteDrawer.DrawSprite(ResourceManager.GetTexture("frame_icon"), Hitbox, color:Color.Red, Z: DrawingUtilities.GetDrawingZ(DrawOrder.HITBOX));
             }

@@ -24,9 +24,9 @@ namespace AnodyneSharp.Entities.Gadget.Doors
 
             width = 32;
             height = 26;
-            offset = new Vector2(6, 4);
+            offset = new Vector2(0, 4);
 
-            Position += new Vector2(6, 6);
+            Position += new Vector2(0, 6);
 
             teleportOffset = new Vector2(10, 8);
 

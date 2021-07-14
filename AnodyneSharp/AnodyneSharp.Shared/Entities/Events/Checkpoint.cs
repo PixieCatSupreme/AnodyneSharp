@@ -45,6 +45,7 @@ namespace AnodyneSharp.Entities.Events
             AddAnimation("active", CreateAnimFrameArray(i + 1, i + 2, i + 3), 10, false);
             AddAnimation("stepped_on", CreateAnimFrameArray(i + 1, i + 2), 12);
 
+            HasVisibleHitbox = true; //Isn't set to true by default bc it does its own collision detection
             bool playerOn() => p.Hitbox.Intersects(Hitbox);
 
             Play(Active ? "active" : "inactive");

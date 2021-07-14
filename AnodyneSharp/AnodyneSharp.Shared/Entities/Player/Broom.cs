@@ -79,6 +79,11 @@ namespace AnodyneSharp.Entities
 
                 wide_attack.Draw();
                 long_attack.Draw();
+
+                //Draw hitbox, but not yourself
+                visible = false;
+                base.Draw();
+                visible = true;
             }
         }
 

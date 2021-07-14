@@ -34,7 +34,7 @@ namespace AnodyneSharp.Entities
         public override void Update()
         {
             base.Update();
-
+            HasVisibleHitbox = false;
             if (GlobalState.CURRENT_MAP_NAME == "WINDMILL") //only map that doesn't have the foot overlay flicker
             {
                 visible = true;
