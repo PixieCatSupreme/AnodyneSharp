@@ -539,11 +539,11 @@ namespace AnodyneSharp.States
                 }
                 else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Broom2))
                 {
-                    SetBroom(BroomType.Wide);
+                    SetBroom(BroomType.Long);
                 }
                 else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Broom3))
                 {
-                    SetBroom(BroomType.Long);
+                    SetBroom(BroomType.Wide);
                 }
                 else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Broom4))
                 {

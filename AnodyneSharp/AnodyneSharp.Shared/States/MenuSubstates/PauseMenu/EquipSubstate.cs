@@ -51,7 +51,7 @@ namespace AnodyneSharp.States.MenuSubstates
             float y = 25;
 
             _broom = new Equipment(new Vector2(x, y), "none_icon", GlobalState.inventory.HasBroom ? DialogueManager.GetDialogue("misc", "any", "items", 1) : "-");
-            _broomExtend = new Equipment(new Vector2(x, y + 24), "long_icon", GlobalState.inventory.HasLenghten ? DialogueManager.GetDialogue("misc", "any", "items", 3) : "-");
+            _broomExtend = new Equipment(new Vector2(x, y + 24), "long_icon", GlobalState.inventory.HasLengthen ? DialogueManager.GetDialogue("misc", "any", "items", 3) : "-");
             _broomWiden = new Equipment(new Vector2(x, y + 24 * 2), "wide_icon", GlobalState.inventory.HasWiden ? DialogueManager.GetDialogue("misc", "any", "items", 4) : "-");
             _transformer = new Equipment(new Vector2(x, y + 24 * 3), "transformer_icon", GlobalState.inventory.HasTransformer ? DialogueManager.GetDialogue("misc", "any", "items", 2) : "-");
 

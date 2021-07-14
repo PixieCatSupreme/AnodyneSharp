@@ -44,10 +44,10 @@ namespace AnodyneSharp.Entities.Gadget.Treasures
                     GlobalState.achievements.UnlockAchievement(AchievementValue.GetBroom);
                     break;
                 case BroomType.Wide:
-                    GlobalState.inventory.HasLenghten = true;
+                    GlobalState.inventory.HasWiden = true;
                     break;
                 case BroomType.Long:
-                    GlobalState.inventory.HasWiden = true;
+                    GlobalState.inventory.HasLengthen = true;
                     break;
                 case BroomType.Transformer:
                     GlobalState.inventory.HasTransformer = true;

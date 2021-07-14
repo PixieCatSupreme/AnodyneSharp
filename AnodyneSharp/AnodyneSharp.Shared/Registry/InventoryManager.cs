@@ -13,7 +13,7 @@ namespace AnodyneSharp.Registry
         {
             get
             {
-                return HasBroom || HasLenghten || HasWiden || HasTransformer;
+                return HasBroom || HasLengthen || HasWiden || HasTransformer;
             }
         }
 
@@ -21,7 +21,7 @@ namespace AnodyneSharp.Registry
         {
             get
             {
-                return HasBroom && HasLenghten && HasWiden && HasTransformer;
+                return HasBroom && HasLengthen && HasWiden && HasTransformer;
             }
         }
 
@@ -30,7 +30,7 @@ namespace AnodyneSharp.Registry
             return type switch
             {
                 BroomType.Normal => HasBroom,
-                BroomType.Long => HasLenghten,
+                BroomType.Long => HasLengthen,
                 BroomType.Wide => HasWiden,
                 BroomType.Transformer => HasTransformer,
                 _ => false,
@@ -91,7 +91,7 @@ namespace AnodyneSharp.Registry
         public bool EquippedBroomChanged = false;
 
         public bool HasBroom = false;
-        public bool HasLenghten = false;
+        public bool HasLengthen = false;
         public bool HasWiden = false;
         public bool HasTransformer = false;
 

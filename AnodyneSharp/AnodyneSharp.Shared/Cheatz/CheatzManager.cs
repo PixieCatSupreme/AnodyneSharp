@@ -56,7 +56,7 @@ namespace AnodyneSharp.Cheatz
             GlobalState.CUR_HEALTH = GlobalState.MAX_HEALTH;
 
             GlobalState.inventory.HasBroom = true;
-            GlobalState.inventory.HasLenghten = true;
+            GlobalState.inventory.HasLengthen = true;
             GlobalState.inventory.HasWiden = true;
             GlobalState.inventory.HasTransformer = true;
             GlobalState.inventory.CanJump = true;
