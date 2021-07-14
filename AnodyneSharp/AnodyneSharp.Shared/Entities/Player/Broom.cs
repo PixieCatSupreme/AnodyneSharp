@@ -16,7 +16,7 @@ namespace AnodyneSharp.Entities
         Transformer
     }
 
-    [Collision(typeof(Dust),MapCollision = false)]
+    [Collision(typeof(Dust), MapCollision = false)]
     public class Broom : Entity
     {
         private const int WATK_W = 24;
@@ -70,7 +70,7 @@ namespace AnodyneSharp.Entities
             if (visible && exists)
             {
                 float draw_y = MapUtilities.GetInGridPosition(Position).Y;
-                if(!is_behind_player)
+                if (!is_behind_player)
                 {
                     float player_y = MapUtilities.GetInGridPosition(_root.Position).Y;
                     draw_y = player_y + 0.5f;
@@ -89,7 +89,7 @@ namespace AnodyneSharp.Entities
 
         public override void Update()
         {
-            if(pickup_candidate != null)
+            if (pickup_candidate != null)
             {
                 dust = pickup_candidate;
                 pickup_candidate = null;
@@ -101,7 +101,10 @@ namespace AnodyneSharp.Entities
 
                 wide_attack.visible = false;
                 long_attack.visible = false;
-                if(just_released_dust)
+
+                just_played_extra_anim = false;
+
+                if (just_released_dust)
                 {
                     dust = null;
                     just_released_dust = false;
@@ -155,6 +158,8 @@ namespace AnodyneSharp.Entities
 
         private void UpdatePos()
         {
+            facing = _root.facing;
+
             Vector2 o;
             switch (_root.facing)
             {
@@ -163,15 +168,13 @@ namespace AnodyneSharp.Entities
                     Position = new Vector2(_root.Position.X - 14, _root.Position.Y);
                     is_behind_player = true;
 
-                    o = new Vector2(0, -6);
-
                     if (GlobalState.inventory.EquippedBroom == BroomType.Wide)
                     {
-                        SetWideValues(o, new Vector2(-5, 1));
+                        SetWideValues(new Vector2(1, -5), new Vector2(-3, 0));
                     }
                     else if (GlobalState.inventory.EquippedBroom == BroomType.Long)
                     {
-                        SetLongValues(o, new Vector2(-14, 7));
+                        SetLongValues(new Vector2(-13, 0), new Vector2(-1, 1));
                     }
 
                     switch (_curAnim.Frame)
@@ -187,15 +190,13 @@ namespace AnodyneSharp.Entities
                     Position = new Vector2(_root.Position.X + _root.width, _root.Position.Y - 2);
                     is_behind_player = false;
 
-                    o = new Vector2(5, -6);
-
                     if (GlobalState.inventory.EquippedBroom == BroomType.Wide)
                     {
-                        SetWideValues(o, new Vector2(2, 3));
+                        SetWideValues(new Vector2(3, -3), new Vector2(5, 0));
                     }
                     else if (GlobalState.inventory.EquippedBroom == BroomType.Long)
                     {
-                        SetLongValues(o, new Vector2(0, 9));
+                        SetLongValues(new Vector2(6, 2), new Vector2(0, 0));
                     }
 
                     switch (_curAnim.Frame)
@@ -210,15 +211,13 @@ namespace AnodyneSharp.Entities
                     Position = new Vector2(_root.Position.X + -2, _root.Position.Y - 16);
                     is_behind_player = true;
 
-                    o = new Vector2(-2, 0);
-
                     if (GlobalState.inventory.EquippedBroom == BroomType.Wide)
                     {
-                        SetWideValues(o, new Vector2(5, -7));
+                        SetWideValues(new Vector2(-3, -1), new Vector2(6, -6));
                     }
                     else if (GlobalState.inventory.EquippedBroom == BroomType.Long)
                     {
-                        SetLongValues(o, new Vector2(0, -6));
+                        SetLongValues(new Vector2(3, -10), new Vector2(-5, 4));
                     }
 
                     switch (_curAnim.Frame)
@@ -233,15 +232,13 @@ namespace AnodyneSharp.Entities
                     Position = new Vector2(_root.Position.X + -6, _root.Position.Y + _root.height);
                     is_behind_player = false;
 
-                    o = new Vector2(-2, 4);
-
                     if (GlobalState.inventory.EquippedBroom == BroomType.Wide)
                     {
-                        SetWideValues(o, new Vector2(3, -1));
+                        SetWideValues(new Vector2(-5, 4), new Vector2(6, -6));
                     }
                     else if (GlobalState.inventory.EquippedBroom == BroomType.Long)
                     {
-                        SetLongValues(o, new Vector2(-2, 5));
+                        SetLongValues(new Vector2(1, 6), new Vector2(-5, 3));
                     }
 
                     switch (_curAnim.Frame)
@@ -262,12 +259,20 @@ namespace AnodyneSharp.Entities
             wide_attack.rotation = rotation;
             wide_attack.visible = true;
             wide_attack.Position = Position + wideAttackOffset;
+
             width = WATK_H;
             height = WATK_W;
 
+            if (FacingDirection(facing).X == 0)
+            {
+                (width, height) = (height, width);
+            }
+
             if (!just_played_extra_anim)
             {
-                wide_attack.Play("a");
+                wide_attack.Play("a", true);
+
+                just_played_extra_anim = true;
             }
         }
 
@@ -282,9 +287,16 @@ namespace AnodyneSharp.Entities
             width = LATK_H;
             height = LATK_W;
 
+            if (FacingDirection(facing).X == 0)
+            {
+                (width, height) = (height, width);
+            }
+
             if (!just_played_extra_anim)
             {
-                long_attack.Play("a");
+                long_attack.Play("a", true);
+
+                just_played_extra_anim = true;
             }
         }
 
@@ -312,10 +324,10 @@ namespace AnodyneSharp.Entities
                 else y += (16 - ydiff);
 
                 dust.Position = new Vector2(x, y);
-                if(GlobalState.CheckTile(dust.Position) == Touching.NONE)
+                if (GlobalState.CheckTile(dust.Position) == Touching.NONE)
                 {
                     dust.exists = true;
-                    dust.Play("unpoof",true);
+                    dust.Play("unpoof", true);
                     just_released_dust = true;
                     //dust-dust check done next frame by dust itself
                 }
@@ -324,9 +336,9 @@ namespace AnodyneSharp.Entities
 
         public override void Collided(Entity other)
         {
-            if(dust == null && !just_released_dust && other is Dust d && !ReferenceEquals(d,_root.raft))
+            if (dust == null && !just_released_dust && other is Dust d && !ReferenceEquals(d, _root.raft))
             {
-                if(pickup_candidate == null || (_root.Center - pickup_candidate.Center).LengthSquared() < (d.Center - _root.Center).LengthSquared())
+                if (pickup_candidate == null || (_root.Center - pickup_candidate.Center).LengthSquared() < (d.Center - _root.Center).LengthSquared())
                 {
                     pickup_candidate = d;
                 }
