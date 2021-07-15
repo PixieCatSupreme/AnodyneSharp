@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AnodyneSharp.Utilities;
+using Microsoft.Xna.Framework;
 
 using static AnodyneSharp.Registry.GameConstants;
 
@@ -11,7 +12,14 @@ namespace AnodyneSharp.Drawing
     {
         public Matrix View { get; private set; }
         public Matrix Transform { get; private set; }
-        public Vector3 Position { get; private set; }
+        private Vector3 actual_pos;
+        public Vector3 Position
+        {
+            get
+            {
+                return new Vector3((int)actual_pos.X, (int)actual_pos.Y, actual_pos.Z);
+            }
+        }
         public Vector3 Offset { get; set; }
         public float Zoom { get; set; }
 
@@ -19,7 +27,7 @@ namespace AnodyneSharp.Drawing
         {
             get
             {
-                return new Vector2(Position.X,Position.Y) - new Vector2(SCREEN_WIDTH_IN_PIXELS, SCREEN_HEIGHT_IN_PIXELS) / 2;
+                return new Vector2(Position.X, Position.Y) - new Vector2(SCREEN_WIDTH_IN_PIXELS, SCREEN_HEIGHT_IN_PIXELS) / 2;
             }
         }
 
@@ -34,19 +42,19 @@ namespace AnodyneSharp.Drawing
 
         public Camera()
         {
-            Position = Vector3.Zero;
+            actual_pos = Vector3.Zero;
             Zoom = 1;
         }
 
         public Camera(Vector2 position)
         {
-            Position = new Vector3(position, 0);
+            actual_pos = new Vector3(position, 0);
             Zoom = 1;
         }
 
         public Camera(float x, float y)
         {
-            Position = new Vector3(x, y, 0);
+            actual_pos = new Vector3(x, y, 0);
             Zoom = 1;
         }
 
@@ -57,7 +65,7 @@ namespace AnodyneSharp.Drawing
         {
             Offset = Vector3.Zero;
             Zoom = 1f;
-            Position = Vector3.Zero;
+            actual_pos = Vector3.Zero;
         }
 
         /// <summary>
@@ -74,9 +82,9 @@ namespace AnodyneSharp.Drawing
                                          Matrix.CreateTranslation(Offset);
         }
 
-        public void Move(float x, float y)
+        public bool GoTowards(Vector2 target, float speed)
         {
-            Position += new Vector3(x, y, 0);
+            return MathUtilities.MoveTo(ref actual_pos.X, target.X + SCREEN_WIDTH_IN_PIXELS / 2, speed) && MathUtilities.MoveTo(ref actual_pos.Y, target.Y + SCREEN_HEIGHT_IN_PIXELS / 2, speed);
         }
 
         public void GoTo(float x, float y)
@@ -87,7 +95,7 @@ namespace AnodyneSharp.Drawing
         public void GoTo(Vector2 target)
         {
             target += new Vector2(SCREEN_WIDTH_IN_PIXELS, SCREEN_HEIGHT_IN_PIXELS) / 2;
-            Position = new Vector3(target, Position.Z);
+            actual_pos = new Vector3(target, actual_pos.Z);
             Update();
         }
     }

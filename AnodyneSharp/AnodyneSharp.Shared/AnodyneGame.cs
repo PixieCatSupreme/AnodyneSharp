@@ -50,14 +50,16 @@ namespace AnodyneSharp
 
         private UILabel _fpsLabel;
 
-
-
         public AnodyneGame()
         {
             Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
 
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+            //Uncomment the below two lines to get unlocked fps
+            //IsFixedTimeStep = false;
+            //graphics.SynchronizeWithVerticalRetrace = false;
 
             _currentState = null;
 

@@ -41,7 +41,7 @@ namespace AnodyneSharp.States
     {
         public const string UiHeader = "header";
 
-        public const int Scroll_Increment = 4;
+        public const float Scroll_Speed = 250;
 
 
         private float transition_out
@@ -653,31 +653,7 @@ namespace AnodyneSharp.States
                 return false;
             }
 
-            if (_camera.Position2D.X < _gridBorders.X - Scroll_Increment)
-            {
-                _camera.Move(Scroll_Increment, 0);
-                return true;
-            }
-            else if (_camera.Position2D.Y < _gridBorders.Y - Scroll_Increment)
-            {
-                _camera.Move(0, Scroll_Increment);
-                return true;
-            }
-            else if (_camera.Position2D.Y > _gridBorders.Y + Scroll_Increment)
-            {
-                _camera.Move(0, -Scroll_Increment);
-                return true;
-            }
-            else if (_camera.Position2D.X > _gridBorders.Left + Scroll_Increment)
-            {
-                _camera.Move(-Scroll_Increment, 0);
-                return true;
-            }
-            else
-            {
-                _camera.GoTo(_gridBorders.X, _gridBorders.Y);
-                return false;
-            }
+            return !_camera.GoTowards(new(_gridBorders.X, _gridBorders.Y), Scroll_Speed);
         }
 
 #if DEBUG
@@ -774,20 +750,20 @@ namespace AnodyneSharp.States
 
                 if (KeyInput.JustPressedKey(Keys.NumPad4))
                 {
-                    _camera.Move(-camSpeed, 0);
+                    _camera.GoTo(_camera.Position2D - Vector2.UnitX*camSpeed);
                 }
                 else if (KeyInput.JustPressedKey(Keys.NumPad6))
                 {
-                    _camera.Move(camSpeed, 0);
+                    _camera.GoTo(_camera.Position2D + Vector2.UnitX * camSpeed);
                 }
 
                 if (KeyInput.JustPressedKey(Keys.NumPad8))
                 {
-                    _camera.Move(0, -camSpeed);
+                    _camera.GoTo(_camera.Position2D - Vector2.UnitY * camSpeed);
                 }
                 else if (KeyInput.JustPressedKey(Keys.NumPad2))
                 {
-                    _camera.Move(0, camSpeed);
+                    _camera.GoTo(_camera.Position2D + Vector2.UnitY * camSpeed);
                 }
             }
         }
