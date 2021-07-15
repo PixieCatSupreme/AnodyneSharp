@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Gadget;
 using AnodyneSharp.FSM;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
@@ -98,7 +99,7 @@ namespace AnodyneSharp.Entities.Enemy
                 .End()
                 .State("Dying")
                     .Enter((state) => Play("Dying"))
-                    .Condition(() => _curAnim.Finished, (state) => { _preset.Alive = false; Die(); })
+                    .Condition(() => _curAnim.Finished, (state) => { _preset.Alive = false; GlobalState.SpawnEntity(new Explosion(this)); Die(); })
                 .End()
                 .Build();
             state.ChangeState("Move");
