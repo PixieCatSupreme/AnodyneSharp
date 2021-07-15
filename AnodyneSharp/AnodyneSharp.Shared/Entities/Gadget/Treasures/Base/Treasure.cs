@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AnodyneSharp.Utilities;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -24,7 +25,7 @@ namespace AnodyneSharp.Entities.Gadget.Treasures
             {
                 if (Position.Y > _endPos.Y)
                 {
-                    Position.Y = Math.Max(Position.Y - 25 * GameTimes.DeltaTime, _endPos.Y);
+                    MathUtilities.MoveTo(ref Position.Y, _endPos.Y, 25);
                 }
             }
             else
