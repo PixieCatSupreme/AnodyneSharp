@@ -767,32 +767,6 @@ namespace AnodyneSharp.States
                 }
             }
         }
-
-        static IEnumerator<CutsceneState.CutsceneEvent> TestCutscene()
-        {
-            CutsceneState.WarpEvent warpLoc = new("REDSEA", new(2, 4));
-            Entity a = new(warpLoc.Grid.ToVector2() * 160 + Vector2.One * 80, "beach_npcs", 16, 16, DrawOrder.ENTITIES);
-            a.SetFrame(10);
-
-            a.visible = false;
-
-            yield return new CutsceneState.EntityEvent(Enumerable.Repeat(a, 1));
-
-            yield return warpLoc;
-
-            for(int i = 0; i < 5; ++i)
-            {
-                float timer = 0.5f;
-                while(timer > 0)
-                {
-                    timer -= GameTimes.DeltaTime;
-                    yield return null;
-                }
-                a.visible = !a.visible;
-            }
-
-            yield break;
-        }
 #endif
         private void SwitchBroom(bool nextBroom)
         {
