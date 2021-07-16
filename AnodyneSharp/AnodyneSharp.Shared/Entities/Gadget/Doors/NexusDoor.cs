@@ -127,7 +127,7 @@ namespace AnodyneSharp.Entities.Gadget.Doors
             {
                 if (color != target)
                 {
-                    progress = Math.Min(progress + 1.1f * GameTimes.DeltaTime, 1f);
+                    progress = Math.Min(progress + 1.2f * GameTimes.DeltaTime, 1f);
 
                     color = Color.Lerp(start, target, progress);
                 }

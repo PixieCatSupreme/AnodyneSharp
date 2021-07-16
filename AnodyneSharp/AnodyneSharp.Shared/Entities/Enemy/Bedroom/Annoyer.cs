@@ -2,6 +2,7 @@
 using AnodyneSharp.FSM;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
+using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using RSG;
 using System;
@@ -37,7 +38,7 @@ namespace AnodyneSharp.Entities.Enemy
             {
                 AddTimer(3f, "Swoop");
             }
-            public const float velocity = 4.25f/3f*6.28f; //4 1/4 rotations in 3 seconds
+            public const float velocity = 8.4f;
             public float angle;
 
             public override void Update(float deltaTime)
@@ -132,7 +133,10 @@ namespace AnodyneSharp.Entities.Enemy
                     .End()
 
                     .State("Approach")
-                        .Update((state, time) => MoveTowards(ApproachTarget, 30f))
+                        .Update((state, time) => {
+                            MathUtilities.MoveTo(ref Position.X, ApproachTarget.X, 36);
+                            MathUtilities.MoveTo(ref Position.Y, ApproachTarget.Y, 36);
+                        })
                         .Condition(() => (Position - ApproachTarget).Length() < 2, (state) => state.Parent.ChangeState("Circle"))
                         .Exit((state) => velocity = Vector2.Zero)
                     .End()
@@ -149,10 +153,8 @@ namespace AnodyneSharp.Entities.Enemy
                     .State<SwoopState>("Swoop")
                         .Enter((state) => state.target = Position + 3 * (_target.Position - Position) )
                         .Update((state,time) => { //TODO: make it possible for this to be a Condition
-                            if ((Position - state.target).Length() < 3)
+                            if (MathUtilities.MoveTo(ref Position.X, state.target.X, 2.5f*60) & MathUtilities.MoveTo(ref Position.Y, state.target.Y, 2.5f*60))
                                 state.Parent.ChangeState("Approach");
-                            else
-                                MoveTowards(state.target, 100f);
                         })
                     .End()
                 .End()

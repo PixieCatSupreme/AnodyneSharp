@@ -1,6 +1,7 @@
 ﻿using AnodyneSharp.Drawing;
 using AnodyneSharp.GameEvents;
 using AnodyneSharp.Registry;
+using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -129,7 +130,8 @@ namespace AnodyneSharp.Entities.Lights
 
             if (locked_on)
             {
-                MoveTowards(followee.Position, 30f);
+                MathUtilities.MoveTo(ref Position.X, followee.Position.X, 30f);
+                MathUtilities.MoveTo(ref Position.Y, followee.Position.Y, 30f);
             }
             else
             {

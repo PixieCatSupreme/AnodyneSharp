@@ -25,7 +25,7 @@ namespace AnodyneSharp.Entities.Gadget.Treasures
             {
                 if (Position.Y > _endPos.Y)
                 {
-                    MathUtilities.MoveTo(ref Position.Y, _endPos.Y, 25);
+                    MathUtilities.MoveTo(ref Position.Y, _endPos.Y, 30);
                 }
             }
             else

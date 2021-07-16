@@ -3,6 +3,7 @@ using AnodyneSharp.Entities.Gadget;
 using AnodyneSharp.FSM;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
+using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using RSG;
 using System;
@@ -31,7 +32,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
         private EntityPool<Gas> gasClouds;
 
         public GasGuy(EntityPreset preset, Player player)
-            : base(preset.Position, "gas_guy", 16, 24, DrawOrder.ENTITIES, 0.8f, true)
+            : base(preset.Position, "gas_guy", 16, 24, DrawOrder.ENTITIES, 0.6f, true)
         {
             _player = player;
 
@@ -112,14 +113,8 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
 
             if (!_inDelay)
             {
-                if (_hitTimer > 0)
-                {
-                    _hitTimer -= GameTimes.DeltaTime;
-                }
-                else
-                {
-                    MoveTowards(_player.Position, 12);
-                }
+                MathUtilities.MoveTo(ref Position.X, _player.Position.X, 12f);
+                MathUtilities.MoveTo(ref Position.Y, _player.Position.Y, 12f);
             }
         }
 
@@ -131,11 +126,10 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
             }
             else if (other is Broom)
             {
-                if (_hitTimer <= 0)
+                if (!_flickering)
                 {
                     _health--;
-                    _hitTimer = 0.5f;
-                    Flicker(_hitTimer);
+                    Flicker(0.5f);
 
                     MoveTowards(_player.Position, 100);
                     velocity *= -1;
