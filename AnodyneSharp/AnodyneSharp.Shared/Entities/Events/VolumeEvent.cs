@@ -12,13 +12,15 @@ namespace AnodyneSharp.Entities.Events
     class VolumeEvent : Entity
     {
         float target;
+        float speed;
         public VolumeEvent(EntityPreset preset, Player p) : this(float.Parse(preset.TypeValue))
         {
         }
 
-        public VolumeEvent(float target) : base(Vector2.Zero,Drawing.DrawOrder.ENTITIES)
+        public VolumeEvent(float target, float speed = 0.4f) : base(Vector2.Zero,Drawing.DrawOrder.ENTITIES)
         {
             SetTarget(target);
+            this.speed = speed;
             visible = false;
         }
 
@@ -36,7 +38,7 @@ namespace AnodyneSharp.Entities.Events
             {
                 //VolumeEvent only changes bgm volume
                 float current = SoundManager.GetVolume();
-                ReachedTarget = MathUtilities.MoveTo(ref current, target, 0.4f);
+                ReachedTarget = MathUtilities.MoveTo(ref current, target, speed);
                 SoundManager.SetSongVolume(current);
             }
         }
