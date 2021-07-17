@@ -62,6 +62,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Redcave\Four_Shooter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Redcave\Mover.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Redcave\OnOffLaser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Redcave\Slasher.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\DoorToggle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\StaticOff.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\SwapperPolicyEvent.cs" />
