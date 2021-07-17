@@ -2615,12 +2615,12 @@
     <CardGate x="32" y="1120" guid="E9730752-B60C-0E95-3197-01529A4A31EB" frame="4" p="2"/>
   </map>
   <map name="REDCAVE" type="Stateful">
-    <Health_Cicada x="1024" y="16" guid="082409E1-1D7E-3A22-9059-D5D9D0626FB1" frame="0" p="2" alive="true"/>
     <Annoyer x="816" y="16" guid="A81D463F-4F42-4715-0C71-C6352E5B171C" frame="0" alive="true"/>
     <Treasure x="16" y="16" guid="0504F29A-042A-BBC7-9FD4-5559E8EC64D0" frame="2" alive="true"/>
     <Gate x="32" y="32" guid="3DCC50F8-1D70-9035-4A58-3C462E8668C8" frame="0" p="2" alive="true" type="0" />
     <Mover x="672" y="48" guid="EF142D93-B571-8123-EA2B-5654A81E1779" frame="0" p="0"/>
     <Slasher x="64" y="48" guid="7F3FECEE-7AB8-F865-058A-5B73AC1672D0" frame="0" p="1"/>
+    <Health_Cicada x="1040" y="64" guid="082409E1-1D7E-3A22-9059-D5D9D0626FB1" frame="0" p="2" alive="true"/>
     <Gate x="960" y="64" guid="7D93018B-D77F-2801-8BA7-451F089D20F0" frame="0" p="2" alive="true" type="0" />
     <Red_Boss x="1040" y="64" guid="0C2FE65A-DDFD-CD94-9C83-5BA03AA0A868" frame="0" p="2" alive="true"/>
     <Gate x="960" y="80" guid="7B0F4F5C-6834-74D2-C376-2188B96B38C6" frame="0" p="2" alive="true" type="0" />
