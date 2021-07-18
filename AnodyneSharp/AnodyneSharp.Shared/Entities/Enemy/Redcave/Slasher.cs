@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Entities.Gadget;
+﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Gadget;
 using AnodyneSharp.FSM;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
@@ -8,11 +9,12 @@ using Microsoft.Xna.Framework.Graphics;
 using RSG;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace AnodyneSharp.Entities.Enemy.Redcave
 {
-    [NamedEntity, Collision(typeof(Broom), KeepOnScreen = true)]
+    [NamedEntity, Collision(typeof(Broom), KeepOnScreen = true, MapCollision = true)]
     public class Slasher : HealthDropper
     {
         private const int WIDE_ATK_DISTANCE = 36;
@@ -22,6 +24,9 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
 
         Player _player;
         EntityPreset _preset;
+
+        VerticalSlash _vertical;
+        HorizontalSlash _horizontal;
 
         int _health = 3;
 
@@ -43,8 +48,15 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
 
             width = height = 16;
 
+            MapInteraction = false;
+
             _player = p;
             _preset = preset;
+
+            _vertical = new();
+            _horizontal = new();
+
+            CenterOffset();
 
             _state = new StateMachineBuilder()
                 .State<TimerState>("Move")
@@ -90,20 +102,13 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
                     })
                     .Event("WarningTimer", (state) =>
                     {
-                        float dx = (_player.Position.X + 8) - (Position.X + width / 2);
-                        float dy = (_player.Position.Y + 8) - (Position.Y + height / 2);
-
-                        if (Math.Sqrt(dx * dx + dy * dy) < WIDE_ATK_DISTANCE)
+                        if ((Center - _player.VisualCenter).LengthSquared() < WIDE_ATK_DISTANCE * WIDE_ATK_DISTANCE)
                         {
                             _state.ChangeState("WideAttack");
-
-                            //update_wide_pos();
                         }
                         else
                         {
                             _state.ChangeState("LongAttack");
-
-                            //update_long_pos();
                         }
 
                     })
@@ -114,6 +119,15 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
                         state.Reset();
 
                         SoundManager.PlaySoundEffect("slasher_atk");
+
+                        if (facing == Facing.UP || facing == Facing.DOWN)
+                        {
+                            _horizontal.UpdateWidePosVertical(Position, facing);
+                        }
+                        else
+                        {
+                            _vertical.UpdateWidePosHorizontal(Position, facing);
+                        }
 
                         PlayFacingFix("attack");
 
@@ -142,6 +156,16 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
                         state.Reset();
 
                         SoundManager.PlaySoundEffect("slasher_atk");
+
+
+                        if (facing == Facing.UP || facing == Facing.DOWN)
+                        {
+                            _vertical.UpdateLongPosVertical(Position, facing);
+                        }
+                        else
+                        {
+                            _horizontal.UpdateLongPosHorizontal(Position, facing);
+                        }
 
                         PlayFacingFix("attack");
 
@@ -210,19 +234,179 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
             }
         }
 
+        public override IEnumerable<Entity> SubEntities()
+        {
+            return base.SubEntities().Concat(new List<Entity>() { _horizontal, _vertical });
+        }
+
         [Collision(typeof(Player))]
         private class Slash : Entity
         {
-            public Slash(bool isWide)
-                : base(Vector2.Zero, isWide ? "f_slasher_wide" : "f_slasher_long", isWide ? 48 : 16, isWide ? 16 : 48, Drawing.DrawOrder.ENTITIES)
+            public Slash(Vector2 pos, string textureName, int frameWidth, int frameHeight, DrawOrder layer)
+                : base(pos, textureName, frameWidth, frameHeight, layer)
             {
-                if (isWide)
+                exists = false;
+            }
+
+            public override void Update()
+            {
+                base.Update();
+
+                if (_curAnim.Finished)
                 {
-                    AddAnimation("slash", CreateAnimFrameArray(0, 1, 2, 6), 12, false);
+                    exists = false;
+                }
+            }
+
+            protected void Reset(Vector2 pos)
+            {
+                exists = true;
+
+                Position = pos;
+
+                offset = Vector2.Zero;
+
+                _flip = SpriteEffects.None;
+            }
+
+            public override void Collided(Entity other)
+            {
+                base.Collided(other);
+
+                if (visible && other is Player p)
+                {
+                    p.ReceiveDamage(1);
+                }
+            }
+        }
+
+        private class HorizontalSlash : Slash
+        {
+            public HorizontalSlash()
+                : base(Vector2.Zero, "f_slasher_wide", 48, 16, DrawOrder.ENTITIES)
+            {
+                AddAnimation("wide", CreateAnimFrameArray(0, 1, 2), 12, false);
+                AddAnimation("tall", CreateAnimFrameArray(3, 4, 5), 12, false);
+
+                width = 36;
+                height = 10;
+            }
+
+            public void UpdateLongPosHorizontal(Vector2 pos, Facing facing)
+            {
+                Reset(pos);
+
+                Position.Y += -height / 2 + 8;
+
+                offset.Y = 4;
+
+                Play("tall");
+
+                if (facing == Facing.RIGHT)
+                {
+                    Position.X += 16;
+
+                    offset.X = 4;
                 }
                 else
                 {
-                    AddAnimation("slash", CreateAnimFrameArray(3, 4, 5, 6), 12, false);
+                    _flip = SpriteEffects.FlipHorizontally;
+                    Position.X -= 36;
+
+                    offset.X = 11;
+                    offset.Y -= 1;
+                }
+            }
+
+            public void UpdateWidePosVertical(Vector2 pos, Facing facing)
+            {
+                Reset(pos);
+
+                Position.X += -width / 2 + 8;
+
+                offset.X = 6;
+
+                Play("wide");
+
+                if (facing == Facing.UP)
+                {
+                    _flip = SpriteEffects.FlipVertically | SpriteEffects.FlipHorizontally;
+
+                    Position.Y -= 4;
+                    offset.Y = 4;
+
+                    offset.X -= 1;
+                }
+                else
+                {
+                    Position.Y += 10;
+
+                    offset.Y = 6;
+                }
+            }
+        }
+
+        private class VerticalSlash : Slash
+        {
+            public VerticalSlash()
+                : base(Vector2.Zero, "f_slasher_long", 16, 48, DrawOrder.ENTITIES)
+            {
+
+                AddAnimation("wide", CreateAnimFrameArray(0, 1, 2), 12, false);
+                AddAnimation("tall", CreateAnimFrameArray(3, 4, 5), 12, false);
+
+                width = 10;
+                height = 36;
+            }
+
+            //For long up and down
+            public void UpdateLongPosVertical(Vector2 pos, Facing facing)
+            {
+                Reset(pos);
+
+                Position.X += -width / 2 + 8;
+
+                offset.X = 2;
+
+                Play("tall");
+
+                if (facing == Facing.UP)
+                {
+                    Position.Y -= 36;
+                    offset.Y = 10;
+
+                    offset.X += 1;
+                }
+                else
+                {
+                    _flip = SpriteEffects.FlipVertically;
+                    Position.Y += 16;
+
+                    offset.Y = 3;
+                }
+            }
+
+            public void UpdateWidePosHorizontal(Vector2 pos, Facing facing)
+            {
+                Reset(pos);
+
+                Position.Y += -height / 2 + 8;
+
+                offset.Y = 6;
+
+                Play("wide");
+
+                if (facing == Facing.RIGHT)
+                {
+                    Position.X += 11;
+                }
+                else
+                {
+                    _flip = SpriteEffects.FlipHorizontally;
+
+                    Position.X -= 5;
+
+                    offset.X = 6;
                 }
             }
         }

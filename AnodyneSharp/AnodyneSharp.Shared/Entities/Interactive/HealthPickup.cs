@@ -12,6 +12,8 @@ namespace AnodyneSharp.Entities.Interactive
     {
         private int healingFactor = 1;
 
+        private float _latency = 0.5f;
+
         public HealthPickup(Vector2 position, bool isBigHealth)
             : base(position, Drawing.DrawOrder.ENTITIES)
         {
@@ -34,12 +36,21 @@ namespace AnodyneSharp.Entities.Interactive
             exists = false;
         }
 
+        public override void Update()
+        {
+            base.Update();
+
+            _latency -= GameTimes.DeltaTime;
+        }
+
         public override void Collided(Entity other)
         {
-            SoundManager.PlaySoundEffect("get_small_health");
-            GlobalState.CUR_HEALTH += healingFactor;
-            exists = false;
-
+            if (_latency <= 0)
+            {
+                SoundManager.PlaySoundEffect("get_small_health");
+                GlobalState.CUR_HEALTH += healingFactor;
+                exists = false;
+            }
         }
     }
 }
