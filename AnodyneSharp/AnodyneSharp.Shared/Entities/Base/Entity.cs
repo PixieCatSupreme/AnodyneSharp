@@ -47,7 +47,7 @@ namespace AnodyneSharp.Entities
         private List<Anim> _animations;
         private string textureName;
 
-        protected bool _flickering;
+        public bool _flickering { get; protected set; }
         private float _flickerTimer;
         private float _flickerFreq = 0;
 
@@ -205,26 +205,28 @@ namespace AnodyneSharp.Entities
 
         public virtual void Draw()
         {
-            if (visible && exists)
+            if (exists)
             {
-                Rectangle srect = sprite.GetRect(_curAnim.Frame);
-                srect.Height -= (int)y_push;
-                SpriteDrawer.DrawSprite(sprite.Tex,
-                    MathUtilities.CreateRectangle(Position.X - offset.X * scale, Position.Y - offset.Y * scale + (int)y_push, srect.Width * scale, srect.Height * scale),
-                    srect,
-                    color * opacity,
-                    rotation,
-                    _flip,
-                    DrawingUtilities.GetDrawingZ(layer, MapUtilities.GetInGridPosition(Position).Y+height));
-
+                if (visible)
+                {
+                    Rectangle srect = sprite.GetRect(_curAnim.Frame);
+                    srect.Height -= (int)y_push;
+                    SpriteDrawer.DrawSprite(sprite.Tex,
+                        MathUtilities.CreateRectangle(Position.X - offset.X * scale, Position.Y - offset.Y * scale + (int)y_push, srect.Width * scale, srect.Height * scale),
+                        srect,
+                        color * opacity,
+                        rotation,
+                        _flip,
+                        DrawingUtilities.GetDrawingZ(layer, MapUtilities.GetInGridPosition(Position).Y + height));
+                }
                 if (shadow != null)
                 {
                     shadow.Draw();
                 }
-            }
-            if(GlobalState.draw_hitboxes && HasVisibleHitbox && exists)
-            {
-                SpriteDrawer.DrawSprite(ResourceManager.GetTexture("frame_icon"), Hitbox, color:Color.Red, Z: DrawingUtilities.GetDrawingZ(DrawOrder.HITBOX));
+                if (GlobalState.draw_hitboxes && HasVisibleHitbox)
+                {
+                    SpriteDrawer.DrawSprite(ResourceManager.GetTexture("frame_icon"), Hitbox, color: Color.Red, Z: DrawingUtilities.GetDrawingZ(DrawOrder.HITBOX));
+                }
             }
         }
 
