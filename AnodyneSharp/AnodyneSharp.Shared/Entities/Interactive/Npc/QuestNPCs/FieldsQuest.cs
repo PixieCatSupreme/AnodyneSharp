@@ -8,13 +8,13 @@ using System.Text;
 
 namespace AnodyneSharp.Entities.Interactive.Npc.QuestNPCs
 {
-    [NamedEntity("NPC",type:"generic",map:"FIELDS",7), Collision(typeof(Player))]
+    [NamedEntity("NPC", type: "generic", map: "FIELDS", 7), Collision(typeof(Player))]
     class FieldsQuest : Entity, Interactable
     {
         Bush _bush;
         bool _played_quest = false;
 
-        public FieldsQuest(EntityPreset preset, Player p) : base(preset.Position, "fields_npcs", 32,32, Drawing.DrawOrder.ENTITIES)
+        public FieldsQuest(EntityPreset preset, Player p) : base(preset.Position, "fields_npcs", 32, 32, Drawing.DrawOrder.ENTITIES)
         {
             AddAnimation("a", CreateAnimFrameArray(15, 15, 15, 15, 15, 15, 15, 15, 16, 17, 17, 18, 18), 18, true);
             Play("a");
@@ -33,7 +33,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.QuestNPCs
 
         public override IEnumerable<Entity> SubEntities()
         {
-            return Enumerable.Repeat(_bush,1);
+            return Enumerable.Repeat(_bush, 1);
         }
 
         public bool PlayerInteraction(Facing player_direction)
@@ -52,10 +52,10 @@ namespace AnodyneSharp.Entities.Interactive.Npc.QuestNPCs
             return true;
         }
 
-        [Collision(typeof(Player),typeof(Broom))]
+        [Collision(typeof(Player), typeof(Broom))]
         class Bush : Entity
         {
-            public Bush(Vector2 pos) : base(pos,"fields_npcs",16,16,Drawing.DrawOrder.BG_ENTITIES)
+            public Bush(Vector2 pos) : base(pos, "fields_npcs", 16, 16, Drawing.DrawOrder.BG_ENTITIES)
             {
                 SetFrame(30);
                 immovable = true;
@@ -64,7 +64,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.QuestNPCs
             public override void Collided(Entity other)
             {
                 base.Collided(other);
-                if(other is Player p)
+                if (other is Player p)
                 {
                     Separate(this, p);
                 }

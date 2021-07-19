@@ -45,6 +45,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Decorations\DeathFadeIn.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Decorations\NonSolid.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Decorations\RedCaveEntrance.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Decorations\Sign.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\DoorPair.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Apartment\Dash_Trap.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Apartment\GasGuy.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\FieldsEaster.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Fisherman.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Olive.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\QuestNPCs\BeachQuest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\QuestNPCs\FieldsQuest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\RedSea\BombDude.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\RedSea\HairDude.cs" />
