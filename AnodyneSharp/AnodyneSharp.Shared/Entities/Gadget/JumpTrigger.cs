@@ -6,7 +6,7 @@ using System.Text;
 
 namespace AnodyneSharp.Entities.Gadget
 {
-    [NamedEntity("Jump_Trigger", null), Collision(typeof(Player))]
+    [NamedEntity("Jump_Trigger", ""), Collision(typeof(Player))]
     public class JumpTrigger : Entity
     {
         private int distance;
