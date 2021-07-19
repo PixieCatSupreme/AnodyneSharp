@@ -17,7 +17,7 @@ namespace AnodyneSharp.Entities.Gadget
         private bool activated;
 
         public SpringPad(EntityPreset preset, Player p)
-            : base(preset.Position, "spring_pad", 16, 16, DrawOrder.ENTITIES)
+            : base(preset.Position, "spring_pad", 16, 16, DrawOrder.BG_ENTITIES)
         {
             AddAnimation("still", CreateAnimFrameArray(0), 0, false);
             AddAnimation("pressed", CreateAnimFrameArray(1), 0, false);
@@ -56,6 +56,8 @@ namespace AnodyneSharp.Entities.Gadget
                     SoundManager.PlaySoundEffect("spring_bounce");
 
                     Play("wobble");
+
+                    p.facing = Facing.DOWN;
 
                     p.AutoJump(time, p.Position + new Vector2(0, distance));
                 }
