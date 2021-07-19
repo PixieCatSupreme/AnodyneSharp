@@ -10,16 +10,17 @@ namespace AnodyneSharp.FSM
     {
         private class Timer
         {
+            public float current;
             public float max;
             public string name;
         }
-        SortedDictionary<float,Timer> timers = new SortedDictionary<float, Timer>();
+        List<Timer> timers = new();
 
         private float current = 0.0f;
 
         public void Reset()
         {
-            timers = new SortedDictionary<float, Timer>();
+            timers = new();
         }
 
         public void Advance(float time)
@@ -29,7 +30,8 @@ namespace AnodyneSharp.FSM
 
         public void AddTimer(float time, string name)
         {
-            timers.Add(current+time,new Timer() { max=time, name=name });
+            timers.Add(new() { current = current + time, max = time, name = name });
+            timers.Sort((t1, t2) => t1.current.CompareTo(t2.current));
         }
 
         public override void Update(float deltaTime)
@@ -40,11 +42,11 @@ namespace AnodyneSharp.FSM
             {
                 var min = timers.First();
 
-                while (min.Key <= current)
+                while (min.current <= current)
                 {
-                    TriggerEvent(min.Value.name);
-                    timers.Remove(min.Key);
-                    AddTimer(min.Value.max, min.Value.name);
+                    TriggerEvent(min.name);
+                    timers.RemoveAt(0);
+                    AddTimer(min.max, min.name);
                     min = timers.First();
                 }
             }
