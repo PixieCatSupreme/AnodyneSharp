@@ -13,7 +13,7 @@ using System.Text;
 
 namespace AnodyneSharp.Entities.Enemy.Redcave
 {
-    [NamedEntity, Enemy, Collision(typeof(Player), typeof(Broom), MapCollision = true)]
+    [NamedEntity, Enemy, Collision(typeof(Player), typeof(Broom))]
     public class Red_Boss : Entity
     {
         IEnumerator state;
@@ -22,6 +22,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
         Ripple ripple;
 
         EntityPool<SplashBullet> splash_bullets;
+        EntityPool<Tentacle> tentacles;
 
         ProximitySensor[] sensors;
         public Touching proximity_hits = Touching.NONE;
@@ -70,10 +71,14 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
             ripple = new(this);
             Vector2 tl = MapUtilities.GetRoomUpperLeftPos(MapUtilities.GetRoomCoordinate(Position));
             Point splash_start = new(2, 2);
-            splash_bullets = new(4, () => {
+            splash_bullets = new(4, () =>
+            {
                 splash_start.Y++;
-                return new(tl + splash_start.ToVector2() * 16 + Vector2.One*3);
+                return new(tl + splash_start.ToVector2() * 16 + Vector2.One * 3);
             });
+
+            int start = 0;
+            tentacles = new(4, () => new(start++));
 
             sensors = new ProximitySensor[]
             {
@@ -92,7 +97,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
 
         public override IEnumerable<Entity> SubEntities()
         {
-            return new List<Entity>() { ripple }.Concat(splash_bullets.Entities).Concat(sensors);
+            return new List<Entity>() { ripple }.Concat(splash_bullets.Entities).Concat(sensors).Concat(tentacles.Entities);
         }
 
         public override void Update()
@@ -163,11 +168,11 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
                      })
                     .Event("Tentacles", (s) =>
                     {
-                        //TODO: spawn tentacles
-                        if(proximity_hits != Touching.NONE)
+                        SpawnTentacles();
+                        if (proximity_hits != Touching.NONE)
                         {
                             s.got_too_close++;
-                            if(s.got_too_close == 2)
+                            if (s.got_too_close == 2)
                             {
                                 s.got_too_close = 0;
                                 s.Parent.ChangeState("Dash"); //TODO: should be stun
@@ -176,48 +181,55 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
                     })
                 .End()
                 .State<DashState>("Dash")
-                    .Enter((s) => {
+                    .Enter((s) =>
+                    {
                         amp = 0;
                         velocity = new Vector2(30, 20);
                     })
-                    .Condition(()=>touching != Touching.NONE,(s) =>
-                    {
-                        Drawing.Effects.ScreenShake.Directions dirs = new();
-                        if(touching.HasFlag(Touching.UP))
-                        {
-                            velocity.Y = 60;
-                            dirs |= Drawing.Effects.ScreenShake.Directions.Vertical;
-                        }
-                        else if(touching.HasFlag(Touching.DOWN))
-                        {
-                            velocity.Y = -60;
-                            dirs |= Drawing.Effects.ScreenShake.Directions.Vertical;
-                        }
+                    .Update((s,_) =>
+                       {
+                           Drawing.Effects.ScreenShake.Directions dirs = new();
+                           Vector2 tl = MapUtilities.GetInGridPosition(Position);
+                           Vector2 br = MapUtilities.GetInGridPosition(Position + new Vector2(width, height));
+                           if (tl.Y < 2*16)
+                           {
+                               velocity.Y = 60;
+                               dirs |= Drawing.Effects.ScreenShake.Directions.Vertical;
+                           }
+                           else if (br.Y > 16*8)
+                           {
+                               velocity.Y = -60;
+                               dirs |= Drawing.Effects.ScreenShake.Directions.Vertical;
+                           }
 
-                        if (touching.HasFlag(Touching.LEFT))
-                        {
-                            velocity.X = 60;
-                            dirs |= Drawing.Effects.ScreenShake.Directions.Horizontal;
-                        }
-                        else if(touching.HasFlag(Touching.RIGHT))
-                        {
-                            velocity.X = -60;
-                            dirs |= Drawing.Effects.ScreenShake.Directions.Horizontal;
-                        }
-                        GlobalState.screenShake.Shake(0.05f, 0.1f, dirs);
-                    })
-                    .Event("Tentacles",(s) =>
+                           if (tl.X < 2*16)
+                           {
+                               velocity.X = 60;
+                               dirs |= Drawing.Effects.ScreenShake.Directions.Horizontal;
+                           }
+                           else if (br.X > 16*8)
+                           {
+                               velocity.X = -60;
+                               dirs |= Drawing.Effects.ScreenShake.Directions.Horizontal;
+                           }
+                           GlobalState.screenShake.Shake(0.05f, 0.1f, dirs);
+                       })
+                    .Event("Tentacles", (s) =>
+                     {
+                         SpawnTentacles();
+                         if (proximity_hits != Touching.NONE)
+                         {
+                             s.got_too_close++;
+                             if (s.got_too_close == 2)
+                             {
+                                 s.got_too_close = 0;
+                                 s.Parent.ChangeState("Splash");
+                             }
+                         }
+                     })
+                    .Event("EndDash", (s) =>
                     {
-                        //TODO: spawn tentacles
-                        if (proximity_hits != Touching.NONE)
-                        {
-                            s.got_too_close++;
-                            if (s.got_too_close == 2)
-                            {
-                                s.got_too_close = 0;
-                                s.Parent.ChangeState("Splash");
-                            }
-                        }
+                        //TODO: go to stun state
                     })
                     .Exit((s) => velocity = Vector2.Zero)
                 .End()
@@ -227,7 +239,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
                 .Build();
 
             state.ChangeState("Splash");
-            
+
             while (health > 0)
             {
                 state.Update(GameTimes.DeltaTime);
@@ -279,6 +291,133 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
             GlobalState.wave.active = false;
             SoundManager.PlaySong("redcave");
             GlobalState.events.BossDefeated.Add("REDCAVE");
+            yield break;
+        }
+
+        private void SpawnTentacles()
+        {
+            if (tentacles.Alive == 0)
+            {
+                tentacles.Spawn((t) => t.Spawn(proximity_hits, this), 4);
+            }
+        }
+    }
+
+    //Actually the tentacle's base for collision, the tentacle itself is just visual flair managed inside this entity
+    [Collision(typeof(Player))]
+    class Tentacle : Entity
+    {
+        int t_index;
+
+        Entity tentacle;
+
+        IEnumerator state;
+
+        public Tentacle(int index) : base(Vector2.Zero, "red_boss_warning", 10, 10, Drawing.DrawOrder.ENTITIES)
+        {
+            AddAnimation("move", CreateAnimFrameArray(0, 1), 8);
+            Play("move");
+            t_index = index;
+            immovable = true;
+
+            tentacle = new(Vector2.Zero, "red_boss_tentacle", 10, 64, Drawing.DrawOrder.ENTITIES);
+            tentacle.AddAnimation("move", CreateAnimFrameArray(0, 1), 8);
+            tentacle.Play("move");
+            tentacle.exists = false;
+        }
+
+        public void Spawn(Touching dir, Red_Boss parent)
+        {
+            if (dir.HasFlag(Touching.UP))
+            {
+                Position = parent.Position + new Vector2(16 * t_index - 14, -13);
+            }
+            else if (dir.HasFlag(Touching.LEFT))
+            {
+                Position = parent.Position + new Vector2(-14, 16 * t_index - 16);
+            }
+            else if (dir.HasFlag(Touching.RIGHT))
+            {
+                Position = parent.Position + new Vector2(parent.width + 2, 16 * t_index - 16);
+            }
+            else if (dir.HasFlag(Touching.DOWN))
+            {
+                Position = parent.Position + new Vector2(16 * t_index - 14, parent.height + 2);
+            }
+            else
+            {
+                //player isn't close in any direction, so random locations
+                Vector2 ul = MapUtilities.GetRoomUpperLeftPos(MapUtilities.GetRoomCoordinate(parent.Position));
+                Position.X = ul.X + 16 + 12 * (1 + t_index) + GlobalState.RNG.Next(-5, 6);
+                Position.Y = ul.Y + 16 * GlobalState.RNG.Next(1, 4) + GlobalState.RNG.Next(-5, 6) + tentacle.height - height;
+            }
+
+            tentacle.Position = Position + Vector2.UnitY * (height - 3 - tentacle.height);
+            tentacle.y_push = tentacle.height;
+            
+            Flicker(0.7f + (float)GlobalState.RNG.NextDouble());
+            state = StateLogic();
+        }
+
+        public override IEnumerable<Entity> SubEntities()
+        {
+            return Enumerable.Repeat(tentacle, 1);
+        }
+
+        public override void Update()
+        {
+            base.Update();
+            state.MoveNext();
+        }
+
+        public override void Collided(Entity other)
+        {
+            base.Collided(other);
+            if(!_flickering && other is Player p)
+            {
+                p.ReceiveDamage(1);
+            }
+        }
+
+        IEnumerator StateLogic()
+        {
+            while(_flickering)
+            {
+                yield return null;
+            }
+
+            SoundManager.PlaySoundEffect("bubble_1", "bubble_1", "bubble_2", "bubble_3");
+            tentacle.exists = true;
+
+            float tentacle_drop_timer = 1f;
+
+            while(!MathUtilities.MoveTo(ref tentacle.y_push,0,120))
+            {
+                tentacle_drop_timer -= GameTimes.DeltaTime;
+                yield return null;
+            }
+
+            while(tentacle_drop_timer > 0)
+            {
+                tentacle_drop_timer -= GameTimes.DeltaTime;
+                yield return null;
+            }
+
+            float end_timer = 0.3f;
+            while(!MathUtilities.MoveTo(ref tentacle.y_push,tentacle.height,180))
+            {
+                end_timer -= GameTimes.DeltaTime;
+                yield return null;
+            }
+
+            while(end_timer > 0)
+            {
+                end_timer -= GameTimes.DeltaTime;
+                yield return null;
+            }
+
+            exists = false;
+            tentacle.exists = false;
             yield break;
         }
     }
@@ -362,7 +501,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
         public override void Collided(Entity other)
         {
             base.Collided(other);
-            if(visible && offset.Y < 10)
+            if (visible && offset.Y < 10)
             {
                 ((Player)other).ReceiveDamage(1);
             }
@@ -376,12 +515,12 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
         Touching direction;
         Vector2 offset_from_parent = Vector2.Zero;
 
-        public ProximitySensor(Touching dir, Red_Boss parent) : base(Vector2.Zero,Drawing.DrawOrder.ENTITIES)
+        public ProximitySensor(Touching dir, Red_Boss parent) : base(Vector2.Zero, Drawing.DrawOrder.ENTITIES)
         {
             visible = false;
             this.parent = parent;
             direction = dir;
-            switch(dir)
+            switch (dir)
             {
                 case Touching.UP:
                     width = parent.width;
