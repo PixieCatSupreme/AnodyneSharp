@@ -32,7 +32,7 @@ namespace AnodyneSharp.Entities.Gadget.Doors
 
             _preview = new NexusPreview(preset.Position, LinkedMapName, player);
 
-            _nexusGem = new Entity(new Vector2(Position.X - 6, Position.Y - 4), "nexus_cardgem", 32, 16, DrawOrder.ENTITIES);
+            _nexusGem = new Entity(new Vector2(Position.X, Position.Y - 4), "nexus_cardgem", 32, 16, DrawOrder.ENTITIES);
             _nexusGem.SetFrame(0);
             _nexusGem.visible = CardDataManager.GotAllNormalCards(LinkedMapName);
         }
