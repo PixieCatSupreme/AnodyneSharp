@@ -14,7 +14,7 @@ using System.Text;
 
 namespace AnodyneSharp.Entities.Enemy.Redcave
 {
-    [NamedEntity, Collision(typeof(Broom), KeepOnScreen = true, MapCollision = true)]
+    [NamedEntity, Enemy, Collision(typeof(Broom), KeepOnScreen = true, MapCollision = true)]
     public class Slasher : HealthDropper
     {
         private const int WIDE_ATK_DISTANCE = 36;
