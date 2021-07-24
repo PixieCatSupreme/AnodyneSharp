@@ -23,6 +23,8 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
 
         EntityPool<SplashBullet> splash_bullets;
         EntityPool<Tentacle> tentacles;
+        SmallWave small_wave;
+        BigWave big_wave;
 
         ProximitySensor[] sensors;
         public Touching proximity_hits = Touching.NONE;
@@ -34,6 +36,8 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
 
         float amp = 0;
         float pushdown_timer = 0f;
+
+        bool loopSFX = false;
 
         class SplashState : TimerState
         {
@@ -53,6 +57,11 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
                 AddTimer(1.5f, "Tentacles");
                 AddTimer(5f, "EndDash");
             }
+        }
+
+        class StunState : AbstractState
+        {
+            public IEnumerator stateLogic;
         }
 
         public Red_Boss(EntityPreset preset, Player p) : base(preset.Position, "red_boss", 32, 32, Drawing.DrawOrder.ENTITIES)
@@ -88,6 +97,9 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
                 new(Touching.DOWN,this),
             };
 
+            small_wave = new(this);
+            big_wave = new(this);
+            
             player = p;
             this.preset = preset;
 
@@ -97,7 +109,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
 
         public override IEnumerable<Entity> SubEntities()
         {
-            return new List<Entity>() { ripple }.Concat(splash_bullets.Entities).Concat(sensors).Concat(tentacles.Entities);
+            return new List<Entity>() { ripple, small_wave, big_wave }.Concat(splash_bullets.Entities).Concat(sensors).Concat(tentacles.Entities);
         }
 
         public override void Update()
@@ -106,6 +118,11 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
             invincible_timer -= GameTimes.DeltaTime;
             state.MoveNext();
             proximity_hits = Touching.NONE;
+
+            if(loopSFX)
+            {
+                SoundManager.PlaySoundEffect("bubble_loop"); //Call each frame to get looping behavior out of a sound effect
+            }
         }
 
         public override void Collided(Entity other)
@@ -140,9 +157,9 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
             GlobalState.Dialogue = Dialogue.DialogueManager.GetDialogue("redboss", "before_fight");
 
             float push_timer = 0f;
+            loopSFX = true;
             while (!GlobalState.LastDialogueFinished)
             {
-                SoundManager.PlaySoundEffect("bubble_loop"); //Call each frame to get looping behavior out of a sound effect
                 push_timer += GameTimes.DeltaTime;
                 if (push_timer >= push_tick_max)
                 {
@@ -155,6 +172,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
                 }
                 yield return null;
             }
+            loopSFX = false;
 
             SoundManager.PlaySong("redcave-boss");
             Play("bob");
@@ -175,7 +193,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
                             if (s.got_too_close == 2)
                             {
                                 s.got_too_close = 0;
-                                s.Parent.ChangeState("Dash"); //TODO: should be stun
+                                s.Parent.ChangeState("Stun");
                             }
                         }
                     })
@@ -185,6 +203,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
                     {
                         amp = 0;
                         velocity = new Vector2(30, 20);
+                        Play("bob");
                     })
                     .Update((s,_) =>
                        {
@@ -229,27 +248,33 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
                      })
                     .Event("EndDash", (s) =>
                     {
-                        //TODO: go to stun state
+                        s.Parent.ChangeState("Stun");
                     })
                     .Exit((s) => velocity = Vector2.Zero)
                 .End()
-                .State("Stun")
-                //TODO: stun wave state
+                .State<StunState>("Stun")
+                    .Enter((s) => s.stateLogic = StunStateLogic())
+                    .Update((s,_) =>
+                    {
+                        if (!s.stateLogic.MoveNext())
+                        {
+                            s.Parent.ChangeState("Dash");
+                        }
+                    })
                 .End()
                 .Build();
 
             state.ChangeState("Splash");
+            state.TriggerEvent("Splash"); //First time instantly fires splash bullets
 
             while (health > 0)
             {
                 state.Update(GameTimes.DeltaTime);
 
                 pushdown_timer += GameTimes.DeltaTime * 3;
-                y_push = amp + MathF.Sin(pushdown_timer) * amp;
+                y_push = (int)(amp + MathF.Sin(pushdown_timer) * amp);
                 yield return null;
             }
-
-            //Kill all subentities
 
             SoundManager.StopSong();
             GlobalState.Dialogue = Dialogue.DialogueManager.GetDialogue("redboss", "after_fight");
@@ -299,6 +324,187 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
             if (tentacles.Alive == 0)
             {
                 tentacles.Spawn((t) => t.Spawn(proximity_hits, this), 4);
+            }
+        }
+
+        IEnumerator StunStateLogic()
+        {
+            Play("warn");
+
+            amp = 5;
+
+            Vector2 target = MapUtilities.GetRoomUpperLeftPos(MapUtilities.GetRoomCoordinate(Position)) + new Vector2(6,4)*16;
+
+            small_wave.Rise();
+
+            while(!(MathUtilities.MoveTo(ref Position.X,target.X,30) & MathUtilities.MoveTo(ref Position.Y,target.Y,30)))
+                yield return null;
+
+            while(y_push != 0)
+                yield return null;
+
+            loopSFX = true;
+            amp = 13;
+
+            while(y_push < amp)
+                yield return null;
+
+            small_wave.Launch();
+
+            while (y_push != 0)
+                yield return null;
+
+            amp = 20;
+
+            while (y_push < 18)
+                yield return null;
+
+            big_wave.Rise();
+
+            while (big_wave.velocity == Vector2.Zero)
+                yield return null;
+
+            Play("close_eyes");
+
+            while (y_push > 2)
+                yield return null;
+
+            amp = 5;
+
+            while (small_wave.exists || big_wave.exists)
+                yield return null;
+
+            target -= Vector2.UnitX * 16;
+
+            while (!(MathUtilities.MoveTo(ref Position.X, target.X, 30) & MathUtilities.MoveTo(ref Position.Y, target.Y, 30)))
+                yield return null;
+
+            loopSFX = false;
+
+            yield break;
+        }
+    }
+
+    [Collision(typeof(Player))]
+    class SmallWave : Entity
+    {
+        Vector2 spawn_point;
+
+        public SmallWave(Red_Boss parent) : base(Vector2.Zero, "red_boss_small_wave", 16, 64, Drawing.DrawOrder.BG_ENTITIES)
+        {
+            spawn_point = MapUtilities.GetRoomUpperLeftPos(MapUtilities.GetRoomCoordinate(parent.Position)) + new Vector2(96,48);
+            AddAnimation("move", CreateAnimFrameArray(0, 1), 8);
+            AddAnimation("rise", CreateAnimFrameArray(2, 3), 8);
+            AddAnimation("fall", CreateAnimFrameArray(1, 2, 3, 4), 8, false);
+
+            exists = false;
+            immovable = true;
+        }
+
+        public void Rise()
+        {
+            Position = spawn_point;
+            Play("rise");
+            exists = true;
+        }
+
+        public void Launch()
+        {
+            velocity.X = -20;
+            GlobalState.screenShake.Shake(0.03f, 1f);
+            Play("move");
+            SoundManager.PlaySoundEffect("small_wave");
+        }
+
+        public override void Collided(Entity other)
+        {
+            MathUtilities.MoveTo(ref other.Position.X, 0, 30);
+        }
+
+        public override void Update()
+        {
+            base.Update();
+            if(_curAnim.Finished)
+            {
+                velocity = Vector2.Zero;
+                exists = false;
+                return;
+            }
+
+            if (MapUtilities.GetInGridPosition(Position).X < 32)
+            {
+                Play("fall");
+            }
+        }
+    }
+
+    [Collision(typeof(Player))]
+    class BigWave : Entity
+    {
+        Vector2 spawn_point;
+        bool disable_player_hit = true;
+
+        public BigWave(Red_Boss parent) : base(Vector2.Zero, "red_boss_big_wave", 32, 80, Drawing.DrawOrder.BG_ENTITIES)
+        {
+            spawn_point = MapUtilities.GetRoomUpperLeftPos(MapUtilities.GetRoomCoordinate(parent.Position)) + new Vector2(80, 48);
+
+            AddAnimation("move", CreateAnimFrameArray(0, 1), 8);
+            AddAnimation("rise", CreateAnimFrameArray(2, 1, 0), 8, false);
+            AddAnimation("fall", CreateAnimFrameArray(1, 2, 3), 8, false);
+
+            exists = false;
+            immovable = true;
+        }
+
+        public void Rise()
+        {
+            Position = spawn_point;
+            Play("rise");
+            exists = true;
+        }
+
+        public void Launch()
+        {
+            velocity.X = -40;
+            GlobalState.screenShake.Shake(0.05f, 1f);
+            Play("move");
+            SoundManager.PlaySoundEffect("big_wave");
+            disable_player_hit = false;
+        }
+
+        public override void Collided(Entity other)
+        {
+            if(other is Player p && !disable_player_hit)
+            {
+                SoundManager.PlaySoundEffect("player_hit_1");
+                Vector2 targetInGrid = new(16, 8*16);
+                Vector2 target = p.Position + (targetInGrid - MapUtilities.GetInGridPosition(p.Position));
+                p.AutoJump(1, target, 50, -500);
+                disable_player_hit = true;
+            }
+        }
+
+        public override void Update()
+        {
+            base.Update();
+            if (_curAnim.Finished)
+            {
+                if(_curAnim.name == "fall")
+                {
+                    velocity = Vector2.Zero;
+                    exists = false;
+                    return;
+                }
+                else //rise
+                {
+                    Launch();
+                }
+            }
+
+            if (MapUtilities.GetInGridPosition(Position).X < 32)
+            {
+                Play("fall");
+                disable_player_hit = true;
             }
         }
     }

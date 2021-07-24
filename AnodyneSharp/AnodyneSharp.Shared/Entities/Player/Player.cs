@@ -673,7 +673,7 @@ namespace AnodyneSharp.Entities
             }
         }
 
-        private IEnumerator JumpAnim(float period, Vector2? target_pos = null)
+        private IEnumerator JumpAnim(float period, Vector2? target_pos = null, int jump_height = 24)
         {
             Vector2 base_pos = Position;
             broom.exists = false;
@@ -685,7 +685,7 @@ namespace AnodyneSharp.Entities
             {
                 SoundManager.PlaySoundEffect("player_jump_up");
             }
-            Parabola_Thing parabola = new(this,24,period);
+            Parabola_Thing parabola = new(this,jump_height,period);
             ANIM_STATE = PlayerAnimState.as_idle; // Always land in idle state.
             PlayFacing("jump");
 
@@ -715,16 +715,20 @@ namespace AnodyneSharp.Entities
 
             state = PlayerState.GROUND;
             Solid = true;
+            rotation = 0;
+            angularVelocity = 0;
 
             yield break;
         }
 
-        public void AutoJump(float period, Vector2 target)
+        public void AutoJump(float period, Vector2 target, int height = 24, float rotation_speed = 0f)
         {
-            jump_anim = JumpAnim(period, target);
+            jump_anim = JumpAnim(period, target, height);
             Solid = false;
             state = PlayerState.AUTO_JUMP;
             velocity = Vector2.Zero;
+            angularVelocity = rotation_speed;
+            y_push = 0;
         }
 
         protected override void AnimationChanged(string name)
