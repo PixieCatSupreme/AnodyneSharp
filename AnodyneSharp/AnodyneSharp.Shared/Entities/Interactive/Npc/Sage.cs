@@ -45,7 +45,7 @@ namespace AnodyneSharp.Entities
         public override void Update()
         {
             base.Update();
-            if(!GlobalState.ScreenTransition)
+            if (!GlobalState.ScreenTransition)
                 _state.MoveNext();
             FaceTowards(_player.Position);
             PlayFacing(velocity == Vector2.Zero ? "idle" : "walk");
@@ -80,7 +80,7 @@ namespace AnodyneSharp.Entities
     {
         public SageNexus(EntityPreset preset, Player p) : base(preset, p)
         {
-            if(GlobalState.events.BossDefeated.Contains("TERMINAL"))
+            if (GlobalState.events.BossDefeated.Contains("TERMINAL"))
             {
                 preset.Alive = exists = false;
             }
@@ -91,18 +91,18 @@ namespace AnodyneSharp.Entities
             if (DialogueManager.IsSceneDirty("sage", "enter_nexus"))
                 yield break;
 
-            while(_player.state == PlayerState.AIR || (_player.Position - Position).Length() > 64)
+            while (_player.state == PlayerState.AIR || (_player.Position - Position).Length() > 64)
             {
                 yield return null;
             }
-            
+
             GlobalState.disable_menu = true;
             _player.BeIdle();
             _player.state = PlayerState.INTERACT;
             MoveTowards(_player.Position, 20);
 
-            
-            while((_player.Position-Position).Length() > 32)
+
+            while ((_player.Position - Position).Length() > 32)
             {
                 yield return null;
             }
@@ -154,11 +154,11 @@ namespace AnodyneSharp.Entities
             }
 
             velocity = Vector2.Zero;
-            
+
             //Ask for weapon
             GlobalState.Dialogue = DialogueManager.GetDialogue("sage", "bedroom_entrance");
 
-            while(!GlobalState.LastDialogueFinished)
+            while (!GlobalState.LastDialogueFinished)
             {
                 yield return null;
             }
@@ -167,12 +167,12 @@ namespace AnodyneSharp.Entities
             _player.state = PlayerState.GROUND;
             _player.dontMove = true;
 
-            while(!_player.broom.exists)
+            while (!_player.broom.exists)
             {
                 yield return null;
             }
 
-            while(_player.broom.exists)
+            while (_player.broom.exists)
             {
                 yield return null;
             }
@@ -192,33 +192,43 @@ namespace AnodyneSharp.Entities
         }
     }
 
-    [NamedEntity(xmlName: "Sage", map: "BEDROOM")]
-    class SageBedroom : Sage
+    class DungeonSage : Sage
     {
-        public SageBedroom(EntityPreset preset, Player p) : base(preset, p)
+        private int _initDistance;
+        private int _stopDistance;
+
+        private string _scene;
+
+        public DungeonSage(EntityPreset preset, Player p, int initDistance, int stopDistance, string scene)
+            : base(preset, p)
         {
-            if (GlobalState.events.LeftAfterBoss.Contains("BEDROOM"))
+            if (GlobalState.events.LeftAfterBoss.Contains(GlobalState.CURRENT_MAP_NAME))
             {
                 preset.Alive = exists = false;
             }
+
+            _initDistance = initDistance;
+            _stopDistance = stopDistance;
+            _scene = scene;
         }
 
         protected override IEnumerator StateLogic()
         {
-            if (DialogueManager.IsSceneDirty("sage", "after_boss"))
+            if (DialogueManager.IsSceneDirty("sage", _scene))
                 yield break;
 
-            while (_player.state == PlayerState.AIR || (_player.Position - Position).Length() > 48)
+            while (_player.state == PlayerState.AIR || (_player.Position - Position).Length() > _initDistance)
             {
                 yield return null;
             }
+
             GlobalState.disable_menu = true;
 
             _player.BeIdle();
             _player.state = PlayerState.INTERACT;
             MoveTowards(_player.Position, 20);
 
-            while ((_player.Position - Position).Length() > 24)
+            while ((_player.Position - Position).Length() > _stopDistance)
             {
                 yield return null;
             }
@@ -227,18 +237,43 @@ namespace AnodyneSharp.Entities
             _player.state = PlayerState.GROUND;
             velocity = Vector2.Zero;
 
-            GlobalState.Dialogue = DialogueManager.GetDialogue("sage", "after_boss");
+            GlobalState.Dialogue = DialogueManager.GetDialogue("sage", _scene);
 
             yield break;
         }
 
         protected override string GetInteractionText()
         {
-            return DialogueManager.GetDialogue("sage", "after_boss");
+            return DialogueManager.GetDialogue("sage", _scene);
         }
     }
 
-    [NamedEntity(xmlName:"Sage",map: "BLANK"), Events(typeof(EndScreenTransition))]
+    [NamedEntity(xmlName: "Sage", map: "BEDROOM")]
+    class SageBedroom : DungeonSage
+    {
+        public SageBedroom(EntityPreset preset, Player p)
+            : base(preset, p, 48, 24, "after_boss")
+        { }
+    }
+
+    [NamedEntity(xmlName: "Sage", map: "REDCAVE")]
+    class SageRedCave : DungeonSage
+    {
+        public SageRedCave(EntityPreset preset, Player p)
+            : base(preset, p, 28, 16, "one")
+        { }
+    }
+
+    [NamedEntity(xmlName: "Sage", map: "CROWD")]
+    class SageCrowd : DungeonSage
+    {
+        public SageCrowd(EntityPreset preset, Player p)
+            : base(preset, p, 46, 24, "one")
+        { }
+    }
+
+
+    [NamedEntity(xmlName: "Sage", map: "BLANK"), Events(typeof(EndScreenTransition))]
     class SageBlank : Entity
     {
         EntityPreset _preset;
@@ -250,7 +285,7 @@ namespace AnodyneSharp.Entities
 
         public override void OnEvent(GameEvent e)
         {
-            GlobalState.Dialogue = DialogueManager.GetDialogue("sage", "intro", _preset.Frame+1);
+            GlobalState.Dialogue = DialogueManager.GetDialogue("sage", "intro", _preset.Frame + 1);
             exists = _preset.Alive = false;
         }
     }
