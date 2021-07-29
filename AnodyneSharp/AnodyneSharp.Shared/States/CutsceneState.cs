@@ -25,6 +25,8 @@ namespace AnodyneSharp.States
 
         IEnumerator<CutsceneEvent> _state;
 
+        DialogueState _substate;
+
         public CutsceneState(Camera camera, IEnumerator<CutsceneEvent> state)
         {
             _camera = camera;
@@ -34,7 +36,15 @@ namespace AnodyneSharp.States
         public override void Update()
         {
             base.Update();
-            if(_state.MoveNext())
+            if(_substate is not null)
+            {
+                _substate.Update();
+                if(_substate.Exit)
+                {
+                    _substate = null;
+                }
+            }
+            else if(_state.MoveNext())
             {
                 CutsceneEvent e = _state.Current;
                 if(e != null)
@@ -46,6 +56,11 @@ namespace AnodyneSharp.States
                     else if(e is EntityEvent entity)
                     {
                         _entities.AddRange(entity.NewEntities);
+                    }
+                    else if(e is DialogueEvent d)
+                    {
+                        GlobalState.Dialogue = d.Diag;
+                        _substate = new();
                     }
                 }
             }
@@ -93,7 +108,17 @@ namespace AnodyneSharp.States
             }
         }
 
+        public override void DrawUI()
+        {
+            base.DrawUI();
+            if(_substate != null)
+            {
+                _substate.DrawUI();
+            }
+        }
+
         public abstract record CutsceneEvent { };
+        public sealed record DialogueEvent(string Diag) : CutsceneEvent { };
         public sealed record WarpEvent(string Map, Point Grid) : CutsceneEvent { };
         public sealed record EntityEvent(IEnumerable<Entity> NewEntities) : CutsceneEvent { };
     }

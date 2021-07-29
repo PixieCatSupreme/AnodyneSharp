@@ -274,6 +274,10 @@ namespace AnodyneSharp.States
 
             if (_childState != null)
             {
+                _player.invincible = true;
+                _player.dontMove = true;
+                _player.actions_disabled = true;
+
                 _childState.Update();
                 updateEntities = _childState.UpdateEntities;
 
@@ -291,12 +295,6 @@ namespace AnodyneSharp.States
                     _player.skipBroom = true;
                     _player.invincible = false;
                 }
-                else
-                {
-                    _player.invincible = true;
-                    _player.dontMove = true;
-                    _player.actions_disabled = true;
-                }
 
                 if(updateEntities)
                 {
@@ -313,7 +311,8 @@ namespace AnodyneSharp.States
                 _childState = new CutsceneState(_camera, GlobalState.StartCutscene);
                 GlobalState.StartCutscene = null;
             }
-            else {
+            else
+            {
                 var oldstate = _state;
                 switch (_state)
                 {
