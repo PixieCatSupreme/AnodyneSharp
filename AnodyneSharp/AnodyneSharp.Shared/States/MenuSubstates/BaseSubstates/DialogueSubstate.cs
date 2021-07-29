@@ -38,7 +38,6 @@ namespace AnodyneSharp.States.MenuSubstates
         protected void SetDialogue(string text)
         {
             GlobalState.Dialogue = text;
-            GlobalState.SetDialogueMode = false;
 
             _subsubstate = new DialogueState(true);
         }

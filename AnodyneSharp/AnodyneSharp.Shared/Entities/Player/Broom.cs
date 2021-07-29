@@ -160,7 +160,6 @@ namespace AnodyneSharp.Entities
         {
             facing = _root.facing;
 
-            Vector2 o;
             switch (_root.facing)
             {
                 case Facing.LEFT:

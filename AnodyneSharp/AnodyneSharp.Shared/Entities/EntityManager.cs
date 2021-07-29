@@ -77,7 +77,7 @@ namespace AnodyneSharp.Entities
                 var t = GetMapEntities(GlobalState.CURRENT_MAP_NAME).Where(p => p.Type == typeof(NexusPad)).Single();
                 return GetLinkedDoor(t);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 if(GlobalState.events.VisitedMaps.Contains("NEXUS"))
                 {
