@@ -10,6 +10,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using static AnodyneSharp.States.CutsceneState;
 
 namespace AnodyneSharp.Entities.Interactive.Npc
 {
@@ -38,7 +39,6 @@ namespace AnodyneSharp.Entities.Interactive.Npc
         protected Bike bike = new();
         protected Player _player;
         protected EntityPreset _preset;
-        IEnumerator _state;
 
         public Mitra(EntityPreset preset, Player p, bool start_on_bike) : base(preset.Position, DrawOrder.ENTITIES)
         {
@@ -66,11 +66,8 @@ namespace AnodyneSharp.Entities.Interactive.Npc
             AddAnimation("idle_l", CreateAnimFrameArray(7), 8);
             AddAnimation("idle_r", CreateAnimFrameArray(7), 8);
             AddAnimation("idle_u", CreateAnimFrameArray(8), 8);
-
-            _state = StateLogic();
         }
 
-        protected abstract IEnumerator StateLogic();
         protected abstract string GetInteractionText();
 
         public bool PlayerInteraction(Facing player_direction)
@@ -102,7 +99,6 @@ namespace AnodyneSharp.Entities.Interactive.Npc
         public override void Update()
         {
             base.Update();
-            _state.MoveNext();
             if (velocity == Vector2.Zero)
             {
                 FaceTowards(_player.Position);
@@ -138,9 +134,44 @@ namespace AnodyneSharp.Entities.Interactive.Npc
     {
         VolumeEvent volume = new(0.3f);
 
+        enum State
+        {
+            InitialWait,
+            Entrance,
+            SecondWait,
+            Exit
+        }
+
+        State s = State.InitialWait;
+
         public MitraOverworld(EntityPreset preset, Player p) : base(preset, p, true)
         {
             visible = false;
+        }
+
+        public override void Update()
+        {
+            switch(s)
+            {
+                case State.InitialWait:
+                    if(Math.Abs(Position.Y - _player.Position.Y) < 48 && volume.ReachedTarget)
+                    {
+                        s = State.Entrance;
+                        GlobalState.StartCutscene = Entrance();
+                    }
+                    break;
+                case State.SecondWait:
+                    if ((Position - _player.Position).Length() > 48)
+                    {
+                        s = State.Exit;
+                        GlobalState.StartCutscene = Exit();
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+            base.Update();
         }
 
         public override IEnumerable<Entity> SubEntities()
@@ -150,36 +181,34 @@ namespace AnodyneSharp.Entities.Interactive.Npc
 
         protected override string GetInteractionText()
         {
-            GlobalState.events.IncEvent("mitra.wares");
-            return DialogueManager.GetDialogue("mitra", "initial_overworld");
+            if (GlobalState.events.GetEvent("mitra.wares") == 0)
+            {
+                GlobalState.events.IncEvent("mitra.wares");
+                return DialogueManager.GetDialogue("mitra", "initial_overworld");
+            }
+            else
+            {
+                s = State.Exit;
+                GlobalState.StartCutscene = Exit();
+                return ""; //dialogue gets started by cutscene
+            }
         }
 
-        protected override IEnumerator StateLogic()
+        IEnumerator<CutsceneEvent> Entrance()
         {
             Vector2 UL = MapUtilities.GetRoomUpperLeftPos(MapUtilities.GetRoomCoordinate(Position));
             Position.X -= 20;
 
-            while (Math.Abs(Position.Y - _player.Position.Y) > 48 || !volume.ReachedTarget)
-                yield return null;
-
-            GlobalState.disable_menu = true;
             SoundManager.PlaySong("mitra");
-            volume.exists = false; //disable volume changing
-
-            GlobalState.Dialogue = DialogueManager.GetDialogue("mitra", "initial_overworld");
-
             _preset.Alive = false;
 
-            while (!GlobalState.LastDialogueFinished)
-                yield return null;
-
-            _player.state = PlayerState.INTERACT;
+            yield return new DialogueEvent(DialogueManager.GetDialogue("mitra", "initial_overworld"));
 
             MoveTowards(_player.Position, 80);
             visible = true;
 
             //Get at least a quarter into the screen, and relatively close to the player
-            while ((Position-UL).X < 40 &&
+            while ((Position - UL).X < 40 &&
                 _player.Position.X - Position.X > 24
                 && Math.Abs(_player.Position.X - Position.X) > 16)
             {
@@ -197,7 +226,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc
             immovable = false;
 
             //Wait for map collision
-            while (touching == Touching.NONE)
+            while (wasTouching == Touching.NONE)
                 yield return null;
 
             velocity = Vector2.Zero;
@@ -232,30 +261,15 @@ namespace AnodyneSharp.Entities.Interactive.Npc
 
             velocity = Vector2.Zero;
 
-            GlobalState.Dialogue = DialogueManager.GetDialogue("mitra", "initial_overworld");
+            yield return new DialogueEvent(DialogueManager.GetDialogue("mitra", "initial_overworld"));
 
-            while (!GlobalState.LastDialogueFinished)
-                yield return null;
+            s = State.SecondWait;
 
-            //Player can walk around again
-            _player.state = PlayerState.GROUND;
+            yield break;
+        }
 
-            //Start end 
-            while(!DialogueManager.IsSceneFinished("mitra","initial_overworld"))
-            {
-                if ((Position - _player.Position).Length() > 48)
-                {
-                    GlobalState.Dialogue = DialogueManager.GetDialogue("mitra", "initial_overworld", 3);
-                    while (!GlobalState.LastDialogueFinished)
-                        yield return null;
-                }
-                yield return null;
-            }
-
-            while (!GlobalState.LastDialogueFinished)
-                yield return null;
-
-            _player.state = PlayerState.INTERACT;
+        IEnumerator<CutsceneEvent> Exit() {
+            yield return new DialogueEvent(DialogueManager.GetDialogue("mitra", "initial_overworld", 3));
 
             //back to bike
             velocity = Vector2.UnitX * 20;
@@ -269,21 +283,18 @@ namespace AnodyneSharp.Entities.Interactive.Npc
             //go off-screen
             velocity = Vector2.UnitY * 50;
 
+            Vector2 UL = MapUtilities.GetRoomUpperLeftPos(MapUtilities.GetRoomCoordinate(Position));
+
             while ((Position-UL).Y < 190)
                 yield return null;
 
-            volume.exists = true;
             volume.SetTarget(0.2f);
 
             while (!volume.ReachedTarget)
                 yield return null;
 
             SoundManager.PlaySong("overworld");
-            volume.exists = false;
-            GlobalState.disable_menu = false;
-
-            _player.state = PlayerState.GROUND;
-            _preset.Alive = exists = false;
+            exists = false;
             yield break;
         }
     }
@@ -323,11 +334,6 @@ namespace AnodyneSharp.Entities.Interactive.Npc
             }
             //TODO: hints
             return DialogueManager.GetDialogue("mitra", "general_banter");
-        }
-
-        protected override IEnumerator StateLogic()
-        {
-            yield break;
         }
     }
 }
