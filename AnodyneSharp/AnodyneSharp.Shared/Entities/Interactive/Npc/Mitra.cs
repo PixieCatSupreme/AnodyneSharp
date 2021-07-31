@@ -129,6 +129,110 @@ namespace AnodyneSharp.Entities.Interactive.Npc
         }
     }
 
+    [NamedEntity("Mitra", map: "CLIFF")]
+    public class MitraCliff : Mitra
+    {
+        bool player_jumped = false;
+        bool exiting = false;
+
+        public MitraCliff(EntityPreset preset, Player p) : base(preset, p, true)
+        {
+            visible = false;
+            if(GlobalState.inventory.CanJump)
+            {
+                _preset.Alive = exists = false;
+            }
+        }
+
+        public override void Update()
+        {
+            base.Update();
+            if(_player.state == PlayerState.AIR)
+            {
+                player_jumped = true;
+            }
+
+            Vector2 player_grid_pos = MapUtilities.GetInGridPosition(_player.Position);
+
+            if (!visible && player_grid_pos.Y > 50)
+            {
+                Position = MapUtilities.GetRoomUpperLeftPos(new(GlobalState.CURRENT_GRID_X, GlobalState.CURRENT_GRID_Y)) + new Vector2(180, 80);
+                visible = true;
+                GlobalState.StartCutscene = Entrance();
+            }
+            else if(!exiting && visible && (player_grid_pos.X > 135 || player_grid_pos.Y < 49))
+            {
+                exiting = true;
+                GlobalState.StartCutscene = Exit();
+            }
+        }
+
+        IEnumerator<CutsceneEvent> Entrance()
+        {
+            GlobalState.SpawnEntity(new FadeSwitchSong("mitra"));
+            yield return new DialogueEvent(DialogueManager.GetDialogue("misc", "any", "mitra", 0));
+
+            velocity.X = -37;
+
+            while(Position.X > _player.Position.X)
+            {
+                yield return null;
+            }
+
+            velocity = Vector2.Zero;
+            OffBike();
+            bike.Position = Position - Vector2.One;
+            bike.exists = true;
+
+            if(GlobalState.inventory.tradeState == InventoryManager.TradeState.SHOES)
+            {
+                yield return new DialogueEvent(DialogueManager.GetDialogue("misc", "any", "mitra", 1));
+                GlobalState.inventory.tradeState = InventoryManager.TradeState.NONE;
+            }
+            else
+            {
+                yield return new DialogueEvent(DialogueManager.GetDialogue("misc", "any", "mitra", 2));
+            }
+
+            GlobalState.inventory.CanJump = true;
+
+            yield break;
+        }
+
+        IEnumerator<CutsceneEvent> Exit()
+        {
+            yield return new DialogueEvent(DialogueManager.GetDialogue("misc", "any", "mitra", 3));
+
+            bike.exists = false;
+            OnBike();
+
+            velocity.X = 37;
+            Solid = false; //disable collisions to not push player out of the screen
+
+            while(MapUtilities.GetInGridPosition(Position).X > 10) //until wrap around from exiting the screen
+            {
+                yield return null;
+            }
+
+            _preset.Alive = exists = false;
+            GlobalState.SpawnEntity(new FadeSwitchSong("cliff"));
+
+            yield break;
+        }
+
+        protected override string GetInteractionText()
+        {
+            if(player_jumped)
+            {
+                return DialogueManager.GetDialogue("misc", "any", "mitra", 5);
+            }
+            else
+            {
+                return DialogueManager.GetDialogue("misc", "any", "mitra", 4);
+            }
+        }
+    }
+
     [NamedEntity("Mitra", map: "OVERWORLD")]
     public class MitraOverworld : Mitra
     {
