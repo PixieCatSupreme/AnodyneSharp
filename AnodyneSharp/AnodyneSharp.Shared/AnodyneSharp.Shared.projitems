@@ -70,6 +70,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\StaticOff.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\SwapperPolicyEvent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\JumpTrigger.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Propelled.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\SpringPad.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\FieldsEaster.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Fisherman.cs" />

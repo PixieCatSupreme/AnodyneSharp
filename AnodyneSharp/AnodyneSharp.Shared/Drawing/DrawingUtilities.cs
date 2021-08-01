@@ -13,6 +13,7 @@ namespace AnodyneSharp.Drawing
         BROOM_REFLECTION,   //Reflection of broom
         FOOT_OVERLAY,       //Feet stuff like water wrinkles
         MAP_BG2,            //Map layer 2
+        VERY_BG_ENTITIES,   //Entities that need to go behind dust
         BG_ENTITIES,        //Background entities, animated tiles,...
         SHADOWS,            //Shadows
         PARTICLES,          //Things like particles, keys, blood etc

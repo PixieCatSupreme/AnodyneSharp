@@ -97,7 +97,6 @@ namespace AnodyneSharp.Entities
         private bool isSlipping;
         private bool hasFallen;
         private bool justFell;
-        private bool fallingDisabled;
         private float fallTimer;
         private Vector2 fallPoint;
 
@@ -177,7 +176,6 @@ namespace AnodyneSharp.Entities
                 broom.exists = false;
 
                 actions_disabled = false;
-                fallingDisabled = false;
 
                 isSlipping = false;
                 hasFallen = false;
@@ -289,12 +287,17 @@ namespace AnodyneSharp.Entities
 
         public override void Fall(Vector2 fallPoint)
         {
-            if (state != PlayerState.AIR && !fallingDisabled && !isSlipping && !hasFallen && !GlobalState.FUCK_IT_MODE_ON)
+            if (state != PlayerState.AIR && !isSlipping && !hasFallen && !GlobalState.FUCK_IT_MODE_ON)
             {
                 isSlipping = true;
                 fallTimer = FALL_TIMER_DEFAULT;
                 this.fallPoint = fallPoint;
             }
+        }
+
+        public void DontFall()
+        {
+            isSlipping = false;
         }
 
         public override void Puddle()

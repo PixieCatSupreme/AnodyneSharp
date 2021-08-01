@@ -1311,9 +1311,8 @@
     <Dust x="176" y="1072" guid="183A14E2-74A7-8C1D-316C-8F485991096C" frame="0"/>
     <Propelled x="368" y="1040" guid="80732B5D-6A68-3569-51F0-2864667A9D21" frame="1"/>
     <Propelled x="400" y="1008" guid="32659035-3590-FD65-E5C5-F0C0F69CAEFB" frame="2"/>
-    <Propelled x="416" y="1008" guid="BBD33345-76E6-AF71-4B6A-C2FB46881703" frame="2"/>
+    <Propelled x="416" y="1008" guid="BBD33345-76E6-AF71-4B6A-C2FB46881703" frame="6"/>
     <Propelled x="448" y="1024" guid="EA21877A-A003-76C6-CB46-ACF43E82529C" frame="3"/>
-    <Dust x="416" y="1008" guid="8D6CB365-C8DD-6198-BD30-821290A1A925" frame="0"/>
     <Propelled x="384" y="1072" guid="E4B277C9-1DE1-6871-0DB8-951637AA0B18" frame="0"/>
     <Propelled x="400" y="1168" guid="E4027749-3D2E-E2D6-0DB4-9276A08BD000" frame="2"/>
     <Propelled x="432" y="1184" guid="5B7EE06B-7B53-A2B8-59C7-29FC01345319" frame="3"/>

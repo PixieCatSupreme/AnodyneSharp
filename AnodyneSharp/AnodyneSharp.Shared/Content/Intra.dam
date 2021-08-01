@@ -2,7 +2,7 @@
 <project>
   <version/>
   <bgColor>0xcccccc</bgColor>
-  <viewPos x="-640" y="127.81225868725868"/>
+  <viewPos x="-119" y="-746"/>
   <firstLayersTop>false</firstLayersTop>
   <spriteEntries currentId="163">
     <group name="Events SL" idx="1" open="false">
@@ -4023,7 +4023,7 @@
         </sprite>
       </spritelayer>
     </group>
-    <group name="CROWD" id="90" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
+    <group name="CROWD" id="90" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
       <maplayer name="BG" id="27" xScroll="1" yScroll="1" x="0" y="0" width="100" height="80" tileset="textures/tilemaps/crowd_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,12,12,12,12,12,12,12,12,12,12,12,12,12,1,2,2,2,2,2,7,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,12,12,12,12,12,12,12,12,12,12,12,12,12,1,60,60,60,60,60,5,2,2,2,7,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12</row>
@@ -4188,7 +4188,7 @@
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
       </maplayer>
-      <spritelayer name="Stateless" id="29" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateless" id="29" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false" selected="true">
         <sprite guid="632EBEFD-158A-72BD-CBFD-C1940D674BC6" x="688" y="992" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="61" frame="0"/>
         <sprite guid="C8819D4D-EA7B-BCE7-7E76-50642A09A6E5" x="656" y="1024" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="61" frame="0"/>
         <sprite guid="0B36F8B1-2089-146B-A715-8226B50ECD83" x="368" y="1088" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="58"/>
@@ -4200,9 +4200,8 @@
         <sprite guid="183A14E2-74A7-8C1D-316C-8F485991096C" x="176" y="1072" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="58" frame="0"/>
         <sprite guid="80732B5D-6A68-3569-51F0-2864667A9D21" x="368" y="1040" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="63" frame="1"/>
         <sprite guid="32659035-3590-FD65-E5C5-F0C0F69CAEFB" x="400" y="1008" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="63" frame="2"/>
-        <sprite guid="BBD33345-76E6-AF71-4B6A-C2FB46881703" x="416" y="1008" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="63" frame="2"/>
+        <sprite guid="BBD33345-76E6-AF71-4B6A-C2FB46881703" x="416" y="1008" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="63" frame="6"/>
         <sprite guid="EA21877A-A003-76C6-CB46-ACF43E82529C" x="448" y="1024" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="63" frame="3"/>
-        <sprite guid="8D6CB365-C8DD-6198-BD30-821290A1A925" x="416" y="1008" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="58"/>
         <sprite guid="E4B277C9-1DE1-6871-0DB8-951637AA0B18" x="384" y="1072" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="63" frame="0"/>
         <sprite guid="E4027749-3D2E-E2D6-0DB4-9276A08BD000" x="400" y="1168" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="63" frame="2"/>
         <sprite guid="5B7EE06B-7B53-A2B8-59C7-29FC01345319" x="432" y="1184" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="63" frame="3"/>
@@ -8499,7 +8498,7 @@
         </sprite>
       </spritelayer>
     </group>
-    <group name="REDCAVE" id="21" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
+    <group name="REDCAVE" id="21" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
       <maplayer name="BG" id="66" xScroll="1" yScroll="1" x="0" y="0" width="70" height="100" tileset="textures/tilemaps/redcave_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="true" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>14,6,15,6,6,6,6,6,6,13,14,6,6,6,6,6,6,6,6,13,14,6,6,6,6,6,6,6,6,13,14,6,6,6,6,6,6,6,6,13,14,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,13,14,6,6,6,6,6,6,6,6,13</row>
         <row>14,27,6,36,45,17,18,44,38,13,14,60,36,37,37,37,37,37,37,6,6,37,37,37,37,38,20,20,20,13,14,27,27,27,27,27,27,27,27,13,14,10,10,27,27,27,27,27,27,27,27,27,27,27,27,27,27,40,42,13,14,27,36,45,28,28,44,38,27,13</row>
@@ -8725,7 +8724,7 @@
           <properties/>
         </tileProperties>
       </maplayer>
-      <spritelayer name="Stateful" id="68" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="true" sort="true" selected="true">
+      <spritelayer name="Stateful" id="68" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="true" sort="true">
         <sprite guid="A81D463F-4F42-4715-0C71-C6352E5B171C" x="816" y="16" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="139" frame="0">
           <properties/>
         </sprite>
@@ -9292,7 +9291,7 @@
         </sprite>
       </spritelayer>
     </group>
-    <group name="REDSEA" id="20" xScroll="1" yScroll="1" visible="false" open="true" locked="false" exports="true">
+    <group name="REDSEA" id="20" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
       <maplayer name="BG" id="70" xScroll="1" yScroll="1" x="0" y="0" width="70" height="70" tileset="textures/tilemaps/redsea_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>3,12,1,2,11,12,1,3,4,2,11,12,11,12,1,3,4,3,4,2,61,61,1,2,1,3,4,3,4,3,4,3,4,3,4,2,61,1,2,1,3,4,3,4,2,61,61,1,3,4,2,72,5,63,63,6,7,75,13,11,4,3,12,72,63,63,63,75,13,61</row>
         <row>4,2,11,12,1,2,11,12,11,12,13,71,71,61,11,12,11,12,11,12,1,2,11,12,11,4,3,12,11,4,3,4,3,4,3,4,2,11,4,3,4,3,4,3,4,2,1,3,4,3,12,102,104,104,92,16,17,75,14,1,3,4,2,102,92,63,63,75,13,70</row>
@@ -11393,10 +11392,10 @@
     <ForceTilemapPositionChangesInUnits>false</ForceTilemapPositionChangesInUnits>
   </options>
   <exporter name="D:\Projects\AnodyneSharp\AnodyneSharp\AnodyneSharp.Shared\Content\editor_scripts\Intra.lua" spritepos="Top Left" rotatedSpritePos="false" relativePaths="false" useProjectExporterOnly="false">
-    <setting name="FileExt">csv</setting>
-    <setting name="CSVDir">MiniMaps</setting>
     <setting name="LevelName">Entities</setting>
     <setting name="DataDir">D:\Projects\AnodyneSharp\AnodyneSharp\AnodyneSharp.Shared\Content</setting>
+    <setting name="FileExt">csv</setting>
+    <setting name="CSVDir">MiniMaps</setting>
   </exporter>
   <customPropertyTypes>
     <type name="Type" isString="true" exportedType="int"/>
