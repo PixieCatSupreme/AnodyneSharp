@@ -66,8 +66,6 @@ namespace AnodyneSharp.Entities
         public PlayerAnimState ANIM_STATE;
         private int idle_ticks = 0;
 
-        private int[] last_frame = { 0, 0, 0, 0 };
-
         public PlayerState state;
         internal bool invincible;
         private const float INVINCIBLE_MAX = 0.5f;
@@ -90,7 +88,7 @@ namespace AnodyneSharp.Entities
         public bool actions_disabled;
         public bool skipBroom;
         private IEnumerator jump_anim;
-        public bool just_landed { get; private set; }
+        public bool JustLanded { get; private set; }
         private bool sinking;
         private bool dashing;
 
@@ -184,7 +182,7 @@ namespace AnodyneSharp.Entities
                 sinking = false;
                 dashing = false;
 
-                just_landed = false;
+                JustLanded = false;
                 dontMove = false;
 
                 reversed = false;
@@ -436,7 +434,7 @@ namespace AnodyneSharp.Entities
                     }
                     GroundAnimation();
 
-                    just_landed = false;
+                    JustLanded = false;
                     //dash_logic();
 
                     break;
@@ -531,10 +529,10 @@ namespace AnodyneSharp.Entities
         private void SlippingLogic()
         {
             fallTimer -= GameTimes.DeltaTime;
-            if (just_landed)
+            if (JustLanded)
             {
                 fallTimer = -1;
-                just_landed = false;
+                JustLanded = false;
             }
 
             if ((dashing && fallTimer < FALL_TIMER_DEFAULT / 2) || fallTimer < 0)
@@ -712,7 +710,7 @@ namespace AnodyneSharp.Entities
             }
 
             offset.Y = DEFAULT_Y_OFFSET;
-            just_landed = true;
+            JustLanded = true;
 
             yield return null;
 

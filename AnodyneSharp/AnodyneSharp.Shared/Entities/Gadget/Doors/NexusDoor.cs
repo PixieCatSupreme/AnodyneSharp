@@ -40,7 +40,7 @@ namespace AnodyneSharp.Entities.Gadget.Doors
         public override void Update()
         {
             base.Update();
-            if(activated && _player.just_landed)
+            if(activated && _player.JustLanded)
             {
                 TeleportPlayer();
                 activated = false;

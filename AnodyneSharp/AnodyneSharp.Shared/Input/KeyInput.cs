@@ -65,8 +65,6 @@ namespace AnodyneSharp.Input
 
         private static bool _faceButtonsSwitched;
 
-        private static ControllerKind CurrentControlerKind;
-
         private static Dictionary<Keys, InputState> KeyState;
         private static Dictionary<Buttons, InputState>[] ControllerState;
 
@@ -130,7 +128,6 @@ namespace AnodyneSharp.Input
                 if (displayName.Contains("nintendo"))
                 {
                     ControllerButtonOffset = 26;
-                    CurrentControlerKind = ControllerKind.NINTENDO;
                     if (!_faceButtonsSwitched)
                     {
                         SwapFaceButtons();
@@ -140,7 +137,6 @@ namespace AnodyneSharp.Input
                     displayName.Contains("ps3") || displayName.Contains("ps4") || displayName.Contains("ps5"))
                 {
                     ControllerButtonOffset = 52;
-                    CurrentControlerKind = ControllerKind.SONY;
                     if (_faceButtonsSwitched)
                     {
                         SwapFaceButtons();
@@ -149,7 +145,6 @@ namespace AnodyneSharp.Input
                 else
                 {
                     ControllerButtonOffset = 0;
-                    CurrentControlerKind = ControllerKind.XBOX;
                     if (_faceButtonsSwitched)
                     {
                         SwapFaceButtons();

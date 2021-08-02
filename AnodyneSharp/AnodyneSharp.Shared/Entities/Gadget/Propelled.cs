@@ -88,7 +88,7 @@ namespace AnodyneSharp.Entities.Gadget
                     if (p.state == PlayerState.GROUND)
                     {
                         pressedThisFrame = true;
-                        if (p.just_landed && active && velocity == Vector2.Zero)
+                        if (p.JustLanded && active && velocity == Vector2.Zero)
                         {
                             velocity = FacingDirection(facing) * 33;
                             active = false;

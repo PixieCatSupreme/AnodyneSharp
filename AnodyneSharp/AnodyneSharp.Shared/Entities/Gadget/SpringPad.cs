@@ -50,7 +50,7 @@ namespace AnodyneSharp.Entities.Gadget
             {
                 playerCollision = true;
 
-                if (p.just_landed)
+                if (p.JustLanded)
                 {
                     activated = true;
                     SoundManager.PlaySoundEffect("spring_bounce");

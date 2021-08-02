@@ -285,7 +285,7 @@ namespace AnodyneSharp.UI.Text
             {
                 letterProgress++;
 
-                string s = Text.Substring(letterProgress, Text.IndexOf('♦', letterProgress + 1) - letterProgress);
+                string s = Text[letterProgress..Text.IndexOf('♦', letterProgress + 1)];
 
                 letterProgress += s.Length + 1;
 

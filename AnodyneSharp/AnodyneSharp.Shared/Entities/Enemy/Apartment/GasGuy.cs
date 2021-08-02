@@ -24,8 +24,6 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
 
         private Player _player;
 
-        private float _hitTimer;
-
         private bool _inDelay;
         private bool _didFirstShot;
 
@@ -199,7 +197,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
                     p.reversed = true;
                     GlobalState.wave.active = true;
                 }
-                else if (other is Broom broom)
+                else if (other is Broom)
                 {
                     opacity -= 0.025f;
                 }

@@ -68,7 +68,7 @@ namespace AnodyneSharp.Entities.Gadget
 
         public override void Collided(Entity other)
         {
-            if (other is Player p && Active)
+            if (other is Player && Active)
             {
                 if(!player_on_door)
                     TeleportPlayer();

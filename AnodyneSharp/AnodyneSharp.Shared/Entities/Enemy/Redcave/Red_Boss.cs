@@ -276,6 +276,8 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
                 yield return null;
             }
 
+            velocity = Vector2.Zero;
+
             SoundManager.StopSong();
             GlobalState.Dialogue = Dialogue.DialogueManager.GetDialogue("redboss", "after_fight");
             GlobalState.screenShake.Shake(0.05f, 0.1f);
