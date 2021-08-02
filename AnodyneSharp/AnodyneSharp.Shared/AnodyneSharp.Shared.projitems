@@ -71,12 +71,16 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\SwapperPolicyEvent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\JumpTrigger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Propelled.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Blockers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\SpringPad.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\CliffDog.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\FieldsEaster.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Fisherman.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Olive.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\QuestNPCs\BeachQuest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\QuestNPCs\CliffQuest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\QuestNPCs\FieldsQuest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\QuestNPCs\QuestNPCHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\RedSea\BombDude.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\RedSea\HairDude.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\RedSea\RedWalker.cs" />

@@ -37,11 +37,9 @@ namespace AnodyneSharp.Entities.Interactive.Npc.RedSea
 
         public bool PlayerInteraction(Facing player_direction)
         {
-
-            //TODO the play second stuff
-            if (false)
+            if (QuestNPCs.QuestNPCHelper.NeedsSecond("hairdude","first","second"))
             {
-                //GlobalState.Dialogue = DialogueManager.GetDialogue("generic_npc", "second");
+                GlobalState.Dialogue = DialogueManager.GetDialogue("generic_npc", "second");
             }
             else
             {

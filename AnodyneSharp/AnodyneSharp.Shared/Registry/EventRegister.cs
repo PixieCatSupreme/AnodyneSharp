@@ -32,6 +32,11 @@ namespace AnodyneSharp.Registry
             }
         }
 
+        public void SetEvent(string e, int value)
+        {
+            eventKeys[e] = value;
+        }
+
         public int GetEvent(string e)
         {
             if(e != null && eventKeys.TryGetValue(e,out int v))

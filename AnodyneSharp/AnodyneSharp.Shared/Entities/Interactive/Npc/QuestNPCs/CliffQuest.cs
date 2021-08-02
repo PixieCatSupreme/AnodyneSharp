@@ -6,16 +6,16 @@ using System.Text;
 
 namespace AnodyneSharp.Entities.Interactive.Npc.QuestNPCs
 {
-    [NamedEntity("NPC", type: "generic", map: "BEACH", 7), Collision(typeof(Player))]
-    public class BeachQuest : Entity, Interactable
+    [NamedEntity("NPC", type: "generic", map: "CLIFF", 7), Collision(typeof(Player))]
+    public class CliffQuest : Entity, Interactable
     {
-        bool _played_quest = false;
+        bool played_quest = false;
 
-        public BeachQuest(EntityPreset preset, Player p) 
-            : base(preset.Position, "beach_npcs", 16, 16, Drawing.DrawOrder.ENTITIES)
+        public CliffQuest(EntityPreset preset, Player p)
+                        : base(preset.Position, "cliffs_npcs", 16, 16, Drawing.DrawOrder.ENTITIES)
         {
             AddAnimation("a", CreateAnimFrameArray(0), 2, true);
-            AddAnimation("turn", CreateAnimFrameArray(1), 2, true);
+            AddAnimation("move", CreateAnimFrameArray(1, 3, 1, 5, 1, 1, 1, 0, 2, 0, 4, 0, 0, 1), 3, false);
             Play("a");
             immovable = true;
         }
@@ -29,19 +29,20 @@ namespace AnodyneSharp.Entities.Interactive.Npc.QuestNPCs
         public bool PlayerInteraction(Facing player_direction)
         {
             int quest_progress = GlobalState.events.GetEvent("GoQuestProgress");
-            if ((quest_progress == 1 || quest_progress == 2) && !_played_quest)
+            if ((quest_progress == 0 || quest_progress == 1) && !played_quest)
             {
-                _played_quest = true;
+                played_quest = true;
                 GlobalState.Dialogue = DialogueManager.GetDialogue("generic_npc", "quest_event");
 
-                if (quest_progress == 1)
+                if (quest_progress == 0)
                 {
                     GlobalState.events.IncEvent("GoQuestProgress");
                 }
             }
             else
             {
-                if (QuestNPCHelper.NeedsSecond("beach", "quest_normal", "second"))
+                Play("move");
+                if (QuestNPCHelper.NeedsSecond("cliff", "quest_normal", "second"))
                 {
                     GlobalState.Dialogue = DialogueManager.GetDialogue("generic_npc", "second");
                 }
@@ -50,8 +51,6 @@ namespace AnodyneSharp.Entities.Interactive.Npc.QuestNPCs
                     GlobalState.Dialogue = DialogueManager.GetDialogue("generic_npc", "quest_normal");
                 }
             }
-
-            Play("turn");
 
             return true;
         }
