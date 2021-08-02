@@ -311,18 +311,8 @@ namespace AnodyneSharp.Entities
 
             if (dust != null)
             {
-                dust.Position = _root.Position + FacingDirection(_root.facing) * 16;
-                int x = (int)dust.Position.X;
-                int y = (int)dust.Position.Y;
-                int xdiff = x % 16;
-                int ydiff = y % 16;
-                if (xdiff <= 9) x -= xdiff;
-                else x += (16 - xdiff);
-
-                if (ydiff <= 7) y -= ydiff;
-                else y += (16 - ydiff);
-
-                dust.Position = new Vector2(x, y);
+                dust.Position = (_root.Center / 16 + FacingDirection(_root.facing)).ToPoint().ToVector2() * 16;
+                
                 if (GlobalState.CheckTile(dust.Position) == Touching.NONE)
                 {
                     dust.exists = true;
