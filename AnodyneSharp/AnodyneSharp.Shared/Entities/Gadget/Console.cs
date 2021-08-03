@@ -4,7 +4,7 @@ using AnodyneSharp.Sounds;
 
 namespace AnodyneSharp.Entities
 {
-    [NamedEntity, Collision(typeof(Player))]
+    [NamedEntity(xmlName:null,type:null,map:"BLANK",0), Collision(typeof(Player))]
     public class Console : Entity, Interactable
     {
         EntityPreset _preset;
