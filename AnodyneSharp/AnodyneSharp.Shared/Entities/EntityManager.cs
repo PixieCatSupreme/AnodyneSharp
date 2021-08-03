@@ -79,7 +79,7 @@ namespace AnodyneSharp.Entities
             }
             catch (Exception)
             {
-                if(GlobalState.events.VisitedMaps.Contains("NEXUS"))
+                if (GlobalState.events.VisitedMaps.Contains("NEXUS"))
                 {
                     var t = GetMapEntities("NEXUS").Where(p => p.Type == typeof(DungeonEntrance)).Single();
                     return new DoorMapPair(t, "NEXUS");
@@ -104,6 +104,7 @@ namespace AnodyneSharp.Entities
             XmlNode root = doc.FirstChild;
 
             List<DoorMapPair> doors = new();
+            HashSet<string> missingInThisMap = new();
 
             if (root.HasChildNodes)
             {
@@ -116,6 +117,7 @@ namespace AnodyneSharp.Entities
                     if (!_entities.ContainsKey(mapName))
                     {
                         _entities.Add(mapName, new List<EntityPreset>());
+                        missingInThisMap = new();
                     }
                     List<EntityPreset> presets = _entities[mapName];
 
@@ -123,10 +125,11 @@ namespace AnodyneSharp.Entities
                     {
                         if (!type_lookup.ContainsKey(child.Name))
                         {
-                            if (!missing.Contains(child.Name))
+                            if (!missingInThisMap.Contains(child.Name))
                             {
-                                DebugLogger.AddWarning($"Missing Entity {child.Name}!");
                                 missing.Add(child.Name);
+                                missingInThisMap.Add(child.Name);
+                                DebugLogger.AddWarning($"Missing Entity {child.Name}-{mapName}!");
                             }
                             continue;
                         }
@@ -153,10 +156,11 @@ namespace AnodyneSharp.Entities
                             if (matching.Count == 0)
                             {
                                 string missing_entity = $"{child.Name}-{frame}-'{type}'";
-                                if (!missing.Contains(missing_entity))
+                                if (!missingInThisMap.Contains(missing_entity))
                                 {
                                     missing.Add(missing_entity);
-                                    DebugLogger.AddWarning($"Missing Entity {missing_entity}!");
+                                    missingInThisMap.Add(missing_entity);
+                                    DebugLogger.AddWarning($"Missing Entity {missing_entity}-{mapName}!");
                                 }
                             }
                             else if (matching.Count > 1)
