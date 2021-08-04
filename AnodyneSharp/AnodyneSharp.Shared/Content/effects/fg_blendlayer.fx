@@ -71,7 +71,7 @@ float4 MainPS(Vs2Ps input) : COLOR
         color.rgb = HardLight ? blendOverlay(color.rgb,overlay.rgb) : blendOverlay(overlay.rgb,color.rgb);
     }
 
-    return color;
+    return color * input.Color;
 }
 
 technique BasicColorDrawing
