@@ -76,7 +76,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\CliffDog.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\FieldsEaster.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Fisherman.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Forest\Mushroom.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Forest\Bunny.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Forest\Thorax.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Olive.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\QuestNPCs\ForestQuest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\QuestNPCs\BeachQuest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\QuestNPCs\CliffQuest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\QuestNPCs\FieldsQuest.cs" />
