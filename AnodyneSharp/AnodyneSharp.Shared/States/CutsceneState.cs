@@ -5,6 +5,7 @@ using AnodyneSharp.Entities;
 using AnodyneSharp.Map;
 using AnodyneSharp.Map.Tiles;
 using AnodyneSharp.Registry;
+using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -67,7 +68,7 @@ namespace AnodyneSharp.States
             else
             {
                 Exit = true;
-                _camera.GoTo(GlobalState.CurrentMapGrid * 160); //reset camera
+                _camera.GoTo(MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid)); //reset camera
                 GlobalState.darkness.MapChange(GlobalState.CURRENT_MAP_NAME);
                 GlobalState.darkness.ForceAlpha(oldDarkness);
                 GlobalState.staticEffect.MapChange(GlobalState.CURRENT_MAP_NAME);

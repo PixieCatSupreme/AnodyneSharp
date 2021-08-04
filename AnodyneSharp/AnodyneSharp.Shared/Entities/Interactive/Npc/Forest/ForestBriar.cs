@@ -26,7 +26,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Forest
 
             MathUtilities.MoveTo(ref opacity, 1, 0.3f);
 
-            Rectangle screen = new(MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid.ToPoint()).ToPoint(), new(160, 160));
+            Rectangle screen = new(MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid).ToPoint(), new(160, 160));
             if (!screen.Intersects(Hitbox))
             {
                 exists = false;

@@ -1,6 +1,7 @@
 ﻿using AnodyneSharp.Entities.Enemy;
 using AnodyneSharp.Map;
 using AnodyneSharp.Registry;
+using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -115,7 +116,7 @@ namespace AnodyneSharp.Entities
                 }
             }
 
-            Vector2 roomUpLeft = GlobalState.CurrentMapGrid * GameConstants.SCREEN_WIDTH_IN_PIXELS;
+            Vector2 roomUpLeft = MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid);
             Vector2 roomBottomRight = roomUpLeft + Vector2.One * GameConstants.SCREEN_WIDTH_IN_PIXELS;
 
             foreach(Entity e in _keepOnScreen.Where(e=>e.exists))
@@ -142,8 +143,6 @@ namespace AnodyneSharp.Entities
                     e.touching |= Touching.DOWN;
                 }
             }
-
-            
         }
 
         private Group Get(Type t)

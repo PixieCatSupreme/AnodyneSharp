@@ -55,6 +55,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Bedroom\Shieldy.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Crowd\Dog.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Crowd\Frog.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Crowd\Rotator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\EnemyAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Crowd\Person.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Etc\FollowerBro.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\FadeSwitchSong.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\StaticOff.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\SwapperPolicyEvent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Crowd\BioFilm.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\JumpTrigger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Propelled.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Blockers.cs" />
@@ -80,6 +82,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Forest\ForestBriar.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Forest\Mushroom.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Forest\Bunny.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Forest\SkittishSecret.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Forest\Thorax.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Fields\Olive.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\QuestNPCs\ForestQuest.cs" />
@@ -359,6 +362,7 @@
     <Folder Include="$(MSBuildThisFileDirectory)Entities\Gadget\Treasures\Base\" />
     <Folder Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Fields\" />
     <Folder Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Cliff\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Crowd\" />
     <Folder Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Street\" />
     <Folder Include="$(MSBuildThisFileDirectory)States\Base\" />
     <Folder Include="$(MSBuildThisFileDirectory)States\MenuSubstates\PauseMenu\" />
@@ -842,7 +846,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\npcs\beach_npcs.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\npcs\big_statue.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\npcs\bike.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\npcs\biofilm.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\dame\dame_biofilm.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\npcs\blue_npcs.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\npcs\briar.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\npcs\cell_bodies.png" />

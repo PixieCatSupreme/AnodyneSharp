@@ -13,12 +13,7 @@ namespace AnodyneSharp.Resources
     public static class CardDataManager
     {
         private const string CardDataPath = "Content.CardLookup.card";
-        private static Dictionary<string, Dictionary<Vector2, int>> _cardLocations;
-
-        static CardDataManager()
-        {
-            _cardLocations = new Dictionary<string, Dictionary<Vector2, int>>();
-        }
+        private static Dictionary<string, Dictionary<Point, int>> _cardLocations = new();
 
         public static void ReadCardData()
         {
@@ -33,7 +28,7 @@ namespace AnodyneSharp.Resources
                     while (!reader.EndOfStream)
                     {
                         string mapName = reader.ReadLine().Trim();
-                        Dictionary<Vector2, int> mapCards = new Dictionary<Vector2, int>();
+                        Dictionary<Point, int> mapCards = new();
 
                         if (reader.ReadLine().Trim() == "{")
                         {
@@ -46,7 +41,7 @@ namespace AnodyneSharp.Resources
                                     int.TryParse(cardLine[1], out int x) &&
                                     int.TryParse(cardLine[2], out int y))
                                 {
-                                    mapCards.Add(new Vector2(x, y), id);
+                                    mapCards.Add(new(x, y), id);
                                 }
 
                                 line = reader.ReadLine().Trim();
@@ -62,7 +57,7 @@ namespace AnodyneSharp.Resources
         public static int GetCardId()
         {
             string mapName = GlobalState.CURRENT_MAP_NAME;
-            Vector2 gridPos = GlobalState.CurrentMapGrid;
+            Point gridPos = GlobalState.CurrentMapGrid;
 
             if (mapName == "NEXUS")
             {
@@ -76,7 +71,7 @@ namespace AnodyneSharp.Resources
                 return -1;
             }
 
-            Dictionary<Vector2, int> mapCards = _cardLocations[mapName];
+            Dictionary<Point, int> mapCards = _cardLocations[mapName];
 
             if (!mapCards.ContainsKey(gridPos))
             {

@@ -163,11 +163,11 @@ namespace AnodyneSharp.Registry
 
         public static IEnumerator<CutsceneState.CutsceneEvent> StartCutscene = null;
 
-        public static Vector2 CurrentMapGrid
+        public static Point CurrentMapGrid
         {
             get
             {
-                return new Vector2(CURRENT_GRID_X, CURRENT_GRID_Y);
+                return new(CURRENT_GRID_X, CURRENT_GRID_Y);
             }
         }
 

@@ -2,6 +2,7 @@
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 using AnodyneSharp.States;
+using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -78,6 +79,9 @@ namespace AnodyneSharp.Entities
 
         internal Vector2 grid_entrance;
         public Vector2 additionalVel;
+
+        public bool enter_fall = false;
+        public bool fall_smack = false;
 
         private float action_latency;
 
@@ -188,6 +192,16 @@ namespace AnodyneSharp.Entities
                 reversed = false;
 
                 slowMul = 1;
+
+                if(enter_fall)
+                {
+                    state = PlayerState.ENTER_FALL;
+                    offset.Y = 150;
+                    SoundManager.PlaySoundEffect("fall_1");
+                    angularVelocity = 400;
+                    SetFrame(2);
+                }
+                enter_fall = false;
             }
 
             if (GlobalState.AlwaysCellGraphics || GlobalState.CURRENT_MAP_NAME == "CELL")
@@ -462,6 +476,18 @@ namespace AnodyneSharp.Entities
                     velocity = Vector2.Zero;
                     break;
                 case PlayerState.ENTER_FALL:
+                    velocity = Vector2.Zero;
+                    if(MathUtilities.MoveTo(ref offset.Y,0,102) && fall_smack)
+                    {
+                        state = PlayerState.GROUND;
+                        Play("slumped");
+                        ANIM_STATE = PlayerAnimState.as_slumped;
+                        angularVelocity = 0;
+                        rotation = 0;
+                        GlobalState.screenShake.Shake(0.05f, 0.4f);
+                        SoundManager.PlaySoundEffect("hit_ground_1");
+                        fall_smack = false;
+                    }
                     break;
                 case PlayerState.LADDER:
                     LadderLogic();

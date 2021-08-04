@@ -93,7 +93,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Forest
 
             if (velocity != Vector2.Zero)
             {
-                Rectangle screen = new(MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid.ToPoint()).ToPoint(), new(160, 160));
+                Rectangle screen = new(MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid).ToPoint(), new(160, 160));
                 if (!screen.Intersects(Hitbox))
                 {
                     exists = false;
