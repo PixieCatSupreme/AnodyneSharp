@@ -20,9 +20,12 @@ namespace AnodyneSharp.Entities.Enemy
         public Person(EntityPreset preset, Player p)
             : base(preset.Position, "person", 16, 16, Drawing.DrawOrder.ENTITIES)
         {
-            height = 2;
-            width = 4;
-            offset = new Vector2( 7, 12);
+            height = 4;
+            width = 6;
+
+            CenterOffset();
+
+            offset.Y += 4;
 
             talk_timer = (float)(0.5 + GlobalState.RNG.NextDouble());
 

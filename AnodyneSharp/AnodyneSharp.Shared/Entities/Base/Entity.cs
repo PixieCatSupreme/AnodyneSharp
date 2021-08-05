@@ -225,7 +225,7 @@ namespace AnodyneSharp.Entities
                 }
                 if (GlobalState.draw_hitboxes && HasVisibleHitbox)
                 {
-                    SpriteDrawer.DrawSprite(ResourceManager.GetTexture("frame_icon"), Hitbox, color: Color.Red, Z: DrawingUtilities.GetDrawingZ(DrawOrder.HITBOX));
+                    SpriteDrawer.DrawSprite(ResourceManager.GetTexture("hitbox"), Hitbox, color: Color.Red, Z: DrawingUtilities.GetDrawingZ(DrawOrder.HITBOX));
                 }
             }
         }
