@@ -9,6 +9,8 @@ namespace AnodyneSharp.Entities.Gadget.Doors
     [NamedEntity("Door", "8"), Collision(typeof(Player))]
     public class FallDoor : Door
     {
+        bool smack_on_next_screen = true;
+
         public FallDoor(EntityPreset preset, Player player)
             : base(preset, player)
         {
@@ -17,18 +19,27 @@ namespace AnodyneSharp.Entities.Gadget.Doors
 
         public override void Collided(Entity other)
         {
-            if(other is Player p && (p.state == PlayerState.GROUND || (p.state == PlayerState.ENTER_FALL && p.offset.Y == 0)) && Active)
+            if(other is Player p && Active)
             {
-                TeleportPlayer();
-                p.enter_fall = true;
-                if(p.state == PlayerState.ENTER_FALL)
+                if (p.state == PlayerState.GROUND || (p.state == PlayerState.ENTER_FALL && p.offset.Y == 0))
                 {
-                    p.fall_smack = true;
-                    //prevent fall_smack from acting before the map transition is complete
-                    p.state = PlayerState.GROUND;
-                    p.dontMove = true;
+                    TeleportPlayer();
+                    p.enter_fall = true;
+                    if (smack_on_next_screen)
+                    {
+                        p.fall_smack = true;
+                        //prevent fall_smack from acting before the map transition is complete
+                        p.state = PlayerState.GROUND;
+                        p.dontMove = true;
+                    }
+                    Active = false;
                 }
-                Active = false;
+                else if(p.state == PlayerState.AUTO_JUMP)
+                {
+                    //First jump starts with an autojump onto the top floor door
+                    //Only the second door needs to have the player land with a smack
+                    smack_on_next_screen = false;
+                }
             }
         }
 
