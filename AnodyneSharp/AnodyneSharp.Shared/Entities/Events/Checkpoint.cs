@@ -34,7 +34,7 @@ namespace AnodyneSharp.Entities.Events
 
         SavingIcon saveIcon = new();
 
-        public Checkpoint(EntityPreset preset, Player p) : base(preset.Position, "checkpoint", 16, 16, DrawOrder.BG_ENTITIES)
+        public Checkpoint(EntityPreset preset, Player p) : base(preset.Position, "checkpoint", 16, 16, DrawOrder.VERY_BG_ENTITIES)
         {
             width = height = 8;
             offset = Vector2.One * 4;

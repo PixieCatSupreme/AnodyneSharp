@@ -254,7 +254,7 @@ namespace AnodyneSharp.Entities
         protected virtual bool SetTexture(string textureName, int frameWidth, int frameHeight, bool ignoreChaos = false, bool allowFailure = false)
         {
             this.textureName = textureName;
-            sprite = new Spritesheet(ResourceManager.GetTexture(textureName, ignoreChaos,allowFailure), frameWidth, frameHeight);
+            sprite = new Spritesheet(ResourceManager.GetTexture(textureName, ignoreChaos, allowFailure), frameWidth, frameHeight);
 
             SetFrame(0);
 
@@ -283,7 +283,7 @@ namespace AnodyneSharp.Entities
         public void FaceTowards(Vector2 target)
         {
             Vector2 dir = target - Position;
-            if(MathF.Abs(dir.X) > MathF.Abs(dir.Y))
+            if (MathF.Abs(dir.X) > MathF.Abs(dir.Y))
             {
                 facing = dir.X > 0 ? Facing.RIGHT : Facing.LEFT;
             }
@@ -314,20 +314,22 @@ namespace AnodyneSharp.Entities
 
         private void DoFlicker()
         {
+            _flickerFreq -= GameTimes.DeltaTime;
+            if (_flickerFreq <= 0)
+            {
+                _flickerFreq = FlickerLength;
+                visible = !visible;
+            }
+
             if (_flickerTimer > 0)
             {
                 _flickerTimer -= GameTimes.DeltaTime;
-                _flickerFreq -= GameTimes.DeltaTime;
-                if (_flickerFreq <= 0)
+
+                if (_flickerTimer <= 0)
                 {
-                    _flickerFreq = FlickerLength;
-                    visible = !visible;
+                    _flickering = false;
+                    visible = true;
                 }
-            }
-            else
-            {
-                _flickering = false;
-                visible = true;
             }
         }
 
