@@ -141,8 +141,14 @@ namespace AnodyneSharp
         protected override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
             GameTimes.UpdateTimes(gameTime);
             KeyInput.Update();
+
+            if (GlobalState.settings.pause_on_unfocus && !IsActive)
+            {
+                return;
+            }
 
             _currentState.Update();
 

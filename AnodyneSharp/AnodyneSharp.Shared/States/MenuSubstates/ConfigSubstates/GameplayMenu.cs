@@ -48,7 +48,15 @@ namespace AnodyneSharp.States.MenuSubstates.ConfigSubstates
                 ValueChangedEvent = (val) => { GlobalState.settings.autosave_on = val; }
             };
 
-            var fastText = new UILabel(autosaveLabel.Position + Vector2.UnitY * yStep * 2f, true, "Fast text:", forceEnglish: true, layer: Drawing.DrawOrder.TEXT);
+            var focusLabel = new UILabel(autosaveLabel.Position + Vector2.UnitY * yStep *1.8f, true, "Unfocus pause:", forceEnglish: true, layer: Drawing.DrawOrder.TEXT);
+
+            var focusSetting = new CheckBox(new Vector2(x + 120, focusLabel.Position.Y + (GlobalState.CurrentLanguage == Language.ZH_CN ? 3 : 0)), GlobalState.settings.autosave_on, false, Drawing.DrawOrder.SUBMENU_SLIDER)
+            {
+                ValueChangedEvent = (val) => { GlobalState.settings.pause_on_unfocus = val; }
+            };
+
+
+            var fastText = new UILabel(focusLabel.Position + Vector2.UnitY * yStep *1.5f, true, "Fast text:", forceEnglish: true, layer: Drawing.DrawOrder.TEXT);
 
             var fastTextSetting = new CheckBox(new Vector2(x + 120, fastText.Position.Y + (GlobalState.CurrentLanguage == Language.ZH_CN ? 3 : 0)), GlobalState.settings.fast_text, false, Drawing.DrawOrder.SUBMENU_SLIDER)
             {
@@ -79,6 +87,7 @@ namespace AnodyneSharp.States.MenuSubstates.ConfigSubstates
             options = new()
             {
                 (autosaveLabel, autosaveSetting),
+                (focusLabel, focusSetting),
                 (fastText, fastTextSetting),
                 (invincibility, invincibilitySetting),
                 (healthdrop,healthdropSetting),
