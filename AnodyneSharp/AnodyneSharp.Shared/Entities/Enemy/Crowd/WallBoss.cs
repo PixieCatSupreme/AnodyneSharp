@@ -17,6 +17,8 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
     {
         Wall wall = new();
         Face face = new();
+        Hand lhand = new(false);
+        Hand rhand = new(true);
 
         EntityPool<DeathExplosion> explosions = new(8, () => new());
 
@@ -26,15 +28,24 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
 
         EntityPreset preset;
 
+        int Phase => face.Health switch
+        {
+            > 10 => 0,
+            > 5 => 1,
+            _ => 2
+        };
+
         public WallBoss(EntityPreset preset, Player p) : base(preset.Position, Drawing.DrawOrder.ENTITIES)
         {
             visible = false;
             player = p;
             this.preset = preset;
 
-            wall.opacity = face.opacity = 0;
+            wall.opacity = rhand.opacity = lhand.opacity = face.opacity = 0;
 
             state = StateLogic();
+
+            p.grid_entrance = MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid) + new Vector2(86, 81);
         }
 
         public override void Update()
@@ -65,13 +76,15 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
 
             while (!MathUtilities.MoveTo(ref face.opacity, 1, 0.18f))
             {
-                wall.opacity = face.opacity; //TODO: add hands
+                wall.opacity = rhand.opacity = lhand.opacity = face.opacity;
                 yield return null;
             }
 
             //Fight starts for real
+            IEnumerator fight_logic = FightLogic();
             while (face.Health > 0)
             {
+                fight_logic.MoveNext();
                 yield return null;
             }
 
@@ -98,7 +111,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
             float explosion_timer = 0f;
             while (!MathUtilities.MoveTo(ref face.opacity, 0f, 0.18f))
             {
-                wall.opacity = face.opacity; //TODO: add hands opacity
+                wall.opacity = rhand.opacity = lhand.opacity = face.opacity;
                 GlobalState.screenShake.Shake(0.02f, 0.1f);
                 explosion_timer += GameTimes.DeltaTime;
                 if (explosion_timer > 0.15f)
@@ -129,33 +142,230 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
             yield break;
         }
 
-        public override IEnumerable<Entity> SubEntities()
+        IEnumerator FightLogic()
         {
-            return new List<Entity>() { wall, face }.Concat(explosions.Entities);
-        }
-
-        class DeathExplosion : Entity
-        {
-            public DeathExplosion() : base(Vector2.Zero, "enemy_explode_2", 24, 24, Drawing.DrawOrder.FG_SPRITES)
+            while(true)
             {
-                AddAnimation("explode", CreateAnimFrameArray(0, 1, 2, 3, 4), 14, false);
-            }
-
-            public override void Update()
-            {
-                base.Update();
-                if (_curAnim.Finished)
+                lhand.state = lhand.Float();
+                rhand.state = rhand.Float();
+                float t = 2f;
+                while(t > 0f)
                 {
-                    exists = false;
+                    t -= GameTimes.DeltaTime;
+                    yield return null;
+                }
+                IEnumerator attack = PushAttack();
+                while(attack.MoveNext())
+                {
+                    yield return null;
                 }
             }
+        }
 
-            public void Spawn()
+        IEnumerator PushAttack()
+        {
+            int num_pushes = Phase == 0 ? 2 : 3;
+
+            while(num_pushes-- > 0)
             {
-                Vector2 tl = MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid);
-                Position = tl + new Vector2(GlobalState.RNG.Next(0, 160 - 24), GlobalState.RNG.Next(0, 32));
-                Play("explode");
+                lhand.state = rhand.state = null;
+                int type = 0;
+                double double_push_chance = Phase switch
+                {
+                    0 => 0.5,
+                    1 => 0.7,
+                    _ => 0.8
+                };
+                if(GlobalState.RNG.NextDouble() < double_push_chance)
+                {
+                    type = 2;
+                }
+                else if(GlobalState.RNG.NextDouble() < 0.5)
+                {
+                    type = 1;
+                }
+
+                if(type != 0)
+                {
+                    lhand.state = lhand.Push(rhand,0);
+                }
+                if (type != 1)
+                {
+                    rhand.state = rhand.Push(lhand,0);
+                }
+                while((rhand.state != null && !rhand.Ready) || (lhand.state != null && !lhand.Ready))
+                {
+                    yield return null;
+                }
+                SoundManager.PlaySoundEffect("slasher_atk");
+                while ((rhand.state != null && rhand.Ready) || (lhand.state != null && lhand.Ready))
+                {
+                    yield return null;
+                }
             }
+            yield break;
+        }
+
+        public override IEnumerable<Entity> SubEntities()
+        {
+            return new List<Entity>() { wall, face, lhand, rhand }.Concat(explosions.Entities);
+        }
+
+    }
+    
+    class DeathExplosion : Entity
+    {
+        public DeathExplosion() : base(Vector2.Zero, "enemy_explode_2", 24, 24, Drawing.DrawOrder.FG_SPRITES)
+        {
+            AddAnimation("explode", CreateAnimFrameArray(0, 1, 2, 3, 4), 14, false);
+            exists = false;
+        }
+
+        public override void Update()
+        {
+            base.Update();
+            if (_curAnim.Finished)
+            {
+                exists = false;
+            }
+        }
+
+        public void Spawn()
+        {
+            Vector2 tl = MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid);
+            Position = tl + new Vector2(GlobalState.RNG.Next(0, 160 - 24), GlobalState.RNG.Next(0, 32));
+            Play("explode");
+        }
+    }
+
+    [Collision(typeof(Player))]
+    class Hand : Entity
+    {
+        Parabola_Thing stomp_parabola;
+        bool is_right_hand;
+        Vector2 init_pt;
+        public bool Ready { get; private set; } = false;
+
+        DeathExplosion explosion = new();
+
+        public IEnumerator state;
+
+        public Hand(bool right) : base(Vector2.Zero, "f_wallboss_l_hand", 32,32,Drawing.DrawOrder.ENTITIES)
+        {
+            Vector2 tl = MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid);
+            if (right)
+            {
+                _flip = Microsoft.Xna.Framework.Graphics.SpriteEffects.FlipHorizontally;
+                Position = tl + new Vector2(7 * 16, 32);
+            }
+            else
+            {
+                Position = tl + new Vector2(16, 32);
+            }
+
+            AddAnimation("idle", CreateAnimFrameArray(0));
+            AddAnimation("stomp", CreateAnimFrameArray(1));
+            AddAnimation("shoot", CreateAnimFrameArray(2));
+            AddAnimation("push", CreateAnimFrameArray(3));
+            Play("idle");
+
+            stomp_parabola = new(this, right ? 32 : 64, right ? 1 : 2);
+            is_right_hand = right;
+            init_pt = Position;
+            shadow = new(this, Vector2.Zero, ShadowType.Big);
+            shadow.visible = false;
+
+            immovable = true;
+        }
+
+        public IEnumerator Float()
+        {
+            float t = 0f;
+            while(true)
+            {
+                t += GameTimes.DeltaTime;
+                Position.Y = init_pt.Y + 4 + (is_right_hand ? -1 : 1) * MathF.Sin(t * MathF.Tau) * 8;
+                yield return null;
+            }
+        }
+
+        public IEnumerator Push(Hand other, int phase)
+        {
+            IEnumerator init = GoTo(init_pt - Vector2.UnitY * 16, 30);
+            while(!init.MoveNext())
+            {
+                yield return null;
+            }
+            Ready = true;
+            while(other.state != null && !other.Ready)
+            {
+                yield return null;
+            }
+
+            Play("push");
+            velocity = new(GlobalState.RNG.Next(20, 60), 60 + phase * 30);
+            if(is_right_hand)
+            {
+                velocity.X *= -1;
+            }
+
+            while(MapUtilities.GetInGridPosition(Position).Y < 6*16)
+            {
+                yield return null;
+            }
+            velocity = Vector2.Zero;
+
+            IEnumerator reset = GoTo(init_pt, 180);
+            while (!reset.MoveNext())
+            {
+                yield return null;
+            }
+            Play("idle");
+            Ready = false;
+            yield break;
+        }
+
+        public IEnumerator GoTo(Vector2 pos, float speed)
+        {
+            while (!(MathUtilities.MoveTo(ref Position.X, pos.X, speed) & MathUtilities.MoveTo(ref Position.Y, pos.Y, speed)))
+            {
+                yield return null;
+            }
+            yield break;
+        }
+
+        public override void Collided(Entity other)
+        {
+            base.Collided(other);
+            Separate(this, other);
+            if(!Solid && shadow.Hitbox.Intersects(other.Hitbox) && offset.Y < 8 && other is Player p)
+            {
+                p.ReceiveDamage(1);
+            }
+        }
+
+        public override IEnumerable<Entity> SubEntities()
+        {
+            return Enumerable.Repeat(explosion, 1);
+        }
+
+        public override void Update()
+        {
+            base.Update();
+            state?.MoveNext();
+        }
+
+        public override void PostUpdate()
+        {
+            base.PostUpdate();
+            shadow.SetFrame(offset.Y switch
+            {
+                >= 29 => 0,
+                >= 24 => 1,
+                >= 16 => 2,
+                >= 8 => 3,
+                _ => 4
+            });
         }
     }
 
