@@ -50,7 +50,7 @@ namespace AnodyneSharp.States.MenuSubstates.ConfigSubstates
 
             var focusLabel = new UILabel(autosaveLabel.Position + Vector2.UnitY * yStep *1.8f, true, "Unfocus pause:", forceEnglish: true, layer: Drawing.DrawOrder.TEXT);
 
-            var focusSetting = new CheckBox(new Vector2(x + 120, focusLabel.Position.Y + (GlobalState.CurrentLanguage == Language.ZH_CN ? 3 : 0)), GlobalState.settings.autosave_on, false, Drawing.DrawOrder.SUBMENU_SLIDER)
+            var focusSetting = new CheckBox(new Vector2(x + 120, focusLabel.Position.Y + (GlobalState.CurrentLanguage == Language.ZH_CN ? 3 : 0)), GlobalState.settings.pause_on_unfocus, false, Drawing.DrawOrder.SUBMENU_SLIDER)
             {
                 ValueChangedEvent = (val) => { GlobalState.settings.pause_on_unfocus = val; }
             };
