@@ -169,13 +169,13 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
             while(num_pushes-- > 0)
             {
                 lhand.state = rhand.state = null;
-                int type = 0;
                 double double_push_chance = Phase switch
                 {
                     0 => 0.5,
                     1 => 0.7,
                     _ => 0.8
                 };
+                int type; //0: right hand, 1: left hand, 2: both
                 if(GlobalState.RNG.NextDouble() < double_push_chance)
                 {
                     type = 2;
@@ -184,21 +184,45 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
                 {
                     type = 1;
                 }
+                else
+                {
+                    type = 0;
+                }
 
                 if(type != 0)
                 {
-                    lhand.state = lhand.Push(rhand,0);
+                    lhand.state = lhand.GoTo(lhand.init_pt - Vector2.UnitY*16, 30);
                 }
-                if (type != 1)
+                if(type != 1)
                 {
-                    rhand.state = rhand.Push(lhand,0);
+                    rhand.state = rhand.GoTo(rhand.init_pt - Vector2.UnitY*16, 30);
                 }
-                while((rhand.state != null && !rhand.Ready) || (lhand.state != null && !lhand.Ready))
+
+                while ((rhand.state != null) || (lhand.state != null))
                 {
                     yield return null;
                 }
+
                 SoundManager.PlaySoundEffect("slasher_atk");
-                while ((rhand.state != null && rhand.Ready) || (lhand.state != null && lhand.Ready))
+
+                if (type != 0)
+                {
+                    lhand.state = lhand.Push(Phase);
+                }
+                if (type != 1)
+                {
+                    rhand.state = rhand.Push(Phase);
+                }
+
+                while((rhand.state != null) || (lhand.state != null))
+                {
+                    yield return null;
+                }
+
+                lhand.state = lhand.Reset(180);
+                rhand.state = rhand.Reset(180);
+
+                while ((rhand.state != null) || (lhand.state != null))
                 {
                     yield return null;
                 }
@@ -243,8 +267,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
     {
         Parabola_Thing stomp_parabola;
         bool is_right_hand;
-        Vector2 init_pt;
-        public bool Ready { get; private set; } = false;
+        public Vector2 init_pt { get; private set; }
 
         DeathExplosion explosion = new();
 
@@ -289,19 +312,8 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
             }
         }
 
-        public IEnumerator Push(Hand other, int phase)
+        public IEnumerator Push(int phase)
         {
-            IEnumerator init = GoTo(init_pt - Vector2.UnitY * 16, 30);
-            while(!init.MoveNext())
-            {
-                yield return null;
-            }
-            Ready = true;
-            while(other.state != null && !other.Ready)
-            {
-                yield return null;
-            }
-
             Play("push");
             velocity = new(GlobalState.RNG.Next(20, 60), 60 + phase * 30);
             if(is_right_hand)
@@ -314,14 +326,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
                 yield return null;
             }
             velocity = Vector2.Zero;
-
-            IEnumerator reset = GoTo(init_pt, 180);
-            while (!reset.MoveNext())
-            {
-                yield return null;
-            }
-            Play("idle");
-            Ready = false;
+            
             yield break;
         }
 
@@ -331,6 +336,17 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
             {
                 yield return null;
             }
+            yield break;
+        }
+
+        public IEnumerator Reset(float speed)
+        {
+            IEnumerator reset = GoTo(init_pt, speed);
+            while (reset.MoveNext())
+            {
+                yield return null;
+            }
+            Play("idle");
             yield break;
         }
 
@@ -352,7 +368,10 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
         public override void Update()
         {
             base.Update();
-            state?.MoveNext();
+            if (!state?.MoveNext() ?? false)
+            {
+                state = null;
+            }
         }
 
         public override void PostUpdate()
