@@ -171,6 +171,8 @@ namespace AnodyneSharp.Registry
             }
         }
 
+        public static Point TopLeftTile => new(CURRENT_GRID_X * 10, CURRENT_GRID_Y * 10);
+
         public static bool CanChangeBroom
         {
             get

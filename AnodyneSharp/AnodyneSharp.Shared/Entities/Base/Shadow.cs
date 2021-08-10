@@ -17,12 +17,13 @@ namespace AnodyneSharp.Entities
     {
         private Entity _parent;
         private int maxFrame = 0;
+        private Vector2 PositionOffset;
 
         public Shadow(Entity parent, Vector2 offset, ShadowType type = ShadowType.Normal, float fps = 8)
             : base(parent.Position, DrawOrder.SHADOWS)
         {
             _parent = parent;
-            this.offset = offset - new Vector2(_parent.sprite.Width / 4, _parent.sprite.Height / 4);
+            PositionOffset = offset - new Vector2(_parent.sprite.Width / 4, _parent.sprite.Height / 4);
 
             switch (type)
             {
@@ -44,6 +45,8 @@ namespace AnodyneSharp.Entities
                     SetTexture("spike_roller_shadow", 16, 128);
                     break;
             }
+            width = sprite.Width;
+            height = sprite.Height;
         }
 
         //jumpHeight between 0 and 1, how high up we are
@@ -68,7 +71,7 @@ namespace AnodyneSharp.Entities
         {
             base.Update();
 
-            Position = _parent.Position;
+            Position = _parent.Position - PositionOffset;
         }
     }
 }

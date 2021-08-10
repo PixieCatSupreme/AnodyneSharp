@@ -17,8 +17,9 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
     {
         Wall wall = new();
         Face face = new();
-        Hand lhand = new(false);
-        Hand rhand = new(true);
+        LHand lhand = new();
+        RHand rhand = new();
+        Laser laser = new();
 
         EntityPool<DeathExplosion> explosions = new(8, () => new());
 
@@ -117,7 +118,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
                 if (explosion_timer > 0.15f)
                 {
                     explosion_timer = 0f;
-                    explosions.Spawn((e)=>e.Spawn());
+                    explosions.Spawn((e) => e.Spawn());
                     SoundManager.PlayPitchedSoundEffect("hit_wall", 0f, 0.3f);
                 }
                 yield return null;
@@ -144,29 +145,127 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
 
         IEnumerator FightLogic()
         {
-            while(true)
+            while (true)
             {
                 lhand.state = lhand.Float();
                 rhand.state = rhand.Float();
                 float t = 2f;
-                while(t > 0f)
+                while (t > 0f)
                 {
                     t -= GameTimes.DeltaTime;
                     yield return null;
                 }
-                IEnumerator attack = PushAttack();
-                while(attack.MoveNext())
+                double r = GlobalState.RNG.NextDouble();
+                IEnumerator attack;
+                switch (Phase)
+                {
+                    case 0:
+                        if (r <= 0.7)
+                        {
+                            attack = StompAttack();
+                        }
+                        else
+                        {
+                            attack = PushAttack();
+                        }
+                        break;
+                    case 1:
+                        if (r <= 0.35)
+                        {
+                            attack = LaserAttack();
+                        }
+                        else if (r <= 0.7)
+                        {
+                            attack = StompAttack();
+                        }
+                        else
+                        {
+                            attack = PushAttack();
+                        }
+                        break;
+                    case 2:
+                    default:
+                        if (r <= 0.5)
+                        {
+                            attack = LaserAttack();
+                        }
+                        else if (r <= 0.75)
+                        {
+                            attack = StompAttack();
+                        }
+                        else
+                        {
+                            attack = PushAttack();
+                        }
+                        break;
+                }
+                while (attack.MoveNext())
                 {
                     yield return null;
                 }
             }
         }
 
+        IEnumerator StompAttack()
+        {
+            lhand.Play("stomp");
+            rhand.Play("stomp");
+            lhand.state = null;
+            rhand.state = rhand.GoTo(rhand.init_pt, 30);
+            while(rhand.state != null)
+            {
+                yield return null;
+            }
+            rhand.state = rhand.Stomp();
+            lhand.state = lhand.Stomp(Phase, player);
+            while(lhand.state != null)
+            {
+                yield return null;
+            }
+            rhand.state = rhand.Reset(180);
+            lhand.state = lhand.Reset(180);
+            while(rhand.state != null || lhand.state != null)
+            {
+                yield return null;
+            }
+            yield break;
+        }
+
+        IEnumerator LaserAttack()
+        {
+            lhand.state = lhand.GoTo(lhand.init_pt, 180);
+            rhand.state = rhand.GoTo(rhand.init_pt, 180);
+            lhand.Play("shoot");
+            rhand.Play("shoot");
+            while (lhand.state != null || rhand.state != null)
+            {
+                yield return null;
+            }
+
+            laser.exists = true;
+            laser.state = laser.Attack();
+            lhand.state = lhand.Follow(laser);
+            rhand.state = rhand.Follow(laser);
+
+            while (laser.state != null)
+            {
+                yield return null;
+            }
+
+            lhand.state = lhand.Reset(90);
+            rhand.state = rhand.Reset(90);
+            while (lhand.state != null || rhand.state != null)
+            {
+                yield return null;
+            }
+            yield break;
+        }
+
         IEnumerator PushAttack()
         {
             int num_pushes = Phase == 0 ? 2 : 3;
 
-            while(num_pushes-- > 0)
+            while (num_pushes-- > 0)
             {
                 lhand.state = rhand.state = null;
                 double double_push_chance = Phase switch
@@ -176,11 +275,11 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
                     _ => 0.8
                 };
                 int type; //0: right hand, 1: left hand, 2: both
-                if(GlobalState.RNG.NextDouble() < double_push_chance)
+                if (GlobalState.RNG.NextDouble() < double_push_chance)
                 {
                     type = 2;
                 }
-                else if(GlobalState.RNG.NextDouble() < 0.5)
+                else if (GlobalState.RNG.NextDouble() < 0.5)
                 {
                     type = 1;
                 }
@@ -189,13 +288,13 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
                     type = 0;
                 }
 
-                if(type != 0)
+                if (type != 0)
                 {
-                    lhand.state = lhand.GoTo(lhand.init_pt - Vector2.UnitY*16, 30);
+                    lhand.state = lhand.GoTo(lhand.init_pt - Vector2.UnitY * 16, 30);
                 }
-                if(type != 1)
+                if (type != 1)
                 {
-                    rhand.state = rhand.GoTo(rhand.init_pt - Vector2.UnitY*16, 30);
+                    rhand.state = rhand.GoTo(rhand.init_pt - Vector2.UnitY * 16, 30);
                 }
 
                 while ((rhand.state != null) || (lhand.state != null))
@@ -214,7 +313,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
                     rhand.state = rhand.Push(Phase);
                 }
 
-                while((rhand.state != null) || (lhand.state != null))
+                while ((rhand.state != null) || (lhand.state != null))
                 {
                     yield return null;
                 }
@@ -232,11 +331,11 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
 
         public override IEnumerable<Entity> SubEntities()
         {
-            return new List<Entity>() { wall, face, lhand, rhand }.Concat(explosions.Entities);
+            return new List<Entity>() { wall, face, lhand, rhand, laser }.Concat(explosions.Entities);
         }
 
     }
-    
+
     class DeathExplosion : Entity
     {
         public DeathExplosion() : base(Vector2.Zero, "enemy_explode_2", 24, 24, Drawing.DrawOrder.FG_SPRITES)
@@ -263,9 +362,85 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
     }
 
     [Collision(typeof(Player))]
+    class Laser : Entity
+    {
+        Vector2 start_loc;
+
+        public IEnumerator state;
+
+        public Laser() : base(Vector2.Zero, "wallboss_laser", 64, 10, Drawing.DrawOrder.BG_ENTITIES)
+        {
+            AddAnimation("charge", CreateAnimFrameArray(0));
+            AddAnimation("attack", CreateAnimFrameArray(1, 2), 12);
+            exists = false;
+            visible = false;
+            start_loc = Position = MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid) + new Vector2(48, 32 + 11);
+        }
+
+        public override void Update()
+        {
+            base.Update();
+            if (!state?.MoveNext() ?? false)
+            {
+                state = null;
+                exists = false;
+                visible = false;
+            }
+        }
+
+        public IEnumerator Attack()
+        {
+            Play("charge");
+            Flicker(1.3f);
+            SoundManager.PlaySoundEffect("sun_guy_charge");
+            while (_flickering)
+            {
+                yield return null;
+            }
+
+            Play("attack");
+
+            velocity.Y = 50;
+            while (MapUtilities.GetInGridPosition(Position).Y < 16 * 6 + 11)
+            {
+                yield return null;
+            }
+
+            velocity.Y = -65;
+            while (MapUtilities.GetInGridPosition(Position).Y > 45)
+            {
+                yield return null;
+            }
+
+            velocity.Y = 80;
+            while (MapUtilities.GetInGridPosition(Position).Y < 16 * 6 + 11)
+            {
+                yield return null;
+            }
+
+            velocity = Vector2.Zero;
+            while (!MathUtilities.MoveTo(ref Position.Y, start_loc.Y, 110))
+            {
+                yield return null;
+            }
+
+            yield break;
+        }
+
+        public override void Collided(Entity other)
+        {
+            base.Collided(other);
+            if (!_flickering && other is Player p && p.state != PlayerState.AIR)
+            {
+                p.ReceiveDamage(1);
+            }
+        }
+    }
+
+    [Collision(typeof(Player))]
     class Hand : Entity
     {
-        Parabola_Thing stomp_parabola;
+        protected Parabola_Thing stomp_parabola;
         bool is_right_hand;
         public Vector2 init_pt { get; private set; }
 
@@ -273,7 +448,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
 
         public IEnumerator state;
 
-        public Hand(bool right) : base(Vector2.Zero, "f_wallboss_l_hand", 32,32,Drawing.DrawOrder.ENTITIES)
+        public Hand(bool right) : base(Vector2.Zero, "f_wallboss_l_hand", 32, 32, Drawing.DrawOrder.ENTITIES)
         {
             Vector2 tl = MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid);
             if (right)
@@ -295,8 +470,9 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
             stomp_parabola = new(this, right ? 32 : 64, right ? 1 : 2);
             is_right_hand = right;
             init_pt = Position;
-            shadow = new(this, Vector2.Zero, ShadowType.Big);
+            shadow = new(this, new(8,-12), ShadowType.Big);
             shadow.visible = false;
+            shadow.HasVisibleHitbox = true;
 
             immovable = true;
         }
@@ -304,7 +480,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
         public IEnumerator Float()
         {
             float t = 0f;
-            while(true)
+            while (true)
             {
                 t += GameTimes.DeltaTime;
                 Position.Y = init_pt.Y + 4 + (is_right_hand ? -1 : 1) * MathF.Sin(t * MathF.Tau) * 8;
@@ -316,18 +492,27 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
         {
             Play("push");
             velocity = new(GlobalState.RNG.Next(20, 60), 60 + phase * 30);
-            if(is_right_hand)
+            if (is_right_hand)
             {
                 velocity.X *= -1;
             }
 
-            while(MapUtilities.GetInGridPosition(Position).Y < 6*16)
+            while (MapUtilities.GetInGridPosition(Position).Y < 6 * 16)
             {
                 yield return null;
             }
             velocity = Vector2.Zero;
-            
+
             yield break;
+        }
+
+        public IEnumerator Follow(Laser l)
+        {
+            while (true)
+            {
+                Position.Y = l.Position.Y - 11;
+                yield return null;
+            }
         }
 
         public IEnumerator GoTo(Vector2 pos, float speed)
@@ -341,8 +526,10 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
 
         public IEnumerator Reset(float speed)
         {
+            velocity = Vector2.Zero;
+            shadow.visible = false;
             IEnumerator reset = GoTo(init_pt, speed);
-            while (reset.MoveNext())
+            while (reset.MoveNext() | !MathUtilities.MoveTo(ref offset.Y,0,120))
             {
                 yield return null;
             }
@@ -350,11 +537,21 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
             yield break;
         }
 
+        protected void SpawnExplosion()
+        {
+            explosion.exists = true;
+            explosion.Position = Position;
+            explosion.Play("explode",true);
+        }
+
         public override void Collided(Entity other)
         {
             base.Collided(other);
-            Separate(this, other);
-            if(!Solid && shadow.Hitbox.Intersects(other.Hitbox) && offset.Y < 8 && other is Player p)
+            if (!shadow.visible)
+            {
+                Separate(this, other);
+            }
+            else if (shadow.Hitbox.Intersects(other.Hitbox) && offset.Y < 8 && other is Player p)
             {
                 p.ReceiveDamage(1);
             }
@@ -385,6 +582,93 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
                 >= 8 => 3,
                 _ => 4
             });
+        }
+    }
+
+    class LHand : Hand
+    {
+        enum GroundPhase
+        {
+            None,
+            Cracked,
+            Full
+        }
+        GroundPhase ground_state = GroundPhase.None;
+
+        public LHand() : base(false) { }
+
+        public IEnumerator Stomp(int phase, Player p)
+        {
+            shadow.visible = true;
+            int nr_stomps = phase + 2;
+            while (nr_stomps-- > 0)
+            {
+                stomp_parabola.ResetTime();
+                while(stomp_parabola.Progress() < 0.5f)
+                {
+                    MathUtilities.MoveTo(ref Position.X, p.Position.X, 60);
+                    MathUtilities.MoveTo(ref Position.Y, p.Position.Y - 16, 60);
+                    stomp_parabola.Tick();
+                    yield return null;
+                }
+                SoundManager.PlaySoundEffect("fall_1");
+                float wait_time = 0f;
+                while(wait_time < 0.7f)
+                {
+                    wait_time += GameTimes.DeltaTime;
+                    yield return null;
+                }
+                while(!stomp_parabola.Tick())
+                {
+                    yield return null;
+                }
+                GlobalState.screenShake.Shake(0.01f, 0.2f);
+                SpawnExplosion();
+                SoundManager.PlaySoundEffect("wb_hit_ground");
+
+                if(phase != 0 && ground_state != GroundPhase.Full)
+                {
+                    GlobalState.screenShake.Shake(0.02f, 0.5f);
+                    SoundManager.PlaySoundEffect("floor_crack");
+
+                    int next_tile = ground_state == GroundPhase.None ? 71 : 81;
+                    Point tl = GlobalState.TopLeftTile;
+                    for(int x = 2; x < 8; ++x)
+                    {
+                        GlobalState.ChangeTile(new(tl.X + x, tl.Y + 6), next_tile);
+                    }
+                    ground_state = (ground_state == GroundPhase.None) ? GroundPhase.Cracked : GroundPhase.Full;
+                }
+                yield return null;
+            }
+            yield break;
+        }
+    }
+
+    class RHand : Hand
+    {
+        public RHand() : base(true) { }
+
+        public IEnumerator Stomp()
+        {
+            stomp_parabola.ResetTime();
+            velocity.X = -30;
+            shadow.visible = true;
+            while (true)
+            {
+                if ((velocity.X < 0 && MapUtilities.GetInGridPosition(Position).X < 16)
+                    || (velocity.X > 0 && MapUtilities.GetInGridPosition(Position).X > 16 * 9 - width))
+                {
+                    velocity *= -1;
+                }
+                if(stomp_parabola.Tick())
+                {
+                    SoundManager.PlaySoundEffect("wb_tap_ground");
+                    SpawnExplosion();
+                    stomp_parabola.ResetTime();
+                }
+                yield return null;
+            }
         }
     }
 
