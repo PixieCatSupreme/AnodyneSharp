@@ -69,7 +69,7 @@ namespace AnodyneSharp.Entities.Gadget
             }
         }
 
-        public bool PlayerInteraction(Facing player_direction)
+        public virtual bool PlayerInteraction(Facing player_direction)
         {
             if(opened || player_direction != Facing.UP)
             {
@@ -182,6 +182,25 @@ namespace AnodyneSharp.Entities.Gadget
         private void FailsafeTreasure()
         {
             _treasure = new Treasure("PixieCatSupreme", Position, 0, -2);
+        }
+    }
+
+    [NamedEntity("Treasure",map:"WINDMILL")]
+    class WindmillTreasureChest : TreasureChest
+    {
+        public WindmillTreasureChest(EntityPreset preset, Player p) : base(preset,p)
+        {
+
+        }
+
+        public override bool PlayerInteraction(Facing player_direction)
+        {
+            if(GlobalState.events.GetEvent("WindmillOpened") == 0)
+            {
+                GlobalState.Dialogue = Dialogue.DialogueManager.GetDialogue("misc", "any", "treasure", 0);
+                return true;
+            }
+            return base.PlayerInteraction(player_direction);
         }
     }
 }

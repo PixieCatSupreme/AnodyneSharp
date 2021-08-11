@@ -152,7 +152,11 @@ namespace AnodyneSharp.Entities
                                 type = child.Attributes.GetNamedItem("type").Value;
                             }
 
-                            var matching = type_lookup[child.Name].FindAll(t => t.check.Matches(frame, type, mapName)).ToList();
+                            var matching = type_lookup[child.Name]
+                                .FindAll(t => t.check.Matches(frame, type, mapName))
+                                .GroupBy(t=>t.check.SpecificityCount())
+                                .OrderByDescending(g=>g.Key)
+                                .ToList();
                             if (matching.Count == 0)
                             {
                                 string missing_entity = $"{child.Name}-{frame}-'{type}'";
@@ -163,13 +167,13 @@ namespace AnodyneSharp.Entities
                                     DebugLogger.AddWarning($"Missing Entity {missing_entity}-{mapName}!");
                                 }
                             }
-                            else if (matching.Count > 1)
+                            else if (matching[0].Count() > 1)
                             {
-                                DebugLogger.AddWarning($"Conflict at {child.Name}-{frame}-'{type}': " + String.Join(", ", matching.Select(t => t.type.Name)));
+                                DebugLogger.AddWarning($"Conflict at {child.Name}-{frame}-'{type}': " + String.Join(", ", matching[0].Select(t => t.type.Name)));
                             }
                             else
                             {
-                                EntityPreset preset = new(matching[0].type, new Vector2(x, y), id, frame, p, type);
+                                EntityPreset preset = new(matching[0].First().type, new Vector2(x, y), id, frame, p, type);
 
                                 presets.Add(preset);
 

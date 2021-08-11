@@ -48,5 +48,14 @@ namespace AnodyneSharp.Entities
         {
             return (map ?? m) == m && (type ?? t) == t && (frames.Length == 0 || frames.Contains(f));
         }
+
+        public int SpecificityCount()
+        {
+            int total = 0;
+            total += (map is not null ? 1 : 0);
+            total += (type is not null ? 1 : 0);
+            total += (frames.Length != 0 ? 1 : 0);
+            return total;
+        }
     }
 }
