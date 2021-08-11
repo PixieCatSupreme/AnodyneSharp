@@ -90,7 +90,8 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
             }
 
             //DIE
-            //stop the hands
+            lhand.state = rhand.state = null;
+            laser.exists = false;
             SoundManager.StopSong();
             SoundManager.PlaySoundEffect("sun_guy_death_short");
 
