@@ -11,7 +11,7 @@ namespace AnodyneSharp.Sounds
 {
     internal class SongPlayer
     {
-        const int BufferMs = 64;
+        const int BufferMs = 128;
         
         DynamicSoundEffectInstance player = new(44100,AudioChannels.Stereo);
         VorbisReader reader;
