@@ -1,4 +1,4 @@
 [submodule "Fluent-State-Machine"]
 	path = Fluent-State-Machine
-	url = git@github.com:SephDB/Fluent-State-Machine.git
+	url = https://github.com/SephDB/Fluent-State-Machine.git
 	branch = master
