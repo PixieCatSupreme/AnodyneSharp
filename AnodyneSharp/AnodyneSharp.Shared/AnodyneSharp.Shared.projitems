@@ -429,7 +429,6 @@
     <Content Include="$(MSBuildThisFileDirectory)Content\sfx\1\puddle_down.mp3" />
     <Content Include="$(MSBuildThisFileDirectory)Content\sfx\1\puddle_up.mp3" />
     <Content Include="$(MSBuildThisFileDirectory)Content\sfx\1\pushblock.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\sfx\1\rain.mp3" />
     <Content Include="$(MSBuildThisFileDirectory)Content\sfx\1\redboss_death.mp3" />
     <Content Include="$(MSBuildThisFileDirectory)Content\sfx\1\redboss_moan.mp3" />
     <Content Include="$(MSBuildThisFileDirectory)Content\sfx\1\red_cave_rise.mp3" />
@@ -457,7 +456,6 @@
     <Content Include="$(MSBuildThisFileDirectory)Content\sfx\1\teleport_down.mp3" />
     <Content Include="$(MSBuildThisFileDirectory)Content\sfx\1\teleport_up.mp3" />
     <Content Include="$(MSBuildThisFileDirectory)Content\sfx\1\unlock.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\sfx\1\wavesandwind.mp3" />
     <Content Include="$(MSBuildThisFileDirectory)Content\sfx\1\wb_hit_ground.mp3" />
     <Content Include="$(MSBuildThisFileDirectory)Content\sfx\1\wb_moan.mp3" />
     <Content Include="$(MSBuildThisFileDirectory)Content\sfx\1\wb_moan_2.mp3" />
@@ -948,6 +946,12 @@
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\title\title_text_white.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)Content\ambience\beach.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\ambience\windmill.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />
     <None Include="$(MSBuildThisFileDirectory)Content\effects\blend.fx" />
     <None Include="$(MSBuildThisFileDirectory)Content\effects\fg_blendlayer.fx" />

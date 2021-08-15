@@ -60,7 +60,7 @@ namespace AnodyneSharp.States.MenuSubstates
 
             var sfxSlider = new AudioSlider(new Vector2(sfxLabel.Position.X + sfxLabel.Writer.WriteArea.Width - 5, sfxLabel.Position.Y), GlobalState.settings.sfx_volume_scale, 0f, 1f, 0.1f, _isInMainMenu)
             {
-                ValueChangedEvent = (value,index) => { GlobalState.settings.sfx_volume_scale = value; }
+                ValueChangedEvent = (value,index) => { GlobalState.settings.sfx_volume_scale = value; SoundManager.UpdateSfxVolume(); }
             };
 
             var languageSetter = new TextSelector(new Vector2(x + languageLabel.Writer.WriteArea.Width - 8, languageLabel.Position.Y + GameConstants.LineOffset), GlobalState.CurrentLanguage == Language.ZH_CN ? 40 : 30, (int)GlobalState.CurrentLanguage, true, Enum.GetNames(GlobalState.CurrentLanguage.GetType()).Select(s => s.ToLower().Replace('_', '-')).ToArray())

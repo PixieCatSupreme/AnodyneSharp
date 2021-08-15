@@ -997,13 +997,15 @@ namespace AnodyneSharp.States
             {
                 title = "suburb";
             }
-            else if ((!GlobalState.WindmillOpened && title == "windmill") || GlobalState.InDeathRoom || title == "debug")
+
+            SoundManager.PlaySong(title);
+            SoundManager.PlayAmbience(title);
+
+            if ((GlobalState.events.GetEvent("WindmillOpened") == 0 && title == "windmill") || GlobalState.InDeathRoom || title == "debug")
             {
                 SoundManager.StopSong();
                 return;
             }
-
-            SoundManager.PlaySong(title);
         }
 
         private IEnumerable<Entity> SubEntities(Entity e)

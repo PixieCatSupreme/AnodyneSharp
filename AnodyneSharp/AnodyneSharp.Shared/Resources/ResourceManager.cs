@@ -15,17 +15,10 @@ namespace AnodyneSharp.Resources
 {
     public static class ResourceManager
     {
-        private static Dictionary<string, Texture2D> _textures;
-        private static Dictionary<string, string> _music;
-        private static Dictionary<string, SFXLimiter> _sfx;
-
-
-        static ResourceManager()
-        {
-            _textures = new Dictionary<string, Texture2D>();
-            _music = new Dictionary<string, string>();
-            _sfx = new Dictionary<string, SFXLimiter>();
-        }
+        private static Dictionary<string, Texture2D> _textures = new();
+        private static Dictionary<string, string> _music = new();
+        private static Dictionary<string, string> _ambience = new();
+        private static Dictionary<string, SFXLimiter> _sfx = new();
 
         public static bool LoadResources(ContentManager content)
         {
@@ -39,6 +32,7 @@ namespace AnodyneSharp.Resources
 
             LoadTextures(content, directories.First(d => d.Name == "textures"));
             LoadMusic(content, directories.First(d => d.Name == "bgm"));
+            LoadAmbience(content, directories.First(d => d.Name == "ambience"));
             LoadSFX(content, directories.First(d => d.Name == "sfx"));
 
             return true;
@@ -74,6 +68,15 @@ namespace AnodyneSharp.Resources
             return _music[musicName];
         }
 
+        public static string GetAmbiencePath(string ambienceName)
+        {
+            if(!_ambience.ContainsKey(ambienceName))
+            {
+                return null;
+            }
+            return _ambience[ambienceName];
+        }
+
         public static SoundEffectInstance GetSFX(string sfxName)
         {
             if (!_sfx.ContainsKey(sfxName))
@@ -106,6 +109,18 @@ namespace AnodyneSharp.Resources
                 string key = Path.GetFileNameWithoutExtension(file.Name);
 
                 _music[key] = file.FullName;
+            }
+        }
+
+        private static void LoadAmbience(ContentManager content, DirectoryInfo directory)
+        {
+            List<FileInfo> files = GetChildFiles(directory);
+
+            foreach (FileInfo file in files)
+            {
+                string key = Path.GetFileNameWithoutExtension(file.Name);
+
+                _ambience[key] = file.FullName;
             }
         }
 

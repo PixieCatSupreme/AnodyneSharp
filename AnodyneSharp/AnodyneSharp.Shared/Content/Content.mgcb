@@ -289,12 +289,6 @@
 /processorParam:Quality=Best
 /build:sfx/1/pushblock.mp3
 
-#begin sfx/1/rain.mp3
-/importer:Mp3Importer
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:sfx/1/rain.mp3
-
 #begin sfx/1/red_cave_rise.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
@@ -456,12 +450,6 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:sfx/1/unlock.mp3
-
-#begin sfx/1/wavesandwind.mp3
-/importer:Mp3Importer
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:sfx/1/wavesandwind.mp3
 
 #begin sfx/1/wb_hit_ground.mp3
 /importer:Mp3Importer
