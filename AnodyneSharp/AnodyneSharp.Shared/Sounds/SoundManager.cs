@@ -31,8 +31,13 @@ namespace AnodyneSharp.Sounds
             CurrentSongName = "";
         }
 
-        public static bool PlaySong(string name, float volume = 1f, bool isRepeating = true)
+        public static bool PlaySong(string name, float volume = 1f)
         {
+            if(CurrentSongName == name)
+            {
+                SetSongVolume(volume);
+                return false;
+            }
             string song = ResourceManager.GetMusicPath(name);
             if (song != null)
             {

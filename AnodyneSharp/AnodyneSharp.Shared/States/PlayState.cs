@@ -883,7 +883,6 @@ namespace AnodyneSharp.States
                     p.Alive = true;
                 }
 
-                PlayMapMusic();
 
                 UpdateBroomIcon();
 
@@ -896,6 +895,7 @@ namespace AnodyneSharp.States
                 GlobalState.RefreshKeyCount = true;
             }
             
+            PlayMapMusic();
             FG_Blend.MapChange(GlobalState.CURRENT_MAP_NAME);
             GlobalState.darkness.MapChange(GlobalState.CURRENT_MAP_NAME);
             GlobalState.staticEffect.MapChange(GlobalState.CURRENT_MAP_NAME);
@@ -976,32 +976,11 @@ namespace AnodyneSharp.States
         private void PlayMapMusic()
         {
             string title = GlobalState.CURRENT_MAP_NAME.ToLower();
-            if (GlobalState.OnRoof)
-            {
-                //TODO maybe BOI or a different easter egg for redcave?
-                title = "roof";
-            }
-            else if (!GlobalState.HappyStarted && title == "happy")
-            {
-                title = "happy-init";
-            }
-            else if (!GlobalState.SageDead && title == "terminal")
-            {
-                title = "pre_terminal";
-            }
-            else if (GlobalState.SuburbSoft && title == "suburb")
-            {
-                title = "soft";
-            }
-            else if (title == "drawer")
-            {
-                title = "suburb";
-            }
 
             SoundManager.PlaySong(title);
             SoundManager.PlayAmbience(title);
 
-            if ((GlobalState.events.GetEvent("WindmillOpened") == 0 && title == "windmill") || GlobalState.InDeathRoom || title == "debug")
+            if (GlobalState.InDeathRoom || title == "debug")
             {
                 SoundManager.StopSong();
                 return;

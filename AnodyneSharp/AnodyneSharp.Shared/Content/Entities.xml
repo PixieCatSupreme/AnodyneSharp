@@ -2103,6 +2103,8 @@
     <Happy_NPC x="528" y="368" guid="A3B2BB10-8F13-EBFA-224E-EA54E03747A6" frame="2"/>
     <Happy_NPC x="576" y="384" guid="7EE6B5B6-F4D1-2379-BB03-FBDA4BF5C738" frame="3"/>
     <Happy_NPC x="400" y="384" guid="DFB90A07-A11C-38B3-5CE8-13FDF213E207" frame="4"/>
+    <Music_Event x="640" y="176" guid="8E0AFAF4-6A0D-DF26-D338-F39C7B59BB90" frame="1" type="HappyStarted" />
+    <Music_Event x="160" y="336" guid="DA575572-085E-068F-17BA-6773EC5C24B3" frame="1" type="HappyStarted" />
   </map>
   <map name="HOTEL" type="Stateless">
     <Event x="592" y="96" guid="83856029-4F66-341B-3551-87D18964F02F" frame="2"/>
@@ -2460,6 +2462,8 @@
     <NPC x="384" y="80" guid="67918A21-B9F5-C6B1-130B-424AB235C6AD" frame="12" type="generic" />
     <Event x="436" y="843" guid="3D013C69-3B13-BCDF-376A-22633AA2E0AD" frame="5" type="entrance" />
     <Event x="385" y="420" guid="CFE9CC42-595F-EDED-6720-90848DB38C19" frame="5" type="entrance" />
+    <Music_Event x="0." y="0." guid="0BD574D8-C071-B6AE-02AE-9D45E8F6ED69" frame="0"/>
+    <Music_Event x="480" y="0." guid="4A2436C9-97D2-E284-2AAE-66483E3CE9A3" frame="0"/>
   </map>
   <map name="NEXUS" type="Stateful">
     <Door x="704" y="1392" guid="7C6BBEC5-AAB2-3506-DF56-2903596CEA74" frame="4" type="6" />
@@ -3033,6 +3037,8 @@
     <Suburb_Killer x="352" y="1168" guid="D4CA9F21-8185-3A70-47E7-018C53DA3A04" frame="0"/>
     <Suburb_Killer x="432" y="1168" guid="A5D14BC5-B605-8D91-A7D7-97AC96311E45" frame="0"/>
     <CardGate x="752" y="544" guid="56910455-197C-A23C-B798-40EE51AAA378" frame="16" p="2"/>
+    <Music_Event x="0." y="976" guid="762A206A-316C-8F21-E51F-F3C7F9D79FC5" frame="0"/>
+    <Music_Event x="480" y="816" guid="910EBB0E-EA8E-593C-A33E-FD7CF00E51EA" frame="0"/>
   </map>
   <map name="SPACE" type="Stateless">
     <Space_Face x="1280" y="192" guid="3277CBCF-EE97-5412-94C2-238E848A1B8D" frame="0"/>
@@ -3241,6 +3247,8 @@
     <solid_tile x="384" y="0." guid="D57062D0-B046-A55C-0CFF-4AA235C98885" frame="0"/>
     <NPC x="448" y="688" guid="892260FB-FA7A-D4D4-4623-C99A60464E49" frame="0" type="statue" />
     <CardGate x="384" y="672" guid="C8CE6E18-CF07-180B-A550-9DC808A2F7E3" frame="36" p="2"/>
+    <Music_Event x="320" y="640" guid="3F3996C3-D0F5-AFC4-1FA0-49A45B4D3A75" frame="1" type="SageDead" />
+    <Music_Event x="320" y="0." guid="C77E5AEE-976F-3493-1465-804D9AA64C4C" frame="1" type="SageDead" />
   </map>
   <map name="WINDMILL" type="Stateless">
     <Solid_Sprite x="211" y="1277" guid="D8D58A24-BA47-AD5F-60CF-D77FDD0BD2CE" frame="5" type="blocker" />
@@ -3259,5 +3267,7 @@
     <Door x="400" y="16" guid="6504368E-1505-807F-B1FE-B8F6279061C0" frame="82" type="5" />
     <solid_tile x="400" y="0." guid="1A904A6C-AF0D-D1F3-055E-78003489226D" frame="0"/>
     <Door x="231" y="1270" guid="7DB6049C-AA29-8E15-FF51-5FE62B1AC43E" frame="34" type="10" />
+    <Music_Event x="160" y="1120" guid="F62C45F9-334C-DBB9-8303-F65EEF59550F" frame="1" type="WindmillOpened" />
+    <Music_Event x="160" y="960" guid="056F69C1-E5FA-42B3-5B2D-161FB21A188E" frame="1" type="WindmillOpened" />
   </map>
 </root>

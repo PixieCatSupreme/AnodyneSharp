@@ -70,6 +70,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Redcave\Red_Boss.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\DoorToggle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\FadeSwitchSong.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\MusicEvent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\StaticOff.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\SwapperPolicyEvent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Crowd\BioFilm.cs" />
@@ -952,6 +953,9 @@
     <None Include="$(MSBuildThisFileDirectory)Content\ambience\windmill.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\drawer.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />
     <None Include="$(MSBuildThisFileDirectory)Content\effects\blend.fx" />
     <None Include="$(MSBuildThisFileDirectory)Content\effects\fg_blendlayer.fx" />
@@ -1016,9 +1020,6 @@
     <None Include="$(MSBuildThisFileDirectory)Content\bgm\circus.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="$(MSBuildThisFileDirectory)Content\bgm\circus2.ogg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="$(MSBuildThisFileDirectory)Content\bgm\cliff.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -1043,7 +1044,7 @@
     <None Include="$(MSBuildThisFileDirectory)Content\bgm\go.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="$(MSBuildThisFileDirectory)Content\bgm\happy-init.ogg">
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\happy_alt.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Content\bgm\happy.ogg">
@@ -1064,7 +1065,7 @@
     <None Include="$(MSBuildThisFileDirectory)Content\bgm\overworld.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="$(MSBuildThisFileDirectory)Content\bgm\pre_terminal.ogg">
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\terminal_alt.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Content\bgm\redcave-boss.ogg">
@@ -1076,7 +1077,7 @@
     <None Include="$(MSBuildThisFileDirectory)Content\bgm\redsea.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="$(MSBuildThisFileDirectory)Content\bgm\roof.ogg">
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\hotel_alt.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Content\bgm\sacrificial.ogg">
@@ -1085,7 +1086,7 @@
     <None Include="$(MSBuildThisFileDirectory)Content\bgm\sagefight.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="$(MSBuildThisFileDirectory)Content\bgm\soft.ogg">
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\suburb_alt.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Content\bgm\space.ogg">
