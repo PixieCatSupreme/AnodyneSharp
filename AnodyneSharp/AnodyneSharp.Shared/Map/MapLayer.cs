@@ -170,6 +170,13 @@ namespace AnodyneSharp.Map
                                         ent.Puddle();
                                     }
                                     break;
+                                case CollisionEventType.REFLECTION:
+                                    if (t.Hitbox.Contains(ent.Center))
+                                    {
+                                        ent.Puddle();
+                                        ent.Reflection();
+                                    }
+                                    break;
                                 case CollisionEventType.GRASS:
                                     if(t.Hitbox.Contains(ent.Center))
                                     {

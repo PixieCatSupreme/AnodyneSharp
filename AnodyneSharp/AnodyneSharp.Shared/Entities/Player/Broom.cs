@@ -44,7 +44,7 @@ namespace AnodyneSharp.Entities
 
         public float visible_timer = 0;
 
-        private bool is_behind_player = false;
+        public bool is_behind_player = false;
         private bool just_played_extra_anim = false;
 
 
@@ -72,7 +72,7 @@ namespace AnodyneSharp.Entities
                 float draw_y = MapUtilities.GetInGridPosition(Position).Y;
                 if (!is_behind_player)
                 {
-                    float player_y = MapUtilities.GetInGridPosition(_root.Position).Y;
+                    float player_y = MapUtilities.GetInGridPosition(_root.Position).Y + _root.height;
                     draw_y = player_y + 0.5f;
                 }
                 SpriteDrawer.DrawSprite(sprite.Tex, MathUtilities.CreateRectangle(Position.X - offset.X, Position.Y - offset.Y, sprite.Width, sprite.Height), sprite.GetRect(_curAnim.Frame), rotation: rotation, Z: DrawingUtilities.GetDrawingZ(layer, draw_y));

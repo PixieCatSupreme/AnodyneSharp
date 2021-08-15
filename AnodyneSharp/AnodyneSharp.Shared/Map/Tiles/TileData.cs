@@ -23,6 +23,7 @@ namespace AnodyneSharp.Map.Tiles
         SPIKE,
         LADDER,
         PUDDLE,
+        REFLECTION,
         GRASS
     }
 

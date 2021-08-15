@@ -71,6 +71,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\DoorToggle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\FadeSwitchSong.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\MusicEvent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\ReflectionFollower.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\StaticOff.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\SwapperPolicyEvent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Crowd\BioFilm.cs" />

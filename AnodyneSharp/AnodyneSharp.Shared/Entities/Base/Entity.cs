@@ -333,6 +333,11 @@ namespace AnodyneSharp.Entities
             }
         }
 
+        public int GetFrame()
+        {
+            return _curAnim.Frame;
+        }
+
         //Map interactions
 
         public virtual void Fall(Vector2 fallPoint)
@@ -340,9 +345,13 @@ namespace AnodyneSharp.Entities
             exists = false;
         }
 
+
+
         public virtual void SlowTile() { }
 
         public virtual void Puddle() { }
+
+        public virtual void Reflection() { }
 
         public virtual void Ladder() { }
 

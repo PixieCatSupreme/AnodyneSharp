@@ -1607,6 +1607,7 @@
     <Solid_Sprite x="560" y="416" guid="88032568-A3C5-DF55-58A6-89035EFA92B7" frame="0" type="tree" />
     <Water_Anim x="656" y="16" guid="9F13972F-86B7-8E8B-588B-2F0B9B19B4CB" frame="32" p="2"/>
     <Key x="48" y="176" guid="B4D4386F-E439-9892-3194-0B1D900129EB" frame="0"/>
+    <Event x="496" y="320" guid="1FA16F1F-10A2-9504-CF2D-BBF89B09F364" frame="7"/>
   </map>
   <map name="DEBUG" type="Stateful">
     <Gate x="32" y="288" guid="779063ED-9B1A-C938-07D4-C89E9624FA72" frame="5" p="2" alive="true" type="0" />
@@ -3254,6 +3255,9 @@
     <Solid_Sprite x="211" y="1277" guid="D8D58A24-BA47-AD5F-60CF-D77FDD0BD2CE" frame="5" type="blocker" />
     <NPC x="256" y="816" guid="E3BF8B3F-971C-B586-14B3-37741E5DCC58" frame="0" type="rock" />
     <NPC x="368" y="832" guid="E0AC51A3-C039-7A5E-C731-5BE83AABC335" frame="1" type="rock" />
+    <Event x="176" y="1120" guid="5CA2F11F-268D-B3F8-11C8-0EFD214B38DA" frame="7"/>
+    <Event x="176" y="960" guid="AAF71651-2D33-ABAF-CBBF-C31BCC9997DB" frame="7"/>
+    <Event x="336" y="0." guid="21A95860-FD23-626A-6AE0-3CA03B8E2006" frame="7"/>
   </map>
   <map name="WINDMILL" type="Stateful">
     <KeyBlock x="224" y="880" guid="A315CE08-5E96-4B37-6BC4-795AFF5E8298" frame="1" p="2" alive="true"/>
