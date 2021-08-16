@@ -113,6 +113,8 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Windmill
             GlobalState.events.IncEvent("WindmillOpened");
             GlobalState.FireEvent(new OpenedWindmill());
 
+            yield return new DialogueEvent("A voice: Nice work! You've gotten as far as this demo goes. You can explore the newly unlocked areas, but they're largely incomplete still.");
+
             yield break;
         }
     }
