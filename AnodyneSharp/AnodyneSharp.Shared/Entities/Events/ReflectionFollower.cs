@@ -21,6 +21,7 @@ namespace AnodyneSharp.Entities.Events
             _player = p;
 
             _broomReflection = new Entity(preset.Position, "broom_reflection", 16, 16, DrawOrder.BROOM_REFLECTION);
+            _broomReflection.exists = false;
 
             if (p.follower != null)
             {
@@ -36,21 +37,26 @@ namespace AnodyneSharp.Entities.Events
             base.PostUpdate();
 
             Position = _player.Position + new Vector2(0, 7);
-            _broomReflection.Position = _player.broom.Position + new Vector2(0, 10);
 
             offset = new Vector2(_player.offset.X, -_player.offset.Y);
-            _broomReflection.offset = _player.broom.offset;
 
             SetFrame(_player.GetFrame());
-            _broomReflection.SetFrame(_player.broom.GetFrame());
-
-            _broomReflection.exists = _player.broom.exists;
 
             _broomReflection.visible = visible;
 
-            SetBroomRotation(_player.broom.facing);
+            _broomReflection.exists = _player.broom.exists;
 
-            _broomReflection.layer = _player.broom.is_behind_player ? DrawOrder.BROOM_REFLECTION_BEHIND : DrawOrder.BROOM_REFLECTION;
+            if (_broomReflection.exists)
+            {
+                _broomReflection.Position = _player.broom.Position + new Vector2(0, 10);
+                _broomReflection.offset = _player.broom.offset;
+
+                _broomReflection.SetFrame(_player.broom.GetFrame());
+
+                _broomReflection.layer = _player.broom.is_behind_player ? DrawOrder.BROOM_REFLECTION_BEHIND : DrawOrder.BROOM_REFLECTION;
+
+                SetBroomRotation(_player.broom.facing);
+            }
         }
 
         private void SetBroomRotation(Facing facing)

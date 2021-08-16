@@ -8,6 +8,7 @@ namespace AnodyneSharp
     {
         public int Frame => frames[_curIndex];
         public bool Dirty { get; set; }
+        public int CurIndex { get { return _curIndex; } }
 
         public string name;
         public int[] frames;
