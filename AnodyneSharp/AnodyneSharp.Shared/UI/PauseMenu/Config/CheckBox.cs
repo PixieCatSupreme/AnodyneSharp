@@ -18,10 +18,11 @@ namespace AnodyneSharp.UI.PauseMenu.Config
 
         private Vector2 _pos;
         private bool _turnedOn;
-        private bool _useMainMenuFrame;
+        private MenuStyle _style;
+
         private DrawOrder _layer;
 
-        public CheckBox(Vector2 position, bool current, bool useMainMenuFrame, DrawOrder layer = DrawOrder.AUDIO_SLIDER)
+        public CheckBox(Vector2 position, bool current, MenuStyle style, DrawOrder layer = DrawOrder.AUDIO_SLIDER)
         {
             _box = new Spritesheet(ResourceManager.GetTexture("checkbox", true), 11, 11);
 
@@ -31,7 +32,7 @@ namespace AnodyneSharp.UI.PauseMenu.Config
 
             _layer = layer;
 
-            _useMainMenuFrame = useMainMenuFrame;
+            _style = style;
         }
 
         public void Toggle()
@@ -47,7 +48,7 @@ namespace AnodyneSharp.UI.PauseMenu.Config
         public override void Draw()
         {
             SpriteDrawer.DrawGuiSprite(_box.Tex, _pos,
-                _box.GetRect((_turnedOn ? 1 : 0) + (_useMainMenuFrame ? 2 : 0)), 
+                _box.GetRect((_turnedOn ? 1 : 0) + ((int)_style * 2)), 
                 Z: DrawingUtilities.GetDrawingZ(_layer));
 
         }

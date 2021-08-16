@@ -8,6 +8,13 @@
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
+    <PackageId>AnodyneSharp</PackageId>
+    <Authors>Cynthia Steenvoorden &amp; Seph De Busser</Authors>
+    <Company />
+    <Product>AnodyneSharp</Product>
+    <AssemblyName>AnodyneSharp</AssemblyName>
+    <RootNamespace>AnodyneSharp</RootNamespace>
+    <PackageProjectUrl>https://pixiecatsupreme.itch.io/anodyne-sharp</PackageProjectUrl>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>TRACE;OPENGL</DefineConstants>
@@ -16,12 +23,16 @@
     <DefineConstants>TRACE;OPENGL</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="Icon.ico" />
     <None Remove="Icon.bmp" />
+    <None Remove="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Icon.ico" />
-    <EmbeddedResource Include="Icon.bmp" />
+    <EmbeddedResource Include="Icon.ico">
+      <LogicalName>Icon.ico</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Icon.bmp">
+      <LogicalName>Icon.bmp</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <TrimmerRootAssembly Include="Microsoft.Xna.Framework.Content.ContentTypeReader" Visible="false" />

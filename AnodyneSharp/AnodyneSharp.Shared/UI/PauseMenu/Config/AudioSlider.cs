@@ -11,6 +11,13 @@ using System.Text;
 
 namespace AnodyneSharp.UI.PauseMenu.Config
 {
+    public enum MenuStyle
+    {
+        PauseMenu,
+        SubMenu,
+        MainMenu
+    }
+
     public class AudioSlider : OptionSelector<float>
     {
         private const float BarOffset = 8f;
@@ -27,9 +34,9 @@ namespace AnodyneSharp.UI.PauseMenu.Config
         private Texture2D _sliderInside;
         private Texture2D _sliderBg;
 
-        private bool _useMainMenuFrame;
+        private MenuStyle _style;
 
-        public AudioSlider(Vector2 pos, float current, float min, float max, float stepSize, bool useMainMenuFrame, DrawOrder drawOrder = DrawOrder.AUDIO_SLIDER)
+        public AudioSlider(Vector2 pos, float current, float min, float max, float stepSize, MenuStyle style, DrawOrder drawOrder = DrawOrder.AUDIO_SLIDER)
             : base(pos, 68)
         {
             this.min = min;
@@ -39,11 +46,11 @@ namespace AnodyneSharp.UI.PauseMenu.Config
             layer = drawOrder;
             start = current;
 
-            _slider = new Spritesheet(ResourceManager.GetTexture("volume_bar", true), 60, 11);
+            _slider = new Spritesheet(ResourceManager.GetTexture("volume_bar", true), 60, 12);
             _sliderInside = ResourceManager.GetTexture("volume_bar_inside", true);
             _sliderBg = ResourceManager.GetTexture("volume_bar_bg", true);
 
-            _useMainMenuFrame = useMainMenuFrame;
+            _style = style;
         }
 
         public override void ResetValue()
@@ -102,7 +109,7 @@ namespace AnodyneSharp.UI.PauseMenu.Config
                 Z: z);
 
 
-            SpriteDrawer.DrawGuiSprite(_slider.Tex, position + new Vector2(BarOffset, 0), _slider.GetRect(_useMainMenuFrame ? 1 : 0), Z: z + 2*(max_z - z)/3);
+            SpriteDrawer.DrawGuiSprite(_slider.Tex, position + new Vector2(BarOffset, 0), _slider.GetRect((int)_style), Z: z + 2*(max_z - z)/3);
 
             if (current > min)
             {

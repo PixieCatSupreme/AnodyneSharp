@@ -59,27 +59,27 @@ namespace AnodyneSharp.States.MenuSubstates.ConfigSubstates
                 noConfirm = true
             };
 
-            _flashLabel = new UILabel(new Vector2(menuX, scalingLabel.Position.Y + yStep * 1.5f), true, "Screen flash", layer: Drawing.DrawOrder.TEXT, forceEnglish: true);
+            _flashLabel = new UILabel(new Vector2(menuX, scalingLabel.Position.Y + (int)(yStep * 1.5f)), true, "Screen flash", layer: Drawing.DrawOrder.TEXT, forceEnglish: true);
 
             var brightnessLabel = new UILabel(new Vector2(menuX + 8, _flashLabel.Position.Y + yStep), true, "Max:", layer: Drawing.DrawOrder.TEXT, forceEnglish: true);
 
-            var brightnessSelect = new AudioSlider(brightnessLabel.Position + Vector2.UnitX * 40, GlobalState.settings.flash_brightness, 0f, 1f, 0.1f, false, Drawing.DrawOrder.SUBMENU_SLIDER)
+            var brightnessSelect = new AudioSlider(brightnessLabel.Position + Vector2.UnitX * 40, GlobalState.settings.flash_brightness, 0f, 1f, 0.1f,  MenuStyle.SubMenu, Drawing.DrawOrder.SUBMENU_SLIDER)
             {
                 ValueChangedEvent = (value, index) => { GlobalState.settings.flash_brightness = value; }
             };
 
             var easingLabel = new UILabel(brightnessLabel.Position + Vector2.UnitY * yStep, true, "Easing:", layer: Drawing.DrawOrder.TEXT, forceEnglish: true);
 
-            var easingSelect = new AudioSlider(easingLabel.Position + Vector2.UnitX * 40, GlobalState.settings.flash_easing, 0f, 0.2f, 0.02f, false, Drawing.DrawOrder.SUBMENU_SLIDER)
+            var easingSelect = new AudioSlider(easingLabel.Position + Vector2.UnitX * 40, GlobalState.settings.flash_easing, 0f, 0.2f, 0.02f, MenuStyle.SubMenu, Drawing.DrawOrder.SUBMENU_SLIDER)
             {
                 ValueChangedEvent = (value, index) => { GlobalState.settings.flash_easing = value; }
             };
 
             var testLabel = new UILabel(easingLabel.Position + Vector2.UnitY * yStep, true, "Test", layer: Drawing.DrawOrder.TEXT, forceEnglish: true);
 
-            var shakeLabel = new UILabel(new Vector2(menuX, testLabel.Position.Y + yStep * 1.5f), true, "Screen shake:", layer: Drawing.DrawOrder.TEXT, forceEnglish: true);
+            var shakeLabel = new UILabel(new Vector2(menuX, testLabel.Position.Y + (int)(yStep * 1.5f)), true, "Screen shake:", layer: Drawing.DrawOrder.TEXT, forceEnglish: true);
 
-            var shakeSetting = new CheckBox(new Vector2(x + 120, shakeLabel.Position.Y), GlobalState.settings.screenshake, false, Drawing.DrawOrder.SUBMENU_SLIDER)
+            var shakeSetting = new CheckBox(new Vector2(x + 120, shakeLabel.Position.Y), GlobalState.settings.screenshake, MenuStyle.SubMenu, Drawing.DrawOrder.SUBMENU_SLIDER)
             {
                 ValueChangedEvent = (val) => { GlobalState.settings.screenshake = val; }
             };
