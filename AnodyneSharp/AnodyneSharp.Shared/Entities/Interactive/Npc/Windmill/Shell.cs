@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.GameEvents;
 using AnodyneSharp.Registry;
 using Microsoft.Xna.Framework;
 using System;
@@ -8,6 +9,8 @@ using System.Text;
 
 namespace AnodyneSharp.Entities.Interactive.Npc.Windmill
 {
+    public class OpenedWindmill : GameEvent { };
+
     [NamedEntity("NPC", type: "generic", 3)]
     public class Shell : Entity
     {
@@ -31,6 +34,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Windmill
             return blades;
         }
 
+        [Events(typeof(OpenedWindmill))]
         private class Blade : Entity
         {
             int baseAngle;
@@ -57,6 +61,12 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Windmill
                 }
             }
 
+            public override void OnEvent(GameEvent e)
+            {
+                base.OnEvent(e);
+                Play("rotate");
+            }
+
             public override void PostUpdate()
             {
                 base.PostUpdate();
@@ -70,8 +80,6 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Windmill
                     SetPos(baseAngle);
                 }
             }
-
-
 
             private void SetPos(int angle)
             {

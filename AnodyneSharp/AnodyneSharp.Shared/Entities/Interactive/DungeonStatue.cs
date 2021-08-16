@@ -10,10 +10,15 @@ namespace AnodyneSharp.Entities.Interactive
     [NamedEntity("Dungeon_Statue"),Collision(PartOfMap = true)]
     class DungeonStatue : Entity, Interactable
     {
-        public DungeonStatue(EntityPreset preset, Player p) : base(preset.Position, "big_statue", 32,48,Drawing.DrawOrder.ENTITIES)
+        public static Facing MoveDir(int frame) => frame switch
         {
-            //TODO: check for windmill activated
-            SetFrame(preset.Frame);
+            0 => Facing.UP,
+            _ => Facing.RIGHT
+        };
+
+        public DungeonStatue(Vector2 pos, int frame) : base(pos, "big_statue", 32, 48, Drawing.DrawOrder.ENTITIES)
+        {
+            SetFrame(frame);
             immovable = true;
             width = 30;
             height = 16;
@@ -21,9 +26,24 @@ namespace AnodyneSharp.Entities.Interactive
             Position += offset;
         }
 
+        public DungeonStatue(EntityPreset preset, Player p) : this(preset.Position,preset.Frame)
+        {
+            if(GlobalState.events.GetEvent("WindmillOpened") != 0)
+            {
+                Position += FacingDirection(MoveDir(_curAnim.Frame)) * 32;
+            }
+        }
+
         public bool PlayerInteraction(Facing player_direction)
         {
-            GlobalState.Dialogue = DialogueManager.GetDialogue("dungeon_statue", "one"); //"two" if windmill is open
+            if (GlobalState.events.GetEvent("WindmillOpened") != 0)
+            {
+                GlobalState.Dialogue = DialogueManager.GetDialogue("dungeon_statue", "two");
+            }
+            else
+            {
+                GlobalState.Dialogue = DialogueManager.GetDialogue("dungeon_statue", "one");
+            }
             return true;
         }
 

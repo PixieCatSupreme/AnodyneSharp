@@ -54,6 +54,10 @@ namespace AnodyneSharp.States
                     {
                         Warp(w.Map, w.Grid);
                     }
+                    else if(e is ReturnWarp)
+                    {
+                        Return();
+                    }
                     else if(e is EntityEvent entity)
                     {
                         _entities.AddRange(entity.NewEntities);
@@ -68,18 +72,26 @@ namespace AnodyneSharp.States
             else
             {
                 Exit = true;
-                _camera.GoTo(MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid)); //reset camera
-                GlobalState.darkness.MapChange(GlobalState.CURRENT_MAP_NAME);
-                GlobalState.darkness.ForceAlpha(oldDarkness);
-                GlobalState.staticEffect.MapChange(GlobalState.CURRENT_MAP_NAME);
-                GlobalState.extraBlend.MapChange(GlobalState.CURRENT_MAP_NAME);
-                FG_Blend.MapChange(GlobalState.CURRENT_MAP_NAME);
+                Return();
             }
             foreach(Entity e in _entities.Where(e=>e.exists))
             {
                 e.Update();
                 e.PostUpdate();
             }
+        }
+
+        public void Return()
+        {
+            _camera.GoTo(MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid)); //reset camera
+            GlobalState.darkness.MapChange(GlobalState.CURRENT_MAP_NAME);
+            GlobalState.darkness.ForceAlpha(oldDarkness);
+            GlobalState.staticEffect.MapChange(GlobalState.CURRENT_MAP_NAME);
+            GlobalState.extraBlend.MapChange(GlobalState.CURRENT_MAP_NAME);
+            FG_Blend.MapChange(GlobalState.CURRENT_MAP_NAME);
+            DrawPlayState = true;
+            UpdateEntities = true;
+            _map = null;
         }
 
         public void Warp(string map, Point grid)
@@ -121,6 +133,7 @@ namespace AnodyneSharp.States
         public abstract record CutsceneEvent { };
         public sealed record DialogueEvent(string Diag) : CutsceneEvent { };
         public sealed record WarpEvent(string Map, Point Grid) : CutsceneEvent { };
+        public sealed record ReturnWarp() : CutsceneEvent { };
         public sealed record EntityEvent(IEnumerable<Entity> NewEntities) : CutsceneEvent { };
     }
 }
