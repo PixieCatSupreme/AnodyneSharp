@@ -47,6 +47,13 @@ namespace AnodyneSharp.Entities.Interactive.Npc
         public bool PlayerInteraction(Facing player_direction)
         {
             GlobalState.Dialogue = DialogueManager.GetDialogue("rock", scene);
+
+            if (GlobalState.events.GetEvent("RockTalk") == 0)
+            {
+                GlobalState.Dialogue = DialogueManager.GetDialogue("misc", "any", "rock", 0) + "^\n" + GlobalState.Dialogue;
+
+                GlobalState.events.IncEvent("RockTalk");
+            }
             return true;
         }
 
