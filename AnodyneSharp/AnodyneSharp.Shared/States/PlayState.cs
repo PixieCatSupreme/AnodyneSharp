@@ -900,6 +900,7 @@ namespace AnodyneSharp.States
             GlobalState.darkness.MapChange(GlobalState.CURRENT_MAP_NAME);
             GlobalState.staticEffect.MapChange(GlobalState.CURRENT_MAP_NAME);
             GlobalState.extraBlend.MapChange(GlobalState.CURRENT_MAP_NAME);
+            SoundManager.SetAmbienceVolume(1f);
 
             _player.Position = _player.grid_entrance =  GlobalState.PLAYER_WARP_TARGET == Vector2.Zero ? _map.GetFirstWalkable(_map_bg_2) * TILE_WIDTH : GlobalState.PLAYER_WARP_TARGET;
             _player.facing = GlobalState.NewMapFacing ?? _player.facing;
@@ -960,8 +961,16 @@ namespace AnodyneSharp.States
                         GlobalState.darkness.ForceAlpha(0.1f);
                         GlobalState.darkness.TargetAlpha(0f);
                     }
-                }
-                ,
+                },
+                "BEACH" => () =>
+                {
+                    SoundManager.SetAmbienceVolume(GlobalState.CurrentMapGrid.Y switch
+                    {
+                        < 2 => 0.21f,
+                        2 => 0.55f,
+                        _ => 1f
+                    });
+                },
                 _ => null
             };
         }

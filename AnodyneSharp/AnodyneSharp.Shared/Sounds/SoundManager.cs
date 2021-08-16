@@ -25,6 +25,7 @@ namespace AnodyneSharp.Sounds
         private static SongPlayer bgm = new();
         private static float currentVolume = 1f;
         private static SongPlayer ambience = new();
+        private static float ambienceVolume = 1f;
 
         static SoundManager()
         {
@@ -57,6 +58,13 @@ namespace AnodyneSharp.Sounds
         {
             currentVolume = volume;
             bgm.SetVolume(currentVolume * GlobalState.settings.music_volume_scale);
+            ambience.SetVolume(currentVolume * ambienceVolume * GlobalState.settings.music_volume_scale);
+        }
+
+        public static void SetAmbienceVolume(float volume)
+        {
+            ambienceVolume = volume;
+            ambience.SetVolume(currentVolume * ambienceVolume * GlobalState.settings.music_volume_scale);
         }
 
         public static float GetVolume()
@@ -80,7 +88,6 @@ namespace AnodyneSharp.Sounds
         public static void PlayAmbience(string name)
         {
             string sound = ResourceManager.GetAmbiencePath(name);
-            ambience.SetVolume(GlobalState.settings.sfx_volume_scale);
             if(sound != null)
             {
                 ambience.Play(sound);
@@ -112,11 +119,6 @@ namespace AnodyneSharp.Sounds
                 sfx.Volume = volume * GlobalState.settings.sfx_volume_scale;
                 sfx.Play();
             }
-        }
-
-        public static void UpdateSfxVolume()
-        {
-            ambience.SetVolume(GlobalState.settings.sfx_volume_scale);
         }
     }
 }
