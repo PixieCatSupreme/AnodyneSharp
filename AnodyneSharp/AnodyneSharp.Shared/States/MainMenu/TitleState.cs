@@ -34,6 +34,9 @@ namespace AnodyneSharp.States.MainMenu
         private UIEntity titleOverlay;
         private UIEntity pressEnter;
 
+        private UIEntity subtitle;
+        private UIEntity subtitleOverlay;
+
         private IState _state;
 
         private string[] credits;
@@ -204,6 +207,8 @@ namespace AnodyneSharp.States.MainMenu
                             label.IsVisible = false;
                         }
 
+
+
                         GlobalState.TitleScreenFinish.Darkness = ResourceManager.GetTexture("title_overlay2");
 
                         nexusImage.Position.Y = 180 - nexusImage.height;
@@ -225,10 +230,14 @@ namespace AnodyneSharp.States.MainMenu
                         pressEnter.visible = true;
                         title.visible = true;
                         titleOverlay.visible = true;
+
+                        subtitle.visible = true;
+                        subtitleOverlay.visible = true;
                     })
                     .Update((state, t) =>
                     {
                         MathUtilities.MoveTo(ref titleOverlay.opacity, 0, 0.4f);
+                        MathUtilities.MoveTo(ref subtitleOverlay.opacity, 0, 0.4f);
                     })
                     .Event("BlinkEnter", (state) => pressEnter.visible = !pressEnter.visible)
                     .Condition(() => AnyKeyPressed, (s) => _state.ChangeState("Pixelate"))
@@ -304,7 +313,18 @@ namespace AnodyneSharp.States.MainMenu
                 visible = false
             };
 
-            pressEnter.Draw();
+
+            subtitle = new UIEntity(new Vector2(45, 47), "title_remake", 71, 11, DrawOrder.MENUTEXT)
+            {
+                visible = false
+            };
+
+            subtitleOverlay = new UIEntity(subtitle.Position, "title_remake_white", 71, 11, DrawOrder.TEXTBOX)
+            {
+                visible = false
+            };
+
+            //pressEnter.Draw();
 
             GlobalState.TitleScreenFinish.Entities.Add(pressEnter);
 
@@ -350,6 +370,9 @@ namespace AnodyneSharp.States.MainMenu
             doorSpin2.Draw();
             title.Draw();
             titleOverlay.Draw();
+
+            subtitle.Draw();
+            subtitleOverlay.Draw();
 
             //The UI labels get drawn in the TitleScreen overlay
         }

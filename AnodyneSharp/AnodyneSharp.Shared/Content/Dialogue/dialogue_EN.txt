@@ -386,7 +386,7 @@ Mitra: Hey Young, looking for a card?\nThose broken bridges to the northwest...l
 #General random stuff 
 		scene general_banter
 Did you find that guy who was looking for something in the mountains?
-Do you know what my bike’s surname is?  …Waldo!  Get it?  Wares Waldo!  ...Just kidding, bicycles don’t have surnames.
+Do you know what my bike’s surname is?  ...Waldo!  Get it?  Wares Waldo!  ...Just kidding, bicycles don’t have surnames.
 Do you think I should get a U-Lock?  I’d hate to tie up Wares like that, but you do hear a lot about stolen bikes these days...
 So what is The Briar?  Some sort of ancient artifact from a lost culture?
 I wonder why I haven't heard anything about The Darkness coming.  I guess most people in the land are just caught up in their own daily struggles.
