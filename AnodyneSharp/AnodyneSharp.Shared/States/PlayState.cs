@@ -298,7 +298,7 @@ namespace AnodyneSharp.States
 
                 if(updateEntities)
                 {
-                    DoCollisions();
+                    DoCollisions(false);
                 }
             }
             else if (GlobalState.SetDialogueMode)
@@ -365,12 +365,8 @@ namespace AnodyneSharp.States
                     default:
                         break;
                 }
-
-                //Single frame non-collision after transition to enable wiggle glitch(no collision during screen transition anyway)
-                if (oldstate == _state && _state != PlayStateState.S_TRANSITION)
-                {
-                    DoCollisions();
-                }
+                //no player-map collision during screen transition or during the one normal state frame in wiggle glitch
+                DoCollisions(oldstate == PlayStateState.S_TRANSITION || _state == PlayStateState.S_TRANSITION);
             }
 
             if (updateEntities)
@@ -486,9 +482,9 @@ namespace AnodyneSharp.States
             return _gridEntities.OfType<Interactable>().Any(i => (((Entity)i).exists && InteractHitbox((Entity)i).Intersects(_player.Hitbox) && i.PlayerInteraction(_player.facing)));
         }
 
-        private void DoCollisions()
+        private void DoCollisions(bool ignore_player)
         {
-            _groups.DoCollision(_map, _map_bg_2);
+            _groups.DoCollision(_map, _map_bg_2, ignore_player);
         }
 
         private void StateNormal()

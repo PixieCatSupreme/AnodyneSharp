@@ -90,16 +90,22 @@ namespace AnodyneSharp.Entities
             }
         }
 
-        public void DoCollision(MapLayer bg, MapLayer bg2)
+        public void DoCollision(MapLayer bg, MapLayer bg2, bool ignore_player_map_collision)
         {   
             foreach(Entity e in _mapColliders.Where(e=>e.exists))
             {
+                Touching t = e.allowCollisions;
+                if(ignore_player_map_collision && e is Player)
+                {
+                    e.Solid = false; //during transition no collision with map, but do have tile effects take an effect
+                }
                 bg.Collide(e);
                 bg2.Collide(e);
                 foreach(Entity m in _mapEntities.Where(m=>m.Solid && m.exists && m.Hitbox.Intersects(e.Hitbox)))
                 {
                     m.Collided(e);
                 }
+                e.allowCollisions = t;
             }
             //map-entity collision sets per-frame state values that are checked in entity-entity collisions(player+dust->raft)
             foreach (Group g in _groups.Values)
