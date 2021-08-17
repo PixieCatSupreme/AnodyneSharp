@@ -93,7 +93,6 @@ namespace AnodyneSharp.Entities
         public bool skipBroom;
         private IEnumerator jump_anim;
         public bool JustLanded { get; private set; }
-        private bool sinking;
         private bool dashing;
 
         private bool isSlipping;
@@ -183,7 +182,7 @@ namespace AnodyneSharp.Entities
                 hasFallen = false;
                 justFell = false;
 
-                sinking = false;
+                IS_SINKING = false;
                 dashing = false;
 
                 JustLanded = false;
@@ -621,7 +620,7 @@ namespace AnodyneSharp.Entities
                 skipBroom = false;
 
 
-                if (KeyInput.JustPressedRebindableKey(KeyFunctions.Cancel) && !sinking && GlobalState.inventory.CanJump)
+                if (KeyInput.JustPressedRebindableKey(KeyFunctions.Cancel) && !IS_SINKING && GlobalState.inventory.CanJump)
                 {
                     state = PlayerState.AIR;
                     jump_anim = JumpAnim(jump_period);
