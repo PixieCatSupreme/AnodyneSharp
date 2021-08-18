@@ -373,13 +373,10 @@ namespace AnodyneSharp.Entities
                 case PlayerState.GROUND:
                     shadow.visible = false;
 
+                    GroundMovement();  //set player vels, also updates bump timer
                     if (dontMove)
                     {
                         velocity = Vector2.Zero;
-                    }
-                    else
-                    {
-                        GroundMovement();  //modify player vels
                     }
 
                     if (isSlipping)
@@ -927,7 +924,7 @@ namespace AnodyneSharp.Entities
 
         internal void ReceiveDamage(int amount, bool knockback = true, bool playSound = true)
         {
-            if (!invincible && !GlobalState.FUCK_IT_MODE_ON)
+            if (!invincible && !hasFallen && !GlobalState.FUCK_IT_MODE_ON)
             {
                 if(!GlobalState.settings.invincible) //Setting only disables health change
                     GlobalState.CUR_HEALTH -= amount;
