@@ -465,7 +465,7 @@
     <Door x="872" y="784" guid="9637F785-B7F5-B68C-1051-F1C3A44CE7B5" frame="85" type="12" />
     <Door x="872" y="359" guid="90A7AF28-F0B1-EB44-40F0-23E7AADF9310" frame="79" type="4" />
     <Event x="385" y="693" guid="79FF736D-801D-3211-A23F-914EA18901DF" frame="5" type="entrance" />
-    <Event x="700" y="707" guid="2506DEF9-B31E-FE9D-64E9-FF8350F47637" frame="5" type="entrance" />
+    <Event x="720" y="704" guid="2506DEF9-B31E-FE9D-64E9-FF8350F47637" frame="5" type="entrance" />
     <Event x="657" y="37" guid="A453B8DA-572E-AED9-FF65-091467DC9E84" frame="5" type="entrance" />
     <Event x="800" y="320" guid="3E2BCEA4-A26F-DF44-58CA-5E56C5273BF7" frame="0" type="0.8" />
   </map>
@@ -585,6 +585,7 @@
     <Event x="160" y="512" guid="9A5D80EB-1A90-548C-C9D5-59B5C351ED08" frame="6" type="bedroom_bounce" />
     <Event x="320" y="656" guid="8F721587-2704-6C87-6C4F-99D0EC35805D" frame="6" type="bedroom_bounce" />
     <Event x="320" y="32" guid="45B36C19-2761-FFBB-6E0B-8CD47B687742" frame="6" type="bedroom_bounce" />
+    <Event x="640" y="640" guid="83E7CC38-3F9E-72F6-4740-5AACDFC8EBEA" frame="0" type="1.0" />
   </map>
   <map name="BLANK" type="Stateful">
     <Door x="390" y="434" guid="F82E7C7D-9BE9-2A87-ECD5-9966F2799C1E" frame="6" type="4" />
@@ -2606,7 +2607,6 @@
     <Slime x="880" y="1504" guid="D4BB723A-2397-714C-9564-159EE556FB87" frame="4" p="1" alive="true"/>
     <Slime x="832" y="1472" guid="C895CCE8-18FC-3105-7BE5-6F8D9FC4AEFA" frame="4" p="1" alive="true"/>
     <Jump_Trigger x="1072" y="1328" guid="1B7FBCC8-FD57-8999-5CFF-13E4D449BDC7" frame="1" type="1" />
-    <Door x="1016" y="1011" guid="95AF7853-9180-8CCB-3956-1363B23D2408" frame="70" type="9" />
     <Solid_Sprite x="1598" y="1215" guid="CB6289E0-E8B6-06CE-54AF-67288808021E" frame="7" type="vblock" />
     <Door x="74" y="1589" guid="01B2A966-163A-A7F4-1DB1-5F9CEF79BF99" frame="33" type="1" />
     <Door x="1589" y="1215" guid="21515D18-38C1-314D-E213-60DE72473B45" frame="37" type="11" />
@@ -2617,6 +2617,7 @@
     <NPC x="528" y="256" guid="D7013C38-71E9-0F68-0B16-2B93FDE1795C" frame="3" type="rock" />
     <NPC x="1328" y="656" guid="1B10B17B-ED47-9865-22BC-400C42BD06D5" frame="4" type="rock" />
     <CardGate x="32" y="1120" guid="E9730752-B60C-0E95-3197-01529A4A31EB" frame="4" p="2"/>
+    <Door x="1016" y="1013" guid="6FD1BC94-476F-47E7-BA9C-6E474FE046E4" frame="70" type="5" />
   </map>
   <map name="REDCAVE" type="Stateful">
     <Annoyer x="816" y="16" guid="A81D463F-4F42-4715-0C71-C6352E5B171C" frame="0" alive="true"/>
