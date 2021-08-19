@@ -54,6 +54,14 @@ namespace AnodyneSharp.Entities.Events
                 .State<SpawnedOn>()
                     .Condition(() => !playerOn(), (s) => state.ChangeState("Wait"))
                 .End()
+                .State("WaitTutorial")
+                    .Condition(()=>(p.Position-Position).Length() < 18, (s) =>
+                    {
+                        GlobalState.Dialogue = Dialogue.DialogueManager.GetDialogue("misc", "any", "checkpoint", 3);
+                        GlobalState.events.IncEvent("CheckpointTutorial");
+                        state.ChangeState("Wait");
+                    })
+                .End()
                 .State("Wait")
                     .Enter((s) => Play(Active ? "active" : "inactive"))
                     .Condition(playerOn, (s) => state.ChangeState("PlayerOn"))
@@ -84,7 +92,7 @@ namespace AnodyneSharp.Entities.Events
                 .End()
                 .Build();
 
-            state.ChangeState(playerOn() ? "SpawnedOn" : "Wait");
+            state.ChangeState(GlobalState.events.GetEvent("CheckpointTutorial") == 0 ? "WaitTutorial" : (playerOn() ? "SpawnedOn" : "Wait"));
         }
 
         public override void Update()
