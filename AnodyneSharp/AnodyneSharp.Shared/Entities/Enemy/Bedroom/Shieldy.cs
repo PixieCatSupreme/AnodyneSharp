@@ -131,9 +131,10 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
                                 break;
                         }
 
-                        Touching check = GlobalState.CheckTile(newPos);
+                        Touching checkTL = GlobalState.CheckTile(newPos);
+                        Touching checkBR = GlobalState.CheckTile(newPos + new Vector2(width,height));
 
-                        if (check == Touching.NONE)
+                        if (checkTL == Touching.NONE && checkBR == Touching.NONE)
                         {
                             Position = newPos;
                         }
