@@ -294,7 +294,7 @@ namespace AnodyneSharp.States
                     _player.invincible = false;
                 }
 
-                if(updateEntities)
+                if (updateEntities)
                 {
                     DoCollisions(false);
                 }
@@ -304,7 +304,7 @@ namespace AnodyneSharp.States
                 _childState = new DialogueState();
                 _player.BeIdle();
             }
-            else if(GlobalState.StartCutscene != null)
+            else if (GlobalState.StartCutscene != null)
             {
                 _childState = new CutsceneState(_camera, GlobalState.StartCutscene);
                 GlobalState.StartCutscene = null;
@@ -586,7 +586,7 @@ namespace AnodyneSharp.States
                 GlobalState.ScreenTransition = true;
                 _eventRegistry.FireEvent(new StartScreenTransition());
                 _map.Data.OnTransitionStart();
-                if(GlobalState.Swapper == GlobalState.SwapperPolicy.AllowedOnCurrentScreen)
+                if (GlobalState.Swapper == GlobalState.SwapperPolicy.AllowedOnCurrentScreen)
                 {
                     GlobalState.Swapper = GlobalState.SwapperPolicy.Default;
                 }
@@ -681,7 +681,7 @@ namespace AnodyneSharp.States
                 Cheatz.Cheatz.UnlockNexusGates();
             }
 
-            if(KeyInput.JustPressedKey(Keys.NumPad5))
+            if (KeyInput.JustPressedKey(Keys.NumPad5))
             {
                 GlobalState.draw_hitboxes = !GlobalState.draw_hitboxes;
             }
@@ -747,7 +747,7 @@ namespace AnodyneSharp.States
 
                 if (KeyInput.JustPressedKey(Keys.NumPad4))
                 {
-                    _camera.GoTo(_camera.Position2D - Vector2.UnitX*camSpeed);
+                    _camera.GoTo(_camera.Position2D - Vector2.UnitX * camSpeed);
                 }
                 else if (KeyInput.JustPressedKey(Keys.NumPad6))
                 {
@@ -892,7 +892,7 @@ namespace AnodyneSharp.States
 
                 GlobalState.RefreshKeyCount = true;
             }
-            
+
             PlayMapMusic();
             FG_Blend.MapChange(GlobalState.CURRENT_MAP_NAME);
             GlobalState.darkness.MapChange(GlobalState.CURRENT_MAP_NAME);
@@ -900,7 +900,7 @@ namespace AnodyneSharp.States
             GlobalState.extraBlend.MapChange(GlobalState.CURRENT_MAP_NAME);
             SoundManager.SetAmbienceVolume(1f);
 
-            _player.Position = _player.grid_entrance =  GlobalState.PLAYER_WARP_TARGET == Vector2.Zero ? _map.GetFirstWalkable(_map_bg_2) * TILE_WIDTH : GlobalState.PLAYER_WARP_TARGET;
+            _player.Position = _player.grid_entrance = GlobalState.PLAYER_WARP_TARGET == Vector2.Zero ? _map.GetFirstWalkable(_map_bg_2) * TILE_WIDTH : GlobalState.PLAYER_WARP_TARGET;
             _player.facing = GlobalState.NewMapFacing ?? _player.facing;
 
             GlobalState.NewMapFacing = null;
@@ -959,7 +959,8 @@ namespace AnodyneSharp.States
                         GlobalState.darkness.ForceAlpha(0.1f);
                         GlobalState.darkness.TargetAlpha(0f);
                     }
-                },
+                }
+                ,
                 "BEACH" => () =>
                 {
                     SoundManager.SetAmbienceVolume(GlobalState.CurrentMapGrid.Y switch
@@ -968,7 +969,8 @@ namespace AnodyneSharp.States
                         2 => 0.55f,
                         _ => 1f
                     });
-                },
+                }
+                ,
                 _ => null
             };
         }
