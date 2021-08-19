@@ -68,6 +68,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Redcave\OnOffLaser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Redcave\Slasher.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Redcave\Red_Boss.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Suburb\SuburbKiller.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\DoorToggle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\FadeSwitchSong.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\MusicEvent.cs" />
