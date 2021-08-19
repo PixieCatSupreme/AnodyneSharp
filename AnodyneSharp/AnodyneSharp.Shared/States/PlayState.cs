@@ -32,9 +32,7 @@ namespace AnodyneSharp.States
         S_NORMAL,
         S_TRANSITION,
         S_MAP_EXIT = 5,
-        S_MAP_ENTER,
-        S_DIRECT_CONTROLS,
-        S_CUTSCENE
+        S_MAP_ENTER
     }
 
     public class PlayState : State
@@ -329,6 +327,10 @@ namespace AnodyneSharp.States
                         _player.actions_disabled = true;
                         GlobalState.pixelation.AddPixelation(pixelation_per_second);
                         GlobalState.black_overlay.ChangeAlpha(1 / transition_out);
+                        if (GlobalState.CURRENT_MAP_NAME != GlobalState.NEXT_MAP_NAME)
+                        {
+                            SoundManager.SetMasterVolume(MathF.Min(1, 10 * (1 - GlobalState.black_overlay.alpha)));
+                        }
                         if (GlobalState.black_overlay.alpha == 1 || GlobalState.FUCK_IT_MODE_ON)
                         {
                             Warp();
@@ -357,10 +359,10 @@ namespace AnodyneSharp.States
                             _player.actions_disabled = false;
                             GlobalState.WARP = false;
                         }
-                        break;
-                    case PlayStateState.S_DIRECT_CONTROLS:
-                        break;
-                    case PlayStateState.S_CUTSCENE:
+                        if (SoundManager.GetMasterVolume() != 1f)
+                        {
+                            SoundManager.SetMasterVolume(MathF.Min(10 * (1 - GlobalState.black_overlay.alpha), 1));
+                        }
                         break;
                     default:
                         break;
