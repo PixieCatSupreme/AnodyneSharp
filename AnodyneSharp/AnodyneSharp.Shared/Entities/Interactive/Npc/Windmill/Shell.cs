@@ -34,7 +34,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Windmill
             return blades;
         }
 
-        [Events(typeof(OpenedWindmill))]
+        [Events(typeof(OpenedWindmill), typeof(EndScreenTransition))]
         private class Blade : Entity
         {
             int baseAngle;
@@ -54,6 +54,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Windmill
                 swapIndex = 24 - startFrame;
                 AddAnimation("rotate", Enumerable.Range(0, 32).Select(i => (startFrame + i) % 24).ToArray(), 20);
 
+                visible = false;
 
                 if (GlobalState.events.GetEvent("WindmillOpened") != 0)
                 {
@@ -64,7 +65,15 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Windmill
             public override void OnEvent(GameEvent e)
             {
                 base.OnEvent(e);
-                Play("rotate");
+
+                if (e is OpenedWindmill)
+                {
+                    Play("rotate");
+                }
+                else if (e is EndScreenTransition)
+                {
+                    visible = true;
+                }
             }
 
             public override void PostUpdate()
@@ -80,6 +89,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Windmill
                     SetPos(baseAngle);
                 }
             }
+
 
             private void SetPos(int angle)
             {
