@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 
@@ -89,18 +90,12 @@ namespace AnodyneSharp.Resources
                 return GlobalState.events.ActivatedNexusPortals.Contains(mapName);
             }
 
-            foreach (int cardID in _cardLocations[mapName].Values)
-            {
-                if (cardID < 36 || cardID == 43)
-                {
-                    if (!GlobalState.inventory.CardStatus[cardID])
-                    {
-                        return false;
-                    }
-                }
-            }
+            return _cardLocations[mapName].Values.All((c) => (c > 36 && c != 43) || GlobalState.inventory.CardStatus[c]);
+        }
 
-            return true;
+        public static bool GotAllNormalCardsOfAnyMap()
+        {
+            return _cardLocations.Where(map => map.Value.Values.Any(c => c < 36 || c == 43)).Any(map => GotAllNormalCards(map.Key));
         }
     }
 }

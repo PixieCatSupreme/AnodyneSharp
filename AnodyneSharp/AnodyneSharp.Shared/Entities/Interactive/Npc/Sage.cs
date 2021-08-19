@@ -2,6 +2,7 @@
 using AnodyneSharp.Drawing;
 using AnodyneSharp.GameEvents;
 using AnodyneSharp.Registry;
+using AnodyneSharp.Resources;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections;
@@ -92,7 +93,7 @@ namespace AnodyneSharp.Entities
             Separate(this, other);
         }
 
-        public bool PlayerInteraction(Facing player_direction)
+        public virtual bool PlayerInteraction(Facing player_direction)
         {
             GlobalState.Dialogue = DialogueManager.GetDialogue("sage", _scene);
             return true;
@@ -108,6 +109,37 @@ namespace AnodyneSharp.Entities
             {
                 preset.Alive = exists = false;
             }
+        }
+
+        public override bool PlayerInteraction(Facing player_direction)
+        {
+            GlobalState.Dialogue = DialogueManager.GetDialogue("sage", Scene());
+            return true;
+        }
+
+        static string Scene()
+        {
+            if(!DialogueManager.IsSceneDirty("sage", "all_card_first") && CardDataManager.GotAllNormalCardsOfAnyMap())
+            {
+                return "all_card_first";
+            }
+            if(GlobalState.events.GetEvent("WindmillOpened") != 0)
+            {
+                return "after_windmill";
+            }
+            if(GlobalState.events.BossDefeated.Contains("REDCAVE") && GlobalState.events.BossDefeated.Contains("CROWD"))
+            {
+                return "before_windmill";
+            }
+            if(GlobalState.events.BossDefeated.Contains("BEDROOM"))
+            {
+                return "after_bed";
+            }
+            if(GlobalState.events.VisitedMaps.Contains("STREET"))
+            {
+                return "after_ent_str";
+            }
+            return "enter_nexus";
         }
     }
 
