@@ -15,7 +15,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc
         public Olive(EntityPreset preset, Player p) : base(preset.Position, "forest_npcs", 16,16,Drawing.DrawOrder.ENTITIES)
         {
             AddAnimation("idle", CreateAnimFrameArray(30), 4, true);
-            AddAnimation("hop", CreateAnimFrameArray(32, 33, 32, 33), 4, false);
+            AddAnimation("hop", CreateAnimFrameArray(32, 33, 32), 4, false);
             _state = UpdateFunc();
             immovable = true;
         }

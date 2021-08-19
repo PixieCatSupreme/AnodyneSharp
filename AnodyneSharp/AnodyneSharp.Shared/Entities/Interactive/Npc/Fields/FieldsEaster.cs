@@ -2,7 +2,7 @@
 
 namespace AnodyneSharp.Entities.Interactive.Npc
 {
-    [NamedEntity("NPC","generic",13,14,15,16), Collision(typeof(Player))]
+    [NamedEntity("NPC", "generic", 13, 14, 15, 16), Collision(typeof(Player))]
     public class FieldsEaster : Entity, Interactable
     {
         string scene;
@@ -10,7 +10,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc
         public FieldsEaster(EntityPreset preset, Player p) : base(preset.Position, "fields_npcs", 16, 16, Drawing.DrawOrder.ENTITIES)
         {
             int base_frame = preset.Frame * 2 + 80 - 26;
-            AddAnimation("a", CreateAnimFrameArray(base_frame, base_frame + 1));
+            AddAnimation("a", CreateAnimFrameArray(base_frame, base_frame + 1), 4);
             Play("a");
             scene = preset.Frame switch
             {
