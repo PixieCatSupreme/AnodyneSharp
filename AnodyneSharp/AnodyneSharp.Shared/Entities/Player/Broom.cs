@@ -94,6 +94,16 @@ namespace AnodyneSharp.Entities
                 dust = pickup_candidate;
                 pickup_candidate = null;
                 dust.Play("poof");
+
+#if RELEASE
+
+                if (GlobalState.events.GetEvent("SweptDust") == 0)
+                {
+                    GlobalState.events.IncEvent("SweptDust");
+
+                    GlobalState.Dialogue = Dialogue.DialogueManager.GetDialogue("misc", "any", "dust", 0);
+                }
+#endif
             }
             if (_curAnim.Finished)
             {
