@@ -828,7 +828,7 @@ namespace AnodyneSharp.States
             switch (broom)
             {
                 case BroomType.Normal:
-                    tex = GlobalState.IsCell ? "Cell" : "Normal";
+                    tex = GlobalState.IsCell ? "Cell" : GlobalState.IsKnife && GlobalState.events.GetEvent("Stabbed") != 0 ? "Knife" : "Normal";
                     break;
                 case BroomType.Wide:
                     tex = "Wide";

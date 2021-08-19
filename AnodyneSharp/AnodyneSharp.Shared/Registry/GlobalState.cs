@@ -177,7 +177,7 @@ namespace AnodyneSharp.Registry
         {
             get
             {
-                return !InDeathRoom && !IsCell && CURRENT_MAP_NAME != "SUBURB";
+                return !InDeathRoom && !IsCell && !IsKnife;
             }
         }
 
@@ -186,6 +186,14 @@ namespace AnodyneSharp.Registry
             get
             {
                 return AlwaysCellGraphics || CURRENT_MAP_NAME == "CELL";
+            }
+        }
+
+        public static bool IsKnife
+        {
+            get
+            {
+                return CURRENT_MAP_NAME == "SUBURB";
             }
         }
 

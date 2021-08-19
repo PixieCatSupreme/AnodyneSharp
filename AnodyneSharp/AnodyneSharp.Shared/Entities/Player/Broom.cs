@@ -319,6 +319,13 @@ namespace AnodyneSharp.Entities
 
             UpdatePos();
 
+            if (GlobalState.CURRENT_MAP_NAME == "SUBURB" && GlobalState.events.GetEvent("Stabbed") == 0)
+            {
+                GlobalState.events.IncEvent("Stabbed");
+
+                GlobalState.inventory.EquippedBroomChanged = true;
+            }
+
             if (dust != null)
             {
                 dust.Position = (_root.Center / 16 + FacingDirection(_root.facing)).ToPoint().ToVector2() * 16;
