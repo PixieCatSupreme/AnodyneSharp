@@ -104,6 +104,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\RunningTradeNPCs\MiaoXiao.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\RunningTradeNPCs\ShopKeep.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\ShadowBriar.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Suburb\SuburbBlocker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Windmill\Console.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Windmill\Shell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Red_Pillar.cs" />
