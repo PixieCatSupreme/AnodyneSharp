@@ -1019,7 +1019,7 @@ namespace AnodyneSharp.States
 
             IEnumerable<Entity> player_subentities = _player.SubEntities(); //Cache first since some entities add themselves to the player on creation
 
-            _gridEntities = gridPresets.Where(preset => preset.Alive)
+            _gridEntities = gridPresets.Where(preset => preset.Alive || preset.Type.IsDefined(typeof(AlwaysSpawnAttribute),true))
                 .Select(preset => preset.Create(_player)).Concat(player_subentities).SelectMany(e => SubEntities(e)).ToList();
 
             _groups.Register(_player);

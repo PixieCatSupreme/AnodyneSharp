@@ -72,6 +72,20 @@ namespace AnodyneSharp.Dialogue
             return ReplaceKeys(s.GetDialogue(id));
         }
 
+        public static string RandomDialogue(string npc, string scene) => RandomDialogue(npc, GlobalState.CURRENT_MAP_NAME, scene);
+
+        public static string RandomDialogue(string npc, string area, string scene)
+        {
+            DialogueScene s = GetScene(npc, area, scene);
+
+            if (s == null)
+            {
+                return "No text available.";
+            }
+
+            return GetDialogue(npc, area, scene, GlobalState.RNG.Next(0, s.Length));
+        }
+
         public static string ReplaceKeys(string line)
         {
             if (KeyInput.ControllerMode)

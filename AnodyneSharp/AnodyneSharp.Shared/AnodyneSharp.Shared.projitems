@@ -35,6 +35,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\ScrollingTex.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\SpriteDrawer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Spritesheet\Spritesheet.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\AlwaysSpawnAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\CollisionAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\EntityPool.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\HealthDropper.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\RunningTradeNPCs\ShopKeep.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\ShadowBriar.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Suburb\SuburbBlocker.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Suburb\SuburbWalker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Windmill\Console.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Windmill\Shell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Red_Pillar.cs" />

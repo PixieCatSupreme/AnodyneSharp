@@ -2949,8 +2949,6 @@
     <Event x="0." y="1120" guid="62780AEB-18CC-48F0-26DF-0AAB1358C531" frame="0" type="0.8" />
     <Event x="320" y="800" guid="A5AEF7BB-15DA-F908-0BF7-EB73C23CEEBC" frame="3" type="Disabled" />
     <Event x="320" y="640" guid="5E09BEEA-87EF-67C2-0740-0ED41BB19530" frame="3" type="Default" />
-    <Event x="480" y="800" guid="1C686589-B7C8-98B8-EF30-441A8AFB4742" frame="4"/>
-    <Event x="0." y="960" guid="F865E2CE-6A14-B69B-A08A-38CAD1E35DFB" frame="4"/>
   </map>
   <map name="SUBURB" type="Stateful">
     <Suburb_Killer x="80" y="256" guid="08FA88AD-FF2E-2244-A732-2030DCD9718C" frame="0"/>
@@ -2990,18 +2988,10 @@
     <Treasure x="256" y="1184" guid="A78BD187-A359-243D-9321-5B034B6B3C3C" frame="2" alive="true"/>
     <Suburb_Killer x="16" y="1152" guid="8AF6D032-64EA-466E-5891-F8985F95BA27" frame="0"/>
     <Suburb_Killer x="128" y="1152" guid="932ADA48-93BD-C836-3FCD-E697FF13330E" frame="0"/>
-    <Suburb_Walker x="192" y="848" guid="2F45E5F2-5E59-3D49-6235-92F1AAD771A0" frame="12" p="1" alive="true"/>
-    <Suburb_Walker x="544" y="848" guid="E7165629-5390-3032-C1F4-07CDA8FB4DB5" frame="12" p="1" alive="true"/>
-    <Suburb_Walker x="592" y="896" guid="DC43D15D-E465-7DE5-EF1B-DE43B65F2F8A" frame="14" p="1" alive="true"/>
-    <Suburb_Walker x="32" y="1008" guid="676737C7-D8C9-E3F4-FD5E-12BF1CBF68DF" frame="12" p="1" alive="true"/>
-    <Suburb_Walker x="192" y="1008" guid="6680FCC4-211B-577B-9B74-B5E2FA8CE28F" frame="12" p="1" alive="true"/>
-    <Suburb_Walker x="96" y="1216" guid="5FBB8E88-E6DA-9F1D-4EDF-BC1899058A27" frame="12" p="1" alive="true"/>
-    <Suburb_Walker x="272" y="1216" guid="50FE0527-367A-5F02-F618-084483300312" frame="12" p="1" alive="true"/>
     <Suburb_Killer x="16" y="864" guid="937E56E7-A9D1-25CA-4D47-D8581123901D" frame="0"/>
     <Suburb_Killer x="48" y="832" guid="7DE5F3F3-B2F3-DEE7-27EE-D88D25C2E267" frame="0"/>
     <Suburb_Killer x="96" y="832" guid="B9A4CE90-1EE6-ED58-787F-04096B5B326E" frame="0"/>
     <Suburb_Killer x="128" y="864" guid="03CA2D43-029C-4CCA-0475-5E737AD17F24" frame="0"/>
-    <Suburb_Walker x="688" y="848" guid="B1746FBC-0FBD-6016-5022-153D09641708" frame="12" p="1" alive="true"/>
     <Door x="384" y="528" guid="23358FBF-1120-5165-6968-FCDBB72C5D4E" frame="46" type="16" />
     <Health_Cicada x="672" y="400" guid="DD551369-9B21-2658-0EC9-1F7A5009E8D6" frame="0" p="2" alive="true"/>
     <Door x="240" y="64" guid="740374AB-E0E8-8B48-3B52-6517896E1F06" frame="81" type="5" />
@@ -3041,6 +3031,14 @@
     <CardGate x="752" y="544" guid="56910455-197C-A23C-B798-40EE51AAA378" frame="16" p="2"/>
     <Music_Event x="0." y="976" guid="762A206A-316C-8F21-E51F-F3C7F9D79FC5" frame="0"/>
     <Music_Event x="480" y="816" guid="910EBB0E-EA8E-593C-A33E-FD7CF00E51EA" frame="0"/>
+    <Suburb_Indoors x="192" y="848" guid="C9984B3F-3F63-BBF8-A8C1-146EEAB635E8" frame="0"/>
+    <Suburb_Indoors x="544" y="848" guid="81E3FBFB-409F-72A5-0B88-BC1B325F32A9" frame="1"/>
+    <Suburb_Indoors x="592" y="896" guid="43A31303-7B4A-3417-83D1-E8B2593FC047" frame="2"/>
+    <Suburb_Indoors x="688" y="848" guid="B7308053-118D-837B-73CA-3D07A0800C59" frame="3"/>
+    <Suburb_Indoors x="32" y="1008" guid="30220291-0CE1-D6B1-DFA9-4821B7B7B7C7" frame="5"/>
+    <Suburb_Indoors x="192" y="1008" guid="E0305EAE-7D43-AF60-6A52-4339363C0144" frame="6"/>
+    <Suburb_Indoors x="96" y="1216" guid="37E6555A-44A3-AFCB-925C-F8D9B068B05E" frame="4"/>
+    <Suburb_Indoors x="272" y="1216" guid="8C670AA5-FCED-A588-5DCD-88329B7CA8DB" frame="7"/>
   </map>
   <map name="SPACE" type="Stateless">
     <Space_Face x="1280" y="192" guid="3277CBCF-EE97-5412-94C2-238E848A1B8D" frame="0"/>
