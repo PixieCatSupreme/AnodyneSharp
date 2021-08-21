@@ -209,7 +209,8 @@ namespace AnodyneSharp.Registry
         public static bool ResolutionDirty = false;
         public static Language CurrentLanguage => settings.language;
 
-        public static bool pillar_switch_state = false; //Reset when entering a map with different name
+        public static int PillarSwitchOn = 0; //Reset when entering a map with different name
+
         public static bool ScreenTransition = false; //Whether a screen transition is happening right now
         public static int CURRENT_GRID_X;
         public static int CURRENT_GRID_Y;

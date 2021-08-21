@@ -50,6 +50,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\DoorPair.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Apartment\Dash_Trap.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Apartment\GasGuy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Apartment\Rat.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Bedroom\Annoyer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Bedroom\PewLaser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Bedroom\Seer.cs" />
@@ -76,6 +77,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\ReflectionFollower.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\StaticOff.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\SwapperPolicyEvent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Switches\PillarSwitch.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Switches\SwitchPillar.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Crowd\BioFilm.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\JumpTrigger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Propelled.cs" />

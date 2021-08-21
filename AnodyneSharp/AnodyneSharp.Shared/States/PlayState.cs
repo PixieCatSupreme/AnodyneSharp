@@ -881,6 +881,7 @@ namespace AnodyneSharp.States
                     p.Alive = true;
                 }
 
+                GlobalState.PillarSwitchOn = 0;
 
                 UpdateBroomIcon();
 
