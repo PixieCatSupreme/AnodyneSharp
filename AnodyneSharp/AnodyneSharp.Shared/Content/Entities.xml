@@ -149,9 +149,8 @@
     <Switch_Pillar x="384" y="672" guid="B6C28F88-AB57-735F-983F-B9728A08F93F" frame="0"/>
     <Switch_Pillar x="400" y="672" guid="4DA6B1ED-07F2-CD7A-58B2-ADA79C45A57E" frame="0"/>
     <Pillar_Switch x="416" y="736" guid="064EE52A-23E7-D065-0C58-D3169153C678" frame="0"/>
-    <Propelled x="336" y="912" guid="E352538C-B8CE-7158-F862-AC1157F87540" frame="0"/>
+    <Propelled x="336" y="912" guid="E352538C-B8CE-7158-F862-AC1157F87540" frame="4"/>
     <Propelled x="352" y="848" guid="D267999E-848C-DB96-7879-28C295CBDE4F" frame="2"/>
-    <Dust x="336" y="912" guid="448B6813-C4F1-A668-2697-26E4AE6AC687" frame="0"/>
     <Dust x="384" y="832" guid="E8885963-58DB-2291-EC4F-D5C21615D42B" frame="0"/>
     <Stop_Marker x="352" y="912" guid="DB1FDC31-2887-E52A-94AB-76B6A4D81088" frame="0"/>
     <Stop_Marker x="336" y="848" guid="FE2DB3DB-F627-213F-6666-EE752FC77813" frame="0"/>
@@ -207,11 +206,10 @@
     <Rotator x="848" y="256" guid="84BDBE3F-3005-DDAA-16E2-02EED8CE947A" frame="0"/>
     <Jump_Trigger x="992" y="32" guid="956A7F87-C2C1-F659-13C8-82952BC2C8E8" frame="0"/>
     <Jump_Trigger x="1024" y="96" guid="26D0D1D3-9150-EB32-2D64-FEF689362F89" frame="0"/>
-    <Propelled x="16" y="48" guid="5C38B0A9-C26C-7B80-5EE3-A18D5B92C113" frame="2"/>
+    <Propelled x="16" y="48" guid="5C38B0A9-C26C-7B80-5EE3-A18D5B92C113" frame="6"/>
     <Propelled x="32" y="128" guid="C95A6221-4C52-9ECC-66B8-F5F9C02248CC" frame="1"/>
     <Stop_Marker x="112" y="128" guid="24FA780D-2CDF-251B-7593-C6D2CC2EBBE4" frame="0"/>
     <Stop_Marker x="16" y="112" guid="6DC1E428-F7AB-7516-337F-CE7AD1AE8770" frame="0"/>
-    <Dust x="16" y="48" guid="473980E8-6C5A-20C6-3363-0B73D8D60E93" frame="0"/>
     <Dust x="64" y="16" guid="4AD0F089-E700-F2D7-9512-1D788D9AC679" frame="0"/>
     <Spike_Roller x="128" y="32" guid="6B44A5EB-41E9-965A-C684-70DDAB7E09D8" frame="2"/>
     <Rotator x="192" y="272" guid="3A961F4C-19D6-9B30-A720-415C43D271B4" frame="0"/>
@@ -1339,9 +1337,8 @@
     <Stop_Marker x="368" y="1024" guid="19098774-A6F0-C2F2-AE48-CF0A3635A5BA" frame="0"/>
     <Stop_Marker x="400" y="1232" guid="C9A21B43-3AD2-BBEB-C6B6-73565364B6A0" frame="0"/>
     <Stop_Marker x="352" y="1184" guid="60910D7A-799B-D09C-815A-59B13B825E31" frame="0"/>
-    <Propelled x="288" y="752" guid="A82422BE-687C-EB70-9F62-22F2A7050618" frame="0"/>
+    <Propelled x="288" y="752" guid="A82422BE-687C-EB70-9F62-22F2A7050618" frame="4"/>
     <Propelled x="272" y="720" guid="B569B576-30D3-5404-80C7-9AF3DD30D38A" frame="3"/>
-    <Dust x="288" y="752" guid="1A705559-1598-DF4A-7571-7BEAF1969901" frame="0"/>
     <Stop_Marker x="288" y="656" guid="CC153996-A34B-7AB4-064F-DAEEEF5AFE15" frame="0"/>
     <Stop_Marker x="176" y="720" guid="60A93F67-B5C7-0D76-51EF-41C4C02D2840" frame="0"/>
     <Propelled x="240" y="672" guid="E5DA70AA-D5B8-29F7-B6B5-2BE4F19B6DFE" frame="2"/>
@@ -1585,7 +1582,7 @@
     <Event x="1505" y="719" guid="29373C0D-8E07-BF2B-2B31-C1DC6974A35C" frame="5" type="entrance" />
   </map>
   <map name="DEBUG" type="Stateless">
-    <Propelled x="80" y="368" guid="8EADBCC2-D110-89FA-1751-C71B3E5DA484" frame="2"/>
+    <Propelled x="80" y="368" guid="8EADBCC2-D110-89FA-1751-C71B3E5DA484" frame="6"/>
     <Dust x="112" y="192" guid="52F999B8-387E-77A8-93E3-1A7F1D8851A1" frame="0"/>
     <Button x="32" y="256" guid="3C46F97F-B799-CA1D-9163-932EB7CD8BB3" frame="1"/>
     <Dust x="256" y="208" guid="5E717F29-5F59-ABE1-C404-40F29987C3BA" frame="0"/>
@@ -1593,7 +1590,6 @@
     <NPC x="96" y="240" guid="80186F01-0584-30B8-C287-A074A64C2DA1" frame="0" type="npc_test" />
     <Propelled x="64" y="368" guid="DD3F7B82-14E1-E775-3BFA-7056F90BDF39" frame="2"/>
     <Dust x="32" y="352" guid="AB87998D-CB43-C102-B742-CBA5AE8544EE" frame="0"/>
-    <Dust x="80" y="368" guid="9B1345AC-722A-C0B4-41ED-25D1B5B71F15" frame="0"/>
     <Propelled x="32" y="400" guid="A56249E2-2D6C-1CAC-DB6E-8A7C6D75A885" frame="1"/>
     <Propelled x="48" y="416" guid="14577B97-DAAB-7F24-2AD1-3FC4FED869F5" frame="0"/>
     <Propelled x="112" y="384" guid="47850D62-C52D-CA94-D25D-DDC0CE9749DA" frame="3"/>
@@ -1609,6 +1605,7 @@
     <Water_Anim x="656" y="16" guid="9F13972F-86B7-8E8B-588B-2F0B9B19B4CB" frame="32" p="2"/>
     <Key x="48" y="176" guid="B4D4386F-E439-9892-3194-0B1D900129EB" frame="0"/>
     <Event x="496" y="320" guid="1FA16F1F-10A2-9504-CF2D-BBF89B09F364" frame="7"/>
+    <Stop_Marker x="80" y="416" guid="8978274A-E681-C6D9-E194-5CCBC1A75814" frame="0"/>
   </map>
   <map name="DEBUG" type="Stateful">
     <Gate x="32" y="288" guid="779063ED-9B1A-C938-07D4-C89E9624FA72" frame="5" p="2" alive="true" type="0" />
@@ -2111,31 +2108,23 @@
   <map name="HOTEL" type="Stateless">
     <Event x="592" y="96" guid="83856029-4F66-341B-3551-87D18964F02F" frame="2"/>
     <Button x="336" y="816" guid="91FD5822-9D2E-D114-832E-AA3C8432EF18" frame="0"/>
-    <Propelled x="352" y="1088" guid="3F0AAA6F-0F07-812A-D47F-E7C73E160B44" frame="1"/>
-    <Propelled x="400" y="1072" guid="EA3CF125-2B5F-99D8-C1ED-2A133FAEAF56" frame="1"/>
-    <Propelled x="432" y="1040" guid="EEEFBA68-7C81-5091-7A83-EC48508B5D24" frame="1"/>
-    <Propelled x="448" y="976" guid="3BB466FF-6AAD-23BD-3789-B3C1D5A5B25C" frame="3"/>
-    <Propelled x="384" y="1008" guid="BBA8ADA9-1540-1646-650F-8DDB9226211C" frame="3"/>
+    <Propelled x="352" y="1088" guid="3F0AAA6F-0F07-812A-D47F-E7C73E160B44" frame="5"/>
+    <Propelled x="400" y="1072" guid="EA3CF125-2B5F-99D8-C1ED-2A133FAEAF56" frame="5"/>
+    <Propelled x="432" y="1040" guid="EEEFBA68-7C81-5091-7A83-EC48508B5D24" frame="5"/>
+    <Propelled x="448" y="976" guid="3BB466FF-6AAD-23BD-3789-B3C1D5A5B25C" frame="7"/>
+    <Propelled x="384" y="1008" guid="BBA8ADA9-1540-1646-650F-8DDB9226211C" frame="7"/>
     <Stop_Marker x="352" y="1008" guid="B2209019-3C65-6764-35EC-6388D46EEF83" frame="0"/>
     <Stop_Marker x="352" y="976" guid="C0B519CC-5459-E038-AFFE-B6C91871E848" frame="0"/>
     <Stop_Marker x="448" y="1040" guid="055E5259-E2F1-1AF7-4B62-B6817A3A79C7" frame="0"/>
     <Stop_Marker x="448" y="1072" guid="B2E0BCB3-0112-5333-C368-8AB7694BAB2C" frame="0"/>
     <Stop_Marker x="448" y="1088" guid="F704C0A2-C93D-CF88-68AF-B8C0A92153A0" frame="0"/>
-    <Dust x="448" y="976" guid="C8E4F9B9-F23D-D380-EAB5-3B06C36A182D" frame="0"/>
-    <Dust x="384" y="1008" guid="A3D00A7E-72EE-90E2-FB96-8C9D9D69CC76" frame="0"/>
-    <Dust x="352" y="1088" guid="DED1FF39-91DF-E1EC-10DD-EA4AD587D782" frame="0"/>
-    <Dust x="400" y="1072" guid="50EEA40F-C65A-0EC3-B469-8ABF01C5957C" frame="0"/>
-    <Dust x="432" y="1040" guid="F5E3BC5F-B817-A00D-FCDC-1096D9B499CA" frame="0"/>
     <Propelled x="240" y="1024" guid="0C35EEF6-4DBE-F578-5F61-FD885DBC9A51" frame="3"/>
     <Dust x="256" y="976" guid="B0FF7AF8-0960-137C-3A95-1CAE4F2AF74B" frame="0"/>
-    <Propelled x="208" y="992" guid="F8241B4C-D566-E4D4-17B0-2888135AE133" frame="2"/>
-    <Propelled x="192" y="1072" guid="6755E012-D663-BD2B-FB14-E75F7D5DC758" frame="1"/>
-    <Dust x="208" y="992" guid="F12FA52E-D74A-B85B-440F-8F7AECCE7163" frame="0"/>
-    <Dust x="192" y="1072" guid="C0D9C9A8-0493-5D98-CE59-24DDE727A91F" frame="0"/>
-    <Propelled x="496" y="1088" guid="B93999D7-E15C-5ED9-16A1-5104138C82C9" frame="1"/>
+    <Propelled x="208" y="992" guid="F8241B4C-D566-E4D4-17B0-2888135AE133" frame="6"/>
+    <Propelled x="192" y="1072" guid="6755E012-D663-BD2B-FB14-E75F7D5DC758" frame="5"/>
+    <Propelled x="496" y="1088" guid="B93999D7-E15C-5ED9-16A1-5104138C82C9" frame="5"/>
     <Dust x="560" y="1056" guid="99BC591B-E65E-8F16-02F2-E4BF653EEBAB" frame="0"/>
     <Propelled x="608" y="1072" guid="08174103-2635-571A-C47B-9BFD46184800" frame="0"/>
-    <Dust x="496" y="1088" guid="6AE58179-60C9-E383-3417-96BA67E8C6A3" frame="0"/>
     <Stop_Marker x="176" y="1024" guid="93313F4B-5C4F-11B8-5FBE-B479FC9FBCD4" frame="0"/>
     <Stop_Marker x="208" y="1088" guid="CD0E61A8-749B-484B-4144-70CF4C0A670F" frame="0"/>
     <Stop_Marker x="288" y="1072" guid="E9DD3647-4C8A-E5B0-3254-AE697736AE07" frame="0"/>
@@ -2161,8 +2150,7 @@
     <Stop_Marker x="336" y="576" guid="64529250-7F36-FB63-CFCE-B2F219867074" frame="0"/>
     <Propelled x="448" y="576" guid="16C21295-C29C-4652-2994-373E31D60B21" frame="3"/>
     <Dust x="448" y="496" guid="2A9898FD-AFD5-6CF5-AE7F-DAC9B621A0E9" frame="0"/>
-    <Propelled x="400" y="528" guid="65D43F57-EA87-65DD-15A1-65F9AE784477" frame="2"/>
-    <Dust x="400" y="528" guid="DDE2042B-386A-3B96-EF17-6FED61ABDF13" frame="0"/>
+    <Propelled x="400" y="528" guid="65D43F57-EA87-65DD-15A1-65F9AE784477" frame="6"/>
     <Propelled x="672" y="832" guid="C780EAF3-0CB0-2A83-F6E8-D381A1F2EFB7" frame="2"/>
     <Propelled x="688" y="816" guid="C0CC551E-7A31-77A1-4FE5-E84FA02532EE" frame="1"/>
     <Dust x="672" y="816" guid="E4FA96EC-D0A6-899E-33B0-FAB3FAEF11E5" frame="0"/>
@@ -2175,8 +2163,7 @@
     <Jump_Trigger x="768" y="832" guid="C7C74870-5103-0E0E-180B-D28193D2BDA3" frame="1"/>
     <Pew_Laser x="656" y="592" guid="E43D327C-D843-13AF-DE3B-8A0B451BABC6" frame="1"/>
     <Pew_Laser x="768" y="544" guid="B861DD79-1F9E-90BC-6104-126C116F11C7" frame="3"/>
-    <Propelled x="608" y="752" guid="6FB822FF-0DA8-5897-3093-76DF11289A3B" frame="0"/>
-    <Dust x="608" y="752" guid="D09CCF05-C1F4-0275-8DFB-C63123640DD2" frame="0"/>
+    <Propelled x="608" y="752" guid="6FB822FF-0DA8-5897-3093-76DF11289A3B" frame="4"/>
     <Button x="1328" y="1296" guid="BB3CBC3F-9D50-C72E-F0DA-1AC1ED128CC7" frame="0"/>
     <Jump_Trigger x="1200" y="1344" guid="6D3034C9-BB26-05EB-30BD-50037EBF340C" frame="0"/>
     <Rotator x="496" y="1616" guid="207D244C-466D-BD8E-D7E2-9C97B99A5CDB" frame="0"/>
