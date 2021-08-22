@@ -51,9 +51,9 @@ namespace AnodyneSharp.Entities.Gadget
             _sfx = sfx;
         }
 
-        protected override void CenterOffset()
+        protected override void CenterOffset(bool updatePos = true)
         {
-            base.CenterOffset();
+            base.CenterOffset(updatePos);
             player_on_door = _player.Hitbox.Intersects(this.Hitbox);
         }
 
