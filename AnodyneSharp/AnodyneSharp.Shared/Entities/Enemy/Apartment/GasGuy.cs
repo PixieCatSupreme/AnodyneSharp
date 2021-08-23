@@ -149,7 +149,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
             return gasClouds.Entities;
         }
 
-        [Collision(typeof(Player), typeof(Broom), KeepOnScreen = false, MapCollision = false)]
+        [Collision(typeof(Player), typeof(Broom), typeof(Silverfish), KeepOnScreen = false, MapCollision = false)]
         private class Gas : Entity
         {
             public Gas()
@@ -200,6 +200,10 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
                 else if (other is Broom)
                 {
                     opacity -= 0.025f;
+                }
+                else if (other is Silverfish sf)
+                {
+                    sf.GetHit();
                 }
             }
         }

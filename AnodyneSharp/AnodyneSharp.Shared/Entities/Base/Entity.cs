@@ -280,6 +280,18 @@ namespace AnodyneSharp.Entities
             };
         }
 
+        public void FlipFacing()
+        {
+            facing = facing switch
+            {
+                Facing.LEFT => Facing.RIGHT,
+                Facing.RIGHT => Facing.LEFT,
+                Facing.UP => Facing.DOWN,
+                _ => Facing.UP,
+            };
+        }
+
+
         public void FaceTowards(Vector2 target)
         {
             Vector2 dir = target - Position;

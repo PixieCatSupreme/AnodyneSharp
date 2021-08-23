@@ -8,7 +8,7 @@ using AnodyneSharp.Sounds;
 namespace AnodyneSharp.Entities.Gadget
 {
     //TODO: Add other entity types buttons collide with
-    [NamedEntity, Collision(typeof(Player), typeof(Shieldy), typeof(Mover), typeof(Rat))]
+    [NamedEntity, Collision(typeof(Player), typeof(Shieldy), typeof(Mover), typeof(Rat), typeof(Silverfish))]
     class Button : Entity
     {
         bool pressed = false;
