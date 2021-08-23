@@ -88,6 +88,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\SpringPad.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Beach\BeachBriar.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Cliff\CliffDog.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\EasterEggs\RedCaveEaster.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\EasterEggs\ApartmentEaster.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Fields\FieldsEaster.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Beach\Fisherman.cs" />
