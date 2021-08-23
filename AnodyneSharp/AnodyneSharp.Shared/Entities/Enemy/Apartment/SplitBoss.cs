@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace AnodyneSharp.Entities.Enemy.Apartment
@@ -61,6 +62,8 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
     {
         Player player;
         EntityPreset _preset;
+
+        EntityPool<Bullet> bullets = new(12, () => new());
 
         Copy[] copies = new Copy[2]
         {
@@ -199,7 +202,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
 
             copies[0].exists = copies[1].exists = false;
 
-            state = Split(); //TODO: change to actual first attack
+            state = Shoot();
 
             yield break;
         }
@@ -209,6 +212,55 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
 
             _preset.Alive = exists = false;
             GlobalState.events.BossDefeated.Add(GlobalState.CURRENT_MAP_NAME);
+            yield break;
+        }
+
+        IEnumerator Shoot()
+        {
+            vulnerable = true;
+
+            velocity = Vector2.Zero;
+            Position = tl + new Vector2(40, -32);
+
+            int num_rounds = new[] { 4, 10, 7 }[Phase];
+            int num_bullets_per_round = new[] { 2, 1, 4 }[Phase];
+            float wait_time = new[] { 0.7f, 0.2f, 0.8f }[Phase];
+
+            for(int round = 0; round < num_rounds; ++round)
+            {
+                SoundManager.PlaySoundEffect("sb_ball_appear");
+
+                int start = GlobalState.RNG.Next(0, 6);
+                List<Bullet> spawned = new();
+                bullets.Spawn(b =>
+                {
+                    b.Spawn(tl + new Vector2((16-b.width)/2 + (start % 6)*16, -b.height),true);
+                    start++;
+                    spawned.Add(b);
+                }, num_bullets_per_round);
+
+                float t = 0;
+                while(t < wait_time)
+                {
+                    t += GameTimes.DeltaTime;
+                    yield return null;
+                }
+
+                foreach(Bullet b in spawned)
+                {
+                    b.Activate(Vector2.UnitY * 40);
+                }
+            }
+
+            while(bullets.Alive != 0)
+            {
+                yield return null;
+            }
+
+            state = Split();
+
+            vulnerable = false;
+
             yield break;
         }
 
@@ -306,14 +358,65 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
             velocity = Vector2.Zero;
 
             //TODO: decide next attack
-            state = Split();
+            state = Shoot();
 
             yield break;
         }
 
         public override IEnumerable<Entity> SubEntities()
         {
-            return copies;
+            return bullets.Entities.Concat(copies);
+        }
+
+        [Collision(typeof(Player))]
+        class Bullet : Entity
+        {
+            bool active = false;
+
+            public Bullet() : base(Vector2.Zero, "splitboss_fireball", 16, 16, Drawing.DrawOrder.BG_ENTITIES)
+            {
+                width = height = 6;
+                CenterOffset();
+                AddAnimation("pulsate", CreateAnimFrameArray(0, 1, 2, 3), 12);
+                AddAnimation("fizzle", CreateAnimFrameArray(4, 5, 6, 7), 12, false);
+            }
+
+            public override void Update()
+            {
+                base.Update();
+                if(_curAnim.Finished || opacity == 0)
+                {
+                    exists = false;
+                }
+
+                if(opacity == 1f && MapUtilities.GetInGridPosition(Position).Y > 8*16)
+                {
+                    Play("fizzle");
+                }
+            }
+
+            public override void Collided(Entity other)
+            {
+                base.Collided(other);
+                if(other is Player p && p.state != PlayerState.AIR && active)
+                {
+                    p.ReceiveDamage(1);
+                }
+            }
+
+            public void Activate(Vector2 vel)
+            {
+                active = true;
+                velocity = vel;
+            }
+
+            public void Spawn(Vector2 pos, bool startsHurtingPlayer)
+            {
+                Position = pos;
+                Play("pulsate");
+                velocity = Vector2.Zero;
+                active = startsHurtingPlayer;
+            }
         }
     }
 
