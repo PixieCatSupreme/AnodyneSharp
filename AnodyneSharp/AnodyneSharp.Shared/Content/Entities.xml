@@ -274,9 +274,8 @@
     <Button x="976" y="1136" guid="B99F0E40-2967-F38E-75E4-02B48E3F5768" frame="1"/>
     <Silverfish x="1040" y="1200" guid="FA497E8A-56EC-BB4A-6A3E-A285A05A4AB8" frame="3" p="0" alive="true"/>
     <Pillar_Switch x="992" y="1248" guid="C9F74E53-FE00-E63D-F042-7E1DDF479044" frame="0"/>
-    <Propelled x="1312" y="224" guid="FF48B598-9BB7-278A-D9CC-DB3D33E51CD1" frame="1"/>
+    <Propelled x="1312" y="224" guid="FF48B598-9BB7-278A-D9CC-DB3D33E51CD1" frame="5"/>
     <Stop_Marker x="1360" y="224" guid="5A2FC14D-BC28-85FC-1D66-35BFCA947F85" frame="0"/>
-    <Dust x="1312" y="224" guid="CE5E53E2-1EDE-34B6-6532-9ABB48AEB5E5" frame="0"/>
     <Dash_Trap x="816" y="1072" guid="3F704DF8-0D59-F75F-8F79-B340443DAD12" frame="0"/>
     <Dash_Trap x="928" y="1040" guid="748BE0FE-F8A0-9C2D-760F-817E0E75507E" frame="0"/>
     <Dash_Trap x="816" y="1008" guid="174E450F-B350-BEC8-AC5E-C63D64339A7A" frame="0"/>

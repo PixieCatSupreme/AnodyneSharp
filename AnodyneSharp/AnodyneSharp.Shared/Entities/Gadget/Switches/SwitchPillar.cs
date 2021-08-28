@@ -9,7 +9,7 @@ namespace AnodyneSharp.Entities.Gadget.Switches
     [NamedEntity("Switch_Pillar"),Collision(PartOfMap = true)]
     class SwitchPillar : Entity
     {
-        int baseFrame;
+        int defaultFrame;
         int current;
 
         const int upFrame = 0;
@@ -18,7 +18,7 @@ namespace AnodyneSharp.Entities.Gadget.Switches
         public SwitchPillar(EntityPreset preset, Player p) : base(preset.Position,"dame-switch-pillar",16,16,Drawing.DrawOrder.BG_ENTITIES)
         {
             immovable = true;
-            baseFrame = preset.Frame;
+            defaultFrame = 1 - preset.Frame; //Inverse of what the level editor suggests
             immovable = true;
 
             AddAnimation("dissolve", CreateAnimFrameArray(upFrame, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, downFrame), 15, false);
@@ -31,7 +31,7 @@ namespace AnodyneSharp.Entities.Gadget.Switches
          * baseFrame 1 => down by default => GlobalState.PillarSwitchOn ? 0 : 1
          * baseFrame 0 => up by default => GlobalState.PillarSwitchOn ? 1 : 0
          */
-        int TargetFrame() => Math.Abs(baseFrame - GlobalState.PillarSwitchOn);
+        int TargetFrame() => Math.Abs(defaultFrame - GlobalState.PillarSwitchOn);
 
         public override void Update()
         {

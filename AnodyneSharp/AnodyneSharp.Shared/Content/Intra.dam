@@ -2,7 +2,7 @@
 <project>
   <version/>
   <bgColor>0xcccccc</bgColor>
-  <viewPos x="49" y="-393"/>
+  <viewPos x="-949" y="-29.5"/>
   <firstLayersTop>false</firstLayersTop>
   <spriteEntries currentId="170">
     <group name="Events SL" idx="1" open="false">
@@ -649,7 +649,7 @@
     </group>
   </spriteEntries>
   <layers>
-    <group name="APARTMENT" id="109" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
+    <group name="APARTMENT" id="109" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true" selected="true">
       <maplayer name="BG" id="0" xScroll="1" yScroll="1" x="0" y="0" width="90" height="80" tileset="textures/tilemaps/apartment_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>29,1,10,10,10,10,10,10,10,2,29,29,29,17,10,82,63,64,10,2,1,10,10,10,27,10,10,10,10,2,29,16,10,10,10,10,10,10,18,29,0,0,0,0,0,0,0,0,0,0,19,157,10,10,10,10,10,10,15,29,16,10,157,10,10,10,10,10,10,15,16,10,10,10,10,10,10,10,10,10,130,130,130,130,130,130,130,130,130,292</row>
         <row>1,158,150,150,150,150,150,150,150,15,29,1,158,27,151,92,73,74,151,14,17,150,150,150,28,161,163,150,150,15,29,16,150,150,150,150,150,150,18,29,0,0,0,0,0,0,0,0,0,0,19,152,86,152,152,152,152,152,15,29,16,150,150,150,150,150,150,150,150,15,16,150,150,150,150,150,150,150,150,150,235,153,153,153,153,153,153,153,272,292</row>
@@ -1463,9 +1463,8 @@
           <properties/>
         </sprite>
         <sprite guid="C9F74E53-FE00-E63D-F042-7E1DDF479044" x="992" y="1248" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="73"/>
-        <sprite guid="FF48B598-9BB7-278A-D9CC-DB3D33E51CD1" x="1312" y="224" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="70" frame="1"/>
+        <sprite guid="FF48B598-9BB7-278A-D9CC-DB3D33E51CD1" x="1312" y="224" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="70" frame="5"/>
         <sprite guid="5A2FC14D-BC28-85FC-1D66-35BFCA947F85" x="1360" y="224" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="71" frame="0"/>
-        <sprite guid="CE5E53E2-1EDE-34B6-6532-9ABB48AEB5E5" x="1312" y="224" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="65" frame="0"/>
         <sprite guid="3F704DF8-0D59-F75F-8F79-B340443DAD12" x="816" y="1072" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="136" frame="0"/>
         <sprite guid="748BE0FE-F8A0-9C2D-760F-817E0E75507E" x="928" y="1040" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="136" frame="0"/>
         <sprite guid="174E450F-B350-BEC8-AC5E-C63D64339A7A" x="816" y="1008" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="136" frame="0"/>
@@ -3124,7 +3123,7 @@
         </sprite>
       </spritelayer>
     </group>
-    <group name="CIRCUS" id="94" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true" selected="true">
+    <group name="CIRCUS" id="94" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
       <maplayer name="BG" id="21" xScroll="1" yScroll="1" x="0" y="0" width="90" height="90" tileset="textures/tilemaps/circus_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31,32,32,32,32,33,33,33,33,34,31,32,32,32,32,33,33,33,33,34,31,32,32,32,32,32,33,33,33,34,0,0,0,0,0,0,0,0,0,0,50,51,51,51,51,51,51,51,51,52,50,51,51,51,51,51,51,51,51,52</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31,60,60,46,46,82,60,60,60,34,31,73,73,73,73,73,73,73,73,34,31,66,66,66,66,66,66,66,66,34,0,0,0,0,0,0,0,0,0,0,50,60,60,41,60,41,60,60,60,52,50,60,46,60,46,46,60,46,60,52</row>
