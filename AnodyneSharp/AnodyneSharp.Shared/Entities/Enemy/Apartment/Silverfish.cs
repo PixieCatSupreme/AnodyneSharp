@@ -101,8 +101,6 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
             {
                 SoundManager.PlaySoundEffect("sf_move");
 
-                FaceTowards(_player.Position);
-
                 FlipFacing();
 
                 PlayFacing("move");
@@ -143,6 +141,8 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
 
                      yield return null;
                 }
+
+                FaceTowards(_player.Position); //Only need to do this before flipping to run away when in turning mode, not on first run
             }
         }
 

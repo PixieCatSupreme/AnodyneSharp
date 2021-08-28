@@ -29,6 +29,8 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
             facing = Facing.DOWN;
             velocity = Vector2.UnitY * 40;
             Play("walk_d");
+
+            lookahead.Position = Center + FacingDirection(facing) * 7;
         }
 
         public override void Update()
