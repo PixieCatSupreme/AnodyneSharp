@@ -57,7 +57,7 @@ namespace AnodyneSharp.Sounds
 
         public static void SetMasterVolume(float volume)
         {
-            masterVolume = volume;
+            masterVolume = Math.Clamp(volume, 0, 1);
             SetSongVolume(currentVolume);
         }
 
@@ -65,14 +65,14 @@ namespace AnodyneSharp.Sounds
 
         public static void SetSongVolume(float volume)
         {
-            currentVolume = volume;
+            currentVolume = Math.Clamp(volume,0,1);
             bgm.SetVolume(masterVolume * currentVolume * GlobalState.settings.music_volume_scale);
             SetAmbienceVolume(ambienceVolume);
         }
 
         public static void SetAmbienceVolume(float volume)
         {
-            ambienceVolume = volume;
+            ambienceVolume = Math.Clamp(volume, 0, 1);
             ambience.SetVolume(masterVolume * currentVolume * ambienceVolume * GlobalState.settings.music_volume_scale);
         }
 
