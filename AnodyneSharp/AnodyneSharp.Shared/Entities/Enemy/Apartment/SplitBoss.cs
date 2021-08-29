@@ -270,6 +270,12 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
 
             List<Bullet> spawned = new();
 
+            if(MapUtilities.GetRoomCoordinate(Position) != GlobalState.CurrentMapGrid)
+            {
+                //If done right after another dash, instantly start appearing on the left side of the screen
+                opacity = 0;
+            }
+
             //Dash and place fires
             for(int dash = 0; dash < num_dashes; ++dash)
             {
