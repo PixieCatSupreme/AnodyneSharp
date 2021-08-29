@@ -1,5 +1,6 @@
 ﻿using AnodyneSharp.Dialogue;
 using AnodyneSharp.Entities.Events;
+using AnodyneSharp.GameEvents;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 using AnodyneSharp.Utilities;
@@ -57,7 +58,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
         }
     }
 
-    [NamedEntity("Splitboss"), Collision(typeof(Broom))]
+    [NamedEntity("Splitboss"), Enemy, Collision(typeof(Broom)), Events(typeof(StartScreenTransition),typeof(StartWarp))]
     class SplitBoss : BaseSplitBoss
     {
         Player player;
@@ -130,6 +131,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
                     if (health == 0)
                     {
                         vulnerable = false;
+                        damage_player = false;
                         state = Die();
                     }
                 }
@@ -204,23 +206,163 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
 
             state = Shoot();
 
+            vulnerable = true;
+            damage_player = true;
+
             yield break;
         }
 
         IEnumerator Die()
         {
+            velocity = Vector2.Zero;
+            opacity = 1f;
+            damage_player = false;
+            vulnerable = false;
 
+            foreach(Bullet b in bullets.Entities)
+            {
+                b.Deactivate();
+            }
+
+            GlobalState.Dialogue = DialogueManager.GetDialogue("splitboss", "after_fight");
+
+            while(!GlobalState.LastDialogueFinished)
+            {
+                yield return null;
+            }
+
+            SoundManager.PlaySoundEffect("big_door_locked");
+
+            float tm = 0;
+            float tm_max = 5;
+            GlobalState.gameScreenFade.fadeColor = Color.White;
+            
+            Play("die");
+            Flicker(tm_max);
+
+            while(tm < tm_max)
+            {
+                tm += GameTimes.DeltaTime;
+                SoundManager.SetSongVolume(SoundManager.GetVolume() - GameTimes.DeltaTime * 0.3f);
+                GlobalState.gameScreenFade.ForceAlpha(tm / tm_max);
+                int r = (int)(65 * tm / tm_max);
+                Position = tl + 40 * Vector2.One + new Vector2(GlobalState.RNG.Next(-r, r), GlobalState.RNG.Next(-r, r));
+                foreach(Entity e in bullets.Entities.Concat(copies))
+                {
+                    MathUtilities.MoveTo(ref e.opacity, 0, 6);
+                }
+                yield return null;
+            }
+
+            SoundManager.PlaySong("apartment");
             _preset.Alive = exists = false;
             GlobalState.events.BossDefeated.Add(GlobalState.CURRENT_MAP_NAME);
+
+            GlobalState.SpawnEntity(new FadeOutGameScreenFade());
+
+            yield break;
+        }
+
+        IEnumerator Dash()
+        {
+            int num_dashes = Phase + 2;
+            int num_drops = Phase + 2;
+
+            List<Bullet> spawned = new();
+
+            //Dash and place fires
+            for(int dash = 0; dash < num_dashes; ++dash)
+            {
+                Play("idle_r");
+
+                while (!MathUtilities.MoveTo(ref opacity, 0, 6))
+                    yield return null;
+
+                Position.X = tl.X - 32;
+
+                while(!MathUtilities.MoveTo(ref opacity, 1, 9))
+                {
+                    Position.Y = player.Position.Y;
+                    yield return null;
+                }
+
+                float dash_timer = 0.5f;
+                while(dash_timer > 0)
+                {
+                    Position.Y = player.Position.Y;
+                    dash_timer -= GameTimes.DeltaTime;
+                    yield return null;
+                }
+
+                Play("dash_r");
+                SoundManager.PlaySoundEffect("sb_dash");
+
+                velocity = Vector2.UnitX * (80 + 20 * Phase);
+                float next_drop = tl.X + GlobalState.RNG.Next(16);
+
+                bool CheckDashEnd()
+                {
+                    if (Position.X < tl.X + 16 * 8) return false;
+                    return MathUtilities.MoveTo(ref opacity, 0, 6);
+                }
+
+                int max = num_drops;
+
+                while(!CheckDashEnd())
+                {
+                    offset.Y = player.offset.Y + 2;
+
+                    if(max > 0 && Position.X > next_drop && Position.X < tl.X + 6*16 && bullets.Entities.Count() > spawned.Count)
+                    {
+                        max--;
+                        bullets.Spawn(t => { t.Spawn(Position, false); t.Flicker(0.05f); spawned.Add(t); });
+                        SoundManager.PlaySoundEffect("sb_ball_appear");
+                        next_drop = Position.X + GlobalState.RNG.Next(16, 32);
+                    }
+                    yield return null;
+                }
+                velocity = Vector2.Zero;
+            }
+
+
+            //unleash them
+            foreach(Bullet b in spawned)
+            {
+                b.Flicker(0);
+            }
+            float timer = 0.5f;
+            while(timer > 0)
+            {
+                timer -= GameTimes.DeltaTime;
+                yield return null;
+            }
+
+            SoundManager.PlaySoundEffect("sb_split");
+
+            foreach (Bullet b in spawned)
+            {
+                Vector2 target = player.Position + new Vector2(GlobalState.RNG.Next(-10, 10), GlobalState.RNG.Next(-10, 10));
+                b.Activate((80+Phase*20)*Vector2.Normalize(target - b.Position));
+                b.opacity = 0.99f;
+            }
+
+            while(bullets.Alive > 0)
+            {
+                yield return null;
+            }
+
+            opacity = 1f;
+
+            ChooseNextAttack(0.3, 0.3);
+
             yield break;
         }
 
         IEnumerator Shoot()
         {
-            vulnerable = true;
-
             velocity = Vector2.Zero;
             Position = tl + new Vector2(40, -32);
+            Play("float");
 
             int num_rounds = new[] { 4, 10, 7 }[Phase];
             int num_bullets_per_round = new[] { 2, 1, 4 }[Phase];
@@ -257,9 +399,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
                 yield return null;
             }
 
-            state = Split();
-
-            vulnerable = false;
+            ChooseNextAttack(0.37, 0.38);
 
             yield break;
         }
@@ -280,6 +420,8 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
             {
                 yield return null;
             }
+
+            damage_player = true;
 
             opacity = copies[0].opacity = copies[1].opacity = 1f;
             copies[0].exists = copies[1].exists = true;
@@ -343,7 +485,6 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
             }
 
             vulnerable = true;
-            damage_player = true;
 
             velocity.Y = split_vel;
 
@@ -353,19 +494,62 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
             }
 
             opacity = 1f;
-            vulnerable = false;
-            damage_player = false;
             velocity = Vector2.Zero;
 
-            //TODO: decide next attack
-            state = Shoot();
+            if(Phase <= 1)
+            {
+                ChooseNextAttack(0.3, 0.3);
+            }
+            else
+            {
+                ChooseNextAttack(0.5, 0.25);
+            }
+
 
             yield break;
+        }
+
+        void ChooseNextAttack(double dash_chance, double split_chance)
+        {
+            double r = GlobalState.RNG.NextDouble();
+            if(r < dash_chance)
+            {
+                state = Dash();
+            }
+            else if(r < dash_chance + split_chance)
+            {
+                state = Split();
+            }
+            else
+            {
+                state = Shoot();
+            }
         }
 
         public override IEnumerable<Entity> SubEntities()
         {
             return bullets.Entities.Concat(copies);
+        }
+
+        [Events(typeof(StartWarp),typeof(StartScreenTransition))]
+        class FadeOutGameScreenFade : Entity
+        {
+            public FadeOutGameScreenFade() : base(Vector2.Zero,Drawing.DrawOrder.BACKGROUND)
+            {
+                visible = false;
+            }
+
+            public override void Update()
+            {
+                base.Update();
+                GlobalState.gameScreenFade.ChangeAlpha(-3);
+            }
+
+            public override void OnEvent(GameEvent e)
+            {
+                base.OnEvent(e);
+                GlobalState.gameScreenFade.Deactivate();
+            }
         }
 
         [Collision(typeof(Player))]
@@ -389,6 +573,16 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
                     exists = false;
                 }
 
+                if(_flickering)
+                {
+                    Flicker(0.05f);
+                }
+
+                if(opacity != 1f)
+                {
+                    MathUtilities.MoveTo(ref opacity, 0, 0.3f);
+                }
+
                 if(opacity == 1f && MapUtilities.GetInGridPosition(Position).Y > 8*16)
                 {
                     Play("fizzle");
@@ -404,6 +598,11 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
                 }
             }
 
+            public void Deactivate()
+            {
+                active = false;
+            }
+
             public void Activate(Vector2 vel)
             {
                 active = true;
@@ -416,6 +615,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
                 Play("pulsate");
                 velocity = Vector2.Zero;
                 active = startsHurtingPlayer;
+                opacity = 1f;
             }
         }
     }
