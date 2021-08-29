@@ -283,15 +283,19 @@ namespace AnodyneSharp.States
                 {
                     if (_childState is DeathState d)
                     {
-                        PlayMapMusic();
+                        Warp();
+                        _state = PlayStateState.S_MAP_ENTER;
+                    }
+                    else
+                    {
+                        _player.dontMove = false;
+                        _player.exists = true;
+                        _player.actions_disabled = false;
+                        _player.invincible = false;
                     }
 
-                    _childState = null;
-                    _player.dontMove = false;
-                    _player.exists = true;
-                    _player.actions_disabled = false;
                     _player.skipBroom = true;
-                    _player.invincible = false;
+                    _childState = null;
                 }
 
                 if (updateEntities)
