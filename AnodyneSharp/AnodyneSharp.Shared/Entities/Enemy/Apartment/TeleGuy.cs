@@ -88,12 +88,12 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
 
                         FaceTowards(_player.Position);
 
-                        PlayFacing("idle");
-
                         state.AddTimer(0.5f, "PreAttackTimer");
                     })
                     .Event("PreAttackTimer", (state) =>
                     {
+                        PlayFacing("idle");
+
                         _state.ChangeState("Attacking");
                     })
                     .End()
