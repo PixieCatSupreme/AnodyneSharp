@@ -53,6 +53,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Apartment\Rat.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Apartment\Silverfish.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Apartment\SplitBoss.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Apartment\TeleGuy.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Bedroom\Annoyer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Bedroom\PewLaser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Bedroom\Seer.cs" />
