@@ -321,6 +321,12 @@ namespace AnodyneSharp.Entities
 
         public void Flicker(float duration)
         {
+            if(duration == 0f)
+            {
+                _flickering = false;
+                visible = true;
+                return;
+            }
             _flickering = true;
             _flickerTimer = duration;
         }
