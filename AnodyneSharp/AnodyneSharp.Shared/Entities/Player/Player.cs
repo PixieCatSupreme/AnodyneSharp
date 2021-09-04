@@ -93,7 +93,9 @@ namespace AnodyneSharp.Entities
         public bool skipBroom;
         private IEnumerator jump_anim;
         public bool JustLanded { get; private set; }
-        private bool dashing;
+
+        private bool Dashing => dash_state != Vector2.Zero;
+        Vector2 dash_state = Vector2.Zero;
 
         private bool isSlipping;
         private bool hasFallen;
@@ -183,7 +185,7 @@ namespace AnodyneSharp.Entities
                 justFell = false;
 
                 IS_SINKING = false;
-                dashing = false;
+                dash_state = Vector2.Zero;
 
                 JustLanded = false;
                 dontMove = false;
@@ -309,6 +311,39 @@ namespace AnodyneSharp.Entities
         public void DontFall()
         {
             isSlipping = false;
+        }
+
+        public void Dash(Facing facing)
+        {
+            static void CheckDash(ref float dash_val, float addition)
+            {
+                if(dash_val == 0)
+                {
+                    dash_val = addition * 1.3f;
+                    SoundManager.PlaySoundEffect("dash_pad_1");
+                }
+                else if(dash_val * addition < 0) //different sign
+                {
+                    dash_val = 0;
+                }
+                else if(MathF.Abs(dash_val) < 1.5f)
+                {
+                    dash_val = addition * 1.77f;
+                    SoundManager.PlaySoundEffect("dash_pad_2");
+                }
+            }
+
+            switch(facing)
+            {
+                case Facing.UP:
+                case Facing.DOWN:
+                    CheckDash(ref dash_state.Y, FacingDirection(facing).Y);
+                    break;
+                case Facing.LEFT:
+                case Facing.RIGHT:
+                    CheckDash(ref dash_state.X, FacingDirection(facing).X);
+                    break;
+            }
         }
 
         public override void Puddle()
@@ -445,7 +480,7 @@ namespace AnodyneSharp.Entities
                     GroundAnimation();
 
                     JustLanded = false;
-                    //dash_logic();
+                    DashLogic();
 
                     break;
                 case PlayerState.AIR:
@@ -459,7 +494,7 @@ namespace AnodyneSharp.Entities
                         jump_anim.MoveNext();
                     }
 
-                    //dash_logic();
+                    DashLogic();
                     break;
                 case PlayerState.AUTO_JUMP:
                     if (!jump_anim.MoveNext())
@@ -490,6 +525,35 @@ namespace AnodyneSharp.Entities
                     break;
                 default:
                     break;
+            }
+        }
+
+        private void DashLogic()
+        {
+            if(dash_state.X > 0 && !KeyInput.IsRebindableKeyPressed(KeyFunctions.Right))
+            {
+                dash_state.X = 0;
+            }
+            else if(dash_state.X < 0 && !KeyInput.IsRebindableKeyPressed(KeyFunctions.Left))
+            {
+                dash_state.X = 0;
+            }
+            else if(dash_state.X != 0)
+            {
+                velocity.X = walkSpeed * dash_state.X;
+            }
+
+            if (dash_state.Y > 0 && !KeyInput.IsRebindableKeyPressed(KeyFunctions.Down))
+            {
+                dash_state.Y = 0;
+            }
+            else if (dash_state.Y < 0 && !KeyInput.IsRebindableKeyPressed(KeyFunctions.Up))
+            {
+                dash_state.Y = 0;
+            }
+            else if(dash_state.Y != 0)
+            {
+                velocity.Y = walkSpeed * dash_state.Y;
             }
         }
 
@@ -557,7 +621,7 @@ namespace AnodyneSharp.Entities
                 JustLanded = false;
             }
 
-            if ((dashing && fallTimer < FALL_TIMER_DEFAULT / 2) || fallTimer < 0)
+            if ((Dashing && fallTimer < FALL_TIMER_DEFAULT / 2) || fallTimer < 0)
             {
                 SoundManager.PlaySoundEffect("fall_in_hole");
                 ANIM_STATE = PlayerAnimState.ANIM_FALL;
@@ -571,8 +635,6 @@ namespace AnodyneSharp.Entities
 
         private void ResetAfterFalling()
         {
-            fallTimer -= GameTimes.DeltaTime;
-
             if (_curAnim.Frame == 31)
             {
                 Position = grid_entrance;

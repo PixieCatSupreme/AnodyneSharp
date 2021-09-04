@@ -80,6 +80,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\ReflectionFollower.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\StaticOff.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\SwapperPolicyEvent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\DashPad.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Switches\PillarSwitch.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Switches\SwitchPillar.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Crowd\BioFilm.cs" />
