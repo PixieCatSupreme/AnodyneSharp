@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.GameEvents;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 using AnodyneSharp.Utilities;
@@ -318,6 +319,8 @@ namespace AnodyneSharp.Entities
             SoundManager.PlaySoundEffect("swing_broom_1", "swing_broom_2", "swing_broom_3");
 
             UpdatePos();
+
+            GlobalState.FireEvent(new BroomUsed());
 
             if (GlobalState.CURRENT_MAP_NAME == "SUBURB" && GlobalState.events.GetEvent("Stabbed") == 0)
             {

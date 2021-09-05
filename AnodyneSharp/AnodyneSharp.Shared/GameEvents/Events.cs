@@ -10,4 +10,6 @@ namespace AnodyneSharp.GameEvents
     public class EndScreenTransition : GameEvent { }
     public class StartWarp : GameEvent { }
     public class EndWarp : GameEvent { }
+
+    public class BroomUsed : GameEvent { }
 }
