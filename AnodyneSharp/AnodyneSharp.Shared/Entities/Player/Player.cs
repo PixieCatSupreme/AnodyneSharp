@@ -97,6 +97,7 @@ namespace AnodyneSharp.Entities
         private bool Dashing => dash_state != Vector2.Zero;
         Vector2 dash_state = Vector2.Zero;
 
+        private bool ON_HOLE;
         private bool isSlipping;
         private bool hasFallen;
         private bool justFell;
@@ -276,6 +277,7 @@ namespace AnodyneSharp.Entities
             base.PostUpdate();
             ON_CONVEYOR = false;
             IS_SINKING = false;
+            ON_HOLE = false;
         }
 
         public override IEnumerable<Entity> SubEntities()
@@ -304,8 +306,9 @@ namespace AnodyneSharp.Entities
             {
                 isSlipping = true;
                 fallTimer = FALL_TIMER_DEFAULT;
-                this.fallPoint = fallPoint;
             }
+            this.fallPoint = fallPoint;
+            ON_HOLE = true;
         }
 
         public void DontFall()
@@ -614,6 +617,12 @@ namespace AnodyneSharp.Entities
 
         private void SlippingLogic()
         {
+            if(!ON_HOLE)
+            {
+                isSlipping = false;
+                return;
+            }
+            
             fallTimer -= GameTimes.DeltaTime;
             if (JustLanded)
             {
