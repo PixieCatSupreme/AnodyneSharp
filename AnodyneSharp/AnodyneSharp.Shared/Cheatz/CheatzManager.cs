@@ -142,24 +142,5 @@ namespace AnodyneSharp.Cheatz
                 SoundManager.PlaySoundEffect("fall_in_hole");
             }
         }
-
-        [Cheat("1212121212")]
-        public static void Meow()
-        {
-            SoundManager.PlaySoundEffect("meow");
-
-#if DEBUG
-            for (int i = 0; i < GlobalState.achievements.AchievementStatus.Length; i++)
-            {
-                GlobalState.achievements.AchievementStatus[i] = true;
-            }
-#endif
-        }
-
-        [Cheat("2121212121")]
-        public static void Woof()
-        {
-            SoundManager.PlaySoundEffect("woof");
-        }
     }
 }
