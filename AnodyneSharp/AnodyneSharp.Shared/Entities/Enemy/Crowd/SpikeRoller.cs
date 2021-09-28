@@ -57,7 +57,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
                 .State("Roll")
                     .Enter((state) =>
                     {
-                        collisionOn = true;
+                        CollisionOn = true;
                         velocity = vel;
                         layer = Drawing.DrawOrder.BG_ENTITIES;
 
@@ -138,7 +138,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
         public BouncySpikeRoller(EntityPreset preset, Player p)
             : base(preset, preset.Frame % 4)
         {
-            collisionOn = true;
+            CollisionOn = true;
 
             velocity = vel * 2;
 
@@ -169,7 +169,8 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
     {
         protected Vector2 vel;
 
-        protected bool collisionOn;
+        public bool CollisionOn { get; protected set; }
+
         protected bool playerCollides;
 
         public BaseSpikeRoller(EntityPreset preset, int frame)
@@ -211,7 +212,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
 
             Play("idle");
 
-            collisionOn = false;
+            CollisionOn = false;
             immovable = true;
         }
 
@@ -219,7 +220,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
         {
             base.Collided(other);
 
-            if (collisionOn && other is Player p && p.state != PlayerState.AIR)
+            if (CollisionOn && other is Player p && p.state != PlayerState.AIR)
             {
                 p.ReceiveDamage(1);
             }

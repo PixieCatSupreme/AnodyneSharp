@@ -39,7 +39,11 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
 
             _state = new StateMachineBuilder()
                 .State<TimerState>("Initial")
-                    .Enter((s) => s.AddTimer(0.8f, "goToIdle"))
+                    .Enter((s) => 
+                    {
+                        s.Reset();
+                        s.AddTimer(0.8f, "goToIdle"); 
+                    })
                     .Event("goToIdle", (s) => _state.ChangeState("Idle"))
                 .End()
                 .State("Idle")
