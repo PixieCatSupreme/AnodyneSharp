@@ -30,7 +30,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
         private EntityPool<Gas> gasClouds;
 
         public GasGuy(EntityPreset preset, Player player)
-            : base(preset.Position, "gas_guy", 16, 24, DrawOrder.ENTITIES, 0.6f, true)
+            : base(preset, preset.Position, "gas_guy", 16, 24, DrawOrder.ENTITIES, 0.6f, true)
         {
             _player = player;
 

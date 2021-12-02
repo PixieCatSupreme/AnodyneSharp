@@ -24,8 +24,6 @@ namespace AnodyneSharp.Entities.Enemy
             Bullet = 3
         }
 
-        EntityPreset _preset;
-
         private SlimeType _type;
 
         private int _health = 2;
@@ -51,11 +49,9 @@ namespace AnodyneSharp.Entities.Enemy
         private Player target;
 
         public Slime(EntityPreset preset, Player player)
-            : base(preset.Position, "slime", 16, 16, DrawOrder.ENTITIES)
+            : base(preset, preset.Position, "slime", 16, 16, DrawOrder.ENTITIES)
         {
-            _preset = preset;
-
-            _type = _preset.Frame == 3 ? SlimeType.Bullet : SlimeType.Normal;
+            _type = preset.Frame == 3 ? SlimeType.Bullet : SlimeType.Normal;
 
             AddAnimation("Move", CreateAnimFrameArray(0, 1), 3);
             AddAnimation("Hurt", CreateAnimFrameArray(0, 8, 0, 8), 15, false);
@@ -99,7 +95,7 @@ namespace AnodyneSharp.Entities.Enemy
                 .End()
                 .State("Dying")
                     .Enter((state) => Play("Dying"))
-                    .Condition(() => _curAnim.Finished, (state) => { _preset.Alive = false; GlobalState.SpawnEntity(new Explosion(this)); Die(); })
+                    .Condition(() => _curAnim.Finished, (state) => { GlobalState.SpawnEntity(new Explosion(this)); Die(); })
                 .End()
                 .Build();
             state.ChangeState("Move");

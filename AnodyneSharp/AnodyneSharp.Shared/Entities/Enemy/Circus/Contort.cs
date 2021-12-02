@@ -18,6 +18,8 @@ namespace AnodyneSharp.Entities.Enemy.Circus
 
         private List<ContortSmall> _smalls;
 
+        private EntityPreset _preset;
+
         private int health = 3;
 
         public Contort(EntityPreset preset, Player p)
@@ -30,6 +32,8 @@ namespace AnodyneSharp.Entities.Enemy.Circus
             AddAnimation("move", CreateAnimFrameArray(0, 1, 2, 1), 9, true);
 
             Play("move");
+
+            _preset = preset;
 
             velocity = new Vector2(
                 _startVel * (GlobalState.RNG.NextDouble() > 0.5 ? 1 : -1),
@@ -77,7 +81,7 @@ namespace AnodyneSharp.Entities.Enemy.Circus
             }
             else if (!_smalls.Any(s => s.exists))
             {
-                exists = false;
+                _preset.Alive = exists = false;
             }
         }
 
@@ -137,7 +141,7 @@ namespace AnodyneSharp.Entities.Enemy.Circus
             private Parabola_Thing _parabola;
 
             public ContortSmall(Vector2 pos, int i, int startFrame)
-            : base(pos, "contort_small", 16, 16, Drawing.DrawOrder.ENTITIES, 0.4f)
+            : base(null, pos, "contort_small", 16, 16, Drawing.DrawOrder.ENTITIES, 0.4f)
             {
                 AddAnimation("move", CreateAnimFrameArray(startFrame, startFrame + 1), 9, true);
 

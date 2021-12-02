@@ -14,7 +14,6 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
     [NamedEntity, Enemy, Collision(typeof(Player),typeof(Broom))]
     class Frog : HealthDropper
     {
-        EntityPreset _preset;
         int _health = 2;
         IState _state;
 
@@ -22,7 +21,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
 
         EntityPool<BurstBullet> _bullets;
 
-        public Frog(EntityPreset preset, Player p) : base(preset.Position, "frog", 16, 16, Drawing.DrawOrder.ENTITIES, 0.7f)
+        public Frog(EntityPreset preset, Player p) : base(preset, preset.Position, "frog", 16, 16, Drawing.DrawOrder.ENTITIES, 0.7f)
         {
             AddAnimation("idle", CreateAnimFrameArray(0, 1), 2, true);
             AddAnimation("shoot_d", CreateAnimFrameArray(3), 3, false);
@@ -31,7 +30,6 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
             AddAnimation("shoot_u", CreateAnimFrameArray(5), 3, false);
             Play("idle");
             immovable = true;
-            _preset = preset;
             _player = p;
 
             int i = 0;
@@ -86,7 +84,6 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
 
                     if (_health <= 0)
                     {
-                        _preset.Alive = false;
                         GlobalState.SpawnEntity(new Explosion(this));
                         Die();
                     }

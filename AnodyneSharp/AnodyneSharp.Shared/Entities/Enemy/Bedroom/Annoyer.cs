@@ -217,7 +217,7 @@ namespace AnodyneSharp.Entities.Enemy
 
         class Explosion : HealthDropper
         {
-            public Explosion(Vector2 pos) : base(pos, "enemy_explode_2", 24, 24, DrawOrder.ENTITIES)
+            public Explosion(Vector2 pos) : base(null, pos, "enemy_explode_2", 24, 24, DrawOrder.ENTITIES)
             {
                 AddAnimation("explode", CreateAnimFrameArray(0, 1, 2, 3, 4), 12, false);
                 Play("explode");

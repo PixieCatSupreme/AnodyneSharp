@@ -15,7 +15,6 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
     [NamedEntity("Teleguy"), Enemy, Collision(typeof(Player), typeof(Broom))]
     class TeleGuy : HealthDropper
     {
-        EntityPreset _preset;
         Player _player;
 
         private IState _state;
@@ -23,9 +22,8 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
         private Vector2 atkPoint;
 
         public TeleGuy(EntityPreset preset, Player p)
-            : base(preset.Position, "teleport_guy", 16, 24, Drawing.DrawOrder.ENTITIES, 0.7f)
+            : base(preset, preset.Position, "teleport_guy", 16, 24, Drawing.DrawOrder.ENTITIES, 0.7f)
         {
-            _preset = preset;
             _player = p;
 
             offset.Y = 6;
@@ -123,8 +121,6 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
                         }
                         else
                         {
-                            _preset.Alive = false;
-
                             Die();
 
                             GlobalState.SpawnEntity(new Explosion(this));

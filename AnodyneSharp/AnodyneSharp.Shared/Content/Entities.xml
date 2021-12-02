@@ -39,8 +39,8 @@
     <Rat x="528" y="592" guid="3989CE0A-393C-E455-13B5-EEF2D86AD934" frame="0" p="0" alive="true"/>
     <Annoyer x="608" y="544" guid="913E3ADA-EF0C-956E-28E9-4197D5967A00" frame="0" alive="true"/>
     <Rat x="336" y="128" guid="C5068D6E-FD49-97B0-30CD-2597BF7170A2" frame="0" p="0" alive="true"/>
-    <Shieldy x="176" y="128" guid="DB0E52F9-D343-D4B9-7582-9C4094668BFB" frame="6" p="1"/>
-    <Shieldy x="176" y="96" guid="ACE4970C-893F-7C18-1E63-0A0B8947EA9F" frame="6" p="1"/>
+    <Shieldy x="176" y="128" guid="DB0E52F9-D343-D4B9-7582-9C4094668BFB" frame="6"/>
+    <Shieldy x="176" y="96" guid="ACE4970C-893F-7C18-1E63-0A0B8947EA9F" frame="6"/>
     <Gate x="192" y="48" guid="19627C44-A331-6354-5B3D-32EC2E2DC987" frame="1" p="2" alive="true" type="0" />
     <Gate x="960" y="224" guid="9D9F93F8-AD64-01E0-2B60-A9AC5FD48159" frame="11" p="2" alive="true" type="0" />
     <Teleguy x="1024" y="272" guid="062FDFB0-403F-D87C-1404-D33230913471" frame="0" p="1" alive="true"/>
@@ -370,12 +370,12 @@
   </map>
   <map name="BEDROOM" type="Stateful">
     <Slime x="208" y="688" guid="20832549-4D6A-DAB4-5965-8A301A184D15" frame="0" p="1" alive="true"/>
-    <Shieldy x="368" y="384" guid="E804AAB4-9832-D161-D701-E4E644B2CFB7" frame="0" p="1"/>
-    <Shieldy x="384" y="368" guid="25134F2A-22DC-47D3-B9A5-B8A1CC74343E" frame="0" p="1"/>
+    <Shieldy x="368" y="384" guid="E804AAB4-9832-D161-D701-E4E644B2CFB7" frame="0"/>
+    <Shieldy x="384" y="368" guid="25134F2A-22DC-47D3-B9A5-B8A1CC74343E" frame="0"/>
     <Pew_Laser x="176" y="320" guid="08F9FFC4-CFCF-8D6E-D88D-8AD353504077" frame="4"/>
     <Pew_Laser x="288" y="320" guid="21C5C336-FF30-5319-0DC3-81ACE088138B" frame="4"/>
-    <Shieldy x="80" y="288" guid="FA263105-6B6A-F958-F87A-0CD20A8C1BD4" frame="0" p="1"/>
-    <Shieldy x="96" y="224" guid="4890FFD6-DDEB-1305-5740-EB7E9DD7C678" frame="4" p="1"/>
+    <Shieldy x="80" y="288" guid="FA263105-6B6A-F958-F87A-0CD20A8C1BD4" frame="0"/>
+    <Shieldy x="96" y="224" guid="4890FFD6-DDEB-1305-5740-EB7E9DD7C678" frame="4"/>
     <Gate x="400" y="160" guid="181CF2EB-59AE-D98B-A51F-6B2D2DFCDC91" frame="1" p="2" alive="true" type="0" />
     <Slime x="432" y="192" guid="159FE75E-BF8F-04F8-B1B2-5382EE40CCCF" frame="0" p="1" alive="true"/>
     <Sun_Guy x="384" y="48" guid="F7D51D9E-6D66-7824-A9CC-5CD1A6DD32AF" frame="0" p="2" alive="true"/>
@@ -384,17 +384,17 @@
     <KeyBlock x="544" y="320" guid="46721D3F-C336-1050-9915-D88480DACA0F" frame="0" p="2" alive="true"/>
     <KeyBlock x="224" y="160" guid="2B914929-B1F3-EE65-2383-440C31AF989B" frame="0" p="2" alive="true"/>
     <Gate x="224" y="144" guid="425F4B4D-8C1A-CD6C-4E34-254955379772" frame="3" p="2" alive="true" type="0" />
-    <Shieldy x="240" y="80" guid="F240F134-CE43-E911-5C1D-7C2549D77DB5" frame="6" p="1"/>
-    <Shieldy x="224" y="64" guid="1ABFA335-664E-A072-B8D3-6D557329F6FD" frame="4" p="1"/>
+    <Shieldy x="240" y="80" guid="F240F134-CE43-E911-5C1D-7C2549D77DB5" frame="6"/>
+    <Shieldy x="224" y="64" guid="1ABFA335-664E-A072-B8D3-6D557329F6FD" frame="4"/>
     <Slime x="224" y="16" guid="FB05634B-E19A-4D00-542B-018F26CB69C2" frame="0" p="1" alive="true"/>
-    <Shieldy x="16" y="768" guid="0550FF41-198A-A993-FB19-111DCA32BDFB" frame="6" p="1"/>
+    <Shieldy x="16" y="768" guid="0550FF41-198A-A993-FB19-111DCA32BDFB" frame="6"/>
     <Treasure x="16" y="656" guid="40DE36CF-9238-F8B0-7A57-C6C8CA465CC2" frame="1" alive="true"/>
     <Treasure x="176" y="16" guid="88D0A7B8-EEAB-C45F-324E-F1C7885C41CE" frame="2" alive="true"/>
     <Treasure x="448" y="592" guid="621C284F-CBD0-74C3-F51B-2A9FDDE8D4D7" frame="2" alive="true"/>
     <Annoyer x="560" y="384" guid="BF228047-1ADD-5376-0FB2-E10FE2FBC9D0" frame="0" alive="true"/>
     <Annoyer x="560" y="416" guid="2892CD21-0923-1474-3041-9F7F6D9EE086" frame="0" alive="true"/>
-    <Shieldy x="608" y="384" guid="EE91DABD-E170-76F4-F7B3-60A034B8A374" frame="7" p="1"/>
-    <Shieldy x="592" y="384" guid="DF28549F-EF3C-7B56-626A-CB7DF296077A" frame="5" p="1"/>
+    <Shieldy x="608" y="384" guid="EE91DABD-E170-76F4-F7B3-60A034B8A374" frame="7"/>
+    <Shieldy x="592" y="384" guid="DF28549F-EF3C-7B56-626A-CB7DF296077A" frame="5"/>
     <Slime x="592" y="608" guid="B72B85B6-F0A5-1594-F067-5FF859F8731F" frame="0" p="1" alive="true"/>
     <Slime x="528" y="576" guid="E8F0B700-DD1D-15F8-F83F-97E0D34EC651" frame="0" p="1" alive="true"/>
     <Gate x="560" y="464" guid="E541C391-EAE1-012F-9BD0-86A00A65892F" frame="3" p="2" alive="true" type="0" />
@@ -402,7 +402,7 @@
     <Annoyer x="16" y="608" guid="E0C82A8A-4BF8-8CD9-15AB-76F038BDA380" frame="0" alive="true"/>
     <Annoyer x="128" y="608" guid="08999575-A708-76BF-C3BE-6FCF7919DB88" frame="0" alive="true"/>
     <Pew_Laser x="16" y="592" guid="F86046B2-1DD4-55D0-DE1F-40711967E9C6" frame="1"/>
-    <Shieldy x="64" y="560" guid="B71C4708-FEA2-11A3-96E4-B9BC3CF6D449" frame="4" p="1"/>
+    <Shieldy x="64" y="560" guid="B71C4708-FEA2-11A3-96E4-B9BC3CF6D449" frame="4"/>
     <Annoyer x="528" y="192" guid="FBBC4CC9-9FCE-FFE7-18CB-21998EA21157" frame="0" alive="true"/>
     <Annoyer x="592" y="240" guid="6F94C027-D46E-F049-BC9A-8A9BF7C2E76A" frame="0" alive="true"/>
     <Pew_Laser x="496" y="160" guid="9B997103-4BC9-C277-8828-84CF860AB196" frame="0"/>
@@ -417,16 +417,16 @@
     <Treasure x="928" y="16" guid="3167924E-5D52-1CD6-D6F4-B8E0E328215B" frame="2" alive="true"/>
     <Slime x="720" y="208" guid="B6B3B74A-BCDF-3536-AF1B-DF69F0A95B78" frame="0" p="1" alive="true"/>
     <Slime x="720" y="368" guid="A8C69E5D-C16E-173C-A6F6-ADAFC7EEC238" frame="0" p="1" alive="true"/>
-    <Shieldy x="832" y="192" guid="D93B44E9-5810-9949-7B6F-65B80EBDFE57" frame="7" p="1"/>
+    <Shieldy x="832" y="192" guid="D93B44E9-5810-9949-7B6F-65B80EBDFE57" frame="7"/>
     <Gate x="944" y="224" guid="16F64357-BAB0-A413-31FE-AC0541468752" frame="6" p="2" alive="true" type="0" />
     <Annoyer x="1072" y="272" guid="BE634F1A-D58D-7010-7241-869E6314C036" frame="0" alive="true"/>
     <Annoyer x="1024" y="208" guid="526D6D66-EF20-BD67-74DB-C064E031E526" frame="0" alive="true"/>
-    <Shieldy x="1024" y="256" guid="CD840642-73AF-2482-419E-2F396C9ECCEF" frame="4" p="1"/>
+    <Shieldy x="1024" y="256" guid="CD840642-73AF-2482-419E-2F396C9ECCEF" frame="4"/>
     <Slime x="1088" y="240" guid="F44BF5BE-2B84-70F2-6FE9-F1B820279D1A" frame="0" p="1" alive="true"/>
     <Slime x="240" y="16" guid="6E634C2C-A753-443C-4AEA-012B01B9E4D4" frame="0" p="1" alive="true"/>
     <Treasure x="176" y="496" guid="401939A4-41BA-E07E-3BA2-DC22513DCC5C" frame="1" alive="true"/>
     <Gate x="176" y="48" guid="B71CF5EF-3149-DF3B-26DF-6CBEEA50124D" frame="3" p="2" alive="true" type="0" />
-    <Shieldy x="416" y="416" guid="9BEA3D9A-321F-AC41-00F6-1BC21C3750FA" frame="0" p="1"/>
+    <Shieldy x="416" y="416" guid="9BEA3D9A-321F-AC41-00F6-1BC21C3750FA" frame="0"/>
     <Gate x="464" y="384" guid="89013F89-CB93-4CBF-49A7-B699F6365503" frame="2" p="2" alive="true" type="0" />
     <Gate x="320" y="384" guid="09E862DD-0346-9614-5DE7-00214ACFA72D" frame="2" p="2" alive="true" type="0" />
     <Gate x="384" y="320" guid="BE81A8C2-1EC5-909C-C4DA-95E22D8C7055" frame="2" p="2" alive="true" type="0" />
@@ -443,12 +443,12 @@
     <Gate x="64" y="320" guid="364EC7C2-A76D-7F85-A44C-ACD8B03D5250" frame="1" p="2" alive="true" type="0" />
     <Gate x="1040" y="176" guid="D29A514D-2E3B-781B-DF35-18051952D7FA" frame="3" p="2" alive="true" type="0" />
     <Gate x="352" y="176" guid="D3D9A91D-BBFB-EB86-2C7B-5EC3FB67B8EF" frame="5" p="2" alive="true" type="0" />
-    <Shieldy x="400" y="256" guid="8666BEAA-F21B-9CA8-CE6A-CB94163D0380" frame="0" p="1"/>
+    <Shieldy x="400" y="256" guid="8666BEAA-F21B-9CA8-CE6A-CB94163D0380" frame="0"/>
     <Gate x="384" y="272" guid="DFC2B453-714D-9F55-6157-F10EC1E192B1" frame="5" p="2" alive="true" type="0" />
     <Gate x="400" y="272" guid="A83B9691-1385-C440-C663-8D438D608836" frame="5" p="2" alive="true" type="0" />
     <Pew_Laser x="448" y="224" guid="D40AF832-B395-629E-5A14-61B5E75ACBDA" frame="3"/>
-    <Shieldy x="96" y="368" guid="19C344D0-CC3D-C5E5-347B-D15FD2ABF87F" frame="0" p="1"/>
-    <Shieldy x="48" y="384" guid="23FE6C37-1FE8-65B1-24A9-894CF1E3E7AA" frame="4" p="1"/>
+    <Shieldy x="96" y="368" guid="19C344D0-CC3D-C5E5-347B-D15FD2ABF87F" frame="0"/>
+    <Shieldy x="48" y="384" guid="23FE6C37-1FE8-65B1-24A9-894CF1E3E7AA" frame="4"/>
     <NPC x="592" y="96" guid="EE271648-19B2-F8DE-3ED7-64E333B58285" frame="0" p="2" alive="true" type="big_key" />
     <Door x="720" y="786" guid="04506F5B-8A2E-1FBD-9297-FC17B8FC1465" frame="70" type="9" />
     <Door x="656" y="16" guid="36E706FB-11A8-5948-3CC7-20F37CE95176" frame="63" type="16" />
@@ -1765,7 +1765,7 @@
     <Four_Shooter x="1008" y="1328" guid="9C8F121A-E836-6DF5-8D89-E318E9E92453" frame="0" p="2"/>
     <Four_Shooter x="1056" y="1360" guid="5726F9C6-9AFA-D55E-4031-9E10FA3A569D" frame="0" p="2"/>
     <Frog x="1008" y="1472" guid="7ACCCD66-549A-8CD9-D12D-BCDD21F80C84" frame="3" p="1" alive="true"/>
-    <Shieldy x="192" y="1184" guid="E129C5B8-40F1-E58A-52EB-98E8FC0F85C8" frame="6" p="1"/>
+    <Shieldy x="192" y="1184" guid="E129C5B8-40F1-E58A-52EB-98E8FC0F85C8" frame="6"/>
     <Slime x="208" y="1024" guid="A290AED0-A55D-04CC-26DA-2ABA97B8939B" frame="0" p="1" alive="true"/>
     <Slime x="256" y="1008" guid="5DA9D6A6-468A-909B-728A-94D47457F196" frame="0" p="1" alive="true"/>
     <Annoyer x="224" y="992" guid="0240B6A3-4330-2AFE-920E-0DE49F64CEE5" frame="0" alive="true"/>
@@ -1803,7 +1803,7 @@
     <Door x="1680" y="224" guid="6C2E4786-C4A2-8A85-BDC8-D68AFB3082C1" frame="80" type="5" />
     <Door x="1344" y="144" guid="6CC08A8C-B9D0-5D81-E43B-156E002E1F47" frame="80" type="1" />
     <Button x="1296" y="384" guid="B76A5005-8F8B-4517-7BCC-AB228294BC3C" frame="0"/>
-    <Shieldy x="272" y="1184" guid="D028E97F-41E1-0919-5785-B961D699802F" frame="4" p="1"/>
+    <Shieldy x="272" y="1184" guid="D028E97F-41E1-0919-5785-B961D699802F" frame="4"/>
     <Frog x="544" y="1056" guid="A030D497-3B6E-E7AD-F629-08B13E3566A3" frame="2" p="1" alive="true"/>
     <Trade_NPC x="736" y="544" guid="6120DE2B-3295-CCE0-AF71-229A495FFADE" frame="4" p="2"/>
     <Treasure x="1360" y="16" guid="34ECE95D-B0F8-5A83-6179-E73D9ECF7C0E" frame="2" alive="true"/>

@@ -14,20 +14,18 @@ namespace AnodyneSharp.Entities.Enemy.Hotel
     [NamedEntity, Enemy, Collision(typeof(Broom))]
     public class Burst_Plant : HealthDropper
     {
-        EntityPreset _preset;
         int _health = 2;
         IState _state;
 
         EntityPool<BurstBullet> _bullets;
 
-        public Burst_Plant(EntityPreset preset, Player p) : base(preset.Position, "burst_plant", 16, 16, Drawing.DrawOrder.ENTITIES, 0.7f)
+        public Burst_Plant(EntityPreset preset, Player p) : base(preset, preset.Position, "burst_plant", 16, 16, Drawing.DrawOrder.ENTITIES, 0.7f)
         {
             AddAnimation("idle", CreateAnimFrameArray(0));
             AddAnimation("charging", CreateAnimFrameArray(0, 1), 8);
             AddAnimation("shoot", CreateAnimFrameArray(3));
             Play("idle");
             immovable = true;
-            _preset = preset;
 
             _bullets = new(8, () => new());
 
@@ -82,7 +80,6 @@ namespace AnodyneSharp.Entities.Enemy.Hotel
 
                 if (_health <= 0)
                 {
-                    _preset.Alive = false;
                     GlobalState.SpawnEntity(new Explosion(this));
                     Die();
                     foreach(Entity b in _bullets.Entities)

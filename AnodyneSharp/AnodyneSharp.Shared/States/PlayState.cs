@@ -29,9 +29,10 @@ namespace AnodyneSharp.States
 {
     public enum PlayStateState
     {
+        S_LOAD,
         S_NORMAL,
         S_TRANSITION,
-        S_MAP_EXIT = 5,
+        S_MAP_EXIT,
         S_MAP_ENTER
     }
 
@@ -52,7 +53,7 @@ namespace AnodyneSharp.States
         private const float transition_in = 0.8f;
         private const float pixelation_per_second = 30f;
 
-        private PlayStateState _state;
+        private PlayStateState _state = PlayStateState.S_LOAD;
 
         private MapLayer _map;
         private MapLayer _map_bg_2; //on top of the bg map
@@ -556,25 +557,26 @@ namespace AnodyneSharp.States
         private void CheckForTransition()
         {
             _state = PlayStateState.S_TRANSITION;
+            Point grid = new(GlobalState.CURRENT_GRID_X, GlobalState.CURRENT_GRID_Y);
             if (_player.Position.X < _gridBorders.X)
             {
-                GlobalState.CURRENT_GRID_X--;
+                grid.X--;
                 _player.Position.X = _gridBorders.X - _player.width;
             }
             else if (_player.Position.Y < _gridBorders.Y)
             {
-                GlobalState.CURRENT_GRID_Y--;
+                grid.Y--;
 
                 _player.Position.Y = _gridBorders.Y - _player.height;
             }
             else if (_player.Position.Y > _gridBorders.Bottom - _player.height)
             {
-                GlobalState.CURRENT_GRID_Y++;
+                grid.Y++;
                 _player.Position.Y = _gridBorders.Y + _gridBorders.Height;
             }
             else if (_player.Position.X > _gridBorders.Right - _player.width)
             {
-                GlobalState.CURRENT_GRID_X++;
+                grid.X++;
                 _player.Position.X = _gridBorders.Right;
             }
             else
@@ -588,6 +590,9 @@ namespace AnodyneSharp.States
             if (_state == PlayStateState.S_TRANSITION)
             {
                 GlobalState.ScreenTransition = true;
+                OnGridExit();
+                GlobalState.CURRENT_GRID_X = grid.X;
+                GlobalState.CURRENT_GRID_Y = grid.Y;
                 _eventRegistry.FireEvent(new StartScreenTransition());
                 _map.Data.OnTransitionStart();
                 if (GlobalState.Swapper == GlobalState.SwapperPolicy.AllowedOnCurrentScreen)
@@ -860,6 +865,16 @@ namespace AnodyneSharp.States
                     GlobalState.events.LeftAfterBoss.Add(GlobalState.CURRENT_MAP_NAME);
                 }
 
+                if (_state != PlayStateState.S_LOAD)
+                {
+                    foreach (EntityPreset p in EntityManager.GetMapEntities(GlobalState.CURRENT_MAP_NAME).Where(p => p.Permanence != Permanence.GLOBAL))
+                    {
+                        p.Alive = true;
+                    }
+
+                    GlobalState.PillarSwitchOn = 0;
+                }
+
                 GlobalState.CURRENT_MAP_NAME = GlobalState.NEXT_MAP_NAME;
 
                 if (GlobalState.ReturnTarget == null || GlobalState.ReturnTarget.map != GlobalState.CURRENT_MAP_NAME || GlobalState.CURRENT_MAP_NAME == "NEXUS")
@@ -879,13 +894,6 @@ namespace AnodyneSharp.States
 
                 //Sets tile collission and tile events
                 TileData.SetTileProperties(GlobalState.CURRENT_MAP_NAME, _map, _map_bg_2);
-
-                foreach (EntityPreset p in EntityManager.GetMapEntities(GlobalState.CURRENT_MAP_NAME).Where(p => p.Permanence == Permanence.MAP_LOCAL))
-                {
-                    p.Alive = true;
-                }
-
-                GlobalState.PillarSwitchOn = 0;
 
                 UpdateBroomIcon();
 
@@ -1006,14 +1014,28 @@ namespace AnodyneSharp.States
             return Enumerable.Repeat(e, 1).Concat(e.SubEntities().SelectMany(s => SubEntities(s)));
         }
 
+        private void OnGridExit()
+        {
+            foreach(EntityPreset preset in EntityManager.GetGridEntities(GlobalState.CURRENT_MAP_NAME, new Point(GlobalState.CURRENT_GRID_X, GlobalState.CURRENT_GRID_Y)))
+            {
+                if(preset.Permanence == Permanence.GRID_LOCAL)
+                {
+                    preset.Alive = true;
+                }
+            }
+        }
+
         private void LoadGridEntities()
         {
-            _oldEntities = new List<Entity>(_gridEntities);
+            _oldEntities = _gridEntities;
 
             List<EntityPreset> gridPresets = EntityManager.GetGridEntities(GlobalState.CURRENT_MAP_NAME, new Point(GlobalState.CURRENT_GRID_X, GlobalState.CURRENT_GRID_Y));
-            foreach (EntityPreset preset in gridPresets.Where(e => e.Permanence == Permanence.GRID_LOCAL))
+            if (_state != PlayStateState.S_LOAD)
             {
-                preset.Alive = true;
+                foreach (EntityPreset preset in gridPresets.Where(e => e.Permanence == Permanence.GRID_LOCAL))
+                {
+                    preset.Alive = true;
+                }
             }
 
             GlobalState.ENEMIES_KILLED = gridPresets.Where(preset => !preset.Alive && preset.Type.IsDefined(typeof(EnemyAttribute), false)).Count();

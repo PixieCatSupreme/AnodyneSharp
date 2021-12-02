@@ -28,7 +28,7 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
         private float _hitTimer = 0;
 
         public Shieldy(EntityPreset preset, Player player)
-            : base(preset.Position + new Vector2(2, 0), "shieldy", 16, 16, DrawOrder.ENTITIES)
+            : base(preset, preset.Position + new Vector2(2, 0), "shieldy", 16, 16, DrawOrder.ENTITIES)
         {
             Solid = true;
             height = 10;

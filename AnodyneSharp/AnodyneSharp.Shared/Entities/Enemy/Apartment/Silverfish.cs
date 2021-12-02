@@ -18,7 +18,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
         IEnumerator _stateLogic;
 
         public Silverfish(EntityPreset preset, Player player)
-            : base(preset.Position, "silverfish", 16, 16, DrawOrder.ENTITIES)
+            : base(preset, preset.Position, "silverfish", 16, 16, DrawOrder.ENTITIES)
         {
             _player = player;
 

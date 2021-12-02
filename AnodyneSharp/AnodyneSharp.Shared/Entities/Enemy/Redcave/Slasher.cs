@@ -23,7 +23,6 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
         private Facing _oldFacing;
 
         Player _player;
-        EntityPreset _preset;
 
         VerticalSlash _vertical;
         HorizontalSlash _horizontal;
@@ -31,7 +30,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
         int _health = 3;
 
         public Slasher(EntityPreset preset, Player p)
-            : base(preset.Position, "f_slasher", 24, 24, Drawing.DrawOrder.ENTITIES, 1, true)
+            : base(preset, preset.Position, "f_slasher", 24, 24, Drawing.DrawOrder.ENTITIES, 1, true)
         {
             AddAnimation("float_d", CreateAnimFrameArray(0, 1), 3);
             AddAnimation("float_l", CreateAnimFrameArray(2, 3), 3);
@@ -51,7 +50,6 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
             MapInteraction = false;
 
             _player = p;
-            _preset = preset;
 
             _vertical = new();
             _horizontal = new();
@@ -199,8 +197,6 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
 
                 if (_health <= 0)
                 {
-                    _preset.Alive = false;
-
                     Die();
 
                     GlobalState.SpawnEntity(new Explosion(this));

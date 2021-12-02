@@ -43,6 +43,7 @@ namespace AnodyneSharp.Registry
             public AchievementManager achievements = GlobalState.achievements;
             public CheckPoint checkpoint = GlobalState.checkpoint;
             public CheckPoint ReturnTarget = GlobalState.ReturnTarget;
+            public int PillarSwitchOn = GlobalState.PillarSwitchOn;
 
             public long playtime = PlayTime.Ticks;
             public int current_health = _curHealth;
@@ -87,6 +88,7 @@ namespace AnodyneSharp.Registry
             achievements = s.achievements;
             checkpoint = s.checkpoint;
             ReturnTarget = s.ReturnTarget;
+            PillarSwitchOn = s.PillarSwitchOn;
 
             PLAYER_WARP_TARGET = checkpoint.Position;
             NEXT_MAP_NAME = checkpoint.map;

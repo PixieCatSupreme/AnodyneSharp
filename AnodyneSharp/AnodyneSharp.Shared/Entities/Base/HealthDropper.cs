@@ -15,12 +15,16 @@ namespace AnodyneSharp.Entities
 
         private HealthPickup _health;
 
-        public HealthDropper(Vector2 pos, string textureName, int frameWidth, int frameHeight, DrawOrder layer, float healthDropChance = 0.5f, bool dropBigHealth = false) 
+        private EntityPreset _preset;
+
+        public HealthDropper(EntityPreset p, Vector2 pos, string textureName, int frameWidth, int frameHeight, DrawOrder layer, float healthDropChance = 0.5f, bool dropBigHealth = false) 
             : base(pos, textureName, frameWidth, frameHeight, layer)
         {
             _health = new HealthPickup(pos, dropBigHealth);
 
             _healthDropChance = healthDropChance;
+
+            _preset = p;
         }
 
         public override IEnumerable<Entity> SubEntities()
@@ -30,6 +34,7 @@ namespace AnodyneSharp.Entities
 
         protected virtual void Die()
         {
+            if (_preset != null) _preset.Alive = false;
             exists = false;
 
             if (GlobalState.settings.guaranteed_health || GlobalState.RNG.NextDouble() < _healthDropChance)

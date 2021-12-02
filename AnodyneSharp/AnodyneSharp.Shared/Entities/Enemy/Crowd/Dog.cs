@@ -29,7 +29,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
         private float _hitTimer;
 
         public Dog(EntityPreset preset, Player p)
-            : base(preset.Position, "dog", 16, 16, Drawing.DrawOrder.ENTITIES, 1)
+            : base(preset, preset.Position, "dog", 16, 16, Drawing.DrawOrder.ENTITIES, 1)
         {
             width = height = 12;
             offset = new Vector2(2);

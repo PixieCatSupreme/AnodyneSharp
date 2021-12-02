@@ -14,7 +14,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
     {
         Lookahead lookahead = new();
 
-        public Rat(EntityPreset preset, Player p) : base(preset.Position,"rat",16,16,Drawing.DrawOrder.ENTITIES)
+        public Rat(EntityPreset preset, Player p) : base(preset, preset.Position,"rat",16,16,Drawing.DrawOrder.ENTITIES)
         {
             width = height = 12;
             CenterOffset();
