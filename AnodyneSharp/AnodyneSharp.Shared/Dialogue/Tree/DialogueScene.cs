@@ -18,6 +18,7 @@ namespace AnodyneSharp.Dialogue
 
         private List<string> _lines;
 
+        [JsonIgnore]
         public int Length => _lines.Count;
 
         public DialogueScene() { }
