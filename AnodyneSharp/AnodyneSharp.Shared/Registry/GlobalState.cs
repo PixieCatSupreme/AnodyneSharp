@@ -61,16 +61,29 @@ namespace AnodyneSharp.Registry
                 {
                     return null;
                 }
-                return JsonSerializer.Deserialize<Save>(save, serializerOptions);
+                return FromString(save);
             }
 
             public void SaveTo(int id)
             {
-                File.WriteAllText($"Save_{id + 1}.dat", JsonSerializer.Serialize<Save>(this, serializerOptions));
+                File.WriteAllText($"Save_{id + 1}.dat", ToString());
+            }
+
+            public override string ToString()
+            {
+                return JsonSerializer.Serialize<Save>(this, serializerOptions);
+            }
+
+            public static Save FromString(string s)
+            {
+                return JsonSerializer.Deserialize<Save>(s, serializerOptions);
             }
         }
 
         static public int CurrentSaveGame = 0;
+
+        public static string serialized_quicksave = null;
+        public static CheckPoint quicksave_checkpoint = null;
 
         public static void SaveGame(int? id = null)
         {

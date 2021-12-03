@@ -95,6 +95,8 @@ namespace AnodyneSharp.States
 
         private Action _map_specific_update;
 
+        private bool DoQuickLoad = false;
+
         public PlayState(Camera camera)
         {
             _map = new MapLayer();
@@ -120,6 +122,26 @@ namespace AnodyneSharp.States
             GlobalState.FireEvent = FireEvent;
             GlobalState.GetTile = GetTile;
             GlobalState.ChangeTile = ChangeTile;
+        }
+
+        private void QuickSave()
+        {
+            GlobalState.serialized_quicksave = new GlobalState.Save().ToString();
+            GlobalState.quicksave_checkpoint = new(GlobalState.CURRENT_MAP_NAME,_player.Position);
+        }
+
+        private void QuickLoad()
+        {
+            if(GlobalState.serialized_quicksave is null)
+            {
+                return;
+            }
+            GlobalState.Save s = GlobalState.Save.FromString(GlobalState.serialized_quicksave);
+            GlobalState.ResetValues();
+            GlobalState.LoadSave(s);
+            GlobalState.PLAYER_WARP_TARGET = GlobalState.quicksave_checkpoint.Position;
+            GlobalState.NEXT_MAP_NAME = GlobalState.quicksave_checkpoint.map;
+            ChangeStateEvent(AnodyneGame.GameState.Game);
         }
 
         private void FireEvent(GameEvent e)
@@ -390,6 +412,12 @@ namespace AnodyneSharp.States
             Refreshes();
 
             _map_specific_update?.Invoke();
+
+            //This needs to be at the end in order not to mess with the initialisation of the new playstate
+            if(DoQuickLoad)
+            {
+                QuickLoad();
+            }
         }
 
         private void Refreshes()
@@ -721,6 +749,15 @@ namespace AnodyneSharp.States
                 GlobalState.NEXT_MAP_NAME = Enum.GetName(typeof(MapOrder), (MapOrder)newIndex);
                 GlobalState.PLAYER_WARP_TARGET = Vector2.Zero;
                 GlobalState.WARP = true;
+            }
+
+            if(KeyInput.JustPressedKey(Keys.F4))
+            {
+                QuickSave();
+            }
+            else if(KeyInput.JustPressedKey(Keys.F5))
+            {
+                DoQuickLoad = true; //Need to wait for end of update to do this
             }
 
             if (KeyInput.JustPressedKey(Keys.D5))
