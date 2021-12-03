@@ -634,6 +634,7 @@ namespace AnodyneSharp.Entities
             {
                 SoundManager.PlaySoundEffect("fall_in_hole");
                 ANIM_STATE = PlayerAnimState.ANIM_FALL;
+                dash_state = Vector2.Zero;
                 hasFallen = true;
                 isSlipping = false;
                 dontMove = true;
