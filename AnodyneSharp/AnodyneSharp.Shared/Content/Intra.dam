@@ -2,7 +2,7 @@
 <project>
   <version/>
   <bgColor>0xcccccc</bgColor>
-  <viewPos x="-850" y="-823"/>
+  <viewPos x="-40" y="34"/>
   <firstLayersTop>false</firstLayersTop>
   <spriteEntries currentId="170">
     <group name="Events SL" idx="1" open="false">
@@ -201,7 +201,7 @@
       <sprite name="Black_Thing" idx="49" className="Black_Thing" image="textures/sprites/dame/dameblackthing.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="-1" canEditFrames="true" lockRotation="false"/>
       <sprite name="Suburb_Indoors" idx="50" className="Suburb_Indoors" image="textures/sprites/npcs/suburb_walkers.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="7" canEditFrames="true" lockRotation="false"/>
     </group>
-    <group name="Gadgets" idx="51" open="false">
+    <group name="Gadgets" idx="51" open="true">
       <group name="Gates" idx="52" open="false">
         <sprite name="Gate S" idx="53" className="Gate" image="textures/sprites/dame/dame-gates.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="5" canEditFrames="true" lockRotation="false">
           <properties>
@@ -276,7 +276,7 @@
           <type typeof="String" name="type" value="blocker" hidden="false"/>
         </properties>
       </sprite>
-      <sprite name="Water_Anim" idx="78" className="Water_Anim" image="textures/tilemaps/beach_tilemap.png" width="16" height="16" preview="32" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="-1" canEditFrames="true" lockRotation="false">
+      <sprite name="Water_Anim" idx="78" className="Water_Anim" image="textures/tilemaps/beach_tilemap.png" width="16" height="16" preview="32" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="-1" canEditFrames="true" lockRotation="false" selected="true">
         <properties>
           <type typeof="String" name="p" value="2" hidden="false"/>
         </properties>
@@ -347,7 +347,7 @@
         </properties>
       </sprite>
     </group>
-    <group name="Enemies" idx="98" open="false" selected="true">
+    <group name="Enemies" idx="98" open="false">
       <group name="etc" idx="99" open="false">
         <sprite name="Chaser" idx="100" className="Chaser" image="textures/sprites/enemies/etc/chaser.png" width="16" height="32" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="32" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="1" canEditFrames="true" lockRotation="false"/>
         <sprite name="Suburb_Walker" idx="101" className="Suburb_Walker" image="textures/sprites/enemies/suburb/suburb_walker.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="12" canEditFrames="true" lockRotation="false">
@@ -2669,10 +2669,10 @@
         <sprite guid="7FB0FF72-B7E9-522A-71C6-652DD0C57C3D" x="304" y="656" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="53" frame="5">
           <properties/>
         </sprite>
-        <sprite guid="8DC51588-8791-D220-0FA1-89D736AD8132" x="0" y="0" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="78">
+        <sprite guid="8DC51588-8791-D220-0FA1-89D736AD8132" x="48" y="0" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="78">
           <properties/>
         </sprite>
-        <sprite guid="4AC1187D-E155-9248-C5D0-C0F90B0E4731" x="80" y="0" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="41" frame="3">
+        <sprite guid="4AC1187D-E155-9248-C5D0-C0F90B0E4731" x="48" y="0" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="41" frame="3">
           <properties/>
         </sprite>
         <sprite guid="D06AC864-894F-C7ED-EB96-B86A875187E8" x="16" y="80" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="162" frame="44">
@@ -6327,8 +6327,8 @@
         <sprite guid="6E88EAED-2E86-1E64-C025-B0A90E36DEB4" x="32" y="32" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="49"/>
       </spritelayer>
     </group>
-    <group name="GO" id="54" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
-      <maplayer name="BG" id="48" xScroll="1" yScroll="1" x="0" y="0" width="50" height="60" tileset="textures/tilemaps/go_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+    <group name="GO" id="54" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
+      <maplayer name="BG" id="48" xScroll="1" yScroll="1" x="0" y="0" width="50" height="60" tileset="textures/tilemaps/go_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false" selected="true">
         <row>6,80,81,81,81,81,81,81,82,6,0,0,0,0,0,0,0,0,0,0,130,130,130,130,130,130,130,130,130,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>6,80,91,91,91,91,91,91,82,6,0,0,0,0,0,0,0,0,0,0,130,130,130,130,130,130,130,130,130,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>6,80,91,91,91,91,91,91,82,6,0,0,0,0,0,0,0,0,0,0,109,109,109,130,130,130,130,109,109,109,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
@@ -6757,7 +6757,7 @@
         <sprite guid="D4C2EA45-20BD-D791-1A1D-AB5E6DF48DFD" x="704" y="224" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="53" frame="5">
           <properties/>
         </sprite>
-        <sprite guid="2FBBA583-2091-92F9-532B-42C1FFDC5322" x="736" y="176" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="78">
+        <sprite guid="2FBBA583-2091-92F9-532B-42C1FFDC5322" x="736" y="160" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="78">
           <properties/>
         </sprite>
         <sprite guid="44280977-96DE-43AE-5419-C44985AC900B" x="780" y="240" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="163" frame="43">
@@ -6786,7 +6786,7 @@
         </sprite>
       </spritelayer>
     </group>
-    <group name="HOTEL" id="86" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true" selected="true">
+    <group name="HOTEL" id="86" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
       <maplayer name="BG" id="56" xScroll="1" yScroll="1" x="0" y="0" width="120" height="120" tileset="textures/tilemaps/hotel_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>225,224,224,224,224,225,225,225,225,225,225,225,224,224,224,225,225,225,224,224,224,224,225,225,225,225,225,225,224,224,224,224,225,225,224,224,224,225,225,225,225,224,224,224,225,225,225,224,224,224,224,225,225,225,224,224,224,225,225,225,1,23,21,21,21,21,23,24,26,18,9,9,1,13,11,16,13,16,11,2,1,11,13,16,13,13,13,16,12,2,9,9,9,9,9,9,9,9,9,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>235,234,234,234,234,235,235,235,235,235,235,235,234,234,234,235,235,235,234,234,234,234,235,235,235,235,235,235,234,234,234,234,235,235,234,234,234,235,235,235,235,234,234,234,235,235,235,234,234,234,234,235,235,235,234,234,234,235,235,235,19,98,98,98,98,98,98,98,98,20,11,11,12,92,92,14,92,16,92,18,19,92,93,16,91,92,93,16,91,18,1,11,88,13,11,16,11,89,11,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>

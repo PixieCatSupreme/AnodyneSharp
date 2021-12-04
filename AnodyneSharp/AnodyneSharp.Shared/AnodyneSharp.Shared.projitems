@@ -86,6 +86,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\DashPad.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Switches\PillarSwitch.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Switches\SwitchPillar.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\WaterAnim.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Cell\CellBody.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Crowd\BioFilm.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\JumpTrigger.cs" />

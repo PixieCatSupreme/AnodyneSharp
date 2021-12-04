@@ -252,6 +252,7 @@ namespace AnodyneSharp.Registry
 
         public static Action<Point, int> ChangeTile;
         public static Func<Point, int> GetTile;
+        public static Func<Point, int> GetBG2Tile;
 
         private static MinimapTracker minimaps = new();
 

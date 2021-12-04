@@ -121,6 +121,7 @@ namespace AnodyneSharp.States
             GlobalState.SpawnEntity = SpawnEntity;
             GlobalState.FireEvent = FireEvent;
             GlobalState.GetTile = GetTile;
+            GlobalState.GetBG2Tile = GetBG2Tile;
             GlobalState.ChangeTile = ChangeTile;
         }
 
@@ -162,6 +163,11 @@ namespace AnodyneSharp.States
         private int GetTile(Point pos)
         {
             return _map.Data.GetTile(pos.X, pos.Y);
+        }
+
+        private int GetBG2Tile(Point pos)
+        {
+            return _map_bg_2.Data.GetTile(pos.X, pos.Y);
         }
 
         private void ChangeTile(Point pos, int new_val)

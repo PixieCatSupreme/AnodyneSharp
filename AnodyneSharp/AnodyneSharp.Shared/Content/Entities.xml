@@ -718,8 +718,8 @@
     <Burst_Plant x="544" y="80" guid="238C138E-0F8F-91B3-C21A-8926CC6F9841" frame="0" p="1" alive="true"/>
     <Burst_Plant x="560" y="80" guid="D5B83C1F-25ED-7110-BFFE-01B304606FB3" frame="0" p="1" alive="true"/>
     <Gate x="304" y="656" guid="7FB0FF72-B7E9-522A-71C6-652DD0C57C3D" frame="5" p="2" alive="true" type="0" />
-    <Water_Anim x="0." y="0." guid="8DC51588-8791-D220-0FA1-89D736AD8132" frame="32" p="2"/>
-    <Shadow_Briar x="80" y="0." guid="4AC1187D-E155-9248-C5D0-C0F90B0E4731" frame="3" p="2" alive="true"/>
+    <Water_Anim x="48" y="0." guid="8DC51588-8791-D220-0FA1-89D736AD8132" frame="32" p="2"/>
+    <Shadow_Briar x="48" y="0." guid="4AC1187D-E155-9248-C5D0-C0F90B0E4731" frame="3" p="2" alive="true"/>
     <Door x="16" y="80" guid="D06AC864-894F-C7ED-EB96-B86A875187E8" frame="44" type="10" />
     <NPC x="80" y="224" guid="CB7C596E-0F17-B88C-EB45-2AD6FEB59108" frame="10" type="generic" />
     <NPC x="224" y="240" guid="A3F14854-97EE-D8A8-E434-BFCCF6E831A0" frame="10" type="generic" />
@@ -2090,7 +2090,7 @@
     <Shadow_Briar x="736" y="160" guid="B3BB9FBB-2BB0-E6C7-5D66-A821748DF27B" frame="2" p="2" alive="true"/>
     <Gate x="640" y="208" guid="6C8FBC3E-71EA-C272-2946-25CE9ED78152" frame="5" p="2" alive="true" type="0" />
     <Gate x="704" y="224" guid="D4C2EA45-20BD-D791-1A1D-AB5E6DF48DFD" frame="5" p="2" alive="true" type="0" />
-    <Water_Anim x="736" y="176" guid="2FBBA583-2091-92F9-532B-42C1FFDC5322" frame="32" p="2"/>
+    <Water_Anim x="736" y="160" guid="2FBBA583-2091-92F9-532B-42C1FFDC5322" frame="32" p="2"/>
     <Door x="780" y="240" guid="44280977-96DE-43AE-5419-C44985AC900B" frame="43" type="11" />
     <Door x="176" y="400" guid="D24014F9-3CD0-8052-E285-2A6C3DED8F45" frame="57" type="16" />
     <Gate x="544" y="160" guid="2593AD47-796C-E135-237A-FCC846D12EE0" frame="1" p="2" alive="true" type="0" />
