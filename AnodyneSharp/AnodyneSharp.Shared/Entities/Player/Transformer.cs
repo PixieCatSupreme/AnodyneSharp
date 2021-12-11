@@ -43,22 +43,18 @@ namespace AnodyneSharp.Entities
 
         public void OnAction()
         {
+            var check = GlobalState.SwapperCheck.CheckCoord(selector.Center);
             if(GlobalState.events.GetEvent("SeenCredits") == 0)
             {
-                if(GlobalState.Swapper != GlobalState.SwapperPolicy.AllowedOnCurrentScreen || !GlobalState.SwapperAllowedCoords.Contains(selector.Center))
+                if(check != Map.SwapperControl.State.Allow)
                 {
                     GlobalState.Dialogue = Dialogue.DialogueManager.GetDialogue("misc","any", "swap",2);
                     return;
                 }
             }
-            else if(GlobalState.CURRENT_MAP_NAME == "DEBUG")
+            else if(check == Map.SwapperControl.State.Disallow)
             {
-                GlobalState.Dialogue = Dialogue.DialogueManager.GetDialogue("misc", "any", "swap", 0);
-                return;
-            }
-            else if(GlobalState.Swapper == GlobalState.SwapperPolicy.Disallowed)
-            {
-                GlobalState.Dialogue = Dialogue.DialogueManager.GetDialogue("misc", "any", "swap", 1);
+                GlobalState.Dialogue = Dialogue.DialogueManager.GetDialogue("misc", "any", "swap", (GlobalState.CURRENT_MAP_NAME == "DEBUG") ? 0 : 1);
                 return;
             }
 

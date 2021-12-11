@@ -235,14 +235,7 @@ namespace AnodyneSharp.Registry
         public static int ENEMIES_KILLED;
         public static int PUZZLES_SOLVED;
 
-        public enum SwapperPolicy
-        {
-            Default, //Allowed if game completed, disallowed if not
-            AllowedOnCurrentScreen, //Explicitly allowed on this screen
-            Disallowed //Explicitly disallowed until reset or warp
-        }
-        public static SwapperPolicy Swapper = SwapperPolicy.Default;
-        public static Rectangle SwapperAllowedCoords = new();
+        public static SwapperControl SwapperCheck;
 
         public static Func<Vector2,Touching> CheckTile;
 

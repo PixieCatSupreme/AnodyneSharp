@@ -24,13 +24,17 @@ function exportMapCSV( mapLayer, mapName, layerSimpleName )
 	DAME.WriteFile(dataDir.."/Maps/"..mapName.."/"..layerSimpleName..".csv", mapText );
 end
 
+function exportSwapperShapes( layer, mapName )
+    boxText = "%prop:type%\t%xpos%\t%ypos%\t%width%\t%height%\n"
+    shapeText = as3.tolua(DAME.CreateTextForShapes(layer,"",boxText,""))
+    
+    DAME.WriteFile(dataDir.."/Maps/"..mapName.."/Swapper.dat",shapeText)
+end
+
 -- This is the file for the map level class.
 fileText = ""
 maps = {}
 spriteLayers = {}
-masterLayerAddText = ""
-stageAddText = tab3.."if ( addToStage )\n"
-stageAddText = stageAddText..tab3.."{\n"
 
 
 for groupIndex = 0,groupCount do
@@ -49,8 +53,11 @@ for groupIndex = 0,groupCount do
 		layerName = groupName..layerSimpleName
 		if as3.tolua(layer.IsSpriteLayer()) == true then
 			table.insert( spriteLayers,{groupName,layer,layerName,layerSimpleName})
-			stageAddText = stageAddText..tab4.."addSpritesForLayer"..layerName.."(onAddSpritesCallback);\n"
-		end
+        elseif as3.tolua(layer.IsShapeLayer()) == true then
+            if layerSimpleName == "Swapper" then
+                exportSwapperShapes(layer, groupName)
+            end
+        end
         if isMap == true then
 			-- Generate the map file.
 			exportMapCSV( layer, groupName, layerSimpleName )

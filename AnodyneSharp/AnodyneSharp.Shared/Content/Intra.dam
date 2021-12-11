@@ -2,7 +2,7 @@
 <project>
   <version/>
   <bgColor>0xcccccc</bgColor>
-  <viewPos x="-40" y="34"/>
+  <viewPos x="91" y="-8"/>
   <firstLayersTop>false</firstLayersTop>
   <spriteEntries currentId="170">
     <group name="Events SL" idx="1" open="false">
@@ -201,7 +201,7 @@
       <sprite name="Black_Thing" idx="49" className="Black_Thing" image="textures/sprites/dame/dameblackthing.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="-1" canEditFrames="true" lockRotation="false"/>
       <sprite name="Suburb_Indoors" idx="50" className="Suburb_Indoors" image="textures/sprites/npcs/suburb_walkers.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="7" canEditFrames="true" lockRotation="false"/>
     </group>
-    <group name="Gadgets" idx="51" open="true">
+    <group name="Gadgets" idx="51" open="false">
       <group name="Gates" idx="52" open="false">
         <sprite name="Gate S" idx="53" className="Gate" image="textures/sprites/dame/dame-gates.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="5" canEditFrames="true" lockRotation="false">
           <properties>
@@ -276,7 +276,7 @@
           <type typeof="String" name="type" value="blocker" hidden="false"/>
         </properties>
       </sprite>
-      <sprite name="Water_Anim" idx="78" className="Water_Anim" image="textures/tilemaps/beach_tilemap.png" width="16" height="16" preview="32" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="-1" canEditFrames="true" lockRotation="false" selected="true">
+      <sprite name="Water_Anim" idx="78" className="Water_Anim" image="textures/tilemaps/beach_tilemap.png" width="16" height="16" preview="32" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="-1" canEditFrames="true" lockRotation="false">
         <properties>
           <type typeof="String" name="p" value="2" hidden="false"/>
         </properties>
@@ -1517,13 +1517,17 @@
           <properties/>
         </sprite>
         <sprite guid="2465CEA0-D22D-71A0-1FDC-793DF647833B" x="1373" y="65" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="73"/>
-        <sprite guid="F662ECF1-2B92-F5E6-437C-E091BC417CA1" x="1280" y="1120" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="14" frame="3">
-          <properties/>
-        </sprite>
       </spritelayer>
+      <shapelayer name="Swapper" id="5" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+        <shape guid="F8CDA362-193D-87D6-0FF9-B63712CEA9F9" type="square" x="1280" y="1120" Z="0" angle="0" width="160.79" height="161.26" scaleX="3.216" scaleY="3.225" fillColor="0x00ff00" alpha="0.50">
+          <properties>
+            <type typeof="String" name="type" value="Allow" hidden="false"/>
+          </properties>
+        </shape>
+      </shapelayer>
     </group>
     <group name="BEACH" id="18" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
-      <maplayer name="BG" id="5" xScroll="1" yScroll="1" x="0" y="0" width="110" height="70" tileset="textures/tilemaps/beach_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+      <maplayer name="BG" id="6" xScroll="1" yScroll="1" x="0" y="0" width="110" height="70" tileset="textures/tilemaps/beach_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,200,200,200,200,200,200,200,200,200,200,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,111,113,113,113,113,110,200,200,200,200,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,115,200,200,200,200,105,200,200,200,200,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
@@ -1595,14 +1599,14 @@
         <row>146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,0,0,0,0,0,0,0,0,0,0</row>
         <row>146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,146,0,0,0,0,0,0,0,0,0,0</row>
       </maplayer>
-      <spritelayer name="Stateless" id="6" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateless" id="7" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="12E2A801-D1F4-7336-D870-FCFF85133772" x="1200" y="576" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="68" frame="0"/>
         <sprite guid="AAB0C491-F1DC-6AFC-5DA7-5637963FDEA5" x="720" y="592" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="39" frame="7">
           <properties/>
         </sprite>
         <sprite guid="A6A9ACEA-6A3F-69ED-C6FA-F621D7D3567E" x="32" y="752" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="19" frame="2"/>
       </spritelayer>
-      <spritelayer name="Stateful" id="7" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateful" id="8" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="72D94F08-9DAE-685C-D024-9ED620329A87" x="703" y="496" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="59" frame="2">
           <properties/>
         </sprite>
@@ -1755,7 +1759,7 @@
       </spritelayer>
     </group>
     <group name="BEDROOM" id="8" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
-      <maplayer name="BG" id="8" xScroll="1" yScroll="1" x="0" y="0" width="70" height="50" tileset="textures/tilemaps/bedroom_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+      <maplayer name="BG" id="9" xScroll="1" yScroll="1" x="0" y="0" width="70" height="50" tileset="textures/tilemaps/bedroom_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0,0,0,0,3,1,1,1,1,1,1,1,1,2,3,1,1,1,1,1,1,1,1,2,3,1,1,1,1,1,1,1,1,2,3,1,1,2,3,1,1,2,9,9,3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2</row>
         <row>0,0,0,0,0,0,0,0,0,0,3,24,19,24,24,24,24,24,24,2,3,21,24,19,24,24,19,24,21,2,3,24,24,19,19,19,24,24,24,2,3,24,24,2,3,24,24,2,9,9,3,24,24,24,37,37,24,24,24,24,24,24,24,24,24,24,24,24,21,2</row>
         <row>0,0,0,0,0,0,0,0,0,0,3,24,19,24,24,24,24,24,24,2,3,24,24,24,24,24,24,24,24,2,3,24,24,21,36,21,24,24,24,2,3,24,24,2,3,24,24,2,9,9,3,24,24,24,19,19,24,36,36,24,36,24,36,24,24,36,36,24,24,2</row>
@@ -1807,7 +1811,7 @@
         <row>3,24,24,24,24,24,24,36,36,2,3,37,24,24,24,24,20,24,37,2,3,24,24,36,36,24,36,24,20,2,3,24,24,24,24,24,24,24,24,2,9,9,9,9,3,24,2,9,9,9,9,9,3,24,24,24,24,2,9,9,9,9,9,9,9,9,9,9,9,9</row>
         <row>9,4,4,4,4,4,4,4,4,9,9,4,4,4,4,4,4,4,4,9,9,4,4,15,36,36,14,4,4,9,9,4,4,4,4,4,4,4,4,9,9,9,9,9,3,24,2,9,9,9,9,9,9,15,24,24,14,9,9,9,9,9,9,9,9,9,9,9,9,9</row>
       </maplayer>
-      <spritelayer name="Stateful" id="9" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateful" id="10" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="20832549-4D6A-DAB4-5965-8A301A184D15" x="208" y="688" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="150" frame="0">
           <properties/>
         </sprite>
@@ -2033,10 +2037,7 @@
           <properties/>
         </sprite>
       </spritelayer>
-      <spritelayer name="Stateless" id="10" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
-        <sprite guid="CA2D8F3E-F229-019B-78B9-F69FD61FE238" x="-560" y="128" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="61">
-          <properties/>
-        </sprite>
+      <spritelayer name="Stateless" id="11" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="C860E8DA-60E1-4584-E73F-798F330B264B" x="400" y="528" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="65"/>
         <sprite guid="A80E7998-29C9-9AD5-926B-BB35F99D0C62" x="384" y="560" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="65"/>
         <sprite guid="42E4EFAA-CAF8-EB13-EAEE-53055194DA85" x="160" y="480" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="11">
@@ -2211,7 +2212,7 @@
       </spritelayer>
     </group>
     <group name="BLANK" id="14" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
-      <maplayer name="BG" id="11" xScroll="1" yScroll="1" x="0" y="0" width="60" height="80" tileset="textures/tilemaps/blank_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+      <maplayer name="BG" id="12" xScroll="1" yScroll="1" x="0" y="0" width="60" height="80" tileset="textures/tilemaps/blank_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,3,3,3,3,3,3,3,3,41,41,41,41,41,41,41,41,41,41,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,17,18,20,0,0,0,3,3,3,3,3,3,3,3,3,3,41,41,41,41,41,41,41,41,41,41,0,0,0,0,0,0,0,17,20,0,0,17,20,0,0,0,17,18,20,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,25,26,27,0,0,0,3,3,17,18,18,18,18,20,3,3,41,41,41,41,41,41,41,41,41,41,0,0,17,18,20,0,0,33,35,0,0,33,35,0,0,0,25,26,27,0</row>
@@ -2293,7 +2294,7 @@
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,33,34,34,35,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,9,10,10,11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
       </maplayer>
-      <spritelayer name="Stateful" id="12" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateful" id="13" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="F82E7C7D-9BE9-2A87-ECD5-9966F2799C1E" x="390" y="434" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="156" frame="6">
           <properties/>
         </sprite>
@@ -2442,20 +2443,24 @@
           </properties>
         </sprite>
       </spritelayer>
-      <spritelayer name="Stateless" id="13" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateless" id="14" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="14717F7B-3E0A-959A-BE17-1333AF6CE252" x="336" y="176" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="32" frame="0">
           <properties/>
         </sprite>
         <sprite guid="D28A5024-01D4-2A18-ADD5-935CCB90002C" x="320" y="0" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="32" frame="1">
           <properties/>
         </sprite>
-        <sprite guid="8763A627-CB57-F4E9-D5C8-D054541A5006" x="160" y="1120" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="16">
-          <properties/>
-        </sprite>
       </spritelayer>
+      <shapelayer name="Swapper" id="15" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+        <shape guid="F4E4ECC0-6EF5-D53E-030C-C114C85A0CCC" type="square" x="160" y="1120" Z="0" angle="0" width="160.79" height="161.26" scaleX="3.216" scaleY="3.225" fillColor="0xff0000" alpha="0.50">
+          <properties>
+            <type typeof="String" name="type" value="Disallow" hidden="false"/>
+          </properties>
+        </shape>
+      </shapelayer>
     </group>
     <group name="BLUE" id="66" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
-      <maplayer name="BG" id="14" xScroll="1" yScroll="1" x="0" y="0" width="50" height="50" tileset="textures/tilemaps/blue_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+      <maplayer name="BG" id="16" xScroll="1" yScroll="1" x="0" y="0" width="50" height="50" tileset="textures/tilemaps/blue_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>5,1,3,40,2,1,1,1,1,4,10,10,10,10,10,10,10,10,10,10,5,1,1,1,1,1,1,1,1,4,5,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,4</row>
         <row>7,60,60,40,60,60,60,60,60,2,1,1,1,1,1,1,1,1,1,1,3,20,70,60,60,60,60,60,60,6,7,60,60,117,60,117,60,117,60,64,60,117,60,117,60,117,60,60,117,6</row>
         <row>3,60,60,40,60,60,60,60,60,60,60,60,20,111,112,113,60,70,70,60,60,70,60,60,60,12,13,60,60,6,7,60,111,110,112,110,112,110,113,12,13,114,112,110,112,110,112,112,115,6</row>
@@ -2507,7 +2512,7 @@
         <row>7,60,60,60,60,64,60,60,60,60,60,60,60,60,60,60,60,60,60,6,7,60,60,60,60,60,60,60,60,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>15,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,14,15,11,11,11,11,11,11,11,11,14,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
       </maplayer>
-      <maplayer name="BG2" id="15" xScroll="1" yScroll="1" x="0" y="0" width="50" height="50" tileset="textures/tilemaps/blue_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+      <maplayer name="BG2" id="17" xScroll="1" yScroll="1" x="0" y="0" width="50" height="50" tileset="textures/tilemaps/blue_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
@@ -2559,7 +2564,7 @@
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
       </maplayer>
-      <spritelayer name="Stateless" id="16" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateless" id="18" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="FC137588-56CF-4B5A-E5B0-4C3468806B9F" x="16" y="544" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="60" frame="0"/>
         <sprite guid="B31D9686-728A-1829-F226-9D382F7ADCCB" x="192" y="496" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="127" frame="5"/>
         <sprite guid="6A5D2D5B-4F5D-1739-746D-B4ADC1188431" x="176" y="512" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="127" frame="7"/>
@@ -2654,7 +2659,7 @@
         <sprite guid="1AC5A0B7-0E13-66C8-E5DE-A4616C323111" x="64" y="432" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="19" frame="2"/>
         <sprite guid="22837A5E-407C-5D59-5E77-D4452079AFBF" x="672" y="128" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="19" frame="2"/>
       </spritelayer>
-      <spritelayer name="Stateful" id="17" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateful" id="19" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="F33B880C-106C-6406-51D7-E6542F0E3EAD" x="32" y="656" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="127" frame="5"/>
         <sprite guid="0499F51A-7B83-0AFC-C9EE-2B5E2933B722" x="48" y="656" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="127" frame="5"/>
         <sprite guid="B6020A52-A781-8229-3C95-1FB5BE4F8A04" x="576" y="80" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="121" frame="0">
@@ -2704,7 +2709,7 @@
       </spritelayer>
     </group>
     <group name="CELL" id="50" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
-      <maplayer name="BG" id="18" xScroll="1" yScroll="1" x="0" y="0" width="80" height="90" tileset="textures/tilemaps/cell_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+      <maplayer name="BG" id="20" xScroll="1" yScroll="1" x="0" y="0" width="80" height="90" tileset="textures/tilemaps/cell_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,2,1,1,60,60,1,1,2,1</row>
         <row>1,60,60,60,60,60,60,60,60,60,60,60,60,10,60,1,60,60,60,60,60,80,60,60,60,60,60,60,60,1,1,2,2,60,60,60,80,60,60,60,60,60,60,60,60,60,60,60,60,1,14,1,60,60,60,60,60,60,60,60,60,60,60,60,60,60,60,60,60,1,1,80,2,2,60,60,2,2,80,1</row>
         <row>1,60,10,10,10,10,10,10,1,2,1,60,1,1,60,1,1,1,1,1,1,1,1,60,1,1,1,1,60,1,1,60,10,60,10,10,10,1,1,1,1,60,1,2,2,2,1,60,1,2,14,1,60,2,2,2,2,2,2,1,1,1,1,1,10,1,1,1,60,1,1,60,60,10,60,60,10,60,60,1</row>
@@ -2796,7 +2801,7 @@
         <row>14,14,14,14,14,14,14,14,14,14,1,60,60,60,60,60,60,60,60,1,1,60,30,60,30,60,30,60,1,82,1,60,60,60,60,60,60,1,82,82,1,60,60,80,80,80,80,80,80,1,82,82,82,82,82,82,82,82,82,82,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>14,14,14,14,14,14,14,14,14,14,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,82,82,82,82,82,82,82,82,82,82,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
       </maplayer>
-      <spritelayer name="Stateless" id="19" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateless" id="21" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="98AC1ED6-6382-906A-294B-E406E178858E" x="48" y="1216" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="37" frame="0">
           <properties/>
         </sprite>
@@ -2954,11 +2959,8 @@
         <sprite guid="59ABD655-74D9-B678-88F8-96359A07C86D" x="663" y="410" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="39" frame="7">
           <properties/>
         </sprite>
-        <sprite guid="C2609FD3-44DC-E311-7C73-5381F1A21D64" x="0" y="1280" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="16">
-          <properties/>
-        </sprite>
       </spritelayer>
-      <spritelayer name="Stateful" id="20" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateful" id="22" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="445C736A-7BF9-8856-6F4B-E9C4C6675770" x="592" y="496" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="37" frame="1">
           <properties/>
         </sprite>
@@ -3082,9 +3084,16 @@
           <properties/>
         </sprite>
       </spritelayer>
+      <shapelayer name="Swapper" id="23" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+        <shape guid="B588736C-8818-5998-1BAE-443EFED3BF24" type="square" x="0" y="1280" Z="0" angle="0" width="963.25" height="160.00" scaleX="19.265" scaleY="3.200" fillColor="0xff0000" alpha="0.50">
+          <properties>
+            <type typeof="String" name="type" value="Disallow" hidden="false"/>
+          </properties>
+        </shape>
+      </shapelayer>
     </group>
     <group name="CIRCUS" id="94" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
-      <maplayer name="BG" id="21" xScroll="1" yScroll="1" x="0" y="0" width="90" height="90" tileset="textures/tilemaps/circus_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+      <maplayer name="BG" id="24" xScroll="1" yScroll="1" x="0" y="0" width="90" height="90" tileset="textures/tilemaps/circus_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31,32,32,32,32,33,33,33,33,34,31,32,32,32,32,33,33,33,33,34,31,32,32,32,32,32,33,33,33,34,0,0,0,0,0,0,0,0,0,0,50,51,51,51,51,51,51,51,51,52,50,51,51,51,51,51,51,51,51,52</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31,60,60,46,46,82,60,60,60,34,31,73,73,73,73,73,73,73,73,34,31,66,66,66,66,66,66,66,66,34,0,0,0,0,0,0,0,0,0,0,50,60,60,41,60,41,60,60,60,52,50,60,46,60,46,46,60,46,60,52</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31,60,60,46,60,60,60,60,60,32,33,60,7,60,7,60,7,60,7,32,33,82,60,60,60,60,60,60,60,34,0,0,0,0,0,0,0,0,0,0,50,46,46,40,82,40,46,46,60,52,50,92,93,93,93,93,93,93,94,52</row>
@@ -3176,7 +3185,7 @@
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,110,110,110,110,110,110,110,110,4,10,11,11,12,60,60,13,14,14,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,60,60,60,60,60,60,60,60,4</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,11,11,11,11,14,14,14,14,10,10,10,10,1,60,60,4,10,10,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,11,11,11,11,14,14,14,14,10</row>
       </maplayer>
-      <spritelayer name="Stateless" id="22" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateless" id="25" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="C36D8238-17B5-9469-E890-7018E550B7FD" x="688" y="1392" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="19" frame="2"/>
         <sprite guid="B77FC1F1-BF8D-C818-2F09-F4D241300DC7" x="432" y="1168" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="76" frame="3"/>
         <sprite guid="15D97A3F-F244-2171-D24A-AEC11511F8DB" x="432" y="1136" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="76" frame="3"/>
@@ -3463,11 +3472,8 @@
         </sprite>
         <sprite guid="FA8A1223-4137-EC1A-B5EE-C51233BDFBF2" x="528" y="112" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="76" frame="0"/>
         <sprite guid="0CA8BEFA-EC12-F0E1-61AC-A5361195842D" x="528" y="128" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="76" frame="0"/>
-        <sprite guid="B8E9283A-5628-845B-240A-CB1C9433C715" x="1120" y="0" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="14" frame="3">
-          <properties/>
-        </sprite>
       </spritelayer>
-      <spritelayer name="Stateful" id="23" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateful" id="26" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="E86E87F0-10D3-10E8-CB06-57A3CCFE24C5" x="720" y="1120" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="61" frame="0">
           <properties/>
         </sprite>
@@ -3808,9 +3814,16 @@
           <properties/>
         </sprite>
       </spritelayer>
+      <shapelayer name="Swapper" id="27" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+        <shape guid="E0C16E43-A64C-6EF8-4074-900BA942B631" type="square" x="1120" y="0" Z="0" angle="0" width="160.79" height="161.26" scaleX="3.216" scaleY="3.225" fillColor="0x00ff00" alpha="0.50">
+          <properties>
+            <type typeof="String" name="type" value="Allow" hidden="false"/>
+          </properties>
+        </shape>
+      </shapelayer>
     </group>
     <group name="CLIFF" id="74" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
-      <maplayer name="BG" id="24" xScroll="1" yScroll="1" x="0" y="0" width="90" height="80" tileset="textures/tilemaps/cliff_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+      <maplayer name="BG" id="28" xScroll="1" yScroll="1" x="0" y="0" width="90" height="80" tileset="textures/tilemaps/cliff_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121</row>
         <row>121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121</row>
         <row>121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121</row>
@@ -3892,7 +3905,7 @@
         <row>150,150,34,2,3,180,3,2,1,3,1,1,2,1,2,42,42,41,41,41,42,43,4,2,2,1,40,180,180,180,180,180,180,180,45,2,3,2,1,2,1,41,42,41,40,180,90,91,90,95,94,91,180,180,180,180,180,180,90,91,90,95,94,95,94,95,94,95,94,95,94,95,94,95,94,95,94,95,94,95,94,95,94,95,94,95,94,91,3,1</row>
         <row>32,32,1,2,24,180,3,1,1,2,1,1,2,1,2,3,3,2,1,2,3,3,4,3,2,1,2,41,41,42,42,41,42,43,2,2,2,2,1,2,1,2,3,2,2,90,95,94,95,94,95,94,91,90,91,90,91,90,95,94,95,94,95,94,95,94,95,94,95,94,95,94,95,94,95,94,95,94,95,94,95,94,95,94,95,94,95,95,3,1</row>
       </maplayer>
-      <spritelayer name="Stateless" id="25" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateless" id="29" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="DBE1205D-F603-6DB5-C74E-C9CF379F9584" x="272" y="736" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="19" frame="2"/>
         <sprite guid="ED7A98B6-AC71-079A-52DB-188CCFE2A162" x="768" y="832" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="19" frame="2"/>
         <sprite guid="0F059374-8467-5D06-E75A-51DA37DBCC52" x="864" y="992" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="19" frame="2"/>
@@ -3911,7 +3924,7 @@
         <sprite guid="B7FABC79-39B1-A224-091D-E9CE004C2BC3" x="1216" y="1152" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="19" frame="2"/>
         <sprite guid="A35A9F0C-B125-9135-449F-65839470FEC8" x="1424" y="208" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="75"/>
       </spritelayer>
-      <spritelayer name="Stateful" id="26" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateful" id="30" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="B81260FD-281E-8C9C-4FC7-C0600306F1F7" x="736" y="384" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="59" frame="2">
           <properties/>
         </sprite>
@@ -4004,7 +4017,7 @@
       </spritelayer>
     </group>
     <group name="CROWD" id="90" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
-      <maplayer name="BG" id="27" xScroll="1" yScroll="1" x="0" y="0" width="100" height="80" tileset="textures/tilemaps/crowd_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+      <maplayer name="BG" id="31" xScroll="1" yScroll="1" x="0" y="0" width="100" height="80" tileset="textures/tilemaps/crowd_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,12,12,12,12,12,12,12,12,12,12,12,12,12,1,2,2,2,2,2,7,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,12,12,12,12,12,12,12,12,12,12,12,12,12,1,60,60,60,60,60,5,2,2,2,7,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,12,12,12,12,12,12,12,12,12,12,12,12,12,1,60,60,60,60,60,60,60,60,60,5,2,2,2,7,12,12,12,12,1,2,2,2,7,12,12,12</row>
@@ -4086,7 +4099,7 @@
         <row>12,12,12,12,12,12,12,12,12,12,1,81,81,81,81,81,81,81,81,7,1,49,49,49,92,60,60,60,60,7,1,60,60,60,114,115,60,60,60,7,1,60,60,60,113,100,60,90,49,49,92,60,90,49,49,49,49,92,60,60,60,60,60,60,60,60,60,60,60,60,60,60,100,60,100,60,100,60,100,7,0,0,0,0,0,0,0,0,0,0,1,49,49,49,81,81,49,49,49,7</row>
         <row>12,12,12,12,12,12,12,12,12,12,12,13,13,13,13,13,13,13,13,12,12,13,13,13,13,13,13,13,13,12,12,13,13,14,110,110,15,13,13,12,12,13,13,14,110,15,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,12,0,0,0,0,0,0,0,0,0,0,12,13,13,13,13,13,13,13,13,16</row>
       </maplayer>
-      <maplayer name="BG2" id="28" xScroll="1" yScroll="1" x="0" y="0" width="100" height="80" tileset="textures/tilemaps/crowd_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+      <maplayer name="BG2" id="32" xScroll="1" yScroll="1" x="0" y="0" width="100" height="80" tileset="textures/tilemaps/crowd_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
@@ -4168,7 +4181,7 @@
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
       </maplayer>
-      <spritelayer name="Stateless" id="29" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateless" id="33" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="632EBEFD-158A-72BD-CBFD-C1940D674BC6" x="688" y="992" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="68" frame="0"/>
         <sprite guid="C8819D4D-EA7B-BCE7-7E76-50642A09A6E5" x="656" y="1024" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="68" frame="0"/>
         <sprite guid="0B36F8B1-2089-146B-A715-8226B50ECD83" x="368" y="1088" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="65"/>
@@ -4348,7 +4361,7 @@
         <sprite guid="FE0F0C18-D04B-BC99-30DF-89318EB5383E" x="816" y="736" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="60" frame="0"/>
         <sprite guid="FD0CB95F-8916-9A74-7FCA-FB6867D344E2" x="64" y="816" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="68" frame="1"/>
       </spritelayer>
-      <spritelayer name="Stateful" id="30" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateful" id="34" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="CAAB4970-64BC-E3E7-506B-BA822F0BEB81" x="352" y="336" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="59" frame="2">
           <properties/>
         </sprite>
@@ -4687,7 +4700,7 @@
       </spritelayer>
     </group>
     <group name="DEBUG" id="24" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
-      <maplayer name="BG" id="31" xScroll="1" yScroll="1" x="0" y="0" width="60" height="100" tileset="textures/tilemaps/debug_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+      <maplayer name="BG" id="35" xScroll="1" yScroll="1" x="0" y="0" width="60" height="100" tileset="textures/tilemaps/debug_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1</row>
         <row>1,2,2,2,2,2,2,2,2,2,10,10,10,10,1,10,10,10,10,10,10,10,10,10,10,10,10,10,3,3,3,3,3,3,3,3,3,3,3,3,10,10,10,10,10,10,10,10,10,1,1,10,10,10,10,10,10,10,10,1</row>
         <row>1,2,2,2,2,2,2,2,2,2,10,9,8,10,12,10,10,10,10,10,10,10,10,9,9,9,9,10,10,10,3,3,3,9,9,9,3,3,3,3,10,10,10,10,10,10,10,10,10,1,1,10,10,10,10,10,10,10,10,1</row>
@@ -4789,7 +4802,7 @@
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,10,10,10,10,10,10,10,10,1,1,9,9,10,9,9,10,9,9,10</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1</row>
       </maplayer>
-      <maplayer name="BG2" id="32" xScroll="1" yScroll="1" x="0" y="0" width="60" height="30" tileset="textures/tilemaps/debug_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+      <maplayer name="BG2" id="36" xScroll="1" yScroll="1" x="0" y="0" width="60" height="30" tileset="textures/tilemaps/debug_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
@@ -4821,7 +4834,7 @@
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
       </maplayer>
-      <maplayer name="FG" id="33" xScroll="1" yScroll="1" x="0" y="0" width="60" height="30" tileset="textures/tilemaps/debug_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+      <maplayer name="FG" id="37" xScroll="1" yScroll="1" x="0" y="0" width="60" height="30" tileset="textures/tilemaps/debug_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
@@ -4853,7 +4866,7 @@
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
       </maplayer>
-      <spritelayer name="Stateless" id="34" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateless" id="38" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="8EADBCC2-D110-89FA-1751-C71B3E5DA484" x="80" y="368" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="70" frame="6"/>
         <sprite guid="52F999B8-387E-77A8-93E3-1A7F1D8851A1" x="112" y="192" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="65"/>
         <sprite guid="3C46F97F-B799-CA1D-9163-932EB7CD8BB3" x="32" y="256" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="60" frame="1"/>
@@ -4885,7 +4898,7 @@
         <sprite guid="1FA16F1F-10A2-9504-CF2D-BBF89B09F364" x="496" y="320" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="24"/>
         <sprite guid="8978274A-E681-C6D9-E194-5CCBC1A75814" x="80" y="416" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="71"/>
       </spritelayer>
-      <spritelayer name="Stateful" id="35" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateful" id="39" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="779063ED-9B1A-C938-07D4-C89E9624FA72" x="32" y="288" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="53" frame="5">
           <properties/>
         </sprite>
@@ -5085,9 +5098,16 @@
           <properties/>
         </sprite>
       </spritelayer>
+      <shapelayer name="Swapper" id="40" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+        <shape guid="02529B52-A6EE-F868-11F7-11C5030EA86F" type="square" x="0" y="0" Z="0" angle="0" width="964.77" height="1601.48" scaleX="19.295" scaleY="32.030" fillColor="0xff0000" alpha="0.50">
+          <properties>
+            <type typeof="String" name="type" value="Disallow" hidden="false"/>
+          </properties>
+        </shape>
+      </shapelayer>
     </group>
     <group name="DRAWER" id="46" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
-      <maplayer name="BG" id="36" xScroll="1" yScroll="1" x="0" y="0" width="60" height="110" tileset="textures/tilemaps/drawer_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+      <maplayer name="BG" id="41" xScroll="1" yScroll="1" x="0" y="0" width="60" height="110" tileset="textures/tilemaps/drawer_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0,0,0,0,8,22,22,8,5,6,11,22,22,22,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70</row>
         <row>0,0,16,4,11,7,5,6,0,0,11,2,2,2,2,2,2,2,2,7,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,74,70,70,70,70,70,70,70,70,70,70,70,70,70</row>
         <row>0,0,10,8,4,12,11,11,0,0,11,2,2,2,2,2,2,2,2,12,70,70,70,70,70,70,70,70,70,70,70,70,70,74,70,70,70,74,70,70,74,70,70,70,70,70,74,70,70,70,70,70,70,70,70,70,70,70,70,70</row>
@@ -5199,7 +5219,7 @@
         <row>180,170,180,170,170,170,170,170,170,170,170,170,170,170,170,170,170,170,170,170,170,170,170,170,170,170,170,170,170,170,180,170,170,170,170,170,170,170,170,170,170,170,170,170,170,170,170,170,170,170,170,170,170,170,170,170,170,170,170,180</row>
         <row>180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180</row>
       </maplayer>
-      <spritelayer name="Stateless" id="37" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateless" id="42" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="BB13E1CE-7DCD-6CB5-7E2C-7F327091B4AE" x="336" y="416" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="39" frame="9">
           <properties/>
         </sprite>
@@ -5239,15 +5259,9 @@
         <sprite guid="D0631410-08B1-DD59-17C1-061315AEFC4C" x="320" y="160" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="22">
           <properties/>
         </sprite>
-        <sprite guid="6E3BDBAC-80BF-A681-A80B-331F9DC6EEB1" x="640" y="1472" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="16">
-          <properties/>
-        </sprite>
-        <sprite guid="B4D013FC-84A2-33FD-E529-79DBC626B68E" x="320" y="1632" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="16">
-          <properties/>
-        </sprite>
         <sprite guid="85451304-74DE-ACB7-1717-808C7C54F2C7" x="160" y="656" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="23"/>
       </spritelayer>
-      <spritelayer name="Stateful" id="38" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateful" id="43" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="6B1AC13B-CF0B-7FD1-6786-2F6575467599" x="70" y="624" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="155" frame="79">
           <properties/>
         </sprite>
@@ -5286,9 +5300,16 @@
         </sprite>
         <sprite guid="8D455518-DE30-1499-30DA-320CB19A2055" x="231" y="96" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="19" frame="2"/>
       </spritelayer>
+      <shapelayer name="Swapper" id="44" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+        <shape guid="A3C4E5BF-4977-DAA5-51FC-CB0A85E81E42" type="square" x="0" y="1440" Z="0" angle="0" width="960.32" height="320.54" scaleX="19.206" scaleY="6.411" fillColor="0xff0000" alpha="0.50">
+          <properties>
+            <type typeof="String" name="type" value="Disallow" hidden="false"/>
+          </properties>
+        </shape>
+      </shapelayer>
     </group>
     <group name="FIELDS" id="16" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
-      <maplayer name="BG" id="39" xScroll="1" yScroll="1" x="0" y="0" width="120" height="120" tileset="textures/tilemaps/fields_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+      <maplayer name="BG" id="45" xScroll="1" yScroll="1" x="0" y="0" width="120" height="120" tileset="textures/tilemaps/fields_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,140,141,141,142,140,141,142,146,146,146,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,140,202,204,142,140,202,142,146,146,146,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,140,202,202,142,140,202,142,146,146,146,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
@@ -5410,7 +5431,7 @@
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,48,200,200,207,208,41,40,40,40,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,40,47,47,47,47,40,40,40,40,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
       </maplayer>
-      <maplayer name="FG" id="40" xScroll="1" yScroll="1" x="0" y="0" width="120" height="120" tileset="textures/tilemaps/fields_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+      <maplayer name="FG" id="46" xScroll="1" yScroll="1" x="0" y="0" width="120" height="120" tileset="textures/tilemaps/fields_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
@@ -5532,7 +5553,7 @@
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
       </maplayer>
-      <spritelayer name="Stateful" id="41" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateful" id="47" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="9C333FA0-253D-5F55-C35B-BBD8CD240243" x="896" y="704" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="33">
           <properties/>
         </sprite>
@@ -5782,7 +5803,7 @@
           <properties/>
         </sprite>
       </spritelayer>
-      <spritelayer name="Stateless" id="42" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateless" id="48" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="D9EDDF0B-1CF1-D0F1-733C-5F5489BD7769" x="224" y="704" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="39" frame="7">
           <properties/>
         </sprite>
@@ -5878,7 +5899,7 @@
       </spritelayer>
     </group>
     <group name="FOREST" id="78" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
-      <maplayer name="BG" id="43" xScroll="1" yScroll="1" x="0" y="0" width="70" height="90" tileset="textures/tilemaps/forest_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+      <maplayer name="BG" id="49" xScroll="1" yScroll="1" x="0" y="0" width="70" height="90" tileset="textures/tilemaps/forest_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>1,1,1,1,1,1,1,1,1,1,11,11,11,1,1,11,11,1,11,1,1,1,11,1,31,1,11,11,1,11,0,0,0,0,0,0,0,0,0,0,1,1,1,8,8,1,11,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>1,1,8,8,8,8,8,8,8,1,11,11,11,1,1,23,31,1,11,1,1,1,11,1,10,1,11,11,1,11,0,0,0,0,0,0,0,0,0,0,11,10,9,80,80,7,10,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>1,6,80,111,112,112,112,113,80,2,11,11,11,1,1,31,10,1,10,1,1,1,10,1,1,1,10,31,1,11,0,0,0,0,0,0,0,0,0,0,11,6,80,80,80,80,7,1,23,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
@@ -5970,7 +5991,7 @@
         <row>6,80,80,80,80,121,110,110,110,110,110,110,110,110,110,110,114,133,80,2,1,1,1,1,1,1,1,11,1,11,11,11,11,1,1,11,1,11,11,23,11,11,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>1,4,4,4,4,14,14,14,14,14,14,14,14,14,14,14,14,14,4,1,1,1,1,1,1,1,1,23,1,11,23,11,11,1,1,31,1,23,11,11,23,11,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
       </maplayer>
-      <maplayer name="BG2" id="44" xScroll="1" yScroll="1" x="0" y="0" width="70" height="90" tileset="textures/tilemaps/forest_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+      <maplayer name="BG2" id="50" xScroll="1" yScroll="1" x="0" y="0" width="70" height="90" tileset="textures/tilemaps/forest_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,21,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
@@ -6062,7 +6083,7 @@
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
       </maplayer>
-      <maplayer name="FG" id="45" xScroll="1" yScroll="1" x="0" y="0" width="70" height="90" tileset="textures/tilemaps/forest_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+      <maplayer name="FG" id="51" xScroll="1" yScroll="1" x="0" y="0" width="70" height="90" tileset="textures/tilemaps/forest_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0,0,0,0,171,171,171,171,182,178,179,0,177,183,171,182,178,179,0,177,178,183,171,171,0,0,0,0,0,0,0,0,0,0,171,182,178,179,0,0,177,183,171,171,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,171,171,171,182,179,0,0,0,0,177,178,179,0,0,0,0,0,177,178,183,0,0,0,0,0,0,0,0,0,0,182,179,0,0,0,0,0,177,178,183,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,182,178,183,176,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,177,0,0,0,0,0,0,0,0,0,0,176,0,0,0,0,0,0,0,0,177,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
@@ -6154,7 +6175,7 @@
         <row>180,175,0,0,0,0,0,173,181,171,180,174,175,0,0,0,0,0,0,0,0,0,172,171,182,179,0,177,178,178,178,183,171,171,176,0,0,177,179,0,0,177,183,171,171,171,171,171,171,171,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>171,180,174,175,0,0,0,172,171,171,171,171,180,175,0,0,0,0,0,0,0,173,181,171,176,0,0,0,0,0,0,177,183,182,179,0,0,0,0,0,0,0,177,183,171,171,171,171,171,171,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
       </maplayer>
-      <spritelayer name="Stateless" id="46" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateless" id="52" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="7DE9FD57-D60C-4852-3817-4A1D32A1C2F8" x="592" y="784" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="65" frame="0"/>
         <sprite guid="A348F7AA-5E03-B750-A3EC-270A79395F63" x="560" y="432" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="65" frame="0"/>
         <sprite guid="E85CC339-7C16-EF3B-4CC7-F9033D609622" x="288" y="1408" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="65" frame="0"/>
@@ -6167,7 +6188,7 @@
           <properties/>
         </sprite>
       </spritelayer>
-      <spritelayer name="Stateful" id="47" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateful" id="53" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="091DB408-8B51-4C3E-140E-B1A15BADEFF0" x="560" y="416" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="41" frame="1">
           <properties/>
         </sprite>
@@ -6327,8 +6348,8 @@
         <sprite guid="6E88EAED-2E86-1E64-C025-B0A90E36DEB4" x="32" y="32" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="49"/>
       </spritelayer>
     </group>
-    <group name="GO" id="54" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
-      <maplayer name="BG" id="48" xScroll="1" yScroll="1" x="0" y="0" width="50" height="60" tileset="textures/tilemaps/go_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false" selected="true">
+    <group name="GO" id="54" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
+      <maplayer name="BG" id="54" xScroll="1" yScroll="1" x="0" y="0" width="50" height="60" tileset="textures/tilemaps/go_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>6,80,81,81,81,81,81,81,82,6,0,0,0,0,0,0,0,0,0,0,130,130,130,130,130,130,130,130,130,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>6,80,91,91,91,91,91,91,82,6,0,0,0,0,0,0,0,0,0,0,130,130,130,130,130,130,130,130,130,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>6,80,91,91,91,91,91,91,82,6,0,0,0,0,0,0,0,0,0,0,109,109,109,130,130,130,130,109,109,109,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
@@ -6390,7 +6411,7 @@
         <row>0,0,0,0,0,0,0,0,0,0,6,6,11,2,2,2,12,50,13,2,2,2,14,10,90,90,15,11,2,2,2,12,50,13,2,2,2,14,6,6,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,6,6,6,6,6,6,10,50,15,6,6,6,6,10,125,125,15,6,6,6,6,10,50,15,6,6,6,6,6,6,0,0,0,0,0,0,0,0,0,0</row>
       </maplayer>
-      <maplayer name="BG2" id="49" xScroll="1" yScroll="1" x="0" y="0" width="50" height="60" tileset="textures/tilemaps/go_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+      <maplayer name="BG2" id="55" xScroll="1" yScroll="1" x="0" y="0" width="50" height="60" tileset="textures/tilemaps/go_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,54,0,0,55,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
@@ -6452,7 +6473,7 @@
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,41,0,0,0,0,0,0,0,0,0,0,0,0,0,0,41,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,41,0,0,0,0,0,0,0,0,0,0,0,0,0,0,41,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
       </maplayer>
-      <spritelayer name="Stateless" id="50" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateless" id="56" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="F37332A8-F662-7545-525B-42F1863C5805" x="0" y="368" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="78">
           <properties/>
         </sprite>
@@ -6485,11 +6506,8 @@
         <sprite guid="F1565997-6301-874A-AAEB-3A7D45B6A33A" x="328" y="397" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="39" frame="11">
           <properties/>
         </sprite>
-        <sprite guid="ACA6B6C3-F5BA-DBC2-D9B8-40D13FD70194" x="320" y="496" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="14" frame="3">
-          <properties/>
-        </sprite>
       </spritelayer>
-      <spritelayer name="Stateful" id="51" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateful" id="57" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="ED2195E9-9798-B9B3-3C15-105C40F7C501" x="352" y="512" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="79">
           <properties/>
         </sprite>
@@ -6571,9 +6589,24 @@
           <properties/>
         </sprite>
       </spritelayer>
+      <shapelayer name="Swapper" id="58" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+        <properties>
+          <type typeof="String" name="Item0" value="" hidden="false"/>
+        </properties>
+        <shape guid="DC1E8FEB-9E45-45E9-2C9B-BF96BA1E34D3" type="square" x="352" y="496" Z="0" angle="0" width="96.00" height="112.00" scaleX="1.920" scaleY="2.240" fillColor="0x00ff00" alpha="0.50">
+          <properties>
+            <type typeof="String" name="type" value="Allow" hidden="false"/>
+          </properties>
+        </shape>
+        <shape guid="58327E2B-E112-3DDB-B7FD-8B972BFCB5DB" type="square" x="656.37" y="224" Z="0" angle="0" width="127.63" height="96.00" scaleX="2.553" scaleY="1.920" fillColor="0xff0000" alpha="0.50">
+          <properties>
+            <type typeof="String" name="type" value="Disallow" hidden="false"/>
+          </properties>
+        </shape>
+      </shapelayer>
     </group>
     <group name="HAPPY" id="58" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
-      <maplayer name="BG" id="52" xScroll="1" yScroll="1" x="0" y="0" width="50" height="30" tileset="textures/tilemaps/happy_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+      <maplayer name="BG" id="59" xScroll="1" yScroll="1" x="0" y="0" width="50" height="30" tileset="textures/tilemaps/happy_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>31,0,31,31,31,0,0,0,0,31,31,0,0,0,0,31,31,31,0,31,31,0,31,31,31,0,0,0,0,31,31,0,31,31,31,31,0,0,0,31,0,0,0,0,0,0,0,0,0,0</row>
         <row>31,21,0,0,0,60,60,60,60,31,31,60,60,21,60,31,31,31,60,31,31,60,0,0,0,60,21,60,60,31,31,21,31,31,31,31,60,70,21,31,0,0,0,0,0,0,0,0,0,0</row>
         <row>31,60,60,70,60,70,60,70,60,0,0,60,60,60,60,31,31,31,60,31,31,60,60,21,60,60,60,60,60,31,31,60,0,0,0,0,60,70,60,31,0,0,0,0,0,0,0,0,0,0</row>
@@ -6605,7 +6638,7 @@
         <row>31,110,112,113,60,60,60,60,60,60,60,20,60,60,60,20,60,20,60,60,60,30,30,30,30,30,30,60,60,60,60,60,30,30,30,30,30,30,20,60,60,60,60,30,30,30,60,60,20,30</row>
         <row>31,31,31,31,31,31,31,31,31,31,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30</row>
       </maplayer>
-      <maplayer name="BG2" id="53" xScroll="1" yScroll="1" x="0" y="0" width="50" height="30" tileset="textures/tilemaps/happy_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+      <maplayer name="BG2" id="60" xScroll="1" yScroll="1" x="0" y="0" width="50" height="30" tileset="textures/tilemaps/happy_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>5,1,4,0,5,1,1,1,1,4,5,1,1,1,1,4,0,5,1,4,5,1,4,0,5,1,1,1,1,4,5,1,4,0,0,5,1,1,1,4,0,0,0,0,0,0,0,0,0,0</row>
         <row>7,0,2,1,3,0,0,0,0,6,7,0,0,0,0,6,0,7,0,6,7,0,2,1,3,0,0,0,0,6,7,0,6,0,0,7,0,0,0,6,0,0,0,0,0,0,0,0,0,0</row>
         <row>7,0,0,0,0,0,0,0,0,2,3,0,0,0,0,6,0,7,0,6,7,0,0,0,0,0,0,0,0,6,7,0,2,1,1,3,0,0,0,6,0,0,0,0,0,0,0,0,0,0</row>
@@ -6637,7 +6670,7 @@
         <row>7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,0,0,0,0,7,0,0,0,0,0,6,0,0,0,0,7,0,0,0,0,0,6,0,7,0,0,0,6</row>
         <row>15,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,14,0,0,0,0,15,11,11,11,11,11,14,0,0,0,0,15,11,11,11,11,11,14,0,15,11,11,11,14</row>
       </maplayer>
-      <spritelayer name="Stateless" id="54" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateless" id="61" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="B1ECE1C3-84D2-F423-62F1-089174D9C7DF" x="192" y="352" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="19" frame="2"/>
         <sprite guid="70B033C1-3D0F-A6A6-BF71-28C03A8CDEBA" x="176" y="112" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="65" frame="0"/>
         <sprite guid="837E8717-C526-15FC-6A5D-4AAF01449601" x="608" y="208" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="65" frame="0"/>
@@ -6671,7 +6704,7 @@
           <properties/>
         </sprite>
       </spritelayer>
-      <spritelayer name="Stateful" id="55" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateful" id="62" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="2784472C-0C13-F14A-5FF3-839111C96922" x="736" y="160" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="47" frame="18"/>
         <sprite guid="10A4AC6B-F422-F69A-79C4-95DD399B96CC" x="48" y="96" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="111" frame="2">
           <properties/>
@@ -6787,7 +6820,7 @@
       </spritelayer>
     </group>
     <group name="HOTEL" id="86" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
-      <maplayer name="BG" id="56" xScroll="1" yScroll="1" x="0" y="0" width="120" height="120" tileset="textures/tilemaps/hotel_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+      <maplayer name="BG" id="63" xScroll="1" yScroll="1" x="0" y="0" width="120" height="120" tileset="textures/tilemaps/hotel_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>225,224,224,224,224,225,225,225,225,225,225,225,224,224,224,225,225,225,224,224,224,224,225,225,225,225,225,225,224,224,224,224,225,225,224,224,224,225,225,225,225,224,224,224,225,225,225,224,224,224,224,225,225,225,224,224,224,225,225,225,1,23,21,21,21,21,23,24,26,18,9,9,1,13,11,16,13,16,11,2,1,11,13,16,13,13,13,16,12,2,9,9,9,9,9,9,9,9,9,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>235,234,234,234,234,235,235,235,235,235,235,235,234,234,234,235,235,235,234,234,234,234,235,235,235,235,235,235,234,234,234,234,235,235,234,234,234,235,235,235,235,234,234,234,235,235,235,234,234,234,234,235,235,235,234,234,234,235,235,235,19,98,98,98,98,98,98,98,98,20,11,11,12,92,92,14,92,16,92,18,19,92,93,16,91,92,93,16,91,18,1,11,88,13,11,16,11,89,11,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>247,244,244,244,244,245,246,246,246,246,246,247,244,244,244,245,246,247,244,244,244,244,245,246,246,246,246,247,244,244,244,244,245,247,244,244,244,245,246,246,247,244,244,244,245,246,247,244,244,244,244,245,246,247,244,244,244,245,246,246,19,90,81,81,81,81,81,81,81,81,80,80,160,183,183,162,183,14,183,18,19,103,80,14,80,80,80,14,101,18,19,30,80,30,30,16,30,80,30,18,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
@@ -6909,7 +6942,7 @@
         <row>0,0,0,0,0,0,0,0,0,0,19,80,80,80,80,80,18,9,9,9,19,102,80,81,81,81,81,80,80,18,19,80,111,80,80,80,91,93,80,18,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9,9,19,82,82,82,82,82,82,18,19,130,90,191,191,191,191,90,90,18,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,3,4,4,4,4,4,9,9,9,9,3,4,4,4,4,4,4,4,4,8,3,4,4,4,4,4,4,4,4,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9,9,3,4,4,4,4,4,4,8,3,4,4,4,4,4,4,4,4,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
       </maplayer>
-      <maplayer name="BG2" id="57" xScroll="1" yScroll="1" x="0" y="0" width="120" height="120" tileset="textures/tilemaps/hotel_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+      <maplayer name="BG2" id="64" xScroll="1" yScroll="1" x="0" y="0" width="120" height="120" tileset="textures/tilemaps/hotel_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
@@ -7031,7 +7064,7 @@
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
       </maplayer>
-      <spritelayer name="Stateless" id="58" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateless" id="65" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="83856029-4F66-341B-3551-87D18964F02F" x="592" y="96" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="19" frame="2"/>
         <sprite guid="91FD5822-9D2E-D114-832E-AA3C8432EF18" x="336" y="816" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="60" frame="0"/>
         <sprite guid="3F0AAA6F-0F07-812A-D47F-E7C73E160B44" x="352" y="1088" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="70" frame="5"/>
@@ -7320,11 +7353,8 @@
         <sprite guid="4A9C4455-5DD6-2BAE-49DF-C9E163FA2F83" x="1392" y="1344" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="69" frame="0">
           <properties/>
         </sprite>
-        <sprite guid="821EC3B8-6DAC-BCC2-31FA-038C37D7ED90" x="1280" y="1760" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="14" frame="3">
-          <properties/>
-        </sprite>
       </spritelayer>
-      <spritelayer name="Stateful" id="59" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateful" id="66" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="6FE49A57-7BCD-B63B-6B64-BD34945C6585" x="368" y="912" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="61" frame="0">
           <properties/>
         </sprite>
@@ -7750,9 +7780,16 @@
         <sprite guid="0BD574D8-C071-B6AE-02AE-9D45E8F6ED69" x="0" y="0" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="3"/>
         <sprite guid="4A2436C9-97D2-E284-2AAE-66483E3CE9A3" x="480" y="0" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="3"/>
       </spritelayer>
+      <shapelayer name="Swapper" id="67" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+        <shape guid="C00B63E9-847C-D145-FC73-6BC3E5D4AA43" type="square" x="1280" y="1760" Z="0" angle="0" width="160.79" height="161.26" scaleX="3.216" scaleY="3.225" fillColor="0x00ff00" alpha="0.50">
+          <properties>
+            <type typeof="String" name="type" value="Allow" hidden="false"/>
+          </properties>
+        </shape>
+      </shapelayer>
     </group>
     <group name="NEXUS" id="27" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
-      <maplayer name="BG" id="60" xScroll="1" yScroll="1" x="0" y="0" width="100" height="100" tileset="textures/tilemaps/nexus_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+      <maplayer name="BG" id="68" xScroll="1" yScroll="1" x="0" y="0" width="100" height="100" tileset="textures/tilemaps/nexus_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
@@ -7854,7 +7891,7 @@
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
       </maplayer>
-      <spritelayer name="Stateful" id="61" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateful" id="69" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="7C6BBEC5-AAB2-3506-DF56-2903596CEA74" x="704" y="1392" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="158" frame="4">
           <properties/>
         </sprite>
@@ -8009,19 +8046,17 @@
         <sprite guid="1B5C72F8-5151-CAD4-946C-EF6739759D57" x="704" y="384" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="56" frame="49">
           <properties/>
         </sprite>
-        <sprite guid="96EB48C0-E15A-3A4D-78F8-3D2071C6BFCA" x="640" y="320" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="16">
-          <properties/>
-        </sprite>
-        <sprite guid="4FF7B202-DC68-8B5B-55DC-166433B1C87A" x="640" y="480" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="16">
-          <properties/>
-        </sprite>
-        <sprite guid="73EE8201-A210-9715-6757-C71A4E2E064A" x="480" y="480" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="16">
-          <properties/>
-        </sprite>
       </spritelayer>
+      <shapelayer name="Swapper" id="70" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+        <shape guid="30AEA894-7424-43D5-C245-58BF261B359A" type="square" x="480" y="320" Z="0" angle="0" width="480.16" height="320.54" scaleX="9.603" scaleY="6.411" fillColor="0xff0000" alpha="0.50">
+          <properties>
+            <type typeof="String" name="type" value="Disallow" hidden="false"/>
+          </properties>
+        </shape>
+      </shapelayer>
     </group>
     <group name="OVERWORLD" id="15" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
-      <maplayer name="BG" id="62" xScroll="1" yScroll="1" x="0" y="0" width="100" height="100" tileset="textures/tilemaps/overworld_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+      <maplayer name="BG" id="71" xScroll="1" yScroll="1" x="0" y="0" width="100" height="100" tileset="textures/tilemaps/overworld_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>3,23,3,23,3,23,3,23,3,23,3,3,23,3,3,3,3,23,3,3,23,3,23,3,23,3,23,3,23,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
@@ -8126,7 +8161,7 @@
           <properties/>
         </tileProperties>
       </maplayer>
-      <maplayer name="BG2" id="63" xScroll="1" yScroll="1" x="0" y="0" width="100" height="100" tileset="textures/tilemaps/overworld_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+      <maplayer name="BG2" id="72" xScroll="1" yScroll="1" x="0" y="0" width="100" height="100" tileset="textures/tilemaps/overworld_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
@@ -8228,7 +8263,7 @@
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20,21,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
       </maplayer>
-      <spritelayer name="Stateless" id="64" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateless" id="73" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="D9B1D93C-EDA8-7EF1-AD56-D62B5DECC038" x="352" y="1312" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="19"/>
         <sprite guid="B240EEF0-7380-66EB-4EF4-9A5FE05C9C77" x="816" y="1200" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="28"/>
         <sprite guid="A167ABF8-F2B4-11CD-F54C-83D3F779011A" x="672" y="1040" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="19" frame="2"/>
@@ -8248,7 +8283,7 @@
         </sprite>
         <sprite guid="DE6DE812-DCAC-148D-BDA2-C5B2B7B2275C" x="256" y="144" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="19" frame="2"/>
       </spritelayer>
-      <spritelayer name="Stateful" id="65" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateful" id="74" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="6413F630-8BC5-2E55-DC0E-D4C2D463D4AC" x="85" y="1141" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="150" frame="0">
           <properties/>
         </sprite>
@@ -8473,7 +8508,7 @@
       </spritelayer>
     </group>
     <group name="REDCAVE" id="21" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
-      <maplayer name="BG" id="66" xScroll="1" yScroll="1" x="0" y="0" width="70" height="100" tileset="textures/tilemaps/redcave_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="true" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+      <maplayer name="BG" id="75" xScroll="1" yScroll="1" x="0" y="0" width="70" height="100" tileset="textures/tilemaps/redcave_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="true" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>14,6,15,6,6,6,6,6,6,13,14,6,6,6,6,6,6,6,6,13,14,6,6,6,6,6,6,6,6,13,14,6,6,6,6,6,6,6,6,13,14,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,13,14,6,6,6,6,6,6,6,6,13</row>
         <row>14,27,6,36,45,17,18,44,38,13,14,60,36,37,37,37,37,37,37,6,6,37,37,37,37,38,20,20,20,13,14,27,27,27,27,27,27,27,27,13,14,10,10,27,27,27,27,27,27,27,27,27,27,27,27,27,27,40,42,13,14,27,36,45,28,28,44,38,27,13</row>
         <row>14,27,36,45,17,18,19,18,48,13,14,60,46,18,18,18,18,75,18,18,18,18,18,18,18,48,27,10,27,13,14,27,27,27,27,27,27,27,27,13,14,37,37,37,37,37,37,37,37,37,37,37,37,38,27,27,27,50,52,13,14,36,45,28,28,28,28,44,37,13</row>
@@ -8593,7 +8628,7 @@
           <properties/>
         </tileProperties>
       </maplayer>
-      <maplayer name="BG2" id="67" xScroll="1" yScroll="1" x="0" y="0" width="70" height="100" tileset="textures/tilemaps/redcave_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+      <maplayer name="BG2" id="76" xScroll="1" yScroll="1" x="0" y="0" width="70" height="100" tileset="textures/tilemaps/redcave_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
@@ -8698,7 +8733,7 @@
           <properties/>
         </tileProperties>
       </maplayer>
-      <spritelayer name="Stateful" id="68" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="true" sort="true">
+      <spritelayer name="Stateful" id="77" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="true" sort="true">
         <sprite guid="A81D463F-4F42-4715-0C71-C6352E5B171C" x="816" y="16" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="146" frame="0">
           <properties/>
         </sprite>
@@ -9162,7 +9197,7 @@
           <properties/>
         </sprite>
       </spritelayer>
-      <spritelayer name="Stateless" id="69" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateless" id="78" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="2EB1AD91-39C8-0AD7-A96B-DC7DF971E67B" x="608" y="704" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="19" frame="2"/>
         <sprite guid="2D49A013-E5BA-E929-4DB1-730381FC3A46" x="496" y="416" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="60" frame="1"/>
         <sprite guid="1A788BF2-2744-35F9-9C13-45CA6AF5272E" x="528" y="400" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="60" frame="1"/>
@@ -9266,7 +9301,7 @@
       </spritelayer>
     </group>
     <group name="REDSEA" id="20" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
-      <maplayer name="BG" id="70" xScroll="1" yScroll="1" x="0" y="0" width="70" height="70" tileset="textures/tilemaps/redsea_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+      <maplayer name="BG" id="79" xScroll="1" yScroll="1" x="0" y="0" width="70" height="70" tileset="textures/tilemaps/redsea_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>3,12,1,2,11,12,1,3,4,2,11,12,11,12,1,3,4,3,4,2,61,61,1,2,1,3,4,3,4,3,4,3,4,3,4,2,61,1,2,1,3,4,3,4,2,61,61,1,3,4,2,72,5,63,63,6,7,75,13,11,4,3,12,72,63,63,63,75,13,61</row>
         <row>4,2,11,12,1,2,11,12,11,12,13,71,71,61,11,12,11,12,11,12,1,2,11,12,11,4,3,12,11,4,3,4,3,4,3,4,2,11,4,3,4,3,4,3,4,2,1,3,4,3,12,102,104,104,92,16,17,75,14,1,3,4,2,102,92,63,63,75,13,70</row>
         <row>3,12,71,71,11,12,61,61,61,61,61,61,61,61,61,61,61,1,2,13,11,12,60,61,60,11,12,60,60,11,4,3,12,11,12,11,12,1,3,4,3,4,3,4,3,4,3,4,3,4,2,1,2,61,102,92,63,75,1,3,4,3,12,61,102,104,104,105,1,2</row>
@@ -9338,7 +9373,7 @@
         <row>61,1,2,13,61,60,13,14,61,13,61,70,1,2,13,61,61,13,14,61,1,2,13,61,61,13,61,1,2,13,13,61,13,13,14,70,1,2,13,61,61,13,14,61,1,2,13,61,70,13,1,2,1,3,4,3,4,2,1,2,13,13,71,71,13,70,1,3,4,3</row>
         <row>13,11,12,70,1,2,14,61,14,14,13,13,11,12,61,1,2,14,70,13,11,12,61,1,2,14,13,11,12,70,1,2,14,14,61,13,11,12,60,1,2,14,70,13,11,12,61,1,2,1,3,4,3,4,3,4,3,4,3,4,2,60,1,2,14,14,11,4,3,4</row>
       </maplayer>
-      <maplayer name="FG" id="71" xScroll="1" yScroll="1" x="0" y="0" width="70" height="70" tileset="textures/tilemaps/redsea_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+      <maplayer name="FG" id="80" xScroll="1" yScroll="1" x="0" y="0" width="70" height="70" tileset="textures/tilemaps/redsea_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
@@ -9410,7 +9445,7 @@
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
       </maplayer>
-      <spritelayer name="Stateful" id="72" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateful" id="81" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="48D9056E-F176-EC2A-61D0-D19CECEE358D" x="528" y="528" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="95">
           <properties/>
         </sprite>
@@ -9581,7 +9616,7 @@
           <properties/>
         </sprite>
       </spritelayer>
-      <spritelayer name="Stateless" id="73" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateless" id="82" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="05C54A60-9430-55BF-6C85-11F3B9E1C816" x="560" y="208" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="19" frame="2"/>
         <sprite guid="B5518D6D-632E-FB35-F509-D02FD3A63A9F" x="528.5" y="1010.5" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="139"/>
         <sprite guid="58BF5F35-EE36-D795-EC46-4A927513374E" x="581.5" y="974.5" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="139"/>
@@ -9599,7 +9634,7 @@
       </spritelayer>
     </group>
     <group name="SUBURB" id="70" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
-      <maplayer name="BG" id="74" xScroll="1" yScroll="1" x="0" y="0" width="60" height="80" tileset="textures/tilemaps/suburb_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+      <maplayer name="BG" id="83" xScroll="1" yScroll="1" x="0" y="0" width="60" height="80" tileset="textures/tilemaps/suburb_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>18,34,36,36,36,36,36,36,37,18,18,34,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,37,34,111,100,100,115,37,34,35,35,35,35,35,35,35,35,35,37,18,0,0,0,0,0,0,0,0,0,0</row>
         <row>18,34,1,2,1,2,1,2,35,35,35,35,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,35,35,13,100,100,14,35,35,90,11,90,90,90,90,90,90,90,35,37,0,0,0,0,0,0,0,0,0,0</row>
         <row>18,34,3,6,5,4,3,4,90,90,90,21,90,30,31,32,32,33,90,1,2,25,23,23,23,23,23,23,21,90,90,90,101,111,100,100,115,105,21,90,90,90,90,90,90,90,90,90,90,37,0,0,0,0,0,0,0,0,0,0</row>
@@ -9681,7 +9716,7 @@
         <row>27,28,28,38,160,39,28,28,28,28,28,28,28,28,28,28,28,28,28,29,2,90,90,90,90,90,90,90,90,11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>8,8,8,17,160,19,8,8,8,8,8,8,8,8,8,8,8,8,8,8,4,11,1,2,1,2,11,1,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
       </maplayer>
-      <spritelayer name="Stateless" id="75" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateless" id="84" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="EDFD94FA-F718-2FF4-58AF-8089DF0C90A9" x="76" y="121" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="101">
           <properties/>
         </sprite>
@@ -9778,14 +9813,8 @@
         <sprite guid="62780AEB-18CC-48F0-26DF-0AAB1358C531" x="0" y="1120" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="11" frame="0">
           <properties/>
         </sprite>
-        <sprite guid="A5AEF7BB-15DA-F908-0BF7-EB73C23CEEBC" x="320" y="800" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="16">
-          <properties/>
-        </sprite>
-        <sprite guid="5E09BEEA-87EF-67C2-0740-0ED41BB19530" x="320" y="640" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="15">
-          <properties/>
-        </sprite>
       </spritelayer>
-      <spritelayer name="Stateful" id="76" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateful" id="85" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="08FA88AD-FF2E-2244-A732-2030DCD9718C" x="80" y="256" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="102"/>
         <sprite guid="556A5BC6-0EA5-2B4C-7F22-4557C5AE8C3C" x="240" y="256" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="102"/>
         <sprite guid="664230FB-9F92-4D9A-61AE-7B93755BF98E" x="560" y="576" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="39" frame="0">
@@ -9945,9 +9974,16 @@
         <sprite guid="37E6555A-44A3-AFCB-925C-F8D9B068B05E" x="96" y="1216" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="50" frame="4"/>
         <sprite guid="8C670AA5-FCED-A588-5DCD-88329B7CA8DB" x="272" y="1216" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="50" frame="7"/>
       </spritelayer>
+      <shapelayer name="Swapper" id="86" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+        <shape guid="0E610651-C385-29D5-75F7-908E7C5E27BA" type="square" x="320" y="800" Z="0" angle="0" width="160.79" height="480.00" scaleX="3.216" scaleY="9.600" fillColor="0xff0000" alpha="0.50">
+          <properties>
+            <type typeof="String" name="type" value="Disallow" hidden="false"/>
+          </properties>
+        </shape>
+      </shapelayer>
     </group>
-    <group name="SPACE" id="42" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
-      <maplayer name="BG" id="77" xScroll="1" yScroll="1" x="0" y="0" width="110" height="80" tileset="textures/tilemaps/space_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+    <group name="SPACE" id="42" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true" selected="true">
+      <maplayer name="BG" id="87" xScroll="1" yScroll="1" x="0" y="0" width="110" height="80" tileset="textures/tilemaps/space_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,114,115,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13</row>
         <row>13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,0,0,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,114,115,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13</row>
         <row>13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,12,0,0,0,0,0,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,114,115,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,91,13,13,13,13,13,13,13,13,13,13,13,13,13,13</row>
@@ -10029,7 +10065,7 @@
         <row>13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13</row>
         <row>13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13</row>
       </maplayer>
-      <maplayer name="BG2" id="78" xScroll="1" yScroll="1" x="0" y="0" width="110" height="80" tileset="textures/tilemaps/space_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+      <maplayer name="BG2" id="88" xScroll="1" yScroll="1" x="0" y="0" width="110" height="80" tileset="textures/tilemaps/space_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
@@ -10111,7 +10147,7 @@
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
       </maplayer>
-      <maplayer name="FG" id="79" xScroll="1" yScroll="1" x="0" y="0" width="110" height="80" tileset="textures/tilemaps/space_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+      <maplayer name="FG" id="89" xScroll="1" yScroll="1" x="0" y="0" width="110" height="80" tileset="textures/tilemaps/space_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
@@ -10193,7 +10229,7 @@
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
       </maplayer>
-      <spritelayer name="Stateless" id="80" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateless" id="90" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="3277CBCF-EE97-5412-94C2-238E848A1B8D" x="1280" y="192" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="103"/>
         <sprite guid="9C432ACE-125D-CA5A-78A0-7A2548F804F1" x="1360" y="192" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="103"/>
         <sprite guid="C8AEB706-A75A-25F0-C1F5-EC4861027AFE" x="1408" y="224" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="103"/>
@@ -10222,14 +10258,8 @@
         <sprite guid="37344F1B-C6CC-8E8C-2315-A47FE0B1A4A1" x="1104" y="816" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="53" frame="12">
           <properties/>
         </sprite>
-        <sprite guid="89773693-F4BD-D238-081F-9CA145FD1055" x="800" y="640" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="15">
-          <properties/>
-        </sprite>
-        <sprite guid="7601095E-6492-077D-01CB-2DD6D2FBA783" x="800" y="800" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="16">
-          <properties/>
-        </sprite>
       </spritelayer>
-      <spritelayer name="Stateful" id="81" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateful" id="91" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="F39FE26C-5B1B-95CB-0808-79022884E8A4" x="544" y="176" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="39" frame="4">
           <properties/>
         </sprite>
@@ -10427,9 +10457,16 @@
           <properties/>
         </sprite>
       </spritelayer>
+      <shapelayer name="Swapper" id="92" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+        <shape guid="E15C1DB3-75F8-1EC9-8537-6A2D0E732DFB" type="square" x="480" y="800" Z="0" angle="0" width="800.22" height="480.77" scaleX="16.004" scaleY="9.615" fillColor="0xff0000" alpha="0.50">
+          <properties>
+            <type typeof="String" name="type" value="Disallow" hidden="false"/>
+          </properties>
+        </shape>
+      </shapelayer>
     </group>
     <group name="STREET" id="12" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
-      <maplayer name="BG" id="82" xScroll="1" yScroll="1" x="0" y="0" width="50" height="70" tileset="textures/tilemaps/street_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false" sharesTileProps="true">
+      <maplayer name="BG" id="93" xScroll="1" yScroll="1" x="0" y="0" width="50" height="70" tileset="textures/tilemaps/street_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false" sharesTileProps="true">
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
@@ -10501,7 +10538,7 @@
         <row>0,0,0,0,0,0,0,0,0,0,12,12,12,18,2,2,2,2,19,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,12,12,12,12,12,12,12,12,12,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
       </maplayer>
-      <maplayer name="BG2" id="83" xScroll="1" yScroll="1" x="0" y="0" width="50" height="70" tileset="textures/tilemaps/street_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false" sharesTileProps="true">
+      <maplayer name="BG2" id="94" xScroll="1" yScroll="1" x="0" y="0" width="50" height="70" tileset="textures/tilemaps/street_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false" sharesTileProps="true">
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
@@ -10573,7 +10610,7 @@
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
       </maplayer>
-      <maplayer name="FG" id="84" xScroll="1" yScroll="1" x="0" y="0" width="50" height="70" tileset="textures/tilemaps/street_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false" sharesTileProps="true">
+      <maplayer name="FG" id="95" xScroll="1" yScroll="1" x="0" y="0" width="50" height="70" tileset="textures/tilemaps/street_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false" sharesTileProps="true">
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
@@ -10645,7 +10682,7 @@
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
       </maplayer>
-      <spritelayer name="Stateful" id="85" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="true">
+      <spritelayer name="Stateful" id="96" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="true">
         <sprite guid="0451D211-C1BC-B510-BC86-D93D94A3998F" x="528" y="224" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="156" frame="2">
           <properties/>
         </sprite>
@@ -10701,7 +10738,7 @@
           <properties/>
         </sprite>
       </spritelayer>
-      <spritelayer name="Stateless" id="86" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="true">
+      <spritelayer name="Stateless" id="97" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="true">
         <sprite guid="4B64DDE4-FE45-7619-75AC-14F12D5AC399" x="513" y="161" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="77">
           <properties/>
         </sprite>
@@ -10736,7 +10773,7 @@
       </spritelayer>
     </group>
     <group name="TERMINAL" id="62" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
-      <maplayer name="BG" id="87" xScroll="1" yScroll="1" x="0" y="0" width="50" height="50" tileset="textures/tilemaps/terminal_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+      <maplayer name="BG" id="98" xScroll="1" yScroll="1" x="0" y="0" width="50" height="50" tileset="textures/tilemaps/terminal_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>6,5,6,5,6,5,6,5,6,5,6,5,6,2,150,150,7,120,120,120,120,120,120,7,124,124,7,120,120,120,120,120,120,7,150,150,3,6,5,6,5,6,5,6,5,6,5,6,5,6</row>
         <row>5,6,5,6,5,6,5,6,5,6,5,4,3,4,150,150,8,120,7,120,120,7,120,8,120,120,8,120,7,120,120,7,120,8,150,150,120,3,6,5,6,5,6,5,6,5,6,5,6,5</row>
         <row>6,5,6,5,6,5,6,5,6,5,6,2,120,120,150,150,9,36,8,120,120,8,36,9,120,120,9,36,8,120,120,8,36,9,150,150,120,120,3,6,5,6,5,4,3,4,3,6,5,6</row>
@@ -10788,7 +10825,7 @@
         <row>6,5,6,5,6,2,1,2,1,2,1,2,1,2,150,150,120,1,5,6,5,6,2,36,120,120,36,1,5,6,5,6,2,120,150,150,120,1,2,1,2,1,5,6,5,6,5,6,5,6</row>
         <row>5,6,5,6,5,6,5,6,5,6,5,6,5,4,150,150,1,5,6,5,6,5,4,36,123,123,36,3,6,5,6,5,6,2,150,150,1,5,6,5,6,5,6,5,6,5,6,5,6,5</row>
       </maplayer>
-      <maplayer name="BG2" id="88" xScroll="1" yScroll="1" x="0" y="0" width="50" height="50" tileset="textures/tilemaps/terminal_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+      <maplayer name="BG2" id="99" xScroll="1" yScroll="1" x="0" y="0" width="50" height="50" tileset="textures/tilemaps/terminal_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,121,122,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,121,122,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,121,122,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,121,122,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,121,122,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,121,122,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
@@ -10840,14 +10877,14 @@
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,121,122,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,121,122,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,121,122,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,121,122,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
       </maplayer>
-      <spritelayer name="Stateless" id="89" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateless" id="100" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="97C26EF9-14DF-D0E8-075F-1A5C5BEB7D42" x="384" y="704" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="32" frame="0">
           <properties/>
         </sprite>
         <sprite guid="15F9F1C3-1681-2162-A25A-A2AB631111E5" x="336" y="720" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="19" frame="2"/>
         <sprite guid="DE529BED-D695-DD83-44F0-40B85F6AB8DD" x="448" y="96" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="19" frame="2"/>
       </spritelayer>
-      <spritelayer name="Stateful" id="90" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateful" id="101" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="D6498F36-DB8F-1494-48CE-D5A5A25EF7FA" x="400" y="480" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="53" frame="0">
           <properties/>
         </sprite>
@@ -10903,7 +10940,7 @@
       </spritelayer>
     </group>
     <group name="WINDMILL" id="82" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
-      <maplayer name="BG" id="91" xScroll="1" yScroll="1" x="0" y="0" width="30" height="80" tileset="textures/tilemaps/windmill_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+      <maplayer name="BG" id="102" xScroll="1" yScroll="1" x="0" y="0" width="30" height="80" tileset="textures/tilemaps/windmill_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0,0,0,0,61,61,61,61,61,61,61,61,61,61,61,61,65,60,60,0,60,60,60,60</row>
         <row>0,0,0,0,0,0,0,0,0,0,61,61,61,61,61,61,61,61,61,61,61,64,60,60,60,0,60,60,60,60</row>
         <row>0,0,0,0,0,0,0,0,0,0,61,61,61,61,61,61,61,61,61,61,61,67,60,60,60,0,60,60,60,60</row>
@@ -10985,7 +11022,7 @@
         <row>0,0,0,0,0,0,0,0,0,0,15,14,11,5,100,100,4,101,100,10,11,10,11,10,11,10,11,10,15,14</row>
         <row>0,0,0,0,0,0,0,0,0,0,14,15,13,5,103,103,4,10,11,12,14,15,14,15,14,15,14,15,14,15</row>
       </maplayer>
-      <maplayer name="BG2" id="92" xScroll="1" yScroll="1" x="0" y="0" width="30" height="80" tileset="textures/tilemaps/windmill_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+      <maplayer name="BG2" id="103" xScroll="1" yScroll="1" x="0" y="0" width="30" height="80" tileset="textures/tilemaps/windmill_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20,110,36,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20,110,36,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20,110,36,0,0,0</row>
@@ -11067,7 +11104,7 @@
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100,10,11,10,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11,12,14,15,0,0,0,0,0,0,0,0</row>
       </maplayer>
-      <spritelayer name="Stateless" id="93" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateless" id="104" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="D8D58A24-BA47-AD5F-60CF-D77FDD0BD2CE" x="211" y="1277" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="77">
           <properties/>
         </sprite>
@@ -11081,7 +11118,7 @@
         <sprite guid="AAF71651-2D33-ABAF-CBBF-C31BCC9997DB" x="176" y="960" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="24"/>
         <sprite guid="21A95860-FD23-626A-6AE0-3CA03B8E2006" x="336" y="0" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="24"/>
       </spritelayer>
-      <spritelayer name="Stateful" id="94" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateful" id="105" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="A315CE08-5E96-4B37-6BC4-795AFF5E8298" x="224" y="880" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="61" frame="1">
           <properties/>
         </sprite>
@@ -11368,9 +11405,7 @@
     <setting name="LevelName">Entities</setting>
     <setting name="DataDir">D:\Projects\AnodyneSharp\AnodyneSharp\AnodyneSharp.Shared\Content</setting>
   </exporter>
-  <customPropertyTypes>
-    <type name="Type" isString="true" exportedType="int"/>
-  </customPropertyTypes>
+  <customPropertyTypes/>
   <guides>
     <snap>true</snap>
     <visible>false</visible>

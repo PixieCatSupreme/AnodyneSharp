@@ -552,7 +552,6 @@ namespace AnodyneSharp.States
                 _state = PlayStateState.S_MAP_EXIT;
                 _eventRegistry.FireEvent(new StartWarp());
                 _map.Data.OnTransitionStart();
-                GlobalState.Swapper = GlobalState.SwapperPolicy.Default;
                 return;
             }
 
@@ -629,10 +628,6 @@ namespace AnodyneSharp.States
                 GlobalState.CURRENT_GRID_Y = grid.Y;
                 _eventRegistry.FireEvent(new StartScreenTransition());
                 _map.Data.OnTransitionStart();
-                if (GlobalState.Swapper == GlobalState.SwapperPolicy.AllowedOnCurrentScreen)
-                {
-                    GlobalState.Swapper = GlobalState.SwapperPolicy.Default;
-                }
                 _player.grid_entrance = _player.Position;
                 _player.dontMove = true;
 
@@ -925,6 +920,8 @@ namespace AnodyneSharp.States
                     var gate = EntityManager.GetNexusGateForCurrentMap();
                     GlobalState.ReturnTarget = (gate != null) ? new(gate) : null;
                 }
+
+                GlobalState.SwapperCheck = new(GlobalState.CURRENT_MAP_NAME);
 
                 Spritesheet tiles = TileData.GetTileset(GlobalState.CURRENT_MAP_NAME);
                 _map.LoadMap(MapLoader.GetMapLayer(GlobalState.CURRENT_MAP_NAME), tiles, DrawOrder.MAP_BG);
