@@ -195,7 +195,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)MapData\Minimap.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MapData\MinimapTracker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MapData\TileMap.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)MapData\MapLayer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MapData\Tiles\AnimatedTile.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MapData\Tiles\CollissionData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Registry\AchievementManager.cs" />

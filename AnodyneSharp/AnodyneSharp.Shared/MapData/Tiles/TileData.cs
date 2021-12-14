@@ -34,31 +34,22 @@ namespace AnodyneSharp.MapData.Tiles
             return new(ResourceManager.GetTexture($"{MapName.ToLower()}_tilemap", true), 16, 16);
         }
 
-        public static void SetTileProperties(string mapName, MapLayer map, MapLayer bg2)
+        public static void SetTileProperties(string mapName, Tile[] tiles)
         {
             List<CollissionData> data = GetColData(mapName);
-            SortedList<int, AnimatedTile> animationData = GetAnimData(mapName);
-
-            map.SetAnimationData(animationData);
 
             foreach (var d in data)
             {
-                if (d.End == null)
+                for(int i = d.Start; i <= d.End; ++i)
                 {
-                    map.SetTileProperties(d.Start, d.AllowedCollisions, d.CollisionEventType, d.Direction);
-                    bg2.SetTileProperties(d.Start, d.AllowedCollisions, d.CollisionEventType, d.Direction);
-                }
-                else
-                {
-                    map.SetTileProperties(d.Start, d.AllowedCollisions, d.CollisionEventType, d.Direction, tileMax: d.End.Value);
-                    bg2.SetTileProperties(d.Start, d.AllowedCollisions, d.CollisionEventType, d.Direction, tileMax: d.End.Value);
+                    tiles[i].allowCollisions = d.AllowedCollisions;
+                    tiles[i].collisionEventType = d.CollisionEventType;
+                    tiles[i].direction = d.Direction;
                 }
             }
-            //tile 0 never has collision in bg2(important for maps in which 0 does have collision in map, but is used as transparent in bg2)
-            bg2.SetTileProperties(0, Touching.NONE, CollisionEventType.NONE, Touching.NONE);
         }
 
-        private static SortedList<int, AnimatedTile> GetAnimData(string map)
+        public static SortedList<int, AnimatedTile> GetAnimData(string map)
         {
             SortedList<int, AnimatedTile> animTiles = new SortedList<int, AnimatedTile>();
 

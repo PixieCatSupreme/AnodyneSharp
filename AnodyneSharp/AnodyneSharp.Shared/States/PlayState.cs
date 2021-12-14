@@ -924,7 +924,7 @@ namespace AnodyneSharp.States
             GlobalState.extraBlend.MapChange(GlobalState.CURRENT_MAP_NAME);
             SoundManager.SetAmbienceVolume(1f);
 
-            _player.Position = _player.grid_entrance = GlobalState.PLAYER_WARP_TARGET == Vector2.Zero ? _map.GetFirstWalkable() * TILE_WIDTH : GlobalState.PLAYER_WARP_TARGET;
+            _player.Position = _player.grid_entrance = GlobalState.PLAYER_WARP_TARGET;
             _player.facing = GlobalState.NewMapFacing ?? _player.facing;
 
             GlobalState.NewMapFacing = null;

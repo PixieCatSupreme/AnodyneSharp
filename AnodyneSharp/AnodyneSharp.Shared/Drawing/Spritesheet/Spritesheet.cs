@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AnodyneSharp.Resources;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ namespace AnodyneSharp.Drawing.Spritesheet
 {
     public class Spritesheet
     {
-        public readonly Texture2D Tex;
+        public Texture2D Tex { get; private set; }
         public readonly int Width;
         public readonly int Height;
 
@@ -35,5 +36,9 @@ namespace AnodyneSharp.Drawing.Spritesheet
             return new Rectangle(indexX, indexY, Width, Height);
         }
 
+        public void Reload(string name)
+        {
+            Tex = ResourceManager.GetTexture(name);
+        }
     }
 }
