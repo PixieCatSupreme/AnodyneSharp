@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace AnodyneSharp.Map
+namespace AnodyneSharp.MapData
 {
     public class TileMap
     {

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace AnodyneSharp.Map
+namespace AnodyneSharp.MapData
 {
     public class SwapperControl
     {

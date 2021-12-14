@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
-namespace AnodyneSharp.Map
+namespace AnodyneSharp.MapData
 {
     public static class MapLoader
     {

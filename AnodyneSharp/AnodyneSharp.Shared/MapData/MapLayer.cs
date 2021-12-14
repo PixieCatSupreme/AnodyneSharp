@@ -1,7 +1,7 @@
 ﻿using AnodyneSharp.Drawing;
 using AnodyneSharp.Drawing.Spritesheet;
 using AnodyneSharp.Entities;
-using AnodyneSharp.Map.Tiles;
+using AnodyneSharp.MapData.Tiles;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Resources;
 using Microsoft.Xna.Framework;
@@ -9,15 +9,13 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AnodyneSharp.Map
+namespace AnodyneSharp.MapData
 {
     public class MapLayer
     {
         public int HeightInTiles => Data.Height;
         public int WidthInTiles => Data.Width;
 
-        public float width;
-        public float height;
         private Rectangle?[] _rects;
 
         public TileMap Data { get; protected set; }
@@ -39,9 +37,6 @@ namespace AnodyneSharp.Map
             animatedTiles = new SortedList<int, AnimatedTile>();
 
             _layer = layer;
-
-            width = WidthInTiles * tiles.Width;
-            height = HeightInTiles * tiles.Height;
 
             //create some tile objects that we'll use for overlap checks (one for each tile)
             _tileObjects = new Tile[tiles.NumFrames];

@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace AnodyneSharp.Map
+namespace AnodyneSharp.MapData
 {
     public class Minimap
     {

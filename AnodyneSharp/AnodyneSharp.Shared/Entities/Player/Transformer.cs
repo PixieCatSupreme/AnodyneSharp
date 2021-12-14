@@ -46,13 +46,13 @@ namespace AnodyneSharp.Entities
             var check = GlobalState.SwapperCheck.CheckCoord(selector.Center);
             if(GlobalState.events.GetEvent("SeenCredits") == 0)
             {
-                if(check != Map.SwapperControl.State.Allow)
+                if(check != MapData.SwapperControl.State.Allow)
                 {
                     GlobalState.Dialogue = Dialogue.DialogueManager.GetDialogue("misc","any", "swap",2);
                     return;
                 }
             }
-            else if(check == Map.SwapperControl.State.Disallow)
+            else if(check == MapData.SwapperControl.State.Disallow)
             {
                 GlobalState.Dialogue = Dialogue.DialogueManager.GetDialogue("misc", "any", "swap", (GlobalState.CURRENT_MAP_NAME == "DEBUG") ? 0 : 1);
                 return;

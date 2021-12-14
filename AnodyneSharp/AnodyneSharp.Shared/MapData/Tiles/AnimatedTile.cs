@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace AnodyneSharp.Map.Tiles
+namespace AnodyneSharp.MapData.Tiles
 {
     public class AnimatedTile
     {

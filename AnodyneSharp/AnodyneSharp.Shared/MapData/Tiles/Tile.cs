@@ -1,6 +1,6 @@
 ﻿using AnodyneSharp.Entities;
 
-namespace AnodyneSharp.Map.Tiles
+namespace AnodyneSharp.MapData.Tiles
 {
     public class Tile : GameObject
     {

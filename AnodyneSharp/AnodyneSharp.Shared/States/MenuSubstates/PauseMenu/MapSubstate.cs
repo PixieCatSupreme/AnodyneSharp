@@ -3,7 +3,7 @@ using AnodyneSharp.Drawing.Spritesheet;
 using AnodyneSharp.Entities;
 using AnodyneSharp.Input;
 using AnodyneSharp.Logging;
-using AnodyneSharp.Map;
+using AnodyneSharp.MapData;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Resources;
 using AnodyneSharp.Sounds;

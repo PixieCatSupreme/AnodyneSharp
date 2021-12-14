@@ -2,8 +2,8 @@
 using AnodyneSharp.Drawing.Effects;
 using AnodyneSharp.Drawing.Spritesheet;
 using AnodyneSharp.Entities;
-using AnodyneSharp.Map;
-using AnodyneSharp.Map.Tiles;
+using AnodyneSharp.MapData;
+using AnodyneSharp.MapData.Tiles;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
@@ -18,7 +18,7 @@ namespace AnodyneSharp.States
     {
         Camera _camera;
 
-        MapLayer _map;
+        Map _map;
 
         List<Entity> _entities = new();
 
@@ -96,9 +96,7 @@ namespace AnodyneSharp.States
 
         public void Warp(string map, Point grid)
         {
-            Spritesheet tiles = TileData.GetTileset(map);
-            _map = new MapLayer();
-            _map.LoadMap(MapLoader.GetMapLayer(map), tiles, DrawOrder.MAP_BG);
+            _map = new(map);
             _camera.GoTo(grid.ToVector2() * 160);
             DrawPlayState = false;
             UpdateEntities = false;
@@ -113,7 +111,9 @@ namespace AnodyneSharp.States
             base.Draw();
             if (_map != null)
             {
-                _map.Draw(_camera.Bounds);
+                _map.GetLayer(Map.Layer.BG).Draw(_camera.Bounds);
+                _map.GetLayer(Map.Layer.BG2).Draw(_camera.Bounds);
+                _map.GetLayer(Map.Layer.FG).Draw(_camera.Bounds);
             }
             foreach(Entity e in _entities)
             {

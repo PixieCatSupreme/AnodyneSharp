@@ -5,7 +5,7 @@ using AnodyneSharp.Entities;
 using AnodyneSharp.Entities.Lights;
 using AnodyneSharp.GameEvents;
 using AnodyneSharp.Logging;
-using AnodyneSharp.Map;
+using AnodyneSharp.MapData;
 using AnodyneSharp.States;
 using AnodyneSharp.UI;
 using Microsoft.Xna.Framework;

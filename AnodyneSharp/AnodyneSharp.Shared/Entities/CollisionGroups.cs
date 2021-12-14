@@ -1,5 +1,5 @@
 ﻿using AnodyneSharp.Entities.Enemy;
-using AnodyneSharp.Map;
+using AnodyneSharp.MapData;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
