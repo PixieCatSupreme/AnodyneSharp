@@ -151,22 +151,22 @@ namespace AnodyneSharp.States
 
         private Touching CheckTile(Vector2 pos)
         {
-            return _map.GetLayer(Map.Layer.BG).GetCollisionData(pos) | _map.GetLayer(Map.Layer.BG2).GetCollisionData(pos);
+            return _map.GetCollisionData(pos);
         }
 
         private int GetTile(Point pos)
         {
-            return _map.GetLayer(Map.Layer.BG).Data.GetTile(pos.X, pos.Y);
+            return _map.GetTile(Map.Layer.BG, pos);
         }
 
         private int GetBG2Tile(Point pos)
         {
-            return _map.GetLayer(Map.Layer.BG2).Data.GetTile(pos.X, pos.Y);
+            return _map.GetTile(Map.Layer.BG2, pos);
         }
 
         private void ChangeTile(Point pos, int new_val)
         {
-            _map.GetLayer(Map.Layer.BG).Data.ChangeTile(pos, new_val);
+            _map.ChangeTile(Map.Layer.BG, pos, new_val);
         }
 
         public override void Create()
@@ -195,25 +195,8 @@ namespace AnodyneSharp.States
                     _background.Draw(_camera);
                 if (_dec_over != null)
                     _dec_over.Draw(_camera);
-#if DEBUG
-                if (GlobalState.DrawBG)
-                {
-                    _map.GetLayer(Map.Layer.BG).Draw(_camera.Bounds);
-                }
-                if (GlobalState.DrawBG2)
-                {
-                    _map.GetLayer(Map.Layer.BG2).Draw(_camera.Bounds, true);
-                }
-                if (GlobalState.DrawFG)
-                {
-                    _map.GetLayer(Map.Layer.FG).Draw(_camera.Bounds, true);
-                }
 
-#else
-                _map.GetLayer(Map.Layer.BG).Draw(_camera.Bounds);
-                _map.GetLayer(Map.Layer.BG2).Draw(_camera.Bounds,true);
-                _map.GetLayer(Map.Layer.FG).Draw(_camera.Bounds,true);
-#endif
+                _map.Draw(_camera.Bounds);
 
                 _player.Draw();
 
@@ -407,7 +390,7 @@ namespace AnodyneSharp.States
             DebugKeyInput();
 #endif
 
-            _map.GetLayer(Map.Layer.BG).Update();
+            _map.Update();
 
             Refreshes();
 
@@ -467,7 +450,7 @@ namespace AnodyneSharp.States
 
                 _player.Reset(false);
                 _player.ReloadTexture();
-                ReloadMapTextures();
+                _map.ReloadTexture();
 
                 foreach (var item in _gridEntities)
                 {
@@ -519,7 +502,7 @@ namespace AnodyneSharp.States
 
         private void DoCollisions(bool ignore_player)
         {
-            _groups.DoCollision(_map.GetLayer(Map.Layer.BG), _map.GetLayer(Map.Layer.BG2), ignore_player);
+            _groups.DoCollision(_map, ignore_player);
         }
 
         private void StateNormal()
@@ -545,7 +528,7 @@ namespace AnodyneSharp.States
             {
                 _state = PlayStateState.S_MAP_EXIT;
                 _eventRegistry.FireEvent(new StartWarp());
-                _map.GetLayer(Map.Layer.BG).Data.OnTransitionStart();
+                _map.OnTransitionStart();
                 return;
             }
 
@@ -621,7 +604,7 @@ namespace AnodyneSharp.States
                 GlobalState.CURRENT_GRID_X = grid.X;
                 GlobalState.CURRENT_GRID_Y = grid.Y;
                 _eventRegistry.FireEvent(new StartScreenTransition());
-                _map.GetLayer(Map.Layer.BG).Data.OnTransitionStart();
+                _map.OnTransitionStart();
                 _player.grid_entrance = _player.Position;
                 _player.dontMove = true;
 
@@ -655,7 +638,7 @@ namespace AnodyneSharp.States
         private void FinalizeTransition()
         {
             //delete old objects
-            _map.GetLayer(Map.Layer.BG).Data.OnTransitionEnd();
+            _map.OnTransitionEnd();
             _oldEntities.Clear();
         }
 
@@ -919,15 +902,15 @@ namespace AnodyneSharp.States
 
                 _map = new(GlobalState.CURRENT_MAP_NAME);
 
-                GlobalState.MAP_GRID_WIDTH = _map.GetLayer(Map.Layer.BG).WidthInTiles / 10;
-                GlobalState.MAP_GRID_HEIGHT = _map.GetLayer(Map.Layer.BG).HeightInTiles / 10;
+                GlobalState.MAP_GRID_WIDTH = _map.WidthInTiles / 10;
+                GlobalState.MAP_GRID_HEIGHT = _map.HeightInTiles / 10;
 
 
                 UpdateBroomIcon();
 
                 if (GlobalState.GameMode != GameMode.Normal)
                 {
-                    ReloadMapTextures();
+                    _map.ReloadTexture();
                 }
 
 
@@ -941,7 +924,7 @@ namespace AnodyneSharp.States
             GlobalState.extraBlend.MapChange(GlobalState.CURRENT_MAP_NAME);
             SoundManager.SetAmbienceVolume(1f);
 
-            _player.Position = _player.grid_entrance = GlobalState.PLAYER_WARP_TARGET == Vector2.Zero ? _map.GetLayer(Map.Layer.BG).GetFirstWalkable(_map.GetLayer(Map.Layer.BG2)) * TILE_WIDTH : GlobalState.PLAYER_WARP_TARGET;
+            _player.Position = _player.grid_entrance = GlobalState.PLAYER_WARP_TARGET == Vector2.Zero ? _map.GetFirstWalkable() * TILE_WIDTH : GlobalState.PLAYER_WARP_TARGET;
             _player.facing = GlobalState.NewMapFacing ?? _player.facing;
 
             GlobalState.NewMapFacing = null;
@@ -1014,13 +997,6 @@ namespace AnodyneSharp.States
                 ,
                 _ => null
             };
-        }
-
-        private void ReloadMapTextures()
-        {
-            _map.GetLayer(Map.Layer.BG).ReloadTexture();
-            _map.GetLayer(Map.Layer.BG2).ReloadTexture();
-            _map.GetLayer(Map.Layer.FG).ReloadTexture();
         }
 
         private void PlayMapMusic()

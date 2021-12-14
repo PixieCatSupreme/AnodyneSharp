@@ -111,9 +111,7 @@ namespace AnodyneSharp.States
             base.Draw();
             if (_map != null)
             {
-                _map.GetLayer(Map.Layer.BG).Draw(_camera.Bounds);
-                _map.GetLayer(Map.Layer.BG2).Draw(_camera.Bounds);
-                _map.GetLayer(Map.Layer.FG).Draw(_camera.Bounds);
+                _map.Draw(_camera.Bounds);
             }
             foreach(Entity e in _entities)
             {

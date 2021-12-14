@@ -60,7 +60,7 @@ namespace AnodyneSharp.MapData
                     int visible = interest[x + y * tiles.Width];
                     if (visible > 0)
                     {
-                        SpriteDrawer.DrawGuiSprite(sprites.Tex, pos, sprites.GetRect(tiles.GetTile(x, y)), Z: DrawingUtilities.GetDrawingZ(DrawOrder.MINIMAP));
+                        SpriteDrawer.DrawGuiSprite(sprites.Tex, pos, sprites.GetRect(tiles.GetTile(new(x, y))), Z: DrawingUtilities.GetDrawingZ(DrawOrder.MINIMAP));
                     }
                     if (visible > 1)
                     {

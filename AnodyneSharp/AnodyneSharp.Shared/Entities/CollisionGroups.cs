@@ -90,7 +90,7 @@ namespace AnodyneSharp.Entities
             }
         }
 
-        public void DoCollision(MapLayer bg, MapLayer bg2, bool ignore_player_map_collision)
+        public void DoCollision(Map map, bool ignore_player_map_collision)
         {   
             foreach(Entity e in _mapColliders.Where(e=>e.exists))
             {
@@ -99,8 +99,7 @@ namespace AnodyneSharp.Entities
                 {
                     e.Solid = false; //during transition no collision with map, but do have tile effects take an effect
                 }
-                bg.Collide(e);
-                bg2.Collide(e);
+                map.Collide(e);
                 foreach(Entity m in _mapEntities.Where(m=>m.Solid && m.exists && m.Hitbox.Intersects(e.Hitbox)))
                 {
                     m.Collided(e);

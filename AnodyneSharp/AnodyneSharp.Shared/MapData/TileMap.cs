@@ -57,14 +57,14 @@ namespace AnodyneSharp.MapData
             }
             if(!changedTiles.ContainsKey(loc))
             {
-                changedTiles.Add(loc, GetTile(loc.X, loc.Y));
+                changedTiles.Add(loc, GetTile(loc));
             }
             tiles[pos] = new_val;
         }
 
-        public int GetTile(int x, int y)
+        public int GetTile(Point loc)
         {
-            int pos = x + y * Width;
+            int pos = loc.X + loc.Y * Width;
             if (pos < 0 || pos >= tiles.Count)
                 return 0;
             return tiles[pos];
