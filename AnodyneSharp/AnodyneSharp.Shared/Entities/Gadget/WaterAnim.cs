@@ -29,7 +29,7 @@ namespace AnodyneSharp.Entities.Gadget
 
         IEnumerator<string> State()
         {
-            Point p = new((int)Position.X / 16, (int)Position.Y / 16);
+            Point p = GlobalState.Map.ToMapLoc(Position);
 
             Point grid = new(p.X/10,p.Y/10);
 

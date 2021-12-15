@@ -22,13 +22,13 @@ namespace AnodyneSharp.MapData
     {
         int GetTile(Layer layer, Point pos);
         void ChangeTile(Layer layer, Point pos, int newVal);
+        Point ToMapLoc(Vector2 pos);
         Touching GetCollisionData(Vector2 pos);
-        SwapperControl.State CheckSwapper(Vector2 coord);
+        SwapperControl.State CheckSwapper(Point tile);
     }
 
     public class Map : IPublicMap
     {
-
         TileMap[] mapLayers;
 
         public int WidthInTiles => mapLayers[0].Width;
@@ -87,7 +87,7 @@ namespace AnodyneSharp.MapData
 
         public Touching GetCollisionData(Vector2 pos)
         {
-            Point p = (pos / GameConstants.TILE_WIDTH).ToPoint();
+            Point p = ToMapLoc(pos);
             Touching ret = _tileObjects[mapLayers[0].GetTile(p)].allowCollisions;
             if(mapLayers[1].GetTile(p) != 0)
             {
@@ -106,12 +106,29 @@ namespace AnodyneSharp.MapData
             mapLayers[(int)layer].ChangeTile(pos, newVal);
         }
 
+        public Point ToMapLoc(Vector2 loc)
+        {
+            return (loc / GameConstants.TILE_WIDTH).ToPoint();
+        }
+
+        public Vector2 TileToWorld(Point p)
+        {
+            return p.ToVector2() * GameConstants.TILE_WIDTH;
+        }
+
+        public SwapperControl.State CheckSwapper(Point tile)
+        {
+            return swapper.CheckCoord(TileToWorld(tile));
+        }
+
         public void Collide(Entity e)
         {
             Rectangle hitbox = e.Hitbox;
-            for (int y = hitbox.Top / GameConstants.TILE_WIDTH; y <= hitbox.Bottom / GameConstants.TILE_WIDTH; ++y)
+            Point tl = ToMapLoc(new(hitbox.X, hitbox.Y));
+            Point br = ToMapLoc(new(hitbox.Right, hitbox.Bottom));
+            for (int y = tl.Y; y <= br.Y; ++y)
             {
-                for (int x = hitbox.Left / GameConstants.TILE_WIDTH; x <= hitbox.Right / GameConstants.TILE_WIDTH; ++x)
+                for (int x = tl.X; x <= br.X; ++x)
                 {
                     Point pos = new(x, y);
                     CollideTile(pos, _tileObjects[mapLayers[0].GetTile(pos)], e);
@@ -145,9 +162,11 @@ namespace AnodyneSharp.MapData
         {
             float z = DrawingUtilities.GetDrawingZ(layer);
 
-            for (int y = bounds.Y / GameConstants.TILE_HEIGHT - 1; y < bounds.Bottom / GameConstants.TILE_HEIGHT + 1; y++)
+            Point tl = ToMapLoc(new(bounds.X, bounds.Y));
+            Point br = ToMapLoc(new(bounds.Right, bounds.Bottom));
+            for (int y = tl.Y - 1; y < br.Y + 1; y++)
             {
-                for (int x = bounds.X / GameConstants.TILE_WIDTH - 1; x < bounds.Right / GameConstants.TILE_WIDTH + 1; x++)
+                for (int x = tl.X - 1; x < br.X + 1; x++)
                 {
                     int tile = map.GetTile(new(x, y));
 
@@ -163,18 +182,17 @@ namespace AnodyneSharp.MapData
                                 tex = animTile.sprite.Tex;
                                 source = animTile.spriteRect;
                             }
-
-                            SpriteDrawer.DrawSprite(tex, new Rectangle(x * _tiles.Width, y * _tiles.Height, _tiles.Width, _tiles.Height), source, Z: z);
+                            Vector2 loc = TileToWorld(new(x, y));
+                            SpriteDrawer.DrawSprite(tex, new Rectangle((int)loc.X, (int)loc.Y, _tiles.Width, _tiles.Height), source, Z: z);
                         }
                     }
                 }
             }
         }
 
-        private static void CollideTile(Point tilePos, Tile t, Entity ent)
+        private void CollideTile(Point tilePos, Tile t, Entity ent)
         {
-            t.lastPosition.X = t.Position.X = tilePos.X * GameConstants.TILE_WIDTH;
-            t.lastPosition.Y = t.Position.Y = tilePos.Y * GameConstants.TILE_HEIGHT;
+            t.lastPosition = t.Position = TileToWorld(tilePos);
 
             if (t.allowCollisions == Touching.NONE || GameObject.Separate(ent, t))
             {
@@ -250,11 +268,6 @@ namespace AnodyneSharp.MapData
                     }
                 }
             }
-        }
-
-        public SwapperControl.State CheckSwapper(Vector2 coord)
-        {
-            return swapper.CheckCoord(coord);
         }
     }
 }

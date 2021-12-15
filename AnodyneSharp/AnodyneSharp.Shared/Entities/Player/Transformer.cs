@@ -43,7 +43,7 @@ namespace AnodyneSharp.Entities
 
         public void OnAction()
         {
-            var check = GlobalState.Map.CheckSwapper(selector.Center);
+            var check = GlobalState.Map.CheckSwapper(GlobalState.Map.ToMapLoc(selector.Center));
             if(GlobalState.events.GetEvent("SeenCredits") == 0)
             {
                 if(check != MapData.SwapperControl.State.Allow)
@@ -70,8 +70,8 @@ namespace AnodyneSharp.Entities
             }
             else
             {
-                Point p1 = (selector.Center / 16).ToPoint();
-                Point p2 = (selected_tile.Center / 16).ToPoint();
+                Point p1 = GlobalState.Map.ToMapLoc(selector.Center);
+                Point p2 = GlobalState.Map.ToMapLoc(selected_tile.Center);
                 int t1 = GlobalState.Map.GetTile(MapData.Layer.BG, p1);
                 int t2 = GlobalState.Map.GetTile(MapData.Layer.BG, p2);
                 GlobalState.Map.ChangeTile(MapData.Layer.BG, p1, t2);

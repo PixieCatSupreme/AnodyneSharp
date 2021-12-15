@@ -719,19 +719,6 @@ namespace AnodyneSharp.States
                 SetBroom(BroomType.NONE);
             }
 
-            if (KeyInput.JustPressedKey(Keys.F1))
-            {
-                GlobalState.DrawBG = !GlobalState.DrawBG;
-            }
-            if (KeyInput.JustPressedKey(Keys.F2))
-            {
-                GlobalState.DrawBG2 = !GlobalState.DrawBG2;
-            }
-            if (KeyInput.JustPressedKey(Keys.F3))
-            {
-                GlobalState.DrawFG = !GlobalState.DrawFG;
-            }
-
             if (KeyInput.JustPressedKey(Keys.OemPlus))
             {
                 _camera.Zoom += 0.1f;
