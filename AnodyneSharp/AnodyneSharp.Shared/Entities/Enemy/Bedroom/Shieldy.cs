@@ -131,8 +131,8 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
                                 break;
                         }
 
-                        Touching checkTL = GlobalState.CheckTile(newPos);
-                        Touching checkBR = GlobalState.CheckTile(newPos + new Vector2(width,height));
+                        Touching checkTL = GlobalState.Map.GetCollisionData(newPos);
+                        Touching checkBR = GlobalState.Map.GetCollisionData(newPos + new Vector2(width,height));
 
                         if (checkTL == Touching.NONE && checkBR == Touching.NONE)
                         {

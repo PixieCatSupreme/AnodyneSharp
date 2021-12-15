@@ -39,7 +39,7 @@ namespace AnodyneSharp.Entities.Gadget
             }
             Point invert = new(-1, -1);
 
-            int current = GlobalState.GetBG2Tile(p);
+            int current = GlobalState.Map.GetTile(MapData.Layer.BG2, p);
             bool horiz = (current % 2) == 0;
 
             Point dir = horiz switch
@@ -51,19 +51,19 @@ namespace AnodyneSharp.Entities.Gadget
 
             while(true)
             {
-                GlobalState.ChangeTile(p, current);
+                GlobalState.Map.ChangeTile(MapData.Layer.BG, p, current);
                 p += dir;
-                if(!InGrid(p) || GlobalState.GetBG2Tile(p) == 0)
+                if(!InGrid(p) || GlobalState.Map.GetTile(MapData.Layer.BG2, p) == 0)
                     break;
 
-                if(InGrid(p+dir) && GlobalState.GetBG2Tile(p+dir) == 0)
+                if(InGrid(p+dir) && GlobalState.Map.GetTile(MapData.Layer.BG2, p + dir) == 0)
                 {
                     Point next_dir = new(dir.Y, dir.X);
-                    if(GlobalState.GetBG2Tile(p+next_dir) == 0)
+                    if(GlobalState.Map.GetTile(MapData.Layer.BG2, p + next_dir) == 0)
                     {
                         next_dir *= invert;
                     }
-                    if(GlobalState.GetBG2Tile(p+next_dir) != 0)
+                    if(GlobalState.Map.GetTile(MapData.Layer.BG2, p +next_dir) != 0)
                     {
                         dir = next_dir;
                         current -= current % 2;

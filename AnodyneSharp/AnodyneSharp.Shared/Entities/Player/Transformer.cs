@@ -43,7 +43,7 @@ namespace AnodyneSharp.Entities
 
         public void OnAction()
         {
-            var check = GlobalState.SwapperCheck.CheckCoord(selector.Center);
+            var check = GlobalState.Map.CheckSwapper(selector.Center);
             if(GlobalState.events.GetEvent("SeenCredits") == 0)
             {
                 if(check != MapData.SwapperControl.State.Allow)
@@ -72,10 +72,10 @@ namespace AnodyneSharp.Entities
             {
                 Point p1 = (selector.Center / 16).ToPoint();
                 Point p2 = (selected_tile.Center / 16).ToPoint();
-                int t1 = GlobalState.GetTile(p1);
-                int t2 = GlobalState.GetTile(p2);
-                GlobalState.ChangeTile(p1, t2);
-                GlobalState.ChangeTile(p2, t1);
+                int t1 = GlobalState.Map.GetTile(MapData.Layer.BG, p1);
+                int t2 = GlobalState.Map.GetTile(MapData.Layer.BG, p2);
+                GlobalState.Map.ChangeTile(MapData.Layer.BG, p1, t2);
+                GlobalState.Map.ChangeTile(MapData.Layer.BG, p2, t1);
                 selector.exists = false;
                 selected_tile.exists = false;
                 Sounds.SoundManager.PlaySoundEffect("menu_select");

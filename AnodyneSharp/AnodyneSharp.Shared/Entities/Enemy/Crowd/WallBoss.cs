@@ -636,7 +636,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
                     Point tl = GlobalState.TopLeftTile;
                     for(int x = 2; x < 8; ++x)
                     {
-                        GlobalState.ChangeTile(new(tl.X + x, tl.Y + 6), next_tile);
+                        GlobalState.Map.ChangeTile(MapData.Layer.BG, new(tl.X + x, tl.Y + 6), next_tile);
                     }
                     ground_state = (ground_state == GroundPhase.None) ? GroundPhase.Cracked : GroundPhase.Full;
                 }

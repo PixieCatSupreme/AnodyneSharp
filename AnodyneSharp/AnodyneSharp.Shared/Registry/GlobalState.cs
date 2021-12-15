@@ -235,17 +235,11 @@ namespace AnodyneSharp.Registry
         public static int ENEMIES_KILLED;
         public static int PUZZLES_SOLVED;
 
-        public static SwapperControl SwapperCheck;
-
-        public static Func<Vector2,Touching> CheckTile;
-
         public static Action<Entity> SpawnEntity;
 
         public static Action<GameEvent> FireEvent;
 
-        public static Action<Point, int> ChangeTile;
-        public static Func<Point, int> GetTile;
-        public static Func<Point, int> GetBG2Tile;
+        public static IPublicMap Map;
 
         private static MinimapTracker minimaps = new();
 

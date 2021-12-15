@@ -333,7 +333,7 @@ namespace AnodyneSharp.Entities
             {
                 dust.Position = (_root.Center / 16 + FacingDirection(_root.facing)).ToPoint().ToVector2() * 16;
                 
-                if (GlobalState.CheckTile(dust.Position) == Touching.NONE)
+                if (GlobalState.Map.GetCollisionData(dust.Position) == Touching.NONE)
                 {
                     dust.exists = true;
                     dust.Play("unpoof", true);

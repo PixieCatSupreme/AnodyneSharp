@@ -11,14 +11,23 @@ using System.Text;
 
 namespace AnodyneSharp.MapData
 {
-    public class Map
+    public enum Layer
     {
-        public enum Layer
-        {
-            BG,
-            BG2,
-            FG
-        }
+        BG,
+        BG2,
+        FG
+    }
+
+    public interface IPublicMap
+    {
+        int GetTile(Layer layer, Point pos);
+        void ChangeTile(Layer layer, Point pos, int newVal);
+        Touching GetCollisionData(Vector2 pos);
+        SwapperControl.State CheckSwapper(Vector2 coord);
+    }
+
+    public class Map : IPublicMap
+    {
 
         TileMap[] mapLayers;
 
@@ -28,6 +37,8 @@ namespace AnodyneSharp.MapData
         private Spritesheet _tiles;
         private SortedList<int, AnimatedTile> _animatedTiles;
         private Tile[] _tileObjects;
+
+        private SwapperControl swapper;
 
         private string mapName;
 
@@ -50,6 +61,8 @@ namespace AnodyneSharp.MapData
                 _tileObjects[i] = new Tile(_tiles.Width, _tiles.Height, (i >= 1), (i >= 1) ? Touching.ANY : Touching.NONE);
             }
             TileData.SetTileProperties(name,_tileObjects);
+
+            swapper = new(name);
         }
 
         public void Draw(Rectangle bounds)
@@ -237,6 +250,11 @@ namespace AnodyneSharp.MapData
                     }
                 }
             }
+        }
+
+        public SwapperControl.State CheckSwapper(Vector2 coord)
+        {
+            return swapper.CheckCoord(coord);
         }
     }
 }

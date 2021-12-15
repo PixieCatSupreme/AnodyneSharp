@@ -111,12 +111,8 @@ namespace AnodyneSharp.States
 
             CreateKeyLabel();
 
-            GlobalState.CheckTile = CheckTile;
             GlobalState.SpawnEntity = SpawnEntity;
             GlobalState.FireEvent = FireEvent;
-            GlobalState.GetTile = GetTile;
-            GlobalState.GetBG2Tile = GetBG2Tile;
-            GlobalState.ChangeTile = ChangeTile;
         }
 
         private void QuickSave()
@@ -147,26 +143,6 @@ namespace AnodyneSharp.States
         private void SpawnEntity(Entity t)
         {
             _newlySpawned.AddRange(SubEntities(t));
-        }
-
-        private Touching CheckTile(Vector2 pos)
-        {
-            return _map.GetCollisionData(pos);
-        }
-
-        private int GetTile(Point pos)
-        {
-            return _map.GetTile(Map.Layer.BG, pos);
-        }
-
-        private int GetBG2Tile(Point pos)
-        {
-            return _map.GetTile(Map.Layer.BG2, pos);
-        }
-
-        private void ChangeTile(Point pos, int new_val)
-        {
-            _map.ChangeTile(Map.Layer.BG, pos, new_val);
         }
 
         public override void Create()
@@ -898,9 +874,7 @@ namespace AnodyneSharp.States
                     GlobalState.ReturnTarget = (gate != null) ? new(gate) : null;
                 }
 
-                GlobalState.SwapperCheck = new(GlobalState.CURRENT_MAP_NAME);
-
-                _map = new(GlobalState.CURRENT_MAP_NAME);
+                GlobalState.Map = _map = new(GlobalState.CURRENT_MAP_NAME);
 
                 GlobalState.MAP_GRID_WIDTH = _map.WidthInTiles / 10;
                 GlobalState.MAP_GRID_HEIGHT = _map.HeightInTiles / 10;
