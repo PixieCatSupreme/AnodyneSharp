@@ -34,6 +34,8 @@ namespace AnodyneSharp.MapData
         public int WidthInTiles => mapLayers[0].Width;
         public int HeightInTiles => mapLayers[0].Height;
 
+        public Vector2 offset = new();
+
         private Spritesheet _tiles;
         private SortedList<int, AnimatedTile> _animatedTiles;
         private Tile[] _tileObjects;
@@ -108,17 +110,19 @@ namespace AnodyneSharp.MapData
 
         public Point ToMapLoc(Vector2 loc)
         {
+            loc += offset;
             return (loc / GameConstants.TILE_WIDTH).ToPoint();
         }
 
         public Vector2 TileToWorld(Point p)
         {
-            return p.ToVector2() * GameConstants.TILE_WIDTH;
+            return p.ToVector2() * GameConstants.TILE_WIDTH - offset;
         }
 
         public SwapperControl.State CheckSwapper(Point tile)
         {
-            return swapper.CheckCoord(TileToWorld(tile));
+            //Not TileToWorld since swapper check needs to be in map coordinates
+            return swapper.CheckCoord(tile.ToVector2()*GameConstants.TILE_WIDTH);
         }
 
         public void Collide(Entity e)

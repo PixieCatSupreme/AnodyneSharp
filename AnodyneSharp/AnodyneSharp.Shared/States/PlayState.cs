@@ -730,24 +730,33 @@ namespace AnodyneSharp.States
 
             if (GlobalState.MovingCamera)
             {
-                float camSpeed = !GlobalState.FreeRoamCamera ? SCREEN_WIDTH_IN_PIXELS : KeyInput.IsKeyPressed(Keys.LeftShift) ? 8 : 4;
+                //testing out map offset instead of camera
+                float camSpeed = !GlobalState.FreeRoamCamera ? SCREEN_WIDTH_IN_PIXELS : 70;
+                camSpeed *= GameTimes.DeltaTime;
 
-                if (KeyInput.JustPressedKey(Keys.NumPad4))
+                Vector2 offset = new();
+                if (KeyInput.IsKeyPressed(Keys.NumPad4))
                 {
-                    _camera.GoTo(_camera.Position2D - Vector2.UnitX * camSpeed);
+                    offset += -Vector2.UnitX * camSpeed;
                 }
-                else if (KeyInput.JustPressedKey(Keys.NumPad6))
+                else if (KeyInput.IsKeyPressed(Keys.NumPad6))
                 {
-                    _camera.GoTo(_camera.Position2D + Vector2.UnitX * camSpeed);
+                    offset += Vector2.UnitX * camSpeed;
                 }
 
-                if (KeyInput.JustPressedKey(Keys.NumPad8))
+                if (KeyInput.IsKeyPressed(Keys.NumPad8))
                 {
-                    _camera.GoTo(_camera.Position2D - Vector2.UnitY * camSpeed);
+                    offset += -Vector2.UnitY * camSpeed;
                 }
-                else if (KeyInput.JustPressedKey(Keys.NumPad2))
+                else if (KeyInput.IsKeyPressed(Keys.NumPad2))
                 {
-                    _camera.GoTo(_camera.Position2D + Vector2.UnitY * camSpeed);
+                    offset += Vector2.UnitY * camSpeed;
+                }
+                _map.offset += offset;
+
+                if(KeyInput.JustPressedKey(Keys.NumPad0))
+                {
+                    _map.offset = Vector2.Zero;
                 }
             }
         }
