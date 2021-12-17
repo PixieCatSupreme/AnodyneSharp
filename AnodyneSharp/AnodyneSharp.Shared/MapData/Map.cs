@@ -164,7 +164,7 @@ namespace AnodyneSharp.MapData
 
         private void DrawLayer(Rectangle bounds, TileMap map, Drawing.DrawOrder layer, bool ignoreEmpty = false)
         {
-            float z = DrawingUtilities.GetDrawingZ(layer);
+            float z = DrawingUtilities.GetDrawingZ(layer,0);
 
             Point tl = ToMapLoc(new(bounds.X, bounds.Y));
             Point br = ToMapLoc(new(bounds.Right, bounds.Bottom));

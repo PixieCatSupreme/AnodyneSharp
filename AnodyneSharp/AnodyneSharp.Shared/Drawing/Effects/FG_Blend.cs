@@ -6,50 +6,33 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace AnodyneSharp.Drawing.Effects
 {
-    static class FG_Blend
+    public class FG_Blend : Blend
     {
-        static private Effect effect;
-        static private bool active = false;
-
-        public static void Load(ContentManager content)
+        public FG_Blend()
         {
-            effect = content.Load<Effect>("effects/fg_blendlayer");
-            effect.Parameters["World"].SetValue(Matrix.Identity);
-            effect.Parameters["Projection"].SetValue(Matrix.CreateOrthographicOffCenter(0, 160, 160, 0, 0, -1));
-            effect.Parameters["OverlayZ"].SetValue(DrawingUtilities.GetDrawingZ(DrawOrder.FG_SPRITES, 0));
+            cutoff = DrawingUtilities.GetDrawingZ(DrawOrder.FG_SPRITES, 0);
         }
 
-        public static void Update(Camera c)
+        public override void MapChange(string map)
         {
-            effect.Parameters["View"].SetValue(c.Transform);
-        }
-
-        public static void MapChange(string map)
-        {
-            active = true;
             switch (map)
             {
                 case "SUBURB":
-                    effect.Parameters["OverlayTex"].SetValue(ResourceManager.GetTexture("suburb_fg_overlay"));
-                    effect.Parameters["HardLight"].SetValue(false);
+                    tex = ResourceManager.GetTexture("suburb_fg_overlay");
+                    hard_light = false;
                     break;
                 case "HOTEL_roof":
-                    effect.Parameters["OverlayTex"].SetValue(ResourceManager.GetTexture("hotel_roof_fg_overlay"));
-                    effect.Parameters["HardLight"].SetValue(true);
+                    tex = ResourceManager.GetTexture("hotel_roof_fg_overlay");
+                    hard_light = true;
                     break;
                 case "FOREST":
-                    effect.Parameters["OverlayTex"].SetValue(ResourceManager.GetTexture("forest_fg_overlay"));
-                    effect.Parameters["HardLight"].SetValue(false);
+                    tex = ResourceManager.GetTexture("forest_fg_overlay");
+                    hard_light = false;
                     break;
                 default:
-                    active = false;
+                    tex = null;
                     break;
             }
-        }
-
-        public static Effect GetEffect()
-        {
-            return active ? effect : null;
         }
     }
 }

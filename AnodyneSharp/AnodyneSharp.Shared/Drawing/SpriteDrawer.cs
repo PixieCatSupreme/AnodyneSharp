@@ -2,6 +2,7 @@
 using AnodyneSharp.Registry;
 using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System.Linq;
 
@@ -21,6 +22,9 @@ namespace AnodyneSharp.Drawing
         private static RenderTarget2D _game2;
         private static RenderTarget2D _render;
         private static RenderTarget2D _render2;
+        private static RenderTarget2D _depth;
+        private static Effect blend; //To be able to set the depth
+        private static Effect _depthrender;
 
         public static void Initialize(GraphicsDevice graphicsDevice)
         {
@@ -33,31 +37,38 @@ namespace AnodyneSharp.Drawing
 
             _game = new RenderTarget2D(_graphicsDevice, 160, 160);
             _game2 = new RenderTarget2D(_graphicsDevice, 160, 160);
+            _depth = new RenderTarget2D(_graphicsDevice, 160, 160);
             _render = new RenderTarget2D(_graphicsDevice, 160, 180);
             _render2 = new RenderTarget2D(_graphicsDevice, 160, 180);
         }
 
-        public static void BeginDraw(Camera camera, Effect effect = null)
+        public static void Load(ContentManager c)
         {
-            _graphicsDevice.SetRenderTarget(_game);
-
-            _graphicsDevice.Clear(BackColor);
-            _spriteBatch.Begin(sortMode: SpriteSortMode.FrontToBack, blendState: BlendState.AlphaBlend, samplerState: SamplerState, effect: effect, transformMatrix: camera.Transform);
+            _depthrender = c.Load<Effect>("effects/render_depth");
+            _depthrender.Parameters["World"].SetValue(Matrix.Identity);
+            _depthrender.Parameters["Projection"].SetValue(Matrix.CreateOrthographicOffCenter(0, 160, 160, 0, 0, -1));
+            blend = c.Load<Effect>("effects/blend");
         }
 
-        public static void BeginGUIDraw(Effect gameEffect = null, Effect UIEffect = null)
+        public static void BeginDraw(Camera camera)
+        {
+            _graphicsDevice.SetRenderTargets(_game,_depth);
+            _depthrender.Parameters["View"].SetValue(camera.Transform);
+            _graphicsDevice.Clear(BackColor);
+            _spriteBatch.Begin(sortMode: SpriteSortMode.FrontToBack, blendState: BlendState.AlphaBlend, samplerState: SamplerState, effect: _depthrender, transformMatrix: camera.Transform);
+        }
+
+        public static void BeginGUIDraw()
         {
             _graphicsDevice.SetRenderTarget(_render);
             _graphicsDevice.Clear(BackColor);
 
-            _guiSpriteBatch.Begin(sortMode: SpriteSortMode.FrontToBack, blendState: BlendState.AlphaBlend, samplerState: SamplerState, effect:gameEffect);
+            _guiSpriteBatch.Begin(sortMode: SpriteSortMode.FrontToBack, blendState: BlendState.AlphaBlend, samplerState: SamplerState);
             _guiSpriteBatch.Draw(_game, new Rectangle(0, GameConstants.HEADER_HEIGHT, GameConstants.SCREEN_WIDTH_IN_PIXELS, GameConstants.SCREEN_HEIGHT_IN_PIXELS), Color.White);
             _guiSpriteBatch.End();
 
-            _guiSpriteBatch.Begin(sortMode: SpriteSortMode.FrontToBack, blendState: BlendState.AlphaBlend, samplerState: SamplerState, effect:UIEffect);
+            _guiSpriteBatch.Begin(sortMode: SpriteSortMode.FrontToBack, blendState: BlendState.AlphaBlend, samplerState: SamplerState);
         }
-
-
 
         public static void DrawSprite(Texture2D texture, Rectangle rect, Rectangle? sRect = null, Color? color = null, float rotation = 0, SpriteEffects flip = SpriteEffects.None, float Z = 0)
         {
@@ -66,8 +77,6 @@ namespace AnodyneSharp.Drawing
             _spriteBatch.Draw(texture, r,
                 sRect, color ?? Color.White, rotation,
                 new Vector2((sRect ?? texture.Bounds).Width / 2, (sRect ?? texture.Bounds).Height / 2), flip, Z);
-
-
         }
 
         public static void DrawGuiSprite(Texture2D texture, Vector2 pos, Rectangle? sRect = null, Color? color = null, float rotation = 0, float scale = 1f, float Z = 0)
@@ -89,6 +98,8 @@ namespace AnodyneSharp.Drawing
         public static void EndDraw()
         {
             _spriteBatch.End();
+            _graphicsDevice.SetRenderTarget(null);
+            blend.Parameters["DepthTex"].SetValue(_depth);
             foreach(IFullScreenEffect effect in GlobalState.gameEffects.Where(e => e.Active()))
             {
                 _graphicsDevice.SetRenderTarget(_game2);

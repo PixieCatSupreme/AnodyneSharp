@@ -51,14 +51,20 @@ namespace AnodyneSharp.Drawing
     public static class DrawingUtilities
     {
 
-        public static float GetDrawingZ(DrawOrder order, float gridy = 0)
+        public static float GetDrawingZ(DrawOrder order, float gridy)
         {
             float z = (float)order;
             if(order == DrawOrder.ENTITIES)
             {
                 z += gridy / (GameConstants.SCREEN_HEIGHT_IN_PIXELS + 1); //+1 to prevent z-fighting with next layer
             }
-            return z/(float)DrawOrder.BLACK_OVERLAY;
+            return z/(float)DrawOrder.HITBOX;
+        }
+
+        public static float GetDrawingZ(DrawOrder order)
+        {
+            float z = (float)order;
+            return z / (float)DrawOrder.BLACK_OVERLAY;
         }
     }
 }

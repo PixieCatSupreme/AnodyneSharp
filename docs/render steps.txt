@@ -1,8 +1,8 @@
-During game rendering:
-1. before_fg_overlay
-    during main game drawing, exclude fg sprites from overlay/hardlight/... blend
+During game rendering, depth texture is drawn alongside map and entities
     
 Applied on top of game screen
+1. before_fg_overlay
+    overlay/hardlight blend that excludes fg sprites
 2. dec_over:
     either moving rain image in windmill(probably implementable as extra entity to draw), or street's overlay(overlay blending)
     (also used for suburb and drawer's static, but that's already replaced by a shader)

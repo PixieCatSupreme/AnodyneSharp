@@ -29,18 +29,18 @@ namespace AnodyneSharp.Drawing.Effects
         static readonly BlendState screenblend = new BlendState()
         {
             ColorBlendFunction = BlendFunction.Add,
-            ColorSourceBlend = Blend.One,
-            ColorDestinationBlend = Blend.InverseSourceColor,
+            ColorSourceBlend = Microsoft.Xna.Framework.Graphics.Blend.One,
+            ColorDestinationBlend = Microsoft.Xna.Framework.Graphics.Blend.InverseSourceColor,
             AlphaBlendFunction = BlendFunction.Add,
-            AlphaSourceBlend = Blend.Zero,
-            AlphaDestinationBlend = Blend.One
+            AlphaSourceBlend = Microsoft.Xna.Framework.Graphics.Blend.Zero,
+            AlphaDestinationBlend = Microsoft.Xna.Framework.Graphics.Blend.One
         };
 
         static readonly BlendState multiply = new BlendState()
         {
             ColorBlendFunction = BlendFunction.Add,
-            ColorSourceBlend = Blend.DestinationColor,
-            ColorDestinationBlend = Blend.Zero
+            ColorSourceBlend = Microsoft.Xna.Framework.Graphics.Blend.DestinationColor,
+            ColorDestinationBlend = Microsoft.Xna.Framework.Graphics.Blend.Zero
         };
 
         //Called during draw phase of entities
@@ -122,6 +122,7 @@ namespace AnodyneSharp.Drawing.Effects
             {
                 blend.Parameters["OverlayTex"].SetValue(lights_applied);
                 blend.Parameters["HardLight"].SetValue(hard_light);
+                blend.Parameters["DepthCutoff"].SetValue(1f);
                 batch.Begin(samplerState: SamplerState.PointClamp, effect: blend);
                 batch.Draw(screen, screen.Bounds, Color.White);
                 batch.End();

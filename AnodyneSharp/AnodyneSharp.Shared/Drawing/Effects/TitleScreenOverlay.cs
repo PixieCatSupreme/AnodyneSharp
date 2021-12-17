@@ -11,13 +11,7 @@ namespace AnodyneSharp.Drawing.Effects
 {
     public class TitleScreenOverlay : IFullScreenEffect
     {
-        public Texture2D Darkness
-        {
-            set
-            {
-                blend.Parameters["OverlayTex"].SetValue(value);
-            }
-        }
+        public Texture2D Darkness;
 
         public List<UIEntity> Entities = new ();
         public List<UILabel> Labels = new ();
@@ -25,7 +19,6 @@ namespace AnodyneSharp.Drawing.Effects
         float alpha;
         float target_alpha;
 
-        GraphicsDevice device;
         Effect blend;
 
         public void TargetAlpha(float d)
@@ -54,15 +47,14 @@ namespace AnodyneSharp.Drawing.Effects
 
         public void Load(ContentManager content, GraphicsDevice graphicsDevice)
         {
-            device = graphicsDevice;
             blend = content.Load<Effect>("effects/blend");
-
-
-            blend.Parameters["HardLight"].SetValue(false);
         }
 
         public void Render(SpriteBatch batch, Texture2D screen)
         {
+            blend.Parameters["OverlayTex"].SetValue(Darkness);
+            blend.Parameters["HardLight"].SetValue(false);
+            blend.Parameters["DepthCutoff"].SetValue(1f);
             batch.Begin(samplerState: SamplerState.PointClamp, effect: blend);
             batch.Draw(screen, screen.Bounds, Color.White);
             batch.End();

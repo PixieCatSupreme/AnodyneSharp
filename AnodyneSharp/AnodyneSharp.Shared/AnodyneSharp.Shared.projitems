@@ -13,7 +13,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Cheatz\CheatAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Cheatz\CheatzManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Effects\Darkness.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Drawing\Effects\ExtraBlend.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Drawing\Effects\Blend.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Effects\FlashEffect.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Effects\TitleScreenOverlay.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Effects\Glitch.cs" />
@@ -977,7 +977,7 @@
     </None>
     <None Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />
     <None Include="$(MSBuildThisFileDirectory)Content\effects\blend.fx" />
-    <None Include="$(MSBuildThisFileDirectory)Content\effects\fg_blendlayer.fx" />
+    <None Include="$(MSBuildThisFileDirectory)Content\effects\render_depth.fx" />
     <None Include="$(MSBuildThisFileDirectory)Content\effects\pixelation.fx" />
     <None Include="$(MSBuildThisFileDirectory)Content\effects\static.fx" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\BEACH\TileAnims\shoreline.dat" />

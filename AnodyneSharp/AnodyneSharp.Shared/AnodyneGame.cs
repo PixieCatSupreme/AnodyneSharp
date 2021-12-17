@@ -124,7 +124,7 @@ namespace AnodyneSharp
 
             DialogueManager.Reload();
 
-            FG_Blend.Load(Content);
+            SpriteDrawer.Load(Content);
 
             foreach (var effect in GlobalState.AllEffects)
             {
@@ -153,8 +153,6 @@ namespace AnodyneSharp
             _currentState.Update();
 
             _camera.Update();
-
-            FG_Blend.Update(_camera);
 
             foreach (var effect in GlobalState.AllEffects.Where(e => e.Active()))
             {
@@ -191,7 +189,7 @@ namespace AnodyneSharp
                 _fpsLabel.SetText($"FPS: {GameTimes.FPS:0}");
             }
 
-            SpriteDrawer.BeginDraw(_camera, FG_Blend.GetEffect());
+            SpriteDrawer.BeginDraw(_camera);
             _currentState.Draw();
             SpriteDrawer.EndDraw();
 

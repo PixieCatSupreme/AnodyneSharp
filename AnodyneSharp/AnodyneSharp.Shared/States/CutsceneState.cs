@@ -88,7 +88,7 @@ namespace AnodyneSharp.States
             GlobalState.darkness.ForceAlpha(oldDarkness);
             GlobalState.staticEffect.MapChange(GlobalState.CURRENT_MAP_NAME);
             GlobalState.extraBlend.MapChange(GlobalState.CURRENT_MAP_NAME);
-            FG_Blend.MapChange(GlobalState.CURRENT_MAP_NAME);
+            GlobalState.fgBlend.MapChange(GlobalState.CURRENT_MAP_NAME);
             DrawPlayState = true;
             UpdateEntities = true;
             _map = null;
@@ -103,7 +103,7 @@ namespace AnodyneSharp.States
             GlobalState.staticEffect.MapChange(map);
             GlobalState.darkness.MapChange(map);
             GlobalState.extraBlend.MapChange(map);
-            FG_Blend.MapChange(map);
+            GlobalState.fgBlend.MapChange(map);
         }
 
         public override void Draw()

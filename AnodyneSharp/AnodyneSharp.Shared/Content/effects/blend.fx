@@ -24,6 +24,13 @@ sampler2D OverlaySampler = sampler_state {
 
 bool HardLight;
 
+texture DepthTex;
+sampler2D DepthSampler = sampler_state {
+	Texture = <DepthTex>;
+};
+
+float DepthCutoff;
+
 struct VertexShaderOutput
 {
 	float4 Position : SV_POSITION0;
@@ -34,6 +41,8 @@ struct VertexShaderOutput
 float4 MainPS(VertexShaderOutput input) : COLOR
 {
 	float4 color = tex2D(TextureSampler, input.Tex);
+	if (DepthCutoff < 1.f && tex2D(DepthSampler, input.Tex).x >= DepthCutoff)
+		return color;
 	float4 blend = tex2D(OverlaySampler, input.Tex);
 	if (blend.a == 0)
 		return color;

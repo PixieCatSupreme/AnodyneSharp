@@ -8,11 +8,12 @@ using System.Text;
 
 namespace AnodyneSharp.Drawing.Effects
 {
-    public class ExtraBlend : IFullScreenEffect
+    public class Blend : IFullScreenEffect
     {
-        private Texture2D tex;
-        private bool hard_light = false;
-        private Effect blend;
+        protected Texture2D tex;
+        protected bool hard_light = false;
+        protected Effect blend;
+        protected float cutoff = 1f;
 
         public bool Active()
         {
@@ -32,12 +33,13 @@ namespace AnodyneSharp.Drawing.Effects
         {
             blend.Parameters["HardLight"].SetValue(hard_light);
             blend.Parameters["OverlayTex"].SetValue(tex);
+            blend.Parameters["DepthCutoff"].SetValue(cutoff);
             batch.Begin(samplerState: SamplerState.PointClamp, effect: blend);
             batch.Draw(screen, screen.Bounds, Color.White);
             batch.End();
         }
 
-        public void MapChange(string mapName)
+        public virtual void MapChange(string mapName)
         {
             mapName = mapName.ToLower();
             tex = ResourceManager.GetTexture(mapName + "_extra_overlay", allowUnknown: true);

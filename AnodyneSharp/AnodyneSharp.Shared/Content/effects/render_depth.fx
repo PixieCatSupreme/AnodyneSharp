@@ -7,29 +7,11 @@
 #define VS_SHADERMODEL vs_4_0
 #endif
 
-float blendOverlay(float base, float blend) {
-    return base < 0.5 ? (2.0 * base * blend) : (1.0 - 2.0 * (1.0 - base) * (1.0 - blend));
-}
-
-float3 blendOverlay(float3 base, float3 blend) {
-    return float3(blendOverlay(base.r, blend.r), blendOverlay(base.g, blend.g), blendOverlay(base.b, blend.b));
-}
-
+sampler2D TextureSampler : register(s0);
 
 matrix World;
 matrix View;
 matrix Projection;
-
-float OverlayZ;
-
-sampler TextureSampler : register(s0);
-
-texture OverlayTex;
-sampler2D OverlaySampler = sampler_state {
-    Texture = <OverlayTex>;
-};
-
-bool HardLight;
 
 //_______________________________________________________________
 // techniques 
@@ -62,16 +44,18 @@ Vs2Ps MainVS(VsInput input)
     return output;
 }
 
-float4 MainPS(Vs2Ps input) : COLOR
+struct PSOutput {
+    float4 c0 : COLOR0;
+    float4 c1 : COLOR1;
+};
+
+PSOutput MainPS(Vs2Ps input)
 {
-    float4 color = tex2D(TextureSampler,input.TexCoord);
-
-    if (input.Z.x < OverlayZ && color.a == 1) {
-        float4 overlay = tex2D(OverlaySampler, input.Position.xy / 160);
-        color.rgb = HardLight ? blendOverlay(color.rgb,overlay.rgb) : blendOverlay(overlay.rgb,color.rgb);
-    }
-
-    return color * input.Color;
+    PSOutput o;
+    o.c0 = tex2D(TextureSampler, input.TexCoord) * input.Color;
+    o.c1 = float4(input.Z.x,0,0,1);
+    clip(o.c0.a - 0.2);
+    return o;
 }
 
 technique BasicColorDrawing

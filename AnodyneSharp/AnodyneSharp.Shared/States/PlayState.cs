@@ -888,7 +888,7 @@ namespace AnodyneSharp.States
             }
 
             PlayMapMusic();
-            FG_Blend.MapChange(GlobalState.CURRENT_MAP_NAME);
+            GlobalState.fgBlend.MapChange(GlobalState.CURRENT_MAP_NAME);
             GlobalState.darkness.MapChange(GlobalState.CURRENT_MAP_NAME);
             GlobalState.staticEffect.MapChange(GlobalState.CURRENT_MAP_NAME);
             GlobalState.extraBlend.MapChange(GlobalState.CURRENT_MAP_NAME);
