@@ -7,7 +7,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using System.Text.Json;
 
 namespace AnodyneSharp.MapData
 {
@@ -42,6 +44,8 @@ namespace AnodyneSharp.MapData
 
         private SwapperControl swapper;
 
+        private Settings.MapSettings settings;
+
         private string mapName;
 
         public Map(string name)
@@ -65,6 +69,13 @@ namespace AnodyneSharp.MapData
             TileData.SetTileProperties(name,_tileObjects);
 
             swapper = new(name);
+
+            using Stream settingsStream = Utilities.AssemblyReaderUtil.GetStream($"Content.Maps.{name}.Settings.json");
+            if(settingsStream != null)
+            {
+                using var reader = new StreamReader(settingsStream);
+                settings = JsonSerializer.Deserialize<Settings.MapSettings>(reader.ReadToEnd());
+            }
         }
 
         public void Draw(Rectangle bounds)
@@ -144,6 +155,16 @@ namespace AnodyneSharp.MapData
                     }
                 }
             }
+        }
+
+        public void ReloadSettings(Vector2 player_pos)
+        {
+            if (settings is null)
+                return;
+#nullable enable
+            Sounds.SoundManager.PlaySong(settings.Get(s => s.Music, player_pos, ""));
+            GlobalState.darkness.TargetAlpha(settings.Get(s => s.DarknessAlpha, player_pos, 0f));
+#nullable restore
         }
 
         public void OnTransitionStart()

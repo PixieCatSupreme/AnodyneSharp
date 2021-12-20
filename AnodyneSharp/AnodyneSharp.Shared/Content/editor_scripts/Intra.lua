@@ -31,6 +31,23 @@ function exportSwapperShapes( layer, mapName )
     DAME.WriteFile(dataDir.."/Maps/"..mapName.."/Swapper.dat",shapeText)
 end
 
+function exportMapSettings( layer, mapName )
+    local propertiesString = "\"Settings\":{%%proploop%%"
+	propertiesString = propertiesString.."\"%propname%\":%propvaluestring%%separator:,%"
+    propertiesString = propertiesString.."%%proploopend%%}"
+    
+    local textString = "{"..propertiesString..",\"Event\":\"%text%\"},"
+    local allEvents = "\"Events\":["..string.sub(as3.tolua(DAME.CreateTextForShapes(layer,"","",textString)),1,-2).."]"
+    
+    local shapeString = "{\"X\":%xpos%,\"Y\":%ypos%,\"Width\":%width%,\"Height\":%height%,"..propertiesString.."},"
+    local allShapes = "\"Areas\":["..string.sub(as3.tolua(DAME.CreateTextForShapes(layer,"",shapeString,"")),1,-2).."]"
+    
+    local defaultString = as3.tolua(DAME.GetTextForProperties( propertiesString, layer.properties ))
+    
+    local Text = "{"..defaultString..","..allEvents..","..allShapes.."}"
+    DAME.WriteFile(dataDir.."/Maps/"..mapName.."/Settings.json",Text)
+end
+
 -- This is the file for the map level class.
 fileText = ""
 maps = {}
@@ -56,6 +73,9 @@ for groupIndex = 0,groupCount do
         elseif as3.tolua(layer.IsShapeLayer()) == true then
             if layerSimpleName == "Swapper" then
                 exportSwapperShapes(layer, groupName)
+            end
+            if layerSimpleName == "Settings" then
+                exportMapSettings(layer, groupName)
             end
         end
         if isMap == true then

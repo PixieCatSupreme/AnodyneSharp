@@ -138,6 +138,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)GameEvents\Events.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameEvents\EventsAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MapData\Map.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MapData\MapSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MapData\SwapperControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Registry\Settings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sounds\SFXLimiter.cs" />
@@ -269,6 +270,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)UI\TextBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\UIEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\UILabel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\AssemblyReaderUtil.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\MapUtilities.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\MathUtilities.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FSM\TimerState.cs" />
@@ -406,6 +408,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Content\effects\blackwhite.fx" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\HAPPY\Settings.json" />
     <Content Include="$(MSBuildThisFileDirectory)Content\sfx\10\hit_slime.mp3" />
     <Content Include="$(MSBuildThisFileDirectory)Content\sfx\10\laser_charge.mp3" />
     <Content Include="$(MSBuildThisFileDirectory)Content\sfx\10\laser_fire.mp3" />

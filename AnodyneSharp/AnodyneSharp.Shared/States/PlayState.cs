@@ -581,6 +581,7 @@ namespace AnodyneSharp.States
                 GlobalState.CURRENT_GRID_Y = grid.Y;
                 _eventRegistry.FireEvent(new StartScreenTransition());
                 _map.OnTransitionStart();
+                _map.ReloadSettings(_player.Position);
                 _player.grid_entrance = _player.Position;
                 _player.dontMove = true;
 
@@ -887,6 +888,9 @@ namespace AnodyneSharp.States
                 GlobalState.RefreshKeyCount = true;
             }
 
+            _player.Position = _player.grid_entrance = GlobalState.PLAYER_WARP_TARGET;
+            _player.facing = GlobalState.NewMapFacing ?? _player.facing;
+
             PlayMapMusic();
             GlobalState.fgBlend.MapChange(GlobalState.CURRENT_MAP_NAME);
             GlobalState.darkness.MapChange(GlobalState.CURRENT_MAP_NAME);
@@ -894,8 +898,7 @@ namespace AnodyneSharp.States
             GlobalState.extraBlend.MapChange(GlobalState.CURRENT_MAP_NAME);
             SoundManager.SetAmbienceVolume(1f);
 
-            _player.Position = _player.grid_entrance = GlobalState.PLAYER_WARP_TARGET;
-            _player.facing = GlobalState.NewMapFacing ?? _player.facing;
+            _map.ReloadSettings(_player.Position);
 
             GlobalState.NewMapFacing = null;
 

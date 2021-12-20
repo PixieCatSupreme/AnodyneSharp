@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Logging;
+using AnodyneSharp.Utilities;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -14,15 +15,18 @@ namespace AnodyneSharp.MapData
             FG
         }
 
-        public static TileMap LoadMap(string path)
+        private static TileMap LoadMap(string path, string defaultCSV, bool crit = true)
         {
-            string CSV = "0,0";
+            string CSV = defaultCSV;
 
-            using (Stream stream = Assembly.GetCallingAssembly().GetManifestResourceStream(path))
+            using (Stream stream = AssemblyReaderUtil.GetStream(path))
             {
                 if (stream == null)
                 {
-                    DebugLogger.AddCritical($"Unable to find map at {path}");
+                    if (crit)
+                    {
+                        DebugLogger.AddCritical($"Unable to find map at {path}");
+                    }
                     return new TileMap(CSV);
                 }
                 using StreamReader reader = new StreamReader(stream);
@@ -34,32 +38,16 @@ namespace AnodyneSharp.MapData
 
         public static TileMap GetMinimap(string mapName)
         {
-            var assembly = Assembly.GetCallingAssembly();
+            string path = $"Content.MiniMaps.Minimap_{mapName}.csv";
 
-            string path = $"{assembly.GetName().Name}.Content.MiniMaps.Minimap_{mapName}.csv";
-
-            if(!assembly.GetManifestResourceNames().Contains(path))
-            {
-                return new TileMap("");
-            }
-
-            return LoadMap(path);
+            return LoadMap(path,"",false);
         }
 
         public static TileMap GetMapLayer(string mapName, int layer = 1)
         {
-            string CSV = "0,0";
+            string path = $"Content.Maps.{mapName}.{(Layer)layer}.csv";
 
-            var assembly = Assembly.GetCallingAssembly();
-
-            string path = $"{assembly.GetName().Name}.Content.Maps.{mapName}.{(Layer)layer}.csv";
-
-            if (layer != 1 && !assembly.GetManifestResourceNames().Contains(path))
-            {
-                return new TileMap(CSV);
-            }
-
-            return LoadMap(path);
+            return LoadMap(path,"0,0",layer == 1);
         }
     }
 }

@@ -2047,10 +2047,6 @@
     <NPC x="208" y="336" guid="040FDFE0-76B6-F5B3-12F9-4672D49F1C32" frame="1" type="generic" />
     <Button x="704" y="176" guid="CFBE7AC8-E2D5-3B94-2A04-293BE01F8B11" frame="0"/>
     <Solid_Sprite x="797" y="273" guid="08427AA5-3FB4-5D25-1F2E-5001C22F32F2" frame="7" type="vblock" />
-    <Event x="400" y="320" guid="FE6FD579-B908-A66F-59F5-7F668CB4C4D0" frame="0" type="0.0" />
-    <Event x="640" y="320" guid="9F7AD5C7-15F7-D7E3-45AC-D1582CDE2264" frame="0" type="0.0" />
-    <Event x="640" y="160" guid="904C6EAB-DEA0-358C-3A2F-BB5FBBA003EC" frame="0" type="1.0" />
-    <Event x="160" y="320" guid="B6909C93-A26E-30D4-6DCB-5A10DB3F5B0F" frame="0" type="1.0" />
   </map>
   <map name="HAPPY" type="Stateful">
     <Happy_NPC x="736" y="160" guid="2784472C-0C13-F14A-5FF3-839111C96922" frame="18"/>
@@ -2093,8 +2089,6 @@
     <Happy_NPC x="528" y="368" guid="A3B2BB10-8F13-EBFA-224E-EA54E03747A6" frame="2"/>
     <Happy_NPC x="576" y="384" guid="7EE6B5B6-F4D1-2379-BB03-FBDA4BF5C738" frame="3"/>
     <Happy_NPC x="400" y="384" guid="DFB90A07-A11C-38B3-5CE8-13FDF213E207" frame="4"/>
-    <Music_Event x="640" y="176" guid="8E0AFAF4-6A0D-DF26-D338-F39C7B59BB90" frame="1" type="HappyStarted" />
-    <Music_Event x="160" y="336" guid="DA575572-085E-068F-17BA-6773EC5C24B3" frame="1" type="HappyStarted" />
   </map>
   <map name="HOTEL" type="Stateless">
     <Event x="592" y="96" guid="83856029-4F66-341B-3551-87D18964F02F" frame="2"/>
