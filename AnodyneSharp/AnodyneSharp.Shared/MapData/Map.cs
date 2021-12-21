@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using AnodyneSharp.MapData.Settings;
 using System.Text.Json;
 
 namespace AnodyneSharp.MapData
@@ -44,7 +45,7 @@ namespace AnodyneSharp.MapData
 
         private SwapperControl swapper;
 
-        private Settings.MapSettings settings;
+        private MapSettings settings;
 
         private string mapName;
 
@@ -162,8 +163,9 @@ namespace AnodyneSharp.MapData
             if (settings is null)
                 return;
 #nullable enable
-            Sounds.SoundManager.PlaySong(settings.Get(s => s.Music, player_pos, ""));
-            GlobalState.darkness.TargetAlpha(settings.Get(s => s.DarknessAlpha, player_pos, 0f));
+            var priorities = settings.GetSettingPriorities(player_pos);
+            Sounds.SoundManager.PlaySong(MapSettings.Get(s => s.Music, priorities, ""));
+            GlobalState.darkness.TargetAlpha(MapSettings.Get(s => s.DarknessAlpha, priorities, 0f));
 #nullable restore
         }
 

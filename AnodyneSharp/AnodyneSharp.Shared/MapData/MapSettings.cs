@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
 
@@ -22,40 +23,14 @@ namespace AnodyneSharp.MapData.Settings
 
     public record MapSettings([property: JsonPropertyName("Settings")] SettingGroup Default, List<MapRegion> Areas, List<MapEvent> Events)
     {
-        public T Get<T>(Func<SettingGroup, T?> getter, Vector2 location, T defaultValue) where T : struct
+        public List<SettingGroup> GetSettingPriorities(Vector2 location)
         {
-            T? current = default;
-
-            foreach(var area in Areas)
-            {
-                if(new Rectangle(area.X,area.Y,area.Width,area.Height).Contains(location))
-                {
-                    current ??= getter(area.Settings);
-                }
-            }
-
-            foreach(var eventCheck in Events)
-            {
-                if(GlobalState.events.GetEvent(eventCheck.Event) != 0)
-                {
-                    current ??= getter(eventCheck.Settings);
-                }
-            }
-
-            current ??= getter(Default);
-
-            return current ?? defaultValue;
-        }
-
-        public T Get<T>(Func<SettingGroup, T?> getter, Vector2 location, T defaultValue) where T : class
-        {
-            T? current = default;
-
+            List<SettingGroup> groups = new();
             foreach (var area in Areas)
             {
                 if (new Rectangle(area.X, area.Y, area.Width, area.Height).Contains(location))
                 {
-                    current ??= getter(area.Settings);
+                    groups.Add(area.Settings);
                 }
             }
 
@@ -63,13 +38,23 @@ namespace AnodyneSharp.MapData.Settings
             {
                 if (GlobalState.events.GetEvent(eventCheck.Event) != 0)
                 {
-                    current ??= getter(eventCheck.Settings);
+                    groups.Add(eventCheck.Settings);
                 }
             }
 
-            current ??= getter(Default);
+            groups.Add(Default);
 
-            return current ?? defaultValue;
+            return groups;
+        }
+
+        public static T Get<T>(Func<SettingGroup, T?> getter, List<SettingGroup> priorities, T defaultValue) where T : struct
+        {
+            return priorities.Select(getter).Where(n => n.HasValue).FirstOrDefault() ?? defaultValue;
+        }
+
+        public static T Get<T>(Func<SettingGroup, T?> getter, List<SettingGroup> priorities, T defaultValue) where T : class
+        {
+            return priorities.Select(getter).Where(n => n != null).FirstOrDefault() ?? defaultValue;
         }
     };
 #nullable restore
