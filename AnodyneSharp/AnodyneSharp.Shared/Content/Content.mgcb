@@ -1753,7 +1753,7 @@
 /processorParam:TextureFormat=Color
 /build:textures/sprites/decoration/overlays/hotel_overlay.png
 
-#begin textures/sprites/decoration/overlays/hotel_roof_fg_overlay.png
+#begin textures/sprites/decoration/overlays/hotel_roof_fg_hardlight.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1763,7 +1763,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:textures/sprites/decoration/overlays/hotel_roof_fg_overlay.png
+/build:textures/sprites/decoration/overlays/hotel_roof_fg_hardlight.png
 
 #begin textures/sprites/decoration/overlays/nexus_overlay.png
 /importer:TextureImporter

@@ -157,6 +157,12 @@ namespace AnodyneSharp.Drawing.Effects
             this.camera = camera;
         }
 
+        public void SetTex(string texName)
+        {
+            darkness = ResourceManager.GetTexture(texName, allowUnknown: true);
+            hard_light = texName.EndsWith("hardlight");
+        }
+
         public void MapChange(string mapName)
         {
             alpha = 1;

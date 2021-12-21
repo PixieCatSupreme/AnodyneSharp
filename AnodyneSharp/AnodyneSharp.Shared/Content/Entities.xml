@@ -1994,13 +1994,10 @@
     <Water_Anim x="624" y="368" guid="1EACCC80-FB21-BBD3-14D3-CBABFC9D3A8C" frame="32" p="2"/>
     <Water_Anim x="784" y="368" guid="0E2DDF27-1E4B-6471-16DB-43B4C35E119D" frame="32" p="2"/>
     <Water_Anim x="321" y="161" guid="5277B238-8F93-7EDD-6073-279A71AD212F" frame="32" p="2"/>
-    <Event x="12" y="6" guid="B0858215-C42C-0D79-5D0E-6BE8B95D745F" frame="0" type="1.0" />
-    <Event x="13" y="165" guid="57FD2E6F-FE09-C65F-F71A-259C5871C8D0" frame="0" type="0.0" />
     <Eye_Light x="97" y="2" guid="4CE508F6-7696-6E83-79BA-57D279F808DE" frame="0"/>
     <Eye_Light x="50" y="3" guid="DCA3CDED-AEEF-BC91-E840-4347C9D7A446" frame="0"/>
-    <Event x="11" y="189" guid="B59632F3-DB53-AA1C-EBAC-13D4C5255B3D" frame="1" type="0" />
-    <Event x="329" y="327" guid="74AF0639-FDDB-77C6-9704-C2C13AF490BD" frame="1" type="1.0" />
     <NPC x="328" y="397" guid="F1565997-6301-874A-AAEB-3A7D45B6A33A" frame="11" type="generic" />
+    <Event x="329" y="327" guid="74AF0639-FDDB-77C6-9704-C2C13AF490BD" frame="1" type="1.0" />
   </map>
   <map name="GO" type="Stateful">
     <Go_Detector x="352" y="512" guid="ED2195E9-9798-B9B3-3C15-105C40F7C501" frame="0" alive="true"/>
@@ -2435,8 +2432,6 @@
     <NPC x="384" y="80" guid="67918A21-B9F5-C6B1-130B-424AB235C6AD" frame="12" type="generic" />
     <Event x="436" y="843" guid="3D013C69-3B13-BCDF-376A-22633AA2E0AD" frame="5" type="entrance" />
     <Event x="385" y="420" guid="CFE9CC42-595F-EDED-6720-90848DB38C19" frame="5" type="entrance" />
-    <Music_Event x="0." y="0." guid="0BD574D8-C071-B6AE-02AE-9D45E8F6ED69" frame="0"/>
-    <Music_Event x="480" y="0." guid="4A2436C9-97D2-E284-2AAE-66483E3CE9A3" frame="0"/>
   </map>
   <map name="NEXUS" type="Stateful">
     <Door x="704" y="1392" guid="7C6BBEC5-AAB2-3506-DF56-2903596CEA74" frame="4" type="6" />

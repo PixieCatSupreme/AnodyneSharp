@@ -39,6 +39,12 @@ namespace AnodyneSharp.Drawing.Effects
             batch.End();
         }
 
+        public void SetTex(string texName)
+        {
+            tex = ResourceManager.GetTexture(texName, allowUnknown: true);
+            hard_light = texName.EndsWith("hardlight");
+        }
+
         public virtual void MapChange(string mapName)
         {
             mapName = mapName.ToLower();

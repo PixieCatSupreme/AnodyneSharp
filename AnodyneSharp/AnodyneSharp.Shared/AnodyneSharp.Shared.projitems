@@ -380,7 +380,6 @@
     <Folder Include="$(MSBuildThisFileDirectory)Content\Maps\BEDROOM\" />
     <Folder Include="$(MSBuildThisFileDirectory)Content\Maps\CLIFF\" />
     <Folder Include="$(MSBuildThisFileDirectory)Content\Maps\CROWD\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Content\Maps\OVERWORLD\" />
     <Folder Include="$(MSBuildThisFileDirectory)Content\Maps\REDSEA\" />
     <Folder Include="$(MSBuildThisFileDirectory)Content\Maps\STREET\" />
     <Folder Include="$(MSBuildThisFileDirectory)Entities\Gadget\Treasures\Base\" />
@@ -408,6 +407,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Content\effects\blackwhite.fx" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\OVERWORLD\Settings.json" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\NEXUS\Settings.json" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\HOTEL\Settings.json" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\FOREST\Settings.json" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\GO\Settings.json" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\HAPPY\Settings.json" />
     <Content Include="$(MSBuildThisFileDirectory)Content\sfx\10\hit_slime.mp3" />
     <Content Include="$(MSBuildThisFileDirectory)Content\sfx\10\laser_charge.mp3" />
@@ -597,7 +601,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\overlays\go_hardlight.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\overlays\happy_hardlight.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\overlays\hotel_overlay.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\overlays\hotel_roof_fg_overlay.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\overlays\hotel_roof_fg_hardlight.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\overlays\nexus_overlay.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\overlays\redcave_overlay .png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\overlays\redsea_hardlight.png" />

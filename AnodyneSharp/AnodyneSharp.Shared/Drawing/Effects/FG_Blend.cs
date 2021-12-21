@@ -21,14 +21,6 @@ namespace AnodyneSharp.Drawing.Effects
                     tex = ResourceManager.GetTexture("suburb_fg_overlay");
                     hard_light = false;
                     break;
-                case "HOTEL_roof":
-                    tex = ResourceManager.GetTexture("hotel_roof_fg_overlay");
-                    hard_light = true;
-                    break;
-                case "FOREST":
-                    tex = ResourceManager.GetTexture("forest_fg_overlay");
-                    hard_light = false;
-                    break;
                 default:
                     tex = null;
                     break;

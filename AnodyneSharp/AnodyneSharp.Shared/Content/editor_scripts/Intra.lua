@@ -41,6 +41,7 @@ function exportMapSettings( layer, mapName )
     
     local shapeString = "{\"X\":%xpos%,\"Y\":%ypos%,\"Width\":%width%,\"Height\":%height%,"..propertiesString.."},"
     local allShapes = "\"Areas\":["..string.sub(as3.tolua(DAME.CreateTextForShapes(layer,"",shapeString,"")),1,-2).."]"
+    allShapes = string.gsub(allShapes,"0.,","0,")
     
     local defaultString = as3.tolua(DAME.GetTextForProperties( propertiesString, layer.properties ))
     

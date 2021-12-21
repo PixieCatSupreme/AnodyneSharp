@@ -46,6 +46,7 @@ namespace AnodyneSharp.MapData
         private SwapperControl swapper;
 
         private MapSettings settings;
+        private TileReplacement replacements = new("");
 
         private string mapName;
 
@@ -67,12 +68,12 @@ namespace AnodyneSharp.MapData
                 //Default gets overridden by SetTileProperties later on
                 _tileObjects[i] = new Tile(_tiles.Width, _tiles.Height, (i >= 1), (i >= 1) ? Touching.ANY : Touching.NONE);
             }
-            TileData.SetTileProperties(name,_tileObjects);
+            TileData.SetTileProperties(name, _tileObjects);
 
             swapper = new(name);
 
             using Stream settingsStream = Utilities.AssemblyReaderUtil.GetStream($"Content.Maps.{name}.Settings.json");
-            if(settingsStream != null)
+            if (settingsStream != null)
             {
                 using var reader = new StreamReader(settingsStream);
                 settings = JsonSerializer.Deserialize<Settings.MapSettings>(reader.ReadToEnd());
@@ -81,9 +82,9 @@ namespace AnodyneSharp.MapData
 
         public void Draw(Rectangle bounds)
         {
-            DrawLayer(bounds, mapLayers[0], DrawOrder.MAP_BG);
-            DrawLayer(bounds, mapLayers[1], DrawOrder.MAP_BG2, true);
-            DrawLayer(bounds, mapLayers[2], DrawOrder.MAP_FG, true);
+            DrawLayer(bounds, Layer.BG, DrawOrder.MAP_BG);
+            DrawLayer(bounds, Layer.BG2, DrawOrder.MAP_BG2, true);
+            DrawLayer(bounds, Layer.FG, DrawOrder.MAP_FG, true);
         }
 
         public void Update()
@@ -102,17 +103,22 @@ namespace AnodyneSharp.MapData
         public Touching GetCollisionData(Vector2 pos)
         {
             Point p = ToMapLoc(pos);
-            Touching ret = _tileObjects[mapLayers[0].GetTile(p)].allowCollisions;
-            if(mapLayers[1].GetTile(p) != 0)
+            Touching ret = _tileObjects[GetTile(Layer.BG, p)].allowCollisions;
+            if (GetTile(Layer.BG2, p) != 0)
             {
-                ret |= _tileObjects[mapLayers[1].GetTile(p)].allowCollisions;
+                ret |= _tileObjects[GetTile(Layer.BG2, p)].allowCollisions;
             }
             return ret;
         }
 
         public int GetTile(Layer layer, Point pos)
         {
-            return mapLayers[(int)layer].GetTile(pos);
+            int current = mapLayers[(int)layer].GetTile(pos);
+            if (layer == Layer.BG && replacements.Replacements.TryGetValue(current, out int next))
+            {
+                return next;
+            }
+            return current;
         }
 
         public void ChangeTile(Layer layer, Point pos, int newVal)
@@ -134,7 +140,7 @@ namespace AnodyneSharp.MapData
         public SwapperControl.State CheckSwapper(Point tile)
         {
             //Not TileToWorld since swapper check needs to be in map coordinates
-            return swapper.CheckCoord(tile.ToVector2()*GameConstants.TILE_WIDTH);
+            return swapper.CheckCoord(tile.ToVector2() * GameConstants.TILE_WIDTH);
         }
 
         public void Collide(Entity e)
@@ -149,7 +155,7 @@ namespace AnodyneSharp.MapData
                     Point pos = new(x, y);
                     CollideTile(pos, _tileObjects[mapLayers[0].GetTile(pos)], e);
                     int bg2 = mapLayers[1].GetTile(pos);
-                    if(bg2 != 0)
+                    if (bg2 != 0)
                     {
                         //tile 0 never has collision in bg2(important for maps in which 0 does have collision in map, but is used as transparent in bg2)
                         CollideTile(pos, _tileObjects[bg2], e);
@@ -164,14 +170,18 @@ namespace AnodyneSharp.MapData
                 return;
 #nullable enable
             var priorities = settings.GetSettingPriorities(player_pos);
-            Sounds.SoundManager.PlaySong(MapSettings.Get(s => s.Music, priorities, ""));
+            //TODO: make music fade in/out
+            Sounds.SoundManager.PlaySong(MapSettings.Get(s => s.Music, priorities, ""),MapSettings.Get(s=>s.MusicVolume,priorities,1f));
             GlobalState.darkness.TargetAlpha(MapSettings.Get(s => s.DarknessAlpha, priorities, 0f));
+            GlobalState.darkness.SetTex(MapSettings.Get(s => s.Darkness, priorities, ""));
+            GlobalState.fgBlend.SetTex(MapSettings.Get(s => s.FG_Blend, priorities, ""));
+            replacements = new(MapSettings.Get(s => s.ReplaceTiles, priorities, ""));
 #nullable restore
         }
 
         public void OnTransitionStart()
         {
-            foreach(TileMap m in mapLayers)
+            foreach (TileMap m in mapLayers)
             {
                 m.OnTransitionStart();
             }
@@ -185,9 +195,9 @@ namespace AnodyneSharp.MapData
             }
         }
 
-        private void DrawLayer(Rectangle bounds, TileMap map, Drawing.DrawOrder layer, bool ignoreEmpty = false)
+        private void DrawLayer(Rectangle bounds, Layer map, Drawing.DrawOrder layer, bool ignoreEmpty = false)
         {
-            float z = DrawingUtilities.GetDrawingZ(layer,0);
+            float z = DrawingUtilities.GetDrawingZ(layer, 0);
 
             Point tl = ToMapLoc(new(bounds.X, bounds.Y));
             Point br = ToMapLoc(new(bounds.Right, bounds.Bottom));
@@ -195,7 +205,7 @@ namespace AnodyneSharp.MapData
             {
                 for (int x = tl.X - 1; x < br.X + 1; x++)
                 {
-                    int tile = map.GetTile(new(x, y));
+                    int tile = GetTile(map, new(x, y));
 
                     if (_tileObjects[tile].visible)
                     {
