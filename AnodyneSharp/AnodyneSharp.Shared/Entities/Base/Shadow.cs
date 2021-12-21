@@ -8,6 +8,7 @@ namespace AnodyneSharp.Entities
     {
         Normal,
         Big,
+        BigVertical,
         Tiny,
         RollerHorizontal,
         RollerVertical
@@ -33,6 +34,10 @@ namespace AnodyneSharp.Entities
                     break;
                 case ShadowType.Big:
                     SetTexture("28x10_shadow", 28, 10);
+                    maxFrame = 4;
+                    break;
+                case ShadowType.BigVertical:
+                    SetTexture("10x28_shadow", 10, 28);
                     maxFrame = 4;
                     break;
                 case ShadowType.Tiny:

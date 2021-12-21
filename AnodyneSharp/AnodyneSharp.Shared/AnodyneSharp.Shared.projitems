@@ -61,6 +61,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Cell\Chaser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Circus\Contort.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Circus\FirePillar.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Circus\Lion.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Crowd\Dog.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Crowd\Frog.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Crowd\Rotator.cs" />

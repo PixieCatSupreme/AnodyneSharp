@@ -1957,6 +1957,18 @@
 /processorParam:TextureFormat=Color
 /build:textures/sprites/decoration/scanlineoverlay.png
 
+#begin textures/sprites/decoration/shadows/10x28_shadow.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:textures/sprites/decoration/shadows/10x28_shadow.png
+
 #begin textures/sprites/decoration/shadows/28x10_shadow.png
 /importer:TextureImporter
 /processor:TextureProcessor
