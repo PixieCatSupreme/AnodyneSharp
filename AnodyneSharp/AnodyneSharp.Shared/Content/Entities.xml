@@ -1596,7 +1596,6 @@
     <Spike_Roller x="336" y="336" guid="2F2770C4-C27A-98A0-3B95-4E505D510567" frame="1"/>
     <Spike_Roller x="336" y="448" guid="87400CAB-7861-940B-EAF1-7E0984A117F3" frame="0"/>
     <Solid_Sprite x="560" y="416" guid="88032568-A3C5-DF55-58A6-89035EFA92B7" frame="0" type="tree" />
-    <Water_Anim x="656" y="16" guid="9F13972F-86B7-8E8B-588B-2F0B9B19B4CB" frame="32" p="2"/>
     <Key x="48" y="176" guid="B4D4386F-E439-9892-3194-0B1D900129EB" frame="0"/>
     <Event x="496" y="320" guid="1FA16F1F-10A2-9504-CF2D-BBF89B09F364" frame="7"/>
     <Stop_Marker x="80" y="416" guid="8978274A-E681-C6D9-E194-5CCBC1A75814" frame="0"/>
