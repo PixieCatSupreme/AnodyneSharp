@@ -457,19 +457,15 @@
     <Eye_Light x="912" y="352" guid="1716D04B-225B-35B0-C624-E0C3FD088729" frame="0"/>
     <Eye_Light x="912" y="400" guid="AEDB3CA4-7640-8E85-E400-FBC2B934BCD9" frame="0"/>
     <Eye_Light x="832" y="400" guid="77F48185-1FBB-3563-5FFD-E3F743BCC04B" frame="0"/>
-    <Event x="800" y="640" guid="9317BBDD-D22E-B187-75A6-E3DB2B2596B5" frame="0" type="0.8" />
     <Door x="872" y="784" guid="9637F785-B7F5-B68C-1051-F1C3A44CE7B5" frame="85" type="12" />
     <Door x="872" y="359" guid="90A7AF28-F0B1-EB44-40F0-23E7AADF9310" frame="79" type="4" />
     <Event x="385" y="693" guid="79FF736D-801D-3211-A23F-914EA18901DF" frame="5" type="entrance" />
     <Event x="720" y="704" guid="2506DEF9-B31E-FE9D-64E9-FF8350F47637" frame="5" type="entrance" />
     <Event x="657" y="37" guid="A453B8DA-572E-AED9-FF65-091467DC9E84" frame="5" type="entrance" />
-    <Event x="800" y="320" guid="3E2BCEA4-A26F-DF44-58CA-5E56C5273BF7" frame="0" type="0.8" />
   </map>
   <map name="BEDROOM" type="Stateless">
     <Dust x="400" y="528" guid="C860E8DA-60E1-4584-E73F-798F330B264B" frame="0"/>
     <Dust x="384" y="560" guid="A80E7998-29C9-9AD5-926B-BB35F99D0C62" frame="0"/>
-    <Event x="160" y="480" guid="42E4EFAA-CAF8-EB13-EAEE-53055194DA85" frame="0" type="0.8" />
-    <Event x="320" y="640" guid="2127C82F-CB8F-1DAB-A78B-16934FDF8407" frame="0" type="0.2" />
     <Eye_Light x="208" y="480" guid="EAFFFE64-7A61-948B-CAAA-03383298A484" frame="4"/>
     <Eye_Light x="272" y="480" guid="47DFA2B0-0169-1831-481C-26631A65F3EB" frame="4"/>
     <Eye_Light x="336" y="640" guid="9CAC6FBE-9A43-D723-3989-4166900CCD98" frame="4"/>
@@ -493,14 +489,8 @@
     <CrackedTile x="592" y="560" guid="02E48A4A-B10C-407C-DC63-8A66CD6B5B32" frame="0"/>
     <CrackedTile x="592" y="528" guid="C8D3BBD4-F74E-2886-6D77-465BF01960EE" frame="0"/>
     <CrackedTile x="608" y="544" guid="260AF256-FEB1-ED3B-2F5B-E1659E9E23EA" frame="0"/>
-    <Event x="320" y="496" guid="1F765932-45A9-F63D-1872-55912A9D69B7" frame="1" type="1.0" />
-    <Event x="160" y="496" guid="1577DE71-2DCE-F257-885D-C37F6F62D1FD" frame="1" type="0" />
-    <Event x="3" y="485" guid="7F4D50FF-2147-0E16-1917-0C91FCD0C85B" frame="1" type="1.0" />
     <Event x="432" y="768" guid="D8AA103B-37D6-55C2-F4BF-A2F93151872E" frame="2" type="1.0" />
     <Eye_Light x="448" y="640" guid="FDAA77F4-137D-E6AB-E905-BEEBC91E8407" frame="4"/>
-    <Event x="485" y="2" guid="50CB1B10-1764-AA7B-618D-007BDF58681E" frame="0" type="0.0" />
-    <Event x="512" y="0." guid="30223AB9-7016-6E00-6B5D-28B8770599D1" frame="1" type="0" />
-    <Event x="327" y="5" guid="AFE01BF7-7597-0338-FFC4-3718F2890075" frame="1" type="1.0" />
     <Pew_Laser x="175" y="109" guid="12711C7E-858D-FB1B-04B1-520D4FDD5A33" frame="1"/>
     <Pew_Laser x="289" y="38" guid="14FAE81A-5E99-010E-4FB2-804CB74EDDAE" frame="3"/>
     <Dust x="180" y="286" guid="9A8CA882-4176-09B5-57F7-550436DA59FD" frame="0"/>
@@ -510,23 +500,13 @@
     <Event x="496" y="128" guid="8CF33D24-F003-D65D-11C8-D59569CD9A28" frame="2"/>
     <Eye_Light x="640" y="48" guid="BFEFA54D-4749-F216-5BA4-F5E549644923" frame="5"/>
     <Eye_Light x="720" y="0." guid="6AA08318-8638-2D2B-4DB9-1DDD1A272B72" frame="5"/>
-    <Event x="640" y="0." guid="F5AAAABE-3DFB-C374-6294-21320759EAB5" frame="0" type="0.2" />
-    <Event x="640" y="480" guid="C384887C-29B7-B0A8-9BDF-2FE3AD62AACA" frame="0" type="1.0" />
     <CrackedTile x="928" y="80" guid="FDE9E4D9-53D4-A29F-D2FE-8D4E1B01493A" frame="0"/>
     <Pew_Laser x="928" y="288" guid="E316CCD7-0B96-15D2-BCEB-4F76E4451B02" frame="3"/>
     <Pew_Laser x="928" y="176" guid="42F6C3C0-D8A3-681C-CB52-B35D643D3BB9" frame="3"/>
     <Button x="928" y="208" guid="6CC3A27A-D418-61B6-3D8A-68A3B8E2108E" frame="1"/>
     <Button x="928" y="256" guid="31917407-8C09-A48C-D538-3DB902B7C1F7" frame="1"/>
-    <Event x="800" y="0." guid="58255FDB-2DE7-3D8D-CFCC-012BE3F298D0" frame="1" type="1.0" />
     <Eye_Light x="768" y="592" guid="DC670857-A445-F68A-2E29-4C0C221CFAD6" frame="5"/>
     <Eye_Light x="656" y="528" guid="00CF0DFB-0DBF-D196-1789-0178D392C9D6" frame="5"/>
-    <Event x="320" y="16" guid="CEE0E538-948A-9AB5-1CE7-45926AE15DE0" frame="0" type="0.2" />
-    <Event x="320" y="480" guid="EA5C339D-1E3D-EF12-7989-7FB3501565B2" frame="0" type="0.0" />
-    <Event x="160" y="640" guid="A2DF1F6E-B152-9576-87CF-BABB983321B2" frame="0" type="0.0" />
-    <Event x="0." y="496" guid="70366AD1-A0A4-3E11-A6B8-FD79708E468C" frame="0" type="0.0" />
-    <Event x="320" y="160" guid="6C525A0D-2F29-7FA1-39B0-8725AD2DAA29" frame="0" type="0.0" />
-    <Event x="816" y="0." guid="6ABEC6AF-3CAA-1F2B-4959-E840B861E41E" frame="0" type="0.0" />
-    <Event x="640" y="320" guid="0352924C-A1FE-69B6-99FE-904C22449E6D" frame="0" type="0.8" />
     <Dust x="394" y="561" guid="6CB77503-52A8-FD29-0FF6-FC1A30F45D08" frame="0"/>
     <Dust x="352" y="672" guid="8EF1E571-EE2B-E65C-424F-34CDFE46F757" frame="0"/>
     <Dust x="432" y="672" guid="41FCBDD7-9859-3467-4223-CC6C068C3A12" frame="0"/>
@@ -580,7 +560,6 @@
     <Event x="160" y="512" guid="9A5D80EB-1A90-548C-C9D5-59B5C351ED08" frame="6" type="bedroom_bounce" />
     <Event x="320" y="656" guid="8F721587-2704-6C87-6C4F-99D0EC35805D" frame="6" type="bedroom_bounce" />
     <Event x="320" y="32" guid="45B36C19-2761-FFBB-6E0B-8CD47B687742" frame="6" type="bedroom_bounce" />
-    <Event x="640" y="640" guid="83E7CC38-3F9E-72F6-4740-5AACDFC8EBEA" frame="0" type="1.0" />
   </map>
   <map name="BLANK" type="Stateful">
     <Door x="390" y="434" guid="F82E7C7D-9BE9-2A87-ECD5-9966F2799C1E" frame="6" type="4" />
@@ -1110,8 +1089,6 @@
     <Dust x="992" y="1184" guid="C291DA8F-2E3F-F5C3-36DD-4A4EE3E53A6D" frame="0"/>
     <Jump_Trigger x="1088" y="576" guid="D909791E-235E-3481-6AD2-9A7C0FD23EBA" frame="0" type="1" />
     <Event x="1248" y="496" guid="EF6734F9-2E47-28E6-D9BE-3C8E58A2BAAD" frame="2"/>
-    <Event x="1296" y="192" guid="720E90C0-BD5C-3AF0-B70E-74979583E702" frame="0" type="0.8" />
-    <Event x="1280" y="16" guid="67F89273-F5E7-49EA-0B64-FDCDF07BAF9D" frame="0" type="0.0" />
     <Dash_Pad x="528" y="112" guid="FA8A1223-4137-EC1A-B5EE-C51233BDFBF2" frame="0"/>
     <Dash_Pad x="528" y="128" guid="0CA8BEFA-EC12-F0E1-61AC-A5361195842D" frame="0"/>
   </map>
@@ -1714,12 +1691,6 @@
   </map>
   <map name="DRAWER" type="Stateless">
     <NPC x="336" y="416" guid="BB13E1CE-7DCD-6CB5-7E2C-7F327091B4AE" frame="9" type="generic" />
-    <Event x="160" y="640" guid="53D2D415-4126-0690-19BC-F86591B9F7FF" frame="0" type="0.0" />
-    <Event x="32" y="480" guid="C57B82A9-1AEB-431F-FFAC-31118949DC68" frame="0" type="1.0" />
-    <Event x="160" y="960" guid="79F2160E-E178-010B-F1DB-C6C8DD457F3F" frame="0" type="1.0" />
-    <Event x="640" y="1440" guid="1ADC0964-4E6A-40F5-B37B-21FC3202B412" frame="0" type="1.0" />
-    <Event x="320" y="1600" guid="F8BF4401-BB0D-485D-AE9F-8AC6B1C3E535" frame="0" type="1.0" />
-    <Event x="160" y="0." guid="2036D3DE-9FAE-877D-CEB9-5CBF0F4CEDBB" frame="0" type="1.0" />
     <Event x="160" y="16" guid="20C16619-9A8B-5470-577F-4FC53DA206F6" frame="6" type="player" />
     <Event x="32" y="496" guid="1171E90D-8E5F-B33A-1621-F46B3051F64C" frame="6" type="player" />
     <Event x="160" y="976" guid="405AC7B5-E544-DA35-C27D-F75DF8B7F792" frame="6" type="player" />
@@ -2905,10 +2876,6 @@
     <Button x="336" y="816" guid="0BD7DE14-7FEF-798A-E3AF-757CDC767C9C" frame="0"/>
     <Button x="448" y="816" guid="43EAF400-FBB9-D447-D1D8-184056A36873" frame="0"/>
     <Button x="448" y="928" guid="9C02AA66-2804-77CA-9B19-2206B2F93EFB" frame="0"/>
-    <Event x="0." y="800" guid="F92C897F-515F-59C8-F07E-AF27F6B5E051" frame="0" type="0.8" />
-    <Event x="160" y="800" guid="49FABD7D-32B1-DC71-E0F0-F496C95003F8" frame="0" type="0.8" />
-    <Event x="160" y="960" guid="7DDADFD0-E746-5A52-C744-D2A5F7E1EE2D" frame="0" type="0.8" />
-    <Event x="0." y="1120" guid="62780AEB-18CC-48F0-26DF-0AAB1358C531" frame="0" type="0.8" />
   </map>
   <map name="SUBURB" type="Stateful">
     <Suburb_Killer x="80" y="256" guid="08FA88AD-FF2E-2244-A732-2030DCD9718C" frame="0"/>
@@ -2989,8 +2956,6 @@
     <Suburb_Killer x="352" y="1168" guid="D4CA9F21-8185-3A70-47E7-018C53DA3A04" frame="0"/>
     <Suburb_Killer x="432" y="1168" guid="A5D14BC5-B605-8D91-A7D7-97AC96311E45" frame="0"/>
     <CardGate x="752" y="544" guid="56910455-197C-A23C-B798-40EE51AAA378" frame="16" p="2"/>
-    <Music_Event x="0." y="976" guid="762A206A-316C-8F21-E51F-F3C7F9D79FC5" frame="0"/>
-    <Music_Event x="480" y="816" guid="910EBB0E-EA8E-593C-A33E-FD7CF00E51EA" frame="0"/>
     <Suburb_Indoors x="192" y="848" guid="C9984B3F-3F63-BBF8-A8C1-146EEAB635E8" frame="0"/>
     <Suburb_Indoors x="544" y="848" guid="81E3FBFB-409F-72A5-0B88-BC1B325F32A9" frame="1"/>
     <Suburb_Indoors x="592" y="896" guid="43A31303-7B4A-3417-83D1-E8B2593FC047" frame="2"/>
@@ -3160,20 +3125,13 @@
   </map>
   <map name="STREET" type="Stateless">
     <Solid_Sprite x="513" y="161" guid="4B64DDE4-FE45-7619-75AC-14F12D5AC399" frame="5" type="blocker" />
-    <Event x="340" y="177" guid="5A4C81F0-81F1-A3D9-310D-644701DA60E9" frame="1" type="1.0" />
-    <Event x="178" y="192" guid="456958CD-9AF6-A913-FC30-C74651C2DDF6" frame="0" type="0.0" />
     <Dust x="434" y="208" guid="C886CEC1-861B-94CC-B94C-3F49472CACD6" frame="0"/>
     <Dust x="402" y="224" guid="CA8453C7-EBC2-72DE-03BA-1C70824E6A69" frame="0"/>
-    <Event x="166" y="333" guid="9AF92680-D351-1E5B-8EEE-4DCEDE2A6128" frame="1" type="0" />
-    <Event x="178" y="352" guid="6FE535A2-6677-AD0D-C77C-9308BD964CB7" frame="0" type="0.6" />
-    <Event x="162" y="512" guid="6E616417-84B8-D9CA-1C30-2B76EBAE656C" frame="0" type="0.0" />
     <CrackedTile x="178" y="528" guid="D3ACA89C-121E-6F88-FDC4-CF3508FAB1F1" frame="1"/>
     <CrackedTile x="290" y="528" guid="184B4D2D-D847-0CC1-2252-4A421CC15015" frame="1"/>
     <CrackedTile x="178" y="592" guid="8CB39FCB-CF2B-5A41-5AC4-E11E3EFD7849" frame="1"/>
     <Button x="578" y="704" guid="F9C13721-FD8B-6A55-0D1F-6B29CC6F68F6" frame="0"/>
-    <Event x="174" y="812" guid="EAF8F4C4-6C56-2829-A846-5800079BB16B" frame="0" type="0.0" />
     <Event x="224" y="848" guid="B6826E40-1473-1010-E1A8-3326D2FFA2CF" frame="2"/>
-    <Event x="175" y="979" guid="A29D45D7-3DD2-F40A-39AD-53F6546BDF6F" frame="0" type="0.6" />
   </map>
   <map name="TERMINAL" type="Stateless">
     <Sage x="384" y="704" guid="97C26EF9-14DF-D0E8-075F-1A5C5BEB7D42" frame="0" p="2"/>
@@ -3205,8 +3163,6 @@
     <solid_tile x="384" y="0." guid="D57062D0-B046-A55C-0CFF-4AA235C98885" frame="0"/>
     <NPC x="448" y="688" guid="892260FB-FA7A-D4D4-4623-C99A60464E49" frame="0" type="statue" />
     <CardGate x="384" y="672" guid="C8CE6E18-CF07-180B-A550-9DC808A2F7E3" frame="36" p="2"/>
-    <Music_Event x="320" y="640" guid="3F3996C3-D0F5-AFC4-1FA0-49A45B4D3A75" frame="1" type="SageDead" />
-    <Music_Event x="320" y="0." guid="C77E5AEE-976F-3493-1465-804D9AA64C4C" frame="1" type="SageDead" />
   </map>
   <map name="WINDMILL" type="Stateless">
     <Solid_Sprite x="211" y="1277" guid="D8D58A24-BA47-AD5F-60CF-D77FDD0BD2CE" frame="5" type="blocker" />
@@ -3228,7 +3184,5 @@
     <Door x="400" y="16" guid="6504368E-1505-807F-B1FE-B8F6279061C0" frame="82" type="5" />
     <solid_tile x="400" y="0." guid="1A904A6C-AF0D-D1F3-055E-78003489226D" frame="0"/>
     <Door x="231" y="1270" guid="7DB6049C-AA29-8E15-FF51-5FE62B1AC43E" frame="34" type="10" />
-    <Music_Event x="160" y="1120" guid="F62C45F9-334C-DBB9-8303-F65EEF59550F" frame="1" type="WindmillOpened" />
-    <Music_Event x="160" y="960" guid="056F69C1-E5FA-42B3-5B2D-161FB21A188E" frame="1" type="WindmillOpened" />
   </map>
 </root>

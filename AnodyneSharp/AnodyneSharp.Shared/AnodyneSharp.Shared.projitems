@@ -80,7 +80,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Suburb\SuburbKiller.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\DoorToggle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\FadeSwitchSong.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\MusicEvent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\ReflectionFollower.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\StaticOff.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\DashPad.cs" />
@@ -129,7 +128,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Player\Transformer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameEvents\EntityEventRegistry.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\Checkpoint.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\DarknessChange.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\VolumeEvent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Explosion.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\DungeonStatue.cs" />
@@ -403,6 +401,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Content\effects\blackwhite.fx" />
+    <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\shadows\10x28_shadow.png" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\WINDMILL\Settings.json" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\TERMINAL\Settings.json" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\SUBURB\Settings.json" />
