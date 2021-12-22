@@ -12,19 +12,5 @@ namespace AnodyneSharp.Drawing.Effects
         {
             cutoff = DrawingUtilities.GetDrawingZ(DrawOrder.FG_SPRITES, 0);
         }
-
-        public override void MapChange(string map)
-        {
-            switch (map)
-            {
-                case "SUBURB":
-                    tex = ResourceManager.GetTexture("suburb_fg_overlay");
-                    hard_light = false;
-                    break;
-                default:
-                    tex = null;
-                    break;
-            }
-        }
     }
 }

@@ -378,11 +378,6 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\OVERWORLD\TileData.col" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Content\Maps\BEDROOM\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Content\Maps\CLIFF\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Content\Maps\CROWD\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Content\Maps\REDSEA\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Content\Maps\STREET\" />
     <Folder Include="$(MSBuildThisFileDirectory)Entities\Gadget\Treasures\Base\" />
     <Folder Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Fields\" />
     <Folder Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Cliff\" />
@@ -408,6 +403,25 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Content\effects\blackwhite.fx" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\WINDMILL\Settings.json" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\TERMINAL\Settings.json" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\SUBURB\Settings.json" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\STREET\Settings.json" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\SPACE\Settings.json" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\REDSEA\Settings.json" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\REDCAVE\Settings.json" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\FIELDS\Settings.json" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\DRAWER\Settings.json" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\DEBUG\Settings.json" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\CROWD\Settings.json" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\CLIFF\Settings.json" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\CIRCUS\Settings.json" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\CELL\Settings.json" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\BLUE\Settings.json" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\BLANK\Settings.json" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\BEDROOM\Settings.json" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\BEACH\Settings.json" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\APARTMENT\Settings.json" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\OVERWORLD\Settings.json" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\NEXUS\Settings.json" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\HOTEL\Settings.json" />

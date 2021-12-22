@@ -891,11 +891,7 @@ namespace AnodyneSharp.States
             _player.Position = _player.grid_entrance = GlobalState.PLAYER_WARP_TARGET;
             _player.facing = GlobalState.NewMapFacing ?? _player.facing;
 
-            PlayMapMusic();
-            GlobalState.fgBlend.MapChange(GlobalState.CURRENT_MAP_NAME);
-            GlobalState.darkness.MapChange(GlobalState.CURRENT_MAP_NAME);
             GlobalState.staticEffect.MapChange(GlobalState.CURRENT_MAP_NAME);
-            GlobalState.extraBlend.MapChange(GlobalState.CURRENT_MAP_NAME);
             SoundManager.SetAmbienceVolume(1f);
 
             _map.ReloadSettings(_player.Position);

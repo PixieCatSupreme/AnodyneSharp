@@ -11,6 +11,7 @@ using System.IO;
 using System.Text;
 using AnodyneSharp.MapData.Settings;
 using System.Text.Json;
+using AnodyneSharp.Logging;
 
 namespace AnodyneSharp.MapData
 {
@@ -164,17 +165,25 @@ namespace AnodyneSharp.MapData
             }
         }
 
-        public void ReloadSettings(Vector2 player_pos)
+        public void ReloadSettings(Vector2 player_pos, bool graphics_only = false)
         {
             if (settings is null)
+            {
+                DebugLogger.AddCritical($"Missing settings file for {mapName}!",false);
                 return;
+            }
 #nullable enable
             var priorities = settings.GetSettingPriorities(player_pos);
-            //TODO: make music fade in/out
-            Sounds.SoundManager.PlaySong(MapSettings.Get(s => s.Music, priorities, ""),MapSettings.Get(s=>s.MusicVolume,priorities,1f));
-            GlobalState.darkness.TargetAlpha(MapSettings.Get(s => s.DarknessAlpha, priorities, 0f));
-            GlobalState.darkness.SetTex(MapSettings.Get(s => s.Darkness, priorities, ""));
+            if (!graphics_only)
+            {
+                //TODO: make music fade in/out
+                Sounds.SoundManager.PlaySong(MapSettings.Get(s => s.Music, priorities, ""), MapSettings.Get(s => s.MusicVolume, priorities, 1f));
+            }
+            string darkness = MapSettings.Get(s => s.Darkness, priorities, "");
+            GlobalState.darkness.TargetAlpha(MapSettings.Get(s => s.DarknessAlpha, priorities, darkness == "" ? 0f : 1f));
+            GlobalState.darkness.SetTex(darkness);
             GlobalState.fgBlend.SetTex(MapSettings.Get(s => s.FG_Blend, priorities, ""));
+            GlobalState.extraBlend.SetTex(MapSettings.Get(s => s.ExtraBlend, priorities, ""));
             replacements = new(MapSettings.Get(s => s.ReplaceTiles, priorities, ""));
 #nullable restore
         }

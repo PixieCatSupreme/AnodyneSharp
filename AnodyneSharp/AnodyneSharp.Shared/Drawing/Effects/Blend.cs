@@ -44,20 +44,5 @@ namespace AnodyneSharp.Drawing.Effects
             tex = ResourceManager.GetTexture(texName, allowUnknown: true);
             hard_light = texName.EndsWith("hardlight");
         }
-
-        public virtual void MapChange(string mapName)
-        {
-            mapName = mapName.ToLower();
-            tex = ResourceManager.GetTexture(mapName + "_extra_overlay", allowUnknown: true);
-            if (tex != null)
-            {
-                hard_light = false;
-            }
-            else
-            {
-                tex = ResourceManager.GetTexture(mapName + "_extra_hardlight", allowUnknown: true);
-                hard_light = true;
-            }
-        }
     }
 }

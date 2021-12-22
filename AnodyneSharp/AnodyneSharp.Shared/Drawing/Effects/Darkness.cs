@@ -162,29 +162,5 @@ namespace AnodyneSharp.Drawing.Effects
             darkness = ResourceManager.GetTexture(texName, allowUnknown: true);
             hard_light = texName.EndsWith("hardlight");
         }
-
-        public void MapChange(string mapName)
-        {
-            alpha = 1;
-
-            mapName = mapName.ToLower();
-            darkness = ResourceManager.GetTexture(mapName + "_overlay", allowUnknown: true);
-            if (darkness != null)
-            {
-                hard_light = false;
-            }
-            else
-            {
-                darkness = ResourceManager.GetTexture(mapName + "_hardlight", allowUnknown: true);
-                hard_light = true;
-            }
-
-            if (darkness == null)
-            {
-                alpha = 0;
-            }
-
-            target_alpha = alpha;
-        }
     }
 }

@@ -2,7 +2,7 @@
 <project>
   <version/>
   <bgColor>0xcccccc</bgColor>
-  <viewPos x="98" y="228"/>
+  <viewPos x="98" y="34"/>
   <firstLayersTop>false</firstLayersTop>
   <spriteEntries currentId="170">
     <group name="Events SL" idx="1" open="false">
@@ -1525,6 +1525,12 @@
           </properties>
         </shape>
       </shapelayer>
+      <shapelayer name="Settings" id="111" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+        <properties>
+          <type typeof="String" name="Music" value="apartment" hidden="false"/>
+          <type typeof="String" name="Darkness" value="apartment_overlay" hidden="false"/>
+        </properties>
+      </shapelayer>
     </group>
     <group name="BEACH" id="18" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
       <maplayer name="BG" id="6" xScroll="1" yScroll="1" x="0" y="0" width="110" height="70" tileset="textures/tilemaps/beach_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
@@ -1757,6 +1763,12 @@
           <properties/>
         </sprite>
       </spritelayer>
+      <shapelayer name="Settings" id="112" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+        <properties>
+          <type typeof="String" name="Music" value="beach" hidden="false"/>
+          <type typeof="String" name="Darkness" value="beach_hardlight" hidden="false"/>
+        </properties>
+      </shapelayer>
     </group>
     <group name="BEDROOM" id="8" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
       <maplayer name="BG" id="9" xScroll="1" yScroll="1" x="0" y="0" width="70" height="50" tileset="textures/tilemaps/bedroom_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
@@ -2210,6 +2222,11 @@
           <properties/>
         </sprite>
       </spritelayer>
+      <shapelayer name="Settings" id="113" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+        <properties>
+          <type typeof="String" name="Music" value="bedroom" hidden="false"/>
+        </properties>
+      </shapelayer>
     </group>
     <group name="BLANK" id="14" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
       <maplayer name="BG" id="12" xScroll="1" yScroll="1" x="0" y="0" width="60" height="80" tileset="textures/tilemaps/blank_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
@@ -2457,6 +2474,11 @@
             <type typeof="String" name="type" value="Disallow" hidden="false"/>
           </properties>
         </shape>
+      </shapelayer>
+      <shapelayer name="Settings" id="114" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+        <properties>
+          <type typeof="String" name="Music" value="blank" hidden="false"/>
+        </properties>
       </shapelayer>
     </group>
     <group name="BLUE" id="66" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
@@ -2707,6 +2729,12 @@
           <properties/>
         </sprite>
       </spritelayer>
+      <shapelayer name="Settings" id="115" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+        <properties>
+          <type typeof="String" name="Music" value="blue" hidden="false"/>
+          <type typeof="String" name="Darkness" value="blue_overlay" hidden="false"/>
+        </properties>
+      </shapelayer>
     </group>
     <group name="CELL" id="50" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
       <maplayer name="BG" id="20" xScroll="1" yScroll="1" x="0" y="0" width="80" height="90" tileset="textures/tilemaps/cell_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
@@ -3090,6 +3118,11 @@
             <type typeof="String" name="type" value="Disallow" hidden="false"/>
           </properties>
         </shape>
+      </shapelayer>
+      <shapelayer name="Settings" id="116" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+        <properties>
+          <type typeof="String" name="Music" value="cell" hidden="false"/>
+        </properties>
       </shapelayer>
     </group>
     <group name="CIRCUS" id="94" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
@@ -3821,6 +3854,11 @@
           </properties>
         </shape>
       </shapelayer>
+      <shapelayer name="Settings" id="117" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+        <properties>
+          <type typeof="String" name="Music" value="circus" hidden="false"/>
+        </properties>
+      </shapelayer>
     </group>
     <group name="CLIFF" id="74" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
       <maplayer name="BG" id="28" xScroll="1" yScroll="1" x="0" y="0" width="90" height="80" tileset="textures/tilemaps/cliff_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
@@ -4015,6 +4053,12 @@
           <properties/>
         </sprite>
       </spritelayer>
+      <shapelayer name="Settings" id="118" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+        <properties>
+          <type typeof="String" name="Music" value="cliff" hidden="false"/>
+          <type typeof="String" name="Darkness" value="cliff_overlay" hidden="false"/>
+        </properties>
+      </shapelayer>
     </group>
     <group name="CROWD" id="90" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
       <maplayer name="BG" id="31" xScroll="1" yScroll="1" x="0" y="0" width="100" height="80" tileset="textures/tilemaps/crowd_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
@@ -4698,8 +4742,14 @@
           <properties/>
         </sprite>
       </spritelayer>
+      <shapelayer name="Settings" id="119" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+        <properties>
+          <type typeof="String" name="Music" value="crowd" hidden="false"/>
+          <type typeof="String" name="Darkness" value="crowd_overlay" hidden="false"/>
+        </properties>
+      </shapelayer>
     </group>
-    <group name="DEBUG" id="24" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true" selected="true">
+    <group name="DEBUG" id="24" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
       <maplayer name="BG" id="35" xScroll="1" yScroll="1" x="0" y="0" width="60" height="100" tileset="textures/tilemaps/debug_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1</row>
         <row>1,2,2,2,2,2,2,2,2,2,10,10,10,10,1,10,10,10,10,10,10,10,10,10,10,10,10,10,3,3,3,3,3,3,3,3,3,3,3,3,10,10,10,10,10,10,10,10,10,1,1,10,10,10,10,10,10,10,10,1</row>
@@ -5102,6 +5152,7 @@
           </properties>
         </shape>
       </shapelayer>
+      <shapelayer name="Settings" id="120" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false"/>
     </group>
     <group name="DRAWER" id="46" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
       <maplayer name="BG" id="41" xScroll="1" yScroll="1" x="0" y="0" width="60" height="110" tileset="textures/tilemaps/drawer_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
@@ -5303,6 +5354,11 @@
             <type typeof="String" name="type" value="Disallow" hidden="false"/>
           </properties>
         </shape>
+      </shapelayer>
+      <shapelayer name="Settings" id="121" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+        <properties>
+          <type typeof="String" name="Music" value="drawer" hidden="false"/>
+        </properties>
       </shapelayer>
     </group>
     <group name="FIELDS" id="16" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
@@ -5894,6 +5950,11 @@
           <properties/>
         </sprite>
       </spritelayer>
+      <shapelayer name="Settings" id="122" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+        <properties>
+          <type typeof="String" name="Music" value="fields" hidden="false"/>
+        </properties>
+      </shapelayer>
     </group>
     <group name="FOREST" id="78" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
       <maplayer name="BG" id="49" xScroll="1" yScroll="1" x="0" y="0" width="70" height="90" tileset="textures/tilemaps/forest_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
@@ -6344,6 +6405,12 @@
         </sprite>
         <sprite guid="6E88EAED-2E86-1E64-C025-B0A90E36DEB4" x="32" y="32" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="49"/>
       </spritelayer>
+      <shapelayer name="Settings" id="123" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+        <properties>
+          <type typeof="String" name="Music" value="forest" hidden="false"/>
+          <type typeof="String" name="FG_Blend" value="forest_fg_overlay" hidden="false"/>
+        </properties>
+      </shapelayer>
     </group>
     <group name="GO" id="54" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
       <maplayer name="BG" id="54" xScroll="1" yScroll="1" x="0" y="0" width="50" height="60" tileset="textures/tilemaps/go_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
@@ -6595,6 +6662,7 @@
       <shapelayer name="Settings" id="59" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <properties>
           <type typeof="String" name="Music" value="go" hidden="false"/>
+          <type typeof="String" name="Darkness" value="go_hardlight" hidden="false"/>
         </properties>
         <shape guid="E934756A-B5BE-4D28-6394-A5DA6E415383" type="square" x="0" y="0" Z="0" angle="0" width="160.00" height="160.00" scaleX="3.200" scaleY="3.200">
           <properties>
@@ -6817,7 +6885,6 @@
         <shape guid="EF29F2B3-8BA5-B434-4157-92CC7C5D72C9" x="192" y="-112" Z="0" angle="0" width="112.00" height="50.00" text="HappyStarted" family="system" fontsize="8" align="center" color="16777215">
           <properties>
             <type typeof="String" name="Darkness" value="happy_hardlight" hidden="false"/>
-            <type typeof="Float" name="DarknessAlpha" value="1" hidden="false"/>
             <type typeof="String" name="Music" value="happy" hidden="false"/>
             <type typeof="String" name="ReplaceTiles" value="20-21;30-31" hidden="false"/>
           </properties>
@@ -7794,7 +7861,6 @@
         <properties>
           <type typeof="String" name="Music" value="hotel" hidden="false"/>
           <type typeof="String" name="Darkness" value="hotel_overlay" hidden="false"/>
-          <type typeof="Float" name="DarknessAlpha" value="1" hidden="false"/>
         </properties>
         <shape guid="D47E3502-4F81-F226-F9D9-E1E0833DC139" type="square" x="0" y="0" Z="0" angle="0" width="960.00" height="160.00" scaleX="19.200" scaleY="3.200">
           <properties>
@@ -8074,7 +8140,6 @@
         <properties>
           <type typeof="String" name="Music" value="nexus" hidden="false"/>
           <type typeof="String" name="Darkness" value="nexus_overlay" hidden="false"/>
-          <type typeof="Float" name="DarknessAlpha" value="1" hidden="false"/>
         </properties>
       </shapelayer>
     </group>
@@ -9327,6 +9392,12 @@
           <properties/>
         </sprite>
       </spritelayer>
+      <shapelayer name="Settings" id="124" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+        <properties>
+          <type typeof="String" name="Music" value="redcave" hidden="false"/>
+          <type typeof="String" name="Darkness" value="redcave_overlay" hidden="false"/>
+        </properties>
+      </shapelayer>
     </group>
     <group name="REDSEA" id="20" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
       <maplayer name="BG" id="84" xScroll="1" yScroll="1" x="0" y="0" width="70" height="70" tileset="textures/tilemaps/redsea_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
@@ -9660,6 +9731,12 @@
           <properties/>
         </sprite>
       </spritelayer>
+      <shapelayer name="Settings" id="125" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+        <properties>
+          <type typeof="String" name="Music" value="redsea" hidden="false"/>
+          <type typeof="String" name="Darkness" value="redsea_hardlight" hidden="false"/>
+        </properties>
+      </shapelayer>
     </group>
     <group name="SUBURB" id="70" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
       <maplayer name="BG" id="88" xScroll="1" yScroll="1" x="0" y="0" width="60" height="80" tileset="textures/tilemaps/suburb_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
@@ -10008,6 +10085,13 @@
             <type typeof="String" name="type" value="Disallow" hidden="false"/>
           </properties>
         </shape>
+      </shapelayer>
+      <shapelayer name="Settings" id="126" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+        <properties>
+          <type typeof="String" name="Music" value="suburb" hidden="false"/>
+          <type typeof="String" name="FG_Blend" value="suburb_fg_overlay" hidden="false"/>
+          <type typeof="String" name="ExtraBlend" value="suburb_extra_overlay" hidden="false"/>
+        </properties>
       </shapelayer>
     </group>
     <group name="SPACE" id="42" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
@@ -10492,6 +10576,12 @@
           </properties>
         </shape>
       </shapelayer>
+      <shapelayer name="Settings" id="128" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+        <properties>
+          <type typeof="String" name="Music" value="space" hidden="false"/>
+          <type typeof="String" name="Darkness" value="space_overlay" hidden="false"/>
+        </properties>
+      </shapelayer>
     </group>
     <group name="STREET" id="12" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
       <maplayer name="BG" id="98" xScroll="1" yScroll="1" x="0" y="0" width="50" height="70" tileset="textures/tilemaps/street_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false" sharesTileProps="true">
@@ -10799,6 +10889,12 @@
           <properties/>
         </sprite>
       </spritelayer>
+      <shapelayer name="Settings" id="129" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+        <properties>
+          <type typeof="String" name="Music" value="street" hidden="false"/>
+          <type typeof="String" name="ExtraBlend" value="street_dec_overlay" hidden="false"/>
+        </properties>
+      </shapelayer>
     </group>
     <group name="TERMINAL" id="62" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
       <maplayer name="BG" id="103" xScroll="1" yScroll="1" x="0" y="0" width="50" height="50" tileset="textures/tilemaps/terminal_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
@@ -10966,8 +11062,14 @@
           <properties/>
         </sprite>
       </spritelayer>
+      <shapelayer name="Settings" id="130" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+        <properties>
+          <type typeof="String" name="Music" value="terminal" hidden="false"/>
+          <type typeof="String" name="Darkness" value="terminal_overlay" hidden="false"/>
+        </properties>
+      </shapelayer>
     </group>
-    <group name="WINDMILL" id="82" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
+    <group name="WINDMILL" id="82" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true" selected="true">
       <maplayer name="BG" id="107" xScroll="1" yScroll="1" x="0" y="0" width="30" height="80" tileset="textures/tilemaps/windmill_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0,0,0,0,61,61,61,61,61,61,61,61,61,61,61,61,65,60,60,0,60,60,60,60</row>
         <row>0,0,0,0,0,0,0,0,0,0,61,61,61,61,61,61,61,61,61,61,61,64,60,60,60,0,60,60,60,60</row>
@@ -11183,6 +11285,12 @@
           <properties/>
         </sprite>
       </spritelayer>
+      <shapelayer name="Settings" id="131" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+        <properties>
+          <type typeof="String" name="Music" value="windmill" hidden="false"/>
+          <type typeof="String" name="Darkness" value="windmill_overlay" hidden="false"/>
+        </properties>
+      </shapelayer>
     </group>
   </layers>
   <layerTemplates/>

@@ -16,6 +16,7 @@ namespace AnodyneSharp.MapData.Settings
         public string? Darkness { get; set; }
         public float? DarknessAlpha { get; set; }
         public string? FG_Blend { get; set; }
+        public string? ExtraBlend { get; set; }
         public string? ReplaceTiles { get; set; }
     }
 

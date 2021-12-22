@@ -1,1 +1,1 @@
-{"Settings":{"Music":"go"},"Events":[],"Areas":[{"X":0,"Y":0,"Width":160,"Height":160,"Settings":{"DarknessAlpha":1}},{"X":0,"Y":0,"Width":162,"Height":322,"Settings":{"MusicVolume":0}}]}
+{"Settings":{"Music":"go","Darkness":"go_hardlight"},"Events":[],"Areas":[{"X":0,"Y":0,"Width":160,"Height":160,"Settings":{"DarknessAlpha":1}},{"X":0,"Y":0,"Width":162,"Height":322,"Settings":{"MusicVolume":0}}]}
