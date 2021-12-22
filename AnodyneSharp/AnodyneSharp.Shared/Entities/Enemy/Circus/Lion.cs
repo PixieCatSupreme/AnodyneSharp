@@ -39,6 +39,21 @@ namespace AnodyneSharp.Entities.Enemy.Circus
             }
         }
 
+        private class ChargeWalkState : TimerState
+        {
+            public ChargeWalkState()
+            {
+                AddTimer(1.4f, "WalkTimer");
+            }
+        }
+        private class ChargeWarnState : TimerState
+        {
+            public ChargeWarnState()
+            {
+                AddTimer(0.6f, "WarnTimer");
+            }
+        }
+
         private const int MaxShots = 18;
 
         private EntityPool<Fireball> fireballs;
@@ -61,8 +76,8 @@ namespace AnodyneSharp.Entities.Enemy.Circus
             fireballs = new EntityPool<Fireball>(10, () => new Fireball());
             _parabola = new Parabola_Thing(this, 12, 1);
 
-            _shadowV = new Shadow(this, new Vector2(-2, -21), ShadowType.BigVertical);
-            _shadowH = new Shadow(this, new Vector2(0, -12), ShadowType.Big);
+            _shadowV = new Shadow(this, new Vector2(8, -6), ShadowType.BigVertical);
+            _shadowH = new Shadow(this, new Vector2(8, -6), ShadowType.Big);
 
             AddAnimation("walk_l", CreateAnimFrameArray(0, 1), 5);
             AddAnimation("walk_r", CreateAnimFrameArray(0, 1), 5);
@@ -96,7 +111,7 @@ namespace AnodyneSharp.Entities.Enemy.Circus
                         }
                         else if (r < 0.55)
                         {
-                            //_state.ChangeState("Charge");
+                            _state.ChangeState("ChargeWalk");
                         }
                         else
                         {
@@ -162,6 +177,75 @@ namespace AnodyneSharp.Entities.Enemy.Circus
                         GetHit();
                         _shotsFired = MaxShots;
                     })
+                .End()
+                .State<ChargeWalkState>("ChargeWalk")
+                    .Enter((state) =>
+                    {
+                        velocity.X = 20;
+                        velocity.Y = 0;
+
+                        if (_player.Position.X > Position.X)
+                        {
+                            facing = Facing.RIGHT;
+
+                            velocity *= -1;
+                        }
+                        else
+                        {
+                            facing = Facing.LEFT;
+                        }
+
+                        PlayFacing("walk");
+                    })
+                    .Event("WalkTimer", (state) => _state.ChangeState("ChargeWarn"))
+                    .Event<CollisionEvent<Player>>("Player", (state, p) => p.entity.ReceiveDamage(1))
+                    .Event<CollisionEvent<Broom>>("Hit", (state, b) => GetHit())
+                .End()
+                .State<ChargeWarnState>("ChargeWarn")
+                    .Enter((state) =>
+                    {
+                        velocity.X = 10;
+                        velocity.Y = 0;
+
+                        if (facing == Facing.LEFT)
+                        {
+                            velocity.X *= -1;
+                        }
+
+                        PlayFacing("warn");
+                    })
+                    .Event("WarnTimer", (state) => _state.ChangeState("Charge"))
+                    .Event<CollisionEvent<Player>>("Player", (state, p) => p.entity.ReceiveDamage(1))
+                    .Event<CollisionEvent<Broom>>("Hit", (state, b) => GetHit())
+                .End()
+                .State<ChargeWarnState>("Charge")
+                    .Enter((state) =>
+                    {
+                        MoveTowards(_player.Position, 110);
+
+                        FaceTowards(_player.Position);
+
+                        shadow.visible = true;
+
+                        PlayFacing("pounce");
+                    })
+                    .Update((state, time) =>
+                    {
+                        if (_parabola.Tick() || (touching !=  Touching.NONE && offset.Y > 4))
+                        {
+                            offset.Y = 0;
+                            _parabola.ResetTime();
+
+                            _shadowH.visible = false;
+
+                            PlayFacing("walk");
+
+                            _state.ChangeState("Pace");
+                        }
+                    })
+                    .Exit((state) => velocity = Vector2.Zero)
+                    .Event<CollisionEvent<Player>>("Player", (state, p) => p.entity.ReceiveDamage(1))
+                    .Event<CollisionEvent<Broom>>("Hit", (state, b) => GetHit())
                 .End()
                 .State<State>("Dying")
                     .Update((state, time) =>
