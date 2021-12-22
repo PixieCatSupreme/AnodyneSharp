@@ -17,27 +17,47 @@ namespace AnodyneSharp.Entities.Enemy.Circus
     {
         private class PaceState : TimerState
         {
-            public bool move_frame_sound_sync = false;
-            public DateTime exit_time = DateTime.Now;
             public PaceState()
             {
                 AddTimer(0.8f, "PaceTimer");
             }
         }
 
+        private class ShootWarningState : TimerState
+        {
+            public ShootWarningState()
+            {
+                AddTimer(0.8f, "WarningTimer");
+            }
+        }
+
+        private class ShootState : TimerState
+        {
+            public ShootState()
+            {
+                AddTimer(0.165f, "ShootTimer");
+            }
+        }
+
+        private const int MaxShots = 18;
+
         private EntityPool<Fireball> fireballs;
         private Parabola_Thing _parabola;
 
         private int _health = 4;
+        private int _shotsFired = 0;
         private IState _state;
 
         private Shadow _shadowV;
         private Shadow _shadowH;
 
+        private Player _player;
 
         public Lion(EntityPreset preset, Player player)
             : base(preset.Position, "lion", 32, 32, DrawOrder.ENTITIES)
         {
+            _player = player;
+
             fireballs = new EntityPool<Fireball>(10, () => new Fireball());
             _parabola = new Parabola_Thing(this, 12, 1);
 
@@ -72,7 +92,7 @@ namespace AnodyneSharp.Entities.Enemy.Circus
 
                         if (r < 0.25)
                         {
-                            //_state.ChangeState("Shoot");
+                            _state.ChangeState("ShootWarning");
                         }
                         else if (r < 0.55)
                         {
@@ -100,9 +120,47 @@ namespace AnodyneSharp.Entities.Enemy.Circus
                     })
                     .Event<CollisionEvent<Player>>("Player", (state, p) => p.entity.ReceiveDamage(1))
                     .Event<CollisionEvent<Broom>>("Hit", (state, b) => GetHit())
-                    .Exit((s) =>
+                .End()
+                .State<ShootWarningState>("ShootWarning")
+                    .Enter((state) =>
                     {
-                        s.exit_time = DateTime.Now;
+                        velocity = Vector2.Zero;
+
+                        facing = _player.Position.X > Position.X + 16 ? Facing.RIGHT : Facing.LEFT;
+
+                        PlayFacing("warn");
+                    })
+                    .Event("WarningTimer", (state) => _state.ChangeState("Shoot"))
+                    .Event<CollisionEvent<Player>>("Player", (state, p) => p.entity.ReceiveDamage(1))
+                    .Event<CollisionEvent<Broom>>("Hit", (state, b) => GetHit())
+                .End()
+                .State<ShootState>("Shoot")
+                    .Update((state, time) =>
+                    {
+                        FaceTowards(_player.Position);
+
+                        PlayFacing("shoot");
+                    })
+                    .Event("ShootTimer", (state) =>
+                    {
+                        if (_shotsFired < MaxShots)
+                        {
+                            if (fireballs.Spawn(b => b.Spawn(this)))
+                            {
+                                _shotsFired++;
+                            }
+                        }
+                        else
+                        {
+                            _shotsFired = 0;
+                            _state.ChangeState("Pace");
+                        }
+                    })
+                    .Event<CollisionEvent<Player>>("Player", (state, p) => p.entity.ReceiveDamage(1))
+                    .Event<CollisionEvent<Broom>>("Hit", (state, b) =>
+                    {
+                        GetHit();
+                        _shotsFired = MaxShots;
                     })
                 .End()
                 .State<State>("Dying")
@@ -184,7 +242,7 @@ namespace AnodyneSharp.Entities.Enemy.Circus
                 return;
             }
 
-            SoundManager.PlaySoundEffect("generic_hurt");
+            SoundManager.PlaySoundEffect("broom_hit");
 
             Flicker(1);
 
@@ -217,33 +275,35 @@ namespace AnodyneSharp.Entities.Enemy.Circus
                 CenterOffset();
 
                 AddAnimation("shoot", CreateAnimFrameArray(0, 1), 10);
-                AddAnimation("poof", CreateAnimFrameArray(2, 3, 4, 5), 10);
+                AddAnimation("poof", CreateAnimFrameArray(2, 3, 4, 5), 10, false);
             }
 
-            public void Spawn(Entity parent, Entity target)
+            public void Spawn(Entity parent)
             {
+                SoundManager.PlaySoundEffect("fireball");
+
                 switch (parent.facing)
                 {
                     case Facing.UP:
-                        Position = new Vector2(parent.Position.X + ParentSize / 2, parent.Position.Y - 2);
+                        Position = new Vector2(parent.Position.X + ParentSize / 4, parent.Position.Y - 2);
 
                         velocity.X = GlobalState.RNG.Next(-16, 17);
                         velocity.Y = -ParentSize;
                         break;
                     case Facing.DOWN:
-                        Position = new Vector2(parent.Position.X + ParentSize / 2, parent.Position.Y + parent.height + 2);
+                        Position = new Vector2(parent.Position.X + ParentSize / 4, parent.Position.Y + parent.height + 2);
 
                         velocity.X = GlobalState.RNG.Next(-16, 17);
                         velocity.Y = ParentSize;
                         break;
                     case Facing.RIGHT:
-                        Position = new Vector2(parent.Position.X + ParentSize, parent.Position.Y + 6);
+                        Position = new Vector2(parent.Position.X + ParentSize -2, parent.Position.Y + 2);
 
                         velocity.X = ParentSize;
                         velocity.Y = GlobalState.RNG.Next(-26, 27);
                         break;
                     case Facing.LEFT:
-                        Position = new Vector2(parent.Position.X, parent.Position.Y + 6);
+                        Position = new Vector2(parent.Position.X, parent.Position.Y + 2);
 
                         velocity.X = -ParentSize;
                         velocity.Y = GlobalState.RNG.Next(-26, 27);
