@@ -2,7 +2,7 @@
 <project>
   <version/>
   <bgColor>0xcccccc</bgColor>
-  <viewPos x="277" y="-378"/>
+  <viewPos x="104" y="-192"/>
   <firstLayersTop>false</firstLayersTop>
   <spriteEntries currentId="170">
     <group name="Events SL" idx="1" open="false">
@@ -2165,7 +2165,7 @@
         </properties>
         <shape guid="EADA62F9-3253-215B-906F-09500622B160" type="square" x="320" y="0" Z="0" angle="0" width="160.00" height="160.00" scaleX="3.200" scaleY="3.200">
           <properties>
-            <type typeof="Float" name="DarknessAlpha" value="0.200000" hidden="false"/>
+            <type typeof="Float" name="DarknessAlpha" value="0.2" hidden="false"/>
           </properties>
         </shape>
         <shape guid="CD9EB52C-FCB7-D5DE-A29E-4F75F2804047" type="square" x="480" y="0" Z="0" angle="0" width="320.00" height="160.00" scaleX="6.400" scaleY="3.200" fillColor="0xff6666" alpha="0.50">
@@ -2175,33 +2175,33 @@
         </shape>
         <shape guid="B1C66DBB-270F-2B63-8E82-EE8EE8569FDF" type="square" x="640" y="0" Z="0" angle="0" width="160.00" height="320.00" scaleX="3.200" scaleY="6.400">
           <properties>
-            <type typeof="Float" name="DarknessAlpha" value="0.200000" hidden="false"/>
+            <type typeof="Float" name="DarknessAlpha" value="0.2" hidden="false"/>
           </properties>
         </shape>
         <shape guid="6325FE0B-BF40-809F-851F-9F61AE797E86" type="square" x="800" y="320" Z="0" angle="0" width="320.00" height="480.00" scaleX="6.400" scaleY="9.600">
           <properties>
-            <type typeof="Float" name="DarknessAlpha" value="0.800000" hidden="false"/>
+            <type typeof="Float" name="DarknessAlpha" value="0.8" hidden="false"/>
           </properties>
         </shape>
         <shape guid="D65E67B4-052D-EC44-1404-F26EF8C9211B" type="square" x="640" y="480" Z="0" angle="0" width="160.00" height="320.00" scaleX="3.200" scaleY="6.400">
           <properties>
-            <type typeof="Float" name="DarknessAlpha" value="1.000000" hidden="false"/>
+            <type typeof="Float" name="DarknessAlpha" value="1" hidden="false"/>
           </properties>
         </shape>
         <shape guid="EBCE67B5-97F4-FB57-BB2F-90072B76EA7B" type="square" x="640" y="320" Z="0" angle="0" width="160.00" height="160.00" scaleX="3.200" scaleY="3.200">
           <properties>
-            <type typeof="Float" name="DarknessAlpha" value="0.800000" hidden="false"/>
+            <type typeof="Float" name="DarknessAlpha" value="0.8" hidden="false"/>
           </properties>
         </shape>
         <shape guid="3A555D77-0383-BA60-9C69-7F0221A2976B" type="square" x="320" y="640" Z="0" angle="0" width="160.00" height="160.00" scaleX="3.200" scaleY="3.200">
           <properties>
-            <type typeof="Float" name="DarknessAlpha" value="0.200000" hidden="false"/>
+            <type typeof="Float" name="DarknessAlpha" value="0.2" hidden="false"/>
           </properties>
         </shape>
         <shape guid="01767059-E58D-6D12-2A48-10923A152D91" type="square" x="160" y="480" Z="0" angle="0" width="160.00" height="160.00" scaleX="3.200" scaleY="3.200">
           <properties>
-            <type typeof="Float" name="DarknessAlpha" value="0.800000" hidden="false"/>
-            <type typeof="Float" name="MusicVolume" value="0.000000" hidden="false"/>
+            <type typeof="Float" name="DarknessAlpha" value="0.8" hidden="false"/>
+            <type typeof="Float" name="MusicVolume" value="0" hidden="false"/>
           </properties>
         </shape>
       </shapelayer>
@@ -3832,7 +3832,7 @@
         </properties>
         <shape guid="F2B1EA44-363E-D070-9C71-BB284844CAA8" type="square" x="1280" y="160" Z="0" angle="0" width="160.00" height="160.00" scaleX="3.200" scaleY="3.200">
           <properties>
-            <type typeof="Float" name="DarknessAlpha" value="0.800000" hidden="false"/>
+            <type typeof="Float" name="DarknessAlpha" value="0.8" hidden="false"/>
           </properties>
         </shape>
       </shapelayer>
@@ -5131,7 +5131,7 @@
       </shapelayer>
       <shapelayer name="Settings" id="50" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false"/>
     </group>
-    <group name="DRAWER" id="46" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
+    <group name="DRAWER" id="46" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true" selected="true">
       <maplayer name="BG" id="51" xScroll="1" yScroll="1" x="0" y="0" width="60" height="110" tileset="textures/tilemaps/drawer_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0,0,0,0,8,22,22,8,5,6,11,22,22,22,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70</row>
         <row>0,0,16,4,11,7,5,6,0,0,11,2,2,2,2,2,2,2,2,7,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,74,70,70,70,70,70,70,70,70,70,70,70,70,70</row>
@@ -5317,21 +5317,21 @@
       <shapelayer name="Settings" id="55" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <properties>
           <type typeof="String" name="Music" value="drawer" hidden="false"/>
-          <type typeof="Float" name="DarknessAlpha" value="1.000000" hidden="false"/>
+          <type typeof="Float" name="DarknessAlpha" value="0.000000" hidden="false"/>
         </properties>
-        <shape guid="B816F82C-BF69-C055-8B7E-7BEFA4BBB56B" type="square" x="160" y="480" Z="0" angle="0" width="800.00" height="320.00" scaleX="16.000" scaleY="6.400">
+        <shape guid="C642BA1E-920A-26A1-48E1-1BCC1508F37D" type="square" x="0" y="0" Z="0" angle="0" width="320.00" height="160.00" scaleX="6.400" scaleY="3.200">
           <properties>
             <type typeof="Float" name="DarknessAlpha" value="1.000000" hidden="false"/>
           </properties>
         </shape>
-        <shape guid="76BE86B5-3C78-C4A7-5B92-FA29DD31D2F2" type="square" x="480" y="0" Z="0" angle="0" width="480.00" height="480.00" scaleX="9.600" scaleY="9.600">
+        <shape guid="42C68634-D215-20FD-95D1-816486944A77" type="square" x="0" y="160" Z="0" angle="0" width="160.00" height="640.00" scaleX="3.200" scaleY="12.800">
           <properties>
             <type typeof="Float" name="DarknessAlpha" value="1.000000" hidden="false"/>
           </properties>
         </shape>
-        <shape guid="DCBA0E4A-8C28-340B-88AE-366B36955AA3" type="square" x="320" y="160" Z="0" angle="0" width="160.00" height="320.00" scaleX="3.200" scaleY="6.400">
+        <shape guid="474F09DE-ADF6-388C-7BB7-F83020ADDC03" type="square" x="0" y="800" Z="0" angle="0" width="960.00" height="960.00" scaleX="19.200" scaleY="19.200">
           <properties>
-            <type typeof="Float" name="DarknessAlpha" value="0.000000" hidden="false"/>
+            <type typeof="Float" name="DarknessAlpha" value="1.000000" hidden="false"/>
           </properties>
         </shape>
       </shapelayer>
@@ -10065,17 +10065,17 @@
         </shape>
         <shape guid="03AB3457-2F04-47F6-E8CE-E9ED0F2CE78D" type="square" x="0" y="800" Z="0" angle="0" width="320.00" height="160.00" scaleX="6.400" scaleY="3.200">
           <properties>
-            <type typeof="Float" name="DarknessAlpha" value="0.800000" hidden="false"/>
+            <type typeof="Float" name="DarknessAlpha" value="0.8" hidden="false"/>
           </properties>
         </shape>
         <shape guid="2C7EAA4F-D223-9256-F38A-E3FA4C40025F" type="square" x="0" y="1120" Z="0" angle="0" width="320.00" height="160.00" scaleX="6.400" scaleY="3.200">
           <properties>
-            <type typeof="Float" name="DarknessAlpha" value="0.800000" hidden="false"/>
+            <type typeof="Float" name="DarknessAlpha" value="0.8" hidden="false"/>
           </properties>
         </shape>
         <shape guid="BDB92AA1-8973-A54B-DAA0-140B689447D6" type="square" x="160" y="960" Z="0" angle="0" width="160.00" height="160.00" scaleX="3.200" scaleY="3.200">
           <properties>
-            <type typeof="Float" name="DarknessAlpha" value="0.800000" hidden="false"/>
+            <type typeof="Float" name="DarknessAlpha" value="0.8" hidden="false"/>
           </properties>
         </shape>
       </shapelayer>
@@ -10861,12 +10861,12 @@
         </properties>
         <shape guid="102F2E7D-A082-76E4-B66D-A60DA1BBCF96" type="square" x="160" y="320" Z="0" angle="0" width="160.00" height="160.00" scaleX="3.200" scaleY="3.200">
           <properties>
-            <type typeof="Float" name="DarknessAlpha" value="0.600000" hidden="false"/>
+            <type typeof="Float" name="DarknessAlpha" value="0.6" hidden="false"/>
           </properties>
         </shape>
         <shape guid="7B48C295-903A-8F11-2240-07DA978CEAB3" type="square" x="160" y="960" Z="0" angle="0" width="160.00" height="160.00" scaleX="3.200" scaleY="3.200">
           <properties>
-            <type typeof="Float" name="DarknessAlpha" value="0.600000" hidden="false"/>
+            <type typeof="Float" name="DarknessAlpha" value="0.6" hidden="false"/>
           </properties>
         </shape>
         <shape guid="3A6A83A7-10F3-1BD6-DB2E-7309249C5A3E" type="square" x="160" y="160" Z="0" angle="0" width="160.00" height="320.00" scaleX="3.200" scaleY="6.400">
@@ -11048,7 +11048,7 @@
         </shape>
       </shapelayer>
     </group>
-    <group name="WINDMILL" id="82" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
+    <group name="WINDMILL" id="82" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
       <maplayer name="BG" id="126" xScroll="1" yScroll="1" x="0" y="0" width="30" height="80" tileset="textures/tilemaps/windmill_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0,0,0,0,61,61,61,61,61,61,61,61,61,61,61,61,65,60,60,0,60,60,60,60</row>
         <row>0,0,0,0,0,0,0,0,0,0,61,61,61,61,61,61,61,61,61,61,61,64,60,60,60,0,60,60,60,60</row>
@@ -11227,7 +11227,7 @@
         <sprite guid="AAF71651-2D33-ABAF-CBBF-C31BCC9997DB" x="176" y="960" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="24"/>
         <sprite guid="21A95860-FD23-626A-6AE0-3CA03B8E2006" x="336" y="0" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="24"/>
       </spritelayer>
-      <spritelayer name="Stateful" id="129" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false" selected="true">
+      <spritelayer name="Stateful" id="129" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="A315CE08-5E96-4B37-6BC4-795AFF5E8298" x="224" y="880" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="61" frame="1">
           <properties/>
         </sprite>
