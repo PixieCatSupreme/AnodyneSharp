@@ -1697,7 +1697,6 @@
     <Event x="640" y="1456" guid="F15EE142-6C77-C528-FECC-9AA05CFA9BCD" frame="6" type="player" />
     <Event x="320" y="1616" guid="AEDE98E5-70B5-8509-419F-597DC73E59E5" frame="6" type="player" />
     <Event x="320" y="160" guid="D0631410-08B1-DD59-17C1-061315AEFC4C" frame="6" type="player" />
-    <Event x="160" y="656" guid="85451304-74DE-ACB7-1717-808C7C54F2C7" frame="4"/>
   </map>
   <map name="DRAWER" type="Stateful">
     <Door x="70" y="624" guid="6B1AC13B-CF0B-7FD1-6786-2F6575467599" frame="79" type="1" />

@@ -81,7 +81,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\DoorToggle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\FadeSwitchSong.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\ReflectionFollower.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\StaticOff.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\DashPad.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Switches\PillarSwitch.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Switches\SwitchPillar.cs" />

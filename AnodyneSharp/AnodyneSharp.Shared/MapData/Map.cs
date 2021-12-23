@@ -184,6 +184,7 @@ namespace AnodyneSharp.MapData
             GlobalState.darkness.SetTex(darkness);
             GlobalState.fgBlend.SetTex(MapSettings.Get(s => s.FG_Blend, priorities, ""));
             GlobalState.extraBlend.SetTex(MapSettings.Get(s => s.ExtraBlend, priorities, ""));
+            GlobalState.staticEffect.active = MapSettings.Get(s => s.Static, priorities, false);
             replacements = new(MapSettings.Get(s => s.ReplaceTiles, priorities, ""));
 #nullable restore
         }

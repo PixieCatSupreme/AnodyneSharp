@@ -2,7 +2,7 @@
 <project>
   <version/>
   <bgColor>0xcccccc</bgColor>
-  <viewPos x="104" y="-192"/>
+  <viewPos x="104" y="-360"/>
   <firstLayersTop>false</firstLayersTop>
   <spriteEntries currentId="170">
     <group name="Events SL" idx="1" open="false">
@@ -5131,7 +5131,7 @@
       </shapelayer>
       <shapelayer name="Settings" id="50" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false"/>
     </group>
-    <group name="DRAWER" id="46" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true" selected="true">
+    <group name="DRAWER" id="46" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
       <maplayer name="BG" id="51" xScroll="1" yScroll="1" x="0" y="0" width="60" height="110" tileset="textures/tilemaps/drawer_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0,0,0,0,8,22,22,8,5,6,11,22,22,22,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70</row>
         <row>0,0,16,4,11,7,5,6,0,0,11,2,2,2,2,2,2,2,2,7,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,74,70,70,70,70,70,70,70,70,70,70,70,70,70</row>
@@ -5266,7 +5266,6 @@
         <sprite guid="D0631410-08B1-DD59-17C1-061315AEFC4C" x="320" y="160" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="22">
           <properties/>
         </sprite>
-        <sprite guid="85451304-74DE-ACB7-1717-808C7C54F2C7" x="160" y="656" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="23"/>
       </spritelayer>
       <spritelayer name="Stateful" id="53" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="6B1AC13B-CF0B-7FD1-6786-2F6575467599" x="70" y="624" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="155" frame="79">
@@ -5317,21 +5316,24 @@
       <shapelayer name="Settings" id="55" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <properties>
           <type typeof="String" name="Music" value="drawer" hidden="false"/>
-          <type typeof="Float" name="DarknessAlpha" value="0.000000" hidden="false"/>
+          <type typeof="Float" name="DarknessAlpha" value="0" hidden="false"/>
         </properties>
         <shape guid="C642BA1E-920A-26A1-48E1-1BCC1508F37D" type="square" x="0" y="0" Z="0" angle="0" width="320.00" height="160.00" scaleX="6.400" scaleY="3.200">
           <properties>
-            <type typeof="Float" name="DarknessAlpha" value="1.000000" hidden="false"/>
+            <type typeof="Float" name="DarknessAlpha" value="1" hidden="false"/>
+            <type typeof="Boolean" name="Static" value="true" hidden="false"/>
           </properties>
         </shape>
         <shape guid="42C68634-D215-20FD-95D1-816486944A77" type="square" x="0" y="160" Z="0" angle="0" width="160.00" height="640.00" scaleX="3.200" scaleY="12.800">
           <properties>
-            <type typeof="Float" name="DarknessAlpha" value="1.000000" hidden="false"/>
+            <type typeof="Float" name="DarknessAlpha" value="1" hidden="false"/>
+            <type typeof="Boolean" name="Static" value="true" hidden="false"/>
           </properties>
         </shape>
         <shape guid="474F09DE-ADF6-388C-7BB7-F83020ADDC03" type="square" x="0" y="800" Z="0" angle="0" width="960.00" height="960.00" scaleX="19.200" scaleY="19.200">
           <properties>
-            <type typeof="Float" name="DarknessAlpha" value="1.000000" hidden="false"/>
+            <type typeof="Float" name="DarknessAlpha" value="1" hidden="false"/>
+            <type typeof="Boolean" name="Static" value="true" hidden="false"/>
           </properties>
         </shape>
       </shapelayer>
@@ -9713,7 +9715,7 @@
         </properties>
       </shapelayer>
     </group>
-    <group name="SUBURB" id="70" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
+    <group name="SUBURB" id="70" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true" selected="true">
       <maplayer name="BG" id="103" xScroll="1" yScroll="1" x="0" y="0" width="60" height="80" tileset="textures/tilemaps/suburb_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>18,34,36,36,36,36,36,36,37,18,18,34,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,37,34,111,100,100,115,37,34,35,35,35,35,35,35,35,35,35,37,18,0,0,0,0,0,0,0,0,0,0</row>
         <row>18,34,1,2,1,2,1,2,35,35,35,35,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,35,35,13,100,100,14,35,35,90,11,90,90,90,90,90,90,90,35,37,0,0,0,0,0,0,0,0,0,0</row>
@@ -10052,15 +10054,18 @@
           <type typeof="String" name="Music" value="suburb" hidden="false"/>
           <type typeof="String" name="FG_Blend" value="suburb_fg_overlay" hidden="false"/>
           <type typeof="String" name="ExtraBlend" value="suburb_extra_overlay" hidden="false"/>
+          <type typeof="Boolean" name="Static" value="true" hidden="false"/>
         </properties>
         <shape guid="23A4A0C2-958F-9C05-2FEA-D82FF39E0AC9" type="square" x="0" y="960" Z="0" angle="0" width="160.00" height="160.00" scaleX="3.200" scaleY="3.200" fillColor="0xc8ff66" alpha="0.50">
           <properties>
             <type typeof="String" name="Music" value="suburb_alt" hidden="false"/>
+            <type typeof="Boolean" name="Static" value="false" hidden="false"/>
           </properties>
         </shape>
         <shape guid="BCBF3908-A658-6266-8AE2-E71CC67E4736" type="square" x="480" y="800" Z="0" angle="0" width="320.00" height="160.00" scaleX="6.400" scaleY="3.200" fillColor="0x86ff66" alpha="0.50">
           <properties>
             <type typeof="String" name="Music" value="suburb_alt" hidden="false"/>
+            <type typeof="Boolean" name="Static" value="false" hidden="false"/>
           </properties>
         </shape>
         <shape guid="03AB3457-2F04-47F6-E8CE-E9ED0F2CE78D" type="square" x="0" y="800" Z="0" angle="0" width="320.00" height="160.00" scaleX="6.400" scaleY="3.200">

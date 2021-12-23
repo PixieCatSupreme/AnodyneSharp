@@ -18,6 +18,7 @@ namespace AnodyneSharp.MapData.Settings
         public string? FG_Blend { get; set; }
         public string? ExtraBlend { get; set; }
         public string? ReplaceTiles { get; set; }
+        public bool? Static { get; set; }
     }
 
     public class TileReplacement

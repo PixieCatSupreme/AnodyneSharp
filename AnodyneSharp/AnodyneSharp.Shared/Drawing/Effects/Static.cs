@@ -11,12 +11,11 @@ namespace AnodyneSharp.Drawing.Effects
         private Effect effect;
         private float static_timer = 0;
         private int static_step = 0;
-        private bool deactivated = false;
-        private string current_map = GlobalState.CURRENT_MAP_NAME;
+        public bool active = false;
 
         public bool Active()
         {
-            return !deactivated && (current_map == "SUBURB" || current_map == "DRAWER");
+            return active;
         }
 
         public void Load(ContentManager content, GraphicsDevice graphicsDevice)
@@ -44,13 +43,7 @@ namespace AnodyneSharp.Drawing.Effects
 
         public void Deactivate()
         {
-            deactivated = true;
-        }
-
-        internal void MapChange(string mapName)
-        {
-            deactivated = false;
-            current_map = mapName;
+            active = false;
         }
     }
 }
