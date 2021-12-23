@@ -9,14 +9,14 @@ namespace AnodyneSharp.Entities.Gadget.Treasures
     public class KeyTreasure : Treasure
     {
         public KeyTreasure(Vector2 pos)
-            : base("key", pos, 0, GlobalState.CURRENT_MAP_NAME == "STREET" ? 2 : -1)
+            : base("key", pos, 0, (GlobalState.events.GetEvent("ReceivedKey") == 0) ? 2 : -1)
         {
         }
 
         public override void GetTreasure()
         {
             base.GetTreasure();
-
+            GlobalState.events.IncEvent("ReceivedKey");
             GlobalState.inventory.AddCurrentMapKey();
         }
     }

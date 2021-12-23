@@ -150,7 +150,7 @@ namespace AnodyneSharp.Entities
             {
                 SetTexture(Cell_Sprite, sprite.Width, sprite.Height);
             }
-            else if (GlobalState.CURRENT_MAP_NAME == "SUBURB")
+            else if (GlobalState.IsKnife)
             {
                 SetTexture(Knife_Sprite, sprite.Width, sprite.Height);
             }
@@ -322,7 +322,7 @@ namespace AnodyneSharp.Entities
 
             GlobalState.FireEvent(new BroomUsed());
 
-            if (GlobalState.CURRENT_MAP_NAME == "SUBURB" && GlobalState.events.GetEvent("Stabbed") == 0)
+            if (GlobalState.IsKnife && GlobalState.events.GetEvent("Stabbed") == 0)
             {
                 GlobalState.events.IncEvent("Stabbed");
 

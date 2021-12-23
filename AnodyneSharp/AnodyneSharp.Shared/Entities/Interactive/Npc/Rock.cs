@@ -27,7 +27,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc
 
                 f = MapUtilities.GetRoomCoordinate(Position).X > 5 ? 31 : 30;
             }
-            else if (GlobalState.CURRENT_MAP_NAME == "CELL")
+            else if (GlobalState.IsCell)
             {
                 f = 1;
             }

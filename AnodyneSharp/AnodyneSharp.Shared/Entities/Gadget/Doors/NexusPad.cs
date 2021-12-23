@@ -23,7 +23,7 @@ namespace AnodyneSharp.Entities.Gadget.Doors
             Position += new Vector2(6, 6);
             teleportOffset = new Vector2(10, 34);
 
-            if (GlobalState.CURRENT_MAP_NAME == "CELL")
+            if (GlobalState.IsCell)
             {
                 AddAnimation("on", CreateAnimFrameArray(3), 12, false);
                 AddAnimation("off", CreateAnimFrameArray(2), 12, false);

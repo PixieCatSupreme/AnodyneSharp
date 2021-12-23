@@ -206,7 +206,7 @@ namespace AnodyneSharp.Entities
                 enter_fall = false;
             }
 
-            if (GlobalState.AlwaysCellGraphics || GlobalState.CURRENT_MAP_NAME == "CELL")
+            if (GlobalState.IsCell)
             {
                 SetTexture(Cell_Player_Sprite, 16, 16);
             }

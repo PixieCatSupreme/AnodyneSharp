@@ -133,12 +133,7 @@ namespace AnodyneSharp.Registry
             AlwaysCellGraphics = false;
             GameMode = GameMode.Normal;
 
-            OnRoof = false;
             InDeathRoom = false;
-            HappyStarted = false;
-            SageDead = false;
-            SuburbSoft = false;
-            WindmillOpened = false;
 
             minimaps = new();
             events = new();
@@ -383,13 +378,8 @@ namespace AnodyneSharp.Registry
         public static int DeathCount = 0;
 
 
-        //Song deciding bools
-        public static bool OnRoof;
+        //Effect deciding bool
         public static bool InDeathRoom;
-        public static bool HappyStarted;
-        public static bool SageDead;
-        public static bool SuburbSoft;
-        public static bool WindmillOpened;
 
         private static string _dialogue;
 

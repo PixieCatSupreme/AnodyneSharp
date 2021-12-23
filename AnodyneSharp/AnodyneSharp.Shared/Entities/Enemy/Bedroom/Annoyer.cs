@@ -86,7 +86,7 @@ namespace AnodyneSharp.Entities.Enemy
                 exists = false
             };
 
-            if (GlobalState.CURRENT_MAP_NAME == "CELL")
+            if (GlobalState.IsCell)
             {
                 AddAnimation("flap", CreateAnimFrameArray(6, 7), 4, true);
             }

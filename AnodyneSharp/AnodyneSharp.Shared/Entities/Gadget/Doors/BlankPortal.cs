@@ -16,7 +16,7 @@ namespace AnodyneSharp.Entities.Gadget.Doors
             width = height = 2;
             CenterOffset();
 
-            if (GlobalState.CURRENT_MAP_NAME == "CELL")
+            if (GlobalState.IsCell)
             {
                 AddAnimation("a", CreateAnimFrameArray(4,5),8,true);
                 teleportOffset = new Vector2(0, -12);
