@@ -367,10 +367,11 @@ namespace AnodyneSharp.Registry
         public static Blend extraBlend = new();
 
 
-        public static Wave wave = new Wave();
+        public static Wave wave = new();
+        public static Glitch glitch = new();
 
         public static List<IFullScreenEffect> gameEffects = new List<IFullScreenEffect>() { fgBlend, staticEffect, darkness, gameScreenFade };
-        public static List<IFullScreenEffect> fullScreenEffects = new List<IFullScreenEffect>() { black_overlay, new Glitch(), new GrayScale(), TitleScreenFinish, pixelation, extraBlend, wave, flash, screenShake };
+        public static List<IFullScreenEffect> fullScreenEffects = new List<IFullScreenEffect>() { black_overlay, glitch, new GrayScale(), TitleScreenFinish, pixelation, extraBlend, wave, flash, screenShake };
         public static IEnumerable<IFullScreenEffect> AllEffects
         {
             get

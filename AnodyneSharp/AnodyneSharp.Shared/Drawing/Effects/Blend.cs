@@ -22,6 +22,7 @@ namespace AnodyneSharp.Drawing.Effects
 
         public void Deactivate()
         {
+            tex = null;
         }
 
         public void Load(ContentManager content, GraphicsDevice graphicsDevice)

@@ -14,10 +14,11 @@ namespace AnodyneSharp.Drawing.Effects
         List<GlitchRect> glitches = Enumerable.Repeat(0, 50).Select((c) => new GlitchRect()).ToList();
         float timer = 0f;
         float activation_time = 1 / 3f;
+        public bool active = false;
 
         public bool Active()
         {
-            return GlobalState.MAP_GRID_WIDTH != 0 && GlobalState.MAP_GRID_HEIGHT != 0 && !(new Rectangle(0, 0, GlobalState.MAP_GRID_WIDTH, GlobalState.MAP_GRID_HEIGHT).Contains(GlobalState.CURRENT_GRID_X, GlobalState.CURRENT_GRID_Y));
+            return active;
         }
 
         public void Load(ContentManager content, GraphicsDevice graphicsDevice)
@@ -45,6 +46,7 @@ namespace AnodyneSharp.Drawing.Effects
                 }
             }
         }
+
         public void Deactivate()
         { }
 
