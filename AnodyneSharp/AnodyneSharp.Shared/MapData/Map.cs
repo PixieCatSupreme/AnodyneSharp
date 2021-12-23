@@ -177,10 +177,11 @@ namespace AnodyneSharp.MapData
             if (!graphics_only)
             {
                 //TODO: make music fade in/out
-                Sounds.SoundManager.PlaySong(MapSettings.Get(s => s.Music, priorities, ""), MapSettings.Get(s => s.MusicVolume, priorities, 1f));
+                Sounds.SoundManager.PlaySong(GlobalState.InDeathRoom ? "" : MapSettings.Get(s => s.Music, priorities, ""), MapSettings.Get(s => s.MusicVolume, priorities, 1f));
+                Sounds.SoundManager.PlayAmbience(GlobalState.InDeathRoom ? "" : MapSettings.Get(s => s.Ambience, priorities, ""), MapSettings.Get(s => s.AmbienceVolume, priorities, 1f));
             }
             string darkness = MapSettings.Get(s => s.Darkness, priorities, "");
-            GlobalState.darkness.TargetAlpha(MapSettings.Get(s => s.DarknessAlpha, priorities, darkness == "" ? 0f : 1f));
+            GlobalState.darkness.TargetAlpha(GlobalState.InDeathRoom ? 0.8f : MapSettings.Get(s => s.DarknessAlpha, priorities, darkness == "" ? 0f : 1f));
             GlobalState.darkness.SetTex(darkness);
             GlobalState.fgBlend.SetTex(MapSettings.Get(s => s.FG_Blend, priorities, ""));
             GlobalState.extraBlend.SetTex(MapSettings.Get(s => s.ExtraBlend, priorities, ""));

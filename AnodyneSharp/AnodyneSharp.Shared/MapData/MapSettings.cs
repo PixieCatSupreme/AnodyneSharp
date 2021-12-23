@@ -13,6 +13,8 @@ namespace AnodyneSharp.MapData.Settings
     {
         public string? Music { get; set; }
         public float? MusicVolume { get; set; }
+        public string? Ambience { get; set; }
+        public float? AmbienceVolume { get; set; }
         public string? Darkness { get; set; }
         public float? DarknessAlpha { get; set; }
         public string? FG_Blend { get; set; }

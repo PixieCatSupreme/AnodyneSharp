@@ -2,7 +2,7 @@
 <project>
   <version/>
   <bgColor>0xcccccc</bgColor>
-  <viewPos x="104" y="-360"/>
+  <viewPos x="-243" y="-204"/>
   <firstLayersTop>false</firstLayersTop>
   <spriteEntries currentId="170">
     <group name="Events SL" idx="1" open="false">
@@ -645,7 +645,7 @@
     </group>
   </spriteEntries>
   <layers>
-    <group name="APARTMENT" id="109" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
+    <group name="APARTMENT" id="109" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true" selected="true">
       <maplayer name="BG" id="0" xScroll="1" yScroll="1" x="0" y="0" width="90" height="80" tileset="textures/tilemaps/apartment_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>29,1,10,10,10,10,10,10,10,2,29,29,29,17,10,82,63,64,10,2,1,10,10,10,27,10,10,10,10,2,29,16,10,10,10,10,10,10,18,29,0,0,0,0,0,0,0,0,0,0,19,157,10,10,10,10,10,10,15,29,16,10,157,10,10,10,10,10,10,15,16,10,10,10,10,10,10,10,10,10,130,130,130,130,130,130,130,130,130,292</row>
         <row>1,158,150,150,150,150,150,150,150,15,29,1,158,27,151,92,73,74,151,14,17,150,150,150,28,161,163,150,150,15,29,16,150,150,150,150,150,150,18,29,0,0,0,0,0,0,0,0,0,0,19,152,86,152,152,152,152,152,15,29,16,150,150,150,150,150,150,150,150,15,16,150,150,150,150,150,150,150,150,150,235,153,153,153,153,153,153,153,272,292</row>
@@ -1767,7 +1767,19 @@
         <properties>
           <type typeof="String" name="Music" value="beach" hidden="false"/>
           <type typeof="String" name="Darkness" value="beach_hardlight" hidden="false"/>
+          <type typeof="String" name="Ambience" value="beach" hidden="false"/>
+          <type typeof="Float" name="AmbienceVolume" value="1.000000" hidden="false"/>
         </properties>
+        <shape guid="1A8D5CA1-D791-AC1B-9B70-A54473CF04A2" type="square" x="0" y="320" Z="0" angle="0" width="1600.00" height="160.00" scaleX="32.000" scaleY="3.200">
+          <properties>
+            <type typeof="Float" name="AmbienceVolume" value="0.550000" hidden="false"/>
+          </properties>
+        </shape>
+        <shape guid="69C254A8-A509-DFDA-859C-B8DD49EDC10B" type="square" x="0" y="0" Z="0" angle="0" width="1600.00" height="320.00" scaleX="32.000" scaleY="6.400">
+          <properties>
+            <type typeof="Float" name="AmbienceVolume" value="0.210000" hidden="false"/>
+          </properties>
+        </shape>
       </shapelayer>
     </group>
     <group name="BEDROOM" id="8" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
@@ -9715,7 +9727,7 @@
         </properties>
       </shapelayer>
     </group>
-    <group name="SUBURB" id="70" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true" selected="true">
+    <group name="SUBURB" id="70" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
       <maplayer name="BG" id="103" xScroll="1" yScroll="1" x="0" y="0" width="60" height="80" tileset="textures/tilemaps/suburb_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>18,34,36,36,36,36,36,36,37,18,18,34,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,37,34,111,100,100,115,37,34,35,35,35,35,35,35,35,35,35,37,18,0,0,0,0,0,0,0,0,0,0</row>
         <row>18,34,1,2,1,2,1,2,35,35,35,35,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,35,35,13,100,100,14,35,35,90,11,90,90,90,90,90,90,90,35,37,0,0,0,0,0,0,0,0,0,0</row>
@@ -11267,6 +11279,7 @@
         <properties>
           <type typeof="String" name="Music" value="windmill" hidden="false"/>
           <type typeof="String" name="Darkness" value="windmill_overlay" hidden="false"/>
+          <type typeof="String" name="Ambience" value="windmill" hidden="false"/>
         </properties>
         <shape guid="C28A42AA-FFBD-9F10-0888-A94C12A70B00" x="0" y="832" Z="0" angle="0" width="100.00" height="50.00" text="WindmillOpened" family="system" fontsize="8" align="center" color="16777215">
           <properties>

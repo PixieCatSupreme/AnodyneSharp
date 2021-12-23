@@ -91,9 +91,10 @@ namespace AnodyneSharp.Sounds
             return false;
         }
 
-        public static void PlayAmbience(string name)
+        public static void PlayAmbience(string name, float volume = 1f)
         {
             string sound = ResourceManager.GetAmbiencePath(name);
+            SetAmbienceVolume(volume);
             if(sound != null)
             {
                 ambience.Play(sound);

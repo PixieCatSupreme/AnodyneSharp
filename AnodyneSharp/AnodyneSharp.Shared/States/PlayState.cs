@@ -953,32 +953,8 @@ namespace AnodyneSharp.States
                     }
                 }
                 ,
-                "BEACH" => () =>
-                {
-                    SoundManager.SetAmbienceVolume(GlobalState.CurrentMapGrid.Y switch
-                    {
-                        < 2 => 0.21f,
-                        2 => 0.55f,
-                        _ => 1f
-                    });
-                }
-                ,
                 _ => null
             };
-        }
-
-        private void PlayMapMusic()
-        {
-            string title = GlobalState.CURRENT_MAP_NAME.ToLower();
-
-            SoundManager.PlaySong(title);
-            SoundManager.PlayAmbience(title);
-
-            if (GlobalState.InDeathRoom || title == "debug")
-            {
-                SoundManager.StopSong();
-                return;
-            }
         }
 
         private IEnumerable<Entity> SubEntities(Entity e)
