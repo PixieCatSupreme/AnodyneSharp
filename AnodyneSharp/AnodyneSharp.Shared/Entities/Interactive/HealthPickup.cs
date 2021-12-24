@@ -27,7 +27,9 @@ namespace AnodyneSharp.Entities.Interactive
                 SetTexture("small_health_pickup", 10, 16);
             }
 
-            AddAnimation("float", CreateAnimFrameArray(0, 1, 2, 3), 5);
+            int o = GlobalState.IsCell ? 4 : 0;
+
+            AddAnimation("float", CreateAnimFrameArray(0 + o, 1 + o, 2 + o, 3 + o), 5);
             height = sprite.Height;
             width = sprite.Width;
 

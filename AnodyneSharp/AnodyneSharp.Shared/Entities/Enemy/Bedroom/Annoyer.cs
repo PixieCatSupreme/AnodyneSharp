@@ -219,7 +219,8 @@ namespace AnodyneSharp.Entities.Enemy
         {
             public Explosion(Vector2 pos) : base(null, pos, "enemy_explode_2", 24, 24, DrawOrder.ENTITIES)
             {
-                AddAnimation("explode", CreateAnimFrameArray(0, 1, 2, 3, 4), 12, false);
+                int i = GlobalState.IsCell ? 5 : 0;
+                AddAnimation("explode", CreateAnimFrameArray(i, i + 1, i + 2, i + 3, i + 4), GlobalState.IsCell ? 10 : 12, false);
                 Play("explode");
             }
 

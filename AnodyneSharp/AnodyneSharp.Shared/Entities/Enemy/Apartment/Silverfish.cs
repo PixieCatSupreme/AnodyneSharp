@@ -22,14 +22,16 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
         {
             _player = player;
 
-            AddAnimation("move_l", CreateAnimFrameArray(6, 7), 7, true);
-            AddAnimation("move_d", CreateAnimFrameArray(4, 5), 7, true);
-            AddAnimation("move_r", CreateAnimFrameArray(6, 7), 7, true); // DEFAULT: RIGHT
-            AddAnimation("move_u", CreateAnimFrameArray(8, 9), 7, true);
-            AddAnimation("idle_d", CreateAnimFrameArray(4), 12, true);
-            AddAnimation("idle_u", CreateAnimFrameArray(8), 12, true);
-            AddAnimation("idle_r", CreateAnimFrameArray(6), 12, true); // DEFAULT: RIGHT
-            AddAnimation("idle_l", CreateAnimFrameArray(6), 12, true);
+            int o = GlobalState.IsCell ? 6 : 0;
+
+            AddAnimation("move_l", CreateAnimFrameArray(6 + o, 7 + o), 7, true);
+            AddAnimation("move_d", CreateAnimFrameArray(4 + o, 5 + o), 7, true);
+            AddAnimation("move_r", CreateAnimFrameArray(6 + o, 7 + o), 7, true); // DEFAULT: RIGHT
+            AddAnimation("move_u", CreateAnimFrameArray(8 + o, 9 + o), 7, true);
+            AddAnimation("idle_d", CreateAnimFrameArray(4 + o), 12, true);
+            AddAnimation("idle_u", CreateAnimFrameArray(8 + o), 12, true);
+            AddAnimation("idle_r", CreateAnimFrameArray(6 + o), 12, true); // DEFAULT: RIGHT
+            AddAnimation("idle_l", CreateAnimFrameArray(6 + o), 12, true);
 
             facing = preset.Frame switch
             {
@@ -55,7 +57,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
         {
             base.Collided(other);
 
-            if(other is Player p)
+            if (other is Player p)
             {
                 p.ReceiveDamage(1);
             }
@@ -92,7 +94,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
         private IEnumerator StateLogic()
         {
             //normal
-            while(!SeePlayer())
+            while (!SeePlayer())
             {
                 yield return null;
             }
@@ -139,7 +141,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
                         PlayFacing("idle");
                     }
 
-                     yield return null;
+                    yield return null;
                 }
 
                 FaceTowards(_player.Position); //Only need to do this before flipping to run away when in turning mode, not on first run

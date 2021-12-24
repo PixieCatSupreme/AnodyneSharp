@@ -53,9 +53,11 @@ namespace AnodyneSharp.Entities.Enemy
         {
             _type = preset.Frame == 3 ? SlimeType.Bullet : SlimeType.Normal;
 
-            AddAnimation("Move", CreateAnimFrameArray(0, 1), 3);
-            AddAnimation("Hurt", CreateAnimFrameArray(0, 8, 0, 8), 15, false);
-            AddAnimation("Dying", CreateAnimFrameArray(0, 8, 0, 8), 12, false);
+            int o = GlobalState.IsCell ? 4 : 0;
+
+            AddAnimation("Move", CreateAnimFrameArray(0+ o, 1 + o), 3);
+            AddAnimation("Hurt", CreateAnimFrameArray(0 + o, 8, 0 + o, 8), 15, false);
+            AddAnimation("Dying", CreateAnimFrameArray(0 + o, 8, 0 + o, 8), 12, false);
 
             goos = new EntityPool<Goo>(8, () => new Goo());
             target = player;
@@ -183,7 +185,9 @@ namespace AnodyneSharp.Entities.Enemy
 
             public Goo() : base(Vector2.Zero, "slime_goo", 6, 6, DrawOrder.PARTICLES)
             {
-                AddAnimation("move", CreateAnimFrameArray(0, 1, 2, 3, 1, 3, 1, 2, 1, 0), GlobalState.RNG.Next(5, 10));
+                int o = GlobalState.IsCell ? 4 : 0;
+
+                AddAnimation("move", CreateAnimFrameArray(0 + o, 1 + o, 2 + o, 3 + o, 1 + o, 3 + o, 1 + o, 2 + o, 1 + o, 0 + o), GlobalState.RNG.Next(5, 10));
                 shadow = new Shadow(this, Vector2.Zero, ShadowType.Tiny);
 
                 state = new StateMachineBuilder()

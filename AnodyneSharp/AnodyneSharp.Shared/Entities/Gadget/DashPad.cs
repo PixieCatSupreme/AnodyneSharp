@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AnodyneSharp.Registry;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -11,7 +12,7 @@ namespace AnodyneSharp.Entities.Gadget
 
         public DashPad(EntityPreset preset, Player p) : base(preset.Position, "dash_pads", 16, 16, Drawing.DrawOrder.BG_ENTITIES)
         {
-            SetFrame(preset.Frame + 4);
+            SetFrame(preset.Frame + 4 + (GlobalState.IsCell ? 4 : 0));
             facing = preset.Frame switch
             {
                 0 => Facing.UP,
