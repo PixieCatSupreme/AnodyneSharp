@@ -72,6 +72,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Etc\FollowerBro.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Etc\SpaceFace.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Hotel\Burst_Plant.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Hotel\Dustmaid.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Redcave\Four_Shooter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Redcave\Mover.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Redcave\OnOffLaser.cs" />

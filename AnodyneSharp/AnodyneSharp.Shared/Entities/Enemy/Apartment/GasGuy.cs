@@ -132,7 +132,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
                     MoveTowards(_player.Position, 100);
                     velocity *= -1;
 
-                    SoundManager.PlaySoundEffect("generic_hurt");
+                    SoundManager.PlaySoundEffect("broom_hit");
 
                     if (_health == 0)
                     {

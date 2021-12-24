@@ -13,9 +13,8 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
     [NamedEntity("Silverfish"), Enemy, Collision(typeof(Player), typeof(Broom), KeepOnScreen = true, MapCollision = true)]
     public class Silverfish : HealthDropper
     {
-        Player _player;
-
-        IEnumerator _stateLogic;
+        private Player _player;
+        private IEnumerator _stateLogic;
 
         public Silverfish(EntityPreset preset, Player player)
             : base(preset, preset.Position, "silverfish", 16, 16, DrawOrder.ENTITIES)
