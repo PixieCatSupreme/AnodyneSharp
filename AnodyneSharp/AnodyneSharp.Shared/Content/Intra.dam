@@ -2,7 +2,7 @@
 <project>
   <version/>
   <bgColor>0xcccccc</bgColor>
-  <viewPos x="-243" y="-204"/>
+  <viewPos x="269" y="78"/>
   <firstLayersTop>false</firstLayersTop>
   <spriteEntries currentId="170">
     <group name="Events SL" idx="1" open="false">
@@ -1768,16 +1768,16 @@
           <type typeof="String" name="Music" value="beach" hidden="false"/>
           <type typeof="String" name="Darkness" value="beach_hardlight" hidden="false"/>
           <type typeof="String" name="Ambience" value="beach" hidden="false"/>
-          <type typeof="Float" name="AmbienceVolume" value="1.000000" hidden="false"/>
+          <type typeof="Float" name="AmbienceVolume" value="1" hidden="false"/>
         </properties>
         <shape guid="1A8D5CA1-D791-AC1B-9B70-A54473CF04A2" type="square" x="0" y="320" Z="0" angle="0" width="1600.00" height="160.00" scaleX="32.000" scaleY="3.200">
           <properties>
-            <type typeof="Float" name="AmbienceVolume" value="0.550000" hidden="false"/>
+            <type typeof="Float" name="AmbienceVolume" value="0.55" hidden="false"/>
           </properties>
         </shape>
         <shape guid="69C254A8-A509-DFDA-859C-B8DD49EDC10B" type="square" x="0" y="0" Z="0" angle="0" width="1600.00" height="320.00" scaleX="32.000" scaleY="6.400">
           <properties>
-            <type typeof="Float" name="AmbienceVolume" value="0.210000" hidden="false"/>
+            <type typeof="Float" name="AmbienceVolume" value="0.21" hidden="false"/>
           </properties>
         </shape>
       </shapelayer>
@@ -6653,12 +6653,17 @@
           <type typeof="String" name="Music" value="go" hidden="false"/>
           <type typeof="String" name="Darkness" value="go_hardlight" hidden="false"/>
         </properties>
+        <shape guid="8453BC4A-3274-DD48-DF09-BCBEBE2ED0F1" type="square" x="320" y="0" Z="0" angle="0" width="160.00" height="160.00" scaleX="3.200" scaleY="3.200">
+          <properties>
+            <type typeof="String" name="Darkness" value="ending_hardlight" hidden="false"/>
+          </properties>
+        </shape>
         <shape guid="E934756A-B5BE-4D28-6394-A5DA6E415383" type="square" x="0" y="0" Z="0" angle="0" width="160.00" height="160.00" scaleX="3.200" scaleY="3.200">
           <properties>
             <type typeof="Float" name="DarknessAlpha" value="1" hidden="false"/>
           </properties>
         </shape>
-        <shape guid="4F63B313-0B5C-C449-9A01-7B801990079C" type="square" x="0" y="0" Z="0" angle="0" width="162.00" height="322.00" scaleX="3.240" scaleY="6.440">
+        <shape guid="4F63B313-0B5C-C449-9A01-7B801990079C" type="square" x="0" y="0" Z="0" angle="0" width="160.00" height="322.00" scaleX="3.200" scaleY="6.440">
           <properties>
             <type typeof="Float" name="MusicVolume" value="0" hidden="false"/>
           </properties>
