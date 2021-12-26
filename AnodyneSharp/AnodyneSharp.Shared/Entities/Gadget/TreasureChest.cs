@@ -171,7 +171,7 @@ namespace AnodyneSharp.Entities.Gadget
                     _treasure = new BroomTreasure("item_tranformer", Position, BroomType.Transformer);
                     break;
                 case TreasureType.SECRET:
-                    _treasure = new SecretTreasure(Position, _preset.Frame - 7, _preset.Frame == 10 ? 9 : -1);
+                    _treasure = new SecretTreasure(Position, _preset.Frame - 7, _preset.Frame == 10 ? 7 : -1);
                     break;
                 default:
                     FailsafeTreasure();

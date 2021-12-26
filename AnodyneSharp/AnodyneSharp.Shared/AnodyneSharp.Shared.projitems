@@ -87,6 +87,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Switches\PillarSwitch.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Switches\SwitchPillar.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\WaterAnim.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Blue\Dam.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Cell\CellBody.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Crowd\BioFilm.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\JumpTrigger.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Forest\SkittishSecret.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Forest\Thorax.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Fields\Olive.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Happy\HappyNPC.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\QuestNPCs\ForestQuest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\QuestNPCs\BeachQuest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\QuestNPCs\CliffQuest.cs" />
@@ -120,6 +122,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\RunningTradeNPCs\MiaoXiao.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\RunningTradeNPCs\ShopKeep.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\ShadowBriar.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Space\CubeKings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Space\SpaceNPC.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Suburb\SuburbBlocker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Suburb\SuburbIndoors.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Suburb\SuburbWalker.cs" />
