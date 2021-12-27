@@ -686,9 +686,6 @@
     <Button x="80" y="32" guid="796D6CE8-0913-6746-4380-A3A983BA8ECA" frame="1"/>
     <solid_tile x="0." y="80" guid="7FC8620D-E880-ABC1-9E83-DFFC60DF5F45" frame="0"/>
     <Door x="112" y="112" guid="B8003D86-D5D3-C215-67B1-8C0FF24C4263" frame="56" type="16" />
-    <NPC x="224" y="384" guid="57EBF6C5-F44D-C5AC-19F6-5CF78044A87C" frame="10" p="1" type="generic" />
-    <NPC x="224" y="240" guid="5E2D34F8-6A9A-749E-092B-9E8E7941095F" frame="10" p="1" type="generic" />
-    <NPC x="80" y="224" guid="13A5A99F-CFEA-9DF7-3FDF-29ADAD70FC6D" frame="10" p="1" type="generic" />
     <Door x="16" y="80" guid="511BECBF-B700-5378-4D0E-8B26BFED796B" frame="44" type="10" />
     <Shadow_Briar x="48" y="0." guid="43FF0107-1785-A543-1332-CF82635B1F4A" frame="3" p="2" alive="true"/>
     <Water_Anim x="48" y="0." guid="841B1A4F-DCE7-E61A-A9A5-162F2A3AC7A8" frame="32" p="2"/>
@@ -698,6 +695,9 @@
     <Burst_Plant x="576" y="80" guid="4C247E49-3EBC-0A74-DD31-056487BF80FE" frame="0" p="1" alive="true"/>
     <Spike_Roller x="48" y="656" guid="57B1F9EB-5259-FE3B-1D5F-589D31107A2A" frame="5"/>
     <Spike_Roller x="32" y="656" guid="E8BCBC9D-D876-C68E-8A6B-991DAAF7CA8A" frame="5"/>
+    <Snowman x="80" y="224" guid="C975CBA7-1778-95F2-DA4E-FBAACBBD8F7A" frame="0" p="1"/>
+    <Snowman x="224" y="240" guid="D63BEA05-8CB3-0F78-D7CC-9C47115B1F1E" frame="1" p="1"/>
+    <Snowman x="224" y="384" guid="E0A76A57-A969-83F5-583E-4F378105A21B" frame="2" p="1"/>
   </map>
   <map name="CELL" type="Stateful">
     <NPC x="592" y="496" guid="445C736A-7BF9-8856-6F4B-E9C4C6675770" frame="1" type="rock" />
