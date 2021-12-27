@@ -45,23 +45,16 @@ namespace AnodyneSharp.Entities.Lights
         }
     }
 
-    [NamedEntity("Event","player"), Events(typeof(StartWarp))]
     public class PlayerLight : Light
     {
         Player _player;
         const float flicker_timer_max = 6/30f;
         float flicker_timer = flicker_timer_max;
 
-        public PlayerLight(EntityPreset preset, Player p) : base(p.Position,"player-light",64,64)
+        public PlayerLight(Player p) : base(p.Position,"player-light",64,64)
         {
-            if(p.follower != null)
-            {
-                exists = false;
-                return;
-            }
             _player = p;
             scale = 2;
-            _player.follower = this;
         }
 
         public override void Update()
@@ -82,11 +75,6 @@ namespace AnodyneSharp.Entities.Lights
                     flicker_timer = 0.05f;
                 }
             }
-        }
-
-        public override void OnEvent(GameEvent e)
-        {
-            _player.follower = null;
         }
     }
 

@@ -891,7 +891,7 @@ namespace AnodyneSharp.States
             _player.Position = _player.grid_entrance = GlobalState.PLAYER_WARP_TARGET;
             _player.facing = GlobalState.NewMapFacing ?? _player.facing;
 
-            _map.ReloadSettings(_player.Position);
+            _map.ReloadSettings(_player);
 
             GlobalState.NewMapFacing = null;
 

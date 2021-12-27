@@ -6,35 +6,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace AnodyneSharp.Entities.Events
+namespace AnodyneSharp.Entities
 {
-    [NamedEntity("Event", null, 7), Events(typeof(StartWarp)), Collision(MapCollision = true)]
-    public class ReflectionFollower : Entity
+    [Collision(MapCollision = true)]
+    public class PlayerReflection : Entity
     {
         Player _player;
         Entity _broomReflection;
 
 
-        public ReflectionFollower(EntityPreset preset, Player p)
-            : base(preset.Position, "young_player_reflection", 16, 16, DrawOrder.PLAYER_REFLECTION)
+        public PlayerReflection(Player p)
+            : base(p.Position, "young_player_reflection", 16, 16, DrawOrder.PLAYER_REFLECTION)
         {
             _player = p;
 
-            _broomReflection = new Entity(preset.Position, "broom_reflection", 16, 16, DrawOrder.BROOM_REFLECTION);
+            _broomReflection = new Entity(p.Position, "broom_reflection", 16, 16, DrawOrder.BROOM_REFLECTION);
             _broomReflection.exists = false;
-
-            if (p.follower != null)
-            {
-                exists = false;
-                return;
-            }
-
-            p.follower = this;
         }
 
-        public override void PostUpdate()
+        public override void Update()
         {
-            base.PostUpdate();
+            base.Update();
 
             Position = _player.Position + new Vector2(0, 7);
 
@@ -87,14 +79,6 @@ namespace AnodyneSharp.Entities.Events
         public override IEnumerable<Entity> SubEntities()
         {
             return Enumerable.Repeat(_broomReflection, 1);
-        }
-
-        public override void OnEvent(GameEvent e)
-        {
-            base.OnEvent(e);
-
-            exists = false;
-            _player.follower = null;
         }
 
         public override void Fall(Vector2 fallPoint)

@@ -2,7 +2,7 @@
 <project>
   <version/>
   <bgColor>0xcccccc</bgColor>
-  <viewPos x="344" y="150"/>
+  <viewPos x="344" y="-350"/>
   <firstLayersTop>false</firstLayersTop>
   <spriteEntries currentId="172">
     <group name="Events SL" idx="1" open="false">
@@ -5097,7 +5097,6 @@
           <properties/>
         </sprite>
         <sprite guid="CB2CF3D0-7327-67F3-90BD-6481EAB64243" x="80" y="416" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="73"/>
-        <sprite guid="3653D507-E888-427C-5356-FF7B26AA31AC" x="496" y="320" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="24"/>
         <sprite guid="1FC62BE6-3D6D-C097-3C92-6C58ADAB14FD" x="48" y="176" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="59"/>
         <sprite guid="BDBB9FAD-00D3-E699-1EBA-44ECBE38A202" x="560" y="416" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="88">
           <properties/>
@@ -5284,24 +5283,6 @@
           <properties/>
         </sprite>
         <sprite guid="8D455518-DE30-1499-30DA-320CB19A2055" x="231" y="96" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="19" frame="2"/>
-        <sprite guid="F814CC1F-05AE-2F52-A991-9677C63AD50C" x="321" y="161" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="22">
-          <properties/>
-        </sprite>
-        <sprite guid="7AA3AA66-CDA2-8CEC-2645-CA36E3AF9BBA" x="321" y="1617" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="22">
-          <properties/>
-        </sprite>
-        <sprite guid="9D0227D8-E62B-AC53-9196-67AE87711099" x="641" y="1457" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="22">
-          <properties/>
-        </sprite>
-        <sprite guid="C32A15C4-E526-36B0-8211-8FBDEE96981C" x="161" y="977" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="22">
-          <properties/>
-        </sprite>
-        <sprite guid="6FA08C02-7FE6-E7D4-8B57-517BCA27EC1A" x="33" y="497" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="22">
-          <properties/>
-        </sprite>
-        <sprite guid="38E68C39-0DEA-F888-0706-0466DD8C7417" x="161" y="17" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="22">
-          <properties/>
-        </sprite>
         <sprite guid="01C19929-05D1-9E5F-5DD7-40A79BCCE1F8" x="337" y="417" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="39" frame="9">
           <properties/>
         </sprite>
@@ -5317,6 +5298,7 @@
         <properties>
           <type typeof="String" name="Music" value="drawer" hidden="false"/>
           <type typeof="Float" name="DarknessAlpha" value="0" hidden="false"/>
+          <type typeof="Boolean" name="PlayerLight" value="true" hidden="false"/>
         </properties>
         <shape guid="C642BA1E-920A-26A1-48E1-1BCC1508F37D" type="square" x="0" y="0" Z="0" angle="0" width="320.00" height="160.00" scaleX="6.400" scaleY="3.200">
           <properties>
@@ -10050,17 +10032,20 @@
         </shape>
         <shape guid="03AB3457-2F04-47F6-E8CE-E9ED0F2CE78D" type="square" x="0" y="800" Z="0" angle="0" width="320.00" height="160.00" scaleX="6.400" scaleY="3.200">
           <properties>
-            <type typeof="Float" name="DarknessAlpha" value="0.8" hidden="false"/>
+            <type typeof="Float" name="DarknessAlpha" value="0.91" hidden="false"/>
+            <type typeof="Boolean" name="PlayerLight" value="true" hidden="false"/>
           </properties>
         </shape>
         <shape guid="2C7EAA4F-D223-9256-F38A-E3FA4C40025F" type="square" x="0" y="1120" Z="0" angle="0" width="320.00" height="160.00" scaleX="6.400" scaleY="3.200">
           <properties>
-            <type typeof="Float" name="DarknessAlpha" value="0.8" hidden="false"/>
+            <type typeof="Float" name="DarknessAlpha" value="0.91" hidden="false"/>
+            <type typeof="Boolean" name="PlayerLight" value="true" hidden="false"/>
           </properties>
         </shape>
         <shape guid="BDB92AA1-8973-A54B-DAA0-140B689447D6" type="square" x="160" y="960" Z="0" angle="0" width="160.00" height="160.00" scaleX="3.200" scaleY="3.200">
           <properties>
-            <type typeof="Float" name="DarknessAlpha" value="0.8" hidden="false"/>
+            <type typeof="Float" name="DarknessAlpha" value="0.91" hidden="false"/>
+            <type typeof="Boolean" name="PlayerLight" value="true" hidden="false"/>
           </properties>
         </shape>
       </shapelayer>
@@ -11218,9 +11203,6 @@
         <sprite guid="7DB6049C-AA29-8E15-FF51-5FE62B1AC43E" x="231" y="1270" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="164" frame="34">
           <properties/>
         </sprite>
-        <sprite guid="ADC97838-FB6A-4C7A-A3B6-0DE97AF4942F" x="336" y="0" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="24"/>
-        <sprite guid="53328593-E759-0D5F-57CE-0109CEED4B9D" x="176" y="960" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="24"/>
-        <sprite guid="0F0E553C-F064-663D-031E-29F0C1DD263E" x="176" y="1120" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="24"/>
         <sprite guid="739CB88C-54A7-27D9-40E0-F3A7B6937BC8" x="368" y="832" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="37" frame="1">
           <properties/>
         </sprite>

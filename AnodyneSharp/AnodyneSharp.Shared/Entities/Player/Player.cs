@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Input;
+﻿using AnodyneSharp.Entities.Lights;
+using AnodyneSharp.Input;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 using AnodyneSharp.States;
@@ -116,8 +117,10 @@ namespace AnodyneSharp.Entities
         public bool ON_CONVEYOR { get; private set; }
         private bool IS_SINKING = false;
         private Foot_Overlay foot_overlay;
+        private PlayerReflection reflection;
 
         public Dust raft;
+        public PlayerLight light;
 
         public Player()
             : base(Vector2.Zero, Player_Sprite, ORIGINAL_WIDTH, ORIGINAL_HEIGHT, Drawing.DrawOrder.ENTITIES)
@@ -157,10 +160,13 @@ namespace AnodyneSharp.Entities
             ANIM_STATE = PlayerAnimState.as_idle;
             facing = Facing.UP;
 
-            broom = new Broom(this);
-            transformer = new Transformer(this);
-            shadow = new Shadow(this, new Vector2(3, -1), fps: 20);
-            foot_overlay = new Foot_Overlay(this);
+            broom = new(this);
+            transformer = new(this);
+            shadow = new(this, new Vector2(3, -1), fps: 20);
+            foot_overlay = new(this);
+            reflection = new(this);
+            light = new(this);
+
         }
 
         public void Reset(bool fullReset = true)
@@ -282,7 +288,7 @@ namespace AnodyneSharp.Entities
 
         public override IEnumerable<Entity> SubEntities()
         {
-            List<Entity> ret = new() { broom, transformer, foot_overlay };
+            List<Entity> ret = new() { broom, transformer, foot_overlay, reflection, light };
             if (raft != null) ret.Add(raft);
             if (follower != null) ret.Add(follower);
             return ret;

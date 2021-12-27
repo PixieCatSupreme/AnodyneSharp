@@ -1646,7 +1646,6 @@
     <Annoyer x="512" y="720" guid="67D09667-7933-20B7-D4D7-1F776A69C9EF" frame="2" p="1" alive="true" type="1" />
     <Gate x="480" y="656" guid="D0A2364B-3D46-26DC-8849-32937A1E6E23" frame="11" p="2" alive="true" type="0" />
     <Stop_Marker x="80" y="416" guid="CB2CF3D0-7327-67F3-90BD-6481EAB64243" frame="0"/>
-    <Event x="496" y="320" guid="3653D507-E888-427C-5356-FF7B26AA31AC" frame="7"/>
     <Key x="48" y="176" guid="1FC62BE6-3D6D-C097-3C92-6C58ADAB14FD" frame="0"/>
     <Solid_Sprite x="560" y="416" guid="BDBB9FAD-00D3-E699-1EBA-44ECBE38A202" frame="0" type="tree" />
     <Spike_Roller x="336" y="448" guid="F42B3973-1E2F-1580-880F-1ECB9E8F58A1" frame="0"/>
@@ -1683,12 +1682,6 @@
     <Door x="712" y="1533" guid="8163D73D-28CA-8825-1C8E-5137C8F64A87" frame="89" type="4" />
     <Door x="376" y="1686" guid="28B923A2-67F8-7525-794B-00202A24C90E" frame="88" type="4" />
     <Event x="231" y="96" guid="8D455518-DE30-1499-30DA-320CB19A2055" frame="2"/>
-    <Event x="321" y="161" guid="F814CC1F-05AE-2F52-A991-9677C63AD50C" frame="6" type="player" />
-    <Event x="321" y="1617" guid="7AA3AA66-CDA2-8CEC-2645-CA36E3AF9BBA" frame="6" type="player" />
-    <Event x="641" y="1457" guid="9D0227D8-E62B-AC53-9196-67AE87711099" frame="6" type="player" />
-    <Event x="161" y="977" guid="C32A15C4-E526-36B0-8211-8FBDEE96981C" frame="6" type="player" />
-    <Event x="33" y="497" guid="6FA08C02-7FE6-E7D4-8B57-517BCA27EC1A" frame="6" type="player" />
-    <Event x="161" y="17" guid="38E68C39-0DEA-F888-0706-0466DD8C7417" frame="6" type="player" />
     <NPC x="337" y="417" guid="01C19929-05D1-9E5F-5DD7-40A79BCCE1F8" frame="9" type="generic" />
   </map>
   <map name="FIELDS" type="Stateful">
@@ -3127,9 +3120,6 @@
     <Door x="400" y="16" guid="6504368E-1505-807F-B1FE-B8F6279061C0" frame="82" type="5" />
     <solid_tile x="400" y="0." guid="1A904A6C-AF0D-D1F3-055E-78003489226D" frame="0"/>
     <Door x="231" y="1270" guid="7DB6049C-AA29-8E15-FF51-5FE62B1AC43E" frame="34" type="10" />
-    <Event x="336" y="0." guid="ADC97838-FB6A-4C7A-A3B6-0DE97AF4942F" frame="7"/>
-    <Event x="176" y="960" guid="53328593-E759-0D5F-57CE-0109CEED4B9D" frame="7"/>
-    <Event x="176" y="1120" guid="0F0E553C-F064-663D-031E-29F0C1DD263E" frame="7"/>
     <NPC x="368" y="832" guid="739CB88C-54A7-27D9-40E0-F3A7B6937BC8" frame="1" type="rock" />
     <NPC x="256" y="816" guid="0FF5EA69-7481-5A23-F7E2-4AE9700CBF4A" frame="0" type="rock" />
     <Solid_Sprite x="211" y="1277" guid="427B4D56-32E6-CC10-7CEE-301464B6F916" frame="5" type="blocker" />

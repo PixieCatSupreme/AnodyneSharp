@@ -165,11 +165,11 @@ namespace AnodyneSharp.MapData
             }
         }
 
-        public void ReloadSettings(Vector2 player_pos, bool graphics_only = false)
+        public void ReloadSettings(Vector2 player_pos, bool graphics_only = false, Player p = null)
         {
             if (settings is null)
             {
-                DebugLogger.AddCritical($"Missing settings file for {mapName}!",false);
+                DebugLogger.AddCritical($"Missing settings file for {mapName}!", false);
                 return;
             }
 #nullable enable
@@ -188,7 +188,17 @@ namespace AnodyneSharp.MapData
             GlobalState.staticEffect.active = MapSettings.Get(s => s.Static, priorities, false);
             replacements = new(MapSettings.Get(s => s.ReplaceTiles, priorities, ""));
             GlobalState.glitch.active = player_pos.X < 0 || player_pos.Y < 0 || player_pos.X > WidthInTiles * 16 || player_pos.Y > HeightInTiles * 16;
+
+            if(p is not null)
+            {
+                p.light.exists = MapSettings.Get(s => s.PlayerLight, priorities, false);
+            }
 #nullable restore
+        }
+
+        public void ReloadSettings(Player p, bool graphics_only = false)
+        {
+            ReloadSettings(p.Center, graphics_only, p);
         }
 
         public void OnTransitionStart()
