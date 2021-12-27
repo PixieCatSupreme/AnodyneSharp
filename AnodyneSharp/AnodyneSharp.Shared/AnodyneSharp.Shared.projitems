@@ -87,6 +87,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Switches\PillarSwitch.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Switches\SwitchPillar.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\WaterAnim.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Blue\Snowman.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Blue\Dam.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Cell\CellBody.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Crowd\BioFilm.cs" />
@@ -122,7 +123,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\RunningTradeNPCs\MiaoXiao.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\RunningTradeNPCs\ShopKeep.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\ShadowBriar.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Space\CubeKings.cs" />
+    <Compile Include="..\AnodyneSharp.Shared\Entities\Interactive\Npc\Space\CubeKing.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Space\SpaceNPC.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Suburb\SuburbBlocker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Suburb\SuburbIndoors.cs" />

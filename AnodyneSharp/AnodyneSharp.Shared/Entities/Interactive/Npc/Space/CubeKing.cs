@@ -6,15 +6,15 @@ using System.Text;
 
 namespace AnodyneSharp.Entities.Interactive.Npc.Space
 {
-    [NamedEntity("NPC", "generic", 4), Collision(typeof(Player))]
-    class CubeKings : Entity, Interactable
+    [NamedEntity("CubeKing"), Collision(typeof(Player))]
+    class CubeKing : Entity, Interactable
     {
         private string _dialogue;
 
-        public CubeKings(EntityPreset preset, Player p)
+        public CubeKing(EntityPreset preset, Player p)
             : base(preset.Position, "space_npcs", 32, 32, Drawing.DrawOrder.ENTITIES)
         {
-            if (GlobalState.CURRENT_GRID_X < 5)
+            if (preset.Frame == 10)
             {
                 AddAnimation("a", CreateAnimFrameArray(10, 11), 4);
                 _dialogue = "gray";
