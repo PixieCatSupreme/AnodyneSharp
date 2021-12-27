@@ -2923,8 +2923,6 @@
     <Suburb_Walker x="76" y="121" guid="12D9E03D-2262-A93E-1D15-3C7F75FDB3F5" frame="0" p="1" alive="true"/>
   </map>
   <map name="SPACE" type="Stateful">
-    <NPC x="544" y="176" guid="F39FE26C-5B1B-95CB-0808-79022884E8A4" frame="4" type="generic" />
-    <NPC x="1184" y="176" guid="5D3F716F-DA1E-413C-725D-7EFA5F17DCF5" frame="4" type="generic" />
     <Door x="864" y="384" guid="23FB270C-F63C-D10B-D1E8-7FC933B87CE8" frame="47" type="16" />
     <NPC x="832" y="384" guid="FA48541D-3E05-A42C-7B9C-D37AE4709EAC" frame="0" type="rock" />
     <NPC x="1456" y="336" guid="E6EECF51-3A0D-AAD2-2BFA-98D75097A9A8" frame="1" type="rock" />
@@ -3057,6 +3055,8 @@
     <Space_Face x="1408" y="224" guid="8FFDF545-F75F-E8C0-3DE2-B35845C061AB" frame="0"/>
     <Space_Face x="1360" y="192" guid="C070EAA9-A00C-A17E-9B5D-24A7E7FA9522" frame="0"/>
     <Space_Face x="1280" y="192" guid="78756B56-F2F2-4AB8-444D-87F8807D5C21" frame="0"/>
+    <CubeKing x="544" y="176" guid="6DE6A2A3-E393-AA8C-AEBB-C85DF050F419" frame="10"/>
+    <CubeKing x="1184" y="176" guid="C3FEEE1E-E20D-BDED-F754-3F133B90CFA1" frame="12"/>
   </map>
   <map name="STREET" type="Stateful">
     <Solid_Sprite x="513" y="161" guid="75B1EBBC-9036-A9A2-299D-1FE4C84A86F8" frame="5" type="blocker" />
