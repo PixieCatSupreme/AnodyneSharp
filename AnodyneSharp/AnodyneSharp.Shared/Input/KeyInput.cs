@@ -20,7 +20,9 @@ namespace AnodyneSharp.Input
         Broom1,
         Broom2,
         Broom3,
-        Broom4
+        Broom4,
+        QuickSave,
+        QuickLoad
     }
 
     /// <summary>

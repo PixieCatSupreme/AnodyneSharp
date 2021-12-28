@@ -223,12 +223,11 @@ namespace AnodyneSharp.States
                 (new UILabel(new Vector2(x, startY + yStep * 2), true, DialogueManager.GetDialogue("misc", "any", "cards", 0)), typeof(CardSubstate)),
                 (new UILabel(new Vector2(x, startY + yStep * 3), true, DialogueManager.GetDialogue("misc", "any", "save", 0)), typeof(SaveSubstate)),
                 (new UILabel(new Vector2(x, startY + yStep * 4), true, DialogueManager.GetDialogue("misc", "any", "config", 0)), typeof(ConfigSubstate)),
-                (new UILabel(new Vector2(x, startY + yStep * 5), true, "Feats", forceEnglish: true), typeof(AchievementsSubstate))
             };
 
             if(GlobalState.inventory.UnlockedSecretz)
             {
-                substates.Add((new UILabel(new Vector2(x, startY + yStep * 6), true, "???", forceEnglish: true), typeof(SecretSubstate)));
+                substates.Add((new UILabel(new Vector2(x, startY + yStep * 5), true, "???", forceEnglish: true), typeof(SecretSubstate)));
             }
 
             _playtimeLabel = new UILabel(new Vector2(1, 154), true, "00:00:00", forceEnglish: true);

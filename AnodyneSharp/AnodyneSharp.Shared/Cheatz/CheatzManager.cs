@@ -103,8 +103,6 @@ namespace AnodyneSharp.Cheatz
             GlobalState.inventory.AddCurrentMapKey();
             SoundManager.PlaySoundEffect("keyget");
             GlobalState.RefreshKeyCount = true;
-
-            GlobalState.achievements.AchievementsDisabled = true;
         }
 
         [Cheat("ULRDDLRU12")]

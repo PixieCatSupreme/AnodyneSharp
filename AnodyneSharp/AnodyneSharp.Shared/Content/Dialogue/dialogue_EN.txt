@@ -1493,10 +1493,13 @@ Menu
 #15
 Next
 Previous
+Quick save
+Quick load
 Movement
 Actions
 Broom
 Selection
+Quick save
 Confirm
 Press [SOMEKEY-ENTER] to exit. \n[SOMEKEY-LEFT] to set controls.
 		end scene 

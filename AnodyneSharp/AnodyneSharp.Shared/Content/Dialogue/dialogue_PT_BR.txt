@@ -1983,10 +1983,13 @@ Menu
 #15
 Next
 Previous
+QuickSave
+QuickLoad
 Movement
 Actions
 Broom
 Selection
+QuickSave
 Confirm
 Pressione [SOMEKEY-ENTER] para sair
 #Press

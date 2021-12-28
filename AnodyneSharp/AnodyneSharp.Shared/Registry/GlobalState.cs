@@ -40,7 +40,6 @@ namespace AnodyneSharp.Registry
             public Dictionary<string, DialogueNPC> dialogue_state = DialogueManager.SceneTree;
             public EventRegister events = GlobalState.events;
             public InventoryManager inventory = GlobalState.inventory;
-            public AchievementManager achievements = GlobalState.achievements;
             public CheckPoint checkpoint = GlobalState.checkpoint;
             public CheckPoint ReturnTarget = GlobalState.ReturnTarget;
             public int PillarSwitchOn = GlobalState.PillarSwitchOn;
@@ -98,7 +97,6 @@ namespace AnodyneSharp.Registry
             DialogueManager.Reload();
             events = s.events;
             inventory = s.inventory;
-            achievements = s.achievements;
             checkpoint = s.checkpoint;
             ReturnTarget = s.ReturnTarget;
             PillarSwitchOn = s.PillarSwitchOn;
@@ -138,7 +136,6 @@ namespace AnodyneSharp.Registry
             minimaps = new();
             events = new();
             inventory = new();
-            achievements = new();
             DialogueManager.SceneTree = null;
             DialogueManager.Reload();
             EntityManager.State = new();
@@ -234,6 +231,9 @@ namespace AnodyneSharp.Registry
 
         public static Action<GameEvent> FireEvent;
 
+        public static Action DoQuickSave;
+        public static Action DoQuickLoad;
+
         public static IPublicMap Map;
 
         private static MinimapTracker minimaps = new();
@@ -242,7 +242,6 @@ namespace AnodyneSharp.Registry
 
         public static EventRegister events = new();
         public static InventoryManager inventory = new();
-        public static AchievementManager achievements = new();
 
 
         public static Facing? NewMapFacing = Facing.RIGHT;

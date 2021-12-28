@@ -2019,10 +2019,13 @@ npc misc
 #15
 Next
 Previous
+QuickSave
+QuickLoad
 Movement
 Actions
 Broom
 Selection
+QuickSave
 Confirm
 # Press
 버튼 [SOMEKEY-ENTER] 을(를) 눌러 나가기

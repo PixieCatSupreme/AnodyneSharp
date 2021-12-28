@@ -305,6 +305,12 @@ namespace AnodyneSharp
                 [KeyFunctions.Broom4] = new RebindableKey(
                     new List<Keys> { Keys.D4 },
                     new List<Buttons> { Buttons.RightThumbstickLeft }
+                    ),
+                [KeyFunctions.QuickSave] = new RebindableKey(
+                    new List<Keys> { Keys.F4 }
+                    ),
+                [KeyFunctions.QuickLoad] = new RebindableKey(
+                    new List<Keys> { Keys.F5 }
                     )
             };
         }

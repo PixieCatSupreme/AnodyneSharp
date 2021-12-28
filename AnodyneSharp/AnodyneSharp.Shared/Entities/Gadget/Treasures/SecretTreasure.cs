@@ -24,8 +24,6 @@ namespace AnodyneSharp.Entities.Gadget.Treasures
             GlobalState.inventory.SecretStatus[_secretID] = true;
 
             DebugLogger.AddInfo($"Got secret {_secretID}");
-
-            GlobalState.achievements.CheckCubeAchievements();
         }
     }
 }

@@ -2221,10 +2221,13 @@ Menù
 #15
 Next
 Previous
+QuickSave
+QuickLoad
 Movement
 Actions
 Broom
 Selection
+QuickSave
 Confirm
 #Press
 Premi [SOMEKEY-ENTER] per uscire

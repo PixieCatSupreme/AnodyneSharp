@@ -46,8 +46,6 @@ namespace AnodyneSharp.Entities.Gadget.Treasures
             GlobalState.inventory.CardStatus[_curAnim.Frame] = true;
 
             DebugLogger.AddInfo($"Got card {_curAnim.Frame}");
-
-            GlobalState.achievements.CheckCardAchievements();
         }
 
         public override void Update()

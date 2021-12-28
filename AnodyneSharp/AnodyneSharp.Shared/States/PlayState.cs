@@ -113,20 +113,28 @@ namespace AnodyneSharp.States
 
             GlobalState.SpawnEntity = SpawnEntity;
             GlobalState.FireEvent = FireEvent;
+
+            GlobalState.DoQuickSave = QuickSave;
+            GlobalState.DoQuickLoad = () => DoQuickLoad = true;
         }
 
         private void QuickSave()
         {
+            SoundManager.PlaySoundEffect("menu_select");
+
             GlobalState.serialized_quicksave = new GlobalState.Save().ToString();
-            GlobalState.quicksave_checkpoint = new(GlobalState.CURRENT_MAP_NAME,_player.Position);
+            GlobalState.quicksave_checkpoint = new(GlobalState.CURRENT_MAP_NAME, _player.Position);
         }
 
         private void QuickLoad()
         {
-            if(GlobalState.serialized_quicksave is null)
+            if (GlobalState.serialized_quicksave is null)
             {
                 return;
             }
+
+            SoundManager.PlaySoundEffect("menu_select");
+
             GlobalState.Save s = GlobalState.Save.FromString(GlobalState.serialized_quicksave);
             GlobalState.ResetValues();
             GlobalState.LoadSave(s);
@@ -373,7 +381,7 @@ namespace AnodyneSharp.States
             _map_specific_update?.Invoke();
 
             //This needs to be at the end in order not to mess with the initialisation of the new playstate
-            if(DoQuickLoad)
+            if (DoQuickLoad)
             {
                 QuickLoad();
             }
@@ -537,6 +545,15 @@ namespace AnodyneSharp.States
                 {
                     SetBroom(BroomType.Transformer);
                 }
+            }
+
+            if (KeyInput.JustPressedRebindableKey(KeyFunctions.QuickSave))
+            {
+                QuickSave();
+            }
+            if (KeyInput.JustPressedRebindableKey(KeyFunctions.QuickLoad))
+            {
+                DoQuickLoad = true; //Need to wait for end of update to do this
             }
         }
 
@@ -706,15 +723,6 @@ namespace AnodyneSharp.States
                 GlobalState.WARP = true;
             }
 
-            if(KeyInput.JustPressedKey(Keys.F4))
-            {
-                QuickSave();
-            }
-            else if(KeyInput.JustPressedKey(Keys.F5))
-            {
-                DoQuickLoad = true; //Need to wait for end of update to do this
-            }
-
             if (KeyInput.JustPressedKey(Keys.D5))
             {
                 SetBroom(BroomType.NONE);
@@ -755,7 +763,7 @@ namespace AnodyneSharp.States
                 }
                 _map.offset += offset;
 
-                if(KeyInput.JustPressedKey(Keys.NumPad0))
+                if (KeyInput.JustPressedKey(Keys.NumPad0))
                 {
                     _map.offset = Vector2.Zero;
                 }
@@ -962,9 +970,9 @@ namespace AnodyneSharp.States
 
         private void OnGridExit()
         {
-            foreach(EntityPreset preset in EntityManager.GetGridEntities(GlobalState.CURRENT_MAP_NAME, new Point(GlobalState.CURRENT_GRID_X, GlobalState.CURRENT_GRID_Y)))
+            foreach (EntityPreset preset in EntityManager.GetGridEntities(GlobalState.CURRENT_MAP_NAME, new Point(GlobalState.CURRENT_GRID_X, GlobalState.CURRENT_GRID_Y)))
             {
-                if(preset.Permanence == Permanence.GRID_LOCAL)
+                if (preset.Permanence == Permanence.GRID_LOCAL)
                 {
                     preset.Alive = true;
                 }
@@ -992,7 +1000,7 @@ namespace AnodyneSharp.States
 
             IEnumerable<Entity> player_subentities = _player.SubEntities(); //Cache first since some entities add themselves to the player on creation
 
-            _gridEntities = gridPresets.Where(preset => preset.Alive || preset.Type.IsDefined(typeof(AlwaysSpawnAttribute),true))
+            _gridEntities = gridPresets.Where(preset => preset.Alive || preset.Type.IsDefined(typeof(AlwaysSpawnAttribute), true))
                 .Select(preset => preset.Create(_player)).Concat(player_subentities).SelectMany(e => SubEntities(e)).ToList();
 
             _groups.Register(_player);

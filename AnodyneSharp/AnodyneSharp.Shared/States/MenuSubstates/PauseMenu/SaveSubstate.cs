@@ -16,6 +16,8 @@ namespace AnodyneSharp.States.MenuSubstates
     {
         private enum SaveState
         {
+            QuickSaveLabel,
+            QuickLoadLabel,
             SaveLabel,
             SaveTitleLable,
             SaveQuitLabel,
@@ -24,8 +26,11 @@ namespace AnodyneSharp.States.MenuSubstates
 
         public bool ReturnToTitle { get; private set; }
 
+        private UILabel _quickSaveLabel;
+        private UILabel _quickLoadLabel;
+
         private UILabel _saveLabel;
-        private UILabel _saveTitleLable;
+        private UILabel _saveTitleLabel;
         private UILabel _saveQuitLabel;
         private UILabel _quitLabel;
 
@@ -40,9 +45,12 @@ namespace AnodyneSharp.States.MenuSubstates
             float y = 28 - GameConstants.LineOffset - (GlobalState.CurrentLanguage == Language.ZH_CN ? 1 : 0);
             float yStep = GameConstants.FONT_LINE_HEIGHT;
 
-            _saveLabel = new UILabel(new Vector2(x, y), true, DialogueManager.GetDialogue("misc", "any", "save", 0));
-            _saveTitleLable = new UILabel(new Vector2(x, _saveLabel.Position.Y + yStep * 2 - 4), true, DialogueManager.GetDialogue("misc", "any", "save", 3));
-            _saveQuitLabel = new UILabel(new Vector2(x, _saveTitleLable.Position.Y + yStep * 3 - 2), true, DialogueManager.GetDialogue("misc", "any", "save", 5));
+            _quickSaveLabel = new UILabel(new Vector2(x, y), true, DialogueManager.GetDialogue("misc", "any", "controls", 15));
+            _quickLoadLabel = new UILabel(new Vector2(x, _quickSaveLabel.Position.Y + yStep * 2 - 4), true, DialogueManager.GetDialogue("misc", "any", "controls", 16));
+
+            _saveLabel = new UILabel(new Vector2(x, _quickLoadLabel.Position.Y + yStep * 2 - 4), true, DialogueManager.GetDialogue("misc", "any", "save", 0));
+            _saveTitleLabel = new UILabel(new Vector2(x, _saveLabel.Position.Y + yStep * 2 - 4), true, DialogueManager.GetDialogue("misc", "any", "save", 3));
+            _saveQuitLabel = new UILabel(new Vector2(x, _saveTitleLabel.Position.Y + yStep * 3 - 2), true, DialogueManager.GetDialogue("misc", "any", "save", 5));
             _quitLabel = new UILabel(new Vector2(x, _saveQuitLabel.Position.Y + yStep * 2 - 2), true, DialogueManager.GetDialogue("misc", "any", "save", 6));
             _deathsLabel = new UILabel(new Vector2(x, _quitLabel.Position.Y + yStep * 4 - 2), true, DialogueManager.GetDialogue("misc", "any", "save", 7) + GlobalState.DeathCount);
         }
@@ -50,7 +58,7 @@ namespace AnodyneSharp.States.MenuSubstates
         public override void GetControl()
         {
             base.GetControl();
-            _state = SaveState.SaveLabel;
+            _state = SaveState.QuickSaveLabel;
 
             SetSelectorPos();
         }
@@ -59,7 +67,7 @@ namespace AnodyneSharp.States.MenuSubstates
         {
             if (KeyInput.JustPressedRebindableKey(KeyFunctions.Up))
             {
-                if (_state == SaveState.SaveLabel)
+                if (_state == SaveState.QuickSaveLabel)
                 {
                     return;
                 }
@@ -77,13 +85,25 @@ namespace AnodyneSharp.States.MenuSubstates
             }
             else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept))
             {
-                SoundManager.PlaySoundEffect("menu_select");
-
-
                 bool save = true;
+                bool playSound = true;
 
                 switch (_state)
                 {
+                    case SaveState.QuickSaveLabel:
+                        GlobalState.DoQuickSave();
+
+                        save = false;
+                        playSound = false;
+
+                        _quickSaveLabel.SetText(DialogueManager.GetDialogue("misc", "any", "save", 1));
+                        break;
+                    case SaveState.QuickLoadLabel:
+                        save = false;
+                        playSound = false;
+
+                        GlobalState.DoQuickLoad();
+                        break;
                     case SaveState.SaveLabel:
                         _saveLabel.SetText(DialogueManager.GetDialogue("misc", "any", "save", 1));
                         break;
@@ -100,6 +120,11 @@ namespace AnodyneSharp.States.MenuSubstates
                         break;
                     default:
                         break;
+                }
+
+                if (playSound)
+                {
+                    SoundManager.PlaySoundEffect("menu_select");
                 }
 
                 if (save)
@@ -127,8 +152,11 @@ namespace AnodyneSharp.States.MenuSubstates
 
         public override void DrawUI()
         {
+            _quickSaveLabel.Draw();
+            _quickLoadLabel.Draw();
+
             _saveLabel.Draw();
-            _saveTitleLable.Draw();
+            _saveTitleLabel.Draw();
             _saveQuitLabel.Draw();
             _quitLabel.Draw();
             _deathsLabel.Draw();
@@ -140,11 +168,17 @@ namespace AnodyneSharp.States.MenuSubstates
         {
             switch (_state)
             {
+                case SaveState.QuickSaveLabel:
+                    selector.Position = _quickSaveLabel.Position;
+                    break;
+                case SaveState.QuickLoadLabel:
+                    selector.Position = _quickLoadLabel.Position;
+                    break;
                 case SaveState.SaveLabel:
                     selector.Position = _saveLabel.Position;
                     break;
                 case SaveState.SaveTitleLable:
-                    selector.Position = _saveTitleLable.Position;
+                    selector.Position = _saveTitleLabel.Position;
                     break;
                 case SaveState.SaveQuitLabel:
                     selector.Position = _saveQuitLabel.Position;

@@ -53,7 +53,7 @@ namespace AnodyneSharp.States.MenuSubstates
             _keysToLabel = _keyBindPages.SelectMany((page,pageNum) => page.Where((_,index) => index % 2 == 0).Select((e,index) => (e.keyFunction,(pageNum,index))))
                 .ToDictionary((e) => e.keyFunction, (e) => e.Item2);
 
-            _pageSetter = new TextSelector(new Vector2(91, 156), 32, 0, true, Drawing.DrawOrder.TEXT, "1/4", "2/4", "3/4", "4/4")
+            _pageSetter = new TextSelector(new Vector2(91, 156), 32, 0, true, Drawing.DrawOrder.TEXT, "1/5", "2/5", "3/5", "4/5", "5/5")
             {
                 noConfirm = true,
                 noLoop = true
@@ -182,7 +182,7 @@ namespace AnodyneSharp.States.MenuSubstates
             }
             else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Right))
             {
-                if (_page == 3)
+                if (_page == _keyBindPages.Count-1)
                 {
                     return;
                 }
@@ -404,7 +404,7 @@ namespace AnodyneSharp.States.MenuSubstates
 
         private void PageValueChanged()
         {
-            pageLabel.SetText(DialogueManager.GetDialogue("misc", "any", "controls", 15 + _page));
+            pageLabel.SetText(DialogueManager.GetDialogue("misc", "any", "controls", 17 + _page));
 
             if (onConfirm)
             {
@@ -437,8 +437,8 @@ namespace AnodyneSharp.States.MenuSubstates
 
             _bgBox = new UIEntity(new Vector2(x, y), "controls", menuWidth, 160, Drawing.DrawOrder.TEXTBOX);
 
-            pageLabel = new UILabel(new Vector2(x + leftPadding, y + yStart), true, DialogueManager.GetDialogue("misc", "any", "controls", 15), layer: Drawing.DrawOrder.TEXT);
-            confirmLabel = new UILabel(new Vector2(x + leftPadding, 156), true, DialogueManager.GetDialogue("misc", "any", "controls", 19), layer: Drawing.DrawOrder.TEXT);
+            pageLabel = new UILabel(new Vector2(x + leftPadding, y + yStart), true, DialogueManager.GetDialogue("misc", "any", "controls", 17), layer: Drawing.DrawOrder.TEXT);
+            confirmLabel = new UILabel(new Vector2(x + leftPadding, 156), true, DialogueManager.GetDialogue("misc", "any", "controls", 22), layer: Drawing.DrawOrder.TEXT);
 
             var keys = KeyInput.RebindableKeys;
 
@@ -493,6 +493,14 @@ namespace AnodyneSharp.States.MenuSubstates
                 CreateTup(KeyFunctions.NextPage, 12, 2),
                 CreateTup(KeyFunctions.PreviousPage, 13, 3),
                 CreateTup(KeyFunctions.PreviousPage, 13, 4),
+            });
+
+            _keyBindPages.Add(new()
+            {
+                CreateTup(KeyFunctions.QuickSave, 14, 1),
+                CreateTup(KeyFunctions.QuickSave, 14, 2),
+                CreateTup(KeyFunctions.QuickLoad, 15, 3),
+                CreateTup(KeyFunctions.QuickLoad, 15, 4),
             });
         }
 

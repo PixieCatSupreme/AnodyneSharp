@@ -18,9 +18,6 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
         Player _player;
         EntityPreset _preset;
 
-        //For achievement check
-        readonly int player_start_health = GlobalState.CUR_HEALTH;
-
         int _health = 7;
 
         SeerOrb[] _orbs;
@@ -113,9 +110,6 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
                 stage2.MoveNext();
                 yield return null;
             }
-
-            if (GlobalState.CUR_HEALTH == player_start_health)
-                GlobalState.achievements.UnlockAchievement(AchievementValue.NoHitSeer);
 
             GlobalState.darkness.TargetAlpha(1, 0.6f);
 

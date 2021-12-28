@@ -205,7 +205,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)MapData\TileMap.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MapData\Tiles\AnimatedTile.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MapData\Tiles\CollissionData.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Registry\AchievementManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Registry\EventRegister.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Registry\InventoryManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Resources\CardDataManager.cs" />
@@ -245,7 +244,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)States\MenuSubstates\MainMenu\FileSubstate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\PauseState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\MenuSubstates\BaseSubstates\GridSubstate.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)States\MenuSubstates\PauseMenu\AchievementsSubstate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\MenuSubstates\PauseMenu\SecretSubstate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\MenuSubstates\PauseMenu\CardSubstate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\MenuSubstates\PauseMenu\CheatzSubstate.cs" />

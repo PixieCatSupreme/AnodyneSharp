@@ -2217,10 +2217,13 @@ npc misc
 #15
 Next
 Previous
+QuickSave
+QuickLoad
 Movement
 Actions
 Broom
 Selection
+QuickSave
 Confirm
 #Press
 按下 [SOMEKEY-ENTER] 以退出
