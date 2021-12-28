@@ -100,10 +100,11 @@ for i,v in ipairs(spriteLayers) do
 	val_p = "%%if prop:p%%".." p=\"%prop:p%\"".."%%endprop%%"
 	val_alive = "%%if prop:alive%%".." alive=\"%prop:alive%\"".."%%endprop%%"
 	val_type = "%%if prop:type%%".." type=\"%prop:type%\" ".."%%endprop%%"
+    val_link = "%%if link%% linkid=\"%linkid%\"%%endiflink%%"
+    
+    val_linksfromthis = "%%if linkto%% linkgroup=\"%linkid%%%linkstoloop%%,%linktoid%%%linkloopend%%\"%%endiflink%%"
 	
-	
-	
-	creationText = tab2.."<%class% x=\"%xpos%\" y=\"%ypos%\" guid=\"%guid%\" frame=\"%frame%\""..val_p..val_alive..val_type.."/>\n"
+	creationText = tab2.."<%class% x=\"%xpos%\" y=\"%ypos%\" guid=\"%guid%\" frame=\"%frame%\""..val_p..val_alive..val_type..val_link..val_linksfromthis.."/>\n"
 	fileText = fileText..as3.tolua(DAME.CreateTextForSprites(spriteLayers[i][2],creationText,"Avatar"))
 	fileText = fileText..tab1.."</map>\n"
 end

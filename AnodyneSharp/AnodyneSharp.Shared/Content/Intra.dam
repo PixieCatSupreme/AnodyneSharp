@@ -2,7 +2,7 @@
 <project>
   <version/>
   <bgColor>0xcccccc</bgColor>
-  <viewPos x="344" y="-350"/>
+  <viewPos x="308" y="187"/>
   <firstLayersTop>false</firstLayersTop>
   <spriteEntries currentId="172">
     <group name="Events SL" idx="1" open="false">
@@ -650,6 +650,11 @@
       </sprite>
     </group>
   </spriteEntries>
+  <links>
+    <link from="B2B6C42C-40D7-9F1B-6E57-DFF3C6192DC7" to="11945C9A-EB54-A71C-B6A7-D3B5997788EC"/>
+    <link from="B2B6C42C-40D7-9F1B-6E57-DFF3C6192DC7" to="093648FD-B1E0-C43C-B9E5-D9DEF107E2A9"/>
+    <link from="B2B6C42C-40D7-9F1B-6E57-DFF3C6192DC7" to="83242E85-C574-028D-AB7F-A07D79AFDE8D"/>
+  </links>
   <layers>
     <group name="APARTMENT" id="109" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true" selected="true">
       <maplayer name="BG" id="0" xScroll="1" yScroll="1" x="0" y="0" width="90" height="80" tileset="textures/tilemaps/apartment_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
@@ -7612,10 +7617,10 @@
         <sprite guid="CD2ECB36-E917-533F-C326-60F86C53053A" x="384" y="608" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="72" frame="0"/>
         <sprite guid="24FEAF2E-B4AB-5173-196E-4250394F8A5A" x="416" y="624" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="67" frame="0"/>
         <sprite guid="AE9EF830-94F6-54F1-6307-AA8090713742" x="400" y="448" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="19" frame="2"/>
-        <sprite guid="B2B6C42C-40D7-9F1B-6E57-DFF3C6192DC7" x="384" y="880" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="76"/>
-        <sprite guid="83242E85-C574-028D-AB7F-A07D79AFDE8D" x="1344" y="560" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="76"/>
+        <sprite guid="B2B6C42C-40D7-9F1B-6E57-DFF3C6192DC7" x="384" y="880" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="76" frame="3"/>
+        <sprite guid="83242E85-C574-028D-AB7F-A07D79AFDE8D" x="1344" y="560" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="76" frame="1"/>
         <sprite guid="093648FD-B1E0-C43C-B9E5-D9DEF107E2A9" x="1344" y="1360" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="76"/>
-        <sprite guid="11945C9A-EB54-A71C-B6A7-D3B5997788EC" x="384" y="1840" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="76"/>
+        <sprite guid="11945C9A-EB54-A71C-B6A7-D3B5997788EC" x="384" y="1840" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="76" frame="2"/>
         <sprite guid="FF370CA3-AA55-F443-E11B-B2B09F4862D1" x="1312" y="1456" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="67" frame="0"/>
         <sprite guid="DE9CC4F3-CE2B-C550-1B05-D0228C82D1FC" x="1296" y="1200" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="124" frame="1">
           <properties/>

@@ -38,6 +38,7 @@ namespace AnodyneSharp.Entities
         public int Frame { get; private set; }
         public Permanence Permanence { get; private set; }
         public string TypeValue { get; private set; }
+        public int LinkID { get; private set; }
         public bool Alive
         {
             get
@@ -99,7 +100,7 @@ namespace AnodyneSharp.Entities
             }
         }
 
-        public EntityPreset(Type creation_type, Vector2 position, Guid entityID, int frame, Permanence permanence = Permanence.GRID_LOCAL, string type = "")
+        public EntityPreset(Type creation_type, Vector2 position, Guid entityID, int frame, Permanence permanence = Permanence.GRID_LOCAL, string type = "", int linkid = -1)
         {
             Type = creation_type;
             Position = position;
@@ -107,6 +108,7 @@ namespace AnodyneSharp.Entities
             Frame = frame;
             Permanence = permanence;
             TypeValue = type;
+            LinkID = linkid;
         }
 
         public Entity Create(Player p)

@@ -82,6 +82,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Suburb\SuburbKiller.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\DoorToggle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\FadeSwitchSong.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Elevator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Blank\BlankConsole.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Hotel\EyebossPreview.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Hotel\HotelGuy.cs" />

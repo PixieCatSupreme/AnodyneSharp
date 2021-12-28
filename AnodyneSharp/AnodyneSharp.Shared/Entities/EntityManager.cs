@@ -18,6 +18,7 @@ namespace AnodyneSharp.Entities
 
         private static Dictionary<string, List<EntityPreset>> _entities = new();
         private static Dictionary<int, DoorPair> _doorPairs = new();
+        private static Dictionary<int, List<EntityPreset>> _linkGroups = new();
         public static Dictionary<Guid, EntityState> State = new();
 
         /// <summary>
@@ -68,6 +69,11 @@ namespace AnodyneSharp.Entities
                 DebugLogger.AddCritical($"Could not find door pair with id {door.Frame}");
                 return null;
             }
+        }
+
+        public static List<EntityPreset> GetLinkGroup(int linkid)
+        {
+            return _linkGroups[linkid];
         }
 
         public static DoorMapPair GetNexusGateForCurrentMap()
@@ -145,12 +151,7 @@ namespace AnodyneSharp.Entities
                                 p = (Permanence)int.Parse(child.Attributes.GetNamedItem("p").Value);
                             }
 
-                            string type = "";
-
-                            if (child.Attributes.GetNamedItem("type") != null)
-                            {
-                                type = child.Attributes.GetNamedItem("type").Value;
-                            }
+                            string type = child.Attributes.GetNamedItem("type")?.Value ?? "";
 
                             var matching = type_lookup[child.Name]
                                 .FindAll(t => t.check.Matches(frame, type, mapName))
@@ -174,6 +175,33 @@ namespace AnodyneSharp.Entities
                             else
                             {
                                 EntityPreset preset = new(matching[0].First().type, new Vector2(x, y), id, frame, p, type);
+
+                                if(int.TryParse(child.Attributes.GetNamedItem("linkid")?.Value,out int linkid))
+                                {
+                                    preset = new(matching[0].First().type, new Vector2(x, y), id, frame, p, type, linkid);
+
+                                    List<EntityPreset> GetLinked(int link)
+                                    {
+                                        if(_linkGroups.TryGetValue(link, out var presets))
+                                        {
+                                            return presets;
+                                        }
+                                        List<EntityPreset> ret = new();
+                                        _linkGroups.Add(link, ret);
+                                        return ret;
+                                    }
+                                    GetLinked(linkid).Add(preset);
+                                    string group = child.Attributes.GetNamedItem("linkgroup")?.Value;
+                                    if(group != null)
+                                    {
+                                        int[] ids = group.Split(',').Select(int.Parse).ToArray();
+                                        List<EntityPreset> all = ids.SelectMany(GetLinked).ToList();
+                                        foreach(int l_id in ids)
+                                        {
+                                            _linkGroups[l_id] = all;
+                                        }
+                                    }
+                                }
 
                                 presets.Add(preset);
 

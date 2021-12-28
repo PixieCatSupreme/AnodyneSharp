@@ -2212,10 +2212,10 @@
     <Propelled x="384" y="608" guid="CD2ECB36-E917-533F-C326-60F86C53053A" frame="0"/>
     <Dust x="416" y="624" guid="24FEAF2E-B4AB-5173-196E-4250394F8A5A" frame="0"/>
     <Event x="400" y="448" guid="AE9EF830-94F6-54F1-6307-AA8090713742" frame="2"/>
-    <Elevator x="384" y="880" guid="B2B6C42C-40D7-9F1B-6E57-DFF3C6192DC7" frame="0"/>
-    <Elevator x="1344" y="560" guid="83242E85-C574-028D-AB7F-A07D79AFDE8D" frame="0"/>
-    <Elevator x="1344" y="1360" guid="093648FD-B1E0-C43C-B9E5-D9DEF107E2A9" frame="0"/>
-    <Elevator x="384" y="1840" guid="11945C9A-EB54-A71C-B6A7-D3B5997788EC" frame="0"/>
+    <Elevator x="384" y="880" guid="B2B6C42C-40D7-9F1B-6E57-DFF3C6192DC7" frame="3" linkid="0" linkgroup="0,1,2,3"/>
+    <Elevator x="1344" y="560" guid="83242E85-C574-028D-AB7F-A07D79AFDE8D" frame="1" linkid="3"/>
+    <Elevator x="1344" y="1360" guid="093648FD-B1E0-C43C-B9E5-D9DEF107E2A9" frame="0" linkid="2"/>
+    <Elevator x="384" y="1840" guid="11945C9A-EB54-A71C-B6A7-D3B5997788EC" frame="2" linkid="1"/>
     <Dust x="1312" y="1456" guid="FF370CA3-AA55-F443-E11B-B2B09F4862D1" frame="0"/>
     <Steam_Pipe x="1296" y="1200" guid="DE9CC4F3-CE2B-C550-1B05-D0228C82D1FC" frame="1"/>
     <Steam_Pipe x="1360" y="1184" guid="FC22B035-5E1F-F94D-25C1-C456634F4258" frame="0"/>
