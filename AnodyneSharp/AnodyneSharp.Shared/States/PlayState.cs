@@ -113,6 +113,7 @@ namespace AnodyneSharp.States
 
             GlobalState.SpawnEntity = SpawnEntity;
             GlobalState.FireEvent = FireEvent;
+            GlobalState.SetSubstate = s => _childState ??= s; //Only allow setting state if there is no child state currently
 
             GlobalState.DoQuickSave = QuickSave;
             GlobalState.DoQuickLoad = () => DoQuickLoad = true;

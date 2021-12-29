@@ -10,7 +10,7 @@ namespace AnodyneSharp.States
 
     public class State
     {
-        public bool Exit { get; protected set; } = false;
+        public bool Exit { get; set; } = false;
         public bool UpdateEntities { get; protected set; } = true;
         public bool DrawPlayState { get; protected set; } = true;
 

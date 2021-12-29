@@ -231,6 +231,8 @@ namespace AnodyneSharp.Registry
 
         public static Action<GameEvent> FireEvent;
 
+        public static Action<State> SetSubstate;
+
         public static Action DoQuickSave;
         public static Action DoQuickLoad;
 

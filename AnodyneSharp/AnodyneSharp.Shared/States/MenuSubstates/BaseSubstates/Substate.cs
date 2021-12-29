@@ -25,7 +25,7 @@ namespace AnodyneSharp.States.MenuSubstates
                 }
             }
         }
-        public new bool Exit { get; set; }
+        //public new bool Exit { get; set; }
 
         protected MenuSelector selector;
 
