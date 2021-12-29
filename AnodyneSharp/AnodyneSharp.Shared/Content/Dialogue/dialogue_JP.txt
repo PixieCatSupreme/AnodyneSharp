@@ -2053,10 +2053,6 @@ Anodyneは\nコントローラー\nに対応しています\n\n使用します�
  scene elevator
 何階へ行きますか?
 #Floor?
-1\n
-2\n
-3\n
-4\n
 キャンセル
 #Cancel
  end scene

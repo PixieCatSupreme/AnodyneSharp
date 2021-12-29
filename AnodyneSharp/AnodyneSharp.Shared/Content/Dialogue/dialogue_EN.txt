@@ -1760,10 +1760,6 @@ Now you have\nthe ability\nto explore Young's\nworld with (almost) no\nlimitatio
 		
 		scene elevator
 Floor?
-1\n
-2\n
-3\n
-4\n
 Cancel
 		end scene
 	end area

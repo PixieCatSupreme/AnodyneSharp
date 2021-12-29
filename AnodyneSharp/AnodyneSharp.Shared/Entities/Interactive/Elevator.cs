@@ -14,6 +14,7 @@ namespace AnodyneSharp.Entities.Interactive
     {
         EntityPreset _preset;
 
+        //Slight abuse of update order with subentities getting updated after the parent one
         PlayerDetector openDetector;
         PlayerDetector menuDetector;
 

@@ -2464,10 +2464,6 @@ Molly, for believing\n in me.\n\nTina, for introducing\nme\nto Melos.\n\nMelos, 
 		scene elevator
 # Floor?
 몇층으로 가시겠습니까?
-1\n
-2\n
-3\n
-4\n
 # Cancel
 취소
 		end scene

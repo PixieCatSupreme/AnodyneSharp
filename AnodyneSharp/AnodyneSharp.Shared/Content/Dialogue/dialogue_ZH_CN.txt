@@ -2664,10 +2664,6 @@ Mo，给予我充分的信任。\n\nTina，\n介绍我与Melos认识。\n\nMelos
 		scene elevator
 #Floor?
 要去几楼呢？
-1\n
-2\n
-3\n
-4\n
 #Cancel
 取消
 		end scene

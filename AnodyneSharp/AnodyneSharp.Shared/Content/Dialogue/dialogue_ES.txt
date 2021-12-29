@@ -2655,10 +2655,6 @@ Ahora tienes la\ncapacidad de\nexplorar el mundo\nde Young con (casi)\nninguna l
 		scene elevator
 #Floor?
 ¿Planta?
-1\n
-2\n
-3\n
-4\n
 #Cancel
 Cancelar
 		end scene
