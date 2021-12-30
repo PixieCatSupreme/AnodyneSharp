@@ -105,12 +105,12 @@ namespace AnodyneSharp.Sounds
             }
         }
 
-        public static void PlaySoundEffect(params string[] names)
+        public static SoundEffectInstance PlaySoundEffect(params string[] names)
         {
             var sfx = names.Select((n) => ResourceManager.GetSFX(n)).Where((n) => n != null).ToArray();
-            if (sfx.Length == 0) return;
+            if (sfx.Length == 0) return null;
 
-            CreateSoundInstance(sfx[GlobalState.RNG.Next(0,sfx.Length)]);
+            return CreateSoundInstance(sfx[GlobalState.RNG.Next(0,sfx.Length)]);
         }
 
         public static void PlayPitchedSoundEffect(string name, float pitch, float volume = 1)
@@ -118,7 +118,7 @@ namespace AnodyneSharp.Sounds
             CreateSoundInstance(ResourceManager.GetSFX(name), volume, pitch);
         }
 
-        private static void CreateSoundInstance(SoundEffectInstance sfx, float volume = 1, float pitch = 0)
+        private static SoundEffectInstance CreateSoundInstance(SoundEffectInstance sfx, float volume = 1, float pitch = 0)
         {
             if (sfx != null)
             {
@@ -126,6 +126,7 @@ namespace AnodyneSharp.Sounds
                 sfx.Volume = volume * GlobalState.settings.sfx_volume_scale;
                 sfx.Play();
             }
+            return sfx;
         }
     }
 }

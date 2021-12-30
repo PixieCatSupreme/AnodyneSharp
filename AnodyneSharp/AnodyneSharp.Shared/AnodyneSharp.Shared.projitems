@@ -84,6 +84,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\FadeSwitchSong.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Elevator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Blank\BlankConsole.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Happy\HappyEventTrigger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Hotel\EyebossPreview.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Hotel\HotelGuy.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Player\PlayerReflection.cs" />
