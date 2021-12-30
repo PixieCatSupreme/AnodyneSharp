@@ -2,7 +2,7 @@
 <project>
   <version/>
   <bgColor>0xcccccc</bgColor>
-  <viewPos x="308" y="187"/>
+  <viewPos x="95.59363404739524" y="-363.0564671814672"/>
   <firstLayersTop>false</firstLayersTop>
   <spriteEntries currentId="172">
     <group name="Events SL" idx="1" open="false">
@@ -289,7 +289,7 @@
       </sprite>
       <sprite name="Go_Detector" idx="81" className="Go_Detector" image="textures/sprites/enemies/hotel/steam.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="-1" canEditFrames="true" lockRotation="false">
         <properties>
-          <type typeof="String" name="alive" value="true" hidden="false"/>
+          <type typeof="Int" name="p" value="2" hidden="false"/>
         </properties>
       </sprite>
       <sprite name="vertiblock" idx="82" className="Solid_Sprite" image="textures/sprites/enemies/hotel/eye_boss_bullet.png" width="4" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="4" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="7" canEditFrames="true" lockRotation="false">
@@ -6499,7 +6499,9 @@
       </maplayer>
       <spritelayer name="Stateful" id="56" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="ED2195E9-9798-B9B3-3C15-105C40F7C501" x="352" y="512" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="81">
-          <properties/>
+          <properties>
+            <type typeof="String" name="type" value="0,4;5,3;4,1;1,1" hidden="false"/>
+          </properties>
         </sprite>
         <sprite guid="070C9F3D-0EB1-859C-C7E7-7439FEFF5EA8" x="432" y="80" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="32" frame="0">
           <properties/>
@@ -6554,8 +6556,10 @@
         <sprite guid="F4D38626-5160-4565-F484-F359715B991B" x="192" y="848" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="37" frame="2">
           <properties/>
         </sprite>
-        <sprite guid="8A05B83F-F586-C1AF-8A68-B248286B9A55" x="16" y="656" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="81">
-          <properties/>
+        <sprite guid="8A05B83F-F586-C1AF-8A68-B248286B9A55" x="32" y="672" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="81">
+          <properties>
+            <type typeof="String" name="type" value="1,3;4,1;4,3;3,0" hidden="false"/>
+          </properties>
         </sprite>
         <sprite guid="00198DEA-E04B-FF1D-9FEB-0F1A0D9C7418" x="131" y="656" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="61" frame="16">
           <properties/>

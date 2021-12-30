@@ -1925,7 +1925,7 @@
     <Dust x="592" y="784" guid="39207086-C6BB-7F4B-C92B-D3A7C9AF86B8" frame="0"/>
   </map>
   <map name="GO" type="Stateful">
-    <Go_Detector x="352" y="512" guid="ED2195E9-9798-B9B3-3C15-105C40F7C501" frame="0" alive="true"/>
+    <Go_Detector x="352" y="512" guid="ED2195E9-9798-B9B3-3C15-105C40F7C501" frame="0" p="2" type="0,4;5,3;4,1;1,1" />
     <Sage x="432" y="80" guid="070C9F3D-0EB1-859C-C7E7-7439FEFF5EA8" frame="0" p="2"/>
     <Shadow_Briar x="352" y="176" guid="4C1F729B-85D2-B0A8-BCBB-749329FF03EC" frame="4" p="2" alive="true"/>
     <Door x="777" y="400" guid="207B47BA-6E22-AF7E-90AF-DAF5F775CE0F" frame="44" type="11" />
@@ -1949,7 +1949,7 @@
     <NPC x="192" y="512" guid="8D1A6A5E-A6DD-1B50-C16C-3185B83B06A5" frame="1" type="rock" />
     <NPC x="592" y="848" guid="34D9DBD6-BD5A-86B9-1FF1-C01562BED9D5" frame="3" type="rock" />
     <NPC x="192" y="848" guid="F4D38626-5160-4565-F484-F359715B991B" frame="2" type="rock" />
-    <Go_Detector x="16" y="656" guid="8A05B83F-F586-C1AF-8A68-B248286B9A55" frame="0" alive="true"/>
+    <Go_Detector x="32" y="672" guid="8A05B83F-F586-C1AF-8A68-B248286B9A55" frame="0" p="2" type="1,3;4,1;4,3;3,0" />
     <Treasure x="131" y="656" guid="00198DEA-E04B-FF1D-9FEB-0F1A0D9C7418" frame="16" alive="true"/>
     <Gate x="128" y="672" guid="BB82DBC7-4645-A3EC-79C9-07BBB37E3C10" frame="5" p="2" alive="true" type="0" />
     <Gate x="112" y="656" guid="0B93B168-5042-A374-0FA6-774AC8809C8C" frame="5" p="2" alive="true" type="0" />
