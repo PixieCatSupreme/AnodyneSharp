@@ -2,9 +2,9 @@
 <project>
   <version/>
   <bgColor>0xcccccc</bgColor>
-  <viewPos x="95.59363404739524" y="-363.0564671814672"/>
+  <viewPos x="-255.5" y="-257.5"/>
   <firstLayersTop>false</firstLayersTop>
-  <spriteEntries currentId="172">
+  <spriteEntries currentId="173">
     <group name="Events SL" idx="1" open="false">
       <group name="Music" idx="2" open="false">
         <sprite name="Alt Music" idx="3" className="Music_Event" image="textures/sprites/dame/dame-music.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="-1" canEditFrames="true" lockRotation="false"/>
@@ -207,7 +207,7 @@
       </sprite>
       <sprite name="CubeKing" idx="52" className="CubeKing" image="textures/sprites/npcs/space_npcs.png" width="32" height="32" preview="10" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="32" boundsHeight="32" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="12" canEditFrames="true" lockRotation="false"/>
     </group>
-    <group name="Gadgets" idx="53" open="false">
+    <group name="Gadgets" idx="53" open="false" selected="true">
       <group name="Gates" idx="54" open="false">
         <sprite name="Gate S" idx="55" className="Gate" image="textures/sprites/dame/dame-gates.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="5" canEditFrames="true" lockRotation="false">
           <properties>
@@ -295,6 +295,11 @@
       <sprite name="vertiblock" idx="82" className="Solid_Sprite" image="textures/sprites/enemies/hotel/eye_boss_bullet.png" width="4" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="4" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="7" canEditFrames="true" lockRotation="false">
         <properties>
           <type typeof="String" name="type" value="vblock" hidden="false"/>
+        </properties>
+      </sprite>
+      <sprite name="GoQuestDoorBlocker" idx="172" className="GoQuestDoorBlocker" image="textures/sprites/enemies/hotel/steam.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="-1" canEditFrames="true" lockRotation="false">
+        <properties>
+          <type typeof="Int" name="p" value="2" hidden="false"/>
         </properties>
       </sprite>
     </group>
@@ -6597,6 +6602,9 @@
           <properties/>
         </sprite>
         <sprite guid="BF67A0FD-82B0-8859-7B1E-2BE64B50D1D4" x="0" y="368" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="80">
+          <properties/>
+        </sprite>
+        <sprite guid="AAF2568B-D614-F18F-1F4D-06AAB236F3AF" x="608" y="496" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="172">
           <properties/>
         </sprite>
       </spritelayer>

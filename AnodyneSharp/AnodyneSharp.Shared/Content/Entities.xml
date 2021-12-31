@@ -1964,6 +1964,7 @@
     <Water_Anim x="624" y="368" guid="E4CC6CC9-FA27-167D-A685-3F1E731CBED1" frame="32" p="2"/>
     <Water_Anim x="160" y="368" guid="88DF7E80-A9FF-9B4D-AB07-8C1965369BD4" frame="32" p="2"/>
     <Water_Anim x="0." y="368" guid="BF67A0FD-82B0-8859-7B1E-2BE64B50D1D4" frame="32" p="2"/>
+    <GoQuestDoorBlocker x="608" y="496" guid="AAF2568B-D614-F18F-1F4D-06AAB236F3AF" frame="0" p="2"/>
   </map>
   <map name="HAPPY" type="Stateful">
     <Happy_NPC x="736" y="160" guid="2784472C-0C13-F14A-5FF3-839111C96922" frame="18" p="2"/>
