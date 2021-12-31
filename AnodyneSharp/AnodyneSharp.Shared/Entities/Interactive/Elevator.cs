@@ -24,12 +24,16 @@ namespace AnodyneSharp.Entities.Interactive
         PlayerDetector menuDetector;
 
         ElevatorMenu menu;
+        Entity elevator_frame;
 
         IState _state;
 
-        public Elevator(EntityPreset preset, Player p) : base(preset.Position, "elevator", 32, 32, Drawing.DrawOrder.ENTITIES)
+        public Elevator(EntityPreset preset, Player p) : base(preset.Position, "elevator_doors", 32, 32, Drawing.DrawOrder.ENTITIES)
         {
             menu = new(preset);
+
+            elevator_frame = new(preset.Position, "elevator", 32, 32, DrawOrder.ENTITIES);
+            elevator_frame.SetFrame(preset.Frame);
 
             openDetector = new(new((Position + Vector2.UnitY * 32).ToPoint(), new(width, height)));
             menuDetector = new(new(Position.ToPoint(), new(32, 20)));
@@ -91,7 +95,7 @@ namespace AnodyneSharp.Entities.Interactive
 
         public override IEnumerable<Entity> SubEntities()
         {
-            return new List<Entity>() { menuDetector, openDetector };
+            return new List<Entity>() { menuDetector, openDetector, elevator_frame };
         }
 
         class ElevatorMenu : ListSubstate
