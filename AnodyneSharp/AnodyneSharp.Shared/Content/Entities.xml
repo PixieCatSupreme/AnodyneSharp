@@ -455,9 +455,7 @@
     <Eye_Light x="832" y="400" guid="77F48185-1FBB-3563-5FFD-E3F743BCC04B" frame="0"/>
     <Door x="872" y="784" guid="9637F785-B7F5-B68C-1051-F1C3A44CE7B5" frame="85" type="12" />
     <Door x="872" y="359" guid="90A7AF28-F0B1-EB44-40F0-23E7AADF9310" frame="79" type="4" />
-    <Event x="385" y="693" guid="79FF736D-801D-3211-A23F-914EA18901DF" frame="5" type="entrance" />
-    <Event x="720" y="704" guid="2506DEF9-B31E-FE9D-64E9-FF8350F47637" frame="5" type="entrance" />
-    <Event x="657" y="37" guid="A453B8DA-572E-AED9-FF65-091467DC9E84" frame="5" type="entrance" />
+    <Event x="385" y="693" guid="79FF736D-801D-3211-A23F-914EA18901DF" frame="5" type="entrance"  linkid="12" linkgroup="12,13,14"/>
     <Dust x="400" y="528" guid="44BDEF07-0647-E8B1-7342-A67617A8228B" frame="0"/>
     <Dust x="384" y="560" guid="993C6C71-7140-4DC1-7C2A-13B0ED4357AA" frame="0"/>
     <Eye_Light x="208" y="480" guid="AAB80C92-A602-68FF-EFE2-CF79704FB961" frame="4"/>
@@ -554,6 +552,8 @@
     <Event x="160" y="512" guid="11CA990C-7C1C-73F7-B3DC-A11DDC042076" frame="6" type="bedroom_bounce" />
     <Event x="320" y="656" guid="B6205368-08A3-0043-5488-B8450A066BF6" frame="6" type="bedroom_bounce" />
     <Event x="320" y="32" guid="D2C11955-493D-46AE-94EC-4CA5BB88B349" frame="6" type="bedroom_bounce" />
+    <Event x="656" y="32" guid="51D6F5BA-EDBF-9C20-6BF3-F90D6C71EC57" frame="5" type="entrance_ref"  linkid="14"/>
+    <Event x="720" y="688" guid="4B05AF76-8CF8-64D2-0C58-9787237FA79C" frame="5" type="entrance_ref"  linkid="13"/>
   </map>
   <map name="BLANK" type="Stateful">
     <Door x="390" y="434" guid="F82E7C7D-9BE9-2A87-ECD5-9966F2799C1E" frame="6" type="4" />
@@ -1406,9 +1406,8 @@
     <NPC x="1568" y="336" guid="B99C46E5-D760-C70F-E30C-2417E5681AE0" frame="1" type="rock" />
     <Button x="496" y="496" guid="CE093A48-0B24-9664-3152-29F9AEC4405B" frame="0"/>
     <Gate x="560" y="576" guid="B453F2C9-06C6-36C3-97F8-D7F795804A2B" frame="5" p="2" alive="true" type="0" />
-    <Event x="549" y="1222" guid="C4F4D99A-2B56-D548-9BDB-164DD6349819" frame="5" type="entrance" />
+    <Event x="549" y="1222" guid="C4F4D99A-2B56-D548-9BDB-164DD6349819" frame="5" type="entrance"  linkid="9"/>
     <Event x="672" y="1233" guid="D7B17134-9E8F-B7BC-D264-329CC18018A9" frame="5" type="entrance" />
-    <Event x="1505" y="719" guid="29373C0D-8E07-BF2B-2B31-C1DC6974A35C" frame="5" type="entrance" />
     <Jump_Trigger x="64" y="816" guid="A1ECC789-1EF2-0DF0-F710-DCF853ACBDCD" frame="1"/>
     <Button x="816" y="736" guid="16A975B8-97FA-9A9A-862D-282AF5FF0627" frame="0"/>
     <Event x="192" y="1216" guid="FE9DD946-12C1-A38F-B4CF-878A54C33F78" frame="2"/>
@@ -1533,6 +1532,7 @@
     <Dust x="368" y="1088" guid="2B93F260-093B-952C-4658-25E208AFB22A" frame="0"/>
     <Jump_Trigger x="656" y="1024" guid="53073761-94AC-F75D-0E31-7D134AC42519" frame="0"/>
     <Jump_Trigger x="688" y="992" guid="4164EA56-EE9A-B064-E793-37DA088AB02C" frame="0"/>
+    <Event x="1504" y="720" guid="E7DFF276-989F-46BC-8C02-0C3C66F54917" frame="5" type="entrance_ref"  linkid="8" linkgroup="8,9"/>
   </map>
   <map name="DEBUG" type="Stateful">
     <Gate x="32" y="288" guid="779063ED-9B1A-C938-07D4-C89E9624FA72" frame="5" p="2" alive="true" type="0" />
@@ -2123,8 +2123,8 @@
     <Burst_Plant x="1392" y="1136" guid="A4165DC3-17BE-5CC4-A176-F799B83FE048" frame="0" p="1" alive="true"/>
     <Gate x="1344" y="1744" guid="79A92665-C73C-592E-A699-53F1F30EE8F5" frame="0" p="2" alive="true" type="0" />
     <Gate x="1360" y="1744" guid="89B93BE4-0E92-3559-B35E-20DCF1F77FB2" frame="0" p="2" alive="true" type="0" />
-    <Eye_Boss x="1344" y="1504" guid="CDC392E6-1BC5-18DC-75FE-BCD271E63D65" frame="0" p="2" alive="true"/>
-    <Eye_Boss x="1344" y="1648" guid="35081BC8-3AB5-7283-E549-1FD331717B91" frame="0" p="2" alive="true"/>
+    <Eye_Boss x="1344" y="1504" guid="CDC392E6-1BC5-18DC-75FE-BCD271E63D65" frame="0" p="2" linkid="4" linkgroup="4,5"/>
+    <Eye_Boss x="1344" y="1648" guid="35081BC8-3AB5-7283-E549-1FD331717B91" frame="4" p="2" linkid="5"/>
     <Gate x="1344" y="1584" guid="A97C74C3-D143-455D-B740-BF75B971D04E" frame="15" p="2" alive="true" type="0" />
     <Gate x="1360" y="1584" guid="DF502277-26DF-2644-3BE5-8FF78ECC6012" frame="15" p="2" alive="true" type="0" />
     <Door x="1472" y="16" guid="34B3454F-D0FD-D0DF-B6A8-31461EFC15D0" frame="30" type="1" />
@@ -2169,8 +2169,7 @@
     <Burst_Plant x="896" y="64" guid="F56F138F-9BA8-0145-470B-2749D49C08B6" frame="0" p="1" alive="true"/>
     <Burst_Plant x="928" y="112" guid="1A859AD9-F90C-4586-6458-1A73A1D6C493" frame="0" p="1" alive="true"/>
     <NPC x="384" y="80" guid="67918A21-B9F5-C6B1-130B-424AB235C6AD" frame="12" type="generic" />
-    <Event x="436" y="843" guid="3D013C69-3B13-BCDF-376A-22633AA2E0AD" frame="5" type="entrance" />
-    <Event x="385" y="420" guid="CFE9CC42-595F-EDED-6720-90848DB38C19" frame="5" type="entrance" />
+    <Event x="385" y="420" guid="CFE9CC42-595F-EDED-6720-90848DB38C19" frame="5" type="entrance"  linkid="11"/>
     <Jump_Trigger x="1392" y="1344" guid="EBEE31DC-9433-4C7B-8158-3ACA0CE742E5" frame="0" type="1" />
     <Event x="1488" y="832" guid="D87643FA-0D5D-1B9B-6492-D24065626DF1" frame="2"/>
     <Event x="1136" y="528" guid="7441EC89-FC79-AF91-36CD-91622FF172D8" frame="2"/>
@@ -2361,6 +2360,7 @@
     <Propelled x="352" y="1088" guid="36949017-05DB-C333-52AC-1AE52A7D6F05" frame="5"/>
     <Button x="336" y="816" guid="81A6B9CF-88AD-AABE-7F49-BE3FDE7110A0" frame="0"/>
     <Event x="592" y="96" guid="A7A82B4D-FE7D-A921-9340-CE21F88C01A5" frame="2"/>
+    <Event x="432" y="832" guid="80C80CCA-97F2-D803-27EF-BA6ACE07B681" frame="5" type="entrance_ref"  linkid="10" linkgroup="10,11"/>
   </map>
   <map name="NEXUS" type="Stateful">
     <Door x="704" y="1392" guid="7C6BBEC5-AAB2-3506-DF56-2903596CEA74" frame="4" type="6" />
@@ -2526,7 +2526,7 @@
     <Red_Boss x="1040" y="64" guid="0C2FE65A-DDFD-CD94-9C83-5BA03AA0A868" frame="0" p="2" alive="true"/>
     <Gate x="960" y="80" guid="7B0F4F5C-6834-74D2-C376-2188B96B38C6" frame="0" p="2" alive="true" type="0" />
     <Four_Shooter x="384" y="80" guid="F7952F21-B378-09D2-5BA6-1B2885FFDD17" frame="0" p="2"/>
-    <Event x="547" y="102" guid="481255C1-138A-0E61-BB2E-D8DA2BD522AB" frame="5" type="entrance" />
+    <Event x="547" y="102" guid="481255C1-138A-0E61-BB2E-D8DA2BD522AB" frame="5" type="entrance"  linkid="7"/>
     <Annoyer x="848" y="112" guid="7E6C5DF9-F92F-BDB1-5984-47E203E5EDC8" frame="0" alive="true"/>
     <Mover x="752" y="112" guid="C1B40B79-6252-6FCF-2322-AFFD859C701E" frame="0" p="0"/>
     <Event x="552" y="127" guid="8F012077-709C-DA25-CA7E-C1E0EFEDBC07" frame="2"/>
@@ -2561,7 +2561,7 @@
     <Four_Shooter x="416" y="288" guid="7B8552E5-E44B-0EE4-1973-9690B4FACC07" frame="0" p="2"/>
     <On_Off_Laser x="752" y="304" guid="E8C57E9A-AB09-F134-2D46-677CDA4CC82D" frame="0" p="1"/>
     <On_Off_Laser x="736" y="320" guid="25A7425D-4191-2951-5D15-D979E964D599" frame="2" p="1"/>
-    <Event x="1023" y="335" guid="D13ABF31-07D5-D90E-CAF7-DE5EF019B9A8" frame="5" type="entrance" />
+    <Event x="1024" y="336" guid="386D554C-0D29-C4A2-EB2A-97DB138A5413" frame="5" type="entrance_ref"  linkid="6" linkgroup="6,7"/>
     <Annoyer x="416" y="336" guid="46074CE1-27F6-9A3C-05A4-E99BFC8F64CE" frame="0" alive="true"/>
     <Four_Shooter x="288" y="336" guid="0D41CB97-9F8A-B6E4-F286-4241F950415E" frame="0" p="2"/>
     <Four_Shooter x="176" y="336" guid="84CCABF6-50B8-6FD3-1FF1-189DFA5BA7F9" frame="0" p="2"/>
