@@ -12,7 +12,7 @@ namespace AnodyneSharp.Entities.Events
     class VolumeEvent : Entity
     {
         float target;
-        float speed;
+        public float speed;
         public VolumeEvent(EntityPreset preset, Player p) : this(float.Parse(preset.TypeValue))
         {
         }

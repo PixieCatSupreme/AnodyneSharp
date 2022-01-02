@@ -9,27 +9,19 @@ namespace AnodyneSharp.Entities.Gadget
     [NamedEntity("Water_Anim")]
     public class WaterAnim : Entity
     {
-        IEnumerator<string> state;
-
         public WaterAnim(EntityPreset preset, Player p) : base(preset.Position,Drawing.DrawOrder.BACKGROUND)
         {
-            visible = false;
-            state = State();
-        }
-
-        public override void Update()
-        {
-            base.Update();
-            //TODO: replace with event listener
-            if(KeyInput.JustPressedKey(Microsoft.Xna.Framework.Input.Keys.Q))
+            if(GlobalState.events.GetEvent(preset.TypeValue) != 0)
             {
-                state.MoveNext();
+                var s = DoWaterAnim(preset.Position);
+                while (s.MoveNext());
             }
+            exists = false;
         }
 
-        IEnumerator<string> State()
+        static public IEnumerator<string> DoWaterAnim(Vector2 position)
         {
-            Point p = GlobalState.Map.ToMapLoc(Position);
+            Point p = GlobalState.Map.ToMapLoc(position);
 
             Point grid = new(p.X/10,p.Y/10);
 

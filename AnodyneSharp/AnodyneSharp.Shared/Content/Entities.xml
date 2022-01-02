@@ -688,7 +688,7 @@
     <Door x="112" y="112" guid="B8003D86-D5D3-C215-67B1-8C0FF24C4263" frame="56" type="16" />
     <Door x="16" y="80" guid="511BECBF-B700-5378-4D0E-8B26BFED796B" frame="44" type="10" />
     <Shadow_Briar x="48" y="0." guid="43FF0107-1785-A543-1332-CF82635B1F4A" frame="3" p="2" alive="true"/>
-    <Water_Anim x="48" y="0." guid="841B1A4F-DCE7-E61A-A9A5-162F2A3AC7A8" frame="32" p="2"/>
+    <Water_Anim x="48" y="0." guid="841B1A4F-DCE7-E61A-A9A5-162F2A3AC7A8" frame="32" p="2" type="BlueDone" />
     <Gate x="304" y="656" guid="59B291BE-9387-FCD7-1BC9-460CF9C3C6E3" frame="5" p="2" alive="true" type="0" />
     <Burst_Plant x="560" y="80" guid="6D5B2505-5FC5-BAF6-EA55-F1A181C32B85" frame="0" p="1" alive="true"/>
     <Burst_Plant x="544" y="80" guid="CAD72F5F-A536-2E22-204F-F285EAFBEE28" frame="0" p="1" alive="true"/>
@@ -1960,10 +1960,10 @@
     <NPC x="327" y="403" guid="55B464F3-1B79-AFFC-FF58-96B4E306E18C" frame="11" type="generic" />
     <Eye_Light x="48" y="0." guid="44E62E73-3867-A133-1873-BA528E8F4830" frame="0"/>
     <Eye_Light x="96" y="0." guid="26838530-AAAD-3559-D900-AEEDB07AF4DC" frame="0"/>
-    <Water_Anim x="784" y="368" guid="AEBA9AA2-0E34-91D2-6E5C-4FAD59E6B400" frame="32" p="2"/>
-    <Water_Anim x="624" y="368" guid="E4CC6CC9-FA27-167D-A685-3F1E731CBED1" frame="32" p="2"/>
-    <Water_Anim x="160" y="368" guid="88DF7E80-A9FF-9B4D-AB07-8C1965369BD4" frame="32" p="2"/>
-    <Water_Anim x="0." y="368" guid="BF67A0FD-82B0-8859-7B1E-2BE64B50D1D4" frame="32" p="2"/>
+    <Water_Anim x="784" y="368" guid="AEBA9AA2-0E34-91D2-6E5C-4FAD59E6B400" frame="32" p="2" type="BlueDone" />
+    <Water_Anim x="624" y="368" guid="E4CC6CC9-FA27-167D-A685-3F1E731CBED1" frame="32" p="2" type="BlueDone" />
+    <Water_Anim x="160" y="368" guid="88DF7E80-A9FF-9B4D-AB07-8C1965369BD4" frame="32" p="2" type="HappyDone" />
+    <Water_Anim x="0." y="368" guid="BF67A0FD-82B0-8859-7B1E-2BE64B50D1D4" frame="32" p="2" type="HappyDone" />
     <GoQuestDoorBlocker x="608" y="496" guid="AAF2568B-D614-F18F-1F4D-06AAB236F3AF" frame="0" p="2"/>
   </map>
   <map name="HAPPY" type="Stateful">
@@ -1996,7 +1996,7 @@
     <Shadow_Briar x="736" y="160" guid="B3BB9FBB-2BB0-E6C7-5D66-A821748DF27B" frame="2" p="2" alive="true"/>
     <Gate x="640" y="208" guid="6C8FBC3E-71EA-C272-2946-25CE9ED78152" frame="5" p="2" alive="true" type="0" />
     <Gate x="704" y="224" guid="D4C2EA45-20BD-D791-1A1D-AB5E6DF48DFD" frame="5" p="2" alive="true" type="0" />
-    <Water_Anim x="736" y="160" guid="2FBBA583-2091-92F9-532B-42C1FFDC5322" frame="32" p="2"/>
+    <Water_Anim x="736" y="160" guid="2FBBA583-2091-92F9-532B-42C1FFDC5322" frame="32" p="2" type="HappyDone" />
     <Door x="780" y="240" guid="44280977-96DE-43AE-5419-C44985AC900B" frame="43" type="11" />
     <Door x="176" y="400" guid="D24014F9-3CD0-8052-E285-2A6C3DED8F45" frame="57" type="16" />
     <Gate x="544" y="160" guid="2593AD47-796C-E135-237A-FCC846D12EE0" frame="1" p="2" alive="true" type="0" />
