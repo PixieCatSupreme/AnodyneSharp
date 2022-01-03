@@ -878,7 +878,7 @@
     <KeyBlock x="720" y="640" guid="DEC27D02-3C57-68A8-52EF-7E7C776845C1" frame="0" p="2" alive="true"/>
     <Gate x="1200" y="1040" guid="4FFA4C72-3F7D-23D4-1BEA-79ECF649EE50" frame="5" p="2" alive="true" type="0" />
     <Treasure x="1200" y="816" guid="69E8FBD6-2DA3-D25E-446F-6A59AC3E9FC2" frame="1" alive="true"/>
-    <Circus_Folks x="1296" y="928" guid="1C3B38E6-EC7B-2DD0-8523-224B50E3D740" frame="0" p="2" alive="true"/>
+    <Circus_Folks x="1296" y="928" guid="1C3B38E6-EC7B-2DD0-8523-224B50E3D740" frame="0" p="2" alive="true" type="danger" />
     <Gate x="720" y="384" guid="14229E0C-8A56-7975-6A17-D28DDD61C5D6" frame="5" p="2" alive="true" type="0" />
     <Gate x="720" y="160" guid="F9977509-9FB4-9493-458F-C34526521F7E" frame="0" p="2" alive="true" type="0" />
     <Gate x="704" y="160" guid="EA8C7DB9-340F-27AF-B081-02BDCBE30F9E" frame="0" p="2" alive="true" type="0" />
@@ -899,7 +899,7 @@
     <Gate x="1200" y="352" guid="DE8B1058-0970-DF25-E23A-599827D87856" frame="5" p="2" alive="true" type="0" />
     <Gate x="1248" y="464" guid="EDFF0A16-BC99-EF6A-54CD-BEBA4E5CB808" frame="1" p="2" alive="true" type="0" />
     <Gate x="1152" y="336" guid="5A34B269-8EC2-549D-4E60-95A0FA5B5B63" frame="1" p="2" alive="true" type="0" />
-    <Circus_Folks x="1168" y="336" guid="AF55220B-1789-7A78-080F-9F07B7303449" frame="1" p="2" alive="true"/>
+    <Circus_Folks x="1168" y="336" guid="AF55220B-1789-7A78-080F-9F07B7303449" frame="1" p="2" alive="true" type="danger" />
     <Gate x="224" y="352" guid="B4145830-56B4-98E7-E2FA-C0297EF5DC86" frame="1" p="2" alive="true" type="0" />
     <Treasure x="224" y="336" guid="A2479A02-9B0D-751F-71A4-DB15C4982DF5" frame="1" alive="true"/>
     <Treasure x="608" y="416" guid="F37E7952-28D0-74EC-0D54-AEFF7A9A31AE" frame="2" alive="true"/>
@@ -942,8 +942,8 @@
     <Health_Cicada x="704" y="192" guid="5A2CDA3E-1E41-628C-60FE-91FCB2A0A479" frame="0" p="2" alive="true"/>
     <Gate x="1328" y="928" guid="39141C9C-94D3-2517-61F7-462E1F91DBC6" frame="5" p="2" alive="true" type="0" />
     <Gate x="1392" y="928" guid="013E50EE-A9C8-FF5E-BC1F-3C449F57C2D2" frame="5" p="2" alive="true" type="0" />
-    <Circus_Folks x="1344" y="224" guid="E610BD6E-2C5B-F517-C363-F7A4584CAECE" frame="0" p="2" alive="true"/>
-    <Circus_Folks x="1360" y="240" guid="07DD9782-00E1-3AA5-29B3-4CDD283D2C72" frame="1" p="2" alive="true"/>
+    <Circus_Folks x="1344" y="224" guid="E610BD6E-2C5B-F517-C363-F7A4584CAECE" frame="0" p="2" alive="true" type="dead" />
+    <Circus_Folks x="1360" y="240" guid="07DD9782-00E1-3AA5-29B3-4CDD283D2C72" frame="1" p="2" alive="true" type="dead" />
     <Door x="712" y="1420" guid="3CA6937C-D338-AF7B-89DE-CEC88047180D" frame="31" type="12" />
     <solid_tile x="704" y="1424" guid="6B64DDDC-76EC-7338-8E05-FEFB073E6A7A" frame="0"/>
     <solid_tile x="720" y="1424" guid="2394C641-9DD4-B1E9-1727-20E440C7640B" frame="0"/>
@@ -2123,7 +2123,7 @@
     <Burst_Plant x="1392" y="1136" guid="A4165DC3-17BE-5CC4-A176-F799B83FE048" frame="0" p="1" alive="true"/>
     <Gate x="1344" y="1744" guid="79A92665-C73C-592E-A699-53F1F30EE8F5" frame="0" p="2" alive="true" type="0" />
     <Gate x="1360" y="1744" guid="89B93BE4-0E92-3559-B35E-20DCF1F77FB2" frame="0" p="2" alive="true" type="0" />
-    <Eye_Boss x="1344" y="1504" guid="CDC392E6-1BC5-18DC-75FE-BCD271E63D65" frame="0" p="2" linkid="4" linkgroup="4,5"/>
+    <Eye_Boss x="1344" y="1504" guid="CDC392E6-1BC5-18DC-75FE-BCD271E63D65" frame="0" p="1" linkid="4" linkgroup="4,5"/>
     <Eye_Boss x="1344" y="1648" guid="35081BC8-3AB5-7283-E549-1FD331717B91" frame="4" p="2" linkid="5"/>
     <Gate x="1344" y="1584" guid="A97C74C3-D143-455D-B740-BF75B971D04E" frame="15" p="2" alive="true" type="0" />
     <Gate x="1360" y="1584" guid="DF502277-26DF-2644-3BE5-8FF78ECC6012" frame="15" p="2" alive="true" type="0" />
