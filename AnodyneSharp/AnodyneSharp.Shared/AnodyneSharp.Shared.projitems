@@ -86,6 +86,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\GoQuestDoorBlocker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Elevator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Blank\BlankConsole.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Circus\JavieraDanger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Circus\ArthurDanger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Circus\CircusFolksDead.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Happy\HappyBriar.cs" />
