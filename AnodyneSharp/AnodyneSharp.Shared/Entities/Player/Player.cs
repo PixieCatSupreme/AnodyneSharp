@@ -183,6 +183,9 @@ namespace AnodyneSharp.Entities
                 state = PlayerState.GROUND;
                 offset = new Vector2(3, DEFAULT_Y_OFFSET);
 
+                raft = null;
+                follower = null;
+
                 broom.exists = false;
 
                 actions_disabled = false;
