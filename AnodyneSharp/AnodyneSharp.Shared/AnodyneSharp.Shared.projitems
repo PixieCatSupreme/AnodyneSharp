@@ -71,6 +71,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Crowd\Person.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Etc\FollowerBro.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Etc\SpaceFace.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Hotel\Boss\EnemyMarker.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Hotel\Boss\LandPhase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Hotel\Boss\WaterPhase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Hotel\Burst_Plant.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Hotel\Dustmaid.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Hotel\SteamPipe.cs" />
