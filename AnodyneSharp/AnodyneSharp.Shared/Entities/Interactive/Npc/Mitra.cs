@@ -156,7 +156,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc
 
             if (!visible && player_grid_pos.Y > 50)
             {
-                Position = MapUtilities.GetRoomUpperLeftPos(new(GlobalState.CURRENT_GRID_X, GlobalState.CURRENT_GRID_Y)) + new Vector2(180, 80);
+                Position = MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid) + new Vector2(180, 80);
                 visible = true;
                 GlobalState.StartCutscene = Entrance();
             }
@@ -300,7 +300,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc
 
         IEnumerator<CutsceneEvent> Entrance()
         {
-            Vector2 UL = MapUtilities.GetRoomUpperLeftPos(MapUtilities.GetRoomCoordinate(Position));
+            Vector2 UL = MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid);
             Position.X -= 20;
 
             SoundManager.PlaySong("mitra");
@@ -387,7 +387,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc
             //go off-screen
             velocity = Vector2.UnitY * 50;
 
-            Vector2 UL = MapUtilities.GetRoomUpperLeftPos(MapUtilities.GetRoomCoordinate(Position));
+            Vector2 UL = MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid);
 
             while ((Position-UL).Y < 190)
                 yield return null;

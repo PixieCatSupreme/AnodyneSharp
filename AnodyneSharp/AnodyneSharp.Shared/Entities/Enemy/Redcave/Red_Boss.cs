@@ -78,7 +78,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
             Play("close_eyes");
 
             ripple = new(this);
-            Vector2 tl = MapUtilities.GetRoomUpperLeftPos(MapUtilities.GetRoomCoordinate(Position));
+            Vector2 tl = MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid);
             Point splash_start = new(2, 2);
             splash_bullets = new(4, () =>
             {
@@ -145,7 +145,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
         IEnumerator State()
         {
             y_push = sprite.Height;
-            player.grid_entrance = MapUtilities.GetRoomUpperLeftPos(MapUtilities.GetRoomCoordinate(Position)) + Vector2.One * 20;
+            player.grid_entrance = MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid) + Vector2.One * 20;
 
             GlobalState.SpawnEntity(new VolumeEvent(0, 3));
 
@@ -335,7 +335,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
 
             amp = 5;
 
-            Vector2 target = MapUtilities.GetRoomUpperLeftPos(MapUtilities.GetRoomCoordinate(Position)) + new Vector2(6,4)*16;
+            Vector2 target = MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid) + new Vector2(6,4)*16;
 
             small_wave.Rise();
 
@@ -394,7 +394,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
 
         public SmallWave(Red_Boss parent) : base(Vector2.Zero, "red_boss_small_wave", 16, 64, Drawing.DrawOrder.BG_ENTITIES)
         {
-            spawn_point = MapUtilities.GetRoomUpperLeftPos(MapUtilities.GetRoomCoordinate(parent.Position)) + new Vector2(96,48);
+            spawn_point = MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid) + new Vector2(96,48);
             AddAnimation("move", CreateAnimFrameArray(0, 1), 8);
             AddAnimation("rise", CreateAnimFrameArray(2, 3), 8);
             AddAnimation("fall", CreateAnimFrameArray(1, 2, 3, 4), 8, false);
@@ -448,7 +448,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
 
         public BigWave(Red_Boss parent) : base(Vector2.Zero, "red_boss_big_wave", 32, 80, Drawing.DrawOrder.BG_ENTITIES)
         {
-            spawn_point = MapUtilities.GetRoomUpperLeftPos(MapUtilities.GetRoomCoordinate(parent.Position)) + new Vector2(80, 48);
+            spawn_point = MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid) + new Vector2(80, 48);
 
             AddAnimation("move", CreateAnimFrameArray(0, 1), 8);
             AddAnimation("rise", CreateAnimFrameArray(2, 1, 0), 8, false);
@@ -555,7 +555,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
             else
             {
                 //player isn't close in any direction, so random locations
-                Vector2 ul = MapUtilities.GetRoomUpperLeftPos(MapUtilities.GetRoomCoordinate(parent.Position));
+                Vector2 ul = MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid);
                 Position.X = ul.X + 16 + 12 * (1 + t_index) + GlobalState.RNG.Next(-5, 6);
                 Position.Y = ul.Y + 16 * GlobalState.RNG.Next(1, 4) + GlobalState.RNG.Next(-5, 6) + tentacle.height - height;
             }

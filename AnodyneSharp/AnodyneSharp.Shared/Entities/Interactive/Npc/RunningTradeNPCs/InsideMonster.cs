@@ -33,7 +33,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.RunningTradeNPCs
             }
             else
             {
-                Vector2 tl = MapUtilities.GetRoomUpperLeftPos(MapUtilities.GetRoomCoordinate(Position));
+                Vector2 tl = MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid);
                 _extra_dust = new()
                 {
                     new Dust(tl + Vector2.One * 16,p),

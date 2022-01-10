@@ -22,7 +22,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc
             immovable = true;
             visible = false;
 
-            gridToCheck = MapUtilities.GetRoomUpperLeftPos( new Point(GlobalState.CURRENT_GRID_X, GlobalState.CURRENT_GRID_Y+1));
+            gridToCheck = MapUtilities.GetRoomUpperLeftPos( GlobalState.CurrentMapGrid + new Point(0,1));
 
             _player = p;
         }

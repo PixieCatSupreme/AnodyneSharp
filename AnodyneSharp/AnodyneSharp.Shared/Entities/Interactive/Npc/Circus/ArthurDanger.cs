@@ -55,7 +55,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Circus
 
             _initPos = Position;
 
-            _dustPillow = new Dust(MapUtilities.GetRoomUpperLeftPos(MapUtilities.GetRoomCoordinate(Position)) + new Vector2(46, 16), p);
+            _dustPillow = new Dust(MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid) + new Vector2(46, 16), p);
 
             _stateLogic = StateLogic();
 
