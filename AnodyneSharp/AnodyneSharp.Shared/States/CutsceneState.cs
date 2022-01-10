@@ -84,7 +84,7 @@ namespace AnodyneSharp.States
         public void Return()
         {
             _camera.GoTo(MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid)); //reset camera
-            (GlobalState.Map as Map).ReloadSettings(_camera.Position2D, graphics_only:true);
+            (GlobalState.Map as Map).ReloadSettings(_camera.Position2D, graphics_only:true, screen_transition: false);
             GlobalState.darkness.ForceAlpha(oldDarkness);
             DrawPlayState = true;
             UpdateEntities = true;
@@ -97,7 +97,7 @@ namespace AnodyneSharp.States
             _camera.GoTo(grid.ToVector2() * 160);
             DrawPlayState = false;
             UpdateEntities = false;
-            _map.ReloadSettings(_camera.Position2D, graphics_only:true);
+            _map.ReloadSettings(_camera.Position2D, graphics_only:true, screen_transition: false);
         }
 
         public override void Draw()

@@ -165,7 +165,14 @@ namespace AnodyneSharp.MapData
             }
         }
 
-        public void ReloadSettings(Vector2 player_pos, bool graphics_only = false, Player p = null)
+        bool ignore_music = false;
+
+        public void IgnoreMusicNextUpdate()
+        {
+            ignore_music = true;
+        }
+
+        public void ReloadSettings(Vector2 player_pos, bool graphics_only = false, Player p = null, bool screen_transition = true)
         {
             if (settings is null)
             {
@@ -174,12 +181,13 @@ namespace AnodyneSharp.MapData
             }
 #nullable enable
             var priorities = settings.GetSettingPriorities(player_pos);
-            if (!graphics_only)
+            if (!(graphics_only || (screen_transition && ignore_music)))
             {
                 //TODO: make music fade in/out
                 Sounds.SoundManager.PlaySong(GlobalState.InDeathRoom ? "" : MapSettings.Get(s => s.Music, priorities, ""), MapSettings.Get(s => s.MusicVolume, priorities, 1f));
                 Sounds.SoundManager.PlayAmbience(GlobalState.InDeathRoom ? "" : MapSettings.Get(s => s.Ambience, priorities, ""), MapSettings.Get(s => s.AmbienceVolume, priorities, 1f));
             }
+            ignore_music = false;
             string darkness = MapSettings.Get(s => s.Darkness, priorities, "");
             GlobalState.darkness.TargetAlpha(GlobalState.InDeathRoom ? 0.8f : MapSettings.Get(s => s.DarknessAlpha, priorities, darkness == "" ? 0f : 1f));
             GlobalState.darkness.SetTex(darkness);
@@ -198,7 +206,7 @@ namespace AnodyneSharp.MapData
 
         public void ReloadSettings(Player p, bool graphics_only = false)
         {
-            ReloadSettings(p.Center, graphics_only, p);
+            ReloadSettings(p.Center, graphics_only, p, false);
         }
 
         public void OnTransitionStart()
