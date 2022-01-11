@@ -29,22 +29,18 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
         {
             if(GlobalState.events.BossDefeated.Contains(GlobalState.CURRENT_MAP_NAME))
             {
-                preset.Alive = false;
-            }
-
-            if(!preset.Alive)
-            {
+                //Full boss is defeated, open both gates and do nothing beyond that
                 exists = false;
-                GlobalState.PUZZLES_SOLVED++; //Open gate to the south
-                EntityPreset land_phase = EntityManager.GetLinkGroup(preset.LinkID).Where(e => e != preset).First();
-                if(!land_phase.Alive)
-                {
-                    death_marker.exists = false; //Open north gate if second phase is killed
-                }
-                else if(SoundManager.CurrentSongName == "hotel-boss")
-                {
-                    (GlobalState.Map as MapData.Map).IgnoreMusicNextUpdate();
-                }
+                death_marker.exists = false;
+                GlobalState.PUZZLES_SOLVED++;
+                return;
+            }
+            else if(SoundManager.CurrentSongName == "hotel-boss")
+            {
+                //Came back up from second phase screen
+                (GlobalState.Map as MapData.Map).IgnoreMusicNextUpdate();
+                GlobalState.PUZZLES_SOLVED++;
+                exists = false;
                 return;
             }
 
@@ -137,7 +133,11 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
             }
 
             GlobalState.PUZZLES_SOLVED++;
-            preset.Alive = exists = false;
+            exists = false;
+
+            EntityPreset land_phase = EntityManager.GetLinkGroup(preset.LinkID).Where(e => e != preset).First();
+            land_phase.Activated = false; //Set land phase to spawn in its transition-to-land movement
+
             yield break;
         }
 
@@ -226,6 +226,10 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
 
         public override IEnumerable<Entity> SubEntities()
         {
+            if(bullets is null)
+            {
+                return new List<Entity>() { death_marker };
+            }
             return new List<Entity>() { death_marker }.Concat(bullets.Entities);
         }
 
