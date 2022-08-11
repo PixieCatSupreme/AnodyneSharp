@@ -94,7 +94,7 @@ namespace AnodyneSharp.Entities.Enemy.Circus
                 return;
             }
 
-            if (other is Broom b && !_flickering)
+            if (other is Broom && !_flickering)
             {
                 health -= 1;
 
@@ -205,7 +205,7 @@ namespace AnodyneSharp.Entities.Enemy.Circus
                 }
             }
 
-            private float RandomVelocity()
+            private static float RandomVelocity()
             {
                 return _startVel * (GlobalState.RNG.NextDouble() > 0.5 ? 1 : -1) + GlobalState.RNG.Next(-5, 5);
             }
