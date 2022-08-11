@@ -28,7 +28,7 @@ float4 MainPS(VertexShaderOutput input) : COLOR
 	
 	int phase = (yloc / 15) % 12 - 6;
 	input.Position.x += 3 - abs(phase);
-	return tex2D(Screen, input.Position / float2(160,180));
+	return tex2D(Screen, input.Position.xy / float2(160,180));
 }
 
 technique Wave
