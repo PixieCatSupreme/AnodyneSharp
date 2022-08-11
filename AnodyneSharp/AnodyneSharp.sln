@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30002.166
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B540E85F-E15A-420C-9AA1-A483A7E40AC3}"
 	ProjectSection(SolutionItems) = preProject
@@ -14,14 +14,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnodyneSharp.Windows", "Ano
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "AnodyneSharp.Shared", "AnodyneSharp.Shared\AnodyneSharp.Shared.shproj", "{A0CDBD0E-3A41-42B7-9425-A838BC2C7383}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnodyneSharp.Multiplatform", "AnodyneSharp.Multiplatform\AnodyneSharp.Multiplatform.csproj", "{C3425B4E-EE0B-41B7-AA64-E4637EC6B299}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnodyneSharp.Multiplatform", "AnodyneSharp.Multiplatform\AnodyneSharp.Multiplatform.csproj", "{C3425B4E-EE0B-41B7-AA64-E4637EC6B299}"
 EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		AnodyneSharp.Shared\AnodyneSharp.Shared.projitems*{9d4cd4fd-e304-4b61-908c-989a08b8d289}*SharedItemsImports = 5
-		AnodyneSharp.Shared\AnodyneSharp.Shared.projitems*{a0cdbd0e-3a41-42b7-9425-a838bc2c7383}*SharedItemsImports = 13
-		AnodyneSharp.Shared\AnodyneSharp.Shared.projitems*{c3425b4e-ee0b-41b7-aa64-e4637ec6b299}*SharedItemsImports = 5
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -45,5 +40,10 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BD45C6FF-7C29-45B5-8CF8-37CC74A0DC6B}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		AnodyneSharp.Shared\AnodyneSharp.Shared.projitems*{9d4cd4fd-e304-4b61-908c-989a08b8d289}*SharedItemsImports = 5
+		AnodyneSharp.Shared\AnodyneSharp.Shared.projitems*{a0cdbd0e-3a41-42b7-9425-a838bc2c7383}*SharedItemsImports = 13
+		AnodyneSharp.Shared\AnodyneSharp.Shared.projitems*{c3425b4e-ee0b-41b7-aa64-e4637ec6b299}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal
