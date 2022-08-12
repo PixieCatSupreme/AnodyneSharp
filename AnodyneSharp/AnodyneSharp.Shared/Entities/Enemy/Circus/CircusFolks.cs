@@ -538,7 +538,25 @@ namespace AnodyneSharp.Entities.Enemy.Circus
 
                 damage = 0;
 
-                velocity = Vector2.Normalize(player.Position - position) * throwVel;
+                Vector2 targetPos = player.Position;
+
+                velocity = Vector2.Normalize(targetPos - position) * throwVel;
+
+                /*
+                 * Two-step throw because Arthur can be thrown from "inside" the top wall
+                 * 
+                 * immovable set to avoid Arthur getting pushed out of the tile, making him able to miss the target.
+                 * 
+                 * As soon as he's close enough(about a tile) from the target, revert back to normal collision check.
+                 */
+                immovable = true;
+
+                while(Vector2.DistanceSquared(Position,targetPos) > 16*16)
+                {
+                    yield return null;
+                }
+
+                immovable = false;
 
                 while (touching == Touching.NONE)
                 {
