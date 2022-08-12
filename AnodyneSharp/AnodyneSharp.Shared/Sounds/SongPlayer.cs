@@ -13,13 +13,21 @@ namespace AnodyneSharp.Sounds
     {
         const int BufferMs = 128;
         
-        DynamicSoundEffectInstance player = new(44100,AudioChannels.Stereo);
+        DynamicSoundEffectInstance player;
         VorbisReader reader;
 
         float[] vorbis_samples = new float[SoundEffect.GetSampleSizeInBytes(TimeSpan.FromMilliseconds(BufferMs),44100,AudioChannels.Stereo)];
 
         public SongPlayer()
         {
+            ResetPlayer();
+        }
+
+        private void ResetPlayer()
+        {
+            player?.Stop();
+            player?.Dispose();
+            player = new(44100, AudioChannels.Stereo);
             player.BufferNeeded += BufferNeeded;
         }
 
@@ -54,8 +62,8 @@ namespace AnodyneSharp.Sounds
 
         public void Play(string song)
         {
+            ResetPlayer();
             if (reader != null) reader.Dispose();
-            player.Stop();
             reader = new VorbisReader(song);
             BufferNeeded(null, null);
             if(player.State != SoundState.Playing)
