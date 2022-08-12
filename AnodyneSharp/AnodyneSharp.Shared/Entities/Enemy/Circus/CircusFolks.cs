@@ -365,6 +365,12 @@ namespace AnodyneSharp.Entities.Enemy.Circus
 
             GlobalState.screenShake.Shake(0.04f, 1f);
 
+            foreach (var shockWave in _shockWaves.Entities)
+            {
+                shockWave.velocity = Vector2.Zero;
+                shockWave.Play("evaporate");
+            }
+
             GlobalState.Dialogue = DialogueManager.GetDialogue("circus_folks", "after_fight");
 
             _arthur.Flicker(0);
@@ -372,6 +378,7 @@ namespace AnodyneSharp.Entities.Enemy.Circus
 
             _arthur.hurts = false;
             _javiera.hurts = false;
+            _javiera.layer = DrawOrder.FG_SPRITES;
 
             while (!GlobalState.LastDialogueFinished)
             {
@@ -773,7 +780,7 @@ namespace AnodyneSharp.Entities.Enemy.Circus
                     return;
                 }
 
-                if (other is Player p)
+                if (other is Player p && p.state == PlayerState.GROUND)
                 {
                     p.ReceiveDamage(1);
                 }

@@ -99,6 +99,8 @@ namespace AnodyneSharp
             _fpsLabel = new UILabel(new Vector2(0, GameConstants.HEADER_HEIGHT), false, "", Color.LightBlue);
 
             GlobalState.darkness.SetCamera(_camera);
+
+            Window.Title = "Anodyne Fan Remake";
         }
 
         /// <summary>
