@@ -59,7 +59,7 @@ namespace AnodyneSharp.Entities.Enemy.Cell
                 {
                     velocity *= -1;
 
-                    FlipFacing();
+                    facing = FlipFacing(facing);
 
                     PlayFacing("walking");
                 }

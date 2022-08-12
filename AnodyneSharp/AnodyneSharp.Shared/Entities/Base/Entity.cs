@@ -280,9 +280,9 @@ namespace AnodyneSharp.Entities
             };
         }
 
-        public void FlipFacing()
+        public static Facing FlipFacing(Facing f)
         {
-            facing = facing switch
+            return f switch
             {
                 Facing.LEFT => Facing.RIGHT,
                 Facing.RIGHT => Facing.LEFT,

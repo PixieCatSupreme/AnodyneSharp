@@ -102,7 +102,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
             {
                 SoundManager.PlaySoundEffect("sf_move");
 
-                FlipFacing();
+                facing = FlipFacing(facing);
 
                 PlayFacing("move");
 

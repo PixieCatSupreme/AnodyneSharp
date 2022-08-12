@@ -14,12 +14,14 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace AnodyneSharp.Entities.Enemy.Circus
 {
-    [NamedEntity("Circus_Folks", null, 2), Collision(typeof(Player), typeof(Broom), MapCollision = true)]
+    [NamedEntity("Circus_Folks", null, 2), Collision(typeof(Player), typeof(Broom), MapCollision = true), Enemy]
     internal class CircusFolks : WalkAroundEntity
     {
         private const int walkVel = 90;
         private const float walkTimerMax = 3.0f;
         private const int jumpVel = 100;
+
+        private const int fallTimerMax = 2;
 
         private EntityPreset _preset;
         private Player _player;
@@ -33,7 +35,7 @@ namespace AnodyneSharp.Entities.Enemy.Circus
 
         private Vector2 _topLeft;
 
-        private int health = 7;
+        private int health;
 
         public CircusFolks(EntityPreset preset, Player p)
             : base(preset.Position, "arthur_javiera", 16, 32, Drawing.DrawOrder.ENTITIES)
@@ -56,10 +58,10 @@ namespace AnodyneSharp.Entities.Enemy.Circus
             AddAnimation("walk_r", CreateAnimFrameArray(4, 5), 12);
             AddAnimation("walk_l", CreateAnimFrameArray(4, 5), 12);
             AddAnimation("switch", CreateAnimFrameArray(6, 7), 6, false);
-            AddAnimation("throw_d", CreateAnimFrameArray(8, 8), 1, false); // The length of all frames minus last is how long the warning lasts.
-            AddAnimation("throw_r", CreateAnimFrameArray(10, 8), 1, false);
-            AddAnimation("throw_u", CreateAnimFrameArray(9, 8), 1, false);
-            AddAnimation("throw_l", CreateAnimFrameArray(10, 8), 1, false);
+            AddAnimation("throw_d", CreateAnimFrameArray(8, 8), 2, false); // The length of all frames minus last is how long the warning lasts.
+            AddAnimation("throw_r", CreateAnimFrameArray(10, 8), 2, false);
+            AddAnimation("throw_u", CreateAnimFrameArray(9, 8), 2, false);
+            AddAnimation("throw_l", CreateAnimFrameArray(10, 8), 2, false);
             AddAnimation("dying", CreateAnimFrameArray(10, 10, 10), 1, false);
             Play("walk_l");
 
@@ -67,8 +69,11 @@ namespace AnodyneSharp.Entities.Enemy.Circus
 
             _parabolaThing = new Parabola_Thing(this, 48, 1);
             shadow = new Shadow(this, new Vector2(0, 0), ShadowType.Normal);
+            shadow.visible = false;
 
             _shockWaves = new EntityPool<ShockWave>(8, () => new ShockWave());
+
+            health = 7;
 
             _stateLogic = Intro();
         }
@@ -82,11 +87,16 @@ namespace AnodyneSharp.Entities.Enemy.Circus
         {
             base.Update();
 
-            _stateLogic.MoveNext();
+            if (health == 0)
+            {
+                health = -1;
+                _stateLogic = Dying();
+            }
+            else
+            {
+                _stateLogic.MoveNext();
+            }
         }
-
-        public override void Fall(Vector2 fallPoint)
-        { }
 
         public override void Collided(Entity other)
         {
@@ -176,8 +186,14 @@ namespace AnodyneSharp.Entities.Enemy.Circus
                 yield return null;
             }
 
-            //TODO random between throw and jump
-            _stateLogic = Jump();
+            if (GlobalState.RNG.NextDouble() > 0.6)
+            {
+                _stateLogic = Jump();
+            }
+            else
+            {
+                _stateLogic = Throw();
+            }
 
             yield break;
         }
@@ -194,7 +210,6 @@ namespace AnodyneSharp.Entities.Enemy.Circus
             velocity = (target - Position) / distance * jumpVel;
 
             _parabolaThing = new Parabola_Thing(this, 48, distance / jumpVel);
-            //shadow.Position += new Vector2(4, 8);
 
             shadow.visible = true;
 
@@ -242,13 +257,247 @@ namespace AnodyneSharp.Entities.Enemy.Circus
             yield break;
         }
 
+        private IEnumerator Throw()
+        {
+            velocity = Vector2.Zero;
+            Play("switch");
+
+            while (!_curAnim.Finished)
+            {
+                yield return null;
+            }
+
+            bool onFull = false;
+
+            GlobalState.flash.Flash(0.2f, Color.White, () => onFull = true);
+
+            while (!onFull)
+            {
+                yield return null;
+            }
+
+            Facing _javieraFacing = facing;
+
+            FaceTowards(_player.Position);
+
+            PlayFacing("throw");
+
+            while (!_curAnim.Finished)
+            {
+                yield return null;
+            }
+
+            SoundManager.PlaySoundEffect("slasher_atk");
+
+            Flicker(0);
+            visible = false;
+
+            _arthur.exists = true;
+            _arthur.Flicker(0);
+
+            _arthur.stateLogic = _arthur.BeThrown(Position - new Vector2(0, 16), _player);
+
+            _javiera.exists = true;
+            _javiera.Flicker(0);
+
+            _javiera.Position = Position;
+
+            while (_arthur.stateLogic != null)
+            {
+                yield return null;
+            }
+
+            Facing f = GetMovementDirection(_arthur.Position);
+
+            if (_shockWaves.Alive < _shockWaves.Entities.Count() - 1)
+            {
+                _shockWaves.Spawn(b => b.Spawn(_arthur.Position, f));
+                _shockWaves.Spawn(b => b.Spawn(_arthur.Position, FlipFacing(f)));
+            }
+
+            _javiera.stateLogic = _javiera.Run(_javieraFacing);
+
+            while (_javiera.stateLogic != null)
+            {
+                yield return null;
+            }
+
+            _arthur.Play("walk_d");
+
+            onFull = false;
+
+            GlobalState.flash.Flash(0.2f, Color.White, () => onFull = true);
+
+            while (!onFull)
+            {
+                yield return null;
+            }
+
+            Position = _javiera.Position;
+
+            health -= _arthur.damage + _javiera.damage;
+
+            visible = true;
+
+            _arthur.exists = _javiera.exists = false;
+
+            _arthur.Flicker(0);
+            _javiera.Flicker(0);
+
+            facing = _javiera.facing;
+
+            PlayFacing("walk");
+
+            _stateLogic = Walk();
+
+            yield break;
+        }
+
+        private IEnumerator Dying()
+        {
+            SoundManager.StopSong();
+
+            velocity = Vector2.Zero;
+
+            Play("dying");
+
+            SoundManager.PlaySoundEffect("sun_guy_death_short");
+
+            GlobalState.screenShake.Shake(0.04f, 1f);
+
+            GlobalState.Dialogue = DialogueManager.GetDialogue("circus_folks", "after_fight");
+
+            _arthur.Flicker(0);
+            _javiera.Flicker(0);
+
+            _arthur.hurts = false;
+            _javiera.hurts = false;
+
+            while (!GlobalState.LastDialogueFinished)
+            {
+                yield return null;
+            }
+
+            visible = false;
+
+            _arthur.exists = _javiera.exists = true;
+
+            _arthur.Position = Position;
+            _javiera.Position = Position - new Vector2(0, 16);
+
+            _arthur.parabolaThing = new Parabola_Thing(_arthur, 24, 1.0f);
+            _javiera.parabolaThing = new Parabola_Thing(_javiera, 18, 0.8f);
+
+            _arthur.SetFrame(1);
+            _javiera.SetFrame(1);
+
+            float fallTimer = 0;
+
+            while (fallTimer <= fallTimerMax)
+            {
+                fallTimer += GameTimes.DeltaTime;
+
+                float n = (float)Math.Sin(fallTimer * 6.28);
+
+                _arthur.offset.X = -3 * n;
+                _javiera.offset.X = 3 * n;
+
+                yield return null;
+            }
+
+            SoundManager.PlaySoundEffect("floor_crack");
+
+            _arthur.velocity = Vector2.Normalize(new Vector2(_topLeft.X + 64, _topLeft.Y + 40) - _arthur.Position) * 40;
+            _javiera.velocity = Vector2.Normalize(new Vector2(_topLeft.X + 36, _topLeft.Y + 50) - _javiera.Position) * 70;
+
+            while (_arthur.opacity != 0 || _javiera.opacity != 0)
+            {
+                if (_arthur.parabolaThing.Tick())
+                {
+                    _arthur.velocity = Vector2.Zero;
+
+                    MathUtilities.MoveTo(ref _arthur.opacity, 0, 0.3f);
+
+                    if (_arthur.CurAnimName != "fall")
+                    {
+                        _arthur.Play("fall");
+                    }
+                }
+
+                if (_javiera.parabolaThing.Tick())
+                {
+                    _javiera.velocity = Vector2.Zero;
+
+                    MathUtilities.MoveTo(ref _javiera.opacity, 0, 0.3f);
+
+                    if (_javiera.CurAnimName != "fall")
+                    {
+                        _javiera.Play("fall");
+                    }
+                }
+
+                yield return null;
+            }
+
+            bool onFull = false;
+
+            SoundManager.PlaySoundEffect("wb_hit_ground");
+            GlobalState.flash.Flash(1, Color.Red, () => onFull = true);
+
+            while (!onFull)
+            {
+                yield return null;
+            }
+
+            _preset.Alive = false;
+            exists = _arthur.exists = _javiera.exists = false;
+
+            SoundManager.PlaySong("circus");
+
+            GlobalState.events.BossDefeated.Add(GlobalState.CURRENT_MAP_NAME);
+
+            yield break;
+        }
+
+        private Facing GetMovementDirection(Vector2 pos)
+        {
+            Facing facing;
+
+            if (pos.X < _topLeft.X + 16)
+            {
+                facing = Facing.DOWN;
+            }
+            else if (pos.X > _topLeft.X + 105)
+            {
+                facing = Facing.UP;
+            }
+            else if (pos.Y > _topLeft.Y + 106)
+            {
+                facing = Facing.RIGHT;
+            }
+            else
+            {
+                facing = Facing.LEFT;
+            }
+
+            return facing;
+        }
+
+        [Collision(typeof(Player), typeof(Broom), MapCollision = true)]
         class Arthur : Entity
         {
+            private const int throwVel = 120;
+
             public int damage;
 
-            private Parabola_Thing _parabolaThing;
+            public IEnumerator stateLogic;
+
+            public Parabola_Thing parabolaThing;
+
+            public bool hurts;
+
             public Arthur(Vector2 position)
-                : base(position, "arthur", 16, 16, Drawing.DrawOrder.ENTITIES)
+                : base(position, "arthur", 16, 16, DrawOrder.ENTITIES)
             {
                 AddAnimation("walk_d", CreateAnimFrameArray(0, 1), 8);
                 AddAnimation("walk_l", CreateAnimFrameArray(4, 5), 8);
@@ -261,11 +510,77 @@ namespace AnodyneSharp.Entities.Enemy.Circus
                 AddAnimation("fall", CreateAnimFrameArray(10, 11, 12, 13, 14, 15, 6), 2, false); // Should end on an empty frame
                 Play("wobble");
 
-                _parabolaThing = new Parabola_Thing(this, 32, 1);
-                shadow = new Shadow(this, new Vector2(0, 0), ShadowType.Normal);
+                damage = 0;
+
+                hurts = true;
+            }
+
+            public override void Update()
+            {
+                base.Update();
+
+                if (stateLogic != null)
+                {
+                    if (!stateLogic.MoveNext())
+                    {
+                        stateLogic = null;
+                    }
+                }
+            }
+
+            public IEnumerator BeThrown(Vector2 position, Player player)
+            {
+                Position = position;
+
+                visible = true;
+
+                Play("roll");
 
                 damage = 0;
+
+                velocity = Vector2.Normalize(player.Position - position) * throwVel;
+
+                while (touching == Touching.NONE)
+                {
+                    yield return null;
+                }
+
+                velocity = Vector2.Zero;
+
+                Play("stunned");
+
+                SoundManager.PlaySoundEffect("hit_ground_1");
+
+                GlobalState.screenShake.Shake(0.03f, 0.1f);
+
+                yield break;
             }
+
+            public override void Collided(Entity other)
+            {
+                base.Collided(other);
+
+                if (!visible || !hurts || stateLogic != null)
+                {
+                    return;
+                }
+
+                if (!_flickering)
+                {
+                    if (other is Broom)
+                    {
+                        damage++;
+                        Flicker(3);
+                    }
+                    else if (other is Player p && p.state == PlayerState.GROUND)
+                    {
+                        p.ReceiveDamage(1);
+                    }
+                }
+            }
+
+            public override void Fall(Vector2 fallPoint)
+            { }
 
             protected override void AnimationChanged(string name)
             {
@@ -279,11 +594,24 @@ namespace AnodyneSharp.Entities.Enemy.Circus
                     _flip = SpriteEffects.None;
                 }
             }
+
         }
 
+        [Collision(typeof(Player), typeof(Broom), typeof(Arthur), MapCollision = true)]
         class Javiera : WalkAroundEntity
         {
+            private const float walkVel = 90 * 1.3f;
+
             public int damage;
+
+            public IEnumerator stateLogic;
+
+            public Parabola_Thing parabolaThing;
+
+            public bool hurts;
+
+            private bool _touchedArthur;
+
 
             public Javiera(Vector2 position)
             : base(position, "javiera", 16, 16, Drawing.DrawOrder.ENTITIES)
@@ -297,6 +625,68 @@ namespace AnodyneSharp.Entities.Enemy.Circus
                 Play("juggle");
 
                 damage = 0;
+
+                hurts = true;
+            }
+
+            public override void Update()
+            {
+                base.Update();
+
+                if (stateLogic != null)
+                {
+                    if (!stateLogic.MoveNext())
+                    {
+                        stateLogic = null;
+                    }
+                }
+            }
+
+            public IEnumerator Run(Facing direction)
+            {
+                facing = direction;
+
+                PlayFacing("walk");
+
+                damage = 0;
+                _touchedArthur = false;
+
+                while (!_touchedArthur)
+                {
+                    WalkAboutParameter(walkVel);
+                    yield return null;
+                }
+
+                velocity = Vector2.Zero;
+
+                yield break;
+            }
+
+            public override void Collided(Entity other)
+            {
+                base.Collided(other);
+
+                if (!visible || !hurts)
+                {
+                    return;
+                }
+
+                if (stateLogic != null && other is Arthur)
+                {
+                    _touchedArthur = true;
+                }
+                else if (!_flickering)
+                {
+                    if (other is Broom)
+                    {
+                        damage++;
+                        Flicker(3);
+                    }
+                    else if (other is Player p && p.state == PlayerState.GROUND)
+                    {
+                        p.ReceiveDamage(1);
+                    }
+                }
             }
 
             protected override void AnimationChanged(string name)
@@ -331,12 +721,17 @@ namespace AnodyneSharp.Entities.Enemy.Circus
             {
                 base.Update();
 
-                if (CurAnimName == "evaporate" && _curAnim.Finished)
+                if (CurAnimName == "evaporate")
                 {
-                    exists = false;
+                    if (_curAnim.Finished)
+                    {
+                        exists = false;
+                    }
                 }
-
-                WalkAboutParameter(swVel, false);
+                else
+                {
+                    WalkAboutParameter(swVel, false);
+                }
             }
 
             public void Spawn(Vector2 pos, Facing direction)
@@ -401,5 +796,8 @@ namespace AnodyneSharp.Entities.Enemy.Circus
 
             velocity = FacingDirection(facing) * speed;
         }
+
+        public override void Fall(Vector2 fallPoint)
+        { }
     }
 }

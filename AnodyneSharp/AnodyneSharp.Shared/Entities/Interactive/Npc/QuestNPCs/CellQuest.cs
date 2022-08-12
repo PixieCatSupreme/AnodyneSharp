@@ -31,9 +31,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.QuestNPCs
 
         public bool PlayerInteraction(Facing player_direction)
         {
-            facing = player_direction;
-
-            FlipFacing();
+            facing = FlipFacing(player_direction);
 
             PlayFacing("idle");
 
