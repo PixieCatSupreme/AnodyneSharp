@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AnodyneSharp.Dialogue;
+using AnodyneSharp.Drawing;
 using AnodyneSharp.Entities.Events;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
@@ -13,10 +14,12 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace AnodyneSharp.Entities.Enemy.Circus
 {
-    [NamedEntity("Circus_Folks", null, 2), Collision(typeof(Dust))]
-    internal class CircusFolks : Entity
+    [NamedEntity("Circus_Folks", null, 2), Collision(typeof(Player), typeof(Broom), MapCollision = true)]
+    internal class CircusFolks : WalkAroundEntity
     {
         private const int walkVel = 90;
+        private const float walkTimerMax = 3.0f;
+        private const int jumpVel = 100;
 
         private EntityPreset _preset;
         private Player _player;
@@ -82,6 +85,28 @@ namespace AnodyneSharp.Entities.Enemy.Circus
             _stateLogic.MoveNext();
         }
 
+        public override void Fall(Vector2 fallPoint)
+        { }
+
+        public override void Collided(Entity other)
+        {
+            if (!visible)
+            {
+                return;
+            }
+
+            if (other is Player p)
+            {
+                p.ReceiveDamage(1);
+            }
+            else if (!_flickering && other is Broom)
+            {
+                health--;
+                Flicker(1);
+                SoundManager.PlaySoundEffect("broom_hit");
+            }
+        }
+
         protected override void AnimationChanged(string name)
         {
             base.AnimationChanged(name);
@@ -132,15 +157,95 @@ namespace AnodyneSharp.Entities.Enemy.Circus
             visible = true;
             Play("walk_l");
 
-            Position = _topLeft + new Vector2(56,0);
+            Position = _topLeft + new Vector2(56, 0);
 
-            //velocity.X = -walkVel;
+            _stateLogic = Walk();
+
+            yield break;
+        }
+
+        private IEnumerator Walk()
+        {
+            float walkTimer = 0f;
+
+            while (walkTimer <= walkTimerMax)
+            {
+                walkTimer += GameTimes.DeltaTime;
+
+                WalkAboutParameter(walkVel);
+                yield return null;
+            }
+
+            //TODO random between throw and jump
+            _stateLogic = Jump();
+
+            yield break;
+        }
+
+        private IEnumerator Jump()
+        {
+            Vector2 target = _topLeft;
+            target.X += _player.Position.X > _topLeft.X + 60 ? 0 : 112;
+            target.Y += _player.Position.Y > _topLeft.Y + 60 ? 0 : 112;
+
+
+            float distance = Vector2.Distance(Position, target);
+
+            velocity = (target - Position) / distance * jumpVel;
+
+            _parabolaThing = new Parabola_Thing(this, 48, distance / jumpVel);
+            //shadow.Position += new Vector2(4, 8);
+
+            shadow.visible = true;
+
+            SoundManager.PlaySoundEffect("player_jump_up");
+
+            while (!_parabolaThing.Tick())
+            {
+                yield return null;
+            }
+
+            shadow.visible = false;
+
+            SoundManager.PlaySoundEffect("player_jump_down");
+            SoundManager.PlaySoundEffect("wb_tap_ground");
+
+            velocity = Vector2.Zero;
+            Position = target;
+
+            //Sets the new direction after the jump
+            if (target == _topLeft)
+            {
+                facing = Facing.DOWN;
+            }
+            else if (target.X > _topLeft.X && target.Y == _topLeft.Y)
+            {
+                facing = Facing.LEFT;
+            }
+            else if (target.X > _topLeft.X && target.Y > _topLeft.Y)
+            {
+                facing = Facing.UP;
+            }
+            else
+            {
+                facing = Facing.RIGHT;
+            }
+
+            if (_shockWaves.Alive <= 5)
+            {
+                _shockWaves.Spawn(b => b.Spawn(Position, Facing.LEFT));
+                _shockWaves.Spawn(b => b.Spawn(Position, Facing.RIGHT));
+            }
+
+            _stateLogic = Walk();
 
             yield break;
         }
 
         class Arthur : Entity
         {
+            public int damage;
+
             private Parabola_Thing _parabolaThing;
             public Arthur(Vector2 position)
                 : base(position, "arthur", 16, 16, Drawing.DrawOrder.ENTITIES)
@@ -158,6 +263,8 @@ namespace AnodyneSharp.Entities.Enemy.Circus
 
                 _parabolaThing = new Parabola_Thing(this, 32, 1);
                 shadow = new Shadow(this, new Vector2(0, 0), ShadowType.Normal);
+
+                damage = 0;
             }
 
             protected override void AnimationChanged(string name)
@@ -174,8 +281,10 @@ namespace AnodyneSharp.Entities.Enemy.Circus
             }
         }
 
-        class Javiera : Entity
+        class Javiera : WalkAroundEntity
         {
+            public int damage;
+
             public Javiera(Vector2 position)
             : base(position, "javiera", 16, 16, Drawing.DrawOrder.ENTITIES)
             {
@@ -186,6 +295,8 @@ namespace AnodyneSharp.Entities.Enemy.Circus
                 AddAnimation("juggle", CreateAnimFrameArray(0, 1), 8);
                 AddAnimation("fall", CreateAnimFrameArray(6, 7, 8, 9, 10, 11, 12), 2, false); // Should end on an empty frame
                 Play("juggle");
+
+                damage = 0;
             }
 
             protected override void AnimationChanged(string name)
@@ -202,16 +313,93 @@ namespace AnodyneSharp.Entities.Enemy.Circus
             }
         }
 
-        class ShockWave : Entity
+        [Collision(typeof(Player), typeof(Broom), MapCollision = true)]
+        class ShockWave : WalkAroundEntity
         {
+            private const int swVel = 70;
+
             public ShockWave()
                 : base(Vector2.Zero, "shockwave", 16, 16, Drawing.DrawOrder.ENTITIES)
             {
-                AddAnimation("move", CreateAnimFrameArray(0, 1, 2, 1), 8); // Remove if we make directional moving shockwaves
-                AddAnimation("move_d", CreateAnimFrameArray(0, 1, 2, 1), 8);
+                AddAnimation("move", CreateAnimFrameArray(0, 1, 2, 1), 8);
                 AddAnimation("evaporate", CreateAnimFrameArray(3, 4, 5, 6, 6), 8, false);
-                Play("move_d");
+
+                visible = false;
             }
+
+            public override void Update()
+            {
+                base.Update();
+
+                if (CurAnimName == "evaporate" && _curAnim.Finished)
+                {
+                    exists = false;
+                }
+
+                WalkAboutParameter(swVel, false);
+            }
+
+            public void Spawn(Vector2 pos, Facing direction)
+            {
+                Position = pos;
+                velocity = FacingDirection(direction) * swVel;
+
+                facing = direction;
+
+                Play("move");
+
+                visible = true;
+            }
+
+            public override void Collided(Entity other)
+            {
+                base.Collided(other);
+
+                if (CurAnimName == "evaporate")
+                {
+                    return;
+                }
+
+                if (other is Player p)
+                {
+                    p.ReceiveDamage(1);
+                }
+                else if (other is Broom)
+                {
+                    SoundManager.PlaySoundEffect("broom_hit");
+                }
+
+                velocity = Vector2.Zero;
+                Play("evaporate");
+            }
+        }
+    }
+    class WalkAroundEntity : Entity
+    {
+        public WalkAroundEntity(Vector2 pos, string textureName, int frameWidth, int frameHeight, DrawOrder layer)
+            : base(pos, textureName, frameWidth, frameHeight, layer)
+        {
+        }
+
+        protected void WalkAboutParameter(float speed, bool playAnim = true)
+        {
+            Vector2 center = MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid) + Vector2.One * 80;
+
+            facing = touching switch
+            {
+                Touching.LEFT => Position.Y > center.Y ? Facing.UP : Facing.DOWN,
+                Touching.RIGHT => Position.Y > center.Y ? Facing.UP : Facing.DOWN,
+                Touching.UP => Position.X > center.X ? Facing.LEFT : Facing.RIGHT,
+                Touching.DOWN => Position.X > center.X ? Facing.LEFT : Facing.RIGHT,
+                _ => facing,
+            };
+
+            if (playAnim)
+            {
+                PlayFacing("walk");
+            }
+
+            velocity = FacingDirection(facing) * speed;
         }
     }
 }
