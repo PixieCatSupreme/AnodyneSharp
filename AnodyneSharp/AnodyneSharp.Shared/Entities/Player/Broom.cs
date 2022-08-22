@@ -5,6 +5,7 @@ using AnodyneSharp.Sounds;
 using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
 
 namespace AnodyneSharp.Entities
 {
@@ -63,29 +64,14 @@ namespace AnodyneSharp.Entities
 
             wide_attack.AddAnimation("a", CreateAnimFrameArray(0, 1, 2, 3, 4), 14, false);
             long_attack.AddAnimation("a", CreateAnimFrameArray(0, 1, 2, 3, 4), 14, false);
+
+            LayerParent = root;
+            LayerOffset = 1;
         }
 
-
-        public override void Draw()
+        public override IEnumerable<Entity> SubEntities()
         {
-            if (visible && exists)
-            {
-                float draw_y = MapUtilities.GetInGridPosition(Position).Y;
-                if (!is_behind_player)
-                {
-                    float player_y = MapUtilities.GetInGridPosition(_root.Position).Y + _root.height;
-                    draw_y = player_y + 0.5f;
-                }
-                SpriteDrawer.DrawSprite(sprite.Tex, MathUtilities.CreateRectangle(Position.X - offset.X, Position.Y - offset.Y, sprite.Width, sprite.Height), sprite.GetRect(_curAnim.Frame), rotation: rotation, Z: DrawingUtilities.GetDrawingZ(layer, draw_y));
-
-                wide_attack.Draw();
-                long_attack.Draw();
-
-                //Draw hitbox, but not yourself
-                visible = false;
-                base.Draw();
-                visible = true;
-            }
+            return new List<Entity>() { long_attack, wide_attack };
         }
 
         public override void Update()
@@ -167,6 +153,12 @@ namespace AnodyneSharp.Entities
             wide_attack.ReloadTexture();
         }
 
+        public override void Draw()
+        {
+            if(visible && exists)
+                base.Draw();
+        }
+
         private void UpdatePos()
         {
             facing = _root.facing;
@@ -177,6 +169,7 @@ namespace AnodyneSharp.Entities
                     rotation = 0;
                     Position = new Vector2(_root.Position.X - 14, _root.Position.Y);
                     is_behind_player = true;
+                    LayerOffset = -1;
 
                     if (GlobalState.inventory.EquippedBroom == BroomType.Wide)
                     {
@@ -199,6 +192,7 @@ namespace AnodyneSharp.Entities
                     rotation = MathHelper.ToRadians(180);
                     Position = new Vector2(_root.Position.X + _root.width, _root.Position.Y - 2);
                     is_behind_player = false;
+                    LayerOffset = 1;
 
                     if (GlobalState.inventory.EquippedBroom == BroomType.Wide)
                     {
@@ -220,6 +214,7 @@ namespace AnodyneSharp.Entities
                     rotation = MathHelper.ToRadians(90);
                     Position = new Vector2(_root.Position.X + -2, _root.Position.Y - 16);
                     is_behind_player = true;
+                    LayerOffset = -1;
 
                     if (GlobalState.inventory.EquippedBroom == BroomType.Wide)
                     {
@@ -241,6 +236,7 @@ namespace AnodyneSharp.Entities
                     rotation = MathHelper.ToRadians(270);
                     Position = new Vector2(_root.Position.X + -6, _root.Position.Y + _root.height);
                     is_behind_player = false;
+                    LayerOffset = 1;
 
                     if (GlobalState.inventory.EquippedBroom == BroomType.Wide)
                     {

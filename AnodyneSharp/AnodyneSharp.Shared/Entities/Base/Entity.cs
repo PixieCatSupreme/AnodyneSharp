@@ -31,6 +31,8 @@ namespace AnodyneSharp.Entities
         public Vector2 offset;
         public Facing facing;
         public DrawOrder layer;
+        protected Entity LayerParent;
+        protected int LayerOffset = 0;
 
         public Color color;
 
@@ -203,6 +205,12 @@ namespace AnodyneSharp.Entities
             return new List<Entity>();
         }
 
+        public float GetZ()
+        {
+            float y_target = (int)MapUtilities.GetInGridPosition(LayerParent?.Position ?? Position).Y + (LayerParent?.height + 0.1f*LayerOffset ?? height);
+            return DrawingUtilities.GetDrawingZ(layer, y_target);
+        }
+
         public virtual void Draw()
         {
             if (exists)
@@ -211,13 +219,14 @@ namespace AnodyneSharp.Entities
                 {
                     Rectangle srect = sprite.GetRect(_curAnim.Frame);
                     srect.Height -= (int)y_push;
+
                     SpriteDrawer.DrawSprite(sprite.Tex,
                         MathUtilities.CreateRectangle(Position.X - offset.X * scale, Position.Y - offset.Y * scale + (int)y_push, srect.Width * scale, srect.Height * scale),
                         srect,
                         color * opacity,
                         rotation,
                         _flip,
-                        DrawingUtilities.GetDrawingZ(layer, MapUtilities.GetInGridPosition(Position).Y + height));
+                        GetZ());
                 }
                 if (shadow != null)
                 {
