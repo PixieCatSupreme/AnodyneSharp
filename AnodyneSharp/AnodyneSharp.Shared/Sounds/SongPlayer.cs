@@ -25,9 +25,11 @@ namespace AnodyneSharp.Sounds
 
         private void ResetPlayer()
         {
+            float volume = player?.Volume ?? 1f;
             player?.Stop();
             player?.Dispose();
             player = new(44100, AudioChannels.Stereo);
+            player.Volume = volume;
             player.BufferNeeded += BufferNeeded;
         }
 
@@ -35,7 +37,7 @@ namespace AnodyneSharp.Sounds
         {
             if (reader.IsEndOfStream)
             {
-                int.TryParse(reader.Tags.GetTagSingle("LOOPSTART"), out int startLoop);
+                _ = int.TryParse(reader.Tags.GetTagSingle("LOOPSTART"), out int startLoop);
                 reader.SeekTo(startLoop);
             }
             if (!reader.IsEndOfStream)
