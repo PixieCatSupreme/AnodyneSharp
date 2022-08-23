@@ -780,17 +780,26 @@ namespace AnodyneSharp.Entities.Enemy.Circus
                     return;
                 }
 
+                bool disappear = false;
+
                 if (other is Player p && p.state == PlayerState.GROUND)
                 {
                     p.ReceiveDamage(1);
+
+                    disappear = true;
                 }
                 else if (other is Broom)
                 {
                     SoundManager.PlaySoundEffect("broom_hit");
+
+                    disappear = true;
                 }
 
-                velocity = Vector2.Zero;
-                Play("evaporate");
+                if (disappear)
+                {
+                    velocity = Vector2.Zero;
+                    Play("evaporate");
+                }
             }
         }
     }
