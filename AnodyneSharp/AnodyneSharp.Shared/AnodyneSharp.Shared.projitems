@@ -1128,7 +1128,7 @@
     <None Include="$(MSBuildThisFileDirectory)Content\bgm\overworld.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="$(MSBuildThisFileDirectory)Content\bgm\terminal_alt.ogg">
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\terminal.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Content\bgm\redcave-boss.ogg">
@@ -1161,7 +1161,7 @@
     <None Include="$(MSBuildThisFileDirectory)Content\bgm\suburb.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="$(MSBuildThisFileDirectory)Content\bgm\terminal.ogg">
+    <None Include="$(MSBuildThisFileDirectory)Content\bgm\terminal_alt.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Content\bgm\title.ogg">
