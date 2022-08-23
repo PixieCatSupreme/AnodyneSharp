@@ -31,8 +31,8 @@ namespace AnodyneSharp.Entities
         public Vector2 offset;
         public Facing facing;
         public DrawOrder layer;
-        protected Entity LayerParent;
-        protected int LayerOffset = 0;
+        public Entity LayerParent;
+        public int LayerOffset = 0;
 
         public Color color;
 
@@ -207,8 +207,8 @@ namespace AnodyneSharp.Entities
 
         public float GetZ()
         {
-            float y_target = (int)MapUtilities.GetInGridPosition(LayerParent?.Position ?? Position).Y + (LayerParent?.height + 0.1f*LayerOffset ?? height);
-            return DrawingUtilities.GetDrawingZ(layer, y_target);
+            return LayerParent?.GetZ() + LayerOffset * 0.0001f ?? 
+                DrawingUtilities.GetDrawingZ(layer, MapUtilities.GetInGridPosition(Position).Y + height);
         }
 
         public virtual void Draw()

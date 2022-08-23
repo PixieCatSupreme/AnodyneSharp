@@ -20,8 +20,10 @@ namespace AnodyneSharp.Entities
         {
             _player = p;
 
-            _broomReflection = new Entity(p.Position, "broom_reflection", 16, 16, DrawOrder.BROOM_REFLECTION);
+            _broomReflection = new Entity(p.Position, "broom_reflection", 16, 16, DrawOrder.PLAYER_REFLECTION);
             _broomReflection.exists = false;
+            _broomReflection.LayerParent = this;
+            _broomReflection.LayerOffset = 1;
         }
 
         public override void Update()
@@ -45,7 +47,7 @@ namespace AnodyneSharp.Entities
 
                 _broomReflection.SetFrame(_player.broom.GetFrame());
 
-                _broomReflection.layer = _player.broom.is_behind_player ? DrawOrder.BROOM_REFLECTION_BEHIND : DrawOrder.BROOM_REFLECTION;
+                _broomReflection.LayerOffset = _player.broom.is_behind_player ? -1 : 1;
 
                 SetBroomRotation(_player.broom.facing);
             }

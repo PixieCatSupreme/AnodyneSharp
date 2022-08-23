@@ -9,9 +9,7 @@ namespace AnodyneSharp.Drawing
     {
         BACKGROUND,                 //Moving background textures
         MAP_BG,                     //Map layer 1
-        BROOM_REFLECTION_BEHIND,    //Reflection of broom behind player
         PLAYER_REFLECTION,          //Reflection of the player
-        BROOM_REFLECTION,           //Reflection of broom
         FOOT_OVERLAY,               //Feet stuff like water wrinkles
         MAP_BG2,                    //Map layer 2
         VERY_BG_ENTITIES,           //Entities that need to go behind dust
