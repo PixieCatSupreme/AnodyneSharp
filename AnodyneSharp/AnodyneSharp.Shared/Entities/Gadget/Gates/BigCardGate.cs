@@ -42,7 +42,7 @@ namespace AnodyneSharp.Entities.Gadget
                     49 => "!!!",
                     _ => null
                 };
-                _state.ChangeState("Open");
+                GlobalState.StartCutscene = OpeningSequence();
                 return true;
             }
             else

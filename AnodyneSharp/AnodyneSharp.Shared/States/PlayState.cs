@@ -74,7 +74,7 @@ namespace AnodyneSharp.States
 
         private List<Entity> _newlySpawned = new(); //Entities that are spawned during update
 
-        private State _childState;
+        private List<State> _childStates = new();
 
         private UILabel _keyValueLabel;
         private Spritesheet _miniminimap;
@@ -113,7 +113,7 @@ namespace AnodyneSharp.States
 
             GlobalState.SpawnEntity = SpawnEntity;
             GlobalState.FireEvent = FireEvent;
-            GlobalState.SetSubstate = s => _childState ??= s; //Only allow setting state if there is no child state currently
+            GlobalState.SetSubstate = s => _childStates.Add(s); //Only allow setting state if there is no child state currently
 
             GlobalState.DoQuickSave = QuickSave;
             GlobalState.DoQuickLoad = () => DoQuickLoad = true;
@@ -174,7 +174,7 @@ namespace AnodyneSharp.States
 
         public override void Draw()
         {
-            if (_childState?.DrawPlayState ?? true)
+            if (_childStates.All(s => s.DrawPlayState))
             {
                 if (_background != null)
                     _background.Draw(_camera);
@@ -194,9 +194,9 @@ namespace AnodyneSharp.States
                     gridEntity.Draw();
                 }
             }
-            if (_childState != null)
+            foreach (var s in _childStates)
             {
-                _childState.Draw();
+                s.Draw();
             }
         }
 
@@ -216,9 +216,9 @@ namespace AnodyneSharp.States
 
             _healthBar.Draw();
 
-            if (_childState != null)
+            foreach (var s in _childStates)
             {
-                _childState.DrawUI();
+                s.DrawUI();
             }
 
 
@@ -259,50 +259,37 @@ namespace AnodyneSharp.States
             }
             _newlySpawned.Clear();
 
-            bool updateEntities = true;
+            bool updateEntities = _childStates.All(s => s.UpdateEntities);
 
-            if (_childState != null)
+            if (_childStates.Count > 0)
             {
                 _player.invincible = true;
                 _player.dontMove = true;
                 _player.actions_disabled = true;
 
-                _childState.Update();
-                updateEntities = _childState.UpdateEntities;
-
-                if (_childState.Exit)
+                foreach (var s in _childStates)
                 {
-                    if (_childState is DeathState d)
+                    s.Update();
+                    if (s.Exit && s is DeathState)
                     {
                         Warp();
                         _state = PlayStateState.S_MAP_ENTER;
                     }
-                    else
-                    {
-                        _player.dontMove = false;
-                        _player.exists = true;
-                        _player.actions_disabled = false;
-                        _player.invincible = false;
-                    }
-
+                }
+                _childStates.RemoveAll(s => s.Exit);
+                if (_childStates.Count == 0)
+                {
+                    _player.dontMove = false;
+                    _player.exists = true;
+                    _player.actions_disabled = false;
+                    _player.invincible = false;
                     _player.skipBroom = true;
-                    _childState = null;
                 }
 
                 if (updateEntities)
                 {
                     DoCollisions(false);
                 }
-            }
-            else if (GlobalState.SetDialogueMode)
-            {
-                _childState = new DialogueState();
-                _player.BeIdle();
-            }
-            else if (GlobalState.StartCutscene != null)
-            {
-                _childState = new CutsceneState(_camera, GlobalState.StartCutscene);
-                GlobalState.StartCutscene = null;
             }
             else
             {
@@ -369,6 +356,18 @@ namespace AnodyneSharp.States
             if (updateEntities)
             {
                 EntityUpdate();
+            }
+
+            if (GlobalState.SetDialogueMode)
+            {
+                _childStates.Add(new DialogueState());
+                GlobalState.SetDialogueMode = false;
+                _player.BeIdle();
+            }
+            if (GlobalState.StartCutscene != null)
+            {
+                _childStates.Add(new CutsceneState(_camera, GlobalState.StartCutscene));
+                GlobalState.StartCutscene = null;
             }
 
 #if DEBUG
@@ -466,7 +465,7 @@ namespace AnodyneSharp.States
 
         private bool CheckInteraction()
         {
-            if (_player.state != PlayerState.GROUND || _player.skipBroom || _childState != null) //skipBroom can be set before interaction check for other reasons, like going out of a dialogue state
+            if (_player.state != PlayerState.GROUND || _player.skipBroom || _childStates.Count > 0) //skipBroom can be set before interaction check for other reasons, like going out of a dialogue state
             {
                 return false;
             }
@@ -503,8 +502,7 @@ namespace AnodyneSharp.States
 
             if (KeyInput.JustPressedRebindableKey(KeyFunctions.Pause) && !GlobalState.disable_menu)
             {
-                _childState = new PauseState();
-                _childState.ChangeStateEvent = ChangeStateEvent;
+                _childStates.Add(new PauseState() { ChangeStateEvent = ChangeStateEvent });
                 SoundManager.PlaySoundEffect("pause_sound");
                 return;
             }
@@ -812,11 +810,11 @@ namespace AnodyneSharp.States
         {
             _healthBar.UpdateHealth();
 
-            if (_childState == null && GlobalState.CUR_HEALTH == 0)
+            if (_childStates.Count == 0 && GlobalState.CUR_HEALTH == 0)
             {
                 SoundManager.StopSong();
 
-                _childState = new DeathState(_player);
+                _childStates.Add(new DeathState(_player));
             }
         }
 
