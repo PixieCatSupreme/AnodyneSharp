@@ -9,8 +9,8 @@ using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
-using SharpDX.Direct2D1;
 using static AnodyneSharp.Registry.GlobalState;
+using static AnodyneSharp.States.CutsceneState;
 
 namespace AnodyneSharp.Entities.Enemy.Etc
 {
@@ -24,10 +24,12 @@ namespace AnodyneSharp.Entities.Enemy.Etc
 
         private IEnumerator _stateLogic;
 
+        private EntityPreset _preset;
         private Player _player;
 
         private int _health;
         private bool _canHurt;
+        private float _flickerLength;
 
         public SageBoss(EntityPreset preset, Player p)
             : base(preset.Position, "sage_boss", 16, 24, Drawing.DrawOrder.ENTITIES)
@@ -48,6 +50,7 @@ namespace AnodyneSharp.Entities.Enemy.Etc
             Position.X = _topLeft.X + 72;
             Position += new Vector2(3, 3);
 
+            _preset = preset;
             _player = p;
 
             _lBullets = new EntityPool<LongAttack>(6, () => new LongAttack());
@@ -57,7 +60,7 @@ namespace AnodyneSharp.Entities.Enemy.Etc
             immovable = true;
 
 #if DEBUG
-            int dVal = 2;
+            int dVal = 0;
             if (dVal == 1)
             {
                 Position.X = _topLeft.X + 80 - width / 2;
@@ -77,6 +80,23 @@ namespace AnodyneSharp.Entities.Enemy.Etc
                 Play("idle_d");
 
                 _stateLogic = Stage2();
+            }
+            else if (dVal == 3)
+            {
+                _lBullets.Spawn((l) => l.SpawnTopBottom(_topLeft + new Vector2(48, 16)));
+                _lBullets.Spawn((l) => l.SpawnTopBottom(_topLeft + new Vector2(48, 8 * 16)));
+
+                SoundManager.PlaySong("sagefight");
+                Play("idle_d");
+
+                _stateLogic = Stage3();
+            }
+            else if (dVal == 4)
+            {
+                SoundManager.PlaySong("sagefight");
+                Play("idle_d");
+
+                _stateLogic = Stage4();
             }
 #endif
         }
@@ -108,11 +128,15 @@ namespace AnodyneSharp.Entities.Enemy.Etc
             }
             else if (!_flickering && other is Broom)
             {
-                Flicker(1);
+                Flicker(_flickerLength);
                 _health--;
                 SoundManager.PlaySoundEffect("broom_hit");
+                flash.Flash(0.4f, Color.Black);
             }
         }
+
+        public override void Fall(Vector2 fallPoint)
+        { }
 
         private IEnumerator Intro()
         {
@@ -121,7 +145,7 @@ namespace AnodyneSharp.Entities.Enemy.Etc
             facing = Facing.DOWN;
             Play("idle");
 
-            VolumeEvent volumeEvent = new VolumeEvent(0, 0.6f);
+            VolumeEvent volumeEvent = new(0, 0.6f);
 
             GlobalState.SpawnEntity(volumeEvent);
 
@@ -221,6 +245,8 @@ namespace AnodyneSharp.Entities.Enemy.Etc
             _health = maxHealth;
             _canHurt = true;
 
+            _flickerLength = 1;
+
             float bClock = 0;
             float[] bDelay = new float[] { 1.6f, 1.4f, 1.2f };
 
@@ -246,7 +272,7 @@ namespace AnodyneSharp.Entities.Enemy.Etc
                 yield return null;
             }
 
-            foreach (LongAttack lAttack in _lBullets.Entities)
+            foreach (LongAttack lAttack in _lBullets.Entities.Cast<LongAttack>())
             {
                 lAttack.Poof();
             }
@@ -263,6 +289,10 @@ namespace AnodyneSharp.Entities.Enemy.Etc
             int maxHealth = 3;
             _health = maxHealth;
             _canHurt = false;
+
+            _flickerLength = 1;
+
+            immovable = false;
 
             bool movedRight = false;
 
@@ -283,9 +313,8 @@ namespace AnodyneSharp.Entities.Enemy.Etc
             {
                 yield return null;
             }
-            velocity.X = 40;
-            immovable = false;
 
+            velocity.X = 40;
             _canHurt = true;
 
             _sBullets.Spawn((l) => l.Spawn());
@@ -303,8 +332,7 @@ namespace AnodyneSharp.Entities.Enemy.Etc
                     i = 0;
                 }
 
-                sAttack1.Position = Position + new Vector2((width - sAttack1.width) / 2, -10);
-                sAttack2.Position = Position + new Vector2((width - sAttack2.width) / 2, 12);
+                SetBulletsPosition(0);
 
                 if (!movedRight && touching.HasFlag(Touching.RIGHT))
                 {
@@ -314,28 +342,13 @@ namespace AnodyneSharp.Entities.Enemy.Etc
                     yield return null;
                 }
 
-                if (touching.HasFlag(Touching.RIGHT))
-                {
-                    velocity.X = -speed[i];
-                }
-                else if (touching.HasFlag(Touching.LEFT))
-                {
-                    velocity.X = speed[i];
-                }
-
-                if (touching.HasFlag(Touching.DOWN))
-                {
-                    velocity.Y = -speed[i];
-                }
-                else if (touching.HasFlag(Touching.UP))
-                {
-                    velocity.Y = speed[i];
-                }
+                Movement(speed[i], speed[i]);
 
                 yield return null;
             }
 
             _canHurt = false;
+            velocity = Vector2.Zero;
 
             _stateLogic = Stage3();
 
@@ -344,7 +357,252 @@ namespace AnodyneSharp.Entities.Enemy.Etc
 
         private IEnumerator Stage3()
         {
+            int maxHealth = 4;
+            _health = maxHealth;
+            _canHurt = false;
+
+            _flickerLength = 1;
+
+            immovable = false;
+
+            float[] speed = new float[] { 80, 90, 100, 115 };
+
+            float timer = 0;
+
+            Position.X = _topLeft.X + 80 - width / 2;
+            Position.Y = _topLeft.Y + 25;
+
+            while (timer <= 1)
+            {
+                timer += GameTimes.DeltaTime;
+
+                yield return null;
+            }
+
+            timer = 0;
+
+            foreach (var b in _sBullets.Entities)
+            {
+                b.exists = false;
+            }
+
+            int bulletsMade = 0;
+
+            while (bulletsMade < 4)
+            {
+                timer += GameTimes.DeltaTime;
+
+                if (timer > 0.8)
+                {
+                    _sBullets.Spawn((s) => s.Spawn());
+
+                    SetBulletsPosition(0);
+
+                    timer = 0;
+                    bulletsMade++;
+                }
+
+                yield return null;
+            }
+
+            velocity.X = 20;
+            velocity.Y = speed[0];
+
+            _canHurt = true;
+
+            float r = 0;
+
+            while (_health > 0)
+            {
+                int i = maxHealth - _health;
+
+                if (i < 0)
+                {
+                    i = 0;
+                }
+
+                timer += GameTimes.DeltaTime;
+
+                if (timer > 2)
+                {
+                    timer = 0;
+                }
+                if (timer < 1)
+                {
+                    r = timer;
+                }
+                else
+                {
+                    r = 2 - timer;
+                }
+
+                SetBulletsPosition(r * 34);
+
+                Movement(20, speed[i]);
+
+                yield return null;
+            }
+
+            _canHurt = false;
+            velocity = Vector2.Zero;
+
+            _stateLogic = Stage4();
+
             yield break;
+        }
+
+        private IEnumerator Stage4()
+        {
+            int maxHealth = 3;
+            _health = maxHealth;
+            _canHurt = false;
+
+            _flickerLength = 2.5f;
+
+            immovable = false;
+
+            float[] speed = new float[] { 50, 60, 70 };
+
+            float timer = 0;
+
+            Position.X = _topLeft.X + 80 - width / 2;
+            Position.Y = _topLeft.Y + 38;
+
+            SoundManager.PlaySoundEffect("teleguy_up");
+
+            foreach (var b in _lBullets.Entities)
+            {
+                b.exists = false;
+            }
+
+            foreach (var b in _sBullets.Entities)
+            {
+                b.exists = false;
+            }
+
+            _canHurt = true;
+
+            while (_health > 0)
+            {
+                int i = maxHealth - _health;
+
+                if (i < 0)
+                {
+                    i = 0;
+                }
+
+                timer += GameTimes.DeltaTime;
+
+                if (timer > 0.55f)
+                {
+                    timer = 0;
+
+                    Vector2 pos = _topLeft + new Vector2(4 + 48 + 16 * RNG.Next(0, 4), 16);
+                    _sBullets.Spawn((s) => s.Spawn(pos, speed[i]));
+                }
+
+                yield return null;
+            }
+
+            _canHurt = false;
+
+            StartCutscene =  DyingState();
+
+            yield break;
+        }
+
+        private IEnumerator<CutsceneEvent> DyingState()
+        {
+            foreach (var b in _lBullets.Entities)
+            {
+                b.exists = false;
+            }
+
+            foreach (var b in _sBullets.Entities)
+            {
+                b.exists = false;
+            }
+
+            immovable = true;
+
+            SoundManager.StopSong();
+            Play("idle_d");
+
+            yield return new DialogueEvent(DialogueManager.GetDialogue("sage", "after_fight"));
+
+            Play("walk_u");
+            velocity.Y = -20;
+
+            while (Position.Y + 16 >= _topLeft.Y)
+            {
+                yield return null;
+            }
+
+            SoundManager.PlaySong("terminal_alt");
+
+            events.BossDefeated.Add("TERMINAL");
+            events.SetEvent("SageDied", 1);
+
+            _preset.Alive = false;
+            exists = false;
+
+            yield break;
+        }
+
+        private void Movement(float xSpeed, float ySpeed)
+        {
+            if (touching.HasFlag(Touching.RIGHT))
+            {
+                velocity.X = -xSpeed;
+            }
+            else if (touching.HasFlag(Touching.LEFT))
+            {
+                velocity.X = xSpeed;
+            }
+
+            if (touching.HasFlag(Touching.DOWN))
+            {
+                velocity.Y = -ySpeed;
+                Play("dash_u");
+            }
+            else if (touching.HasFlag(Touching.UP))
+            {
+                velocity.Y = ySpeed;
+                Play("dash_d");
+            }
+        }
+
+        private void SetBulletsPosition(float offset)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                ShortAttack s = _sBullets.Entities.OfType<ShortAttack>().ElementAt(i);
+
+                if (!s.exists)
+                {
+                    continue;
+                }
+
+                switch (i)
+                {
+                    case 0:
+                        s.Position.X = Position.X + (width - s.width) / 2;
+                        s.Position.Y = Position.Y - 10 - offset;
+                        break;
+                    case 1:
+                        s.Position.X = Position.X + (width - s.width) / 2;
+                        s.Position.Y = Position.Y + 12 + offset;
+                        break;
+                    case 2:
+                        s.Position.X = Position.X - 12 - offset;
+                        s.Position.Y = Position.Y;
+                        break;
+                    case 3:
+                        s.Position.X = Position.X + 14 + offset;
+                        s.Position.Y = Position.Y;
+                        break;
+                }
+            }
         }
 
         [Collision(typeof(Player), typeof(Broom), KeepOnScreen = true)]
@@ -396,9 +654,10 @@ namespace AnodyneSharp.Entities.Enemy.Etc
             }
         }
 
-        [Collision(typeof(Player), typeof(Broom))]
+        [Collision(typeof(Player), typeof(Broom), KeepOnScreen = true)]
         class ShortAttack : HurtingEntity
         {
+            public bool MapColission { get; set; }
             public bool IsFlickering { get { return _flickering; } }
 
             public ShortAttack()
@@ -416,6 +675,32 @@ namespace AnodyneSharp.Entities.Enemy.Etc
 
                 visible = true;
                 IsHurting = true;
+
+                MapColission = false;
+            }
+
+            public void Spawn(Vector2 pos, float yVel)
+            {
+                Play("shoot");
+
+                visible = true;
+                IsHurting = true;
+
+                Position = pos;
+
+                velocity.Y = yVel;
+
+                MapColission = true;
+            }
+
+            public override void Update()
+            {
+                base.Update();
+
+                if (MapColission && touching != Touching.NONE)
+                {
+                    Poof();
+                }
             }
         }
 
