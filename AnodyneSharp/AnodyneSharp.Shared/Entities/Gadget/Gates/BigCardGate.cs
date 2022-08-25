@@ -1,7 +1,9 @@
 ﻿using AnodyneSharp.Dialogue;
 using AnodyneSharp.Registry;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace AnodyneSharp.Entities.Gadget
@@ -9,24 +11,35 @@ namespace AnodyneSharp.Entities.Gadget
     [NamedEntity("CardGate")]
     public class BigCardGate : BigGate
     {
+        Entity keyhole;
+        Entity[] digits;
+
         public BigCardGate(EntityPreset preset, Player p) : base(preset,p)
         {
             _sentinel.OpensOnInteract = true;
 
-            int frame = preset.Frame switch
+            keyhole = new(Position, "gate_green_slots", 32, 16, Drawing.DrawOrder.ENTITIES)
             {
-                4 => 8,
-                8 => 9,
-                16 => 10,
-                47 => 11,
-                48 => 12,
-                24 => 13,
-                36 => 14,
-                49 => 15,
-                50 => 16,
-                _ => 0
+                LayerParent = this,
+                LayerOffset = 1
             };
-            SetFrame(frame);
+            keyhole.SetFrame(3);
+
+            digits = new Entity[2]
+            {
+                new(Position + new Vector2(12,6),"gate_green_digits",3,5,Drawing.DrawOrder.ENTITIES)
+                {
+                    LayerParent=this,
+                    LayerOffset = 2
+                },
+                new(Position + new Vector2(17,6),"gate_green_digits",3,5,Drawing.DrawOrder.ENTITIES)
+                {
+                    LayerParent = this,
+                    LayerOffset = 2
+                }
+            };
+            digits[0].SetFrame(_preset.Frame / 10);
+            digits[1].SetFrame(_preset.Frame % 10);
         }
 
         public override bool TryUnlock()
@@ -56,6 +69,16 @@ namespace AnodyneSharp.Entities.Gadget
                 };
                 return false;
             }
+        }
+
+        public override IEnumerable<Entity> SubEntities()
+        {
+            return base.SubEntities().Concat(new List<Entity>() { keyhole, digits[0], digits[1] });
+        }
+
+        protected override void BreakLock()
+        {
+            keyhole.exists = digits[0].exists = digits[1].exists = false;
         }
     }
 }

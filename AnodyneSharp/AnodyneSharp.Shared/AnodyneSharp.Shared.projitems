@@ -426,6 +426,10 @@
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Content\effects\blackwhite.fx" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\shadows\10x28_shadow.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\gadgets\elevator_doors.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\gadgets\gate_green_digits.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\gadgets\gate_green_slots.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\hitbox.png" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\WINDMILL\Settings.json" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\TERMINAL\Settings.json" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\SUBURB\Settings.json" />

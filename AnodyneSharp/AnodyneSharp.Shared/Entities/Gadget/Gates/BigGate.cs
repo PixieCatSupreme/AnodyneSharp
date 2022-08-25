@@ -20,6 +20,7 @@ namespace AnodyneSharp.Entities.Gadget
             _sentinel.Position = Position + new Vector2(11, -3);
             _sentinel.width = 10;
             _player = p;
+            SetFrame(0);
         }
 
         protected IEnumerator<CutsceneEvent> OpeningSequence()
@@ -32,6 +33,7 @@ namespace AnodyneSharp.Entities.Gadget
 
                 GlobalState.screenShake.Shake(0.02f, 0.3f);
                 SoundManager.PlaySoundEffect("hit_ground_1");
+                if (i == 0) BreakLock();
                 SetFrame(i);
             }
             while (!MathUtilities.MoveTo(ref t, 0.8f, 1f)) yield return null;
@@ -41,9 +43,6 @@ namespace AnodyneSharp.Entities.Gadget
             yield break;
         }
 
-        public override void Update()
-        {
-            base.Update();
-        }
+        protected abstract void BreakLock();
     }
 }

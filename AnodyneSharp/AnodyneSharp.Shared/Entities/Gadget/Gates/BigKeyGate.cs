@@ -14,22 +14,19 @@ namespace AnodyneSharp.Entities.Gadget
     [NamedEntity("KeyBlock", null, 1, 2, 3)]
     public class BigKeyGate : BigGate
     {
-        IEnumerator<CutsceneEvent> _keyAnimState;
+        Entity keyhole;
 
         public BigKeyGate(EntityPreset preset, Player p) : base(preset, p)
         {
             //big key gates activate instantly
             _sentinel._maxActivationTime = 0f;
 
-            SetFrame(preset.Frame switch
+            keyhole = new(Position, "gate_green_slots", 32, 16, Drawing.DrawOrder.ENTITIES)
             {
-                1 => 7,
-                2 => 5,
-                3 => 6,
-                _ => 0
-            });
-            
-            _keyAnimState = keyAnim();
+                LayerParent = this,
+                LayerOffset = 1
+            };
+            keyhole.SetFrame(preset.Frame - 2);
         }
 
         IEnumerator<CutsceneEvent> keyAnim()
@@ -67,13 +64,22 @@ namespace AnodyneSharp.Entities.Gadget
 
         public override bool TryUnlock()
         {
-            if (GlobalState.inventory.BigKeyStatus[_curAnim.Frame - 5])
+            if (GlobalState.inventory.BigKeyStatus[keyhole.GetFrame()])
             {
-                GlobalState.StartCutscene = _keyAnimState;
+                GlobalState.StartCutscene = keyAnim();
                 return true;
             }
             return false;
         }
 
+        public override IEnumerable<Entity> SubEntities()
+        {
+            return base.SubEntities().Concat(Enumerable.Repeat(keyhole,1));
+        }
+
+        protected override void BreakLock()
+        {
+            keyhole.exists = false;
+        }
     }
 }

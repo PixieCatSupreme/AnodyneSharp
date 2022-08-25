@@ -3685,6 +3685,30 @@
 /processorParam:TextureFormat=Color
 /build:textures/sprites/gadgets/gate_green.png
 
+#begin textures/sprites/gadgets/gate_green_digits.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:textures/sprites/gadgets/gate_green_digits.png
+
+#begin textures/sprites/gadgets/gate_green_slots.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:textures/sprites/gadgets/gate_green_slots.png
+
 #begin textures/sprites/gadgets/gates.png
 /importer:TextureImporter
 /processor:TextureProcessor
