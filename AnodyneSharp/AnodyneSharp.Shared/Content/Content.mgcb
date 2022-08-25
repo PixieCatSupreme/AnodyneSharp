@@ -1777,7 +1777,7 @@
 /processorParam:TextureFormat=Color
 /build:textures/sprites/decoration/overlays/nexus_overlay.png
 
-#begin textures/sprites/decoration/overlays/redcave_overlay .png
+#begin textures/sprites/decoration/overlays/redcave_overlay.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1787,7 +1787,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:textures/sprites/decoration/overlays/redcave_overlay .png
+/build:textures/sprites/decoration/overlays/redcave_overlay.png
 
 #begin textures/sprites/decoration/overlays/redsea_hardlight.png
 /importer:TextureImporter

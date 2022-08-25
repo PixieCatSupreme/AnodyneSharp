@@ -634,14 +634,13 @@
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\overlays\blue_overlay.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\overlays\cliff_overlay.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\overlays\crowd_overlay.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\overlays\ending_overlay.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\overlays\forest_fg_overlay.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\overlays\go_hardlight.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\overlays\happy_hardlight.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\overlays\hotel_overlay.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\overlays\hotel_roof_fg_hardlight.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\overlays\nexus_overlay.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\overlays\redcave_overlay .png" />
+    <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\overlays\redcave_overlay.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\overlays\redsea_hardlight.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\overlays\space_overlay.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\overlays\street_dec_overlay.png" />
@@ -653,11 +652,8 @@
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\overlay_APARTMENT_water.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\overlay_FIELDS_grass.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\overlay_REDCAVE_water.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\overlay_REDSEA.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\overlay_water.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\overlay_WINDMILL_water.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\pixelation.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\player_overlay_foot_test.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\rail.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\rail_CROWD.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\rail_NEXUS.png" />
