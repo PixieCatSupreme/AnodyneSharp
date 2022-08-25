@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using static AnodyneSharp.States.CutsceneState;
 
 namespace AnodyneSharp.Entities.Interactive.Npc.RunningTradeNPCs
 {
@@ -14,14 +15,12 @@ namespace AnodyneSharp.Entities.Interactive.Npc.RunningTradeNPCs
     public class OutsideMonster : Entity, Interactable
     {
         Box b;
-        MonsterRun runCutscene;
         Player player;
 
         public OutsideMonster(EntityPreset preset, Player p) : base(preset.Position, "fields_npcs",16,16,Drawing.DrawOrder.ENTITIES)
         {
             player = p;
             b = new(preset.Position - Vector2.UnitY * 20, preset, p);
-            runCutscene = new(preset.Position,p);
             if (GlobalState.events.SpookedMonster)
             {
                 exists = false;
@@ -29,6 +28,8 @@ namespace AnodyneSharp.Entities.Interactive.Npc.RunningTradeNPCs
             else
             {
                 AddAnimation("walk_d", CreateAnimFrameArray(20, 21), 4);
+                AddAnimation("walk_r", CreateAnimFrameArray(22, 23), 4);
+                AddAnimation("walk_u", CreateAnimFrameArray(24, 25), 4);
                 Play("walk_d");
                 immovable = true;
             }
@@ -36,7 +37,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.RunningTradeNPCs
 
         public override IEnumerable<Entity> SubEntities()
         {
-            return new List<Entity>() { b, runCutscene };
+            return new List<Entity>() { b };
         }
 
         public override void Collided(Entity other)
@@ -50,9 +51,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.RunningTradeNPCs
             if(player.follower != null)
             {
                 GlobalState.events.SpookedMonster = true;
-                exists = false;
-                runCutscene.exists = true;
-                GlobalState.Dialogue = DialogueManager.GetDialogue("goldman", "etc", 0);
+                GlobalState.StartCutscene = CutSceneState();
             }
             else
             {
@@ -60,54 +59,26 @@ namespace AnodyneSharp.Entities.Interactive.Npc.RunningTradeNPCs
             }
             return true;
         }
-    }
 
-    public class MonsterRun : Entity
-    {
-        IEnumerator _state;
-        Player _player;
-
-        public MonsterRun(Vector2 pos, Player p) : base(pos, "fields_npcs", 16, 16, Drawing.DrawOrder.ENTITIES)
+        public IEnumerator<CutsceneEvent> CutSceneState()
         {
-            AddAnimation("walk_d", CreateAnimFrameArray(20, 21), 4);
-            AddAnimation("walk_r", CreateAnimFrameArray(22, 23), 4);
-            AddAnimation("walk_u", CreateAnimFrameArray(24, 25), 4);
-            Play("walk_d");
-            exists = false;
-            _state = CutSceneState();
-            _player = p;
-        }
+            yield return new DialogueEvent(DialogueManager.GetDialogue("goldman", "etc", 0));
 
-        public override void Update()
-        {
-            base.Update();
-            _state.MoveNext();
-        }
-
-        IEnumerator CutSceneState()
-        {
-            while (!GlobalState.LastDialogueFinished)
-                yield return "wait";
-
-            GlobalState.disable_menu = true;
-            _player.BeIdle();
-            _player.state = PlayerState.INTERACT;
+            Solid = false;
 
             velocity = -Vector2.UnitY * 40;
             Play("walk_u");
 
             while (MapUtilities.GetInGridPosition(Position).Y > 6 * 16)
-                yield return "move up";
+                yield return null;
 
             velocity = Vector2.UnitX * 40;
             Play("walk_r");
 
             while (MapUtilities.GetInGridPosition(Position).X > 10) //wraps around when on next screen
-                yield return "move right";
+                yield return null;
 
             exists = false;
-            GlobalState.disable_menu = false;
-            _player.state = PlayerState.GROUND;
 
             yield break;
         }
@@ -136,18 +107,6 @@ namespace AnodyneSharp.Entities.Interactive.Npc.RunningTradeNPCs
             Separate(this, other);
         }
 
-        public override void Update()
-        {
-            base.Update();
-            if(_curAnim.Frame == open && GlobalState.LastDialogueFinished)
-            {
-                GlobalState.inventory.tradeState = InventoryManager.TradeState.BOX;
-                exists = false;
-                icky.exists = true;
-                preset.Alive = false;
-            }
-        }
-
         public override IEnumerable<Entity> SubEntities()
         {
             return Enumerable.Repeat(icky,1);
@@ -159,7 +118,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.RunningTradeNPCs
             {
                 SetFrame(open);
                 Sounds.SoundManager.PlaySoundEffect("broom_hit");
-                GlobalState.Dialogue = DialogueManager.GetDialogue("goldman", "etc", 2);
+                GlobalState.StartCutscene = OnOpened();
                 return true;
             }
             else
@@ -167,13 +126,27 @@ namespace AnodyneSharp.Entities.Interactive.Npc.RunningTradeNPCs
                 return false;
             }
         }
+
+        IEnumerator<CutsceneEvent> OnOpened()
+        {
+            yield return new DialogueEvent(DialogueManager.GetDialogue("goldman", "etc", 2));
+
+            GlobalState.inventory.tradeState = InventoryManager.TradeState.BOX;
+            exists = false;
+            icky.exists = true;
+            preset.Alive = false;
+
+            GlobalState.StartCutscene = icky.CutSceneState();
+
+            yield break;
+        }
     }
 
     [Collision(typeof(Player))]
     public class BoxIcky : Entity, Interactable
     {
-        IEnumerator _state;
         Player _player;
+        IEnumerator _state;
 
         public BoxIcky(Vector2 pos, Player p) : base(pos, "fields_npcs", 16, 16, Drawing.DrawOrder.ENTITIES)
         {
@@ -183,7 +156,6 @@ namespace AnodyneSharp.Entities.Interactive.Npc.RunningTradeNPCs
             AddAnimation("walk_l", CreateAnimFrameArray(16, 17), 4);
             Play("walk_r");
             exists = false;
-            _state = CutSceneState();
             _player = p;
             immovable = true;
         }
@@ -203,42 +175,36 @@ namespace AnodyneSharp.Entities.Interactive.Npc.RunningTradeNPCs
         public override void Update()
         {
             base.Update();
-            _state.MoveNext();
+            _state?.MoveNext();
         }
 
-        IEnumerator CutSceneState()
+        public IEnumerator<CutsceneEvent> CutSceneState()
         {
-            while (!GlobalState.LastDialogueFinished)
-                yield return "wait";
-
-            GlobalState.disable_menu = true;
-            _player.BeIdle();
-            _player.state = PlayerState.INTERACT;
-
             GlobalState.events.IncEvent("icky.rescued");
 
             velocity = Vector2.UnitX * 20;
             Play("walk_r");
 
             while (MapUtilities.GetInGridPosition(Position).X < 85)
-                yield return "move right";
+                yield return null;
 
             velocity = Vector2.Zero;
             Play("walk_d");
 
-            GlobalState.disable_menu = false;
-            _player.state = PlayerState.GROUND;
+            yield return new DialogueEvent(DialogueManager.GetDialogue("goldman", "etc", 3));
 
-            GlobalState.Dialogue = DialogueManager.GetDialogue("goldman", "etc", 3);
+            _state = MoveLastBit();
 
-            while(!GlobalState.LastDialogueFinished)
-                yield return "say thanks";
+            yield break;
+        }
 
+        IEnumerator MoveLastBit()
+        {
             velocity = Vector2.UnitX * 20;
             Play("walk_r");
 
             while (MapUtilities.GetInGridPosition(Position).X < 6 * 16)
-                yield return "move to final position";
+                yield return null;
 
             velocity = Vector2.Zero;
             Play("walk_d");

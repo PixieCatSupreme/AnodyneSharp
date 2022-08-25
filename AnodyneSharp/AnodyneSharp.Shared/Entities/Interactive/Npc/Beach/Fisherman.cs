@@ -1,9 +1,11 @@
 ﻿using AnodyneSharp.Entities.Gadget.Doors;
+using AnodyneSharp.Registry;
 using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using static AnodyneSharp.States.CutsceneState;
 
 namespace AnodyneSharp.Entities.Interactive.Npc
 {
@@ -63,7 +65,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc
 
                     _preset.Alive = false;
 
-                    player.state = PlayerState.INTERACT;
+                    GlobalState.StartCutscene = CoroutineUtils.WaitFor<CutsceneEvent>(() => dead);
                 }
             }
             else if (other is WhirlPool f && !dead && Position.Y >= _preset.Position.Y + 28)
@@ -72,8 +74,6 @@ namespace AnodyneSharp.Entities.Interactive.Npc
 
                 velocity = Vector2.Zero;
                 f.DoTransition();
-
-                player.state = PlayerState.GROUND;
             }
             else
             {

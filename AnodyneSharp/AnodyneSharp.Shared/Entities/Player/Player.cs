@@ -17,7 +17,6 @@ namespace AnodyneSharp.Entities
         GROUND,
         AIR,
         AUTO_JUMP,
-        INTERACT,
         ENTER_FALL,
         LADDER
     }
@@ -514,9 +513,6 @@ namespace AnodyneSharp.Entities
                         state = PlayerState.GROUND;
 
                     }
-                    break;
-                case PlayerState.INTERACT:
-                    velocity = Vector2.Zero;
                     break;
                 case PlayerState.ENTER_FALL:
                     velocity = Vector2.Zero;

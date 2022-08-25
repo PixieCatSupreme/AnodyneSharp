@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using static AnodyneSharp.States.CutsceneState;
 
 namespace AnodyneSharp.Entities.Interactive
 {
@@ -137,9 +138,7 @@ namespace AnodyneSharp.Entities.Interactive
 
             float timer = 0;
 
-            _player.BeIdle();
-            _player.state = PlayerState.INTERACT;
-            GlobalState.disable_menu = true;
+            GlobalState.StartCutscene = CoroutineUtils.WaitFor<CutsceneEvent>(()=>!_preset.Alive);
 
             Play("fly");
 
@@ -199,15 +198,13 @@ namespace AnodyneSharp.Entities.Interactive
 
             Play("fly");
             velocity.Y = -40;
-            _preset.Alive = false;
 
             while (!MathUtilities.MoveTo(ref opacity, 0, 0.6f))
             {
                 yield return "FadingOut";
             }
 
-            _player.state = PlayerState.GROUND;
-            GlobalState.disable_menu = false;
+            _preset.Alive = false;
 
             while (_particles.Any(p => p.exists))
             {
