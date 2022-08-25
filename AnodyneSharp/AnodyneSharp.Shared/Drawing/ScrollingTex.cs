@@ -36,7 +36,7 @@ namespace AnodyneSharp.Drawing
         {
             Vector2 topleft = Position + c.Position2D;
             Rectangle pos = new Rectangle((int)topleft.X, (int)topleft.Y, Texture.Width, Texture.Height);
-            SpriteDrawer.DrawSprite(Texture,pos,Z:DrawingUtilities.GetDrawingZ(_layer));
+            SpriteDrawer.DrawSprite(Texture,pos,Z:DrawingUtilities.GetDrawingZ(_layer,0));
         }
 
         public void Update()
