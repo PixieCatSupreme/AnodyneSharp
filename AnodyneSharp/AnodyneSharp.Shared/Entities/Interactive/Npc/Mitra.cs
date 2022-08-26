@@ -407,6 +407,8 @@ namespace AnodyneSharp.Entities.Interactive.Npc
     public class MitraFields : Mitra
     {
         bool initial;
+        bool given_quest_hint = false;
+        bool given_initial_hint = false; //Only give dungeon/windmill hint once
 
         public MitraFields(EntityPreset preset, Player p) : base(preset, p, false)
         {
@@ -436,7 +438,76 @@ namespace AnodyneSharp.Entities.Interactive.Npc
                 GlobalState.inventory.CanJump = true;
                 return DialogueManager.GetDialogue("misc", "any", "mitra", 1);
             }
-            //TODO: hints
+
+            bool all_bosses_dead = new List<string>(6) { "REDCAVE", "BEDROOM", "CROWD", "CIRCUS", "APARTMENT", "HOTEL" }
+                .All(s => GlobalState.events.BossDefeated.Contains(s));
+
+            if (GlobalState.inventory.CardCount < 36 && all_bosses_dead)
+            {
+                if(!given_quest_hint && GlobalState.events.GetEvent("GoQuestProgress") == 0)
+                {
+                    given_quest_hint = true;
+                    return DialogueManager.GetDialogue("mitra", "quest_event");
+                }
+                if(GlobalState.inventory.CardCount == 0)
+                {
+                    return DialogueManager.GetDialogue("mitra", "card_hints", 36);
+                }
+                List<int> missing_cards = GlobalState.inventory.CardStatus.Select((s, i) => !s && i < 36 ? i : -1).Where(i=>i >= 0).ToList();
+                return DialogueManager.GetDialogue("mitra", "card_hints", missing_cards[GlobalState.RNG.Next(missing_cards.Count)]);
+            }
+
+            if(!given_initial_hint)
+            {
+                given_initial_hint = true;
+
+                int hint = 0;
+
+                if (GlobalState.events.GetEvent("WindmillOpened") == 0)
+                {
+                    bool redcave = GlobalState.events.BossDefeated.Contains("REDCAVE");
+                    bool crowd = GlobalState.events.BossDefeated.Contains("CROWD");
+                    if (!redcave && !crowd)
+                    {
+                        hint = GlobalState.RNG.Next(1, 3);
+                    }
+                    else if (redcave && crowd)
+                    {
+                        hint = 3;
+                    }
+                    else if (redcave && !crowd)
+                    {
+                        hint = 8;
+                    }
+                    else
+                    {
+                        hint = 7;
+                    }
+                }
+                else
+                {
+                    if (!all_bosses_dead)
+                    {
+                        hint = 4;
+                    }
+                    else if (!GlobalState.inventory.HasBroomType(BroomType.Transformer))
+                    {
+                        hint = 5;
+                    }
+                    else
+                    {
+                        hint = 6;
+                    }
+                }
+                return DialogueManager.GetDialogue("mitra", "game_hints", hint);
+            }
+
+            if (!given_quest_hint && GlobalState.events.GetEvent("GoQuestProgress") == 0)
+            {
+                given_quest_hint = true;
+                return DialogueManager.GetDialogue("mitra", "quest_event");
+            }
+
             return DialogueManager.GetDialogue("mitra", "general_banter");
         }
     }

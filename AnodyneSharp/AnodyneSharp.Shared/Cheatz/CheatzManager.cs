@@ -62,6 +62,11 @@ namespace AnodyneSharp.Cheatz
                 GlobalState.inventory.CardStatus[i] = true;
             }
 
+            for (int i = 0; i < 3; i++)
+            {
+                GlobalState.inventory.BigKeyStatus[i] = true;
+            }
+
             for (int i = 0; i < GlobalState.inventory.SecretStatus.Length; i++)
             {
                 GlobalState.inventory.SecretStatus[i] = true;
