@@ -15,6 +15,8 @@ namespace AnodyneSharp.Entities.Gadget
             int i = GlobalState.IsCell ? 5 : 0;
             AddAnimation("explode", CreateAnimFrameArray(i, i + 1, i + 2, i + 3, i + 4), GlobalState.IsCell ? 10 : 12, false);
             Play("explode");
+            LayerParent = parent;
+            LayerOffset = 1;
         }
     }
 }

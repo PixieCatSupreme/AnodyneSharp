@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.GameEvents;
 using AnodyneSharp.Registry;
 using Microsoft.Xna.Framework;
 using System;
@@ -8,7 +9,7 @@ using System.Text;
 
 namespace AnodyneSharp.Entities.Gadget
 {
-    [NamedEntity("CardGate")]
+    [NamedEntity("CardGate"), Events(typeof(ChangeCardCount))]
     public class BigCardGate : BigGate
     {
         Entity keyhole;
@@ -79,6 +80,14 @@ namespace AnodyneSharp.Entities.Gadget
         protected override void BreakLock()
         {
             keyhole.exists = digits[0].exists = digits[1].exists = false;
+        }
+
+        public override void OnEvent(GameEvent e)
+        {
+            GlobalState.SpawnEntity(new Explosion(keyhole) { Position = keyhole.Position + new Vector2(5,-4) });
+            int newCount = ((ChangeCardCount)e).Count;
+            digits[0].SetFrame(newCount / 10);
+            digits[1].SetFrame(newCount % 10);
         }
     }
 }

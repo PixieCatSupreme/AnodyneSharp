@@ -7,7 +7,7 @@ using System.Text;
 
 namespace AnodyneSharp.Entities.Gadget.Treasures
 {
-    public class EmptyTreasureEvent : GameEvents.GameEvent { }
+    public record EmptyTreasureEvent : GameEvents.GameEvent { }
 
     public class CardTreasure : BaseTreasure
     {

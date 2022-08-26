@@ -4,12 +4,14 @@ using System.Text;
 
 namespace AnodyneSharp.GameEvents
 {
-    public class GameEvent { }
+    public record GameEvent { }
 
-    public class StartScreenTransition : GameEvent { }
-    public class EndScreenTransition : GameEvent { }
-    public class StartWarp : GameEvent { }
-    public class EndWarp : GameEvent { }
+    public record StartScreenTransition : GameEvent { }
+    public record EndScreenTransition : GameEvent { }
+    public record StartWarp : GameEvent { }
+    public record EndWarp : GameEvent { }
 
-    public class BroomUsed : GameEvent { }
+    public record BroomUsed : GameEvent { }
+
+    public record ChangeCardCount(int Count) : GameEvent { }
 }

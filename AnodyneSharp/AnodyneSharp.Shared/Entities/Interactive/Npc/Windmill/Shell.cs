@@ -9,7 +9,7 @@ using System.Text;
 
 namespace AnodyneSharp.Entities.Interactive.Npc.Windmill
 {
-    public class OpenedWindmill : GameEvent { };
+    public record OpenedWindmill : GameEvent { };
 
     [NamedEntity("NPC", type: "generic", 3)]
     public class Shell : Entity

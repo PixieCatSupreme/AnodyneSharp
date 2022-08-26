@@ -3,6 +3,7 @@ using AnodyneSharp.Drawing;
 using AnodyneSharp.GameEvents;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Resources;
+using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections;
@@ -105,7 +106,7 @@ namespace AnodyneSharp.Entities
     {
         public SageNexus(EntityPreset preset, Player p) : base(preset, p, 64, 20, "enter_nexus")
         {
-            if (GlobalState.events.BossDefeated.Contains("TERMINAL"))
+            if (GlobalState.events.GetEvent("SageDied") > 0)
             {
                 preset.Alive = exists = false;
             }
@@ -177,6 +178,69 @@ namespace AnodyneSharp.Entities
             yield return new DialogueEvent(DialogueManager.GetDialogue("sage", "bedroom_entrance"));
 
             yield break;
+        }
+    }
+
+    [NamedEntity(xmlName:"Sage",map:"TERMINAL")]
+    class SageTerminal : Sage
+    {
+        IEnumerator state;
+
+        public SageTerminal(EntityPreset preset, Player p) : base(preset,p,0,0,"")
+        {
+            if(GlobalState.events.GetEvent("SageDied") > 0)
+            {
+                preset.Alive = exists = false;
+            }
+            preset.Activated = true; //disable proximity cutscene
+            state = States();
+        }
+
+        public override void Update()
+        {
+            base.Update();
+            state.MoveNext();
+        }
+
+        IEnumerator States()
+        {
+            while((_player.Position - Position).Length() > 46)
+                yield return null;
+
+            if(!DialogueManager.IsSceneDirty("sage","entrance"))
+            {
+                GlobalState.Dialogue = DialogueManager.GetDialogue("sage", "entrance");
+                while (!GlobalState.LastDialogueFinished)
+                    yield return null;
+            }
+
+            if (GlobalState.inventory.CardCount < 36) yield break;
+
+            GlobalState.Dialogue = DialogueManager.GetDialogue("sage", "etc", 0);
+            while (!GlobalState.LastDialogueFinished)
+                yield return null;
+
+            GlobalState.FireEvent(new ChangeCardCount(92));
+
+            Vector2 tl = MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid);
+            while (_player.Position.Y > tl.Y + 55) yield return null;
+
+            GlobalState.Dialogue = DialogueManager.GetDialogue("sage", "etc", 1);
+            _preset.Alive = false;
+
+            yield break;
+        }
+
+        public override bool PlayerInteraction(Facing player_direction)
+        {
+            string dialog = GlobalState.inventory.CardCount switch
+            {
+                < 18 => DialogueManager.GetDialogue("sage", "entrance", 1),
+                < 36 => DialogueManager.GetDialogue("sage", "entrance", 2),
+                _ => "..."
+            };
+            GlobalState.Dialogue = dialog;
+            return true;
         }
     }
 

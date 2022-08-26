@@ -6,7 +6,7 @@ using System.Text;
 
 namespace AnodyneSharp.Entities
 {
-    public class DustFallEvent : GameEvents.GameEvent { }
+    public record DustFallEvent : GameEvents.GameEvent { }
 
     [NamedEntity, Collision(typeof(Dust), MapCollision = true, KeepOnScreen = true)]
     public class Dust : Entity
