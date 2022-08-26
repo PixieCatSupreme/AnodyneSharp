@@ -41,10 +41,6 @@ namespace AnodyneSharp.Cheatz
         public static void ToggleFuckItMode()
         {
             GlobalState.FUCK_IT_MODE_ON = !GlobalState.FUCK_IT_MODE_ON;
-
-#if RELEASE
-            GlobalState.achievements.AchievementsDisabled = true;
-#endif
         }
 
         [Cheat("UUDDLRLR21")]
@@ -60,10 +56,6 @@ namespace AnodyneSharp.Cheatz
             GlobalState.inventory.HasWiden = true;
             GlobalState.inventory.HasTransformer = true;
             GlobalState.inventory.CanJump = true;
-
-#if RELEASE
-            GlobalState.achievements.AchievementsDisabled = true;
-#endif
 
             for (int i = 0; i < GlobalState.inventory.CardStatus.Length; i++)
             {
