@@ -10,7 +10,7 @@ using System.Text;
 
 namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
 {
-    [NamedEntity("Eye_Boss", null, 4), Collision(typeof(Player), typeof(Broom), MapCollision = true)]
+    [NamedEntity("Eye_Boss", null, 4), Collision(typeof(Player), typeof(Broom))]
     public class LandPhase : Entity
     {
         EnemyMarker death_marker = new();
@@ -22,9 +22,13 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
         IEnumerator state;
         EntityPool<Bullet> bullets;
 
+        const bool TEST_LAND = true;
+
+        Vector2 tl;
+
         public LandPhase(EntityPreset preset, Player p) : base(preset.Position, "eye_boss_water", 24, 24, Drawing.DrawOrder.ENTITIES)
         {
-            if (SoundManager.CurrentSongName != "hotel-boss")
+            if (SoundManager.CurrentSongName != "hotel-boss" && !TEST_LAND)
             {
                 exists = false;
                 return;
@@ -33,9 +37,9 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
 
             AddAnimation("closed", CreateAnimFrameArray(3));
             AddAnimation("walk", CreateAnimFrameArray(4, 5), 6);
-            AddAnimation("blink_land", CreateAnimFrameArray(5, 6, 7, 6, 5, 5), 6, false);
+            AddAnimation("blink_land", CreateAnimFrameArray(5, 6, 7, 6, 5), 6, false);
 
-            Vector2 tl = MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid) + Vector2.One * 16;
+            tl = MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid) + Vector2.One * 16;
 
             p.grid_entrance = tl + new Vector2(70, 50);
 
@@ -121,7 +125,82 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
 
             Vector2 base_pt = Position - Vector2.One * 16;
 
+            var pace = Pace(base_pt);
+            var blink = Blink();
 
+            while(true)
+            {
+                while(!broom_hit)
+                {
+                    pace.MoveNext();
+                    MathUtilities.MoveTo(ref Position.X, pace.Current.X, 60);
+                    MathUtilities.MoveTo(ref Position.Y, pace.Current.Y, 60);
+                    blink.MoveNext();
+                    yield return null;
+                }
+
+                if(p.Position.X > Position.X)
+                {
+                    shadow.visible = true;
+                    shadow.offset = new Vector2(4,10);
+                    Parabola_Thing parabola = new(this, 16, 0.6f);
+                    velocity.X = -20;
+                    while (!parabola.Tick())
+                        yield return null;
+                    velocity = Vector2.Zero;
+                    SoundManager.PlaySoundEffect("wb_tap_ground");
+                    shadow.visible = false;
+                }
+
+                while (!MathUtilities.MoveTo(ref Position.X, tl.X + 16 * 8 - width, 1.7f * 60) | !MathUtilities.MoveTo(ref Position.Y, tl.Y + 57, 60))
+                    yield return null;
+
+                GlobalState.screenShake.Shake(0.05f, 0.3f);
+                SoundManager.PlaySoundEffect("hit_ground_1");
+                //TODO: spawn bullets
+
+                yield return null;
+            }
+        }
+
+        IEnumerator<Vector2> Pace(Vector2 base_pt)
+        {
+            Vector2 pos = base_pt + Vector2.One*16;
+            while(true)
+            {
+                float t = 0;
+                while (!MathUtilities.MoveTo(ref t, 1, 1))
+                    yield return pos;
+                if(GlobalState.RNG.NextDouble() < 0.7)
+                {
+                    pos = base_pt;
+                    pos.X += GlobalState.RNG.Next(3) * 16;
+                    pos.Y += GlobalState.RNG.Next(3) * 16;
+                }
+            }
+        }
+
+        IEnumerator Blink()
+        {
+            float[] times = new float[6] { 1, 1, 0.9f, 0.8f, 0.7f, 0.65f };
+            while(true)
+            {
+                float t = 0;
+                while(t < times[6 - health])
+                {
+                    t += GameTimes.DeltaTime;
+                    if (_curAnim.name == "blink_land" && _curAnim.Finished)
+                        Play("walk");
+                    yield return null;
+                }
+                Play("blink_land");
+                SoundManager.PlaySoundEffect("slasher_atk");
+                //TODO: shoot bullet
+            }
+        }
+
+        IEnumerator Die()
+        {
             yield break;
         }
 
@@ -143,6 +222,8 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
                 health--;
                 SoundManager.PlaySoundEffect("broom_hit");
                 Flicker(1f);
+                if (health == 0)
+                    state = Die();
             }
             else if (other is Player p)
             {
