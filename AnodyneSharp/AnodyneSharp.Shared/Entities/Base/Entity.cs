@@ -53,8 +53,6 @@ namespace AnodyneSharp.Entities
         private float _flickerTimer;
         private float _flickerFreq = 0;
 
-        private float _lastScale;
-
         public bool MapInteraction = true;
 
         public float y_push = 0f; //sinking into the ground
@@ -76,7 +74,6 @@ namespace AnodyneSharp.Entities
             opacity = 1f;
 
             scale = 1;
-            _lastScale = scale;
 
             color = Color.White;
 
@@ -92,7 +89,6 @@ namespace AnodyneSharp.Entities
             opacity = 1f;
 
             scale = 1;
-            _lastScale = scale;
 
             color = Color.White;
 
@@ -109,7 +105,6 @@ namespace AnodyneSharp.Entities
             opacity = 1f;
 
             scale = 1;
-            _lastScale = scale;
 
             color = Color.White;
 
