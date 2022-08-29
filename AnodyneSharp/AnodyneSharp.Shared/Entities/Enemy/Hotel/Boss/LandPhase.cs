@@ -297,7 +297,9 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
 
         public override IEnumerable<Entity> SubEntities()
         {
-            return new List<Entity>() { death_marker }.Concat(bullets.Entities).Concat(splashes.Entities);
+            if(exists)
+                return new List<Entity>() { death_marker }.Concat(bullets.Entities).Concat(splashes.Entities);
+            return Enumerable.Empty<Entity>();
         }
 
         [Collision(typeof(Player))]
