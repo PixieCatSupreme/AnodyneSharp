@@ -242,6 +242,9 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
                 AddAnimation("move", CreateAnimFrameArray(0, 1), 12);
                 AddAnimation("pop",  CreateAnimFrameArray(2, 3, 4, 5), 12, false);
                 this.area = area;
+
+                width = height = 8;
+                CenterOffset();
             }
 
             public void Spawn(Vector2 position)

@@ -1,4 +1,6 @@
-﻿using AnodyneSharp.Registry;
+﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.Entities.Gadget;
+using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
@@ -7,6 +9,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using static AnodyneSharp.States.CutsceneState;
 
 namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
 {
@@ -21,10 +24,14 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
 
         IEnumerator state;
         EntityPool<Bullet> bullets;
+        EntityPool<BulletSplash> splashes;
 
-        const bool TEST_LAND = true;
+        const bool TEST_LAND = false;
 
         Vector2 tl;
+
+        Player player;
+        EntityPreset preset;
 
         public LandPhase(EntityPreset preset, Player p) : base(preset.Position, "eye_boss_water", 24, 24, Drawing.DrawOrder.ENTITIES)
         {
@@ -41,10 +48,15 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
 
             tl = MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid) + Vector2.One * 16;
 
+            this.preset = preset;
+            player = p;
             p.grid_entrance = tl + new Vector2(70, 50);
 
-            shadow = new(this, new Vector2(6,-8), ShadowType.Big);
+            shadow = new(this, new Vector2(6, -8), ShadowType.Big);
             shadow.visible = false;
+
+            splashes = new(18, () => new());
+            bullets = new(8, () => new(splashes));
 
             if (preset.Activated)
             {
@@ -128,9 +140,9 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
             var pace = Pace(base_pt);
             var blink = Blink();
 
-            while(true)
+            while (true)
             {
-                while(!broom_hit)
+                while (!broom_hit)
                 {
                     pace.MoveNext();
                     MathUtilities.MoveTo(ref Position.X, pace.Current.X, 60);
@@ -139,10 +151,10 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
                     yield return null;
                 }
 
-                if(p.Position.X > Position.X)
+                if (p.Position.X > Position.X)
                 {
                     shadow.visible = true;
-                    shadow.offset = new Vector2(4,10);
+                    shadow.offset = new Vector2(4, 10);
                     Parabola_Thing parabola = new(this, 16, 0.6f);
                     velocity.X = -20;
                     while (!parabola.Tick())
@@ -157,7 +169,7 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
 
                 GlobalState.screenShake.Shake(0.05f, 0.3f);
                 SoundManager.PlaySoundEffect("hit_ground_1");
-                //TODO: spawn bullets
+                ShootBullet(3);
 
                 yield return null;
             }
@@ -165,13 +177,13 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
 
         IEnumerator<Vector2> Pace(Vector2 base_pt)
         {
-            Vector2 pos = base_pt + Vector2.One*16;
-            while(true)
+            Vector2 pos = base_pt + Vector2.One * 16;
+            while (true)
             {
                 float t = 0;
                 while (!MathUtilities.MoveTo(ref t, 1, 1))
                     yield return pos;
-                if(GlobalState.RNG.NextDouble() < 0.7)
+                if (GlobalState.RNG.NextDouble() < 0.7)
                 {
                     pos = base_pt;
                     pos.X += GlobalState.RNG.Next(3) * 16;
@@ -183,10 +195,10 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
         IEnumerator Blink()
         {
             float[] times = new float[6] { 1, 1, 0.9f, 0.8f, 0.7f, 0.65f };
-            while(true)
+            while (true)
             {
                 float t = 0;
-                while(t < times[6 - health])
+                while (t < times[6 - health])
                 {
                     t += GameTimes.DeltaTime;
                     if (_curAnim.name == "blink_land" && _curAnim.Finished)
@@ -195,13 +207,65 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
                 }
                 Play("blink_land");
                 SoundManager.PlaySoundEffect("slasher_atk");
-                //TODO: shoot bullet
+                ShootBullet();
             }
         }
 
         IEnumerator Die()
         {
+            Solid = false;
+
+            GlobalState.StartCutscene = DeathCutscene();
+
+            GlobalState.Dialogue = DialogueManager.GetDialogue("eyeboss", "after_fight");
+            SoundManager.StopSong();
+            SoundManager.PlaySoundEffect("sun_guy_death_long");
+            GlobalState.flash.Flash(1, Color.White);
+            velocity = Vector2.Zero;
+
+            while (!GlobalState.LastDialogueFinished) yield return null;
+
+            offset = Vector2.One * 5;
+
+            for(int i = 0; i < 10; ++i)
+            {
+                float t = 0;
+                while (!MathUtilities.MoveTo(ref t, 0.3f, 1)) yield return null;
+                Position += new Vector2(GlobalState.RNG.Next(-4, 5), GlobalState.RNG.Next(-4, 5));
+                GlobalState.SpawnEntity(new Explosion(this));
+                yield return null;
+            }
+
+            GlobalState.flash.Flash(2, Color.White, () => visible = false);
+            SoundManager.PlaySoundEffect("sun_guy_death_long");
+
+            shadow.exists = false;
+
+            while (bullets.Alive > 0 || splashes.Alive > 0) yield return null;
+
+            preset.Alive = exists = false;
+            death_marker.exists = false;
+            GlobalState.events.BossDefeated.Add(GlobalState.CURRENT_MAP_NAME);
+            SoundManager.PlaySong("hotel");
+
             yield break;
+        }
+
+        IEnumerator<CutsceneEvent> DeathCutscene()
+        {
+            //Make sure player can move around but not be hit by remaining bullets
+            while(exists)
+            {
+                player.dontMove = false;
+                player.actions_disabled = false;
+                yield return null;
+            }
+            yield break;
+        }
+
+        void ShootBullet(int amount = 1)
+        {
+            bullets.Spawn(b => b.Spawn(Position + new Vector2(width, 2), player.Position), amount);
         }
 
         public override void Update()
@@ -233,14 +297,123 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
 
         public override IEnumerable<Entity> SubEntities()
         {
-            return new List<Entity>() { death_marker };
+            return new List<Entity>() { death_marker }.Concat(bullets.Entities).Concat(splashes.Entities);
         }
 
+        [Collision(typeof(Player))]
         private class Bullet : Entity
         {
-            public Bullet() : base(Vector2.Zero, "eye_boss_bullet", 16, 16, Drawing.DrawOrder.FG_SPRITES)
-            {
 
+            Parabola_Thing parabola;
+            const float duration = 1.5f;
+            EntityPool<BulletSplash> splashes;
+
+            public Bullet(EntityPool<BulletSplash> s) : base(Vector2.Zero, "eye_boss_bullet", 16, 16, Drawing.DrawOrder.FG_SPRITES)
+            {
+                AddAnimation("move", CreateAnimFrameArray(6, 7), 12);
+                AddAnimation("pop", CreateAnimFrameArray(2, 3, 4, 5), 24, false);
+
+                width = height = 8;
+                CenterOffset();
+
+                splashes = s;
+
+                shadow = new(this, Vector2.UnitX * 2);
+
+                parabola = new(this, 45, duration);
+            }
+
+            public void Spawn(Vector2 pos, Vector2 target)
+            {
+                Play("move");
+                Position = pos;
+
+                velocity = (target - pos) / duration;
+                velocity += new Vector2(GlobalState.RNG.NextSingle() * 5, GlobalState.RNG.NextSingle() * 5);
+                parabola.ResetTime();
+            }
+
+            public override void Update()
+            {
+                base.Update();
+                if (CurAnimName == "move")
+                {
+                    if (parabola.Tick())
+                    {
+                        Play("pop");
+                        velocity = Vector2.Zero;
+                    }
+                }
+                else
+                {
+                    if (_curAnim.Finished)
+                    {
+                        exists = false;
+                        SoundManager.PlaySoundEffect("4sht_shoot");
+                        splashes.Spawn(s => s.Spawn(Position), 4);
+                    }
+                }
+            }
+
+            public override void Collided(Entity other)
+            {
+                if (offset.Y < 7)
+                    ((Player)other).ReceiveDamage(1);
+            }
+        }
+
+        [Collision(typeof(Player))]
+        private class BulletSplash : Entity
+        {
+            Parabola_Thing parabola;
+
+            public BulletSplash() : base(Vector2.Zero, "eye_boss_splash", 8, 8, Drawing.DrawOrder.FG_SPRITES)
+            {
+                AddAnimation("move", CreateAnimFrameArray(0, 1), 10);
+                AddAnimation("pop", CreateAnimFrameArray(2, 3), 12, false);
+
+                shadow = new(this, Vector2.Zero);
+
+                parabola = new(this, 36, 1 + 0.4f * GlobalState.RNG.NextSingle());
+            }
+
+            public void Spawn(Vector2 pos)
+            {
+                Position = pos;
+                Play("move");
+                parabola.ResetTime();
+                velocity.X = GlobalState.RNG.Next(-20, 21);
+                velocity.Y = MathF.Sqrt(20 * 20 - velocity.X * velocity.X);
+                if (GlobalState.RNG.NextSingle() < 0.5f) velocity.Y *= -1;
+            }
+
+            public override void Update()
+            {
+                base.Update();
+                if(CurAnimName == "move" && parabola.Tick())
+                {
+                    Play("pop");
+                }
+                else
+                {
+                    if(_curAnim.Finished)
+                    {
+                        exists = false;
+                        SoundManager.PlaySoundEffect("4sht_pop");
+                    }
+                }
+            }
+
+            public override void Collided(Entity other)
+            {
+                base.Collided(other);
+                Player p = (Player)other;
+                if(offset.Y < 9 && !p.invincible)
+                {
+                    p.slowMul = 0.3f;
+                    p.slowTicks = 100;
+                    SoundManager.PlaySoundEffect("bubble_1", "bubble_1", "bubble_2", "bubble_3");
+                }
             }
         }
     }
