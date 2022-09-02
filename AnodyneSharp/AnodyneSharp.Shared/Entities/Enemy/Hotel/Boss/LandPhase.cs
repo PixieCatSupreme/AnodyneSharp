@@ -35,7 +35,9 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
 
         public LandPhase(EntityPreset preset, Player p) : base(preset.Position, "eye_boss_water", 24, 24, Drawing.DrawOrder.ENTITIES)
         {
-            if (SoundManager.CurrentSongName != "hotel-boss" && !TEST_LAND)
+            //Water phase is needed to start the boss song, which means it at least spawned this time through the map, and it sets its Alive back to true until that phase is done
+            bool water_phase_dead = !EntityManager.GetLinkGroup(preset.LinkID).Where(e => e != preset).First().Alive;
+            if ((SoundManager.CurrentSongName != "hotel-boss" || !water_phase_dead) && !TEST_LAND)
             {
                 exists = false;
                 return;

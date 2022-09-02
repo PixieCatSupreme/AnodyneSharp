@@ -40,8 +40,12 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
                 //Came back up from second phase screen
                 (GlobalState.Map as MapData.Map).IgnoreMusicNextUpdate();
                 GlobalState.PUZZLES_SOLVED++;
-                exists = false;
+                preset.Alive = exists = false;
                 return;
+            }
+            else
+            {
+                preset.Alive = true;
             }
 
             AddAnimation("blink", CreateAnimFrameArray(0, 1, 2, 3, 2, 1, 0), 10, false);
@@ -135,6 +139,7 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
             GlobalState.PUZZLES_SOLVED++;
             exists = false;
 
+            preset.Alive = false;
             EntityPreset land_phase = EntityManager.GetLinkGroup(preset.LinkID).Where(e => e != preset).First();
             land_phase.Activated = false; //Set land phase to spawn in its transition-to-land movement
 
