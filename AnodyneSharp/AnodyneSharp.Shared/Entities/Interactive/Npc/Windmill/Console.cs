@@ -10,7 +10,7 @@ using static AnodyneSharp.States.CutsceneState;
 
 namespace AnodyneSharp.Entities.Interactive.Npc.Windmill
 {
-    [NamedEntity("Console", map: "WINDMILL")]
+    [NamedEntity("Console", map: "WINDMILL", frames:0)]
     class Console : Entity, Interactable
     {
         public Console(EntityPreset preset, Player p) : base(preset.Position, "windmill_inside", 48, 48, Drawing.DrawOrder.BG_ENTITIES)
