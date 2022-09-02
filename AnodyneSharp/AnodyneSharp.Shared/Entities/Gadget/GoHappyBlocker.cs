@@ -12,7 +12,7 @@ namespace AnodyneSharp.Entities.Gadget
         public GoHappyBlocker(EntityPreset preset, Player p)
             : base(preset.Position, "briar_ground_thorn", 16, 16, DrawOrder.ENTITIES)
         {
-            if (GlobalState.events.GetEvent("BriarBlueDone") == 1)
+            if (GlobalState.events.GetEvent("BlueDone") == 1)
             {
                 exists = false;
                 return;

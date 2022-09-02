@@ -4,11 +4,12 @@ using AnodyneSharp.Entities.Enemy.Bedroom;
 using AnodyneSharp.Entities.Enemy.Redcave;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
+using static AnodyneSharp.Entities.Interactive.Npc.Blue.BlueBriar;
 
 namespace AnodyneSharp.Entities.Gadget
 {
     //TODO: Add other entity types buttons collide with
-    [NamedEntity, Collision(typeof(Player), typeof(Shieldy), typeof(Mover), typeof(Rat), typeof(Silverfish))]
+    [NamedEntity, Collision(typeof(Player), typeof(Shieldy), typeof(Mover), typeof(Rat), typeof(Silverfish), typeof(BlueMitra))]
     class Button : Entity
     {
         bool pressed = false;

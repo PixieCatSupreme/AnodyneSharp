@@ -67,6 +67,9 @@ namespace AnodyneSharp.Entities
 
             LayerParent = root;
             LayerOffset = 1;
+
+            long_attack.visible = false;
+            wide_attack.visible = false;
         }
 
         public override IEnumerable<Entity> SubEntities()
