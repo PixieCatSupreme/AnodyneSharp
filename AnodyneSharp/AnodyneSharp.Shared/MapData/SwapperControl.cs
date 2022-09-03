@@ -14,12 +14,13 @@ namespace AnodyneSharp.MapData
         {
             Default,
             Allow,
-            Disallow
+            Disallow,
+            DisallowSilently
         }
 
         struct Region
         {
-            public bool allow;
+            public State allow;
             public Rectangle area;
         }
 
@@ -47,14 +48,14 @@ namespace AnodyneSharp.MapData
                 {
                     ArraySegment<string> rectString = new(line, 1, 4);
                     int[] rect = rectString.Select((s) => (int)float.Parse(s)).ToArray();
-                    regions.Add(new() { allow = line[0] == "Allow", area = new(rect[0], rect[1], rect[2], rect[3]) });
+                    regions.Add(new() { allow = Enum.Parse<State>(line[0]), area = new(rect[0], rect[1], rect[2], rect[3]) });
                 }
             }
         }
 
         public State CheckCoord(Vector2 coord)
         {
-            return regions.Where(r => r.area.Contains(coord)).Select(r => (r.allow ? State.Allow : State.Disallow)).FirstOrDefault();
+            return regions.Where(r => r.area.Contains(coord)).Select(r => r.allow).FirstOrDefault();
         }
     }
 }

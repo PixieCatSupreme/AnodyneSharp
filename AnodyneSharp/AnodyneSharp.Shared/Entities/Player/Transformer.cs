@@ -44,6 +44,10 @@ namespace AnodyneSharp.Entities
         public void OnAction()
         {
             var check = GlobalState.Map.CheckSwapper(GlobalState.Map.ToMapLoc(selector.Center));
+
+            if (check == MapData.SwapperControl.State.DisallowSilently)
+                return;
+
             if(GlobalState.events.GetEvent("SeenCredits") == 0)
             {
                 if(check != MapData.SwapperControl.State.Allow)

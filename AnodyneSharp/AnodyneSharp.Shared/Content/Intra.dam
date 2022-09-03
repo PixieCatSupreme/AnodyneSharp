@@ -2,7 +2,7 @@
 <project>
   <version/>
   <bgColor>0xcccccc</bgColor>
-  <viewPos x="463" y="-64"/>
+  <viewPos x="463" y="252"/>
   <firstLayersTop>false</firstLayersTop>
   <spriteEntries currentId="174">
     <group name="Events SL" idx="1" open="false">
@@ -4756,7 +4756,7 @@
         </properties>
       </shapelayer>
     </group>
-    <group name="DEBUG" id="24" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
+    <group name="DEBUG" id="24" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
       <maplayer name="BG" id="35" xScroll="1" yScroll="1" x="0" y="0" width="60" height="100" tileset="textures/tilemaps/debug_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1</row>
         <row>1,2,2,2,2,2,2,2,2,2,10,10,10,10,1,10,10,10,10,10,10,10,10,10,10,10,10,10,3,3,3,3,3,3,3,3,3,3,3,3,10,10,10,10,10,10,10,10,10,1,1,10,10,10,10,10,10,10,10,1</row>
@@ -5156,7 +5156,7 @@
           </properties>
         </shape>
       </shapelayer>
-      <shapelayer name="Settings" id="40" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false" selected="true">
+      <shapelayer name="Settings" id="40" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <properties>
           <type typeof="String" name="Music" value="bedroom" hidden="false"/>
         </properties>
@@ -6397,7 +6397,7 @@
         </properties>
       </shapelayer>
     </group>
-    <group name="GO" id="54" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
+    <group name="GO" id="54" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
       <maplayer name="BG" id="54" xScroll="1" yScroll="1" x="0" y="0" width="50" height="60" tileset="textures/tilemaps/go_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>6,80,81,81,81,81,81,81,82,6,0,0,0,0,0,0,0,0,0,0,130,130,130,130,130,130,130,130,130,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>6,80,91,91,91,91,91,91,82,6,0,0,0,0,0,0,0,0,0,0,130,130,130,130,130,130,130,130,130,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
@@ -6636,10 +6636,7 @@
           <properties/>
         </sprite>
       </spritelayer>
-      <shapelayer name="Swapper" id="57" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
-        <properties>
-          <type typeof="String" name="Item0" value="" hidden="false"/>
-        </properties>
+      <shapelayer name="Swapper" id="57" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false" selected="true">
         <shape guid="DC1E8FEB-9E45-45E9-2C9B-BF96BA1E34D3" type="square" x="352" y="496" Z="0" angle="0" width="96.00" height="112.00" scaleX="1.920" scaleY="2.240" fillColor="0x00ff00" alpha="0.50">
           <properties>
             <type typeof="String" name="type" value="Allow" hidden="false"/>
@@ -6647,7 +6644,7 @@
         </shape>
         <shape guid="58327E2B-E112-3DDB-B7FD-8B972BFCB5DB" type="square" x="656.37" y="224" Z="0" angle="0" width="127.63" height="96.00" scaleX="2.553" scaleY="1.920" fillColor="0xff0000" alpha="0.50">
           <properties>
-            <type typeof="String" name="type" value="Disallow" hidden="false"/>
+            <type typeof="String" name="type" value="DisallowSilently" hidden="false"/>
           </properties>
         </shape>
       </shapelayer>
@@ -11522,7 +11519,7 @@
     <SaveGuidesSeparately>false</SaveGuidesSeparately>
     <ForceTilemapPositionChangesInUnits>false</ForceTilemapPositionChangesInUnits>
   </options>
-  <exporter name="D:\Projects\AnodyneSharp\AnodyneSharp\AnodyneSharp.Shared\Content\editor_scripts\Intra.lua" spritepos="Top Left" rotatedSpritePos="false" relativePaths="false" useProjectExporterOnly="false">
+  <exporter name="D:\Projects_Seph\AnodyneSharp\AnodyneSharp\AnodyneSharp.Shared\Content\editor_scripts\Intra.lua" spritepos="Top Left" rotatedSpritePos="false" relativePaths="false" useProjectExporterOnly="false">
     <setting name="LevelName">Entities</setting>
     <setting name="DataDir">D:\Projects\AnodyneSharp\AnodyneSharp\AnodyneSharp.Shared\Content</setting>
   </exporter>
