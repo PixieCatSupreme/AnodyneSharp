@@ -96,6 +96,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Circus\JavieraDanger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Circus\ArthurDanger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Circus\CircusFolksDead.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Go\PostBlue.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Happy\HappyBriar.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Happy\HappyEventTrigger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Hotel\EyebossPreview.cs" />

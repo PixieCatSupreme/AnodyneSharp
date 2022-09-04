@@ -39,6 +39,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc
         protected Bike bike = new();
         protected Player _player;
         protected EntityPreset _preset;
+        protected bool _facePlayer = true;
 
         public Mitra(EntityPreset preset, Player p, bool start_on_bike) : base(preset.Position, DrawOrder.ENTITIES)
         {
@@ -72,8 +73,13 @@ namespace AnodyneSharp.Entities.Interactive.Npc
 
         public bool PlayerInteraction(Facing player_direction)
         {
-            GlobalState.Dialogue = GetInteractionText();
-            return true;
+            string text = GetInteractionText();
+            if (text != "")
+            {
+                GlobalState.Dialogue = GetInteractionText();
+                return true;
+            }
+            return false;
         }
 
         public override void Collided(Entity other)
@@ -101,7 +107,8 @@ namespace AnodyneSharp.Entities.Interactive.Npc
             base.Update();
             if (velocity == Vector2.Zero)
             {
-                FaceTowards(_player.Position);
+                if(_facePlayer)
+                    FaceTowards(_player.Position);
                 PlayFacing("idle");
             }
             else

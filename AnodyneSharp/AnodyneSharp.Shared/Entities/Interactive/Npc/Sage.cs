@@ -13,22 +13,14 @@ using static AnodyneSharp.States.CutsceneState;
 namespace AnodyneSharp.Entities
 {
     [Collision(typeof(Player))]
-    abstract class Sage : Entity, Interactable
+    abstract class SpriteSage : Entity
     {
         protected Player _player;
-        protected EntityPreset _preset;
+        protected bool _facePlayer = true;
 
-        int _initDistance;
-        int _stopDistance;
-        string _scene;
-
-        public Sage(EntityPreset preset, Player p, int initDistance, int stopDistance, string scene) : base(preset.Position, "sage", 16, 16, DrawOrder.ENTITIES)
+        public SpriteSage(Vector2 pos, Player p) : base(pos, "sage", 16, 16, DrawOrder.ENTITIES)
         {
             _player = p;
-            _preset = preset;
-            _initDistance = initDistance;
-            _stopDistance = stopDistance;
-            _scene = scene;
 
             width = height = 10;
             offset = Vector2.One * 3;
@@ -45,6 +37,50 @@ namespace AnodyneSharp.Entities
             AddAnimation("idle_u", CreateAnimFrameArray(8));
 
             Play("idle_d");
+        }
+
+        public override void Update()
+        {
+            base.Update();
+            if (_facePlayer)
+            {
+                FaceTowards(_player.Position);
+            }
+            PlayFacing(velocity == Vector2.Zero ? "idle" : "walk");
+        }
+
+        public override void Collided(Entity other)
+        {
+            Separate(this, other);
+        }
+
+        protected override void AnimationChanged(string name)
+        {
+            if (name == "walk_l" || name == "idle_l")
+            {
+                _flip = SpriteEffects.FlipHorizontally;
+            }
+            else
+            {
+                _flip = SpriteEffects.None;
+            }
+        }
+    }
+
+    abstract class Sage : SpriteSage, Interactable
+    {
+        protected EntityPreset _preset;
+
+        int _initDistance;
+        int _stopDistance;
+        string _scene;
+
+        public Sage(EntityPreset preset, Player p, int initDistance, int stopDistance, string scene) : base(preset.Position, p)
+        {
+            _preset = preset;
+            _initDistance = initDistance;
+            _stopDistance = stopDistance;
+            _scene = scene;
         }
 
         protected virtual IEnumerator<CutsceneEvent> StateLogic()
@@ -72,26 +108,6 @@ namespace AnodyneSharp.Entities
                 _preset.Activated = true;
                 GlobalState.StartCutscene = StateLogic();
             }
-
-            FaceTowards(_player.Position);
-            PlayFacing(velocity == Vector2.Zero ? "idle" : "walk");
-        }
-
-        protected override void AnimationChanged(string name)
-        {
-            if (name == "walk_l" || name == "idle_l")
-            {
-                _flip = SpriteEffects.FlipHorizontally;
-            }
-            else
-            {
-                _flip = SpriteEffects.None;
-            }
-        }
-
-        public override void Collided(Entity other)
-        {
-            Separate(this, other);
         }
 
         public virtual bool PlayerInteraction(Facing player_direction)
@@ -182,18 +198,19 @@ namespace AnodyneSharp.Entities
     }
 
     [NamedEntity(xmlName:"Sage",map:"TERMINAL")]
-    class SageTerminal : Sage
+    class SageTerminal : SpriteSage, Interactable
     {
         IEnumerator state;
+        EntityPreset _preset;
 
-        public SageTerminal(EntityPreset preset, Player p) : base(preset,p,0,0,"")
+        public SageTerminal(EntityPreset preset, Player p) : base(preset.Position,p)
         {
             if(GlobalState.events.GetEvent("SageDied") > 0)
             {
                 preset.Alive = exists = false;
             }
-            preset.Activated = true; //disable proximity cutscene
             state = States();
+            _preset = preset;
         }
 
         public override void Update()
@@ -231,7 +248,7 @@ namespace AnodyneSharp.Entities
             yield break;
         }
 
-        public override bool PlayerInteraction(Facing player_direction)
+        public bool PlayerInteraction(Facing player_direction)
         {
             string dialog = GlobalState.inventory.CardCount switch
             {
