@@ -33,11 +33,11 @@ namespace AnodyneSharp.States
         private int normalSpeed;
         private int speedScale;
 
-        public DialogueState(bool useMenuBox = false, bool isIntro = false)
+        public DialogueState(string text, bool useMenuBox = false, bool isIntro = false)
         {
             _tb = new TextBox(useMenuBox, isIntro);
             _tb.Writer.SetSpriteFont(FontManager.InitFont(Color.White), ResourceManager.GetTexture("consoleButtons"));
-            _tb.Writer.Text = GlobalState.Dialogue;
+            _tb.Writer.Text = text;
             _tb.Writer.DrawShadow = true;
 
             normalSpeed = _tb.Writer.Speed;

@@ -26,7 +26,7 @@ namespace AnodyneSharp.States
 
         public IntroState()
         {
-            GlobalState.Dialogue = DialogueManager.GetDialogue("sage", "BLANK", "intro", 0);
+            string diag = DialogueManager.GetDialogue("sage", "BLANK", "intro", 0);
 
             _state = new StateMachineBuilder()
                 .State<WaitTimer>("WaitStart")
@@ -36,7 +36,7 @@ namespace AnodyneSharp.States
                 .State("Writing")
                     .Enter((state) =>
                     {
-                        _dialogueState = new DialogueState(isIntro: true);
+                        _dialogueState = new DialogueState(diag,isIntro: true);
                         _dialogueState.Create();
                     })
                     .Update((state, t) => _dialogueState.Update())

@@ -360,7 +360,7 @@ namespace AnodyneSharp.States
 
             if (GlobalState.SetDialogueMode)
             {
-                _childStates.Add(new DialogueState());
+                _childStates.Add(new DialogueState(GlobalState.Dialogue));
                 GlobalState.SetDialogueMode = false;
                 _player.BeIdle();
             }

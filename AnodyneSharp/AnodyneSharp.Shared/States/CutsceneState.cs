@@ -64,8 +64,7 @@ namespace AnodyneSharp.States
                     }
                     else if(e is DialogueEvent d)
                     {
-                        GlobalState.Dialogue = d.Diag;
-                        _substate = new();
+                        _substate = new(d.Diag);
                     }
                 }
             }
