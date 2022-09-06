@@ -46,6 +46,13 @@ namespace AnodyneSharp.Entities
             {
                 FaceTowards(_player.Position);
             }
+            else
+            {
+                if(velocity != Vector2.Zero)
+                {
+                    FaceTowards(Position + velocity);
+                }
+            }
             PlayFacing(velocity == Vector2.Zero ? "idle" : "walk");
         }
 

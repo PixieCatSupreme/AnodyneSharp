@@ -1,4 +1,7 @@
-﻿using AnodyneSharp.Registry;
+﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.Entities.Gadget;
+using AnodyneSharp.Registry;
+using AnodyneSharp.Sounds;
 using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using System;
@@ -20,7 +23,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Go
         public PostBlue(EntityPreset preset, Player p) : base(preset,p,!preset.Activated)
         {
             tl = MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid);
-            Position = tl + new Vector2(6 * 16 + 2, 8 * 16 - 20);
+            Position = tl + new Vector2(6 * 16 + 2, 8 * 16);
             bike.Position = tl + new Vector2(6 * 16 + 2, 7 * 16);
             sage = new(preset, p);
             if(GlobalState.events.GetEvent("BlueDone") == 0)
@@ -37,13 +40,14 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Go
                 visible = false;
                 _facePlayer = false;
                 Solid = false;
+                bike.Solid = false;
             }
         }
 
         public override void Update()
         {
             base.Update();
-            if(!_preset.Activated && !started)
+            if(!_preset.Activated && !started && !GlobalState.ScreenTransition)
             {
                 if(_player.Position.X < tl.X + 7*16 && _player.Position.Y < tl.Y + 7*16)
                 {
@@ -83,7 +87,143 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Go
             _player.facing = Facing.RIGHT;
             standin.exists = false;
 
+            Position = tl + new Vector2(160, 5 * 16);
+            velocity = Vector2.UnitX*-45;
+            visible = true;
 
+            while (Position.X > _player.Position.X - 24) yield return null;
+
+            velocity = Vector2.UnitY * 45;
+
+            while (Position.Y < _player.Position.Y - 4) yield return null;
+
+            OffBike();
+            bike.exists = true;
+            bike.Position = _player.Position + new Vector2(-18, 10);
+
+            velocity = Vector2.UnitY * 20;
+            while (Position.Y <= _player.Hitbox.Bottom) yield return null;
+
+            velocity = Vector2.UnitX * 20;
+            while (Position.X <= _player.Position.X) yield return null;
+
+            _player.facing = Facing.DOWN;
+            facing = Facing.UP;
+            velocity = Vector2.Zero;
+
+            sage.visible = true;
+            sage.Position = tl + new Vector2(4 * 16, 160) + sage.offset;
+            sage.velocity = Vector2.UnitY * -20;
+
+            while (sage.Position.Y >= tl.Y + 8 * 16 - 5) yield return null;
+
+            sage.velocity = Vector2.UnitX * -20;
+
+            while(sage.Position.X >= tl.X + 2 * 16 + 11) yield return null;
+
+            sage.velocity = Vector2.Zero;
+            sage.facing = Facing.RIGHT;
+
+            _player.facing = Facing.LEFT;
+            facing = Facing.LEFT;
+
+            DialogueManager.SetSceneProgress("sage", "one", 0);
+
+            for(int i = 0; i < 7; ++i)
+            {
+                yield return new DialogueEvent(DialogueManager.GetDialogue("sage", "one"));
+            }
+
+            SoundManager.PlaySoundEffect("sun_guy_charge");
+
+            SageBullet bullet = new();
+            bullet.Position = sage.Position + Vector2.UnitX * sage.width;
+            bullet.Flicker(2.5f);
+
+            yield return new EntityEvent(Enumerable.Repeat(bullet, 1));
+
+            Action clampPlayer = () =>
+            {
+                _player.Position.X = Math.Clamp(_player.Position.X, tl.X + 16, tl.X + 9 * 16);
+                _player.Position.Y = Math.Clamp(_player.Position.Y, tl.X + 16, tl.X + 9 * 16);
+            };
+
+            while (bullet._flickering)
+            {
+                clampPlayer();
+                _player.dontMove = false;
+                _player.actions_disabled = false;
+                yield return null;
+            }
+
+            SoundManager.PlaySoundEffect("laser-pew");
+            bullet.velocity = Vector2.UnitX * 10;
+
+            while(true)
+            {
+                clampPlayer();
+
+                bool hitPlayer = bullet.Hitbox.Intersects(_player.Hitbox);
+
+                if(hitPlayer || (_player.broom.visible && bullet.Hitbox.Intersects(_player.broom.Hitbox)))
+                {
+                    bool flashReady = false;
+                    GlobalState.flash.Flash(1, hitPlayer ? Color.Red : Color.White, () => flashReady = true);
+                    while (!flashReady) yield return null;
+
+                    bullet.visible = false;
+                    if(hitPlayer)
+                    {
+                        _player.velocity = Vector2.Zero;
+                        _player.Play("slumped");
+                        _player.ANIM_STATE = PlayerAnimState.as_slumped;
+                    }
+                    yield return new EntityEvent(Enumerable.Repeat(new Explosion(bullet), 1));
+
+                    yield return new DialogueEvent(DialogueManager.GetDialogue("sage", "hit", 0));
+                    yield return new DialogueEvent(DialogueManager.GetDialogue("sage", "hit", 1));
+
+                    break;
+                }
+
+                if(bullet.Position.X > bike.Position.X)
+                {
+                    bool flashReady = false;
+                    GlobalState.flash.Flash(1, Color.Red, () => flashReady = true);
+                    while (!flashReady) yield return null;
+
+                    bullet.visible = false;
+                    yield return new EntityEvent(Enumerable.Repeat(new Explosion(bullet), 1));
+
+                    GlobalState.Dialogue = DialogueManager.GetDialogue("sage", "hit", 2);
+
+                    velocity = Vector2.UnitX * -20;
+                    while (Position.X > bike.Position.X) yield return null;
+                    velocity = Vector2.Zero;
+                    facing = Facing.UP;
+                    while (!GlobalState.LastDialogueFinished) yield return null;
+
+                    yield return new DialogueEvent(DialogueManager.GetDialogue("sage", "hit", 3));
+                    
+                    facing = Facing.LEFT;
+
+                    yield return new DialogueEvent(DialogueManager.GetDialogue("sage", "hit", 4));
+
+                    break;
+                }
+
+                _player.dontMove = false;
+                _player.actions_disabled = false;
+
+                yield return null;
+            }
+
+            yield return new DialogueEvent(DialogueManager.GetDialogue("sage", "hit", 5));
+
+            _preset.Activated = true;
+            _facePlayer = true;
+            Solid = true;
+            bike.Solid = true;
 
             yield break;
         }
@@ -97,7 +237,9 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Go
         {
             if(_facePlayer)
             {
-
+                if (GlobalState.events.GetEvent("HappyDone") > 0)
+                    return DialogueManager.GetDialogue("sage", "posthappy_mitra");
+                return DialogueManager.GetDialogue("sage", "hit", 7);
             }
             return "";
         }
@@ -111,7 +253,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Go
         {
             _facePlayer = preset.Activated;
             this.preset = preset;
-            Position = MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid) + new Vector2(40, 7 * 16 + 2);
+            Position = MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid) + new Vector2(40, 7 * 16 + 2) + offset;
             if(!preset.Activated)
             {
                 visible = false;
@@ -122,17 +264,29 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Go
         public override void Update()
         {
             base.Update();
-            _facePlayer = preset.Activated;
+            Solid = _facePlayer = preset.Activated;
         }
 
         public bool PlayerInteraction(Facing player_direction)
         {
             if(_facePlayer)
             {
-                //todo: dialogue
+                if (GlobalState.events.GetEvent("HappyDone") > 0)
+                    GlobalState.Dialogue = DialogueManager.GetDialogue("sage", "posthappy_sage");
+                else
+                    GlobalState.Dialogue = DialogueManager.GetDialogue("sage", "hit", 6);
                 return true;
             }
             return false;
+        }
+    }
+
+    internal class SageBullet : Entity
+    {
+        public SageBullet() : base(Vector2.Zero, "sage_attacks", 16, 16, Drawing.DrawOrder.ENTITIES)
+        {
+            AddAnimation("a", CreateAnimFrameArray(0, 1), 8);
+            Play("a");
         }
     }
 
