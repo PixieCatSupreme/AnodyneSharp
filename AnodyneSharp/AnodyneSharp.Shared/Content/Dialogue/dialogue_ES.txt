@@ -128,6 +128,7 @@ Y pulsarás la tecla [SOMEKEY-ENTER] para acceder al menú, el cual te proporcio
 	
 	
 		scene posthappy_sage
+TOP
 #Young...  I just wanted to fix everything for you.
 Young... Yo sólo quería arregarlo todo para ti.
 #I hope... I hope you can do better than me.
@@ -135,6 +136,7 @@ Espero... Espero que puedas hacerlo mejor que yo.
 		end scene
 		
 		scene posthappy_mitra
+TOP
 #Good luck, Young.
 Buena suerte, Young.
 #Sage is right, in a way.  I want everything to be nice and work out perfectly, and sometimes that makes me ignore reality.

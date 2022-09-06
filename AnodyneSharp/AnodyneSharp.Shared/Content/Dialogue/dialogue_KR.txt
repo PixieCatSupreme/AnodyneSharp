@@ -130,6 +130,7 @@ npc sage
 	
 	
 		scene posthappy_sage
+TOP
 # Young...  I just wanted to fix everything for you.
 영... 난 그냥 자넬 위해 모든 것을 되돌리고 싶네.
 # I hope... I hope you can do better than me.
@@ -137,6 +138,7 @@ npc sage
 		end scene
 		
 		scene posthappy_mitra
+TOP
 # Good luck, Young.
 행운을 빌어. 영.
 # Sage is right, in a way.  I want everything to be nice and work out perfectly, and sometimes that makes me ignore reality.

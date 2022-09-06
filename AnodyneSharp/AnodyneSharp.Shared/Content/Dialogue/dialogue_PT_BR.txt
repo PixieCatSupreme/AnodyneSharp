@@ -101,7 +101,7 @@ E você usará a tecla [SOMEKEY-ENTER] para acessar o menu, que fornecerá infor
 	area GO
 
 	scene posthappy_sage
-
+TOP
 
 Young... Eu só queria consertar tudo para você.
 #Young... I just wanted to fix everything for you.
@@ -109,7 +109,7 @@ Eu espero... Eu espero que você se saia melhor que eu.
 #I hope... I hope you can do better than me.
 		end scene
 		scene posthappy_mitra
-
+TOP
 Boa sorte, Young.
 #Good luck, Young.
 O Sábio está certo, de certo modo. Eu quero que tudo seja perfeito, e algumas vezes isso me faz ignorar a realidade.

@@ -101,7 +101,7 @@ npc sage
 	area GO
 
 	scene posthappy_sage
-
+TOP
 
 ヤング... 私はただキミのためにすべてを正したかったのだ
 #Young... I just wanted to fix everything for you.
@@ -109,7 +109,7 @@ npc sage
 #I hope... I hope you can do better than me.
 		end scene
 		scene posthappy_mitra
-
+TOP
 ヤング... がんばってね
 #Good luck, Young.
 賢者の言ったこと それなりに合ってる わたしはすべてがステキで完ぺきであってほしくて そのせいで ときには現実だって無視してた

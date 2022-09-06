@@ -111,11 +111,13 @@ And you will press the [SOMEKEY-ENTER] key to access the menu, which will provid
 	
 	
 		scene posthappy_sage
+TOP
 Young...  I just wanted to fix everything for you.
 I hope... I hope you can do better than me.
 		end scene
 		
 		scene posthappy_mitra
+TOP
 Good luck, Young.
 Sage is right, in a way.  I want everything to be nice and work out perfectly, and sometimes that makes me ignore reality.
 I don’t know what you need to do to help The Briar.  I don’t understand how this world works or why everything seems so strange.  But I do want to be your friend, Young.
