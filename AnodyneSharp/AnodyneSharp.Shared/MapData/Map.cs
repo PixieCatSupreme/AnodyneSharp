@@ -194,8 +194,9 @@ namespace AnodyneSharp.MapData
             GlobalState.fgBlend.SetTex(MapSettings.Get(s => s.FG_Blend, priorities, ""));
             GlobalState.extraBlend.SetTex(MapSettings.Get(s => s.ExtraBlend, priorities, ""));
             GlobalState.staticEffect.active = MapSettings.Get(s => s.Static, priorities, false);
-            replacements = new(MapSettings.Get(s => s.ReplaceTiles, priorities, ""));
             GlobalState.glitch.active = player_pos.X < 0 || player_pos.Y < 0 || player_pos.X >= WidthInTiles * 16 || player_pos.Y >= HeightInTiles * 16;
+            if(!graphics_only)
+                replacements = new(MapSettings.Get(s => s.ReplaceTiles, priorities, ""));
 
             if(p is not null)
             {
