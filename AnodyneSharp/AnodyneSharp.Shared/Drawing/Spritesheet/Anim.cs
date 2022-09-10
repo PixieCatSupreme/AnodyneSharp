@@ -12,7 +12,13 @@ namespace AnodyneSharp
 
         public string name;
         public int[] frames;
-        public float frameRate;
+        public float FrameRate { 
+            get => delay == 0 ? 0 : 1.0f / delay;
+            set
+            {
+                delay = value == 0 ? 0 : 1.0f / value;
+            }
+        }
         public bool looped;
         public float delay;
 
@@ -27,12 +33,7 @@ namespace AnodyneSharp
         {
             this.name = name;
             this.frames = frames;
-            this.frameRate = frameRate;
-
-            if (frameRate > 0)
-            {
-                delay = 1.0f / frameRate;
-            }
+            FrameRate = frameRate;
 
             this.looped = looped;
             Dirty = true;
