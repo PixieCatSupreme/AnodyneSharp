@@ -76,7 +76,7 @@ namespace AnodyneSharp.Entities
         }
 
         public GameObject(Vector2 pos, int width, int height)
-            :this(pos)
+            : this(pos)
         {
             this.width = width;
             this.height = height;
@@ -98,15 +98,20 @@ namespace AnodyneSharp.Entities
         public virtual void PostUpdate()
         {
             lastPosition = Position;
-            Position += velocity * GameTimes.DeltaTime;
+
+            Vector2 oldVel = velocity;
 
             velocity += acceleration * GameTimes.DeltaTime;
             velocity.X = CalculateDrag(velocity.X, drag.X);
             velocity.Y = CalculateDrag(velocity.Y, drag.Y);
 
-            rotation += angularVelocity * GameTimes.DeltaTime;
+            Position += GameTimes.DeltaTime * (oldVel + (velocity - oldVel) / 2); //Average velocity is perfect integrator for constant acceleration
 
-            angularVelocity += angularAcceleration *GameTimes.DeltaTime;
+            float oldAngleVel = angularVelocity;
+            angularVelocity += angularAcceleration * GameTimes.DeltaTime;
+
+            rotation += (oldAngleVel + (angularVelocity - oldAngleVel) / 2) * GameTimes.DeltaTime;
+
 
 
             wasTouching = touching;
@@ -160,7 +165,7 @@ namespace AnodyneSharp.Entities
             {
                 float maxOverlap = obj1deltaAbs + obj2deltaAbs;
                 //map tiles have priority
-                if(Object2 is Entity)
+                if (Object2 is Entity)
                 {
                     maxOverlap += OVERLAP_BIAS / 2;
                 }
@@ -247,7 +252,7 @@ namespace AnodyneSharp.Entities
             //Check if the Y hulls actually overlap
             float obj1deltaAbs = Math.Abs(obj1delta);
             float obj2deltaAbs = Math.Abs(obj2delta);
-            Vector2 pos1 = new Vector2(Object1.lastPosition.X, Object1.Position.Y -((obj1delta > 0) ? obj1delta : 0));
+            Vector2 pos1 = new Vector2(Object1.lastPosition.X, Object1.Position.Y - ((obj1delta > 0) ? obj1delta : 0));
             Vector2 size1 = new Vector2(Object1.width, Object1.height + obj1deltaAbs);
             Vector2 pos2 = new Vector2(Object2.lastPosition.X, Object2.Position.Y - ((obj2delta > 0) ? obj2delta : 0));
             Vector2 size2 = new Vector2(Object2.width, Object2.height + obj2deltaAbs);
@@ -327,10 +332,11 @@ namespace AnodyneSharp.Entities
         private float CalculateDrag(float velocity, float drag)
         {
             drag = drag * GameTimes.DeltaTime;
-            if(velocity < 0)
+            if (velocity < 0)
             {
                 velocity = Math.Min(velocity + drag, 0f);
-            } else
+            }
+            else
             {
                 velocity = Math.Max(velocity - drag, 0f);
             }
