@@ -102,10 +102,8 @@ namespace AnodyneSharp.Entities.Enemy.Go
 
             gate.Position.Y += 9 * 16;
 
-            fightStage = new();
+            fightStage = new(player);
             GlobalState.SpawnEntity(fightStage);
-
-            yield return new DialogueEvent(DialogueManager.GetDialogue("briar", "before_fight"));
 
             yield break;
         }

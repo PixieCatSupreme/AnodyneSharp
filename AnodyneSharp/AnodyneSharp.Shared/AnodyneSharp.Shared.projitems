@@ -73,6 +73,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Etc\FollowerBro.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Etc\SageBoss.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Etc\SpaceFace.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Go\BriarBossBody.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Go\BriarBossFight.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Go\BriarBossMain.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Hotel\Boss\EnemyMarker.cs" />
