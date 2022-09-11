@@ -79,6 +79,13 @@ namespace AnodyneSharp.Drawing
                 new Vector2((sRect ?? texture.Bounds).Width / 2, (sRect ?? texture.Bounds).Height / 2), flip, Z);
         }
 
+        public static void DrawSprite(Texture2D texture, Vector2 pos, Rectangle? sRect = null, Color? color = null, float rotation = 0, float scale = 1f, float Z = 0)
+        {
+            _spriteBatch.Draw(texture, pos,
+                sRect, color ?? Color.White, rotation,
+                new Vector2(0), scale, SpriteEffects.None, Z);
+        }
+
         public static void DrawGuiSprite(Texture2D texture, Vector2 pos, Rectangle? sRect = null, Color? color = null, float rotation = 0, float scale = 1f, float Z = 0)
         {
             _guiSpriteBatch.Draw(texture, pos,

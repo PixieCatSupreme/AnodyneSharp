@@ -150,6 +150,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\RunningTradeNPCs\MiaoXiao.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\RunningTradeNPCs\ShopKeep.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\ShadowBriar.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\CreditsState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\CoroutineUtils.cs" />
     <Compile Include="..\AnodyneSharp.Shared\Entities\Interactive\Npc\Space\CubeKing.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Space\SpaceNPC.cs" />

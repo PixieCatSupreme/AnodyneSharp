@@ -78,14 +78,15 @@ namespace AnodyneSharp.UI
 
         private Vector2 _position;
 
-        public UILabel(Vector2 position, bool drawShadow, string text, Color? color = null, DrawOrder layer = DrawOrder.MENUTEXT, bool forceEnglish = false)
+        public UILabel(Vector2 position, bool drawShadow, string text, Color? color = null, DrawOrder layer = DrawOrder.MENUTEXT, bool forceEnglish = false, bool centerText = false)
         {
             ForcedEnglish = forceEnglish;
             _position = position;
 
             Writer = new TextWriter((int)position.X, (int)position.Y)
             {
-                drawLayer = layer
+                drawLayer = layer,
+                CenterText = centerText
             };
 
             _oldSize = Writer.WriteAreaSize;
@@ -138,7 +139,7 @@ namespace AnodyneSharp.UI
 
             Writer.Text = text;
 
-            int lines = 2 + Writer.Text.Count(c => TextWriter.LineBreaks.Any(character => character == c));
+            int lines = 6 + Writer.Text.Count(c => TextWriter.LineBreaks.Any(character => character == c));
 
             Writer.SetWriteArea((int)Writer.GetTextLength(), Writer.GetLineHeight() * lines);
             Writer.ProgressTextToEnd();

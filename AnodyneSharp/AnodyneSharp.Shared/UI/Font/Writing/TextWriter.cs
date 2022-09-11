@@ -2,6 +2,7 @@
 using AnodyneSharp.Entities.Gadget;
 using AnodyneSharp.Input;
 using AnodyneSharp.Registry;
+using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -44,6 +45,11 @@ namespace AnodyneSharp.UI.Text
                     SetWriteArea(value.X, value.Y, value.Width, value.Height);
                 }
             }
+        }
+
+        public bool CenterText
+        {
+            get; set;
         }
 
         public Vector2 WriteAreaTopLeft => new Vector2(writeArea.X, writeArea.Y);
@@ -101,6 +107,7 @@ namespace AnodyneSharp.UI.Text
         private int letterProgress;
 
         private List<List<TextCharacter>> characterLines;
+
         private int _line;
         private float currentLineWidth;
         private Rectangle writeArea;
@@ -166,21 +173,35 @@ namespace AnodyneSharp.UI.Text
             float z = DrawingUtilities.GetDrawingZ(drawLayer);
             float shadowZ = z - 0.01f;
             float currentY = firstLineY;
-            foreach (List<TextCharacter> line in characterLines)
+            for (int i = 0; i < characterLines.Count; i++)
             {
+                List<TextCharacter> line = characterLines[i];
+
                 foreach (var c in line)
                 {
                     if (c.Character == null)
                     {
-                        SpriteDrawer.DrawGuiSprite(buttonSprite, WriteAreaTopLeft + new Vector2(c.X , currentY - GameConstants.BUTTON_HEIGHT / 4), c.Crop, Z: z);
+                        SpriteDrawer.DrawGuiSprite(buttonSprite, WriteAreaTopLeft + new Vector2(c.X, currentY - GameConstants.BUTTON_HEIGHT / 4), c.Crop, Z: z);
                     }
                     else
                     {
-                        SpriteDrawer.DrawGuiSprite(spriteFont.texture, WriteAreaTopLeft + new Vector2(c.X, currentY), c.Crop, spriteFont.color * Opacity, Z: z);
+                        Vector2 pos;
+                        if (CenterText)
+                        {
+                            float width = GetLineWidth(i);
+                            pos = WriteAreaTopLeft + new Vector2(c.X, currentY) + new Vector2(GameConstants.SCREEN_WIDTH_IN_PIXELS / 2 - width / 2, 0);
+                        }
+                        else
+                        {
+                            pos = WriteAreaTopLeft + new Vector2(c.X, currentY);
+                        }
+
+                        SpriteDrawer.DrawGuiSprite(spriteFont.texture, pos, c.Crop, spriteFont.color * Opacity, Z: z);
                         if (DrawShadow)
                         {
-                            SpriteDrawer.DrawGuiSprite(spriteFont.texture, WriteAreaTopLeft + new Vector2(c.X, currentY + 1), c.Crop, color: Color.Black * Opacity, Z: shadowZ);
+                            SpriteDrawer.DrawGuiSprite(spriteFont.texture, pos, c.Crop, color: Color.Black * Opacity, Z: shadowZ);
                         }
+
                     }
                 }
                 currentY += spriteFont.lineSeparation;
@@ -203,9 +224,7 @@ namespace AnodyneSharp.UI.Text
                     _stepProgress = 0;
 
                     ProgressText();
-
                 }
-
             }
         }
 
@@ -230,6 +249,14 @@ namespace AnodyneSharp.UI.Text
             return Text.Length * spriteFont.spaceWidth;
         }
 
+        public float GetLineWidth(int line)
+        {
+            string[] lines = Text.Split(LineBreaks);
+
+            return lines[line].Length * spriteFont.spaceWidth;
+        }
+
+
         public float GetWordLength()
         {
             int index = Text.IndexOfAny(WordBreaks, letterProgress);
@@ -245,7 +272,7 @@ namespace AnodyneSharp.UI.Text
 
         public void SetWriteArea(int x, int y, int width, int height)
         {
-            writeArea = new Rectangle(x, y+2, width, height);
+            writeArea = new Rectangle(x, y + 2, width, height);
         }
 
         public void RemoveFirstLine()
