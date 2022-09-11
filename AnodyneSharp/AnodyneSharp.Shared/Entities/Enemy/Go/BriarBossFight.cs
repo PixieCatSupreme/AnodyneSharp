@@ -18,6 +18,8 @@ namespace AnodyneSharp.Entities.Enemy.Go
 
         IEnumerator state;
 
+        Player player;
+
         public BriarBossFight(Player p) : base(MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid), "briar_overhang", 160, 48, Drawing.DrawOrder.BG_ENTITIES)
         {
             body = new(Position + Vector2.UnitX * 16, p);
@@ -31,7 +33,7 @@ namespace AnodyneSharp.Entities.Enemy.Go
             core.AddAnimation("flash", CreateAnimFrameArray(3, 4), 12);
             core.Play("glow");
 
-            
+
             blue = new(Position + new Vector2(5 * 16, 16))
             {
                 LayerParent = body,
@@ -44,6 +46,7 @@ namespace AnodyneSharp.Entities.Enemy.Go
             };
 
             state = StateLogic();
+            player = p;
         }
 
         IEnumerator StateLogic()
@@ -56,11 +59,32 @@ namespace AnodyneSharp.Entities.Enemy.Go
                 body.State = body.Attack(6 - happy.Health - blue.Health);
                 while (body.State is not null) yield return null;
 
-                //Choose attacking thorn
+                IEnumerator attack = MainAttack(blue, happy);
+                while (attack.MoveNext()) yield return null;
             }
 
 
             yield break;
+        }
+
+        IEnumerator MainAttack(BigThorn attacker, BigThorn attacked)
+        {
+            attacker.Play("active");
+            attacked.state = attacked.GetAttacked(attacker, player);
+            int health = attacked.Health;
+            while(attacked.state is not null)
+            {
+                if (attacked.Health != health)
+                {
+                    core.Play("flash");
+                    while (attacked.CurAnimName == "hit") yield return null;
+                    core.Play("glow");
+                    break;
+                }
+                yield return null;
+            }
+            while (attacked.state is not null) yield return null;
+            attacker.Play("off");
         }
 
         public override void Update()
@@ -74,42 +98,5 @@ namespace AnodyneSharp.Entities.Enemy.Go
             return new List<Entity>() { body, core, blue, happy };
         }
 
-
-        class BigThorn : Entity
-        {
-            public int Health = 3;
-
-            public BigThorn(Vector2 pos, string tex) : base(pos, tex, 64, 80, Drawing.DrawOrder.ENTITIES)
-            {
-                immovable = true;
-                AddAnimation("hit", CreateAnimFrameArray(4, 6, 4, 6, 4, 6, 4, 6, 4, 6, 4, 6), 15);
-                AddAnimation("hurt", CreateAnimFrameArray(7, 8), 4);
-                AddAnimation("active", CreateAnimFrameArray(4, 5), 5);
-
-                height = 63;
-                width = 24;
-            }
-        }
-
-        class BlueThorn : BigThorn
-        {
-            public BlueThorn(Vector2 pos) : base(pos, "briar_arm_right")
-            {
-                AddAnimation("off", CreateAnimFrameArray(1, 2, 3, 0), 4);
-                Play("off");
-                offset.X = 40;
-                Position.X += offset.X;
-            }
-        }
-
-        class HappyThorn : BigThorn
-        {
-            public HappyThorn(Vector2 pos) : base(pos, "briar_arm_left")
-            {
-                AddAnimation("off", CreateAnimFrameArray(0, 1, 2, 3), 4);
-                Play("off");
-            }
-
-        }
     }
 }

@@ -180,6 +180,8 @@ namespace AnodyneSharp.Registry
 
         public static Point TopLeftTile => new(CURRENT_GRID_X * 10, CURRENT_GRID_Y * 10);
 
+        public static Rectangle ScreenHitbox => new(CURRENT_GRID_X * 160, CURRENT_GRID_Y * 160, 160, 160);
+
         public static bool CanChangeBroom
         {
             get

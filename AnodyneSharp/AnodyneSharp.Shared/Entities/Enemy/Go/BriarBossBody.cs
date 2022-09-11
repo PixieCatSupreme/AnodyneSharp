@@ -77,7 +77,7 @@ namespace AnodyneSharp.Entities.Enemy.Go
         IEnumerator ThornAttack(int phase)
         {
             float[] times = { 0.18f, 0.16f, 0.14f, 0.13f, 0.11f, 0.09f };
-            int[] number_attacks = { 1, 1, 1, 2, 2, 3 };
+            int[] number_attacks = { 2, 2, 2, 3, 3, 4 };
 
             for (int i = 0; i < number_attacks[phase]; ++i)
             {
