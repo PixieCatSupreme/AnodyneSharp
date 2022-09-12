@@ -1753,7 +1753,7 @@ Lion\n\n\nContort\n\n\nFlame Pillar\n\n\nServants\nArthur\nJaviera
 Follower\n\n\nEdward\n\n\nFisherman\n\n\nRed Walker\n\nHews
 Rabbit\n\n\nIcky\n\n\nShopkeeper\n\nMiao Xiao Tuan Er\n\nRank\n\nGoldman
 Thorax\n\nJames\n\nMushroom\n\nCrickson\n\nGolem\n\nSuburbanites
-Chaser\n\n\nEntities\n\n\nSpace Faces\n\n\Cube Kings
+Chaser\n\n\nEntities\n\n\nSpace Faces\n\n\nCube Kings
 Young\n\n\nMitra\n\n\nSage\n\n\nBriar
 And we'd like to\nthank YOU!\nFor playing our game!\n\n\nWe hope you\nenjoyed it.
 \n\n\n\n\n\n\n\n    

@@ -2394,9 +2394,9 @@ Molly へ\n信じてくれてありがとう\n\nTina へ\nMelos を紹介して�
 ソラックス\n\nジェームズ\n\nキノコ\n\nクリックソン\n\nゴーレム\n\n住民
 #Thorax\n\nJames\n\nMushroom\n\nCrickson\n\nGolem\n\nSuburbanites
 チェイサー\n\n\nホログラムのアレ\n\n\nあの空間の住人\n\nキューブキングたち
-#Chaser\n\n\nEntities\n\n\nSpace Faces\n\n\Cube Kings
-#Chaser\n\n\nEntities\n\n\nSpace Faces\n\n\Cube Kings
-#Chaser\n\n\nEntities\n\n\nSpace Faces\n\n\Cube Kings
+#Chaser\n\n\nEntities\n\n\nSpace Faces\n\n\nCube Kings
+#Chaser\n\n\nEntities\n\n\nSpace Faces\n\n\nCube Kings
+#Chaser\n\n\nEntities\n\n\nSpace Faces\n\n\nCube Kings
 ヤング\n\n\nミトラ\n\n\n賢者\n\n\nブライア
 #Young\n\n\nMitra\n\n\nSage\n\n\nBriar
 そして...\nあそんでくれた\nあなたに... ありがとう!\n\n\n楽しんでもらえたなら\nウレシイです

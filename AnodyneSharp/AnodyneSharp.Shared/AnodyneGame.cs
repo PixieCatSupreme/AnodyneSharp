@@ -40,7 +40,8 @@ namespace AnodyneSharp
             TitleScreen,
             MainMenu,
             Intro,
-            Game
+            Game,
+            Credits
         }
 
         GraphicsDeviceManager graphics;
@@ -94,7 +95,7 @@ namespace AnodyneSharp
 
             base.Initialize();
 
-            SetState(GameState.TitleScreen);
+            SetState(GameState.Credits);
 
             _fpsLabel = new UILabel(new Vector2(0, GameConstants.HEADER_HEIGHT), false, "", Color.LightBlue);
 
@@ -221,6 +222,7 @@ namespace AnodyneSharp
                 GameState.MainMenu => new MainMenuState(),
                 GameState.Intro => new IntroState(),
                 GameState.Game => new PlayState(_camera),
+                GameState.Credits => new CreditsState(),
                 _ => null
             };
 

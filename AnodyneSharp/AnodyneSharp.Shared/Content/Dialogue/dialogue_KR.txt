@@ -2452,8 +2452,8 @@ Molly, for believing\n in me.\n\nTina, for introducing\nme\nto Melos.\n\nMelos, 
 토끼\n\n\n이키\n\n\n가게 주인\n\n미아오 샤오 투안 어\n\n랭크\n\n골드맨
 # Thorax\n\nJames\n\nMushroom\n\nCrickson\n\nGolem\n\nSuburbanites
 토렉스\n\n제임스\n\n버섯\n\n클릭손\n\n골렘\n\n교외 거주자
-# 추격자\n\n\nEntities\n\n\nSpace Faces\n\n\Cube Kings
-체이서\n\n\n엔티티\n\n\n공간의 얼굴들\n\n\큐브 왕
+# 추격자\n\n\nEntities\n\n\nSpace Faces\n\n\nCube Kings
+체이서\n\n\n엔티티\n\n\n공간의 얼굴들\n\n\n큐브 왕
 # Young\n\n\nMitra\n\n\nSage\n\n\nBriar
 영\n\n\n미트라\n\n\n현자\n\n\n브라이어
 # And we'd like to\nthank YOU!\nFor playing our game!\n\n\nWe hope you\nenjoyed it.
