@@ -12,8 +12,6 @@ using AnodyneSharp.Sounds;
 using AnodyneSharp.UI;
 using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
-using SharpDX.Direct3D9;
-using SharpDX.MediaFoundation;
 
 namespace AnodyneSharp.States
 {

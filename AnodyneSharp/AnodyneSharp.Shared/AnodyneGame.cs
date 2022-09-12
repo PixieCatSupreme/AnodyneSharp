@@ -95,7 +95,7 @@ namespace AnodyneSharp
 
             base.Initialize();
 
-            SetState(GameState.Credits);
+            SetState(GameState.TitleScreen);
 
             _fpsLabel = new UILabel(new Vector2(0, GameConstants.HEADER_HEIGHT), false, "", Color.LightBlue);
 
