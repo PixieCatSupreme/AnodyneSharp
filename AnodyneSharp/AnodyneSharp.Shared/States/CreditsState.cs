@@ -13,12 +13,14 @@ using AnodyneSharp.UI;
 using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using SharpDX.Direct3D9;
+using SharpDX.MediaFoundation;
 
 namespace AnodyneSharp.States
 {
     public class CreditsState : State
     {
         private List<UILabel> _labels;
+        private List<UIEntity> _entities;
 
         private UIEntity _dimOverlay;
         private UIEntity _bg;
@@ -27,9 +29,12 @@ namespace AnodyneSharp.States
         private IEnumerator _stateLogic;
         private bool _stopScroll;
 
+        private int _entityIndex;
+
         public CreditsState()
         {
             _labels = new List<UILabel>();
+            _entities = new List<UIEntity>();
 
             int bgHeight = 480;
 
@@ -61,6 +66,7 @@ namespace AnodyneSharp.States
                 _labels.Add(new UILabel(new Vector2(0, y), true, text, layer: DrawOrder.TEXT, centerText: true));
             }
 
+            CreateEntities();
 
             _stateLogic = StateLogic();
         }
@@ -72,6 +78,11 @@ namespace AnodyneSharp.States
             _stateLogic.MoveNext();
 
             _screenie.Update();
+
+            foreach (var entity in _entities)
+            {
+                entity.PostUpdate();
+            }
 
             if (!_stopScroll)
             {
@@ -117,6 +128,11 @@ namespace AnodyneSharp.States
             {
                 label.Draw();
             }
+
+            foreach (var entity in _entities)
+            {
+                entity.Draw();
+            }
         }
 
         private IEnumerator StateLogic()
@@ -156,6 +172,35 @@ namespace AnodyneSharp.States
             index++;
 
             _screenie.ProgressFrame();
+        }
+
+        private void CreateEntities()
+        {
+            int i = 12;
+
+            Vector2 lPos = _labels[i++].Position;
+
+            CreateEntity(lPos + new Vector2(4, 26) + GetOffset(), "slime", 16, 16, 5, 0, 1);
+            CreateEntity(lPos + new Vector2(130, 46) + GetOffset(), "annoyer", 16, 16, 8, 0, 1, 2, 3, 4, 5);
+        }
+
+        private Vector2 GetOffset()
+        {
+            _entityIndex++;
+            Vector2 offset = new Vector2(4, 10 * _entityIndex);
+
+            return offset;
+        }
+
+        private void CreateEntity(Vector2 pos, string texture, int width, int height, int framerate, params int[] frames)
+        {
+            UIEntity e = new UIEntity(pos, texture, width, height, DrawOrder.TEXT);
+            e.AddAnimation("a", frames, framerate);
+            e.Play("a");
+
+            e.velocity.Y = -15;
+
+            _entities.Add(e);
         }
 
         private class Screenie
