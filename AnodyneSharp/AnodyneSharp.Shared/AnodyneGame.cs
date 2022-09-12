@@ -192,6 +192,14 @@ namespace AnodyneSharp
                 _fpsLabel.SetText($"FPS: {GameTimes.FPS:0}");
             }
 
+#if DEBUG
+
+            if (KeyInput.JustPressedKey(Keys.F11))
+            {
+                Cheatz.Cheatz.ToggleFuckItMode();
+            }
+#endif
+
             SpriteDrawer.BeginDraw(_camera);
             _currentState.Draw();
             SpriteDrawer.EndDraw();
@@ -215,6 +223,8 @@ namespace AnodyneSharp
             {
                 effect.Deactivate();
             }
+
+            GameTimes.TimeScale = 1;
 
             _currentState = state switch
             {

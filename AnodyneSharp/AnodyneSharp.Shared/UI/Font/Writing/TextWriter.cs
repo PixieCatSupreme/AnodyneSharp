@@ -199,7 +199,7 @@ namespace AnodyneSharp.UI.Text
                         SpriteDrawer.DrawGuiSprite(spriteFont.texture, pos, c.Crop, spriteFont.color * Opacity, Z: z);
                         if (DrawShadow)
                         {
-                            SpriteDrawer.DrawGuiSprite(spriteFont.texture, pos, c.Crop, color: Color.Black * Opacity, Z: shadowZ);
+                            SpriteDrawer.DrawGuiSprite(spriteFont.texture, pos + new Vector2(0,1), c.Crop, color: Color.Black * Opacity, Z: shadowZ);
                         }
 
                     }

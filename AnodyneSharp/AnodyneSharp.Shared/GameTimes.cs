@@ -7,7 +7,16 @@ namespace AnodyneSharp
     public static class GameTimes
     {
         public static float FPS { get; private set; }
-        public static float DeltaTime { get; private set; }
+        public static float TimeScale { get; set; }
+        public static float TrueDeltaTime { get; private set; }
+
+        public static float DeltaTime
+        {
+            get
+            {
+                return TrueDeltaTime * TimeScale;
+            }
+        }
 
         private static Queue<float> _fpsQueue;
         private static int _maxSamples = 100;
@@ -15,11 +24,13 @@ namespace AnodyneSharp
         static GameTimes()
         {
             _fpsQueue = new Queue<float>(_maxSamples);
+
+            TimeScale = 1;
         }
 
         public static void UpdateTimes(GameTime gameTime)
         {
-            DeltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            TrueDeltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
         }
 
         public static void UpdateFPS(GameTime gameTime)

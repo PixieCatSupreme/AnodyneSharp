@@ -2053,6 +2053,18 @@
 /processorParam:TextureFormat=Color
 /build:textures/sprites/decoration/whiteportal.png
 
+#begin textures/sprites/dim_overlay.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:textures/sprites/dim_overlay.png
+
 #begin textures/sprites/ending/cast.png
 /importer:TextureImporter
 /processor:TextureProcessor

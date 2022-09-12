@@ -675,11 +675,6 @@ namespace AnodyneSharp.States
                 Cheatz.Cheatz.GiveKey();
             }
 
-            if (KeyInput.JustPressedKey(Keys.F11))
-            {
-                Cheatz.Cheatz.ToggleFuckItMode();
-            }
-
             if (KeyInput.JustPressedKey(Keys.F10))
             {
                 Cheatz.Cheatz.KonamiCode();
