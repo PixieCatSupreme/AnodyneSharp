@@ -2,6 +2,7 @@
 using AnodyneSharp.Entities;
 using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -18,9 +19,15 @@ namespace AnodyneSharp.UI
             : base(pos, frameWidth, frameHeight, layer)
         { }
 
-        public UIEntity(Vector2 pos, string textureName, int frameWidth, int frameHeight, DrawOrder layer) 
+        public UIEntity(Vector2 pos, string textureName, int frameWidth, int frameHeight, DrawOrder layer)
             : base(pos, textureName, frameWidth, frameHeight, layer)
         { }
+
+        public UIEntity(Vector2 pos, string textureName, int frameWidth, int frameHeight, DrawOrder layer, SpriteEffects flip) 
+            : base(pos, textureName, frameWidth, frameHeight, layer)
+        {
+            _flip = flip;
+        }
 
         public UIEntity(Vector2 pos, string textureName, int frame, int frameWidth, int frameHeight, DrawOrder layer)
             : base(pos, textureName, frameWidth, frameHeight, layer)
@@ -39,6 +46,7 @@ namespace AnodyneSharp.UI
                     srect, 
                     color * opacity, 
                     rotation, 
+                    _flip,
                     Z: DrawingUtilities.GetDrawingZ(layer));
             }
         }

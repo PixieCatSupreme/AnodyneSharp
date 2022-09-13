@@ -497,7 +497,6 @@
     <Content Include="$(MSBuildThisFileDirectory)Content\sfx\1\keyget.mp3" />
     <Content Include="$(MSBuildThisFileDirectory)Content\sfx\1\ladder_step_1.mp3" />
     <Content Include="$(MSBuildThisFileDirectory)Content\sfx\1\ladder_step_2.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\sfx\1\meow.wav" />
     <Content Include="$(MSBuildThisFileDirectory)Content\sfx\1\noise_step_1.mp3" />
     <Content Include="$(MSBuildThisFileDirectory)Content\sfx\1\on_off_laser_shoot.mp3" />
     <Content Include="$(MSBuildThisFileDirectory)Content\sfx\1\open.mp3" />

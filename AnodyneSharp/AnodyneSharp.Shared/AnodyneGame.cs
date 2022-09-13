@@ -193,10 +193,14 @@ namespace AnodyneSharp
             }
 
 #if DEBUG
-
             if (KeyInput.JustPressedKey(Keys.F11))
             {
                 Cheatz.Cheatz.ToggleFuckItMode();
+            }
+
+            if (KeyInput.JustPressedKey(Keys.P))
+            {
+                SetState(GameState.Credits);
             }
 #endif
 

@@ -12,6 +12,7 @@ using AnodyneSharp.Sounds;
 using AnodyneSharp.UI;
 using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace AnodyneSharp.States
 {
@@ -26,8 +27,6 @@ namespace AnodyneSharp.States
 
         private IEnumerator _stateLogic;
         private bool _stopScroll;
-
-        private int _entityIndex;
 
         public CreditsState()
         {
@@ -178,21 +177,57 @@ namespace AnodyneSharp.States
 
             Vector2 lPos = _labels[i++].Position;
 
-            CreateEntity(lPos + new Vector2(4, 26) + GetOffset(), "slime", 16, 16, 5, 0, 1);
-            CreateEntity(lPos + new Vector2(130, 46) + GetOffset(), "annoyer", 16, 16, 8, 0, 1, 2, 3, 4, 5);
+            CreateEntity(lPos + new Vector2(4, 26) + new Vector2(4, 10), "slime", new Point(16), 5, false, 0, 1);
+            CreateEntity(lPos + new Vector2(130, 46) + new Vector2(4, 20), "annoyer", new Point(16), 8, false, 0, 1, 2, 3, 4, 5);
+            CreateEntity(lPos + new Vector2(5, 66) + new Vector2(4, 30), "pew_laser", new Point(16), 0, false, 0);
+
+            CreateEntity(lPos + new Vector2(130, 92) + new Vector2(4, 30), "shieldy", new Point(16), 5, false, 1, 2, 1, 0, 1, 2, 1, 0, 16, 17, 18);
+            CreateEntity(lPos + new Vector2(5, 84) + new Vector2(4, 30), "pew_laser_bullet", new Point(16, 8), 8, false, 0, 1);
+
+            CreateEntity(lPos + new Vector2(11, 110) + new Vector2(4, 30), "sun_guy", new Point(16, 24), 3, false, 0, 1, 2, 3, 4);
+            CreateEntity(lPos + new Vector2(125, 120) + new Vector2(4, 30), "light_orb", new Point(16), 6, false, 0, 1, 2, 3, 4, 3, 2, 1);
+            CreateEntity(lPos + new Vector2(8, 144) + new Vector2(4, 30), "sun_guy_wave", new Point(128, 8), 8, false, 3, 4, 5);
+
+            lPos = _labels[i++].Position;
+
+            CreateEntity(lPos + new Vector2(35, -4) + new Vector2(4, 10), "f_mover", new Point(16), 4, false, 0, 1);
+            CreateEntity(lPos + new Vector2(108, 30) + new Vector2(4, 10), "on_off_shooter", new Point(16), 2, false, 0, 1, 2, 2, 1, 0);
+            CreateEntity(lPos + new Vector2(4, 20) + new Vector2(4, 10), "f_four_shooter", new Point(16), 3, false, 0, 1, 2, 2, 1, 0);
+            CreateEntity(lPos + new Vector2(115, 68) + new Vector2(4, 10), "f_slasher", new Point(24), 3, false, 0, 1, 0, 1, 0, 1);
+            CreateEntity(lPos + new Vector2(12, 110) + new Vector2(4, 2), "red_boss", new Point(32), 3, false, 0, 0, 1, 0, 0, 2);
+            CreateEntity(lPos + new Vector2(4, 138) + new Vector2(4, 2), "red_boss_ripple", new Point(48, 8), 12, false, 0, 1);
+
+            lPos = _labels[i++].Position;
+
+            CreateEntity(lPos + new Vector2(22, -3) + new Vector2(4, 10), "dog", new Point(16), 4, false, 2, 3, 2, 3, 4, 5, 4, 5, 6, 7, 6, 7, 2, 3);
+            CreateEntity(lPos + new Vector2(118, 20) + new Vector2(4, 10), "frog", new Point(16), 2, false, 0, 1, 0, 1, 3, 3);
+
+            CreateEntity(lPos + new Vector2(20, 42) + new Vector2(4, 10), "f_rotator", new Point(16), 10, false, 0, 1);
+            CreateEntity(lPos + new Vector2(120, 68) + new Vector2(4, 10), "person", new Point(16), 5, false, 0, 1, 0, 1, 2, 3, 2, 3, 4, 5, 4, 5, 2, 3, 2, 3);
+
+            CreateEntity(lPos + new Vector2(47, 120) + new Vector2(4, 10), "f_wallboss_face", new Point(64, 32), 3, false, 0, 0, 1, 0, 0, 2);
+            CreateEntity(lPos + new Vector2(-1, 120) + new Vector2(4, 10), "wallboss_wall", new Point(160, 32), 4, false, 0, 1, 0, 1, 0, 1);
+
+            CreateEntity(lPos + new Vector2(8, 150) + new Vector2(4, 10), "f_wallboss_l_hand", new Point(32), 1, false, 0, 1, 2, 3);
+            CreateEntity(lPos + new Vector2(118, 150) + new Vector2(4, 10), "f_wallboss_l_hand", new Point(32), 1, true, 0, 1, 2, 3);
+
+            lPos = _labels[i++].Position;
+
+            CreateEntity(lPos + new Vector2(16, -2) + new Vector2(16, 0), "rat", new Point(16), 5, false, 0, 1);
+
+            CreateEntity(lPos + new Vector2(122, 20) + new Vector2(4, 10), "gas_guy", new Point(16, 24), 4, false, 0, 1);
+            CreateEntity(lPos + new Vector2(137, 34) + new Vector2(4, 10), "gas_guy_cloud", new Point(24), 3, false, 0, 1);
+
+            CreateEntity(lPos + new Vector2(5, 46) + new Vector2(4, 10), "silverfish", new Point(16), 5, false, 4, 5);
+            CreateEntity(lPos + new Vector2(137, 66) + new Vector2(4, 10), "dash_trap", new Point(16), 12, false, 4, 5);
+
+            CreateEntity(lPos + new Vector2(5, 78) + new Vector2(4, 10), "spike_roller_horizontal", new Point(128, 16), 5, false, 0, 1);
+            CreateEntity(lPos + new Vector2(70, 120) + new Vector2(4, 30), "splitboss", new Point(24, 32), 5, false, 0, 1, 2, 1);
         }
 
-        private Vector2 GetOffset()
+        private void CreateEntity(Vector2 pos, string texture, Point size, int framerate, bool flipped, params int[] frames)
         {
-            _entityIndex++;
-            Vector2 offset = new Vector2(4, 10 * _entityIndex);
-
-            return offset;
-        }
-
-        private void CreateEntity(Vector2 pos, string texture, int width, int height, int framerate, params int[] frames)
-        {
-            UIEntity e = new UIEntity(pos, texture, width, height, DrawOrder.TEXT);
+            UIEntity e = new UIEntity(pos, texture, size.X, size.Y, DrawOrder.TEXT, flipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None);
             e.AddAnimation("a", frames, framerate);
             e.Play("a");
 

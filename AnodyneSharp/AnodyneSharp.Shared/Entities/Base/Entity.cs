@@ -110,6 +110,7 @@ namespace AnodyneSharp.Entities
 
             SetTexture(textureName, frameWidth, frameHeight);
         }
+
         /**
  * Adds a new animation to the sprite.
  * 

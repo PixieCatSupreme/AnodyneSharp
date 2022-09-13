@@ -23,6 +23,14 @@
     <DefineConstants>TRACE;OPENGL</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Content\bin\**" />
+    <Compile Remove="Content\obj\**" />
+    <EmbeddedResource Remove="Content\bin\**" />
+    <EmbeddedResource Remove="Content\obj\**" />
+    <None Remove="Content\bin\**" />
+    <None Remove="Content\obj\**" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove="Icon.bmp" />
     <None Remove="Icon.ico" />
   </ItemGroup>
@@ -46,6 +54,9 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Fluent-State-Machine\Fluent-State-Machine.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Content\" />
   </ItemGroup>
   <Import Project="..\AnodyneSharp.Shared\AnodyneSharp.Shared.projitems" Label="Shared" />
 </Project>
