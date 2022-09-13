@@ -42,7 +42,7 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
 
             dusts = new Dust[]
             {
-                new(p),new(p),new(p)
+                new(),new(),new()
             };
 
             _state = StateLogic();

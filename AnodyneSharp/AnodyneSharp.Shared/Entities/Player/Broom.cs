@@ -82,6 +82,7 @@ namespace AnodyneSharp.Entities
             if (pickup_candidate != null)
             {
                 dust = pickup_candidate;
+                dust.b = this;
                 pickup_candidate = null;
                 dust.Play("poof");
 

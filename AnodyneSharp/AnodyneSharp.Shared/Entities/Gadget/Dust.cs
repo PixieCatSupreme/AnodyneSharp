@@ -11,7 +11,7 @@ namespace AnodyneSharp.Entities
     [NamedEntity, Collision(typeof(Dust), MapCollision = true, KeepOnScreen = true)]
     public class Dust : Entity
     {
-        private Broom b; //used to un-unpoof on dust-dust collision
+        public Broom b; //used to un-unpoof on dust-dust collision
 
         public bool ON_CONVEYOR = false;
         public bool IS_RAFT = false;
@@ -26,17 +26,17 @@ namespace AnodyneSharp.Entities
             AddAnimation("fallpoof", CreateAnimFrameArray(0, 1, 2, 3, 4), 13, false);
             AddAnimation("unpoof", CreateAnimFrameArray(3, 2, 1, 0), 13, false);
             SetFrame(0);
-            b = p.broom;
+            b = p?.broom;
         }
 
-        public Dust(Player p) : this(Vector2.Zero,p)
+        public Dust() : this(Vector2.Zero,null)
         {
             exists = false;
         }
 
         public override void Collided(Entity other)
         {
-            if(!_curAnim.Finished && _curAnim.name == "unpoof" && b.dust == this)
+            if(!_curAnim.Finished && _curAnim.name == "unpoof" && b?.dust == this)
             {
                 exists = false;
                 b.just_released_dust = false;
