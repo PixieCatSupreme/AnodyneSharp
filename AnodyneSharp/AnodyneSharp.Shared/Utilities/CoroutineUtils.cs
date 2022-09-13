@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using static AnodyneSharp.States.CutsceneState;
@@ -16,6 +17,16 @@ namespace AnodyneSharp.Utilities
                 while (!MathUtilities.MoveTo(ref t, tm, 1)) yield return null;
             }
             yield break;
+        }
+
+        public static IEnumerator OnceEvery(Action func, float tm)
+        {
+            while(true)
+            {
+                float t = 0;
+                while (!MathUtilities.MoveTo(ref t, tm, 1)) yield return null;
+                func();
+            }
         }
 
         public static IEnumerator<T> WaitFor<T>(Func<bool> pred)

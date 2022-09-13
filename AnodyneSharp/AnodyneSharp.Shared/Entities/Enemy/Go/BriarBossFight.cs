@@ -59,7 +59,7 @@ namespace AnodyneSharp.Entities.Enemy.Go
                 body.State = body.Attack(6 - happy.Health - blue.Health);
                 while (body.State is not null) yield return null;
 
-                IEnumerator attack = MainAttack(blue, happy);
+                IEnumerator attack = MainAttack(happy, blue);
                 while (attack.MoveNext()) yield return null;
             }
 
