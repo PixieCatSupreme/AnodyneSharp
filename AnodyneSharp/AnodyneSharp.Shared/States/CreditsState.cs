@@ -18,6 +18,9 @@ namespace AnodyneSharp.States
 {
     public class CreditsState : State
     {
+
+        private const int maxLabels = 24;
+
         private List<UILabel> _labels;
         private List<UIEntity> _entities;
 
@@ -29,6 +32,7 @@ namespace AnodyneSharp.States
 
         private IEnumerator _stateLogic;
         private bool _stopScroll;
+
 
         public CreditsState()
         {
@@ -48,7 +52,7 @@ namespace AnodyneSharp.States
 
             int y = 0;
 
-            for (int i = 0; i < 24; i++)
+            for (int i = 0; i < maxLabels; i++)
             {
                 if (i != 0 && i % 2 == 0)
                 {
@@ -159,7 +163,7 @@ namespace AnodyneSharp.States
 
             int index = 6;
 
-            while (index < 24)
+            while (index < maxLabels)
             {
                 ProgressScreenie(ref index);
                 yield return null;
