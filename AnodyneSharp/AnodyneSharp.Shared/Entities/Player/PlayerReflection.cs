@@ -28,6 +28,7 @@ namespace AnodyneSharp.Entities
 
         public override void Update()
         {
+            HasVisibleHitbox = false;
             base.Update();
 
             Position = _player.Position + new Vector2(0, 7);

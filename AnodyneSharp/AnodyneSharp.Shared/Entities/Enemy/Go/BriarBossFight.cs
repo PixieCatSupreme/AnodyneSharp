@@ -59,7 +59,13 @@ namespace AnodyneSharp.Entities.Enemy.Go
                 body.State = body.Attack(6 - happy.Health - blue.Health);
                 while (body.State is not null) yield return null;
 
-                IEnumerator attack = MainAttack(happy, blue);
+                IEnumerator attack = (happy.Health > 0, blue.Health > 0) switch
+                {
+                    (false, _) => MainAttack(happy, blue),
+                    (_, false) => MainAttack(blue, happy),
+                    (true,true) => GlobalState.RNG.Next(2) == 0 ? MainAttack(happy,blue) : MainAttack(blue,happy)
+                };
+
                 while (attack.MoveNext()) yield return null;
             }
 

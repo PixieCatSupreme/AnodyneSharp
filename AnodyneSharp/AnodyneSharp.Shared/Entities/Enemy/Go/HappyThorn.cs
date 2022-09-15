@@ -14,6 +14,8 @@ namespace AnodyneSharp.Entities.Enemy.Go
 
         public HappyThorn(Vector2 pos) : base(pos, "briar_arm_left")
         {
+            offset = new(4, 4);
+            Position += offset;
             AddAnimation("off", CreateAnimFrameArray(0, 1, 2, 3), 4);
             Play("off");
             crystal = new(this);

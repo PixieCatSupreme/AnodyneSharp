@@ -7,6 +7,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace AnodyneSharp.Entities.Enemy.Go
 {
@@ -18,8 +19,9 @@ namespace AnodyneSharp.Entities.Enemy.Go
         {
             AddAnimation("off", CreateAnimFrameArray(1, 2, 3, 0), 4);
             Play("off");
-            offset.X = 40;
-            Position.X += offset.X;
+            offset.X = 35;
+            offset.Y = 4;
+            Position += offset;
         }
 
         public override IEnumerator GetAttacked(BigThorn blue, Player player)
@@ -29,9 +31,28 @@ namespace AnodyneSharp.Entities.Enemy.Go
 
             shooter.exists = true;
             shooter.Start(3 - Health, player);
-            while (shooter.exists) yield return null;
+            while (shooter.exists)
+            {
+                if(_curAnim.Finished)
+                {
+                    //Got hit by broom and need to end the attack
+                    shooter.EndAttack();
+                }
+                yield return null;
+            }
 
             yield break;
+        }
+
+        public void GetHit()
+        {
+            if(_curAnim.name != "hurt")
+            {
+                Play("hurt");
+                GlobalState.screenShake.Shake(0.01f, 0.2f);
+                SoundManager.PlaySoundEffect("wb_hit_ground");
+                shooter.Stop();
+            }
         }
 
         public override IEnumerable<Entity> SubEntities()
@@ -42,9 +63,11 @@ namespace AnodyneSharp.Entities.Enemy.Go
         public class FireEye : Entity
         {
             IEnumerator state;
+            int num_explosions = 0;
             EntityPool<Fireball> fireballs;
             EntityPool<Dust> dust = new(4, () => new());
             EntityPool<DustExplosion> explosions = new(4, ()=>new());
+            EntityPool<Mist> mist = new(2, () => new());
 
 
             public FireEye() : base(Vector2.Zero,"briar_fire_eye",16,16,Drawing.DrawOrder.BG_ENTITIES)
@@ -61,16 +84,71 @@ namespace AnodyneSharp.Entities.Enemy.Go
                 Play("grow");
                 Position = tl + (phase == 0 ? new Vector2(70, 80) : new Vector2(50, 100));
 
+                num_explosions = 0;
+
                 dust.Spawn((d) => { d.exists = true; d.Position = tl + new Vector2(1, 7) * 16; d.Play("unpoof"); });
                 dust.Spawn((d) => { d.exists = true; d.Position = tl + new Vector2(8, 7) * 16; d.Play("unpoof"); });
                 dust.Spawn((d) => { d.exists = true; d.Position = tl + new Vector2(3, 5) * 16; d.Play("unpoof"); });
                 dust.Spawn((d) => { d.exists = true; d.Position = tl + new Vector2(1, 5) * 16; d.Play("unpoof"); });
 
-                state = CoroutineUtils.OnceEvery(() => fireballs.Spawn((f) => f.Spawn(Position + Vector2.One * 4, p.Position)), 0.4f);
+                if (phase == 1) {
+                    //Original code looks like it should be spawning this one, but the second just overwrites it!
+                    //mist.Spawn(m => m.Spawn(tl + new Vector2(6 * 16 - 7, 5 * 16 - 12)));
+                    mist.Spawn(m => m.Spawn(tl + new Vector2(6 * 16 - 7, 7 * 16 - 12)));
+                }
+                else if(phase == 2)
+                {
+                    mist.Spawn(m => m.Spawn(tl + new Vector2(5 * 16 + 8, 4 * 16 + 5)));
+                    mist.Spawn(m => m.Spawn(tl + new Vector2(6 * 16, 6 * 16 + 3)));
+                }
+
+                state = Attack(p);
+            }
+
+            IEnumerator Attack(Player p)
+            {
+                IEnumerator s = CoroutineUtils.OnceEvery(() => fireballs.Spawn((f) => f.Spawn(Position + Vector2.One * 4, p.Position)), 0.4f);
+
+                while(num_explosions < 4 || explosions.Alive != 0)
+                {
+                    s.MoveNext();
+                    yield return null;
+                }
+
+                state = End();
+            }
+
+            IEnumerator End()
+            {
+                foreach(var d in dust.Entities.Where(d=>d.exists))
+                {
+                    d.Play("poof");
+                }
+                foreach(var m in mist.Entities.Where(m=>m.exists))
+                {
+                    m.Flicker(1);
+                }
+                Play("ungrow");
+
+                float t = 0;
+                while (!MathUtilities.MoveTo(ref t, 1.3f, 1)) yield return null;
+
+                foreach(var m in mist.Entities)
+                {
+                    m.exists = false;
+                }
+                exists = false;
+                yield break;
+            }
+
+            public void Stop()
+            {
+                state = null;
             }
 
             public void ExplodeAt(Dust d)
             {
+                num_explosions++;
                 d.exists = false;
                 explosions.Spawn(e => e.Spawn(d));
                 foreach(Facing f in Enum.GetValues(typeof(Facing)))
@@ -79,17 +157,22 @@ namespace AnodyneSharp.Entities.Enemy.Go
                 }
             }
 
+            public void EndAttack()
+            {
+                state = End();
+            }
+
             public override void Update()
             {
                 base.Update();
+                if (CurAnimName == "grow" && _curAnim.Finished) Play("shoot");
                 state?.MoveNext();
             }
 
             public override IEnumerable<Entity> SubEntities()
             {
-                return fireballs.Entities.Concat(dust.Entities).Concat(explosions.Entities);
+                return fireballs.Entities.Concat(dust.Entities).Concat(explosions.Entities).Concat(mist.Entities);
             }
-
         }
 
         [Collision(typeof(BlueThorn))]
@@ -116,12 +199,12 @@ namespace AnodyneSharp.Entities.Enemy.Go
             public override void Collided(Entity other)
             {
                 base.Collided(other);
-                other.Play("hurt");
+                (other as BlueThorn).GetHit();
             }
 
         }
 
-        [Collision(typeof(Player),typeof(Dust),KeepOnScreen = true)]
+        [Collision(typeof(Player),typeof(Dust),typeof(Mist),KeepOnScreen = true)]
         public class Fireball : Entity
         {
             FireEye parent;
@@ -170,6 +253,26 @@ namespace AnodyneSharp.Entities.Enemy.Go
                     parent.ExplodeAt(d);
                     exists = false;
                 }
+                else if(other is Mist)
+                {
+                    exists = false;
+                }
+            }
+        }
+
+        public class Mist : Entity
+        {
+            public Mist() : base(Vector2.Zero,"briar_mist",24,24,Drawing.DrawOrder.FG_SPRITES)
+            {
+                AddAnimation("a", CreateAnimFrameArray(0, 1), 5);
+                Play("a");
+                opacity = 0.7f;
+            }
+
+            public void Spawn(Vector2 pos)
+            {
+                Position = pos;
+                Flicker(1);
             }
         }
     }
