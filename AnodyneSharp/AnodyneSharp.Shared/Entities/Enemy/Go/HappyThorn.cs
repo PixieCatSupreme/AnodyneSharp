@@ -24,10 +24,10 @@ namespace AnodyneSharp.Entities.Enemy.Go
         public override IEnumerator GetAttacked(BigThorn blue, Player player)
         {
             int phase = 3 - Health;
-            int number_back_and_forth = 2+phase;
+            int number_back_and_forth = 2 + phase;
 
             crystal.exists = true;
-            crystal.Position = blue.Position + Vector2.UnitY * 52;
+            crystal.Position = blue.Position + new Vector2(5, 52);
             crystal.state = crystal.DoAttack(number_back_and_forth, 50 + phase * 20, player);
 
             while (crystal.state is not null) yield return null;
@@ -41,7 +41,7 @@ namespace AnodyneSharp.Entities.Enemy.Go
         }
 
         [Collision(typeof(Player), typeof(Broom))]
-        class IceCrystal : Entity
+        public class IceCrystal : Entity
         {
             EntityPool<IceExplosion> explosions = new(5, () => new());
             HappyThorn parent;
@@ -102,7 +102,7 @@ namespace AnodyneSharp.Entities.Enemy.Go
                         vel_mul += 0.15f;
                         MoveTowards(thorn_target_loc, base_vel * vel_mul);
                     }
-                    
+
                     while ((Position - thorn_target_loc).LengthSquared() > 25) yield return null;
 
                     GlobalState.screenShake.Shake(0.01f, 0.2f);
@@ -150,25 +150,31 @@ namespace AnodyneSharp.Entities.Enemy.Go
             }
 
 
-            class IceExplosion : Entity
+        }
+
+        public class IceExplosion : Entity
+        {
+            public IceExplosion() : base(Vector2.Zero, "briar_ice_explosion", 24, 24, Drawing.DrawOrder.FG_SPRITES)
             {
-                public IceExplosion() : base(Vector2.Zero, "briar_ice_explosion", 24, 24, Drawing.DrawOrder.FG_SPRITES)
-                {
-                    AddAnimation("explode", CreateAnimFrameArray(0, 1, 2, 3), 15, false);
-                }
+                AddAnimation("explode", CreateAnimFrameArray(0, 1, 2, 3), 15, false);
+            }
 
-                public override void Update()
-                {
-                    base.Update();
-                    if (_curAnim.Finished)
-                        exists = false;
-                }
+            public override void Update()
+            {
+                base.Update();
+                if (_curAnim.Finished)
+                    exists = false;
+            }
 
-                public void Spawn(IceCrystal parent)
-                {
-                    Position = parent.Position - Vector2.One * 4;
-                    Play("explode");
-                }
+            public void Spawn(IceCrystal parent)
+            {
+                Spawn(parent.Position - Vector2.One * 4);
+            }
+
+            public void Spawn(Vector2 pos)
+            {
+                Position = pos;
+                Play("explode");
             }
         }
     }

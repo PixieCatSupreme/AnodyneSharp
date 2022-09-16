@@ -319,6 +319,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Go
             height = p.height;
             width = p.width;
             offset = p.offset;
+            y_push = p.y_push;
         }
 
     }

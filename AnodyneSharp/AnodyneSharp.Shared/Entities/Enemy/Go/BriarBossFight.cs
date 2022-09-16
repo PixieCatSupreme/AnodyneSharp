@@ -1,11 +1,18 @@
 ﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.Entities.Gadget;
+using AnodyneSharp.GameEvents;
+using AnodyneSharp.MapData;
 using AnodyneSharp.Registry;
+using AnodyneSharp.Sounds;
+using AnodyneSharp.States;
 using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using static AnodyneSharp.States.CutsceneState;
 
 namespace AnodyneSharp.Entities.Enemy.Go
 {
@@ -69,6 +76,7 @@ namespace AnodyneSharp.Entities.Enemy.Go
                 while (attack.MoveNext()) yield return null;
             }
 
+            GlobalState.StartCutscene = Die();
 
             yield break;
         }
@@ -91,6 +99,78 @@ namespace AnodyneSharp.Entities.Enemy.Go
             }
             while (attacked.state is not null) yield return null;
             attacker.Play("off");
+        }
+
+        IEnumerator<CutsceneEvent> Die()
+        {
+            SoundManager.StopSong();
+
+            EntityPool<HappyThorn.IceExplosion> iceExplosions = new(4, () => new() { layer = Drawing.DrawOrder.FG_SPRITES });
+            EntityPool<BlueThorn.DustExplosion> dustExplosions = new(5, () => new() { layer = Drawing.DrawOrder.FG_SPRITES});
+            yield return new EntityEvent(iceExplosions.Entities.Concat(dustExplosions.Entities));
+
+            Vector2 randomizePos(Entity target)
+            {
+                return target.Position + new Vector2(GlobalState.RNG.NextSingle() * target.width, GlobalState.RNG.NextSingle() * target.height);
+            }
+
+            for(int i = 0; i < 10; ++i)
+            {
+                float t = 0;
+                while (!MathUtilities.MoveTo(ref t, 0.2f, 1)) yield return null;
+                happy.Play("hitloop");
+                dustExplosions.Spawn(e => e.Spawn(randomizePos(happy)));
+                SoundManager.PlaySoundEffect("hit_wall");
+            }
+            {
+                bool flashed = false;
+                GlobalState.flash.Flash(1.5f, new(0xffff1111), () => flashed = true);
+                SoundManager.PlaySoundEffect("sun_guy_death_short");
+                while (!flashed) yield return null;
+                happy.exists = false;
+            }
+
+            for (int i = 0; i < 10; ++i)
+            {
+                float t = 0;
+                while (!MathUtilities.MoveTo(ref t, 0.2f, 1)) yield return null;
+                blue.Play("hitloop");
+                iceExplosions.Spawn(e => e.Spawn(randomizePos(blue)));
+                SoundManager.PlaySoundEffect("hit_wall");
+            }
+            {
+                bool flashed = false;
+                GlobalState.flash.Flash(1.5f, new(0xff1111ff), () => flashed = true);
+                SoundManager.PlaySoundEffect("sun_guy_death_short");
+                while (!flashed) yield return null;
+                blue.exists = false;
+            }
+
+            {
+                float t = 0;
+                while (!MathUtilities.MoveTo(ref t, 1.5f, 1)) yield return null;
+            }
+
+            for (int i = 0; i < 15; ++i)
+            {
+                float t = 0;
+                while (!MathUtilities.MoveTo(ref t, 0.15f, 1)) yield return null;
+                core.Play("flash");
+                yield return new EntityEvent(Enumerable.Repeat(new Explosion(body) { Position = randomizePos(body) }, 1));
+            }
+            {
+                bool flashed = false;
+                GlobalState.flash.Flash(5, Color.White, () => flashed = true);
+                SoundManager.PlaySoundEffect("sun_guy_death_long");
+                while (!flashed) yield return null;
+                body.exists = false;
+                core.exists = false;
+                exists = false;
+                (GlobalState.Map as Map).offset = Vector2.Zero;
+                yield return null;
+            }
+
+            yield break;
         }
 
         public override void Update()

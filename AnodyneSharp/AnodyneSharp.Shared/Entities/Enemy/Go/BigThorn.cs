@@ -16,6 +16,7 @@ namespace AnodyneSharp.Entities.Enemy.Go
         {
             immovable = true;
             AddAnimation("hit", CreateAnimFrameArray(4, 6, 4, 6, 4, 6, 4, 6, 4, 6, 4, 6), 15, false);
+            AddAnimation("hitloop", CreateAnimFrameArray(4, 6), 15);
             AddAnimation("hurt", CreateAnimFrameArray(7, 8), 4);
             AddAnimation("active", CreateAnimFrameArray(4, 5), 5);
 

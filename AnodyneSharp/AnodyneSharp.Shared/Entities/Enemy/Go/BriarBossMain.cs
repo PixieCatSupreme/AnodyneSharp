@@ -54,6 +54,7 @@ namespace AnodyneSharp.Entities.Enemy.Go
         public override void Update()
         {
             base.Update();
+            if (GlobalState.ScreenTransition) return;
             switch (state)
             {
                 case State.Intro:
@@ -67,10 +68,18 @@ namespace AnodyneSharp.Entities.Enemy.Go
                     if(!fightStage?.exists ?? false)
                     {
                         state = State.Post;
+                        gate.exists = false;
+                        visible = true;
+                        GlobalState.StartCutscene = End();
                     }
                     break;
                 case State.Post:
                     player.Position.Y = Math.Min(player.Position.Y, tl.Y + 120);
+                    if(Position.Y < tl.Y - 16)
+                    {
+                        visible = false;
+                        velocity = Vector2.Zero;
+                    }
                     break;
             }
         }
@@ -104,6 +113,28 @@ namespace AnodyneSharp.Entities.Enemy.Go
 
             fightStage = new(player);
             GlobalState.SpawnEntity(fightStage);
+
+            yield break;
+        }
+
+        IEnumerator<CutsceneEvent> End()
+        {
+            {
+                float t = 0;
+                while (!MathUtilities.MoveTo(ref t, 1.5f, 1)) yield return null;
+            }
+
+            yield return new DialogueEvent(DialogueManager.GetDialogue("briar","after_fight"));
+
+            {
+                float t = 0;
+                while (!MathUtilities.MoveTo(ref t, 1, 1)) yield return null;
+            }
+
+            velocity = Vector2.UnitY * -20;
+            Play("walk_u");
+            SoundManager.PlaySong("go");
+            GlobalState.events.BossDefeated.Add(GlobalState.CURRENT_MAP_NAME);
 
             yield break;
         }

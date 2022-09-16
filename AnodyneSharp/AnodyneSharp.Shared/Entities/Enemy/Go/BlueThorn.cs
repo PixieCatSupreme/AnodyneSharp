@@ -46,7 +46,7 @@ namespace AnodyneSharp.Entities.Enemy.Go
 
         public void GetHit()
         {
-            if(_curAnim.name != "hurt")
+            if(_curAnim.name == "off")
             {
                 Play("hurt");
                 GlobalState.screenShake.Shake(0.01f, 0.2f);
@@ -180,14 +180,19 @@ namespace AnodyneSharp.Entities.Enemy.Go
         {
             public DustExplosion() : base(Vector2.Zero, "briar_dust_explosion", 48, 48, Drawing.DrawOrder.ENTITIES)
             {
-                AddAnimation("explode", CreateAnimFrameArray(0, 1, 2, 3, 4, 5), 12, false);
+                AddAnimation("explode", CreateAnimFrameArray(0, 1, 2, 3, 4), 12, false);
             }
 
             public void Spawn(Dust d)
             {
-                Play("explode");
                 SoundManager.PlaySoundEffect("dust_explode");
-                Position = d.Position - Vector2.One * 16;
+                Spawn(d.Position - Vector2.One * 16);
+            }
+
+            public void Spawn(Vector2 pos)
+            {
+                Position = pos;
+                Play("explode");
             }
 
             public override void Update()
