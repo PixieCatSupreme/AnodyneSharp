@@ -366,7 +366,7 @@ namespace AnodyneSharp.States
             }
             if (GlobalState.StartCutscene != null)
             {
-                _childStates.Add(new CutsceneState(_camera, GlobalState.StartCutscene));
+                _childStates.Add(new CutsceneState(_camera, GlobalState.StartCutscene) { ChangeStateEvent = ChangeStateEvent});
                 GlobalState.StartCutscene = null;
             }
 

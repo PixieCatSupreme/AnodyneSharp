@@ -13,7 +13,7 @@ using static AnodyneSharp.States.CutsceneState;
 namespace AnodyneSharp.Entities
 {
     [Collision(typeof(Player))]
-    abstract class SpriteSage : Entity
+    public class SpriteSage : Entity
     {
         protected Player _player;
         protected bool _facePlayer = true;
@@ -27,10 +27,10 @@ namespace AnodyneSharp.Entities
             Position += offset;
             immovable = true;
 
-            AddAnimation("walk_d", CreateAnimFrameArray(0, 1), 6, true);
-            AddAnimation("walk_r", CreateAnimFrameArray(2, 3), 6, true);
-            AddAnimation("walk_l", CreateAnimFrameArray(2, 3), 6, true);
-            AddAnimation("walk_u", CreateAnimFrameArray(4, 5), 6, true);
+            AddAnimation("walk_d", CreateAnimFrameArray(0, 1), 6);
+            AddAnimation("walk_r", CreateAnimFrameArray(2, 3), 6);
+            AddAnimation("walk_l", CreateAnimFrameArray(2, 3), 6);
+            AddAnimation("walk_u", CreateAnimFrameArray(4, 5), 6);
             AddAnimation("idle_d", CreateAnimFrameArray(6));
             AddAnimation("idle_r", CreateAnimFrameArray(7));
             AddAnimation("idle_l", CreateAnimFrameArray(7));

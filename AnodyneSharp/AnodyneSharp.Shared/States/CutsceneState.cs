@@ -66,6 +66,10 @@ namespace AnodyneSharp.States
                     {
                         _substate = new(d.Diag);
                     }
+                    else if(e is ChangeGameStateEvent g)
+                    {
+                        ChangeStateEvent(g.NewState);
+                    }
                 }
             }
             else
@@ -126,5 +130,7 @@ namespace AnodyneSharp.States
         public sealed record WarpEvent(string Map, Point Grid) : CutsceneEvent { };
         public sealed record ReturnWarp() : CutsceneEvent { };
         public sealed record EntityEvent(IEnumerable<Entity> NewEntities) : CutsceneEvent { };
+
+        public sealed record ChangeGameStateEvent(AnodyneGame.GameState NewState) : CutsceneEvent { };
     }
 }
