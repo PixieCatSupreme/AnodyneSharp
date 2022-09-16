@@ -10,6 +10,7 @@ using AnodyneSharp.Input;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 using AnodyneSharp.UI;
+using AnodyneSharp.UI.PauseMenu;
 using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -29,6 +30,7 @@ namespace AnodyneSharp.States
         private UIEntity _dimOverlay;
         private UIEntity _bg;
         private Screenie _screenie;
+        private SavePopup _savePopup;
 
         private IEnumerator _stateLogic;
         private bool _stopScroll;
@@ -74,6 +76,8 @@ namespace AnodyneSharp.States
                 IsVisible = false
             };
 
+            _savePopup = new SavePopup(this);
+
             CreateEntities();
 
             _stateLogic = StateLogic();
@@ -87,13 +91,15 @@ namespace AnodyneSharp.States
 
             _screenie.Update();
 
-            foreach (var entity in _entities)
-            {
-                entity.PostUpdate();
-            }
+            _savePopup.Update();
 
             if (!_stopScroll)
             {
+                foreach (var entity in _entities)
+                {
+                    entity.PostUpdate();
+                }
+
                 if (KeyInput.IsRebindableKeyPressed(KeyFunctions.Accept))
                 {
                     if (GlobalState.FUCK_IT_MODE_ON)
@@ -138,6 +144,8 @@ namespace AnodyneSharp.States
             _bg.Draw();
 
             _screenie.Draw();
+
+            _savePopup.Draw();
 
             foreach (var label in _labels)
             {
@@ -189,6 +197,13 @@ namespace AnodyneSharp.States
 
             _labels.Last().IsVisible = false;
             _endLabel.IsVisible = true;
+
+            _savePopup.IsVisible = true;
+
+            foreach (var entity in _entities)
+            {
+                entity.visible = false;
+            }
 
             yield break;
         }
@@ -343,6 +358,10 @@ namespace AnodyneSharp.States
             CreateEntity(lPos + new Vector2(20, 44) + new Vector2(4, 12), "sage", new Point(16), 6, false, false, 0, 1);
             CreateEntity(lPos + new Vector2(125, 67) + new Vector2(4, 22), "briar", new Point(16), 6, false, false, 0, 1);
 
+            lPos = _labels[i++].Position;
+
+            CreateEntity(lPos + new Vector2(6, 28) + new Vector2(4, 10), "dev_npcs", new Point(16), 0, false, false, 0);
+            CreateEntity(lPos + new Vector2(140, 28) + new Vector2(0, 10), "dev_npcs", new Point(16), 0, false, false, 10);
         }
 
         private void CreateEntity(Vector2 pos, string texture, Point size, int framerate, bool flipped, bool inFront, params int[] frames)
@@ -451,6 +470,102 @@ namespace AnodyneSharp.States
                 }
 
                 return _frame;
+            }
+        }
+
+        private class SavePopup
+        {
+            public bool IsVisible { get; set; }
+
+            private UIEntity _background;
+            private UILabel _prompt;
+            private UILabel _yes;
+            private UILabel _no;
+            private MenuSelector _selector;
+
+            private Vector2 _pos1;
+            private Vector2 _pos2;
+
+            private CreditsState _parent;
+
+            private bool _inputDelay;
+
+            public SavePopup(CreditsState parent)
+            {
+                int bgW = 80;
+                int bgH = 29;
+
+                Vector2 topLeft = new Vector2((160 - bgW) / 2, 20 + (160 - bgH) / 2);
+                _background = new UIEntity(topLeft, "checkpoint_save_box", bgW, bgH, DrawOrder.TEXTBOX);
+
+                _prompt = new UILabel(topLeft + new Vector2(5, 0), true, DialogueManager.GetDialogue("misc", "any", "checkpoint", 0), layer:DrawOrder.TEXT);
+                _yes = new UILabel(topLeft + new Vector2(5 +14, 8), true, DialogueManager.GetDialogue("misc", "any", "checkpoint", 1), layer: DrawOrder.TEXT);
+                _no = new UILabel(topLeft + new Vector2(5 + 14, 16), true, DialogueManager.GetDialogue("misc", "any", "checkpoint", 2), layer: DrawOrder.TEXT);
+
+                _selector = new MenuSelector();
+                _selector.Play("enabledRight");
+
+                _pos1 = topLeft + new Vector2(8, 10);
+                _pos2 = topLeft + new Vector2(8, 18);
+
+                _selector.Position = _pos1;
+
+                IsVisible = false;
+                _inputDelay = true;
+
+                _parent = parent;
+            }
+
+            public void Update()
+            {
+                if (!IsVisible)
+                {
+                    return;
+                }
+
+                _selector.Update();
+                _selector.PostUpdate();
+
+                if (_inputDelay)
+                {
+                    _inputDelay = false;
+                    return;
+                }
+
+                if (KeyInput.JustPressedRebindableKey(KeyFunctions.Up) &&
+                    _selector.Position == _pos2)
+                {
+                    _selector.Position = _pos1;
+                }
+                else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Down) &&
+                    _selector.Position == _pos1)
+                {
+                    _selector.Position = _pos2;
+                }
+                else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept))
+                {
+                    if (_selector.Position == _pos1)
+                    {
+                        GlobalState.events.SetEvent("SeenCredits", 1);
+                        GlobalState.SaveGame();
+                    }
+
+                    SoundManager.PlaySoundEffect("menu_select");
+
+                    _parent.ChangeStateEvent(AnodyneGame.GameState.TitleScreen);
+                }
+            }
+
+            public void Draw()
+            {
+                if (IsVisible)
+                {
+                    _background.Draw();
+                    _prompt.Draw();
+                    _yes.Draw();
+                    _no.Draw();
+                    _selector.Draw();
+                }
             }
         }
     }
