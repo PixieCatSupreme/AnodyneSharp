@@ -76,7 +76,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc
             string text = GetInteractionText();
             if (text != "")
             {
-                GlobalState.Dialogue = GetInteractionText();
+                GlobalState.Dialogue = text;
                 return true;
             }
             return false;
