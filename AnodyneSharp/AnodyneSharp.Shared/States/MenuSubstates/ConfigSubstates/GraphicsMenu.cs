@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.Drawing;
 using AnodyneSharp.Input;
 using AnodyneSharp.Registry;
 using AnodyneSharp.UI;
@@ -6,6 +7,7 @@ using AnodyneSharp.UI.PauseMenu.Config;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace AnodyneSharp.States.MenuSubstates.ConfigSubstates
@@ -52,7 +54,7 @@ namespace AnodyneSharp.States.MenuSubstates.ConfigSubstates
                 ValueChangedEvent = (s, index) => { GlobalState.ResolutionDirty = GlobalState.settings.resolution != (Resolution)index; GlobalState.settings.resolution = (Resolution)index; }
             };
 
-            var scalingSelect = new TextSelector(scalingLabel.Position + new Vector2(50, 0), 20, GlobalState.settings.scale - 1, true, Drawing.DrawOrder.TEXT, "1x", "2x", "3x", "4x")
+            var scalingSelect = new TextSelector(scalingLabel.Position + new Vector2(50, 0), 20, GlobalState.settings.scale - 1, true, Drawing.DrawOrder.TEXT, Enumerable.Range(1, SpriteDrawer.MaxScale).Select(n => $"{n}x").ToArray())
             {
                 ValueChangedEvent = (s, index) => { GlobalState.ResolutionDirty = GlobalState.settings.scale != index + 1; GlobalState.settings.scale = index + 1; },
                 noLoop = true,

@@ -22,6 +22,7 @@ namespace AnodyneSharp.UI.PauseMenu.Config
             :base(pos,width)
         {
             _options = options;
+            startIndex = Math.Min(startIndex, options.Length - 1);
             this.startIndex = startIndex;
             index = startIndex;
 

@@ -4,6 +4,7 @@ using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Linq;
 
 namespace AnodyneSharp.Drawing
@@ -25,6 +26,8 @@ namespace AnodyneSharp.Drawing
         private static RenderTarget2D _depth;
         private static Effect blend; //To be able to set the depth
         private static Effect _depthrender;
+
+        public static int MaxScale => Math.Min(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / 160, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height / 180);
 
         public static void Initialize(GraphicsDevice graphicsDevice)
         {

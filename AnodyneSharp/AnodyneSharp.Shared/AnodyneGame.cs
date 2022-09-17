@@ -63,6 +63,8 @@ namespace AnodyneSharp
             //_baseFolder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             BaseFolder = "";
 
+            GlobalState.settings.scale = Math.Min(GlobalState.settings.scale, SpriteDrawer.MaxScale);
+
 #if WINDOWS
             InitGraphics();
 #endif
