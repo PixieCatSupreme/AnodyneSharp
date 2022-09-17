@@ -343,11 +343,24 @@ namespace AnodyneSharp.Entities
             }
         }
 
+        float DustDistance(Dust d)
+        {
+            //Strategy: try to pick up dust furthest away in the direction the player if facing, ties are broken by choosing the dust that is closer to that line
+            Vector2 dist = d.Center - _root.Center;
+            Vector2 root_facing = FacingDirection(_root.facing);
+            
+            float dist_facing = Vector2.Dot(dist,root_facing); //distance in direction player is facing
+
+            float dist_other_dir = Math.Abs(Vector2.Dot(dist,new(root_facing.Y,root_facing.X))); //distance along other axis
+
+            return 50*dist_facing - dist_other_dir;
+        }
+
         public override void Collided(Entity other)
         {
             if (dust == null && !just_released_dust && other is Dust d && !ReferenceEquals(d, _root.raft))
             {
-                if (pickup_candidate == null || (_root.Center - pickup_candidate.Center).LengthSquared() < (d.Center - _root.Center).LengthSquared())
+                if (pickup_candidate == null || DustDistance(pickup_candidate) < DustDistance(d))
                 {
                     pickup_candidate = d;
                 }
