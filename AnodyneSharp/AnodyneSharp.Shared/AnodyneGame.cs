@@ -98,13 +98,15 @@ namespace AnodyneSharp
 
             base.Initialize();
 
-            SetState(GameState.TitleScreen);
-
             _fpsLabel = new UILabel(new Vector2(0, GameConstants.HEADER_HEIGHT), false, "", Color.LightBlue);
 
             GlobalState.darkness.SetCamera(_camera);
 
             Window.Title = "Anodyne Fan Remake";
+
+            SetDefaultKeys();
+
+            SetState(GameState.TitleScreen);
         }
 
         /// <summary>
@@ -113,9 +115,6 @@ namespace AnodyneSharp
         /// </summary>
         protected override void LoadContent()
         {
-            ResourceManager.LoadResources(Content);
-            CardDataManager.ReadCardData();
-
             if (File.Exists("InputConfig.dat"))
             {
                 using InputConfigLoader inputConfigWriter = new InputConfigLoader($"{GameConstants.SavePath}InputConfig.dat");
@@ -123,13 +122,13 @@ namespace AnodyneSharp
             }
             else
             {
-                SetDefaultKeys();
                 using InputConfigWriter inputConfigWriter = new InputConfigWriter($"{GameConstants.SavePath}InputConfig.dat");
                 inputConfigWriter.WriteInputConfig();
             }
 
+            ResourceManager.LoadResources(Content);
+            CardDataManager.ReadCardData();
             DialogueManager.Reload();
-
             SpriteDrawer.Load(Content);
 
             foreach (var effect in GlobalState.AllEffects)
