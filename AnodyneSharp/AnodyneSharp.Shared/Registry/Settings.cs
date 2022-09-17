@@ -49,7 +49,7 @@ namespace AnodyneSharp.Registry
         {
             try
             {
-                string save = File.ReadAllText("Settings.json");
+                string save = File.ReadAllText($"{GameConstants.SavePath}Settings.json");
                 return JsonSerializer.Deserialize<Settings>(save);
             }
             catch
@@ -60,7 +60,7 @@ namespace AnodyneSharp.Registry
 
         public void Save()
         {
-            File.WriteAllText("Settings.json",JsonSerializer.Serialize<Settings>(this));
+            File.WriteAllText($"{GameConstants.SavePath}Settings.json", JsonSerializer.Serialize<Settings>(this));
         }
     }
 }

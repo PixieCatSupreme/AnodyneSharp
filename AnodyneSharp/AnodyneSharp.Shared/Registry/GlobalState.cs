@@ -65,7 +65,7 @@ namespace AnodyneSharp.Registry
 
             public void SaveTo(int id)
             {
-                File.WriteAllText($"Save_{id + 1}.dat", ToString());
+                File.WriteAllText($"{GameConstants.SavePath}Save_{id + 1}.dat", ToString());
             }
 
             public override string ToString()

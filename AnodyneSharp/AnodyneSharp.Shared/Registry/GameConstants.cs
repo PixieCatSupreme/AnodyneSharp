@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Dialogue;
+﻿using System;
+using AnodyneSharp.Dialogue;
 
 namespace AnodyneSharp.Registry
 {
@@ -34,6 +35,8 @@ namespace AnodyneSharp.Registry
             DEBUG
         };
 
+        public static string SavePath;
+
         public const int SCREEN_WIDTH_IN_TILES = 10;
         public const int SCREEN_HEIGHT_IN_TILES = 10;
         public const int TILE_WIDTH = 16;
@@ -44,6 +47,19 @@ namespace AnodyneSharp.Registry
 
         public const int BUTTON_WIDTH = 13;
         public const int BUTTON_HEIGHT = 14;
+
+        static GameConstants()
+        {
+            SavePath =
+#if DEBUG
+                "";
+#else
+                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/My games/AnodyneFanRemake/";
+#endif
+
+
+        }
+
         public static int FONT_LINE_HEIGHT
         {
             get

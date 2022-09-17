@@ -60,10 +60,14 @@ namespace AnodyneSharp
 
             _currentState = null;
 
-            //_baseFolder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             BaseFolder = "";
 
             GlobalState.settings.scale = Math.Min(GlobalState.settings.scale, SpriteDrawer.MaxScale);
+
+            if (!Directory.Exists(GameConstants.SavePath))
+            {
+                Directory.CreateDirectory(GameConstants.SavePath);
+            }
 
 #if WINDOWS
             InitGraphics();

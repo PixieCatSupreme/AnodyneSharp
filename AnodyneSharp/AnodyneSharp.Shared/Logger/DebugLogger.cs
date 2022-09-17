@@ -5,12 +5,13 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using AnodyneSharp.Registry;
 
 namespace AnodyneSharp.Logging
 {
     public static class DebugLogger
     {
-        private static readonly string LogPath = "game.log";
+        private static readonly string LogPath = $"{GameConstants.SavePath}game.log";
 
         private static Queue<LogLine> DebugLog;
         private static readonly int MaxLogs;
