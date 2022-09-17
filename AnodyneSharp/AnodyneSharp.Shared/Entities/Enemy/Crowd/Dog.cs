@@ -173,7 +173,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
 
         public override IEnumerable<Entity> SubEntities()
         {
-            return Enumerable.Repeat(_activeRegion, 1);
+            return base.SubEntities().Concat(Enumerable.Repeat(_activeRegion, 1));
         }
 
         public override void Collided(Entity other)

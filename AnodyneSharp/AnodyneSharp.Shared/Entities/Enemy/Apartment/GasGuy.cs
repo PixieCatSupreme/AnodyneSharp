@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework;
 using RSG;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace AnodyneSharp.Entities.Enemy.Apartment
@@ -146,7 +147,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
 
         public override IEnumerable<Entity> SubEntities()
         {
-            return gasClouds.Entities;
+            return gasClouds.Entities.Concat(base.SubEntities());
         }
 
         [Collision(typeof(Player), typeof(Broom), typeof(Silverfish), KeepOnScreen = false, MapCollision = false)]

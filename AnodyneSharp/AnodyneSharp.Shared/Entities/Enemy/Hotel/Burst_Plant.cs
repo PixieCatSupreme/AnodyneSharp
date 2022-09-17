@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using RSG;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace AnodyneSharp.Entities.Enemy.Hotel
@@ -92,7 +93,7 @@ namespace AnodyneSharp.Entities.Enemy.Hotel
 
         public override IEnumerable<Entity> SubEntities()
         {
-            return _bullets.Entities;
+            return base.SubEntities().Concat(_bullets.Entities);
         }
 
         class ChargeState : TimerState

@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using RSG;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace AnodyneSharp.Entities.Enemy.Crowd
@@ -109,7 +110,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
 
         public override IEnumerable<Entity> SubEntities()
         {
-            return _bullets.Entities;
+            return base.SubEntities().Concat(_bullets.Entities);
         }
 
         [Collision(typeof(Player))]
