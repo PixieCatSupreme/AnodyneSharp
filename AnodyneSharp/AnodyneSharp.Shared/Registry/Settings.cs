@@ -14,6 +14,13 @@ namespace AnodyneSharp.Registry
         Stretch
     }
 
+    public enum FPS
+    {
+        Fixed,
+        VSync,
+        Unlocked
+    }
+
     public class Settings
     {
         public Language language { get; set; } = Language.EN;
@@ -31,6 +38,8 @@ namespace AnodyneSharp.Registry
         
         public Resolution resolution { get; set; } = Resolution.Windowed;
         public int scale { get; set; } = 3;
+
+        public FPS fps { get; set; } = FPS.Fixed;
 
         public float flash_brightness { get; set; } = 1.0f;
         public float flash_easing { get; set; } = 0.0f;

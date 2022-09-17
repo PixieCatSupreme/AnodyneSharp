@@ -58,10 +58,6 @@ namespace AnodyneSharp
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            //Uncomment the below two lines to get unlocked fps
-            //IsFixedTimeStep = false;
-            //graphics.SynchronizeWithVerticalRetrace = false;
-
             _currentState = null;
 
             //_baseFolder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
@@ -262,6 +258,22 @@ namespace AnodyneSharp
                     graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
                     graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
                     graphics.IsFullScreen = true;
+                    break;
+            }
+
+            switch(GlobalState.settings.fps)
+            {
+                case FPS.Fixed:
+                    IsFixedTimeStep = true;
+                    graphics.SynchronizeWithVerticalRetrace = true;
+                    break;
+                case FPS.VSync:
+                    IsFixedTimeStep = false;
+                    graphics.SynchronizeWithVerticalRetrace = true;
+                    break;
+                case FPS.Unlocked:
+                    IsFixedTimeStep = false;
+                    graphics.SynchronizeWithVerticalRetrace = false;
                     break;
             }
 

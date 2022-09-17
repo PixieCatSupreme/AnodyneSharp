@@ -38,7 +38,7 @@ namespace AnodyneSharp.States.MenuSubstates.ConfigSubstates
         {
             float x = GameConstants.SCREEN_WIDTH_IN_PIXELS / 2 - 136 / 2;
             float menuX = x + 10;
-            float y = 10;
+            float y = 5;
             float yStep = GameConstants.FONT_LINE_HEIGHT - GameConstants.LineOffset + 3;
 
             _bgBox = new UIEntity(new Vector2(x, y), "pop_menu", 136, 126, Drawing.DrawOrder.TEXTBOX);
@@ -59,7 +59,13 @@ namespace AnodyneSharp.States.MenuSubstates.ConfigSubstates
                 noConfirm = true
             };
 
-            _flashLabel = new UILabel(new Vector2(menuX, scalingLabel.Position.Y + (int)(yStep * 1.5f)), true, "Screen flash", layer: Drawing.DrawOrder.TEXT, forceEnglish: true);
+            var fpsLabel = new UILabel(scalingLabel.Position + Vector2.UnitY * yStep, true, "FPS:", layer: Drawing.DrawOrder.TEXT, forceEnglish: true);
+            var fpsSelect = new TextSelector(fpsLabel.Position + Vector2.UnitX * 30, 80, (int)GlobalState.settings.fps, true, Drawing.DrawOrder.TEXT, "60", "VSync", "Unlocked")
+            {
+                ValueChangedEvent = (s, index) => { GlobalState.ResolutionDirty = GlobalState.settings.fps != (FPS)index; GlobalState.settings.fps = (FPS)index; }
+            };
+
+            _flashLabel = new UILabel(new Vector2(menuX, fpsLabel.Position.Y + (int)(yStep * 1.5f)), true, "Screen flash", layer: Drawing.DrawOrder.TEXT, forceEnglish: true);
 
             var brightnessLabel = new UILabel(new Vector2(menuX + 8, _flashLabel.Position.Y + yStep), true, "Max:", layer: Drawing.DrawOrder.TEXT, forceEnglish: true);
 
@@ -88,6 +94,7 @@ namespace AnodyneSharp.States.MenuSubstates.ConfigSubstates
             {
                 (resolutionLabel, resolutionSelect),
                 (scalingLabel, scalingSelect),
+                (fpsLabel, fpsSelect),
                 (brightnessLabel, brightnessSelect),
                 (easingLabel, easingSelect),
                 (testLabel, new ActionOption(() => GlobalState.flash.Flash(1.0f, Color.White))),
