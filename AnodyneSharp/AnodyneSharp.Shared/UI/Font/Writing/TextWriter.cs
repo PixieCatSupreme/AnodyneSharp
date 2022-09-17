@@ -14,7 +14,7 @@ namespace AnodyneSharp.UI.Text
 {
     public class TextWriter
     {
-        private const int DefaultTextSpeed = 50;
+        private const int DefaultTextSpeed = 30; //Value in original is closer to 45fps, but 60fps update logic turns that into 30(or 60 at *2 speed)
         public static char[] LineBreaks = new char[] { '\n', '\r' };
         public static char[] SoftLinebreak = new char[] { '.', '!', '。', '…', '？', '！', '?' };
         public static char[] WordBreaks = new char[] { ' ', '¶', '\n' };
@@ -88,7 +88,7 @@ namespace AnodyneSharp.UI.Text
 
         public bool IgnoreSoftLineBreaks { get; set; }
 
-        public bool JustWrittenChar => _stepProgress == 0;
+        public bool JustWrittenChar;
 
         public int LinesPerBox => writeArea.Height / spriteFont.lineSeparation;
 
@@ -215,15 +215,17 @@ namespace AnodyneSharp.UI.Text
 
         public void Update()
         {
+            JustWrittenChar = false;
             if (!AtEndOfBox && !AtEndOfText)
             {
                 _stepProgress += GameTimes.DeltaTime * Speed;
 
                 while (_stepProgress >= 1f)
                 {
-                    _stepProgress = 0;
+                    _stepProgress -= 1;
 
                     ProgressText();
+                    JustWrittenChar = true;
                 }
             }
         }
