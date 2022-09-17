@@ -26,13 +26,19 @@ namespace AnodyneSharp.Entities.Gadget
                 LayerParent = this,
                 LayerOffset = 1
             };
-            keyhole.SetFrame(preset.Frame - 2);
+            keyhole.SetFrame(preset.Frame switch
+            {
+                1 => 2,
+                2 => 0,
+                3 => 1,
+                _ => throw new NotImplementedException()
+            });
         }
 
         IEnumerator<CutsceneEvent> keyAnim()
         {
             Entity _keyAnimSprite = new(_player.Position - new Vector2(0, 16), "key_green", 16, 16, Drawing.DrawOrder.FG_SPRITES);
-            _keyAnimSprite.SetFrame((_curAnim.Frame - 5) * 2);
+            _keyAnimSprite.SetFrame(keyhole.GetFrame() * 2);
             _keyAnimSprite.opacity = 0f;
 
             yield return new EntityEvent(Enumerable.Repeat(_keyAnimSprite, 1));
