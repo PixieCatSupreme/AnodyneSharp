@@ -292,7 +292,7 @@ namespace AnodyneSharp.States.MenuSubstates
                 }
             }
 
-            using InputConfigWriter inputConfigWriter = new($"{AnodyneGame.BaseFolder}InputConfig.dat");
+            using InputConfigWriter inputConfigWriter = new($"{GameConstants.SavePath}InputConfig.dat");
             inputConfigWriter.WriteInputConfig();
         }
 

@@ -33,8 +33,6 @@ namespace AnodyneSharp
     /// </summary>
     public class AnodyneGame : Game
     {        
-        public static string BaseFolder;
-
         public enum GameState
         {
             TitleScreen,
@@ -59,8 +57,6 @@ namespace AnodyneSharp
             Content.RootDirectory = "Content";
 
             _currentState = null;
-
-            BaseFolder = "";
 
             GlobalState.settings.scale = Math.Min(GlobalState.settings.scale, SpriteDrawer.MaxScale);
 
@@ -117,13 +113,13 @@ namespace AnodyneSharp
 
             if (File.Exists("InputConfig.dat"))
             {
-                using InputConfigLoader inputConfigWriter = new InputConfigLoader($"{BaseFolder}InputConfig.dat");
+                using InputConfigLoader inputConfigWriter = new InputConfigLoader($"{GameConstants.SavePath}InputConfig.dat");
                 inputConfigWriter.LoadInputConfig();
             }
             else
             {
                 SetDefaultKeys();
-                using InputConfigWriter inputConfigWriter = new InputConfigWriter($"{BaseFolder}InputConfig.dat");
+                using InputConfigWriter inputConfigWriter = new InputConfigWriter($"{GameConstants.SavePath}InputConfig.dat");
                 inputConfigWriter.WriteInputConfig();
             }
 
