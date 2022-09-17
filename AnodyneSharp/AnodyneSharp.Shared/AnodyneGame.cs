@@ -32,7 +32,7 @@ namespace AnodyneSharp
     /// This is the main type for your game.
     /// </summary>
     public class AnodyneGame : Game
-    {        
+    {
         public enum GameState
         {
             TitleScreen,
@@ -63,6 +63,11 @@ namespace AnodyneSharp
             if (!Directory.Exists(GameConstants.SavePath))
             {
                 Directory.CreateDirectory(GameConstants.SavePath);
+            }
+
+            if (!Directory.Exists(GameConstants.SavePath + "Saves/"))
+            {
+                Directory.CreateDirectory(GameConstants.SavePath + "Saves/");
             }
 
 #if WINDOWS
@@ -170,7 +175,7 @@ namespace AnodyneSharp
                 Exit();
             }
 
-            if(GlobalState.ResolutionDirty)
+            if (GlobalState.ResolutionDirty)
             {
                 InitGraphics();
                 GlobalState.ResolutionDirty = false;
@@ -249,7 +254,7 @@ namespace AnodyneSharp
         {
             graphics.GraphicsProfile = GraphicsProfile.HiDef;
             graphics.IsFullScreen = false;
-            switch(GlobalState.settings.resolution)
+            switch (GlobalState.settings.resolution)
             {
                 case Resolution.Windowed:
                     graphics.PreferredBackBufferWidth = 160 * GlobalState.settings.scale;
@@ -263,7 +268,7 @@ namespace AnodyneSharp
                     break;
             }
 
-            switch(GlobalState.settings.fps)
+            switch (GlobalState.settings.fps)
             {
                 case FPS.Fixed:
                     IsFixedTimeStep = true;

@@ -71,7 +71,7 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
         {
             _saveID = saveID;
 
-            Save = GlobalState.Save.GetSave($"{GameConstants.SavePath}Save_{saveID + 1}.dat");
+            Save = GlobalState.Save.GetSave($"{GameConstants.SavePath}Saves/Save_{saveID + 1}.dat");
 
             confirmState = 0;
 
@@ -522,7 +522,7 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
         {
             SoundManager.PlaySoundEffect("menu_select");
 
-            if (GlobalState.Save.GetSave($"{GameConstants.SavePath}Save_{copyFileId + 1}.dat") == null)
+            if (GlobalState.Save.GetSave($"{GameConstants.SavePath}Saves/Save_{copyFileId + 1}.dat") == null)
             {
                 DoCopy();
             }

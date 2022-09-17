@@ -52,7 +52,7 @@ namespace AnodyneSharp.Registry
         {
             SavePath =
 #if DEBUG
-                "";
+                "./";
 #else
                 Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/My games/AnodyneFanRemake/";
 #endif
