@@ -104,8 +104,6 @@ namespace AnodyneSharp
 
             Window.Title = "Anodyne Fan Remake";
 
-            SetDefaultKeys();
-
             SetState(GameState.TitleScreen);
         }
 
@@ -115,7 +113,7 @@ namespace AnodyneSharp
         /// </summary>
         protected override void LoadContent()
         {
-            if (File.Exists("InputConfig.dat"))
+            if (File.Exists($"{GameConstants.SavePath}InputConfig.dat"))
             {
                 using InputConfigLoader inputConfigWriter = new InputConfigLoader($"{GameConstants.SavePath}InputConfig.dat");
                 inputConfigWriter.LoadInputConfig();
