@@ -120,6 +120,7 @@ namespace AnodyneSharp
             }
             else
             {
+                SetDefaultKeys();
                 using InputConfigWriter inputConfigWriter = new InputConfigWriter($"{GameConstants.SavePath}InputConfig.dat");
                 inputConfigWriter.WriteInputConfig();
             }
