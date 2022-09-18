@@ -116,8 +116,6 @@ namespace AnodyneSharp.Dialogue
             return line;
         }
 
-
-
         public static void Reload()
         {
             var assembly = Assembly.GetExecutingAssembly();
