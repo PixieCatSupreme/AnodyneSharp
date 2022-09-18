@@ -336,6 +336,7 @@ namespace AnodyneSharp.Entities.Enemy.Circus
             Position = _javiera.Position;
 
             health -= _arthur.damage + _javiera.damage;
+            if (health < 0) health = 0;
 
             visible = true;
 
