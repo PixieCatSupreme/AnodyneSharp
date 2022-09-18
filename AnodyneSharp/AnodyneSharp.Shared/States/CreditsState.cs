@@ -257,8 +257,8 @@ namespace AnodyneSharp.States
             CreateEntity(lPos + new Vector2(0, 120) + new Vector2(0, 10), "wallboss_wall", new Point(160, 32), 4, false, false, 0, 1, 0, 1, 0, 1);
             CreateEntity(lPos + new Vector2(48, 120) + new Vector2(0, 10), "f_wallboss_face", new Point(64, 32), 3, false, true, 0, 0, 1, 0, 0, 2);
 
-            CreateEntity(lPos + new Vector2(8, 150) + new Vector2(4, 10), "f_wallboss_l_hand", new Point(32), 1, false, false, 0, 1, 2, 3);
-            CreateEntity(lPos + new Vector2(118, 150) + new Vector2(4, 10), "f_wallboss_l_hand", new Point(32), 1, false, true, 0, 1, 2, 3);
+            CreateEntity(lPos + new Vector2(8, 150) + new Vector2(4, 10), "f_wallboss_l_hand", new Point(32), 1, false, true, 0, 1, 2, 3);
+            CreateEntity(lPos + new Vector2(118, 150) + new Vector2(4, 10), "f_wallboss_l_hand", new Point(32), 1, true, true, 0, 1, 2, 3);
 
             lPos = _labels[i++].Position;
 
