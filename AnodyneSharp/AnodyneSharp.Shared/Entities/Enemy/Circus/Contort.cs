@@ -129,6 +129,9 @@ namespace AnodyneSharp.Entities.Enemy.Circus
             return _smalls;
         }
 
+        public override void Fall(Vector2 fallPoint)
+        { }
+
         [Collision(typeof(Player), typeof(Broom), KeepOnScreen = true, MapCollision = true)]
         class ContortSmall : HealthDropper
         {
