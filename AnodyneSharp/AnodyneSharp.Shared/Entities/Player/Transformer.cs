@@ -28,6 +28,12 @@ namespace AnodyneSharp.Entities
             selected_tile.exists = false;
         }
 
+        public void Reset()
+        {
+            selected_tile.exists = false;
+            selector.exists = false;
+        }
+
         public override void Update()
         {
             base.Update();

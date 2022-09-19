@@ -798,6 +798,11 @@ namespace AnodyneSharp.States
                 SoundManager.PlaySoundEffect("menu_move");
                 UpdateBroomIcon();
                 _player.broom.UpdateBroomType();
+
+                if (broom != BroomType.Transformer)
+                {
+                    _player.transformer.Reset();
+                }
             }
         }
 
