@@ -25,7 +25,7 @@ namespace AnodyneSharp.Entities.Gadget
 
             Position.Y += 2;
 
-            AddAnimation("a", CreateAnimFrameArray(7, 11), 8);
+            AddAnimation("a", CreateAnimFrameArray(9, 10), 8);
             Play("a");
         }
 
