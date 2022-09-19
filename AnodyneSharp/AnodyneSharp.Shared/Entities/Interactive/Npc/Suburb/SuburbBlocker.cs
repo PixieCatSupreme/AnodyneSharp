@@ -43,7 +43,6 @@ namespace AnodyneSharp.Entities.Interactive.Npc.QuestNPCs
             {
                 if (MathUtilities.MoveTo(ref opacity, 0, 0.6f))
                 {
-                    _preset.Alive = false;
                     exists = false;
                 }
             }
@@ -71,6 +70,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.QuestNPCs
                     Flicker(0.5f);
 
                     dying = true;
+                    _preset.Alive = false;
                 }
 
                 return true;
