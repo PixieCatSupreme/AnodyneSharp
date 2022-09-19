@@ -189,8 +189,16 @@ namespace AnodyneSharp.MapData
             }
             ignore_music = false;
             string darkness = MapSettings.Get(s => s.Darkness, priorities, "");
-            GlobalState.darkness.TargetAlpha(GlobalState.InDeathRoom ? 0.8f : MapSettings.Get(s => s.DarknessAlpha, priorities, darkness == "" ? 0f : 1f));
+            float target = GlobalState.InDeathRoom ? 0.8f : MapSettings.Get(s => s.DarknessAlpha, priorities, darkness == "" ? 0f : 1f);
             GlobalState.darkness.SetTex(darkness);
+            if(!screen_transition)
+            {
+                GlobalState.darkness.ForceAlpha(target);
+            }
+            else
+            {
+                GlobalState.darkness.TargetAlpha(target);
+            }
             GlobalState.fgBlend.SetTex(MapSettings.Get(s => s.FG_Blend, priorities, ""));
             GlobalState.extraBlend.SetTex(MapSettings.Get(s => s.ExtraBlend, priorities, ""));
             GlobalState.staticEffect.active = MapSettings.Get(s => s.Static, priorities, false);

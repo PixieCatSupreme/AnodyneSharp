@@ -54,7 +54,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Happy
             GlobalState.events.IncEvent("HappyStarted");
 
             GlobalState.flash.Flash(1f, Color.Red, () => {
-                ((Map)GlobalState.Map).ReloadSettings(_p);
+                ((Map)GlobalState.Map).ReloadSettings(_p.Position);
                 GlobalState.darkness.ForceAlpha(1);
             });
 
