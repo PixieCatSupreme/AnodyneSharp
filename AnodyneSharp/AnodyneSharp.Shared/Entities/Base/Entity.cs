@@ -209,6 +209,11 @@ namespace AnodyneSharp.Entities
 
         public virtual void Draw()
         {
+            DrawImpl();
+        }
+
+        protected void DrawImpl()
+        {
             if (exists)
             {
                 if (visible)
@@ -230,7 +235,7 @@ namespace AnodyneSharp.Entities
                 }
                 if (GlobalState.draw_hitboxes && HasVisibleHitbox)
                 {
-                    SpriteDrawer.DrawSprite(ResourceManager.GetTexture("hitbox"), Hitbox, color: Color.Red, Z: DrawingUtilities.GetDrawingZ(DrawOrder.HITBOX,0));
+                    SpriteDrawer.DrawSprite(ResourceManager.GetTexture("hitbox"), Hitbox, color: Color.Red, Z: DrawingUtilities.GetDrawingZ(DrawOrder.HITBOX, 0));
                 }
             }
         }

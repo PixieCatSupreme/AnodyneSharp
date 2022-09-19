@@ -16,6 +16,8 @@ namespace AnodyneSharp.Entities.Interactive
     {
         private const float Movement = 30f;
         private HealthCicadaSentinel _sentinel;
+        private bool drawInGameCoordinates = true;
+        private Vector2 gameOffset = MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid) - Vector2.UnitY * 20;
 
         private EntityPreset _preset;
 
@@ -28,7 +30,7 @@ namespace AnodyneSharp.Entities.Interactive
         private bool _chirp;
 
         public HealthCicada(HealthCicadaSentinel parent, EntityPreset preset, Player player)
-            : base(new Vector2(-16, 30), "life_cicada", 16, 16, DrawOrder.HEALTH_UPGRADE)
+            : base(new Vector2(-16, 30), "life_cicada", 16, 16, DrawOrder.FG_SPRITES)
         {
             _sentinel = parent;
 
@@ -136,6 +138,9 @@ namespace AnodyneSharp.Entities.Interactive
                 yield return "WaitForPlayer";
             }
 
+            layer = DrawOrder.HEALTH_UPGRADE;
+            drawInGameCoordinates = false;
+
             float timer = 0;
 
             GlobalState.StartCutscene = CoroutineUtils.WaitFor<CutsceneEvent>(()=>!_preset.Alive);
@@ -218,9 +223,17 @@ namespace AnodyneSharp.Entities.Interactive
 
         public void RegisterDrawing()
         {
-            GlobalState.UIEntities.Add(this);
-
-            //TODO box particles
+            if (drawInGameCoordinates)
+            {
+                Vector2 oldPos = Position;
+                Position += gameOffset;
+                DrawImpl();
+                Position = oldPos;
+            }
+            else
+            {
+                GlobalState.UIEntities.Add(this);
+            }
         }
 
         private class BoxFX : UIEntity
