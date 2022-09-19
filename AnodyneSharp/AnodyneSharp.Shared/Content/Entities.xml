@@ -939,7 +939,7 @@
     <Treasure x="1184" y="16" guid="63182228-F827-7266-50E2-F3BECACBF818" frame="2" alive="true"/>
     <Door x="736" y="112" guid="AE0CA672-4E7B-9CCD-7545-F9112AF0C0F3" frame="32" type="9" />
     <Door x="1376" y="112" guid="31F70C4D-B5B5-D0D1-49EF-2C77E19DAB52" frame="32" type="9" />
-    <Health_Cicada x="704" y="192" guid="5A2CDA3E-1E41-628C-60FE-91FCB2A0A479" frame="0" p="2" alive="true"/>
+    <Health_Cicada x="704" y="176" guid="5A2CDA3E-1E41-628C-60FE-91FCB2A0A479" frame="0" p="2" alive="true"/>
     <Gate x="1328" y="928" guid="39141C9C-94D3-2517-61F7-462E1F91DBC6" frame="5" p="2" alive="true" type="0" />
     <Gate x="1392" y="928" guid="013E50EE-A9C8-FF5E-BC1F-3C449F57C2D2" frame="5" p="2" alive="true" type="0" />
     <Circus_Folks x="1344" y="224" guid="E610BD6E-2C5B-F517-C363-F7A4584CAECE" frame="0" p="2" alive="true" type="dead" />
@@ -2797,7 +2797,7 @@
   <map name="SUBURB" type="Stateful">
     <Suburb_Killer x="80" y="256" guid="08FA88AD-FF2E-2244-A732-2030DCD9718C" frame="0"/>
     <Suburb_Killer x="240" y="256" guid="556A5BC6-0EA5-2B4C-7F22-4557C5AE8C3C" frame="0"/>
-    <NPC x="560" y="576" guid="664230FB-9F92-4D9A-61AE-7B93755BF98E" frame="0" type="generic" />
+    <NPC x="560" y="576" guid="664230FB-9F92-4D9A-61AE-7B93755BF98E" frame="0" p="2" type="generic" />
     <Door x="551" y="7" guid="8FC1E78F-D0C3-456E-346F-01BE8040248E" frame="18" type="14" />
     <Suburb_Killer x="203" y="115" guid="C6780C20-90BC-8A55-5401-5B65B6AA3AAD" frame="0"/>
     <Suburb_Killer x="747" y="407" guid="7831239A-1E61-1E89-D439-D2E77F65847A" frame="0"/>
