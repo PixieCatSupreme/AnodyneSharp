@@ -12,7 +12,7 @@ namespace AnodyneSharp.Utilities
             return Enum.GetName(typeof(Keys), key)
                 .Replace("PageUp", "PgUp")
                 .Replace("PageDown", "PgDwn")
-                .Replace("LeftS", "LShft")
+                .Replace("LeftShift", "LShft")
                 .Replace("RightShift", "RShft")
                 .Replace("LeftA", "LA")
                 .Replace("RightA", "RA")
