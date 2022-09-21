@@ -319,9 +319,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc
             visible = true;
 
             //Get at least a quarter into the screen, and relatively close to the player
-            while ((Position - UL).X < 40 &&
-                _player.Position.X - Position.X > 24
-                && Math.Abs(_player.Position.X - Position.X) > 16)
+            while ((Position - UL).X < 40 || _player.Position.X - Position.X > 24)
             {
                 yield return null;
             }
