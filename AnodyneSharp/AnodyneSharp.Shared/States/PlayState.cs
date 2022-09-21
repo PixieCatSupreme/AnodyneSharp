@@ -637,7 +637,7 @@ namespace AnodyneSharp.States
 
         private void CreateKeyLabel()
         {
-            _keyValueLabel = new UILabel(new Vector2(37, 5 - LineOffset + (GlobalState.CurrentLanguage == Language.ZH_CN ? 1 : 0)), false, "", new Color(124, 163, 177, 255));
+            _keyValueLabel = new UILabel(new Vector2(37, 5), true, "", new Color(124, 163, 177, 255),forceEnglish:true);
         }
 
         private void UpdateScreenBorders()
