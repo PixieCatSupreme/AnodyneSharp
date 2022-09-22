@@ -2178,7 +2178,32 @@ en
 #Resize Window
 コントローラー設定
 #Config Joypad
+BGM
+SFX
+Gameplay
+Graphics
 		end scene
+
+		scene gameplay
+Unfocus pause:
+Fast text:
+Invincibility:
+Health drops+:
+Coyote time+:
+		end scene
+
+		scene graphics
+FPS:
+60
+VSync
+Unlocked
+Screen flash
+Max:
+Easing:
+Test
+Screen shake:
+		end scene
+
 		scene secrets
 まいて まいてー!
 #You're rolling in it!

@@ -2423,6 +2423,30 @@ ko
 调整窗口大小
 #Config Joypad
 配置手柄
+BGM
+SFX
+Gameplay
+Graphics
+		end scene
+
+		scene gameplay
+Unfocus pause:
+Fast text:
+Invincibility:
+Health drops+:
+Coyote time+:
+		end scene
+
+		scene graphics
+FPS:
+60
+VSync
+Unlocked
+Screen flash
+Max:
+Easing:
+Test
+Screen shake:
 		end scene
 		
 		scene secrets

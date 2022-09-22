@@ -1,0 +1,51 @@
+	scene controls 
+Next
+Previous
+Quick save
+Quick load
+Movement
+Actions
+Broom
+Selection
+Quick save
+Confirm
+
+	scene title
+Original game by:
+Melos Han-Tani
+Marina Kittaka
+Fan remake by:
+Cynthia Steenvoorden
+Seph De Busser
+Save 
+Copy save
+Cancel copy
+Copy to
+
+	scene config
+
+BGM
+SFX
+Gameplay
+Graphics
+
+	scene gameplay
+Unfocus pause:
+Fast text:
+Invincibility:
+Health drops+:
+Coyote time+:
+
+	scene graphics
+FPS:
+60
+VSync
+Unlocked
+Screen flash
+Max:
+Easing:
+Test
+Screen shake:
+
+	scene ending
+

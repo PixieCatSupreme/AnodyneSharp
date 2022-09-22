@@ -2429,6 +2429,30 @@ Trascina i\npulsanti\nfino a raggiungere\n una posizione ideale.\n\nPoi, tocca i
 Dimensione\nfinestra
 #Config. Joypad
 Config. joypad
+BGM
+SFX
+Gameplay
+Graphics
+		end scene
+
+		scene gameplay
+Unfocus pause:
+Fast text:
+Invincibility:
+Health drops+:
+Coyote time+:
+		end scene
+
+		scene graphics
+FPS:
+60
+VSync
+Unlocked
+Screen flash
+Max:
+Easing:
+Test
+Screen shake:
 		end scene
 		
 		scene secrets

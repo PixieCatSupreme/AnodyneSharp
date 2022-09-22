@@ -227,7 +227,7 @@ namespace AnodyneSharp.States
 
             if(GlobalState.inventory.UnlockedSecretz)
             {
-                substates.Add((new UILabel(new Vector2(x, startY + yStep * 5), true, "???", forceEnglish: true), typeof(SecretSubstate)));
+                substates.Add((new UILabel(new Vector2(x, startY + yStep * 5), true, "???"), typeof(SecretSubstate)));
             }
 
             _playtimeLabel = new UILabel(new Vector2(1, 154), true, "00:00:00", forceEnglish: true);

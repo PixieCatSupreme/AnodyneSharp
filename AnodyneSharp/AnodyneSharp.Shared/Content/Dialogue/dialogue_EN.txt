@@ -1620,6 +1620,30 @@ en
 Drag the\nbuttons\nuntil you're\nsatisfied.\n\nThen, tap\nthe menu\nto continue.\n\n
 Resize Window
 Config Joypad
+BGM
+SFX
+Gameplay
+Graphics
+		end scene
+
+		scene gameplay
+Unfocus pause:
+Fast text:
+Invincibility:
+Health drops+:
+Coyote time+:
+		end scene
+
+		scene graphics
+FPS:
+60
+VSync
+Unlocked
+Screen flash
+Max:
+Easing:
+Test
+Screen shake:
 		end scene
 		
 		scene secrets
