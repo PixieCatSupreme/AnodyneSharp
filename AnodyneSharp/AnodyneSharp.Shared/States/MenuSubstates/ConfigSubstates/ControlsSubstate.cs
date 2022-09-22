@@ -255,7 +255,7 @@ namespace AnodyneSharp.States.MenuSubstates
                     }
                     else if (change.button2 != null)
                     {
-                        if (keyValue.Buttons.Count < 1)
+                        if (keyValue.Buttons.Count <= 1)
                         {
                             keyValue.Buttons.Add(change.button2.Value);
                         }
@@ -280,7 +280,7 @@ namespace AnodyneSharp.States.MenuSubstates
                     }
                     else if (change.key2 != null)
                     {
-                        if (keyValue.Keys.Count < 1)
+                        if (keyValue.Keys.Count <= 1)
                         {
                             keyValue.Keys.Add(change.key2.Value);
                         }
