@@ -13,8 +13,7 @@ using System.Text;
 
 namespace AnodyneSharp.Entities.Enemy.Crowd
 {
-    //TODO: collide with switch pillar
-    [NamedEntity, Enemy, Collision(typeof(Player), typeof(Broom), typeof(Gate), KeepOnScreen = true, MapCollision = true )]
+    [NamedEntity, Enemy, Collision(typeof(Player), typeof(Broom), KeepOnScreen = true, MapCollision = true )]
     public class Dog : HealthDropper
     {
         private int _health = 3;
@@ -199,10 +198,6 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
                         GlobalState.SpawnEntity(new Explosion(this));
                     }
                 }
-            }
-            else
-            {
-                Separate(this, other);
             }
         }
 

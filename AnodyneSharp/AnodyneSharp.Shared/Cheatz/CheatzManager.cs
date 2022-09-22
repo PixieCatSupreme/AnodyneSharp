@@ -102,12 +102,6 @@ namespace AnodyneSharp.Cheatz
             GlobalState.RefreshKeyCount = true;
         }
 
-        [Cheat("ULRDDLRU12")]
-        public static void ResetMap()
-        {
-            //TODO reset map cheat
-        }
-
         [Cheat("URDLURDLUR")]
         public static void ToggleChaosMode()
         {

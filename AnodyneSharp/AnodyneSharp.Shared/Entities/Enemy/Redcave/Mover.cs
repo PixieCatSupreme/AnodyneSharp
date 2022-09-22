@@ -60,7 +60,6 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
                     {
                         p.entity.additionalVel = velocity;
                     })
-                //TODO colission with laser
                 .End()
                 .State("Die")
                     .Enter((state) =>

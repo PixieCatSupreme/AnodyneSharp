@@ -46,7 +46,6 @@ namespace AnodyneSharp.States.MenuSubstates
             var bgmLabel = new UILabel(new Vector2(x, keybindsLabel.Position.Y + yStep * 2), true, DialogueManager.GetDialogue("misc", "any", "config", 23), color);
             var sfxLabel = new UILabel(new Vector2(x, bgmLabel.Position.Y + 12), true, DialogueManager.GetDialogue("misc", "any", "config", 24), color);
 
-            //TODO: localize
             var gameplayLabel = new UILabel(new Vector2(x, sfxLabel.Position.Y + yStep * 2), true, DialogueManager.GetDialogue("misc", "any", "config", 25), color);
 
             var graphicsLabel = new UILabel(new Vector2(x, gameplayLabel.Position.Y + yStep * 2), true, DialogueManager.GetDialogue("misc", "any", "config", 26), color);

@@ -163,8 +163,6 @@ namespace AnodyneSharp.Entities.Interactive
                 yield return "HealPlayer";
             }
 
-            //TODO hp up achievement?
-
             targetPos = HealthBar.GetHealthPiecePos(GlobalState.MAX_HEALTH);
             _chirp = false;
 
