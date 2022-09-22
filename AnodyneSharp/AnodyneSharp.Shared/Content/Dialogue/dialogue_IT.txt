@@ -2674,6 +2674,12 @@ Melos vorrebbe\nringraziare:\n\nMamma e Papà, per il\nloro sostegno costante\ni
 Adobe, Adam Saltsman,\nFlashDevelop devs,\nREAPER devs,\nDAME creator,\nDesura, Gamersgate,\nIndieDB, TIGSource\n\n\nE i mei altri amici\nche mi hanno\nmostrato sostegno\n(Grazie!)\n\nInfine, ma non \n per importanza,\nTina Chen.\nVecchia amica,\ngraze per il sostegno\ne anche per\navermi presentato\na Marina.
 I ringraziamenti\n di Marina vanno a...\n\nColin Meloy, per\naver ampliato\nil mio vocabolario\n\nTsugumo, per\n"E così vuoi fare il\nPixel Artist?"\n\nAlla mia famiglia,\nper il sostegno\ne il cibo.\n\nA Daniel, per essere un\n"Indie games dev"\ncrescendo insieme.
 Mo, per aver creduto\n in me.\n\nTina, per\navermi presentato\na Melos.\n\nMelos, per aver creato\nun gioco e per esserti\nfidato così\ntanto\ndi me.
+#New credits
+Anodyne Fan Remake\n-------\n\n\n\nMade by\n\nCynthia Steenvoorden\n\nand\n\nSeph De Busser\n\n-------------
+Remake testers\n-------\n\n\nXXX, XXX, XXX\nXXX, XXX, XXX\n\n\nAdditional\ntranslations\n-------\n\n\nXXX
+Cynthia would like\nto thank:\n\nMelos and\nMarina for making\nthis project\npossible,\n\nMom and dad,\n\nNoelle for always\nbeing supportive,\n\nThe Analgesic discord
+Seph would like\n to thank:\n\n
+#end of new credits
 CAST\n----\n\n\nSlime\n\n\nAnnoyer\n\n\nPew Pew\n\n\nShieldy\n\n\nSeer
 Mover\n\n\nOn Off\n\n\nFour Shooter\n\n\nSlasher\n\n\nRogue\n
 Dog\n\n\nFrog\n\n\nRotator\n\n\nPerson\n\n\nWall\n\n

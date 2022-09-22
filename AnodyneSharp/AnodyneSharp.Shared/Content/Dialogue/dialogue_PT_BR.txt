@@ -2389,6 +2389,12 @@ Melos gostaria de\nagradecer a:\n\nMãe e Pai, pelo\nsuporte contínuo\nnessa em
 Adobe, Adam Saltsman,\ndevs do FlashDevelop,\ndevs do REAPER,\ncriador do DAME,\nDesura, Gamersgate,\nIndieDB, TIGSource\n\n\nE meus outros\namigos\nque mostraram\nseu apoio.\n(Obrigado!)\n\nE por último, mas\nnão menos\nimportante,\nTina Chen,\namiga de longa\ndata, pelo suporte\ne por me apresentar\nao Marina.
 Marina gostaria de\nagradecer...\n\nColin Meloy, por\nexpandir\nmeu vocabulário\n\nTsugumo, por\n"So You Want to\nBe a Pixel Artist?"\n\nMinha família,\npelo apoio e comida.\n\nDaniel, por ser um\n"indie game dev"\ncomigo no passado.
 Mo, por acreditar\n em mim.\n\nTina, por me\napresentar ao Melos.\n\nMelos, por fazer\num jogo\ne confiar em mim\ncomo grande parte\ndo processo.
+#New credits
+Anodyne Fan Remake\n-------\n\n\n\nMade by\n\nCynthia Steenvoorden\n\nand\n\nSeph De Busser\n\n-------------
+Remake testers\n-------\n\n\nXXX, XXX, XXX\nXXX, XXX, XXX\n\n\nAdditional\ntranslations\n-------\n\n\nXXX
+Cynthia would like\nto thank:\n\nMelos and\nMarina for making\nthis project\npossible,\n\nMom and dad,\n\nNoelle for always\nbeing supportive,\n\nThe Analgesic discord
+Seph would like\n to thank:\n\n
+#end of new credits
 ELENCO\n----\n\n\nGosma\n\n\nChato\n\n\nPei Pei\n\n\nEscudito\n\n\nVisionário
 Movedor\n\n\nLiga Desliga\n\n\nQuatro Tiros\n\n\nCortador\n\n\nRogue\n
 Cachorro\n\n\nSapo\n\n\nRodador\n\n\nPessoa\n\n\nParede\n\n

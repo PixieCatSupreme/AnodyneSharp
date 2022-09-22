@@ -2662,6 +2662,12 @@ Agradecimientos de\nMelos a:\n\nMamá y Papá, por su\napoyo constante\nen esta 
 Adobe, Adam Saltsman,\nFlashDevelop devs,\nREAPER devs,\nDAME creator,\nDesura, Gamersgate,\nIndieDB, TIGSource\n\n\nY mis otros amigos\nque me han\ndemostrado su apoyo\n(¡Gracias!)\n\nY por último, pero\nno por eso menos\nimportante,\nTina Chen,\namiga desde hace\nmucho, por el apoyo\nasí como también\npor presentarme\na Marina.
 Agradecimientos de\nMarina a...\n\nColin Meloy, por\nexpandir mi\nvocabulario\n\nTsugumo, por\n"¿Así que quieres\nser un\nPixel Artist?"\n\nMi familia,\npor el apoyo\ny la comida.\n\nDaniel, por ser un\n"desarrollador de\njuegos indie"\ncreciendo juntos.
 Mo, por creer\n en mí.\n\nTina, por\npresentarme\na Melos.\n\nMelos, por hacer\nun juego y confiar\nen mí para que\nformara una parte\nimportante de él.
+#New credits
+Anodyne Fan Remake\n-------\n\n\n\nMade by\n\nCynthia Steenvoorden\n\nand\n\nSeph De Busser\n\n-------------
+Remake testers\n-------\n\n\nXXX, XXX, XXX\nXXX, XXX, XXX\n\n\nAdditional\ntranslations\n-------\n\n\nXXX
+Cynthia would like\nto thank:\n\nMelos and\nMarina for making\nthis project\npossible,\n\nMom and dad,\n\nNoelle for always\nbeing supportive,\n\nThe Analgesic discord
+Seph would like\n to thank:\n\n
+#end of new credits
 REPARTO\n----\n\n\nSlime\n\n\nAnnoyer\n\n\nPew Pew\n\n\nShieldy\n\n\nSeer
 Mover\n\n\nOn Off\n\n\nFour Shooter\n\n\nSlasher\n\n\nRogue\n
 Dog\n\n\nFrog\n\n\nRotator\n\n\nPerson\n\n\nWall\n\n

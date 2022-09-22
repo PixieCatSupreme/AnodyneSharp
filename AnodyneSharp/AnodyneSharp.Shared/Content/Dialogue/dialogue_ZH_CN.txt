@@ -2671,6 +2671,12 @@ Melos想感谢：\n\n母亲和父亲的长期支持。\n\nSandy\n\n许多TIGSour
 Adobe、Adam\nSaltsman、\nFlashDevelop开发者、\nREAPER开发者、\nDAME制作者\nDesura、\nGamersgate\nIndieDB、\nTIGSource\n\n\n以及其他支持我的朋友们\n感谢你们！！\n\n最后，我想感谢\nTina Chen\n我一直以来的朋友\n她不仅给予我长期支持\n还介绍我与Marina相识。
 Marina想感谢\n\nColin Meloy，\n扩展了我的词汇量\n\nTsugumo，问我\n“你想要成为一位像素艺术家吗”？\n\n我的家人，\n给予我支持与食物。\n\nDaniel，作为一名\n"独立游戏开发者"\n，一直伴随着我成长。
 Mo，给予我充分的信任。\n\nTina，\n介绍我与Melos认识。\n\nMelos，和我一同制作游戏\n并且给予我信任。
+#New credits
+Anodyne Fan Remake\n-------\n\n\n\nMade by\n\nCynthia Steenvoorden\n\nand\n\nSeph De Busser\n\n-------------
+Remake testers\n-------\n\n\nXXX, XXX, XXX\nXXX, XXX, XXX\n\n\nAdditional\ntranslations\n-------\n\n\nXXX
+Cynthia would like\nto thank:\n\nMelos and\nMarina for making\nthis project\npossible,\n\nMom and dad,\n\nNoelle for always\nbeing supportive,\n\nThe Analgesic discord
+Seph would like\n to thank:\n\n
+#end of new credits
 演员表\n----\n\n\n史莱姆\n\n\n烦恼之物\n\n\n呼呼\n\n\n谢尔迪\n\n\n希尔
 搬运者\n\n\n开开关关\n\n\n四射\n\n\砍伐者\n\n\n流氓\n
 狗\n\n\n青蛙\n\n\n旋转体\n\n\n人\n\n\n墙\n\n

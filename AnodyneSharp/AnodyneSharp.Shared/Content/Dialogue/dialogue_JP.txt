@@ -2401,6 +2401,12 @@ Marina からの謝辞:\n\nColin Meloy へ\n僕の表現力を高めて\nくれ�
 Molly へ\n信じてくれてありがとう\n\nTina へ\nMelos を紹介してくれて\n本当にありがとう\n\nMelos へ\n一緒にゲームを作って\nくれて そして僕を\nしんらい してくれて\nありがとう
 #Molly, for believing\n in me.\n\nTina, for introducing\nme\nto Melos.\n\nMelos, for making\na game\nand trusting me to\nbe a big part of it.
 出演\n----\n\n\nスライム\n\n\nじゃまなアレ\n\n\nポウポウ\n\n\nシールディ\n\n\n見通せし者
+#New credits
+Anodyne Fan Remake\n-------\n\n\n\nMade by\n\nCynthia Steenvoorden\n\nand\n\nSeph De Busser\n\n-------------
+Remake testers\n-------\n\n\nXXX, XXX, XXX\nXXX, XXX, XXX\n\n\nAdditional\ntranslations\n-------\n\n\nXXX
+Cynthia would like\nto thank:\n\nMelos and\nMarina for making\nthis project\npossible,\n\nMom and dad,\n\nNoelle for always\nbeing supportive,\n\nThe Analgesic discord
+Seph would like\n to thank:\n\n
+#end of new credits
 #CAST\n----\n\n\nSlime\n\n\nAnnoyer\n\n\nPew Pew\n\n\nShieldy\n\n\nSeer
 押してくるアレ\n\n\nオン オフ\n\n\nフォーシューター\n\n\nスラッシャー\n\n\nローグ\n
 #Mover\n\n\nOn Off\n\n\nFour Shooter\n\n\nSlasher\n\n\nRogue\n

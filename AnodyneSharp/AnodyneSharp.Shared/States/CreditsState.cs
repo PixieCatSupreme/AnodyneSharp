@@ -20,7 +20,7 @@ namespace AnodyneSharp.States
     public class CreditsState : State
     {
 
-        private const int maxLabels = 24;
+        private const int maxLabels = 28;
 
         private List<UILabel> _labels;
         private List<UIEntity> _entities;
@@ -71,7 +71,7 @@ namespace AnodyneSharp.States
                 _labels.Add(new UILabel(new Vector2(0, y), true, text, layer: DrawOrder.TEXT, centerText: true));
             }
 
-            _endLabel = new UILabel(new Vector2(0), false, DialogueManager.GetDialogue("misc", "any", "ending", 25), layer: DrawOrder.TEXT, centerText: true)
+            _endLabel = new UILabel(new Vector2(0), false, DialogueManager.GetDialogue("misc", "any", "ending", 25 + 4), layer: DrawOrder.TEXT, centerText: true)
             {
                 IsVisible = false
             };
@@ -87,19 +87,8 @@ namespace AnodyneSharp.States
         {
             base.Update();
 
-            _stateLogic.MoveNext();
-
-            _screenie.Update();
-
-            _savePopup.Update();
-
             if (!_stopScroll)
             {
-                foreach (var entity in _entities)
-                {
-                    entity.PostUpdate();
-                }
-
                 if (KeyInput.IsRebindableKeyPressed(KeyFunctions.Accept))
                 {
                     if (GlobalState.FUCK_IT_MODE_ON)
@@ -114,6 +103,11 @@ namespace AnodyneSharp.States
                 else
                 {
                     GameTimes.TimeScale = 1;
+                }
+
+                foreach (var entity in _entities)
+                {
+                    entity.PostUpdate();
                 }
 
                 float speed = 15 * GameTimes.DeltaTime;
@@ -134,6 +128,12 @@ namespace AnodyneSharp.States
             {
                 GameTimes.TimeScale = 1;
             }
+
+            _stateLogic.MoveNext();
+
+            _screenie.Update();
+
+            _savePopup.Update();
         }
 
         public override void DrawUI()
@@ -222,7 +222,7 @@ namespace AnodyneSharp.States
 
         private void CreateEntities()
         {
-            int i = 12;
+            int i = 16;
 
             Vector2 lPos = _labels[i++].Position;
 

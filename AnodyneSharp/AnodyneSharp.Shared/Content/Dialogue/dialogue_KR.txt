@@ -2458,6 +2458,12 @@ Melos would like\nto thank:\n\nMom and Dad, for\ntheir constant support\nin this
 Adobe, Adam Saltsman,\nFlashDevelop devs,\nREAPER devs,\nDAME creator,\nDesura, Gamersgate,\nIndieDB, TIGSource\n\n\nAnd my other friends\nwho have shown their\nsupport. (Thanks!)\n\nAnd last, but\nnot least,\nTina Chen,\nlongtime friend,\nfor both support and\nintroducing me to Marina.
 Marina would like\nto thank...\n\nColin Meloy, for\nexpanding\nmy vocabulary\n\nTsugumo, for\n"So You Want to\nBe a Pixel Artist?"\n\nMy family,\nfor support and food.\n\nDaniel, for being an\n"indie game dev"\nwith me growing up.
 Molly, for believing\n in me.\n\nTina, for introducing\nme\nto Melos.\n\nMelos, for making\na game\nand trusting me to\nbe a big part of it.
+#New credits
+Anodyne Fan Remake\n-------\n\n\n\nMade by\n\nCynthia Steenvoorden\n\nand\n\nSeph De Busser\n\n-------------
+Remake testers\n-------\n\n\nXXX, XXX, XXX\nXXX, XXX, XXX\n\n\nAdditional\ntranslations\n-------\n\n\nXXX
+Cynthia would like\nto thank:\n\nMelos and\nMarina for making\nthis project\npossible,\n\nMom and dad,\n\nNoelle for always\nbeing supportive,\n\nThe Analgesic discord
+Seph would like\n to thank:\n\n
+#end of new credits
 # CAST\n----\n\n\nSlime\n\n\nAnnoyer\n\n\nPew Pew\n\n\nShieldy\n\n\nSeer
 캐스트\n---\n\n\n슬라임\n\n\n짜증나는 놈\n\n\n퓨 퓨\n\n\n방패지기\n\n\n탐구자
 # Mover\n\n\nOn Off\n\n\nFour Shooter\n\n\nSlasher\n\n\nRogue\n
