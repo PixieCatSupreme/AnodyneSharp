@@ -903,7 +903,11 @@ namespace AnodyneSharp.Entities
                 {
                     Touching tl = GlobalState.Map.GetCollisionData(Position + new Vector2(0, -8));
                     Touching tr = GlobalState.Map.GetCollisionData(Position + new Vector2(width, -8));
-                    if ((Position.X + width) % 16 < 6 && (tl & Touching.DOWN) == 0)
+                    if(!tl.HasFlag(Touching.DOWN) && !tr.HasFlag(Touching.DOWN))
+                    {
+                        //nothing
+                    }
+                    else if ((Position.X + width) % 16 < 6 && (tl & Touching.DOWN) == 0)
                     {
                         additionalVel.X -= 30;
                     }
@@ -920,7 +924,11 @@ namespace AnodyneSharp.Entities
                 {
                     Touching bl = GlobalState.Map.GetCollisionData(Position + new Vector2(0, height + 8));
                     Touching br = GlobalState.Map.GetCollisionData(Position + new Vector2(width, height + 8));
-                    if ((Position.X + width) % 16 < 6 && (bl & Touching.UP) == 0)
+                    if (!bl.HasFlag(Touching.UP) && !br.HasFlag(Touching.UP))
+                    {
+                        //nothing
+                    }
+                    else if ((Position.X + width) % 16 < 6 && (bl & Touching.UP) == 0)
                     {
                         additionalVel.X -= 30;
                     }
@@ -940,13 +948,17 @@ namespace AnodyneSharp.Entities
                 velocity.X = -mul;
                 if ((touching & Touching.LEFT) != 0)
                 {
-                    Touching tl2 = GlobalState.Map.GetCollisionData(Position + new Vector2(-8, 0));
-                    Touching bl2 = GlobalState.Map.GetCollisionData(Position + new Vector2(-8, height));
-                    if ((Position.Y + height) % 16 < 6 && (tl2 & Touching.RIGHT) == 0)
+                    Touching tl = GlobalState.Map.GetCollisionData(Position + new Vector2(-8, 0));
+                    Touching bl = GlobalState.Map.GetCollisionData(Position + new Vector2(-8, height));
+                    if (!tl.HasFlag(Touching.RIGHT) && !bl.HasFlag(Touching.RIGHT))
+                    {
+                        //nothing
+                    }
+                    else if ((Position.Y + height) % 16 < 6 && (tl & Touching.RIGHT) == 0)
                     {
                         additionalVel.Y -= 30;
                     }
-                    else if (Position.Y % 16 > 9 && (bl2 & Touching.RIGHT) == 0)
+                    else if (Position.Y % 16 > 9 && (bl & Touching.RIGHT) == 0)
                     {
                         additionalVel.Y += 30;
                     }
@@ -957,13 +969,17 @@ namespace AnodyneSharp.Entities
                 velocity.X = mul;
                 if ((touching & Touching.RIGHT) != 0)
                 {
-                    Touching tr2 = GlobalState.Map.GetCollisionData(Position + new Vector2(width + 8, 0));
-                    Touching br2 = GlobalState.Map.GetCollisionData(Position + new Vector2(width + 8, height));
-                    if ((Position.Y + height) % 16 < 6 && (tr2 & Touching.LEFT) == 0)
+                    Touching tr = GlobalState.Map.GetCollisionData(Position + new Vector2(width + 8, 0));
+                    Touching br = GlobalState.Map.GetCollisionData(Position + new Vector2(width + 8, height));
+                    if (!tr.HasFlag(Touching.LEFT) && !br.HasFlag(Touching.LEFT))
+                    {
+                        //nothing
+                    }
+                    else if ((Position.Y + height) % 16 < 6 && (tr & Touching.LEFT) == 0)
                     {
                         additionalVel.Y -= 30;
                     }
-                    else if (Position.Y % 16 > 9 && (br2 & Touching.LEFT) == 0)
+                    else if (Position.Y % 16 > 9 && (br & Touching.LEFT) == 0)
                     {
                         additionalVel.Y += 30;
                     }
