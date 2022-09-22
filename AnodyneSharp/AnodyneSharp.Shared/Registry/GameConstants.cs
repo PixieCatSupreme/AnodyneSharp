@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using AnodyneSharp.Dialogue;
 
 namespace AnodyneSharp.Registry
@@ -54,7 +55,7 @@ namespace AnodyneSharp.Registry
 #if DEBUG
                 "./";
 #else
-                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/My games/AnodyneFanRemake/";
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData,Environment.SpecialFolderOption.Create),"AnodyneFanRemake/");
 #endif
 
 
