@@ -144,6 +144,8 @@ namespace AnodyneSharp
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            GameTimes.TimeScale = 1;
+
             base.Update(gameTime);
 
             GameTimes.UpdateTimes(gameTime);
@@ -228,8 +230,6 @@ namespace AnodyneSharp
             {
                 effect.Deactivate();
             }
-
-            GameTimes.TimeScale = 1;
 
             _currentState = state switch
             {

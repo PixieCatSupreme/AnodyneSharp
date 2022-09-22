@@ -622,6 +622,7 @@ namespace AnodyneSharp.States
 
                 FinalizeTransition();
 
+                GameTimes.TimeScale = (1/60f) / GameTimes.DeltaTime;
                 _state = PlayStateState.S_NORMAL;
                 GlobalState.ScreenTransition = false;
                 _eventRegistry.FireEvent(new EndScreenTransition());
