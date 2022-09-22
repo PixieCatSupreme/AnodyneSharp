@@ -1,6 +1,7 @@
 ﻿using AnodyneSharp.Logging;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -22,9 +23,10 @@ namespace AnodyneSharp.Resources
 
         public static bool LoadResources(ContentManager content)
         {
-            DirectoryInfo dir = new DirectoryInfo(content.RootDirectory);
+            DirectoryInfo dir = new(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,content.RootDirectory));
             if (!dir.Exists)
             {
+                DebugLogger.AddCritical($"Tried loading from {dir.FullName} but failed!", false);
                 return false;
             }
 
