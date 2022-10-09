@@ -888,7 +888,6 @@
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\menu\dialogue_blinky_box.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\menu\dialogue_box.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\menu\equipped_icon.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\menu\frame_icon.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\menu\long_icon.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\menu\menudialogue_box.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\menu\menu_bg.png" />

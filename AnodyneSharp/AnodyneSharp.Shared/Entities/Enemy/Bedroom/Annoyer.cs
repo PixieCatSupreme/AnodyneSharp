@@ -90,6 +90,10 @@ namespace AnodyneSharp.Entities.Enemy
             {
                 AddAnimation("flap", CreateAnimFrameArray(6, 7), 4, true);
             }
+            else if (GlobalState.BoiEaster)
+            {
+                AddAnimation("flap", CreateAnimFrameArray(8, 9), 4, true);
+            }
             else
             {
                 int i = preset.Frame == T_SUPER ? 12 : 0;

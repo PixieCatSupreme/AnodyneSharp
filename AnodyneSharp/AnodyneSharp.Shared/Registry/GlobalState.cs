@@ -257,6 +257,8 @@ namespace AnodyneSharp.Registry
         public static bool RefreshMaxHealth = false;
         public static bool RefreshLabels = false;
 
+        public static bool BoiEaster = false;
+
         public record CheckPoint
         {
             public string map;

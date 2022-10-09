@@ -24,11 +24,24 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
 
         public Frog(EntityPreset preset, Player p) : base(preset, preset.Position, "frog", 16, 16, Drawing.DrawOrder.ENTITIES, 0.7f)
         {
-            AddAnimation("idle", CreateAnimFrameArray(0, 1), 2, true);
-            AddAnimation("shoot_d", CreateAnimFrameArray(3), 3, false);
-            AddAnimation("shoot_r", CreateAnimFrameArray(4), 3, false);
-            AddAnimation("shoot_l", CreateAnimFrameArray(4), 3, false);
-            AddAnimation("shoot_u", CreateAnimFrameArray(5), 3, false);
+            if (!GlobalState.BoiEaster)
+            {
+                AddAnimation("idle", CreateAnimFrameArray(0, 1), 2, true);
+                AddAnimation("shoot_d", CreateAnimFrameArray(3), 3, false);
+                AddAnimation("shoot_r", CreateAnimFrameArray(4), 3, false);
+                AddAnimation("shoot_l", CreateAnimFrameArray(4), 3, false);
+                AddAnimation("shoot_u", CreateAnimFrameArray(5), 3, false);
+            }
+            else
+            {
+                AddAnimation("idle", CreateAnimFrameArray(6, 7), 2, true);
+                AddAnimation("shoot_d", CreateAnimFrameArray(8), 3, false);
+                AddAnimation("shoot_r", CreateAnimFrameArray(8), 3, false);
+                AddAnimation("shoot_l", CreateAnimFrameArray(8), 3, false);
+                AddAnimation("shoot_u", CreateAnimFrameArray(8), 3, false);
+            }
+
+
             Play("idle");
             immovable = true;
             _player = p;
@@ -129,8 +142,16 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
 
                 shadow = new Shadow(this, new Vector2(3, 2), ShadowType.Normal);
 
-                AddAnimation("move", CreateAnimFrameArray(0, 1), 12);
-                AddAnimation("explode", CreateAnimFrameArray(2, 3, 3), 10, false);
+                if (!GlobalState.BoiEaster)
+                {
+                    AddAnimation("move", CreateAnimFrameArray(0, 1), 12);
+                    AddAnimation("explode", CreateAnimFrameArray(2, 3, 3), 10, false);
+                }
+                else
+                {
+                    AddAnimation("move", CreateAnimFrameArray(4, 5), 12);
+                    AddAnimation("explode", CreateAnimFrameArray(2, 3, 3), 10, false);
+                }
 
                 _state = new StateMachineBuilder()
                     .State("Move")

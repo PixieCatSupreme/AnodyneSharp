@@ -53,11 +53,20 @@ namespace AnodyneSharp.Entities.Enemy
         {
             _type = preset.Frame == 3 ? SlimeType.Bullet : SlimeType.Normal;
 
-            int o = GlobalState.IsCell ? 4 : 0;
+            if (!GlobalState.BoiEaster)
+            {
+                int o = GlobalState.IsCell ? 4 : 0;
 
-            AddAnimation("Move", CreateAnimFrameArray(0+ o, 1 + o), 3);
-            AddAnimation("Hurt", CreateAnimFrameArray(0 + o, 8, 0 + o, 8), 15, false);
-            AddAnimation("Dying", CreateAnimFrameArray(0 + o, 8, 0 + o, 8), 12, false);
+                AddAnimation("Move", CreateAnimFrameArray(0 + o, 1 + o), 3);
+                AddAnimation("Hurt", CreateAnimFrameArray(0 + o, 8, 0 + o, 8), 15, false);
+                AddAnimation("Dying", CreateAnimFrameArray(0 + o, 8, 0 + o, 8), 12, false);
+            }
+            else
+            {
+                AddAnimation("Move", CreateAnimFrameArray(2, 3), 3);
+                AddAnimation("Hurt", CreateAnimFrameArray(2, 8), 15, false);
+                AddAnimation("Dead", CreateAnimFrameArray(2, 8, 2, 8, 15, 9, 9), 12, false);
+            }
 
             goos = new EntityPool<Goo>(8, () => new Goo());
             target = player;
@@ -185,9 +194,20 @@ namespace AnodyneSharp.Entities.Enemy
 
             public Goo() : base(Vector2.Zero, "slime_goo", 6, 6, DrawOrder.PARTICLES)
             {
-                int o = GlobalState.IsCell ? 4 : 0;
 
-                AddAnimation("move", CreateAnimFrameArray(0 + o, 1 + o, 2 + o, 3 + o, 1 + o, 3 + o, 1 + o, 2 + o, 1 + o, 0 + o), GlobalState.RNG.Next(5, 10));
+
+                if (!GlobalState.BoiEaster)
+                {
+                    int o = GlobalState.IsCell ? 4 : 0;
+
+                    AddAnimation("move", CreateAnimFrameArray(0 + o, 1 + o, 2 + o, 3 + o, 1 + o, 3 + o, 1 + o, 2 + o, 1 + o, 0 + o), GlobalState.RNG.Next(5, 10));
+
+                }
+                else
+                {
+                    AddAnimation("move", CreateAnimFrameArray(4, 5, 6, 7, 5, 7, 5, 6, 5, 4), GlobalState.RNG.Next(5, 10));
+                }
+
                 shadow = new Shadow(this, Vector2.Zero, ShadowType.Tiny);
 
                 state = new StateMachineBuilder()
