@@ -6,7 +6,6 @@ using AnodyneSharp.Registry;
 using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using SharpDX.Direct2D1;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;

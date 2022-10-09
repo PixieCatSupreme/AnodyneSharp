@@ -22,6 +22,8 @@ namespace AnodyneSharp.MapData.Settings
         public string? ReplaceTiles { get; set; }
         public bool? Static { get; set; }
         public bool? PlayerLight { get; set; }
+
+        public bool? BOI { get; set; }
     }
 
     public class TileReplacement

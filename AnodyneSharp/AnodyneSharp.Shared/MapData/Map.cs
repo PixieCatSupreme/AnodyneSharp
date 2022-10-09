@@ -210,6 +210,7 @@ namespace AnodyneSharp.MapData
             {
                 p.light.exists = MapSettings.Get(s => s.PlayerLight, priorities, false);
             }
+            GlobalState.BoiEaster = MapSettings.Get(s => s.BOI, priorities, false);
 #nullable restore
         }
 

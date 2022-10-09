@@ -12,9 +12,6 @@ using AnodyneSharp.UI;
 using AnodyneSharp.UI.PauseMenu.Config;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using SharpDX.XAudio2;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrayNotify;
 
 namespace AnodyneSharp.Entities.Gadget
 {

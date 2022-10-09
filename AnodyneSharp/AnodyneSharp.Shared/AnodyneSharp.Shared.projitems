@@ -436,6 +436,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Content\effects\blackwhite.fx" />
+    <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\animtiles\flame_anims.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\shadows\10x28_shadow.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\gadgets\elevator_doors.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\gadgets\gate_green_digits.png" />
@@ -595,7 +596,6 @@
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\animtiles\cell_anims.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\animtiles\conveyer_anim_tiles.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\animtiles\fields_anims.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\animtiles\flame_anims.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\animtiles\forest_anims.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\animtiles\go_anims.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\animtiles\happy_anims.png" />

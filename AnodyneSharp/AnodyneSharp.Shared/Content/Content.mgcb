@@ -997,18 +997,6 @@
 /processorParam:TextureFormat=Color
 /build:textures/sprites/animtiles/happy_anims.png
 
-#begin textures/sprites/animtiles/Isaac_Anims.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:textures/sprites/animtiles/Isaac_Anims.png
-
 #begin textures/sprites/animtiles/shoreline.png
 /importer:TextureImporter
 /processor:TextureProcessor
