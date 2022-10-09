@@ -260,7 +260,7 @@ namespace AnodyneSharp.MapData
                             {
                                 tex = animTile.sprite.Tex;
                                 source = animTile.spriteRect;
-                                SpriteDrawer.DrawSprite(tex, new Rectangle((int)loc.X, (int)loc.Y, _tiles.Width, _tiles.Height), source, Z: z+0.01f);
+                                SpriteDrawer.DrawSprite(tex, new Rectangle((int)loc.X, (int)loc.Y, _tiles.Width, _tiles.Height), source, Z: z-0.01f);
                             }
                         }
                     }

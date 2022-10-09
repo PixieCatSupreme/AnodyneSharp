@@ -41,7 +41,7 @@ struct VertexShaderOutput
 float4 MainPS(VertexShaderOutput input) : COLOR
 {
 	float4 color = tex2D(TextureSampler, input.Tex);
-	if (DepthCutoff < 1.f && tex2D(DepthSampler, input.Tex).x >= DepthCutoff)
+	if (DepthCutoff > 0.f && tex2D(DepthSampler, input.Tex).x <= DepthCutoff)
 		return color;
 	float4 blend = tex2D(OverlaySampler, input.Tex);
 	if (blend.a == 0)

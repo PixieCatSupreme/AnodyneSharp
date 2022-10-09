@@ -203,7 +203,7 @@ namespace AnodyneSharp.Entities
 
         public float GetZ()
         {
-            return LayerParent?.GetZ() + LayerOffset * 0.0001f ?? 
+            return LayerParent?.GetZ() - LayerOffset * 0.0001f ?? 
                 DrawingUtilities.GetDrawingZ(layer, MapUtilities.GetInGridPosition(Position).Y + height);
         }
 

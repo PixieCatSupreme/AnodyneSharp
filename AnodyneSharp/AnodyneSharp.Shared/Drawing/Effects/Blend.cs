@@ -13,7 +13,7 @@ namespace AnodyneSharp.Drawing.Effects
         protected Texture2D tex;
         protected bool hard_light = false;
         protected Effect blend;
-        protected float cutoff = 1f;
+        protected float cutoff = 0f;
 
         public bool Active()
         {
