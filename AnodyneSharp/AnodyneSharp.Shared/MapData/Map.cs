@@ -253,14 +253,15 @@ namespace AnodyneSharp.MapData
                         {
                             Texture2D tex = _tiles.Tex;
                             Rectangle source = _tiles.GetRect(tile);
+                            Vector2 loc = TileToWorld(new(x, y));
+                            SpriteDrawer.DrawSprite(tex, new Rectangle((int)loc.X, (int)loc.Y, _tiles.Width, _tiles.Height), source, Z: z);
 
                             if (layer == DrawOrder.MAP_BG && _animatedTiles.TryGetValue(tile, out AnimatedTile animTile))
                             {
                                 tex = animTile.sprite.Tex;
                                 source = animTile.spriteRect;
+                                SpriteDrawer.DrawSprite(tex, new Rectangle((int)loc.X, (int)loc.Y, _tiles.Width, _tiles.Height), source, Z: z+0.01f);
                             }
-                            Vector2 loc = TileToWorld(new(x, y));
-                            SpriteDrawer.DrawSprite(tex, new Rectangle((int)loc.X, (int)loc.Y, _tiles.Width, _tiles.Height), source, Z: z);
                         }
                     }
                 }
