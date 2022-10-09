@@ -96,6 +96,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\GoDetector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\GoHappyBlocker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\GoQuestDoorBlocker.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\SoundTestConsole.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Elevator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Blank\BlankConsole.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Blue\BlueBriar.cs" />

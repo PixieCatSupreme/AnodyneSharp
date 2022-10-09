@@ -37,13 +37,23 @@ namespace AnodyneSharp.MapData
         //Points-of-interest(only chests for now) get added to the minimap and removed if opened.
         public void AddInterest()
         {
+            if (CurrentLoc > interest.Count)
+            {
+                return;
+            }
+
             if(interest.Count > 0)
                 interest[CurrentLoc] += 1;
         }
 
         public void RemoveInterest()
         {
-            if(interest.Count > 0)
+            if (CurrentLoc > interest.Count)
+            {
+                return;
+            }
+
+            if (interest.Count > 0)
                 interest[CurrentLoc] -= 1;
         }
 

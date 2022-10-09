@@ -11,8 +11,10 @@ namespace AnodyneSharp.States.MenuSubstates
 {
     public abstract class ListSubstate : Substate
     {
+        protected bool playSfx = true;
+
         protected List<(UILabel label, UIOption option)> options;
-        private int _state = 0;
+        protected int state = 0;
         private int _lastState = 0;
 
         private UIOption _selectedOption;
@@ -27,16 +29,16 @@ namespace AnodyneSharp.States.MenuSubstates
         public override void GetControl()
         {
             base.GetControl();
-            _lastState = _state;
+            _lastState = state;
 
             SetSelectorPos();
         }
 
         public override void Update()
         {
-            if (_lastState != _state)
+            if (_lastState != state)
             {
-                _lastState = _state;
+                _lastState = state;
                 SetSelectorPos();
                 SoundManager.PlaySoundEffect("menu_move");
             }
@@ -57,7 +59,7 @@ namespace AnodyneSharp.States.MenuSubstates
                     _selectedOption.LoseControl();
                     _selectedOption.Exit = false;
                     _selectedOption = null;
-                    _state = _lastState;
+                    state = _lastState;
                     SetSelectorPos();
                 }
             }
@@ -65,31 +67,25 @@ namespace AnodyneSharp.States.MenuSubstates
             {
                 if (KeyInput.JustPressedRebindableKey(KeyFunctions.Up))
                 {
-                    if (_state == 0)
+                    if (state == 0)
                     {
                         return;
                     }
 
-                    _state--;
+                    state--;
                 }
                 else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Down))
                 {
-                    if (_state >= options.Count - 1)
+                    if (state >= options.Count - 1)
                     {
                         return;
                     }
 
-                    _state++;
+                    state++;
                 }
                 else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept))
                 {
-                    selector.visible = false;
-                    _selectedOption = options[_state].option;
-                    _selectedOption.GetControl();
-
-                    SoundManager.PlaySoundEffect("menu_select");
-
-                    SetSelectorPos();
+                    Select();
                 }
                 else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Cancel) || (_leftExits && KeyInput.JustPressedRebindableKey(KeyFunctions.Left)))
                 {
@@ -112,13 +108,27 @@ namespace AnodyneSharp.States.MenuSubstates
             }
         }
 
+        protected void Select()
+        {
+            selector.visible = false;
+            _selectedOption = options[state].option;
+            _selectedOption.GetControl();
+
+            if (playSfx)
+            {
+                SoundManager.PlaySoundEffect("menu_select");
+            }
+
+            SetSelectorPos();
+        }
+
         protected abstract void SetLabels();
 
         private void SetSelectorPos()
         {
-            selector.Position = options[_state].label.Position - new Vector2(selector.sprite.Width, -2);
+            selector.Position = options[state].label.Position - new Vector2(selector.sprite.Width, -2);
 
-            if (!options[_state].label.ForcedEnglish)
+            if (!options[state].label.ForcedEnglish)
             {
                 selector.Position.Y += CursorOffset;
             }

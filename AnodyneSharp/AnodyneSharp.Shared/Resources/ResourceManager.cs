@@ -90,6 +90,12 @@ namespace AnodyneSharp.Resources
             return _sfx[sfxName].Get();
         }
 
+        public static Dictionary<string, SFXLimiter> GetSFX()
+        {
+
+            return _sfx;
+        }
+
         private static void LoadTextures(ContentManager content, DirectoryInfo directory)
         {
             List<FileInfo> files = GetChildFiles(directory);
