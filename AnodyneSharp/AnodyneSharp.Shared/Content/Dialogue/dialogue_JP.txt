@@ -2049,6 +2049,7 @@ Anodyneは\nコントローラー\nに対応しています\n\n使用します�
 #NOTE\n\nIf you have input\nlag during gameplay,\nreturn to your\nhome screen and\nre-enter Anodyne.\n\nPRESS C TO CONTINUE
 戻るをもう一度\n押すと終了します\n保存されてないデータは\n失われます
 #Press BACK again\nto exit.\nUnsaved progress\nwill be lost.
+Anodyne Fan Remake
 		end scene
  scene elevator
 何階へ行きますか?

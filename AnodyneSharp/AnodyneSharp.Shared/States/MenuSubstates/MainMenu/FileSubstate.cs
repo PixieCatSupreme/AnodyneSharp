@@ -566,7 +566,7 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
 
             float x = 60 + xOffset;
             float y = 28 - GameConstants.LineOffset - (GlobalState.CurrentLanguage == Language.ZH_CN ? 1 : 0);
-            float yStep = GameConstants.FONT_LINE_HEIGHT - GameConstants.LineOffset + 2;
+            float yStep = GameConstants.FONT_LINE_HEIGHT - GameConstants.LineOffset + 4 + (GlobalState.CurrentLanguage == Language.ZH_CN ? 2 : 0);
 
             Color color = new Color(116, 140, 144);
             Color colorSelected = Color.White;

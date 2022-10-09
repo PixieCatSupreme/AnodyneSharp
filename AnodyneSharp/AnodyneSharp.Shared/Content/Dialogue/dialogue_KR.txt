@@ -2091,6 +2091,7 @@ Anodyne은(는) 대부분의 컨트롤러를\n지원합니다.\n\n지금 연결�
 안내문\n\n만약 연결된 장치가 있으시면\n게임플레이중 지연이 있을 수 있습니다,\n게임을 종료한 후\nAnodyne을(를) 재실행\n해주세요.\n\nC로 계속 진행\n\nGUI가 올바르지 않게 표시됩니까?\n아래 버튼을 누르면\n장치의 방향을 변경합니다.
 # Press BACK again\nto exit.\nUnsaved progress\nwill be lost.
 BACK을(를) 다시 눌러\n게임을 종료해주세요.\n저장되지 않은 진행은\n잃게됩니다.
+Anodyne Fan Remake
 		end scene
 		
 		scene gui

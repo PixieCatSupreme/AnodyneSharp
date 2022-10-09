@@ -34,12 +34,14 @@ namespace AnodyneSharp.States.MenuSubstates.ConfigSubstates
 
         protected override void SetLabels()
         {
+            bool isChinese = GlobalState.CurrentLanguage == Language.ZH_CN;
+
             float x = GameConstants.SCREEN_WIDTH_IN_PIXELS / 2 - 136 / 2;
             float menuX = x + 10;
-            float y = 10;
-            float yStep = GameConstants.FONT_LINE_HEIGHT - GameConstants.LineOffset + 5;
+            float y = -2;
+            float yStep = GameConstants.FONT_LINE_HEIGHT - GameConstants.LineOffset + 5 + (isChinese ? 2 : 0);
 
-            _bgBox = new UIEntity(new Vector2(x, y), "pop_menu", 136, 126, Drawing.DrawOrder.TEXTBOX);
+            _bgBox = new UIEntity(new Vector2(x, 10), "pop_menu", 136, 126, Drawing.DrawOrder.TEXTBOX);
 
             var autosaveLabel = new UILabel(new Vector2(menuX, y + yStep * 1.5f), true, DialogueManager.GetDialogue("misc", "any", "config", 3), layer: Drawing.DrawOrder.TEXT);
 

@@ -2049,6 +2049,7 @@ AVISO\n\nSe estiver sofrendo atraso dos comandos durante o jogo,\nfeche e\nabra 
 #NOTE\n\nIf you have input\nlag during gameplay,\nreturn to your\nhome screen and\nre-enter Anodyne.\n\nPRESS C TO CONTINUE
 Pressione VOLTAR para sair.
 #Press BACK again\nto exit.\nUnsaved progress\nwill be lost.
+Anodyne Fan Remake
 		end scene
  scene elevator
 Andar?
@@ -2170,7 +2171,6 @@ Idioma:
 #Language:
 ja
 en
-ko
 # 20
 arraste os\nbotões\naté estar\n satisfeito.\n\nDepois, toque\no menu\npara continuar.\n\n
 #Drag the\nbuttons\nuntil you're\nsatisfied.\n\nThen, tap\nthe menu\nto continue.\n\n

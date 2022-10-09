@@ -12,11 +12,7 @@ Confirm
 
 	scene title
 Original game by:
-Melos Han-Tani
-Marina Kittaka
 Fan remake by:
-Cynthia Steenvoorden
-Seph De Busser
 Save 
 Copy save
 Cancel copy

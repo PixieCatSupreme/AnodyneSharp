@@ -2296,6 +2296,7 @@ Anodyne supporta\nla maggior parte dei controller.\n\nNe userai uno?\n\nSì   No
 #NOTE\n\nIf you have input\nlag during gameplay,\nreturn to your\nhome screen and\nre-enter Anodyne.\n\nPRESS C TO CONTINUE\n\nGUI displaying wrong?\nPress button below\nthen reorient device.
 Press BACK again\nto exit.\nUnsaved progress\nwill be lost.
 NOTA\n\nSe ci sono lag di movimento\ndurante la partita,\nritorna alla schermata inziale e\nrientra in Anodyne.\n\nPREMI C PER CONTINUARE\n\nL'interfaccia grafica non appare come dovrebbe?\nPremi il tasto qui sotto\n\ne orienta di nuovo il dispositivo.
+Anodyne Fan Remake
 		end scene
 		
 		scene gui

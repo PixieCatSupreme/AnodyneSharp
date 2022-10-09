@@ -420,35 +420,38 @@ namespace AnodyneSharp.States.MenuSubstates
         {
             int leftPadding = 10;
             int menuWidth = 140;
+
+            int controlsYOffset = 0;
             int controlsOffset = 70;
             int buttonSpacing = 44;
 
             if (GlobalState.CurrentLanguage == Language.ZH_CN)
             {
+                controlsYOffset = 2;
                 controlsOffset -= 20;
                 buttonSpacing += 20;
             }
 
             float x = GameConstants.SCREEN_WIDTH_IN_PIXELS / 2 - menuWidth / 2;
-            float y = 8;
+            float y = (GlobalState.CurrentLanguage == Language.ZH_CN ? 0 : 8);
             float yStep = GameConstants.FONT_LINE_HEIGHT - GameConstants.LineOffset + 8;
 
             float yStart = (GameConstants.FONT_LINE_HEIGHT - GameConstants.LineOffset + 8) / 2;
 
-            _bgBox = new UIEntity(new Vector2(x, y), "controls", menuWidth, 160, Drawing.DrawOrder.TEXTBOX);
+            _bgBox = new UIEntity(new Vector2(x, 8), "controls", menuWidth, 160, Drawing.DrawOrder.TEXTBOX);
 
             pageLabel = new UILabel(new Vector2(x + leftPadding, y + yStart), true, DialogueManager.GetDialogue("misc", "any", "controls", 17), layer: Drawing.DrawOrder.TEXT);
-            confirmLabel = new UILabel(new Vector2(x + leftPadding, 156), true, DialogueManager.GetDialogue("misc", "any", "controls", 22), layer: Drawing.DrawOrder.TEXT);
+            confirmLabel = new UILabel(new Vector2(x + leftPadding, 156 - (GlobalState.CurrentLanguage == Language.ZH_CN ? 4 : 0)), true, DialogueManager.GetDialogue("misc", "any", "controls", 22), layer: Drawing.DrawOrder.TEXT);
 
             var keys = KeyInput.RebindableKeys;
 
             (UILabel function, UILabel keyboard, UILabel controller, KeyFunctions keyFunction) CreateTup(KeyFunctions key, int num, int pos) => (
                 new UILabel(new Vector2(x + leftPadding, y + yStart + yStep * pos), true, (pos % 2 == 1) ? DialogueManager.GetDialogue("misc", "any", "controls", 1 + num) : "",
                     layer: Drawing.DrawOrder.TEXT),
-                new UILabel(new Vector2(x + leftPadding + controlsOffset, y + yStart + yStep * pos), true,
+                new UILabel(new Vector2(x + leftPadding + controlsOffset, y + yStart + yStep * pos + controlsYOffset), true,
                         (keys[key].Keys.Count > ((pos-1) % 2) ? GetKeyBoardString(keys[key].Keys[((pos - 1) % 2)]) : ""),
-                    layer: Drawing.DrawOrder.TEXT),
-                new UILabel(new Vector2(x + leftPadding + controlsOffset + buttonSpacing, y + yStart + yStep * pos), true,
+                    layer: Drawing.DrawOrder.TEXT, forceEnglish: true),
+                new UILabel(new Vector2(x + leftPadding + controlsOffset + buttonSpacing, y + yStart + yStep * pos + controlsYOffset), true,
                     (keys[key].Buttons.Count > ((pos-1)%2) ? GetButtonString(keys[key].Buttons[((pos - 1) % 2)]) : ""),
                     layer: Drawing.DrawOrder.TEXT),
                 key);

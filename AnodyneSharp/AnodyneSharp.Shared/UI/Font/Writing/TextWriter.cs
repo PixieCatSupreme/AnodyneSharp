@@ -1,10 +1,12 @@
 ﻿using AnodyneSharp.Drawing;
 using AnodyneSharp.Entities.Gadget;
 using AnodyneSharp.Input;
+using AnodyneSharp.Logging;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SharpDX.Direct2D1;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -329,6 +331,13 @@ namespace AnodyneSharp.UI.Text
             else
             {
                 Rectangle? rect = spriteFont.GetRectangle(character);
+
+                if (!rect.HasValue)
+                {
+                    DebugLogger.AddError($"Missing character {character}", false);
+                    letterProgress++;
+                    return false;
+                }
 
                 if (!KeepInBounds(rect.Value))
                 {

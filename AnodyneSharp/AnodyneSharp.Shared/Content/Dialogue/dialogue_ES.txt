@@ -2287,6 +2287,7 @@ Anodyne soporta\nla mayoría de los mandos.\n\n¿Vas a usar uno?\n\nSí   No\n\n
 #NOTE\n\nIf you have input\nlag during gameplay,\nreturn to your\nhome screen and\nre-enter Anodyne.\n\nPRESS C TO CONTINUE\n\nGUI displaying wrong?\nPress button below\nthen reorient device.
 Press BACK again\nto exit.\nUnsaved progress\nwill be lost.
 NOTA\n\nSi sufres de lag al pulsar las teclas\ndurante la partida,\nsal al escritorio y\nvuelve a abrir Anodyne.\n\nPULSA C PARA CONTINUAR\n\n¿La interfaz gráfica no aparece como debería?\nPulsa el botón de abajo\ny luego reorienta el dispositivo.
+Anodyne Fan Remake
 		end scene
 		
 		scene gui
@@ -2410,7 +2411,6 @@ Escalado:
 Idioma:
 ja
 en
-ko
 # 20
 #Drag the\nbuttons\nuntil you're\nsatisfied.\n\nThen, tap\nthe menu\nto continue.\n\n
 Arrastra los\nbotones\nhasta que estés\nsatisfecho.\n\nLuego, toca\nel menú\npara continuar.\n\n

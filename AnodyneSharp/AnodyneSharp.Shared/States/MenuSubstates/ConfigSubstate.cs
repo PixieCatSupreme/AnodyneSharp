@@ -38,6 +38,7 @@ namespace AnodyneSharp.States.MenuSubstates
             float x = 60 + (_isInMainMenu ? 0 : 9);
             float y = 28 - GameConstants.LineOffset - (GlobalState.CurrentLanguage == Language.ZH_CN ? 1 : 0);
             float yStep = GameConstants.FONT_LINE_HEIGHT - GameConstants.LineOffset;
+            float sliderOffset = GlobalState.CurrentLanguage == Language.ZH_CN ? 2 : 0;
 
             Color color = _isInMainMenu ? new Color(116, 140, 144) : Color.White;
 
@@ -52,12 +53,12 @@ namespace AnodyneSharp.States.MenuSubstates
             
             var languageLabel = new UILabel(new Vector2(x, graphicsLabel.Position.Y + yStep * 2), true, DialogueManager.GetDialogue("misc", "any", "config", 17), color);
 
-            var musicSlider = new AudioSlider(new Vector2(bgmLabel.Position.X + bgmLabel.Writer.WriteArea.Width - 5, bgmLabel.Position.Y), GlobalState.settings.music_volume_scale, 0f, 1f, 0.1f, _isInMainMenu ? MenuStyle.MainMenu : MenuStyle.PauseMenu)
+            var musicSlider = new AudioSlider(new Vector2(bgmLabel.Position.X + bgmLabel.Writer.WriteArea.Width - 5, bgmLabel.Position.Y + sliderOffset), GlobalState.settings.music_volume_scale, 0f, 1f, 0.1f, _isInMainMenu ? MenuStyle.MainMenu : MenuStyle.PauseMenu)
             {
                 ValueChangedEvent = (value,index) => { float vol = SoundManager.GetVolume(); GlobalState.settings.music_volume_scale = value; SoundManager.SetSongVolume(vol); }
             };
 
-            var sfxSlider = new AudioSlider(new Vector2(sfxLabel.Position.X + sfxLabel.Writer.WriteArea.Width - 5, sfxLabel.Position.Y), GlobalState.settings.sfx_volume_scale, 0f, 1f, 0.1f, _isInMainMenu ? MenuStyle.MainMenu : MenuStyle.PauseMenu)
+            var sfxSlider = new AudioSlider(new Vector2(sfxLabel.Position.X + sfxLabel.Writer.WriteArea.Width - 5, sfxLabel.Position.Y + sliderOffset), GlobalState.settings.sfx_volume_scale, 0f, 1f, 0.1f, _isInMainMenu ? MenuStyle.MainMenu : MenuStyle.PauseMenu)
             {
                 ValueChangedEvent = (value,index) => { GlobalState.settings.sfx_volume_scale = value; }
             };

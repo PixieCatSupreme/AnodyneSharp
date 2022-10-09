@@ -2217,16 +2217,16 @@ npc misc
 3
 4
 #15
-Next
-Previous
-QuickSave
-QuickLoad
-Movement
-Actions
-Broom
-Selection
-QuickSave
-Confirm
+下
+上
+速存
+速载
+动作
+选项
+扫帚
+测览
+速存选项
+确定
 #Press
 按下 [SOMEKEY-ENTER] 以退出
 # [SOMEKEY-ENTER]
@@ -2242,10 +2242,10 @@ Confirm
 # [SOMEKEY-C]
 #when done.
 ANODYNE 镇痛
-Original game by:
+原创游戏创始者:
 Melos Han-Tani
 Marina Kittaka 
-Fan remake by:
+粉丝重置为:
 Cynthia Steenvoorden
 Seph De Busser
 #any key
@@ -2279,10 +2279,10 @@ Seph De Busser
 #cards
 卡牌数
 #15
-Save 
-Copy save
-Cancel copy
-Copy to
+存档
+复制存档
+取消复制
+复制到:
 #Anodyne supports\nmost controllers.\n\nWill you use one?\n\nYes   No\n\nIf so, connect it now.\n\nMove with arrow keys\n\nSelect with\nC, SPACE, or ENTER\n\nDefaulting to yes in\n
 《镇痛》支持\n多种手柄。\n\n你打算用手柄玩儿吗？\n\n是   否\n\n如果是的话，请现在连接。\n\n使用方向键移动\n\n使用C键、空格键或回车键\n进行选择\n\n选“是”使用系统默认设置\n
 
@@ -2290,6 +2290,7 @@ Copy to
 #Press BACK again\nto exit.\nUnsaved progress\nwill be lost.
 注意事项\n\n如果你在游戏中遇到输入延迟\n你需要返回主界面\n重新进入《镇痛》\n\n按下C键以继续\n\n图形用户界面显示错误？\n按下下列键可重调设备。
 再次按下返回键可退出。\n未保存的进度将丢失。
+Anodyne 粉丝重置
 		end scene
 		
 		scene gui
@@ -2415,7 +2416,6 @@ UI配置
 语言：
 ja
 en
-ko
 # 20
 #Drag the\nbuttons\nuntil you're\nsatisfied.\n\nThen, tap\nthe menu\nto continue.\n\n
 拉拽按钮直至满意为止。\n\n点击菜单以继续。\n\n
@@ -2425,16 +2425,16 @@ ko
 配置手柄
 BGM
 SFX
-Gameplay
-Graphics
+游戏设置
+视频设置
 		end scene
 
 		scene gameplay
-Unfocus pause:
-Fast text:
-Invincibility:
-Health drops+:
-Coyote time+:
+集中暂停
+自动字幕
+无敌模式
+疗伤增值
+跳跃增值
 		end scene
 
 		scene graphics
@@ -2442,10 +2442,10 @@ FPS:
 60
 VSync
 Unlocked
-Screen flash
+解锁
 Max:
 Easing:
-Test
+测试
 Screen shake:
 		end scene
 		
@@ -2672,13 +2672,13 @@ Adobe、Adam\nSaltsman、\nFlashDevelop开发者、\nREAPER开发者、\nDAME制
 Marina想感谢\n\nColin Meloy，\n扩展了我的词汇量\n\nTsugumo，问我\n“你想要成为一位像素艺术家吗”？\n\n我的家人，\n给予我支持与食物。\n\nDaniel，作为一名\n"独立游戏开发者"\n，一直伴随着我成长。
 Mo，给予我充分的信任。\n\nTina，\n介绍我与Melos认识。\n\nMelos，和我一同制作游戏\n并且给予我信任。
 #New credits
-Anodyne Fan Remake\n-------\n\n\n\nMade by\n\nCynthia Steenvoorden\n\nand\n\nSeph De Busser\n\n-------------
+Anodyne 粉丝重置\n-------\n\n\n\nCynthia\nSteenvoorden 和\nSeph\nDe Busser 制\n\n-------------
 Remake testers\n-------\n\n\nXXX, XXX, XXX\nXXX, XXX, XXX\n\n\nAdditional\ntranslations\n-------\n\n\nXXX
-We would like\nto thank:\n\nMelos and Marina\nfor making this\nproject possible\n\nCynthia would like\nto thank:\n\nMom and dad(rip),\n\nNoelle and Lilly for\nalways being\nsupportive,\n\nNixie the cat.
-Seph would like\n to thank:\n\nGhlyffe, for always\nlistening to my\ninfodumps about this\nproject,\n\nMy Twitch regulars, who\nkept me motivated\nto stream myself\nworking on this remake.\n\nThe Analgesic discord\ncommunity, who were\nalways hyped for new\nremake features.
+感谢\n\nMelos 和 Marina\n的鼎立支持\n\nCynthia 感谢,\n父母\n支持我的Noelle\n和Lilly,\n还有小猫 Nixie
+Seph 感谢\n一直听我诉苦的\nGhlyffe,\n忠实的Twitch\n观众和期待这个重置的\nAnalgesic\nDiscord 观众
 #end of new credits
 演员表\n----\n\n\n史莱姆\n\n\n烦恼之物\n\n\n呼呼\n\n\n谢尔迪\n\n\n希尔
-搬运者\n\n\n开开关关\n\n\n四射\n\n\砍伐者\n\n\n流氓\n
+搬运者\n\n\n开开关关\n\n\n四射\n\n\n砍伐者\n\n\n流氓\n
 狗\n\n\n青蛙\n\n\n旋转体\n\n\n人\n\n\n墙\n\n
 老鼠\n\n\n气态人\n\n\n银鱼\n\n\n冲撞者\n\n\n翻滚者\n\n\n看守人\n\n
 清洁女工\n\n\n爆炸植物\n\n\n管理者\n\n\n
@@ -2686,7 +2686,7 @@ Seph would like\n to thank:\n\nGhlyffe, for always\nlistening to my\ninfodumps a
 追随者\n\n\n爱德华\n\n\n渔夫\n\n\n红沃克\n\n休斯
 兔子\n\n\n黏黏\n\n\n店主\n\n苗小团儿\n\n兰克\n\n戈德曼
 胸腔\n\n詹姆斯\n\n蘑菇\n\n克里克森\n\n石人\n\n居民
-追踪者\n\n\n实体\n\n\n空间面\n\n\方块王
+追踪者\n\n\n实体\n\n\n空间面\n\n\n方块王
 扬\n\n\n麦卓\n\n\n贤者\n\n\n荆棘
 我们要感谢的还有\n亲爱的你！\n谢谢你玩我们的游戏！\n\n\n希望你喜欢它。
 \n\n\n\n\n\n\n\n    
