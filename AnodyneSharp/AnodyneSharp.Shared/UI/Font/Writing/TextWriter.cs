@@ -172,7 +172,7 @@ namespace AnodyneSharp.UI.Text
         public void Draw()
         {
             float z = DrawingUtilities.GetDrawingZ(drawLayer);
-            float shadowZ = z - 0.01f;
+            float shadowZ = z + 0.01f;
             float currentY = firstLineY;
             for (int i = 0; i < characterLines.Count; i++)
             {

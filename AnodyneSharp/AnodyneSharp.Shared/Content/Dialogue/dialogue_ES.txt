@@ -2214,16 +2214,16 @@ Menú
 3
 4
 #15
-Next
-Previous
-QuickSave
-QuickLoad
-Movement
-Actions
-Broom
-Selection
-QuickSave
-Confirm
+Próxima
+Anterior
+Guar. rápido
+Carg. rapido
+Movimiento 
+Acciones
+Escoba
+Selección
+Guar. rápido
+Aceptar
 #Press
 Pulsa
 # [SOMEKEY-ENTER]
@@ -2240,10 +2240,10 @@ Por favor, usa las\nteclas de dirección para redimensionar\nla ventana hasta qu
 # [SOMEKEY-C]
 #when done.
 ANODYNE
-Original game by:
+Juego original de:
 Melos Han-Tani
 Marina Kittaka 
-Fan remake by:
+Remake de:
 Cynthia Steenvoorden
 Seph De Busser
 #any key
@@ -2277,10 +2277,10 @@ Lo sé
 #cards
  cartas
 #15
-Save 
-Copy save
-Cancel copy
-Copy to
+Archivo
+Copiar archivo
+Cancelar copia
+Copiar a
 #Anodyne supports\nmost controllers.\n\nWill you use one?\n\nYes   No\n\nIf so, connect it now.\n\nMove with arrow keys\n\nSelect with\nC, SPACE, or ENTER\n\nDefaulting to yes in\n
 Anodyne soporta\nla mayoría de los mandos.\n\n¿Vas a usar uno?\n\nSí   No\n\nSi es así, conéctalo ahora.\n\nMuévete con las teclas de dirección\n\nSelecciona usando\nC, ESPACIO, o INTRO\n\nSe aplicará 'Sí' por defecto en\n
 
@@ -2420,28 +2420,28 @@ Redimensionar\nventana
 Configurar mando
 BGM
 SFX
-Gameplay
-Graphics
+Jugabilidad
+Gráifocs
 		end scene
 
 		scene gameplay
-Unfocus pause:
-Fast text:
-Invincibility:
-Health drops+:
-Coyote time+:
+Pausado de enfoque:
+Texto rápido
+Invincibilidad: 
+Paquetes de vida+:
+Modo coyote+:
 		end scene
 
 		scene graphics
 FPS:
 60
 VSync
-Unlocked
-Screen flash
-Max:
-Easing:
+Desbloqueado
+Parpadeo de pantalla
+Máximo:
+Iluminación gradual:
 Test
-Screen shake:
+Sacudida de pantalla:
 		end scene
 		
 		scene secrets
@@ -2663,10 +2663,10 @@ Adobe, Adam Saltsman,\nFlashDevelop devs,\nREAPER devs,\nDAME creator,\nDesura, 
 Agradecimientos de\nMarina a...\n\nColin Meloy, por\nexpandir mi\nvocabulario\n\nTsugumo, por\n"¿Así que quieres\nser un\nPixel Artist?"\n\nMi familia,\npor el apoyo\ny la comida.\n\nDaniel, por ser un\n"desarrollador de\njuegos indie"\ncreciendo juntos.
 Mo, por creer\n en mí.\n\nTina, por\npresentarme\na Melos.\n\nMelos, por hacer\nun juego y confiar\nen mí para que\nformara una parte\nimportante de él.
 #New credits
-Anodyne Fan Remake\n-------\n\n\n\nMade by\n\nCynthia Steenvoorden\n\nand\n\nSeph De Busser\n\n-------------
-Remake testers\n-------\n\n\nXXX, XXX, XXX\nXXX, XXX, XXX\n\n\nAdditional\ntranslations\n-------\n\n\nXXX
-We would like\nto thank:\n\nMelos and Marina\nfor making this\nproject possible\n\nCynthia would like\nto thank:\n\nMom and dad(rip),\n\nNoelle and Lilly for\nalways being\nsupportive,\n\nNixie the cat.
-Seph would like\n to thank:\n\nGhlyffe, for always\nlistening to my\ninfodumps about this\nproject,\n\nMy Twitch regulars, who\nkept me motivated\nto stream myself\nworking on this remake.\n\nThe Analgesic discord\ncommunity, who were\nalways hyped for new\nremake features.
+Remake por fans de Anodyne\n-------\n\n\n\nCortesía de\n\nCynthia Steenvoorden\n\ny\n\nSeph De Busser\n\n-------------
+Testers del remake\n-------\n\n\nXXX, XXX, XXX\nXXX, XXX, XXX\n\n\nTraducciones\nadicionales\n-------\n\n\nXXX
+Quisiéramos\nagradecer a:\n\nMelos y Marina\npor hacer posible\npeste proyecto.\n\nCynthia quisiera\nagradecerle a:\n\nMamá y papá(qepd),\n\na Noelle y Lilly por\nsiempre apoyarle,\n\ny a Nixie la gata. 
+Seph quisiera\nagradecerle a:\n\nGhlyffe, por soportar\nmis infodumps sobre\neste proyecto,\n\na mis regulares de\nTwitch, quienes me\nmantuvieron motivada\npara stremearme a mi misma\ntrabajando en este remake.\n\nA la comunidad de\ndiscord de Analgesic,\nque siempre se\nemocionaban por nuevas\nadiciones al remake.
 #end of new credits
 REPARTO\n----\n\n\nSlime\n\n\nAnnoyer\n\n\nPew Pew\n\n\nShieldy\n\n\nSeer
 Mover\n\n\nOn Off\n\n\nFour Shooter\n\n\nSlasher\n\n\nRogue\n
