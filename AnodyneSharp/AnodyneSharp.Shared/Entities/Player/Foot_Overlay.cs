@@ -54,11 +54,11 @@ namespace AnodyneSharp.Entities
 
             if (follow.velocity == Vector2.Zero)
             {
-                Play($"grass_stop");
+                Play("grass_stop");
             }
             else
             {
-                Play($"grass_go");
+                Play("grass_go");
             }
         }
 
@@ -78,17 +78,14 @@ namespace AnodyneSharp.Entities
             {
                 OnMapChange();
             }
-            if (follow.state == PlayerState.GROUND)
+            activated = true;
+            if (GlobalState.CURRENT_MAP_NAME == "WINDMILL")
             {
-                activated = true;
-                if (GlobalState.CURRENT_MAP_NAME == "WINDMILL")
-                {
-                    visible = true;
-                }
-                else
-                {
-                    Flicker(0.1f);
-                }
+                visible = true;
+            }
+            else
+            {
+                Flicker(0.1f);
             }
         }
 
@@ -100,13 +97,14 @@ namespace AnodyneSharp.Entities
         public override void PostUpdate()
         {
             base.PostUpdate();
+
             Position = follow.Position - new Vector2(7, 3);
             if (follow.facing == Facing.RIGHT)
             {
                 Position.X--;
             }
 
-            if (!activated)
+            if (!activated || follow.state == PlayerState.AIR)
             {
                 visible = false;
                 _flickering = false;
