@@ -43,6 +43,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\Parabola_Thing.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\Shadow.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\CollisionGroups.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Decorations\BigTree.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Decorations\DeathFadeIn.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Decorations\NonSolid.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Decorations\RedCaveEntrance.cs" />
@@ -103,6 +104,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Circus\JavieraDanger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Circus\ArthurDanger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Circus\CircusFolksDead.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Debug\TestNPC.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Go\EndingSage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Go\PostBlue.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Happy\HappyBriar.cs" />

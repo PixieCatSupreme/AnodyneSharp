@@ -437,3 +437,4 @@ __pycache__/
 *.dam.bak
 /gifs
 !/AnodyneSharp/AnodyneSharp.Shared/Content/Maps/**
+!/AnodyneSharp/AnodyneSharp.Shared/Entities/**
