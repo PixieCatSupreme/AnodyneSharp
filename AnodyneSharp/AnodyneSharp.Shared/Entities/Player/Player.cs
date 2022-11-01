@@ -390,7 +390,7 @@ namespace AnodyneSharp.Entities
                     _ => Vector2.Zero
                 };
 
-                if (raft == null)
+                if (raft == null && !GlobalState.FUCK_IT_MODE_ON)
                 {
                     slowMul = 0.5f;
                     IS_SINKING = true;
