@@ -47,6 +47,8 @@ namespace AnodyneSharp.States.MainMenu
 
         private bool isNewSave;
 
+        private float xOffset;
+
         public MainMenuState()
         {
             files = Enumerable.Range(0, 3).Select((i) => new FileSubstate(i)).ToArray();
@@ -204,7 +206,7 @@ namespace AnodyneSharp.States.MainMenu
         private void StateChanged()
         {
             _lastState = _menuState;
-            _selector.Position = new Vector2(2, 34 + (int)_menuState * 16);
+            _selector.Position = new Vector2(2 + xOffset, 34 + (int)_menuState * 16);
 
             _substate = _menuState switch
             {
@@ -218,7 +220,15 @@ namespace AnodyneSharp.States.MainMenu
 
         private void SetLabels()
         {
-            float x = 10f;
+            xOffset = GlobalState.CurrentLanguage switch
+            {
+                Language.ES => -2,
+                Language.IT => -2,
+                Language.PT_BR => -2,
+                _ => 0,
+            };
+
+            float x = 10f + xOffset;
             float startY = GameConstants.HEADER_HEIGHT - GameConstants.LineOffset + 11 + (GlobalState.CurrentLanguage == Language.ZH_CN ? 1 : 0);
             float yStep = (GameConstants.FONT_LINE_HEIGHT - GameConstants.LineOffset) * 2;
 

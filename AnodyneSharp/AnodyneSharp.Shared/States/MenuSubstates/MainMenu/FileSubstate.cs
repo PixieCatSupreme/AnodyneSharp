@@ -558,9 +558,9 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
         {
             var xOffset = GlobalState.CurrentLanguage switch
             {
-                Language.ES => -6,
-                Language.IT => -6,
-                Language.PT_BR => -8,
+                Language.ES => 4,
+                Language.IT => 4,
+                Language.PT_BR => 6,
                 _ => 0,
             };
 
@@ -633,7 +633,7 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
                 IsVisible = SaveExists
             };
 
-            healthBar = new HealthBar(new Vector2(128, y + yStep * 5), Save?.current_health, Save?.max_health);
+            healthBar = new HealthBar(new Vector2(128 + xOffset, y + yStep * 5), Save?.current_health, Save?.max_health);
 
             SetConfirmation();
         }

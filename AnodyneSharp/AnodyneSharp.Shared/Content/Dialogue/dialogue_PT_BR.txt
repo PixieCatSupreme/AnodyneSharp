@@ -1981,16 +1981,16 @@ Menu
 3
 4
 #15
-Next
-Previous
-QuickSave
-QuickLoad
-Movement
-Actions
-Broom
-Selection
-QuickSave
-Confirm
+Próxima
+Anterior
+Gravação Rápida
+Carregar\nGravação Rápida
+Movimento
+Ações
+Vassoura
+Seleção
+Gravação Rápida
+Confirmar
 Pressione [SOMEKEY-ENTER] para sair
 #Press
 # [SOMEKEY-ENTER]
@@ -2006,10 +2006,10 @@ Por favor use as setas para redimensionar a janela até que não seja possível 
 #when done.
 ANODYNE
 #This is intentionally left in English
-Original game by:
+Jogo Orginal por:
 Melos Han-Tani
 Marina Kittaka
-Fan remake by:
+Remake de Fã Por:
 Cynthia Steenvoorden
 Seph De Busser
 #This is intentionally left in English 
@@ -2039,10 +2039,10 @@ Eu sei
 #0 deaths 
  cartas
 #0 cards
-Save 
-Copy save
-Cancel copy
-Copy to
+Gravação
+Copiar Gravação
+Cancelar Cópia
+Copiar para
 Anodyne suporta\na maioria dos controles.\n\nDeseja usar um?\n\nSim Não\n\nSe sim, conecte-o agora.\n\nMova com as setas\n\nEscolha com\nC, ESPAÇO, ou ENTER\n\nEscolhendo "sim" em\n
 #Anodyne supports\nmost controllers.\n\nWill you use one?\n\nYes No\n\nIf so, connect it now.\n\nMove with arrow keys\n\nSelect with\nC, SPACE, or ENTER\n\nDefaulting to yes in\n
 AVISO\n\nSe estiver sofrendo atraso dos comandos durante o jogo,\nfeche e\nabra Anodyne novamente.\n\nPRESSIONE C PARA CONTINUAR
@@ -2180,28 +2180,28 @@ Configurar controle
 #Config Joypad
 BGM
 SFX
-Gameplay
-Graphics
+Jogabilidade
+Gráficos
 		end scene
 
 		scene gameplay
-Unfocus pause:
-Fast text:
-Invincibility:
-Health drops+:
-Coyote time+:
+Pausar se Não Ativo
+Texto Rápido:
+Invencibilidade:
+ + Kits de vida 
+ + Tempo de Coiote:
 		end scene
 
 		scene graphics
-FPS:
+QPS:
 60
 VSync
-Unlocked
-Screen flash
+Desbloqueados
+Faiscar do Ecrã
 Max:
 Easing:
-Test
-Screen shake:
+Teste
+Vibração de Ecrã
 		end scene
 
 
@@ -2390,10 +2390,10 @@ Adobe, Adam Saltsman,\ndevs do FlashDevelop,\ndevs do REAPER,\ncriador do DAME,\
 Marina gostaria de\nagradecer...\n\nColin Meloy, por\nexpandir\nmeu vocabulário\n\nTsugumo, por\n"So You Want to\nBe a Pixel Artist?"\n\nMinha família,\npelo apoio e comida.\n\nDaniel, por ser um\n"indie game dev"\ncomigo no passado.
 Mo, por acreditar\n em mim.\n\nTina, por me\napresentar ao Melos.\n\nMelos, por fazer\num jogo\ne confiar em mim\ncomo grande parte\ndo processo.
 #New credits
-Anodyne Fan Remake\n-------\n\n\n\nMade by\n\nCynthia Steenvoorden\n\nand\n\nSeph De Busser\n\n-------------
-Remake testers\n-------\n\n\nXXX, XXX, XXX\nXXX, XXX, XXX\n\n\nAdditional\ntranslations\n-------\n\n\nXXX
-We would like\nto thank:\n\nMelos and Marina\nfor making this\nproject possible\n\nCynthia would like\nto thank:\n\nMom and dad(rip),\n\nNoelle and Lilly for\nalways being\nsupportive,\n\nNixie the cat.
-Seph would like\n to thank:\n\nGhlyffe, for always\nlistening to my\ninfodumps about this\nproject,\n\nMy Twitch regulars, who\nkept me motivated\nto stream myself\nworking on this remake.\n\nThe Analgesic discord\ncommunity, who were\nalways hyped for new\nremake features.
+Remake de fã de Anodyne\n-------\n\n\n\nMade by\n\nFeito por\nCynthia Steenvoorden\ne Seph De Busser\n\n-------------
+Testers do Remake\n-------\n\n\nXXX, XXX, XXX\nXXX, XXX, XXX\n\n\nTraduções\nAdicionais:\n-------\n\n\nXXX
+Gostariamos de\nagradecer\n\nao Melos e à Marina\npor possibilitarem\neste projeto\n\nCynthia gostaria de\nagradecer\n\nà sua mãe ao seu\npai (descansem em Paz),\n\na Noelle e a Lilly por\nestarem sempre cá.\n\nÀ Nixie a gata.
+A Seph gostaria de\nagradecer:\n\n à Ghlyffe por ouvir\nsempre os seus infodumps\nsobre este projeto,\n\n Quem a vê regularmente no\nTwitch e quea manteve\nmotivada enquanto\ntransmitia o seu trabalho\nno remake,\n\nÀ Comunidade de Discord de\nAnalgesic e ao quão\nexcitada estava por\nqualquer nova coisa\nque adicionasse.
 #end of new credits
 ELENCO\n----\n\n\nGosma\n\n\nChato\n\n\nPei Pei\n\n\nEscudito\n\n\nVisionário
 Movedor\n\n\nLiga Desliga\n\n\nQuatro Tiros\n\n\nCortador\n\n\nRogue\n
@@ -2404,7 +2404,7 @@ Leão\n\n\nContorcionista\n\n\nPilar de Fogo\n\n\nServos\nArthur\nJaviera
 Seguidor\n\n\nEduardo\n\n\nPescador\n\n\nCaminhante Vermelho\n\nHews
 Coelha\n\n\nIcky\n\n\nVendedor\n\nMiao Xiao Tuan Er\n\nRank\n\nOurudo
 Tórax\n\nJames\n\nCogumelo\n\nCrickson\n\nGolem\n\nSuburbanos
-Perseguidor\n\n\nEntidades\n\n\nCaras Espaciais\n\n\Reis Cubo
+Perseguidor\n\n\nEntidades\n\n\nCaras Espaciais\n\n\nReis Cubo
 Young\n\n\nMitra\n\n\nSage\n\n\nBriar
 E nós gostaríamos\nde agradecer a\nVOCÊ!\nPor jogar\nnosso jogo.\nEsperamos que\ntenha gostado.
 \n\n\n\n\n\n\n\n 

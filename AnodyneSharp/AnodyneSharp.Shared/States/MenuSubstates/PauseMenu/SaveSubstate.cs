@@ -45,10 +45,12 @@ namespace AnodyneSharp.States.MenuSubstates
             float y = 28 - GameConstants.LineOffset - (GlobalState.CurrentLanguage == Language.ZH_CN ? 1 : 0);
             float yStep = GameConstants.FONT_LINE_HEIGHT;
 
+            float brOffset = (GlobalState.CurrentLanguage == Language.PT_BR ? yStep + 4 : 0);
+
             _quickSaveLabel = new UILabel(new Vector2(x, y), true, DialogueManager.GetDialogue("misc", "any", "controls", 15));
             _quickLoadLabel = new UILabel(new Vector2(x, _quickSaveLabel.Position.Y + yStep * 2 - 4), true, DialogueManager.GetDialogue("misc", "any", "controls", 16));
 
-            _saveLabel = new UILabel(new Vector2(x, _quickLoadLabel.Position.Y + yStep * 2 - 4), true, DialogueManager.GetDialogue("misc", "any", "save", 0));
+            _saveLabel = new UILabel(new Vector2(x, _quickLoadLabel.Position.Y + yStep * 2 - 4 + brOffset), true, DialogueManager.GetDialogue("misc", "any", "save", 0));
             _saveTitleLabel = new UILabel(new Vector2(x, _saveLabel.Position.Y + yStep * 2 - 4), true, DialogueManager.GetDialogue("misc", "any", "save", 3));
             _saveQuitLabel = new UILabel(new Vector2(x, _saveTitleLabel.Position.Y + yStep * 3 - 2), true, DialogueManager.GetDialogue("misc", "any", "save", 5));
             _quitLabel = new UILabel(new Vector2(x, _saveQuitLabel.Position.Y + yStep * 2 - 2), true, DialogueManager.GetDialogue("misc", "any", "save", 6));
