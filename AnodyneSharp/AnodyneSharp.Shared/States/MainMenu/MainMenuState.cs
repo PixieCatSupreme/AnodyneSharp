@@ -132,7 +132,6 @@ namespace AnodyneSharp.States.MainMenu
                 GlobalState.RefreshLabels = false;
                 SetLabels();
 
-
                 foreach (var state in files)
                 {
                     state.SetLabels();

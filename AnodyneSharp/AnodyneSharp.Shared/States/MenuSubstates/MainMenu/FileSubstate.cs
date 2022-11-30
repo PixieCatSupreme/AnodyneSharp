@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.Entities;
 using AnodyneSharp.Input;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
@@ -62,6 +63,9 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
         private UILabel _deathLabel;
         private UILabel _cardLabel;
 
+        private Entity _briar;
+        private Entity _young;
+
         private bool _showHealth;
         private bool _copyMode;
 
@@ -78,6 +82,8 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
             SetLabels();
 
             _showHealth = SaveExists;
+
+
         }
 
         public override void DrawUI()
@@ -108,6 +114,9 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
             {
                 healthBar.Draw();
             }
+
+            _briar.Draw();
+            _young.Draw();
         }
 
         public override void Update()
@@ -567,6 +576,17 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
             float x = 60 + xOffset;
             float y = 28 - GameConstants.LineOffset - (GlobalState.CurrentLanguage == Language.ZH_CN ? 1 : 0);
             float yStep = GameConstants.FONT_LINE_HEIGHT - GameConstants.LineOffset + 4 + (GlobalState.CurrentLanguage == Language.ZH_CN ? 2 : 0);
+
+            float eY = 6;
+            _briar = new UIEntity(new Vector2(x, eY), "briar", 16, 16, Drawing.DrawOrder.ENTITIES)
+            {
+                visible = Save.events.GetEvent("SeenCredits") == 1
+            };
+
+            _young = new UIEntity(new Vector2(x + 16 + 2, eY), "young_player", 16, 16, Drawing.DrawOrder.ENTITIES)
+            {
+                visible = Save.inventory.CardCount > 48
+            };
 
             Color color = new Color(116, 140, 144);
             Color colorSelected = Color.White;
