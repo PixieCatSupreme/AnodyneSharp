@@ -233,7 +233,7 @@ namespace AnodyneSharp.States.MainMenu
 
             Color color = new Color(116, 140, 144);
 
-            string save = DialogueManager.GetDialogue("misc", "any", "title", 24);
+            string save = "";  /*DialogueManager.GetDialogue("misc", "any", "title", 24);*/
 
             _save1Label = new UILabel(new Vector2(x, startY), false, save + 1, color);
             _save2Label = new UILabel(new Vector2(x, startY + yStep), false, save + 2, color);

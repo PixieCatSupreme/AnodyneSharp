@@ -450,7 +450,7 @@ Mitra:Young, está a procura de cartas?\nJá procurou por todos os lugares do te
 #Mitra:Hey Young, looking for a card?\nHave you looked all over the Seeing One's temple?
 Mitra:Young, está a procura de cartas?\nTente procurar na área vestigial perto da saída traseira do tempo de Aquele que Vê
 #Mitra:Hey Young, looking for a card?\nTry looking in the vestigial area near the back exit of the Seeing One's lair.
-Mitra:Young, está a procura de cartas?\Talvez seu vizinho saiba de algo.
+Mitra:Young, está a procura de cartas?\nTalvez seu vizinho saiba de algo.
 #Mitra:Hey Young, looking for a card?\nMaybe your neighbor knows something about it.
 Mitra:Young, está a procura de cartas?\nEu sei que o cara no seu apartamento estava escondendo algo...
 #Mitra:Hey Young, looking for a card?\nI know the guy in your apartment was hiding something...
@@ -2390,7 +2390,7 @@ Adobe, Adam Saltsman,\ndevs do FlashDevelop,\ndevs do REAPER,\ncriador do DAME,\
 Marina gostaria de\nagradecer...\n\nColin Meloy, por\nexpandir\nmeu vocabulário\n\nTsugumo, por\n"So You Want to\nBe a Pixel Artist?"\n\nMinha família,\npelo apoio e comida.\n\nDaniel, por ser um\n"indie game dev"\ncomigo no passado.
 Mo, por acreditar\n em mim.\n\nTina, por me\napresentar ao Melos.\n\nMelos, por fazer\num jogo\ne confiar em mim\ncomo grande parte\ndo processo.
 #New credits
-Remake de fã de Anodyne\n-------\n\n\n\nMade by\n\nFeito por\nCynthia Steenvoorden\ne Seph De Busser\n\n-------------
+Remake de fã de Anodyne\n-------\n\n\n\nFeito por\nCynthia Steenvoorden\ne Seph De Busser\n\n-------------
 Testers do Remake\n-------\n\n\nXXX, XXX, XXX\nXXX, XXX, XXX\n\n\nTraduções\nAdicionais:\n-------\n\n\nXXX
 Gostariamos de\nagradecer\n\nao Melos e à Marina\npor possibilitarem\neste projeto\n\nCynthia gostaria de\nagradecer\n\nà sua mãe ao seu\npai (descansem em Paz),\n\na Noelle e a Lilly por\nestarem sempre cá.\n\nÀ Nixie a gata.
 A Seph gostaria de\nagradecer:\n\n à Ghlyffe por ouvir\nsempre os seus infodumps\nsobre este projeto,\n\n Quem a vê regularmente no\nTwitch e quea manteve\nmotivada enquanto\ntransmitia o seu trabalho\nno remake,\n\nÀ Comunidade de Discord de\nAnalgesic e ao quão\nexcitada estava por\nqualquer nova coisa\nque adicionasse.
