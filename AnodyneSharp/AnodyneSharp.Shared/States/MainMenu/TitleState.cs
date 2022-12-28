@@ -283,21 +283,27 @@ namespace AnodyneSharp.States.MainMenu
 
             _background = new ScrollingTex("title_bg", new Vector2(0, -30), DrawOrder.BACKGROUND);
 
-            nexusImage = new UIEntity(new Vector2(0, 180), "door", GameConstants.SCREEN_WIDTH_IN_PIXELS, 116, DrawOrder.MAP_BG);
+            nexusImage = new UIEntity(new Vector2(0, 180), "door", GameConstants.SCREEN_WIDTH_IN_PIXELS, 116, DrawOrder.UI_OBJECTS);
 
             doorGlow = new UIEntity(Vector2.Zero, "door_glow", 64, 32, DrawOrder.MAP_BG2)
             {
-                visible = false
+                visible = false,
+                LayerParent = nexusImage,
+                LayerOffset = 1
             };
 
             doorSpin1 = new UIEntity(Vector2.Zero, "door_spinglow1", 64, 64, DrawOrder.MAP_FG)
             {
-                visible = false
+                visible = false,
+                LayerParent = nexusImage,
+                LayerOffset = 2
             };
 
             doorSpin2 = new UIEntity(Vector2.Zero, "door_spinglow2", 64, 64, DrawOrder.MAP_FG)
             {
-                visible = false
+                visible = false,
+                LayerParent = nexusImage,
+                LayerOffset = 2
             };
 
             pressEnter = new UIEntity(new Vector2((GameConstants.SCREEN_WIDTH_IN_PIXELS - 96) / 2, GameConstants.SCREEN_HEIGHT_IN_PIXELS), "press_enter", 96, 16, DrawOrder.MENUTEXT)

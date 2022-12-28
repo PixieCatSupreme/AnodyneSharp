@@ -578,12 +578,12 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
             float yStep = GameConstants.FONT_LINE_HEIGHT - GameConstants.LineOffset + 4 + (GlobalState.CurrentLanguage == Language.ZH_CN ? 2 : 0);
 
             float eY = 6;
-            _briar = new UIEntity(new Vector2(x, eY), "briar", 16, 16, Drawing.DrawOrder.ENTITIES)
+            _briar = new UIEntity(new Vector2(x, eY), "briar", 16, 16, Drawing.DrawOrder.UI_OBJECTS)
             {
                 visible = SaveExists && Save.events.GetEvent("SeenCredits") == 1
             };
 
-            _young = new UIEntity(new Vector2(x + 16 + 2, eY), "young_player", 16, 16, Drawing.DrawOrder.ENTITIES)
+            _young = new UIEntity(new Vector2(x + 16 + 2, eY), "young_player", 16, 16, Drawing.DrawOrder.UI_OBJECTS)
             {
                 visible = SaveExists && Save.inventory.CardCount > 48
             };

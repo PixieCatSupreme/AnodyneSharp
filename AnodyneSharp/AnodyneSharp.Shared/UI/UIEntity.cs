@@ -11,44 +11,25 @@ namespace AnodyneSharp.UI
 {
     public class UIEntity : Entity
     {
-        public UIEntity(Vector2 pos, DrawOrder layer) 
-            : base(pos, layer)
-        { }
-
-        public UIEntity(Vector2 pos, int frameWidth, int frameHeight, DrawOrder layer) 
-            : base(pos, frameWidth, frameHeight, layer)
-        { }
 
         public UIEntity(Vector2 pos, string textureName, int frameWidth, int frameHeight, DrawOrder layer)
             : base(pos, textureName, frameWidth, frameHeight, layer)
-        { }
+        {
+            HasVisibleHitbox = false;
+        }
 
         public UIEntity(Vector2 pos, string textureName, int frameWidth, int frameHeight, DrawOrder layer, SpriteEffects flip) 
             : base(pos, textureName, frameWidth, frameHeight, layer)
         {
             _flip = flip;
+            HasVisibleHitbox = false;
         }
 
         public UIEntity(Vector2 pos, string textureName, int frame, int frameWidth, int frameHeight, DrawOrder layer)
             : base(pos, textureName, frameWidth, frameHeight, layer)
         {
             SetFrame(frame);
-        }
-
-        public override void Draw()
-        {
-            if (visible)
-            {
-                Rectangle srect = sprite.GetRect(_curAnim.Frame);
-
-                SpriteDrawer.DrawSprite(sprite.Tex, 
-                    MathUtilities.CreateRectangle(Position.X - offset.X * scale, Position.Y - offset.Y * scale + (int)y_push, srect.Width * scale, srect.Height * scale),
-                    srect, 
-                    color * opacity, 
-                    rotation, 
-                    _flip,
-                    Z: DrawingUtilities.GetDrawingZ(layer));
-            }
+            HasVisibleHitbox = false;
         }
 
         protected override bool SetTexture(string textureName, int width, int height, bool ignoreChaos = false, bool allowFailure = true)

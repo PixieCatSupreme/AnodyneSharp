@@ -48,7 +48,11 @@ namespace AnodyneSharp.States
                 opacity = 0.2f
             };
 
-            _bg = new UIEntity(new Vector2(0, -bgHeight + 180), "go", 160, bgHeight, DrawOrder.FOOT_OVERLAY);
+            _bg = new UIEntity(new Vector2(0, -bgHeight + 180), "go", 160, bgHeight, DrawOrder.FOOT_OVERLAY)
+            {
+                LayerParent = _dimOverlay,
+                LayerOffset = -1
+            };
 
             _screenie = new Screenie();
 
@@ -390,7 +394,7 @@ namespace AnodyneSharp.States
             public Screenie()
                 : base()
             {
-                _overlay = new UIEntity(Vector2.Zero, "dim_overlay", 160, 180, DrawOrder.HITBOX)
+                _overlay = new UIEntity(Vector2.Zero, "dim_overlay", 160, 180, DrawOrder.CREDITS_OVERLAY)
                 {
                     opacity = 0f
                 };

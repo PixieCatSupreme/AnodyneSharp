@@ -57,7 +57,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Go
 
         Entity briar = new(Vector2.Zero, "briar", 16, 16, Drawing.DrawOrder.ENTITIES);
 
-        public EndingSage(Player p) : base(Vector2.Zero, "sage", 16, 16, DrawOrder.ENTITIES)
+        public EndingSage(Player p) : base(Vector2.Zero, "sage", 16, 16, DrawOrder.UI_OBJECTS)
         {
             _player = p;
 

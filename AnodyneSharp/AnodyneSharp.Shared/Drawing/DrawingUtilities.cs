@@ -22,6 +22,7 @@ namespace AnodyneSharp.Drawing
         DEC_OVER,                   //Screen wide effects
         DARKNESS,                   //Darkens the screen
         HITBOX,                     //Hitboxes
+        CREDITS_OVERLAY,            //Credits dim overlay
         HEADER,                     //Player UI
         UI_OBJECTS,                 //Health, keys, mini mini map
         EQUIPPED_BORDER,            //The border of the equipped broom
@@ -55,6 +56,10 @@ namespace AnodyneSharp.Drawing
             if(order == DrawOrder.ENTITIES)
             {
                 z += gridy / (GameConstants.SCREEN_HEIGHT_IN_PIXELS + 1); //+1 to prevent z-fighting with next layer
+            }
+            else if((int)order > (int)DrawOrder.HITBOX)
+            {
+                return GetDrawingZ(order);
             }
             return 1-z/(float)DrawOrder.HITBOX;
         }
