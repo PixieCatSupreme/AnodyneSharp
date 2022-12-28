@@ -133,7 +133,7 @@ namespace AnodyneSharp.States
         {
             base.DrawUI();
 
-            SpriteDrawer.DrawGuiSprite(_bg, new Vector2(0, GameConstants.HEADER_HEIGHT), Z: DrawingUtilities.GetDrawingZ(DrawOrder.PAUSE_BG));
+            SpriteDrawer.DrawSprite(_bg, new Vector2(0, GameConstants.HEADER_HEIGHT), Z: DrawingUtilities.GetDrawingZ(DrawOrder.PAUSE_BG));
             _selector.Draw();
 
             foreach (var (label, _) in substates)

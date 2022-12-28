@@ -17,7 +17,6 @@ namespace AnodyneSharp.Drawing
 
         private static GraphicsDevice _graphicsDevice;
         private static SpriteBatch _spriteBatch;
-        private static SpriteBatch _guiSpriteBatch;
 
         private static RenderTarget2D _game;
         private static RenderTarget2D _game2;
@@ -36,7 +35,6 @@ namespace AnodyneSharp.Drawing
 
             _graphicsDevice = graphicsDevice;
             _spriteBatch = new SpriteBatch(_graphicsDevice);
-            _guiSpriteBatch = new SpriteBatch(_graphicsDevice);
 
             _game = new RenderTarget2D(_graphicsDevice, 160, 160);
             _game2 = new RenderTarget2D(_graphicsDevice, 160, 160);
@@ -66,11 +64,11 @@ namespace AnodyneSharp.Drawing
             _graphicsDevice.SetRenderTarget(_render);
             _graphicsDevice.Clear(BackColor);
 
-            _guiSpriteBatch.Begin(sortMode: SpriteSortMode.FrontToBack, blendState: BlendState.AlphaBlend, samplerState: SamplerState);
-            _guiSpriteBatch.Draw(_game, new Rectangle(0, GameConstants.HEADER_HEIGHT, GameConstants.SCREEN_WIDTH_IN_PIXELS, GameConstants.SCREEN_HEIGHT_IN_PIXELS), Color.White);
-            _guiSpriteBatch.End();
-
-            _guiSpriteBatch.Begin(sortMode: SpriteSortMode.BackToFront, blendState: BlendState.AlphaBlend, samplerState: SamplerState);
+            _spriteBatch.Begin(sortMode: SpriteSortMode.FrontToBack, blendState: BlendState.AlphaBlend, samplerState: SamplerState);
+            _spriteBatch.Draw(_game, new Rectangle(0, GameConstants.HEADER_HEIGHT, GameConstants.SCREEN_WIDTH_IN_PIXELS, GameConstants.SCREEN_HEIGHT_IN_PIXELS), Color.White);
+            _spriteBatch.End();
+            
+            _spriteBatch.Begin(sortMode: SpriteSortMode.BackToFront, blendState: BlendState.AlphaBlend, samplerState: SamplerState);
         }
 
         public static void DrawSprite(Texture2D texture, Rectangle rect, Rectangle? sRect = null, Color? color = null, float rotation = 0, SpriteEffects flip = SpriteEffects.None, float Z = 0)
@@ -89,18 +87,11 @@ namespace AnodyneSharp.Drawing
                 new Vector2(0), scale, SpriteEffects.None, Z);
         }
 
-        public static void DrawGuiSprite(Texture2D texture, Vector2 pos, Rectangle? sRect = null, Color? color = null, float rotation = 0, float scale = 1f, float Z = 0)
-        {
-            _guiSpriteBatch.Draw(texture, pos,
-                sRect, color ?? Color.White, rotation,
-                new Vector2(0), scale, SpriteEffects.None, Z);
-        }
-
         public static void DrawGuiSprite(Texture2D texture, Rectangle rect, Rectangle? sRect = null, Color? color = null, float rotation = 0, SpriteEffects flip = SpriteEffects.None, float Z = 0)
         {
             Rectangle r = new Rectangle(rect.X + rect.Width / 2, rect.Y + rect.Height / 2, rect.Width, rect.Height);
 
-            _guiSpriteBatch.Draw(texture, r,
+            _spriteBatch.Draw(texture, r,
                 sRect, color ?? Color.White, rotation,
                 new Vector2((sRect ?? texture.Bounds).Width / 2, (sRect ?? texture.Bounds).Height / 2), flip, Z);
         }
@@ -120,12 +111,12 @@ namespace AnodyneSharp.Drawing
 
         public static void EndGUIDraw()
         {
-            _guiSpriteBatch.End();
+            _spriteBatch.End();
 
             foreach (IFullScreenEffect effect in GlobalState.fullScreenEffects.Where(e => e.Active()))
             {
                 _graphicsDevice.SetRenderTarget(_render2);
-                effect.Render(_guiSpriteBatch, _render);
+                effect.Render(_spriteBatch, _render);
                 (_render, _render2) = (_render2, _render);
             }
         }

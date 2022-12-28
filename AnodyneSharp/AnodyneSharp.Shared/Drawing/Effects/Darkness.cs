@@ -92,10 +92,10 @@ namespace AnodyneSharp.Drawing.Effects
             RenderTargetBinding[] resultTargets = device.GetRenderTargets();
 
             device.SetRenderTarget(lights_applied);
-            device.Clear(Color.Transparent);
 
             if (darkness != null)
             {
+                device.Clear(Color.Transparent);
                 batch.Begin();
                 batch.Draw(darkness, screen.Bounds, Color.White);
                 batch.End();

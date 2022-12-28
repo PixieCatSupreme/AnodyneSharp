@@ -182,7 +182,7 @@ namespace AnodyneSharp.UI.Text
                 {
                     if (c.Character == null)
                     {
-                        SpriteDrawer.DrawGuiSprite(buttonSprite, WriteAreaTopLeft + new Vector2(c.X, currentY - GameConstants.BUTTON_HEIGHT / 4), c.Crop, Z: z);
+                        SpriteDrawer.DrawSprite(buttonSprite, WriteAreaTopLeft + new Vector2(c.X, currentY - GameConstants.BUTTON_HEIGHT / 4), c.Crop, Z: z);
                     }
                     else
                     {
@@ -197,10 +197,10 @@ namespace AnodyneSharp.UI.Text
                             pos = WriteAreaTopLeft + new Vector2(c.X, currentY);
                         }
 
-                        SpriteDrawer.DrawGuiSprite(spriteFont.texture, pos, c.Crop, spriteFont.color * Opacity, Z: z);
+                        SpriteDrawer.DrawSprite(spriteFont.texture, pos, c.Crop, spriteFont.color * Opacity, Z: z);
                         if (DrawShadow)
                         {
-                            SpriteDrawer.DrawGuiSprite(spriteFont.texture, pos + new Vector2(0,1), c.Crop, color: Color.Black * Opacity, Z: shadowZ);
+                            SpriteDrawer.DrawSprite(spriteFont.texture, pos + new Vector2(0,1), c.Crop, color: Color.Black * Opacity, Z: shadowZ);
                         }
 
                     }

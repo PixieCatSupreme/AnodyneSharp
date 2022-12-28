@@ -169,7 +169,7 @@ namespace AnodyneSharp.Entities.Gadget
             public override void DrawUI()
             {
                 base.DrawUI();
-                SpriteDrawer.DrawGuiSprite(background, position, Z: DrawingUtilities.GetDrawingZ(DrawOrder.PAUSE_BG));
+                SpriteDrawer.DrawSprite(background, position, Z: DrawingUtilities.GetDrawingZ(DrawOrder.PAUSE_BG));
                 title.Draw();
             }
 

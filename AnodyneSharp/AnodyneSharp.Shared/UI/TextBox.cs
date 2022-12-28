@@ -81,7 +81,7 @@ namespace AnodyneSharp.UI
         public void DrawUI()
         {
             Writer.Draw();
-            SpriteDrawer.DrawGuiSprite(_boxTexture, pos, Z: DrawingUtilities.GetDrawingZ(DrawOrder.TEXTBOX));
+            SpriteDrawer.DrawSprite(_boxTexture, pos, Z: DrawingUtilities.GetDrawingZ(DrawOrder.TEXTBOX));
 
             if (_drawBlinky)
             {
@@ -91,7 +91,7 @@ namespace AnodyneSharp.UI
                 }
                 else
                 {
-                    SpriteDrawer.DrawGuiSprite(blinky_box, _blinkyPos, Z: DrawingUtilities.GetDrawingZ(DrawOrder.TEXT));
+                    SpriteDrawer.DrawSprite(blinky_box, _blinkyPos, Z: DrawingUtilities.GetDrawingZ(DrawOrder.TEXT));
                 }
             }
 

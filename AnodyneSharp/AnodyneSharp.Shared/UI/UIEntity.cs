@@ -41,7 +41,7 @@ namespace AnodyneSharp.UI
             {
                 Rectangle srect = sprite.GetRect(_curAnim.Frame);
 
-                SpriteDrawer.DrawGuiSprite(sprite.Tex, 
+                SpriteDrawer.DrawSprite(sprite.Tex, 
                     MathUtilities.CreateRectangle(Position.X - offset.X * scale, Position.Y - offset.Y * scale + (int)y_push, srect.Width * scale, srect.Height * scale),
                     srect, 
                     color * opacity, 

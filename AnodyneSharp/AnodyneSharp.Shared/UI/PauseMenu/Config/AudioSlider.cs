@@ -101,25 +101,25 @@ namespace AnodyneSharp.UI.PauseMenu.Config
             float z = DrawingUtilities.GetDrawingZ(layer);
             float max_z = DrawingUtilities.GetDrawingZ(layer + 1);
 
-            SpriteDrawer.DrawGuiSprite(_sliderBg, new Rectangle(
+            SpriteDrawer.DrawSprite(_sliderBg, new Rectangle(
                 (int)(position.X + BarOffset - _slider.Width / 2),
                 (int)(position.Y - _slider.Height / 2),
-                (int)(_slider.Width),
-                (int)(_slider.Height)),
+                _slider.Width,
+                _slider.Height),
                 Z: z);
 
 
-            SpriteDrawer.DrawGuiSprite(_slider.Tex, position + new Vector2(BarOffset, 0), _slider.GetRect((int)_style), Z: z + 2*(max_z - z)/3);
+            SpriteDrawer.DrawSprite(_slider.Tex, position + new Vector2(BarOffset, 0), _slider.GetRect((int)_style), Z: z + 2*(max_z - z)/3);
 
             if (current > min)
             {
                 int width = (int)(_slider.Width * (current - min) / (max - min));
 
-                SpriteDrawer.DrawGuiSprite(_sliderInside, new Rectangle(
+                SpriteDrawer.DrawSprite(_sliderInside, new Rectangle(
                     (int)(position.X + BarOffset - width / 2),
                     (int)(position.Y - _slider.Height / 2),
-                    (int)(width),
-                    (int)(_slider.Height)),
+                    width,
+                    _slider.Height),
                     Z: z + (max_z-z)/3);
             }
         }

@@ -29,7 +29,7 @@ namespace AnodyneSharp.Drawing
         {
             Vector2 topleft = Position;
             Rectangle pos = new Rectangle((int)topleft.X, (int)topleft.Y, Texture.Width, Texture.Height);
-            SpriteDrawer.DrawGuiSprite(Texture, pos, Z: DrawingUtilities.GetDrawingZ(_layer));
+            SpriteDrawer.DrawSprite(Texture, pos, Z: DrawingUtilities.GetDrawingZ(_layer));
         }
 
         public void Draw(Camera c)

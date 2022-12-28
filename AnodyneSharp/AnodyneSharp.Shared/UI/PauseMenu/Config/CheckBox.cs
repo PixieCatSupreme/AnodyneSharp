@@ -47,7 +47,7 @@ namespace AnodyneSharp.UI.PauseMenu.Config
 
         public override void Draw()
         {
-            SpriteDrawer.DrawGuiSprite(_box.Tex, _pos,
+            SpriteDrawer.DrawSprite(_box.Tex, _pos,
                 _box.GetRect((_turnedOn ? 1 : 0) + ((int)_style * 2)), 
                 Z: DrawingUtilities.GetDrawingZ(_layer));
 

@@ -46,7 +46,7 @@ namespace AnodyneSharp.Entities.Decorations
 
         public void Draw()
         {
-            SpriteDrawer.DrawGuiSprite(fadeIn, Vector2.Zero, new Rectangle(0,0, GameConstants.SCREEN_WIDTH_IN_PIXELS, GameConstants.SCREEN_HEIGHT_IN_PIXELS + GameConstants.HEADER_HEIGHT), Z: DrawingUtilities.GetDrawingZ( DrawOrder.DEATH_FADEIN), color: color * Opacity);
+            SpriteDrawer.DrawSprite(fadeIn, Vector2.Zero, new Rectangle(0,0, GameConstants.SCREEN_WIDTH_IN_PIXELS, GameConstants.SCREEN_HEIGHT_IN_PIXELS + GameConstants.HEADER_HEIGHT), Z: DrawingUtilities.GetDrawingZ( DrawOrder.DEATH_FADEIN), color: color * Opacity);
         }
     }
 }

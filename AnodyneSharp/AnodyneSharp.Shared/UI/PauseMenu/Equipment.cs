@@ -44,7 +44,7 @@ namespace AnodyneSharp.UI.PauseMenu
 
             if (equipped)
             {
-                SpriteDrawer.DrawGuiSprite(_equipIcon, Position + new Vector2(12, -1), Z: DrawingUtilities.GetDrawingZ(DrawOrder.EQUIPPED_ICON));
+                SpriteDrawer.DrawSprite(_equipIcon, Position + new Vector2(12, -1), Z: DrawingUtilities.GetDrawingZ(DrawOrder.EQUIPPED_ICON));
             }
 
         }
