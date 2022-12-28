@@ -44,7 +44,7 @@ namespace AnodyneSharp.Entities.Interactive
 
             _state = new StateMachineBuilder()
                 .State("Close")
-                    .Enter((s) => { if (GetFrame() != 0) { Play("close"); SoundManager.PlaySoundEffect("elevator_close"); } })
+                    .Enter((s) => { if (Frame != 0) { Play("close"); SoundManager.PlaySoundEffect("elevator_close"); } })
                     .Condition(() => openDetector.Hit, (s) => _state.ChangeState("Open"))
                     .Condition(() => menuDetector.Hit, (s) => _state.ChangeState("Menu"))
                 .End()

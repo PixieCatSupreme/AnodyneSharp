@@ -56,14 +56,14 @@ namespace AnodyneSharp.Entities.Gadget
             {
                 incremented = true;
                 GlobalState.PUZZLES_SOLVED++;
-                SetFrame(GetFrame() + 1);
+                SetFrame(Frame + 1);
                 SoundManager.PlaySoundEffect("button_down");
             }
             else if(!pressed && incremented && !permanent)
             {
                 GlobalState.PUZZLES_SOLVED--;
                 incremented = false;
-                SetFrame(GetFrame() - 1);
+                SetFrame(Frame - 1);
                 SoundManager.PlaySoundEffect("button_up");
             }
 

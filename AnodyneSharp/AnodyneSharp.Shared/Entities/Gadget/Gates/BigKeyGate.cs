@@ -38,7 +38,7 @@ namespace AnodyneSharp.Entities.Gadget
         IEnumerator<CutsceneEvent> keyAnim()
         {
             Entity _keyAnimSprite = new(_player.Position - new Vector2(0, 16), "key_green", 16, 16, Drawing.DrawOrder.FG_SPRITES);
-            _keyAnimSprite.SetFrame(keyhole.GetFrame() * 2);
+            _keyAnimSprite.SetFrame(keyhole.Frame * 2);
             _keyAnimSprite.opacity = 0f;
 
             yield return new EntityEvent(Enumerable.Repeat(_keyAnimSprite, 1));
@@ -70,7 +70,7 @@ namespace AnodyneSharp.Entities.Gadget
 
         public override bool TryUnlock()
         {
-            if (GlobalState.inventory.BigKeyStatus[keyhole.GetFrame()])
+            if (GlobalState.inventory.BigKeyStatus[keyhole.Frame])
             {
                 GlobalState.StartCutscene = keyAnim();
                 return true;

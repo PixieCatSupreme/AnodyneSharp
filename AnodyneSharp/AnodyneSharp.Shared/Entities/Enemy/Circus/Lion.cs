@@ -419,7 +419,7 @@ namespace AnodyneSharp.Entities.Enemy.Circus
 
             public override void Update()
             {
-                if (CurAnimFinished && CurAnimName == "poof")
+                if (AnimFinished && CurAnimName == "poof")
                 {
                     exists = false;
 

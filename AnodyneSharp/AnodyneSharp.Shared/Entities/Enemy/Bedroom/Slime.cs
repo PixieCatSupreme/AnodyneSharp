@@ -102,11 +102,11 @@ namespace AnodyneSharp.Entities.Enemy
                     .Enter((state) => Play("Hurt"))
                     .Event<CollisionEvent<Player>>("Player", (state, p) => p.entity.ReceiveDamage(1))
                     .Condition(() => _health <= 0, (state) => state.Parent.ChangeState("Dying"))
-                    .Condition(() => CurAnimFinished, (state) => state.Parent.ChangeState("Move"))
+                    .Condition(() => AnimFinished, (state) => state.Parent.ChangeState("Move"))
                 .End()
                 .State("Dying")
                     .Enter((state) => Play("Dying"))
-                    .Condition(() => CurAnimFinished, (state) => { GlobalState.SpawnEntity(new Explosion(this)); Die(); })
+                    .Condition(() => AnimFinished, (state) => { GlobalState.SpawnEntity(new Explosion(this)); Die(); })
                 .End()
                 .Build();
             state.ChangeState("Move");
@@ -114,12 +114,12 @@ namespace AnodyneSharp.Entities.Enemy
 
         private void SyncSplash(MoveState state)
         {
-            if (GetFrame() == 1 && !state.move_frame_sound_sync)
+            if (Frame == 1 && !state.move_frame_sound_sync)
             {
                 SoundManager.PlaySoundEffect("slime_walk");
                 state.move_frame_sound_sync = true;
             }
-            else if (GetFrame() == 0)
+            else if (Frame == 0)
             {
                 state.move_frame_sound_sync = false;
             }
@@ -127,7 +127,7 @@ namespace AnodyneSharp.Entities.Enemy
 
         private void ChangeDir()
         {
-            if (GetFrame() == 1)
+            if (Frame == 1)
             {
                 //Make it more likely for slimes to stand still periodically
                 velocity = Vector2.Zero;
@@ -234,7 +234,7 @@ namespace AnodyneSharp.Entities.Enemy
                         {
                             SoundManager.PlaySoundEffect("slime_splash");
                             shadow.exists = false;
-                            SetFrame(GetFrame());
+                            SetFrame(Frame);
                             velocity = Vector2.Zero;
                         })
                         .Update((state, time) => opacity -= 0.05f)

@@ -101,7 +101,7 @@ namespace AnodyneSharp.Entities.Interactive
             _preset.Alive = false;
             Solid = false;
 
-            GlobalState.inventory.BigKeyStatus[GetFrame() / 2] = true;
+            GlobalState.inventory.BigKeyStatus[Frame / 2] = true;
             GlobalState.StartCutscene = States();
 
             return true;
@@ -122,7 +122,7 @@ namespace AnodyneSharp.Entities.Interactive
             public override void PostUpdate()
             {
                 base.PostUpdate();
-                if (CurAnimFinished) exists = false;
+                if (AnimFinished) exists = false;
             }
 
             public void Spawn(Big_Key parent, bool make_sound)

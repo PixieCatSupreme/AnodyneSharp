@@ -210,7 +210,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
 
             internal bool EndofAnim()
             {
-                return CurAnimFinished;
+                return AnimFinished;
             }
         }
     }

@@ -348,7 +348,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
         public override void Update()
         {
             base.Update();
-            if (CurAnimFinished)
+            if (AnimFinished)
             {
                 exists = false;
             }
@@ -801,7 +801,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
                     velocity = Vector2.Zero;
                     SoundManager.PlaySoundEffect("4sht_pop");
                 }
-                else if (CurAnimFinished)
+                else if (AnimFinished)
                 {
                     exists = false;
                 }

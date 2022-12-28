@@ -203,7 +203,7 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
                 while (t < times[6 - health])
                 {
                     t += GameTimes.DeltaTime;
-                    if (CurAnimName == "blink_land" && CurAnimFinished)
+                    if (CurAnimName == "blink_land" && AnimFinished)
                         Play("walk");
                     yield return null;
                 }
@@ -350,7 +350,7 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
                 }
                 else
                 {
-                    if (CurAnimFinished)
+                    if (AnimFinished)
                     {
                         exists = false;
                         SoundManager.PlaySoundEffect("4sht_shoot");
@@ -400,7 +400,7 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
                 }
                 else
                 {
-                    if(CurAnimFinished)
+                    if(AnimFinished)
                     {
                         exists = false;
                         SoundManager.PlaySoundEffect("4sht_pop");

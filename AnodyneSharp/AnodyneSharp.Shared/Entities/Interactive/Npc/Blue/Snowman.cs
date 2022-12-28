@@ -43,7 +43,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Blue
 
             if (_talked )
             {
-                if (GlobalState.LastDialogueFinished && GetFrame() != 6)
+                if (GlobalState.LastDialogueFinished && Frame != 6)
                 {
                     Play("melt");
                 }
@@ -65,7 +65,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Blue
         {
             base.Collided(other);
 
-            if (GetFrame() != 6)
+            if (Frame != 6)
             {
                 Separate(this, other);
             }

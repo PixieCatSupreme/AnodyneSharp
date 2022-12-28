@@ -81,7 +81,7 @@ namespace AnodyneSharp.States
             _dieDummy.Update();
             _dieDummy.PostUpdate();
 
-            if (!gotControl && _dieDummy.CurAnimFinished)
+            if (!gotControl && _dieDummy.AnimFinished)
             {
                 SoundManager.PlaySoundEffect("player_hit_1");
                 SoundManager.PlaySong("gameover");

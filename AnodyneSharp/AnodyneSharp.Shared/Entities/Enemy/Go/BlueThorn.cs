@@ -33,7 +33,7 @@ namespace AnodyneSharp.Entities.Enemy.Go
             shooter.Start(3 - Health, player);
             while (shooter.exists)
             {
-                if(CurAnimFinished)
+                if(AnimFinished)
                 {
                     //Got hit by broom and need to end the attack
                     shooter.EndAttack();
@@ -165,7 +165,7 @@ namespace AnodyneSharp.Entities.Enemy.Go
             public override void Update()
             {
                 base.Update();
-                if (CurAnimName == "grow" && CurAnimFinished) Play("shoot");
+                if (CurAnimName == "grow" && AnimFinished) Play("shoot");
                 state?.MoveNext();
             }
 
@@ -198,7 +198,7 @@ namespace AnodyneSharp.Entities.Enemy.Go
             public override void Update()
             {
                 base.Update();
-                if (CurAnimFinished) exists = false;
+                if (AnimFinished) exists = false;
             }
 
             public override void Collided(Entity other)

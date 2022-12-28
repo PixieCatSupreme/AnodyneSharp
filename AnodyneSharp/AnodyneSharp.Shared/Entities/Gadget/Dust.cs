@@ -36,7 +36,7 @@ namespace AnodyneSharp.Entities
 
         public override void Collided(Entity other)
         {
-            if(!CurAnimFinished && CurAnimName == "unpoof" && b?.dust == this)
+            if(!AnimFinished && CurAnimName == "unpoof" && b?.dust == this)
             {
                 exists = false;
                 b.just_released_dust = false;
@@ -48,7 +48,7 @@ namespace AnodyneSharp.Entities
             base.PostUpdate();
             velocity = Vector2.Zero;
             ON_CONVEYOR = false;
-            if(CurAnimFinished && (CurAnimName == "fallpoof" || CurAnimName == "poof"))
+            if(AnimFinished && (CurAnimName == "fallpoof" || CurAnimName == "poof"))
             {
                 exists = false;
                 if(CurAnimName == "fallpoof")
@@ -64,7 +64,7 @@ namespace AnodyneSharp.Entities
 
             if(CurAnimName == "unpoof")
             {
-                if(CurAnimFinished)
+                if(AnimFinished)
                 {
                     Play("fallpoof");
                 }

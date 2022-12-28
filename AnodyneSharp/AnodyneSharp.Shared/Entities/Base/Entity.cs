@@ -26,7 +26,6 @@ namespace AnodyneSharp.Entities
 
         private const float FlickerLength = 0.05f;
 
-        public Spritesheet sprite;
 
         public Vector2 offset;
         public Facing facing;
@@ -36,10 +35,16 @@ namespace AnodyneSharp.Entities
 
         public Color color;
 
+
+        public Spritesheet sprite;
+        private List<Anim> _animations;
+        private string textureName;
         private Anim _curAnim;
+        
         public string CurAnimName => _curAnim.name;
-        public bool CurAnimFinished => _curAnim.Finished;
-        public int CurAnimIndex => _curAnim.CurIndex;
+        public bool AnimFinished => _curAnim.Finished;
+        public int FrameIndex => _curAnim.CurIndex;
+        public int Frame => _curAnim.Frame;
 
         public float opacity;
 
@@ -48,9 +53,6 @@ namespace AnodyneSharp.Entities
         public float scale;
 
         protected SpriteEffects _flip;
-
-        private List<Anim> _animations;
-        private string textureName;
 
         public bool _flickering { get; protected set; }
         private float _flickerTimer;
@@ -171,10 +173,7 @@ namespace AnodyneSharp.Entities
         {
             base.Update();
 
-            if (shadow != null)
-            {
-                shadow.Update();
-            }
+            shadow?.Update();
 
             if (_flickering)
             {
@@ -188,10 +187,7 @@ namespace AnodyneSharp.Entities
 
             UpdateAnimation();
 
-            if (shadow != null)
-            {
-                shadow.PostUpdate();
-            }
+            shadow?.PostUpdate();
 
         }
 
@@ -361,11 +357,6 @@ namespace AnodyneSharp.Entities
                     visible = true;
                 }
             }
-        }
-
-        public int GetFrame()
-        {
-            return _curAnim.Frame;
         }
 
         //Map interactions

@@ -263,7 +263,7 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
             public override void Update()
             {
                 base.Update();
-                if (CurAnimFinished) exists = false;
+                if (AnimFinished) exists = false;
                 KeepInRect(this, area);
             }
 

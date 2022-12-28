@@ -77,7 +77,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Suburb
                     walk_t = walk_t_max;
                 }
             }
-            else if(CurAnimFinished && !blood.exists)
+            else if(AnimFinished && !blood.exists)
             {
                 SpawnBlood();
             }
@@ -91,7 +91,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Suburb
 
         public bool PlayerInteraction(Facing player_direction)
         {
-            if(blood.GetFrame() == 66)
+            if(blood.Frame == 66)
             {
                 string scene = "words_" + _preset.Frame switch
                 {

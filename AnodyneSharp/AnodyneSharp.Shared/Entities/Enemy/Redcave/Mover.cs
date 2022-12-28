@@ -69,7 +69,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
                         velocity = Vector2.Zero;
                         Play("Die");
                     })
-                    .Condition(() => CurAnimFinished, (state) =>
+                    .Condition(() => AnimFinished, (state) =>
                     {
                         exists = false;
 

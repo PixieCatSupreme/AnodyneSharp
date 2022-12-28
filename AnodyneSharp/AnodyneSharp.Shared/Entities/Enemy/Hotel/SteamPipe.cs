@@ -27,7 +27,7 @@ namespace AnodyneSharp.Entities.Enemy.Hotel
 
             SetFrame(preset.Frame);
 
-            switch (GetFrame())
+            switch (Frame)
             {
                 case 0:
                     width = 10;

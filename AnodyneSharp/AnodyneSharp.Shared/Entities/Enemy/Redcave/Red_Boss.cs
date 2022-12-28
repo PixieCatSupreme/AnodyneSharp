@@ -426,7 +426,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
         public override void Update()
         {
             base.Update();
-            if(CurAnimFinished)
+            if(AnimFinished)
             {
                 velocity = Vector2.Zero;
                 exists = false;
@@ -489,7 +489,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
         public override void Update()
         {
             base.Update();
-            if (CurAnimFinished)
+            if (AnimFinished)
             {
                 if(CurAnimName == "fall")
                 {
@@ -699,7 +699,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
 
             Play("explode");
 
-            while (!CurAnimFinished)
+            while (!AnimFinished)
                 yield return null;
 
             SoundManager.PlaySoundEffect("bubble_1", "bubble_1", "bubble_2", "bubble_3");

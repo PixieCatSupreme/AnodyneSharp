@@ -132,7 +132,7 @@ namespace AnodyneSharp.Entities.Enemy.Go
             public override void Update()
             {
                 base.Update();
-                if (CurAnimFinished)
+                if (AnimFinished)
                     exists = false;
             }
 
@@ -140,7 +140,7 @@ namespace AnodyneSharp.Entities.Enemy.Go
             {
                 base.Collided(other);
                 Player p = other as Player;
-                if (p.state == PlayerState.GROUND && GetFrame() >= harmful_frame)
+                if (p.state == PlayerState.GROUND && Frame >= harmful_frame)
                     p.ReceiveDamage(1);
             }
         }

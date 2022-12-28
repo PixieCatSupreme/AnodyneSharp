@@ -375,7 +375,7 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
         public override void Update()
         {
             base.Update();
-            if (End && CurAnimFinished)
+            if (End && AnimFinished)
             {
                 exists = false;
             }

@@ -650,7 +650,7 @@ namespace AnodyneSharp.Entities
 
         private void ResetAfterFalling()
         {
-            if (GetFrame() == 31)
+            if (Frame == 31)
             {
                 Position = grid_entrance;
                 hasFallen = false;
@@ -710,7 +710,7 @@ namespace AnodyneSharp.Entities
             //No change in animation during bump
             if (Do_bump) return;
 
-            if (ANIM_STATE == PlayerAnimState.ANIM_ATK && broom.CurAnimFinished)
+            if (ANIM_STATE == PlayerAnimState.ANIM_ATK && broom.AnimFinished)
             {
                 //We just finished an attack
                 ANIM_STATE = PlayerAnimState.as_idle;

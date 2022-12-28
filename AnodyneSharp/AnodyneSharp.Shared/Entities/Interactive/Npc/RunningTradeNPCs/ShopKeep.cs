@@ -122,7 +122,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.RunningTradeNPCs
                 acceleration = Vector2.Zero;
                 velocity = Vector2.Zero;
                 Position = _startPos;
-                SetFrame(GetFrame() + 1);
+                SetFrame(Frame + 1);
                 opacity = 0;
             }
             MathUtilities.MoveTo(ref opacity, 1, 0.3f);
@@ -143,7 +143,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.RunningTradeNPCs
             }
             else
             {
-                GlobalState.Dialogue = getDiag(GetFrame() - 47);
+                GlobalState.Dialogue = getDiag(Frame - 47);
                 _checked = true;
             }
             return true;

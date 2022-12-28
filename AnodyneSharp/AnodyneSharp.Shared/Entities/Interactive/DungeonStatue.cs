@@ -30,7 +30,7 @@ namespace AnodyneSharp.Entities.Interactive
         {
             if(GlobalState.events.GetEvent("WindmillOpened") != 0)
             {
-                Position += FacingDirection(MoveDir(GetFrame())) * 32;
+                Position += FacingDirection(MoveDir(Frame)) * 32;
             }
         }
 

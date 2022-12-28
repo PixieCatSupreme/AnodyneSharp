@@ -162,7 +162,7 @@ namespace AnodyneSharp.Entities.Enemy.Go
             public override void Update()
             {
                 base.Update();
-                if (CurAnimFinished)
+                if (AnimFinished)
                     exists = false;
             }
 

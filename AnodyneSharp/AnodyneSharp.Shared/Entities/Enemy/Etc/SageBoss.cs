@@ -608,7 +608,7 @@ namespace AnodyneSharp.Entities.Enemy.Etc
         [Collision(typeof(Player), typeof(Broom), KeepOnScreen = true)]
         class LongAttack : HurtingEntity
         {
-            public bool IsFlickering { get { return _flickering; } }
+            public bool IsFlickering => _flickering;
 
             public LongAttack()
                 : base("sage_fight_long_dust", 64, 16)
@@ -658,7 +658,7 @@ namespace AnodyneSharp.Entities.Enemy.Etc
         class ShortAttack : HurtingEntity
         {
             public bool MapColission { get; set; }
-            public bool IsFlickering { get { return _flickering; } }
+            public bool IsFlickering => _flickering;
 
             public ShortAttack()
                 : base("sage_attacks", 16, 16)
@@ -722,7 +722,7 @@ namespace AnodyneSharp.Entities.Enemy.Etc
             {
                 base.Update();
 
-                if (CurAnimName == "poof" && CurAnimFinished)
+                if (CurAnimName == "poof" && AnimFinished)
                 {
                     exists = false;
                 }

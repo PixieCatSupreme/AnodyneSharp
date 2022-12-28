@@ -56,7 +56,7 @@ namespace AnodyneSharp.Entities.Gadget.Switches
         public override void Collided(Entity other)
         {
             base.Collided(other);
-            if(GetFrame() == upFrame)
+            if(Frame == upFrame)
             {
                 Separate(this, other);
             }

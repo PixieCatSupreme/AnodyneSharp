@@ -35,7 +35,7 @@ namespace AnodyneSharp.Entities
 
             offset = new Vector2(_player.offset.X, -_player.offset.Y);
 
-            SetFrame(_player.GetFrame());
+            SetFrame(_player.Frame);
 
             _broomReflection.visible = visible;
 
@@ -46,7 +46,7 @@ namespace AnodyneSharp.Entities
                 _broomReflection.Position = _player.broom.Position + new Vector2(0, 10);
                 _broomReflection.offset = _player.broom.offset;
 
-                _broomReflection.SetFrame(_player.broom.GetFrame());
+                _broomReflection.SetFrame(_player.broom.Frame);
 
                 _broomReflection.LayerOffset = _player.broom.is_behind_player ? -1 : 1;
 
