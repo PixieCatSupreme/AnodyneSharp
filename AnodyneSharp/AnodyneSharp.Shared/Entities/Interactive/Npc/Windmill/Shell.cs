@@ -80,7 +80,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Windmill
             {
                 base.PostUpdate();
 
-                if (_curAnim.CurIndex >= swapIndex)
+                if (CurAnimIndex >= swapIndex)
                 {
                     SetPos((baseAngle + 270) % 360);
                 }

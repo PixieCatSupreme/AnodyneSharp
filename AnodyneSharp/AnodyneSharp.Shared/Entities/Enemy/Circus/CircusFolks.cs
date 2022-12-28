@@ -262,7 +262,7 @@ namespace AnodyneSharp.Entities.Enemy.Circus
             velocity = Vector2.Zero;
             Play("switch");
 
-            while (!_curAnim.Finished)
+            while (!CurAnimFinished)
             {
                 yield return null;
             }
@@ -282,7 +282,7 @@ namespace AnodyneSharp.Entities.Enemy.Circus
 
             PlayFacing("throw");
 
-            while (!_curAnim.Finished)
+            while (!CurAnimFinished)
             {
                 yield return null;
             }
@@ -749,7 +749,7 @@ namespace AnodyneSharp.Entities.Enemy.Circus
 
                 if (CurAnimName == "evaporate")
                 {
-                    if (_curAnim.Finished)
+                    if (CurAnimFinished)
                     {
                         exists = false;
                     }

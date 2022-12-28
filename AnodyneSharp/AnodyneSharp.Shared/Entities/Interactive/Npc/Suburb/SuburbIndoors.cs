@@ -94,7 +94,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Suburb
 
         public bool PlayerInteraction(Facing player_direction)
         {
-            if (_curAnim.name != "hang" && _curAnim.name != "dead")
+            if (CurAnimName != "hang" && CurAnimName != "dead")
             {
                 FaceTowards(Position - FacingDirection(player_direction));
 

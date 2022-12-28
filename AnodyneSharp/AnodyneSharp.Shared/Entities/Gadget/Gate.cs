@@ -60,7 +60,7 @@ namespace AnodyneSharp.Entities.Gadget
                     Solid = true;
                 }
             }
-            else if(_curAnim.name == "still" || _curAnim.name == "close")
+            else if(CurAnimName == "still" || CurAnimName == "close")
             {
                 if (ConditionSatisfied())
                 {

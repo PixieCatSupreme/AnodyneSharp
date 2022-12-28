@@ -27,11 +27,11 @@ namespace AnodyneSharp.UI
         {
             base.Update();
 
-            if (_curAnim.name == "full" && (_broom.just_released_dust || _broom.dust == null))
+            if (CurAnimName == "full" && (_broom.just_released_dust || _broom.dust == null))
             {
                 Play("empty");
             }
-            else if (_curAnim.name != "full" && !_broom.just_released_dust && _broom.dust != null)
+            else if (CurAnimName != "full" && !_broom.just_released_dust && _broom.dust != null)
             {
                 Play("full");
             }

@@ -63,7 +63,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Space
 
         public bool PlayerInteraction(Facing player_direction)
         {
-            if (_curAnim.name != "forcedFrame" && _curAnim.name != "spin")
+            if (CurAnimName != "forcedFrame" && CurAnimName != "spin")
             {
                 FaceTowards(Position - FacingDirection(player_direction));
 

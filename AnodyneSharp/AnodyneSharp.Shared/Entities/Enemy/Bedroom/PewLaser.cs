@@ -125,7 +125,7 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
                     .End()
                     .State("Poof")
                         .Enter((state) => { Play("poof"); velocity = Vector2.Zero; })
-                        .Condition(() => _curAnim.Finished, (s) => exists = false)
+                        .Condition(() => CurAnimFinished, (s) => exists = false)
                     .End()
                     .Build();
             }

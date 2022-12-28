@@ -81,7 +81,7 @@ namespace AnodyneSharp.Entities.Gadget
         {
             base.Update();
 
-            if (_curAnim.Finished && !playerCollision)
+            if (CurAnimFinished && !playerCollision)
             {
                 activated = false;
                 Play("still");

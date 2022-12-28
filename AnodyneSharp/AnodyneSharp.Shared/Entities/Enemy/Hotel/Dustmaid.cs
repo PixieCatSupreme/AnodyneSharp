@@ -68,7 +68,7 @@ namespace AnodyneSharp.Entities.Enemy.Hotel
 
             _chasing = true;
 
-            while (!_curAnim.Finished)
+            while (!CurAnimFinished)
             {
                 yield return null;
             }

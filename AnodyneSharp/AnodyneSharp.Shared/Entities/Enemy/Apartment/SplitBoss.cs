@@ -574,7 +574,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
             public override void Update()
             {
                 base.Update();
-                if(_curAnim.Finished || opacity == 0)
+                if(CurAnimFinished || opacity == 0)
                 {
                     exists = false;
                 }

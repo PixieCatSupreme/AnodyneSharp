@@ -77,7 +77,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Suburb
                     walk_t = walk_t_max;
                 }
             }
-            else if(_curAnim.Finished && !blood.exists)
+            else if(CurAnimFinished && !blood.exists)
             {
                 SpawnBlood();
             }

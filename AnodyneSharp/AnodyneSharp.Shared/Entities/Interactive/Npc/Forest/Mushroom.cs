@@ -25,7 +25,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Forest
         {
             base.Update();
 
-            if (CurAnimName == "move" && _curAnim.Finished)
+            if (CurAnimName == "move" && CurAnimFinished)
             {
                 Play("idle");
             }

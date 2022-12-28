@@ -83,12 +83,12 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
             public override void Update()
             {
                 base.Update();
-                if(_curAnim.Finished)
+                if(CurAnimFinished)
                 {
                     exists = false;
                     return;
                 }
-                if(touching != Touching.NONE && _curAnim.name != "explode")
+                if(touching != Touching.NONE && CurAnimName != "explode")
                 {
                     Pop();
                 }
@@ -97,7 +97,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
             public override void Collided(Entity other)
             {
                 base.Collided(other);
-                if(other is Player p && p.state != PlayerState.AIR && _curAnim.name != "explode")
+                if(other is Player p && p.state != PlayerState.AIR && CurAnimName != "explode")
                 {
                     p.ReceiveDamage(1);
                     Pop();

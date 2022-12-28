@@ -141,7 +141,7 @@ namespace AnodyneSharp.Entities.Enemy.Hotel
                             Play("explode");
                             velocity = Vector2.Zero;
                         })
-                        .Condition(() => _curAnim.Finished, (state) =>
+                        .Condition(() => CurAnimFinished, (state) =>
                         {
                             exists = false;
                             SoundManager.PlaySoundEffect("4sht_pop");

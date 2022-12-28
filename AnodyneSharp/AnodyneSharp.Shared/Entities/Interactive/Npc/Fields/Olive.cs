@@ -46,7 +46,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc
                 }
                 Play("hop");
                 velocity.X = 25;
-                while(!_curAnim.Finished)
+                while(!CurAnimFinished)
                 {
                     yield return "hopping_right";
                 }
@@ -61,7 +61,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc
                 _flip = Microsoft.Xna.Framework.Graphics.SpriteEffects.FlipHorizontally;
                 velocity.X = -25;
                 Play("hop");
-                while (!_curAnim.Finished)
+                while (!CurAnimFinished)
                 {
                     yield return "hopping_left";
                 }

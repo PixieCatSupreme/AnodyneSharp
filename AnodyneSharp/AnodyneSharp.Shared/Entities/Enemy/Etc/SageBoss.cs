@@ -722,7 +722,7 @@ namespace AnodyneSharp.Entities.Enemy.Etc
             {
                 base.Update();
 
-                if (CurAnimName == "poof" && _curAnim.Finished)
+                if (CurAnimName == "poof" && CurAnimFinished)
                 {
                     exists = false;
                 }

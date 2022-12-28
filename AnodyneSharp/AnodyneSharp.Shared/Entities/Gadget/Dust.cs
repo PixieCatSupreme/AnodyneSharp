@@ -36,7 +36,7 @@ namespace AnodyneSharp.Entities
 
         public override void Collided(Entity other)
         {
-            if(!_curAnim.Finished && _curAnim.name == "unpoof" && b?.dust == this)
+            if(!CurAnimFinished && CurAnimName == "unpoof" && b?.dust == this)
             {
                 exists = false;
                 b.just_released_dust = false;
@@ -48,10 +48,10 @@ namespace AnodyneSharp.Entities
             base.PostUpdate();
             velocity = Vector2.Zero;
             ON_CONVEYOR = false;
-            if(_curAnim.Finished && (_curAnim.name == "fallpoof" || _curAnim.name == "poof"))
+            if(CurAnimFinished && (CurAnimName == "fallpoof" || CurAnimName == "poof"))
             {
                 exists = false;
-                if(_curAnim.name == "fallpoof")
+                if(CurAnimName == "fallpoof")
                 {
                     GlobalState.FireEvent(new DustFallEvent());
                 }
@@ -62,9 +62,9 @@ namespace AnodyneSharp.Entities
         {
             if (IS_RAFT) return;
 
-            if(_curAnim.name == "unpoof")
+            if(CurAnimName == "unpoof")
             {
-                if(_curAnim.Finished)
+                if(CurAnimFinished)
                 {
                     Play("fallpoof");
                 }

@@ -11,8 +11,6 @@ namespace AnodyneSharp.Entities
 {
     public class PlayerDieDummy : UIEntity
     {
-        public bool AnimDone => _curAnim.Finished;
-
         public bool MovementDone { get; private set; }
 
         public PlayerDieDummy(Vector2 pos, string textureName) 

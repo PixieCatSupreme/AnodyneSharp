@@ -248,7 +248,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
             {
                 base.Update();
 
-                if (_curAnim.Finished)
+                if (CurAnimFinished)
                 {
                     exists = false;
                 }

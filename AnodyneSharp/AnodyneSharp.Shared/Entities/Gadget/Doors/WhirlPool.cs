@@ -40,7 +40,7 @@ namespace AnodyneSharp.Entities.Gadget.Doors
         {
             base.Update();
 
-            if (_curAnim.Finished)
+            if (CurAnimFinished)
             {
                 Play("whirl_red");
             }

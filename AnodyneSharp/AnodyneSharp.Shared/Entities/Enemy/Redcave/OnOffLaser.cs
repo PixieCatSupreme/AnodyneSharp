@@ -195,7 +195,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
 
             public override void Collided(Entity other)
             {
-                if (_curAnim.name == "steam_is_harmful")
+                if (CurAnimName == "steam_is_harmful")
                 {
                     if (other is Player p)
                     {
@@ -210,7 +210,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
 
             internal bool EndofAnim()
             {
-                return _curAnim.Finished;
+                return CurAnimFinished;
             }
         }
     }

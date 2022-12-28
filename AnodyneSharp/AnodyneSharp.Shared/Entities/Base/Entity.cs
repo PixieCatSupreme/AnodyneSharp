@@ -36,8 +36,11 @@ namespace AnodyneSharp.Entities
 
         public Color color;
 
-        protected Anim _curAnim;
+        private Anim _curAnim;
         public string CurAnimName => _curAnim.name;
+        public bool CurAnimFinished => _curAnim.Finished;
+        public int CurAnimIndex => _curAnim.CurIndex;
+
         public float opacity;
 
         public Shadow shadow;
@@ -142,7 +145,7 @@ namespace AnodyneSharp.Entities
          * @param	AnimName	The string name of the animation you want to play.
          * @param	Force		Whether to force the animation to restart.
          */
-        public void Play(string AnimName, bool Force = false)
+        public void Play(string AnimName, bool Force = false, int? newFramerate = null)
         {
             if (!Force && _curAnim != null && AnimName == _curAnim.name && !_curAnim.Finished)
             {
@@ -155,6 +158,7 @@ namespace AnodyneSharp.Entities
                 {
                     _curAnim = _animations[i];
                     _curAnim.Reset();
+                    _curAnim.FrameRate = newFramerate ?? _curAnim.FrameRate;
 
                     AnimationChanged(AnimName);
                     return;

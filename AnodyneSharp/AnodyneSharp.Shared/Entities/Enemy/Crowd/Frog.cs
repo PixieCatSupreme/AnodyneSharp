@@ -176,7 +176,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
                             Play("explode");
                             velocity = Vector2.Zero;
                         })
-                        .Condition(() => _curAnim.Finished, (state) =>
+                        .Condition(() => CurAnimFinished, (state) =>
                         {
                             exists = false;
                             SoundManager.PlaySoundEffect("bubble_1","bubble_1","bubble_2","bubble_3");

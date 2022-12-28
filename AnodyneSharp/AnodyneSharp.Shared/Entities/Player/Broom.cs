@@ -33,8 +33,6 @@ namespace AnodyneSharp.Entities
         public static string Wide_Attack_v = "wide_attack_v";
         public static string Long_Attack_v = "long_attack_h";
 
-        public bool AnimFinished => _curAnim.Finished;
-
         public Dust dust;
         public bool just_released_dust;
         private Dust pickup_candidate = null;
@@ -96,7 +94,7 @@ namespace AnodyneSharp.Entities
                 }
 #endif
             }
-            if (_curAnim.Finished)
+            if (CurAnimFinished)
             {
                 exists = false;
 

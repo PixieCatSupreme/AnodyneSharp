@@ -52,14 +52,14 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Hotel
 
             Play("open");
 
-            while (!_curAnim.Finished)
+            while (!CurAnimFinished)
             {
                 yield return null;
             }
 
             Play("blink");
 
-            while (!_curAnim.Finished)
+            while (!CurAnimFinished)
             {
                 yield return null;
             }

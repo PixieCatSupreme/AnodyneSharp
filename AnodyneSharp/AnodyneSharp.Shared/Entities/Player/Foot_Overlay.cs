@@ -43,7 +43,7 @@ namespace AnodyneSharp.Entities
 
         public override void Grass()
         {
-            if (_curAnim.name == "water")
+            if (CurAnimName == "water")
             {
                 SetTexture($"overlay_{GlobalState.CURRENT_MAP_NAME}_grass", 24, 24);
                 offset.Y = 1;
@@ -74,7 +74,7 @@ namespace AnodyneSharp.Entities
 
         private void Activate()
         {
-            if (_curAnim.name != "water")
+            if (CurAnimName != "water")
             {
                 OnMapChange();
             }

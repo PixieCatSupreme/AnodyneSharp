@@ -122,7 +122,7 @@ namespace AnodyneSharp.Entities.Interactive
             public override void PostUpdate()
             {
                 base.PostUpdate();
-                if (_curAnim.Finished) exists = false;
+                if (CurAnimFinished) exists = false;
             }
 
             public void Spawn(Big_Key parent, bool make_sound)

@@ -49,7 +49,7 @@ namespace AnodyneSharp.Entities.Interactive
                     .Condition(() => menuDetector.Hit, (s) => _state.ChangeState("Menu"))
                 .End()
                 .State("Open")
-                    .Enter((s) => { if (_curAnim.name != "open") { Play("open"); SoundManager.PlaySoundEffect("elevator_open"); } })
+                    .Enter((s) => { if (CurAnimName != "open") { Play("open"); SoundManager.PlaySoundEffect("elevator_open"); } })
                     .Condition(() => !openDetector.Hit, (s) => _state.ChangeState("Close"))
                 .End()
                 .State("Menu")

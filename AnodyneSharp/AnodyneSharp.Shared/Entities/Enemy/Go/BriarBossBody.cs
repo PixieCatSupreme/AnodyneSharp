@@ -27,7 +27,7 @@ namespace AnodyneSharp.Entities.Enemy.Go
         public override void Update()
         {
             base.Update();
-            if(!State?.MoveNext() ?? false)
+            if (!State?.MoveNext() ?? false)
             {
                 State = null;
             }
@@ -38,7 +38,7 @@ namespace AnodyneSharp.Entities.Enemy.Go
             var thorn_attack = ThornAttack(phase);
             var bullet_attack = CoroutineUtils.OnceEvery(Bullets(phase), 1.4f - 0.2f * phase / 2);
 
-            while(thorn_attack.MoveNext())
+            while (thorn_attack.MoveNext())
             {
                 bullet_attack.MoveNext();
                 yield return null;
@@ -54,15 +54,15 @@ namespace AnodyneSharp.Entities.Enemy.Go
             Vector2 extra_right = new(10, 45);
             Vector2 acc_left = new(5, 20);
             Vector2 acc_right = new(-5, 20);
-            while(true)
+            while (true)
             {
-                foreach(int x in base_xpos)
+                foreach (int x in base_xpos)
                 {
                     bullets.Spawn(b => b.Spawn(Position + new Vector2(x, 60), Vector2.UnitY * 40, Vector2.UnitY * 25));
                 }
-                if(phase >= 2)
+                if (phase >= 2)
                 {
-                    bullets.Spawn(b => b.Spawn(Position + new Vector2(20, 44),extra_left,acc_left));
+                    bullets.Spawn(b => b.Spawn(Position + new Vector2(20, 44), extra_left, acc_left));
                     bullets.Spawn(b => b.Spawn(Position + new Vector2(101, 44), extra_right, acc_right));
                 }
                 if (phase >= 4)
@@ -90,12 +90,12 @@ namespace AnodyneSharp.Entities.Enemy.Go
         IEnumerator<string> Thorns(int phase)
         {
             SoundManager.PlaySoundEffect("briar_shine");
-            for(int i = 0; i < 8; ++i)
+            for (int i = 0; i < 8; ++i)
             {
                 int player_pos = (int)(player.Position.Y - Position.Y) / 16;
                 player_pos = Math.Clamp(player_pos, (i > 1 && i < 6) ? 4 : 5, 8);
-                
-                thorns.Spawn(t => t.Spawn(Position + new Vector2(i,player_pos)*16, phase));
+
+                thorns.Spawn(t => t.Spawn(Position + new Vector2(i, player_pos) * 16, phase));
                 yield return null;
             }
             yield break;
@@ -116,7 +116,7 @@ namespace AnodyneSharp.Entities.Enemy.Go
         class Thorn : Entity
         {
             const int harmful_frame = 9;
-            public Thorn() : base(Vector2.Zero,"briar_ground_thorn",16,16,Drawing.DrawOrder.ENTITIES)
+            public Thorn() : base(Vector2.Zero, "briar_ground_thorn", 16, 16, Drawing.DrawOrder.ENTITIES)
             {
                 width = height = 6;
                 offset = new(5, 4);
@@ -125,15 +125,14 @@ namespace AnodyneSharp.Entities.Enemy.Go
 
             public void Spawn(Vector2 pos, int phase)
             {
-                Position = pos + Vector2.UnitX*offset.X;
-                Play("attack");
-                _curAnim.FrameRate = 12 + phase;
+                Position = pos + Vector2.UnitX * offset.X;
+                Play("attack", newFramerate: 12 + phase);
             }
 
             public override void Update()
             {
                 base.Update();
-                if (_curAnim.Finished)
+                if (CurAnimFinished)
                     exists = false;
             }
 
@@ -149,7 +148,7 @@ namespace AnodyneSharp.Entities.Enemy.Go
         [Collision(typeof(Player))]
         class Bullet : Entity
         {
-            public Bullet() : base(Vector2.Zero,"briar_thorn_bullet",16,16,Drawing.DrawOrder.ENTITIES)
+            public Bullet() : base(Vector2.Zero, "briar_thorn_bullet", 16, 16, Drawing.DrawOrder.ENTITIES)
             {
                 width = height = 6;
                 offset = Vector2.One * 5;
@@ -175,7 +174,7 @@ namespace AnodyneSharp.Entities.Enemy.Go
             {
                 base.Collided(other);
                 Player p = other as Player;
-                if(p.state == PlayerState.GROUND)
+                if (p.state == PlayerState.GROUND)
                     p.ReceiveDamage(1);
             }
         }

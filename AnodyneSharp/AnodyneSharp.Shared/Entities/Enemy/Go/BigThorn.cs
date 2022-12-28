@@ -31,7 +31,7 @@ namespace AnodyneSharp.Entities.Enemy.Go
             {
                 state = null;
             }
-            if(_curAnim.Finished)
+            if(CurAnimFinished)
             {
                 Play("off");
             }

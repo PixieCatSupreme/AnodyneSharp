@@ -25,7 +25,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc
             timer += GameTimes.DeltaTime;
             if(timer > 1)
             {
-                if(_curAnim.name == "walk")
+                if(CurAnimName == "walk")
                 {
                     FaceTowards(Position - velocity);
                     velocity = Vector2.Zero;
