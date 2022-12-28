@@ -580,12 +580,12 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
             float eY = 6;
             _briar = new UIEntity(new Vector2(x, eY), "briar", 16, 16, Drawing.DrawOrder.ENTITIES)
             {
-                visible = Save.events.GetEvent("SeenCredits") == 1
+                visible = SaveExists && Save.events.GetEvent("SeenCredits") == 1
             };
 
             _young = new UIEntity(new Vector2(x + 16 + 2, eY), "young_player", 16, 16, Drawing.DrawOrder.ENTITIES)
             {
-                visible = Save.inventory.CardCount > 48
+                visible = SaveExists && Save.inventory.CardCount > 48
             };
 
             Color color = new Color(116, 140, 144);
