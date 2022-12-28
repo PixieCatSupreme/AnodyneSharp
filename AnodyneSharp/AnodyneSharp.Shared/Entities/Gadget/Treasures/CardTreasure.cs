@@ -35,7 +35,7 @@ namespace AnodyneSharp.Entities.Gadget.Treasures
         {
             base.GetTreasure();
 
-            if (GlobalState.inventory.CardStatus[_curAnim.Frame])
+            if (GlobalState.inventory.CardStatus[GetFrame()])
             {
                 exists = false;
                 GlobalState.FireEvent(new EmptyTreasureEvent());
@@ -43,9 +43,9 @@ namespace AnodyneSharp.Entities.Gadget.Treasures
             }
 
 
-            GlobalState.inventory.CardStatus[_curAnim.Frame] = true;
+            GlobalState.inventory.CardStatus[GetFrame()] = true;
 
-            DebugLogger.AddInfo($"Got card {_curAnim.Frame}");
+            DebugLogger.AddInfo($"Got card {GetFrame()}");
         }
 
         public override void Update()

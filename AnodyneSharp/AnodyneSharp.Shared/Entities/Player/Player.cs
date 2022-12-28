@@ -650,7 +650,7 @@ namespace AnodyneSharp.Entities
 
         private void ResetAfterFalling()
         {
-            if (_curAnim.Frame == 31)
+            if (GetFrame() == 31)
             {
                 Position = grid_entrance;
                 hasFallen = false;

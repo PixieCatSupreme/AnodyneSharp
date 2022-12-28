@@ -27,7 +27,7 @@ namespace AnodyneSharp.Entities.Decorations
 
         public bool PlayerInteraction(Facing player_direction)
         {
-            GlobalState.Dialogue = DialogueManager.GetDialogue("misc", "any", "solidsprite", _curAnim.Frame -2);
+            GlobalState.Dialogue = DialogueManager.GetDialogue("misc", "any", "solidsprite", GetFrame() -2);
             return true;
         }
     }

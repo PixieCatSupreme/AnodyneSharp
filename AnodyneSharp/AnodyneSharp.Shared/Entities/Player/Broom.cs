@@ -184,7 +184,7 @@ namespace AnodyneSharp.Entities
                         SetLongValues(new Vector2(-13, 0), new Vector2(-1, 1));
                     }
 
-                    switch (_curAnim.Frame)
+                    switch (GetFrame())
                     {
                         case 0: Position.X += 10; break;
                         case 1: Position.X += 6; break;
@@ -207,7 +207,7 @@ namespace AnodyneSharp.Entities
                         SetLongValues(new Vector2(6, 2), new Vector2(0, 0));
                     }
 
-                    switch (_curAnim.Frame)
+                    switch (GetFrame())
                     {
                         case 0: Position.X -= 12; break;
                         case 1: Position.X -= 8; break;
@@ -229,7 +229,7 @@ namespace AnodyneSharp.Entities
                         SetLongValues(new Vector2(3, -10), new Vector2(-5, 4));
                     }
 
-                    switch (_curAnim.Frame)
+                    switch (GetFrame())
                     {
                         case 0: Position.Y += 12; break;
                         case 1: Position.Y += 6; break;
@@ -251,7 +251,7 @@ namespace AnodyneSharp.Entities
                         SetLongValues(new Vector2(1, 6), new Vector2(-5, 3));
                     }
 
-                    switch (_curAnim.Frame)
+                    switch (GetFrame())
                     {
                         case 0: Position.Y -= 8; break;
                         case 1: Position.Y -= 5; break;

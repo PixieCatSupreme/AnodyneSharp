@@ -40,7 +40,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
             {
                 timer = tm;
                 Sounds.SoundManager.PlaySoundEffect("4sht_shoot");
-                if(_curAnim.Frame == 0)
+                if(GetFrame() == 0)
                 {
                     Play("axis_to_diag");
                     bullets.Spawn((b) => b.Spawn(Center, Vector2.UnitX));

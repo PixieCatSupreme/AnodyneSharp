@@ -114,12 +114,12 @@ namespace AnodyneSharp.Entities.Enemy
 
         private void SyncSplash(MoveState state)
         {
-            if (_curAnim.Frame == 1 && !state.move_frame_sound_sync)
+            if (GetFrame() == 1 && !state.move_frame_sound_sync)
             {
                 SoundManager.PlaySoundEffect("slime_walk");
                 state.move_frame_sound_sync = true;
             }
-            else if (_curAnim.Frame == 0)
+            else if (GetFrame() == 0)
             {
                 state.move_frame_sound_sync = false;
             }
@@ -127,7 +127,7 @@ namespace AnodyneSharp.Entities.Enemy
 
         private void ChangeDir()
         {
-            if (_curAnim.Frame == 1)
+            if (GetFrame() == 1)
             {
                 //Make it more likely for slimes to stand still periodically
                 velocity = Vector2.Zero;
@@ -234,7 +234,7 @@ namespace AnodyneSharp.Entities.Enemy
                         {
                             SoundManager.PlaySoundEffect("slime_splash");
                             shadow.exists = false;
-                            SetFrame(_curAnim.Frame);
+                            SetFrame(GetFrame());
                             velocity = Vector2.Zero;
                         })
                         .Update((state, time) => opacity -= 0.05f)

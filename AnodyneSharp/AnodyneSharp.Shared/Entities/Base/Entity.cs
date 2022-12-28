@@ -112,13 +112,13 @@ namespace AnodyneSharp.Entities
         }
 
         /**
- * Adds a new animation to the sprite.
- * 
- * @param	Name		What this animation should be called (e.g. "run").
- * @param	Frames		An array of numbers indicating what frames to play in what order (e.g. 1, 2, 3).
- * @param	FrameRate	The speed in frames per second that the animation should play at (e.g. 40 fps).
- * @param	Looped		Whether or not the animation is looped or just plays once.
- */
+         * Adds a new animation to the sprite.
+         * 
+         * @param	Name		What this animation should be called (e.g. "run").
+         * @param	Frames		An array of numbers indicating what frames to play in what order (e.g. 1, 2, 3).
+         * @param	FrameRate	The speed in frames per second that the animation should play at (e.g. 40 fps).
+         * @param	Looped		Whether or not the animation is looped or just plays once.
+         */
         public void AddAnimation(string name, int[] frames, float frameRate = 0, bool looped = true)
         {
             _animations.Add(new Anim(name, frames, frameRate, looped));
@@ -203,7 +203,7 @@ namespace AnodyneSharp.Entities
 
         public float GetZ()
         {
-            return LayerParent?.GetZ() - LayerOffset * 0.0001f ?? 
+            return LayerParent?.GetZ() - LayerOffset * 0.0001f ??
                 DrawingUtilities.GetDrawingZ(layer, MapUtilities.GetInGridPosition(Position).Y + height);
         }
 
@@ -229,10 +229,7 @@ namespace AnodyneSharp.Entities
                         _flip,
                         GetZ());
                 }
-                if (shadow != null)
-                {
-                    shadow.Draw();
-                }
+                shadow?.Draw();
                 if (GlobalState.draw_hitboxes && HasVisibleHitbox)
                 {
                     SpriteDrawer.DrawSprite(ResourceManager.GetTexture("hitbox"), Hitbox, color: Color.Red, Z: DrawingUtilities.GetDrawingZ(DrawOrder.HITBOX, 0));
@@ -245,7 +242,7 @@ namespace AnodyneSharp.Entities
             _curAnim = new Anim("forcedFrame", new int[] { frame }, 1);
         }
 
-        protected void UpdateAnimation()
+        private void UpdateAnimation()
         {
             if (_curAnim != null)
             {
@@ -325,13 +322,13 @@ namespace AnodyneSharp.Entities
         protected virtual void CenterOffset(bool updatePos = true)
         {
             offset = (new Vector2(sprite.Width, sprite.Height) - new Vector2(width, height)) / 2;
-            if(updatePos)
+            if (updatePos)
                 Position += offset;
         }
 
         public void Flicker(float duration)
         {
-            if(duration == 0f)
+            if (duration == 0f)
             {
                 _flickering = false;
                 visible = true;

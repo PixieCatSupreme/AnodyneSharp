@@ -141,7 +141,7 @@ namespace AnodyneSharp.Entities.Enemy.Go
             {
                 base.Collided(other);
                 Player p = other as Player;
-                if (p.state == PlayerState.GROUND && _curAnim.Frame >= harmful_frame)
+                if (p.state == PlayerState.GROUND && GetFrame() >= harmful_frame)
                     p.ReceiveDamage(1);
             }
         }

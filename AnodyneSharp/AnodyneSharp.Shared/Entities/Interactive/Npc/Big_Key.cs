@@ -101,7 +101,7 @@ namespace AnodyneSharp.Entities.Interactive
             _preset.Alive = false;
             Solid = false;
 
-            GlobalState.inventory.BigKeyStatus[_curAnim.Frame / 2] = true;
+            GlobalState.inventory.BigKeyStatus[GetFrame() / 2] = true;
             GlobalState.StartCutscene = States();
 
             return true;

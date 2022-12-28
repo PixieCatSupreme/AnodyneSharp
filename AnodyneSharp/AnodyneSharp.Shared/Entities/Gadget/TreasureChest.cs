@@ -79,7 +79,7 @@ namespace AnodyneSharp.Entities.Gadget
             GlobalState.CurrentMinimap.RemoveInterest();
             _treasure.GetTreasure();
 
-            SetFrame(_curAnim.Frame + 1);
+            SetFrame(GetFrame() + 1);
             _preset.Activated = true;
             return true;
         }

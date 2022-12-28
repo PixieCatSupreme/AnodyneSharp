@@ -36,10 +36,5 @@ namespace AnodyneSharp.Entities.Decorations
 
 			Position = preset.Position;
 		}
-
-        public override void Draw()
-        {
-            base.Draw();
-        }
     }
 }
