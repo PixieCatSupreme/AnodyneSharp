@@ -97,7 +97,7 @@ namespace AnodyneSharp.Entities.Gadget.Doors
 
                 _player = player;
 
-                color = target = start = new Color(0.5f, 0.5f, 0.5f, 1f);
+                sprite.color = target = start = new Color(0.5f, 0.5f, 0.5f, 1f);
 
                 Play("stop");
             }
@@ -108,7 +108,7 @@ namespace AnodyneSharp.Entities.Gadget.Doors
 
                 _playerInArea = active;
 
-                start = color;
+                start = sprite.color;
                 progress = 0;
 
                 if (active)
@@ -125,11 +125,11 @@ namespace AnodyneSharp.Entities.Gadget.Doors
 
             public override void Update()
             {
-                if (color != target)
+                if (sprite.color != target)
                 {
                     progress = Math.Min(progress + 1.2f * GameTimes.DeltaTime, 1f);
 
-                    color = Color.Lerp(start, target, progress);
+                    sprite.color = Color.Lerp(start, target, progress);
                 }
 
                 if (_playerInArea && !_player.Hitbox.Intersects(Hitbox))

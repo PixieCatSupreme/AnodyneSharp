@@ -1,7 +1,6 @@
 ﻿using AnodyneSharp.Drawing;
-using AnodyneSharp.Drawing.Spritesheet;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.GameEvents;
-using AnodyneSharp.Logging;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Resources;
 using AnodyneSharp.Utilities;
@@ -26,41 +25,32 @@ namespace AnodyneSharp.Entities
 
         private const float FlickerLength = 0.05f;
 
-
-        public Vector2 offset;
         public Facing facing;
+
+        public AnimatedSpriteRenderer sprite;
+        
+        public string CurAnimName => sprite.CurAnimName;
+        public bool AnimFinished => sprite.AnimFinished;
+        public int FrameIndex => sprite.FrameIndex;
+        public int Frame => sprite.Frame;
+
         public DrawOrder layer;
         public Entity LayerParent;
         public int LayerOffset = 0;
 
-        public Color color;
-
-
-        public Spritesheet sprite;
-        private List<Anim> _animations;
-        private string textureName;
-        private Anim _curAnim;
-        
-        public string CurAnimName => _curAnim.name;
-        public bool AnimFinished => _curAnim.Finished;
-        public int FrameIndex => _curAnim.CurIndex;
-        public int Frame => _curAnim.Frame;
-
+        public Vector2 offset;
         public float opacity;
-
-        public Shadow shadow;
-
         public float scale;
-
         protected SpriteEffects _flip;
+        public float y_push = 0f; //sinking into the ground
 
         public bool _flickering { get; protected set; }
         private float _flickerTimer;
         private float _flickerFreq = 0;
 
-        public bool MapInteraction = true;
+        public Shadow shadow;
 
-        public float y_push = 0f; //sinking into the ground
+        public bool MapInteraction = true;
 
         public Vector2 VisualCenter
         {
@@ -73,47 +63,31 @@ namespace AnodyneSharp.Entities
         public Entity(Vector2 pos, DrawOrder layer)
             : base(pos)
         {
-            _animations = new List<Anim>();
-
             this.layer = layer;
             opacity = 1f;
 
             scale = 1;
-
-            color = Color.White;
-
-            SetFrame(0);
         }
 
         public Entity(Vector2 pos, int frameWidth, int frameHeight, DrawOrder layer)
             : base(pos, frameWidth, frameHeight)
         {
-            _animations = new List<Anim>();
-
             this.layer = layer;
             opacity = 1f;
 
             scale = 1;
-
-            color = Color.White;
-
-            SetFrame(0);
         }
 
         public Entity(Vector2 pos, string textureName, int frameWidth, int frameHeight, DrawOrder layer)
             : base(pos, frameWidth, frameHeight)
         {
-            _animations = new List<Anim>();
-
             this.layer = layer;
 
             opacity = 1f;
 
             scale = 1;
 
-            color = Color.White;
-
-            SetTexture(textureName, frameWidth, frameHeight);
+            sprite = new(textureName, frameWidth, frameHeight, ForcedFrame(0));
         }
 
         /**
@@ -126,7 +100,7 @@ namespace AnodyneSharp.Entities
          */
         public void AddAnimation(string name, int[] frames, float frameRate = 0, bool looped = true)
         {
-            _animations.Add(new Anim(name, frames, frameRate, looped));
+            sprite.AddAnimation(new Anim(name, frames, frameRate, looped));
         }
 
         protected virtual void AnimationChanged(string name) { }
@@ -149,56 +123,10 @@ namespace AnodyneSharp.Entities
          */
         public void Play(string AnimName, bool Force = false, int? newFramerate = null)
         {
-            if (!Force && _curAnim != null && AnimName == _curAnim.name && !_curAnim.Finished)
+            if (sprite.PlayAnim(AnimName, Force, newFramerate))
             {
-                return;
+                AnimationChanged(AnimName);
             }
-
-            for (int i = 0; i < _animations.Count; i++)
-            {
-                if (_animations[i].name == AnimName)
-                {
-                    _curAnim = _animations[i];
-                    _curAnim.Reset();
-                    _curAnim.FrameRate = newFramerate ?? _curAnim.FrameRate;
-
-                    AnimationChanged(AnimName);
-                    return;
-                }
-            }
-            DebugLogger.AddWarning("No animation called \"" + AnimName + "\"");
-        }
-
-        public override void Update()
-        {
-            base.Update();
-
-            shadow?.Update();
-
-            if (_flickering)
-            {
-                DoFlicker();
-            }
-        }
-
-        public override void PostUpdate()
-        {
-            base.PostUpdate();
-
-            UpdateAnimation();
-
-            shadow?.PostUpdate();
-
-        }
-
-        public virtual void Collided(Entity other) { }
-
-        /**
-         * Sub entities that require collision and updates
-         */
-        public virtual IEnumerable<Entity> SubEntities()
-        {
-            return new List<Entity>();
         }
 
         public float GetZ()
@@ -218,16 +146,7 @@ namespace AnodyneSharp.Entities
             {
                 if (visible)
                 {
-                    Rectangle srect = sprite.GetRect(_curAnim.Frame);
-                    srect.Height -= (int)y_push;
-
-                    SpriteDrawer.DrawSprite(sprite.Tex,
-                        MathUtilities.CreateRectangle(Position.X - offset.X * scale, Position.Y - offset.Y * scale + (int)y_push, srect.Width * scale, srect.Height * scale),
-                        srect,
-                        color * opacity,
-                        rotation,
-                        _flip,
-                        GetZ());
+                    sprite.Draw(Position - offset * scale, scale, (int)y_push, rotation, opacity, _flip, GetZ());
                 }
                 shadow?.Draw();
                 if (GlobalState.draw_hitboxes && HasVisibleHitbox)
@@ -237,20 +156,16 @@ namespace AnodyneSharp.Entities
             }
         }
 
-        public void SetFrame(int frame)
+        private static Anim ForcedFrame(int frame)
         {
-            _curAnim = new Anim("forcedFrame", new int[] { frame }, 1);
+            return new Anim($"forcedframe{frame}", new int[] { frame }, 1);
         }
 
-        private void UpdateAnimation()
+        public void SetFrame(int frame)
         {
-            if (_curAnim != null)
-            {
-                _curAnim.Update();
-
-                _curAnim.Dirty = false;
-            }
-
+            var anim = ForcedFrame(frame);
+            sprite.AddAnimation(anim);
+            sprite.PlayAnim(anim.name);
         }
 
         protected int[] CreateAnimFrameArray(params int[] frames)
@@ -260,17 +175,17 @@ namespace AnodyneSharp.Entities
 
         protected virtual bool SetTexture(string textureName, int frameWidth, int frameHeight, bool ignoreChaos = false, bool allowFailure = false)
         {
-            this.textureName = textureName;
-            sprite = new Spritesheet(ResourceManager.GetTexture(textureName, ignoreChaos, allowFailure), frameWidth, frameHeight);
-
-            SetFrame(0);
-
-            return sprite.Tex != null;
+            if (sprite is null)
+            {
+                sprite = new(textureName, frameWidth, frameHeight, ForcedFrame(0));
+                return true;
+            }
+            return sprite.SetTexture(textureName, frameWidth, frameHeight, ignoreChaos, allowFailure);
         }
 
         public virtual void ReloadTexture(bool ignoreChaos = false)
         {
-            sprite = new Spritesheet(ResourceManager.GetTexture(textureName, ignoreChaos), sprite.Width, sprite.Height);
+            sprite.ReloadTexture(ignoreChaos);
         }
 
         public static Facing FacingFromTouching(Touching t)
@@ -357,6 +272,39 @@ namespace AnodyneSharp.Entities
                     visible = true;
                 }
             }
+        }
+
+        public override void Update()
+        {
+            base.Update();
+
+
+            shadow?.Update();
+
+            if (_flickering)
+            {
+                DoFlicker();
+            }
+        }
+
+        public override void PostUpdate()
+        {
+            base.PostUpdate();
+
+            sprite?.Update();
+
+            shadow?.PostUpdate();
+
+        }
+
+        public virtual void Collided(Entity other) { }
+
+        /**
+         * Sub entities that require collision and updates
+         */
+        public virtual IEnumerable<Entity> SubEntities()
+        {
+            return new List<Entity>();
         }
 
         //Map interactions

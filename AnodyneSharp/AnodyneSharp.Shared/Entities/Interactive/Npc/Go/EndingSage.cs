@@ -23,6 +23,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Go
         public SageSentinel(EntityPreset preset, Player p) : base(Vector2.Zero,DrawOrder.BACKGROUND)
         {
             sage = new(p);
+            visible = false;
         }
 
         public override void Update()
