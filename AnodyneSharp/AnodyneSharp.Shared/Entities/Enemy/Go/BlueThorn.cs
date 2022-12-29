@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.GameEvents;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.GameEvents;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 using AnodyneSharp.Utilities;
@@ -15,7 +16,7 @@ namespace AnodyneSharp.Entities.Enemy.Go
     {
         FireEye shooter = new();
 
-        public BlueThorn(Vector2 pos) : base(pos, "briar_arm_right")
+        public BlueThorn(Vector2 pos, ILayerType layer) : base(pos, "briar_arm_right", layer)
         {
             AddAnimation("off", CreateAnimFrameArray(1, 2, 3, 0), 4);
             Play("off");

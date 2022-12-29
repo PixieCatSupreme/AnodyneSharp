@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.GameEvents;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
@@ -63,8 +64,7 @@ namespace AnodyneSharp.Entities
             wide_attack.AddAnimation("a", CreateAnimFrameArray(0, 1, 2, 3, 4), 14, false);
             long_attack.AddAnimation("a", CreateAnimFrameArray(0, 1, 2, 3, 4), 14, false);
 
-            LayerParent = root;
-            LayerOffset = 1;
+            layer_def = new RefLayer(root.layer_def, 1);
 
             long_attack.visible = false;
             wide_attack.visible = false;
@@ -171,7 +171,7 @@ namespace AnodyneSharp.Entities
                     rotation = 0;
                     Position = new Vector2(_root.Position.X - 14, _root.Position.Y);
                     is_behind_player = true;
-                    LayerOffset = -1;
+                    layer_def = new RefLayer(_root.layer_def, -1);
 
                     if (GlobalState.inventory.EquippedBroom == BroomType.Wide)
                     {
@@ -194,7 +194,7 @@ namespace AnodyneSharp.Entities
                     rotation = MathHelper.ToRadians(180);
                     Position = new Vector2(_root.Position.X + _root.width, _root.Position.Y - 2);
                     is_behind_player = false;
-                    LayerOffset = 1;
+                    layer_def = new RefLayer(_root.layer_def, 1);
 
                     if (GlobalState.inventory.EquippedBroom == BroomType.Wide)
                     {
@@ -216,7 +216,7 @@ namespace AnodyneSharp.Entities
                     rotation = MathHelper.ToRadians(90);
                     Position = new Vector2(_root.Position.X + -2, _root.Position.Y - 16);
                     is_behind_player = true;
-                    LayerOffset = -1;
+                    layer_def = new RefLayer(_root.layer_def, -1);
 
                     if (GlobalState.inventory.EquippedBroom == BroomType.Wide)
                     {
@@ -238,7 +238,7 @@ namespace AnodyneSharp.Entities
                     rotation = MathHelper.ToRadians(270);
                     Position = new Vector2(_root.Position.X + -6, _root.Position.Y + _root.height);
                     is_behind_player = false;
-                    LayerOffset = 1;
+                    layer_def = new RefLayer(_root.layer_def, 1);
 
                     if (GlobalState.inventory.EquippedBroom == BroomType.Wide)
                     {

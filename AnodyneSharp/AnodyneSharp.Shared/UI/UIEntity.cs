@@ -1,5 +1,6 @@
 ﻿using AnodyneSharp.Drawing;
 using AnodyneSharp.Entities;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -13,6 +14,12 @@ namespace AnodyneSharp.UI
     {
 
         public UIEntity(Vector2 pos, string textureName, int frameWidth, int frameHeight, DrawOrder layer)
+            : base(pos, textureName, frameWidth, frameHeight, layer)
+        {
+            HasVisibleHitbox = false;
+        }
+
+        public UIEntity(Vector2 pos, string textureName, int frameWidth, int frameHeight, ILayerType layer)
             : base(pos, textureName, frameWidth, frameHeight, layer)
         {
             HasVisibleHitbox = false;

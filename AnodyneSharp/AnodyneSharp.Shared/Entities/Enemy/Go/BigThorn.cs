@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Registry;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 using Microsoft.Xna.Framework;
 using System.Collections;
@@ -12,7 +13,7 @@ namespace AnodyneSharp.Entities.Enemy.Go
 
         public IEnumerator state;
 
-        public BigThorn(Vector2 pos, string tex) : base(pos, tex, 64, 80, Drawing.DrawOrder.ENTITIES)
+        public BigThorn(Vector2 pos, string tex, ILayerType layer) : base(pos, tex, 64, 80, layer)
         {
             immovable = true;
             AddAnimation("hit", CreateAnimFrameArray(4, 6, 4, 6, 4, 6, 4, 6, 4, 6, 4, 6), 15, false);

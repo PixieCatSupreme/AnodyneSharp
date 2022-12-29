@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Registry;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
@@ -21,11 +22,7 @@ namespace AnodyneSharp.Entities.Gadget
             //big key gates activate instantly
             _sentinel._maxActivationTime = 0f;
 
-            keyhole = new(Position, "gate_green_slots", 32, 16, Drawing.DrawOrder.ENTITIES)
-            {
-                LayerParent = this,
-                LayerOffset = 1
-            };
+            keyhole = new(Position, "gate_green_slots", 32, 16, new RefLayer(layer_def, 1));
             keyhole.SetFrame(preset.Frame switch
             {
                 1 => 2,

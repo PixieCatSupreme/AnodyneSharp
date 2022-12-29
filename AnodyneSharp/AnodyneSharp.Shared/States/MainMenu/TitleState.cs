@@ -1,6 +1,7 @@
 ﻿using AnodyneSharp.Dialogue;
 using AnodyneSharp.Drawing;
 using AnodyneSharp.Entities;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.FSM;
 using AnodyneSharp.Input;
 using AnodyneSharp.Registry;
@@ -285,25 +286,19 @@ namespace AnodyneSharp.States.MainMenu
 
             nexusImage = new UIEntity(new Vector2(0, 180), "door", GameConstants.SCREEN_WIDTH_IN_PIXELS, 116, DrawOrder.UI_OBJECTS);
 
-            doorGlow = new UIEntity(Vector2.Zero, "door_glow", 64, 32, DrawOrder.MAP_BG2)
+            doorGlow = new UIEntity(Vector2.Zero, "door_glow", 64, 32, new RefLayer(nexusImage.layer_def, 1))
             {
-                visible = false,
-                LayerParent = nexusImage,
-                LayerOffset = 1
+                visible = false
             };
 
-            doorSpin1 = new UIEntity(Vector2.Zero, "door_spinglow1", 64, 64, DrawOrder.MAP_FG)
+            doorSpin1 = new UIEntity(Vector2.Zero, "door_spinglow1", 64, 64, new RefLayer(nexusImage.layer_def, 2))
             {
-                visible = false,
-                LayerParent = nexusImage,
-                LayerOffset = 2
+                visible = false
             };
 
-            doorSpin2 = new UIEntity(Vector2.Zero, "door_spinglow2", 64, 64, DrawOrder.MAP_FG)
+            doorSpin2 = new UIEntity(Vector2.Zero, "door_spinglow2", 64, 64, new RefLayer(nexusImage.layer_def, 2))
             {
-                visible = false,
-                LayerParent = nexusImage,
-                LayerOffset = 2
+                visible = false
             };
 
             pressEnter = new UIEntity(new Vector2((GameConstants.SCREEN_WIDTH_IN_PIXELS - 96) / 2, GameConstants.SCREEN_HEIGHT_IN_PIXELS), "press_enter", 96, 16, DrawOrder.MENUTEXT)

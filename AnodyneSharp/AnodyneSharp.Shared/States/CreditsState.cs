@@ -6,6 +6,7 @@ using System.Text;
 using AnodyneSharp.Dialogue;
 using AnodyneSharp.Drawing;
 using AnodyneSharp.Entities;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Input;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
@@ -48,11 +49,7 @@ namespace AnodyneSharp.States
                 opacity = 0.2f
             };
 
-            _bg = new UIEntity(new Vector2(0, -bgHeight + 180), "go", 160, bgHeight, DrawOrder.FOOT_OVERLAY)
-            {
-                LayerParent = _dimOverlay,
-                LayerOffset = -1
-            };
+            _bg = new UIEntity(new Vector2(0, -bgHeight + 180), "go", 160, bgHeight, new RefLayer(_dimOverlay.layer_def, -1));
 
             _screenie = new Screenie();
 

@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.GameEvents;
 using AnodyneSharp.Registry;
 using Microsoft.Xna.Framework;
@@ -19,25 +20,13 @@ namespace AnodyneSharp.Entities.Gadget
         {
             _sentinel.OpensOnInteract = true;
 
-            keyhole = new(Position, "gate_green_slots", 32, 16, Drawing.DrawOrder.ENTITIES)
-            {
-                LayerParent = this,
-                LayerOffset = 1
-            };
+            keyhole = new(Position, "gate_green_slots", 32, 16, new RefLayer(layer_def, 1));
             keyhole.SetFrame(3);
 
             digits = new Entity[2]
             {
-                new(Position + new Vector2(12,6),"gate_green_digits",3,5,Drawing.DrawOrder.ENTITIES)
-                {
-                    LayerParent=this,
-                    LayerOffset = 2
-                },
-                new(Position + new Vector2(17,6),"gate_green_digits",3,5,Drawing.DrawOrder.ENTITIES)
-                {
-                    LayerParent = this,
-                    LayerOffset = 2
-                }
+                new(Position + new Vector2(12,6),"gate_green_digits",3,5,new RefLayer(layer_def, 2)),
+                new(Position + new Vector2(17,6),"gate_green_digits",3,5,new RefLayer(layer_def, 2))
             };
             digits[0].SetFrame(_preset.Frame / 10);
             digits[1].SetFrame(_preset.Frame % 10);

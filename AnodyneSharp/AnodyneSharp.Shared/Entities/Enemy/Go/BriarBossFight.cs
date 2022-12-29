@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Entities.Gadget;
 using AnodyneSharp.GameEvents;
 using AnodyneSharp.MapData;
@@ -31,26 +32,14 @@ namespace AnodyneSharp.Entities.Enemy.Go
         {
             body = new(Position + Vector2.UnitX * 16, p);
 
-            core = new(Position + new Vector2(64, 32), "briar_core", 32, 18, Drawing.DrawOrder.ENTITIES)
-            {
-                LayerParent = body,
-                LayerOffset = 1
-            };
+            core = new(Position + new Vector2(64, 32), "briar_core", 32, 18, new RefLayer(body.layer_def, 1));
             core.AddAnimation("glow", CreateAnimFrameArray(0, 1, 2, 1), 4);
             core.AddAnimation("flash", CreateAnimFrameArray(3, 4), 12);
             core.Play("glow");
 
 
-            blue = new(Position + new Vector2(5 * 16, 16))
-            {
-                LayerParent = body,
-                LayerOffset = 1
-            };
-            happy = new(Position + Vector2.One * 16)
-            {
-                LayerParent = body,
-                LayerOffset = 1
-            };
+            blue = new(Position + new Vector2(5 * 16, 16), new RefLayer(body.layer_def, 1));
+            happy = new(Position + Vector2.One * 16, new RefLayer(body.layer_def, 1));
 
             state = StateLogic();
             player = p;

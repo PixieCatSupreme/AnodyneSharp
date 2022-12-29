@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.GameEvents;
 using Microsoft.Xna.Framework;
 using System;
@@ -20,10 +21,10 @@ namespace AnodyneSharp.Entities
         {
             _player = p;
 
-            _broomReflection = new Entity(p.Position, "broom_reflection", 16, 16, DrawOrder.PLAYER_REFLECTION);
-            _broomReflection.exists = false;
-            _broomReflection.LayerParent = this;
-            _broomReflection.LayerOffset = 1;
+            _broomReflection = new Entity(p.Position, "broom_reflection", 16, 16, new RefLayer(layer_def, 1))
+            {
+                exists = false
+            };
         }
 
         public override void Update()
@@ -48,7 +49,7 @@ namespace AnodyneSharp.Entities
 
                 _broomReflection.SetFrame(_player.broom.Frame);
 
-                _broomReflection.LayerOffset = _player.broom.is_behind_player ? -1 : 1;
+                _broomReflection.layer_def = new RefLayer(layer_def, _player.broom.is_behind_player ? -1 : 1);
 
                 SetBroomRotation(_player.broom.facing);
             }
@@ -56,25 +57,13 @@ namespace AnodyneSharp.Entities
 
         private void SetBroomRotation(Facing facing)
         {
-            float r;
-
-            switch (facing)
+            var r = facing switch
             {
-
-                case Facing.RIGHT:
-                    r = MathHelper.ToRadians(180);
-                    break;
-                case Facing.UP:
-                    r = MathHelper.ToRadians(90);
-                    break;
-                case Facing.DOWN:
-                    r = MathHelper.ToRadians(270);
-                    break;
-                default:
-                    r = 0;
-                    break;
-            }
-
+                Facing.RIGHT => MathHelper.ToRadians(180),
+                Facing.UP => MathHelper.ToRadians(90),
+                Facing.DOWN => MathHelper.ToRadians(270),
+                _ => 0,
+            };
             _broomReflection.rotation = r;
 
         }

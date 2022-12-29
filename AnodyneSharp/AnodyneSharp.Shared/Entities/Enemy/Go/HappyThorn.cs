@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Registry;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
@@ -12,7 +13,7 @@ namespace AnodyneSharp.Entities.Enemy.Go
     {
         IceCrystal crystal;
 
-        public HappyThorn(Vector2 pos) : base(pos, "briar_arm_left")
+        public HappyThorn(Vector2 pos, ILayerType layer) : base(pos, "briar_arm_left", layer)
         {
             offset = new(4, 4);
             Position += offset;

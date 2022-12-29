@@ -34,9 +34,8 @@ namespace AnodyneSharp.Entities
         public int FrameIndex => sprite.FrameIndex;
         public int Frame => sprite.Frame;
 
-        public DrawOrder layer;
-        public Entity LayerParent;
-        public int LayerOffset = 0;
+        public DrawOrder layer { set { layer_def = new Layer(value, this); } }
+        public ILayerType layer_def;
 
         public Vector2 offset;
         public float opacity;
@@ -90,6 +89,15 @@ namespace AnodyneSharp.Entities
             sprite = new(textureName, frameWidth, frameHeight, ForcedFrame(0));
         }
 
+        public Entity(Vector2 pos, string textureName, int frameWidth, int frameHeight, ILayerType layer) 
+            : base(pos,frameWidth, frameHeight)
+        {
+            opacity = 1f;
+            scale = 1;
+            sprite = new(textureName,frameWidth, frameHeight, ForcedFrame(0));
+            layer_def = layer;
+        }
+
         /**
          * Adds a new animation to the sprite.
          * 
@@ -129,12 +137,6 @@ namespace AnodyneSharp.Entities
             }
         }
 
-        public float GetZ()
-        {
-            return LayerParent?.GetZ() - LayerOffset * 0.0001f ??
-                DrawingUtilities.GetDrawingZ(layer, MapUtilities.GetInGridPosition(Position).Y + height);
-        }
-
         public virtual void Draw()
         {
             DrawImpl();
@@ -146,7 +148,7 @@ namespace AnodyneSharp.Entities
             {
                 if (visible)
                 {
-                    sprite.Draw(Position - offset * scale, scale, (int)y_push, rotation, opacity, _flip, GetZ());
+                    sprite.Draw(Position - offset * scale, scale, (int)y_push, rotation, opacity, _flip, layer_def.Z);
                 }
                 shadow?.Draw();
                 if (GlobalState.draw_hitboxes && HasVisibleHitbox)
