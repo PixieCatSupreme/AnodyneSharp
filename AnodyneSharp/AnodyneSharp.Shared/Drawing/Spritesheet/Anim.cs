@@ -20,7 +20,7 @@ namespace AnodyneSharp
             }
         }
         public bool looped;
-        public float delay;
+        private float delay;
 
         private bool _finishedLastFrame;
         private int _curIndex;

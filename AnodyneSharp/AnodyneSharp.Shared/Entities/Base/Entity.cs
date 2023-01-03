@@ -34,13 +34,14 @@ namespace AnodyneSharp.Entities
         public int FrameIndex => sprite.FrameIndex;
         public int Frame => sprite.Frame;
 
+        private ILayerType layer_cache; //TODO: remove cache when layer setting is fully moved to sprite init
         public DrawOrder layer { set { layer_def = new Layer(value, this); } }
-        public ILayerType layer_def;
+        public ILayerType layer_def { get { return sprite?.layer ?? layer_cache; } set { if (sprite is null) layer_cache = value; else sprite.layer = value; } }
 
-        public Vector2 offset;
-        public float opacity;
-        public float scale;
-        protected SpriteEffects _flip;
+        public Vector2 offset = Vector2.Zero;
+        public float opacity = 1f;
+        public float scale = 1f;
+        protected SpriteEffects _flip = SpriteEffects.None;
         public float y_push = 0f; //sinking into the ground
 
         public bool _flickering { get; protected set; }
@@ -63,39 +64,25 @@ namespace AnodyneSharp.Entities
             : base(pos)
         {
             this.layer = layer;
-            opacity = 1f;
-
-            scale = 1;
         }
 
         public Entity(Vector2 pos, int frameWidth, int frameHeight, DrawOrder layer)
             : base(pos, frameWidth, frameHeight)
         {
             this.layer = layer;
-            opacity = 1f;
-
-            scale = 1;
         }
 
         public Entity(Vector2 pos, string textureName, int frameWidth, int frameHeight, DrawOrder layer)
             : base(pos, frameWidth, frameHeight)
         {
-            this.layer = layer;
-
-            opacity = 1f;
-
-            scale = 1;
-
-            sprite = new(textureName, frameWidth, frameHeight, ForcedFrame(0));
+            sprite = new(textureName, frameWidth, frameHeight, new Layer(layer, this), ForcedFrame(0));
         }
 
         public Entity(Vector2 pos, string textureName, int frameWidth, int frameHeight, ILayerType layer) 
             : base(pos,frameWidth, frameHeight)
         {
-            opacity = 1f;
-            scale = 1;
-            sprite = new(textureName,frameWidth, frameHeight, ForcedFrame(0));
-            layer_def = layer;
+            sprite = new(textureName,frameWidth, frameHeight, layer, ForcedFrame(0));
+        }
         }
 
         /**
@@ -148,7 +135,7 @@ namespace AnodyneSharp.Entities
             {
                 if (visible)
                 {
-                    sprite.Draw(Position - offset * scale, scale, (int)y_push, rotation, opacity, _flip, layer_def.Z);
+                    sprite.Draw(Position - offset * scale, scale, (int)y_push, rotation, opacity, _flip);
                 }
                 shadow?.Draw();
                 if (GlobalState.draw_hitboxes && HasVisibleHitbox)
@@ -179,7 +166,7 @@ namespace AnodyneSharp.Entities
         {
             if (sprite is null)
             {
-                sprite = new(textureName, frameWidth, frameHeight, ForcedFrame(0));
+                sprite = new(textureName, frameWidth, frameHeight, layer_cache, ForcedFrame(0));
                 return true;
             }
             return sprite.SetTexture(textureName, frameWidth, frameHeight, ignoreChaos, allowFailure);

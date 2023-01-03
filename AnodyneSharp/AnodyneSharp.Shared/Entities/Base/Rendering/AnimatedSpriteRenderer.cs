@@ -22,16 +22,25 @@ namespace AnodyneSharp.Entities.Base.Rendering
         public int Width => sprite.Width;
         public int Height => sprite.Height;
 
+        public ILayerType layer;
 
         public string CurAnimName => _curAnim.name;
         public bool AnimFinished => _curAnim.Finished;
         public int FrameIndex => _curAnim.CurIndex;
         public int Frame => _curAnim.Frame;
 
-        public AnimatedSpriteRenderer(string textureName, int frameWidth, int frameHeight, params Anim[] animations)
+        public AnimatedSpriteRenderer(string textureName, int frameWidth, int frameHeight, ILayerType layer, params Anim[] animations)
         {
             this.textureName = textureName;
             sprite = new(ResourceManager.GetTexture(textureName),frameWidth,frameHeight);
+            this.animations = animations.ToDictionary(a => a.name);
+            _curAnim = animations[0];
+            this.layer = layer;
+        }
+        public AnimatedSpriteRenderer(string textureName, int frameWidth, int frameHeight, params Anim[] animations)
+        {
+            this.textureName = textureName;
+            sprite = new(ResourceManager.GetTexture(textureName), frameWidth, frameHeight);
             this.animations = animations.ToDictionary(a => a.name);
             _curAnim = animations[0];
         }
@@ -75,7 +84,7 @@ namespace AnodyneSharp.Entities.Base.Rendering
             sprite = new(ResourceManager.GetTexture(textureName,ignoreChaos), sprite.Width, sprite.Height);
         }
 
-        public void Draw(Vector2 position, float scale, int y_push, float rotation, float opacity, SpriteEffects flip, float z)
+        public void Draw(Vector2 position, float scale, int y_push, float rotation, float opacity, SpriteEffects flip)
         {
             Rectangle srect = sprite.GetRect(_curAnim.Frame);
             srect.Height -= y_push;
@@ -86,7 +95,7 @@ namespace AnodyneSharp.Entities.Base.Rendering
                 color * opacity,
                 rotation,
                 flip,
-                z);
+                layer.Z);
         }
     }
 }
