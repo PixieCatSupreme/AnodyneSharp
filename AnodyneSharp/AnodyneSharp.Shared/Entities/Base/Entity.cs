@@ -83,6 +83,16 @@ namespace AnodyneSharp.Entities
         {
             sprite = new(textureName,frameWidth, frameHeight, layer, ForcedFrame(0));
         }
+
+        public Entity(Vector2 pos, AnimatedSpriteRenderer sprite) : base(pos,sprite.Width,sprite.Height)
+        {
+            this.sprite = sprite;
+        }
+
+        public Entity(Vector2 pos, AnimatedSpriteRenderer sprite, DrawOrder layer) : base(pos,sprite.Width,sprite.Height)
+        {
+            this.sprite = sprite;
+            sprite.layer = new Layer(layer, this);
         }
 
         /**

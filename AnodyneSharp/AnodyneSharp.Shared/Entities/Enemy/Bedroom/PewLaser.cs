@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.FSM;
 using AnodyneSharp.Sounds;
 using Microsoft.Xna.Framework;
@@ -68,6 +69,10 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
         [Collision(typeof(Player), typeof(Dust), typeof(Shieldy), MapCollision = true)]
         class Laser : Entity
         {
+            public static AnimatedSpriteRenderer GetSprite() => new("pew_laser_bullet", 16, 8,
+                    new Anim("shoot", new int[] { 0, 1 }, 8),
+                    new Anim("poof", new int[] { 4, 5, 6, 7 }, 8, looped: false));
+
             public const float BULLET_VELOCITY = 40;
 		    public const float BULLET_FAST_VELOCITY = 70;
 
@@ -79,7 +84,7 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
             private Vector2 spawn_offset;
 
             public Laser(Facing facing, bool isFast) 
-                : base(Vector2.Zero, "pew_laser_bullet", 16, 8, DrawOrder.FG_SPRITES)
+                : base(Vector2.Zero, GetSprite(), DrawOrder.FG_SPRITES)
             {   
                 MapInteraction = false;
 
@@ -110,9 +115,6 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
                         rotation = MathF.PI / 2;
                         break;
                 }
-
-                AddAnimation("shoot", CreateAnimFrameArray(0, 1), 8);
-                AddAnimation("poof", CreateAnimFrameArray(4, 5, 6, 7), 8, looped: false);
 
                 _state = new StateMachineBuilder()
                     .State("Shoot")

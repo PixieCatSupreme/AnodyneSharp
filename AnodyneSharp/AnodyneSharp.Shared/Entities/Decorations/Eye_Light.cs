@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Entities.Lights;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -11,11 +12,9 @@ namespace AnodyneSharp.Entities.Decorations
     {
         FiveFrameGlowLight light;
 
-        public Eye_Light(EntityPreset preset, Player p) : base(preset.Position, "eyelight", 16, 16, DrawOrder.ENTITIES)
+        public Eye_Light(EntityPreset preset, Player p) 
+            : base(preset.Position, new AnimatedSpriteRenderer("eyelight",16,16, new Anim("glow",new int[] { 0, 1, 2 },5)), DrawOrder.ENTITIES )
         {
-            AddAnimation("glow", CreateAnimFrameArray(0, 1, 2), 5);
-            Play("glow");
-
             light = new FiveFrameGlowLight(Position + new Vector2(8,6));
         }
 

@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.GameEvents;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Utilities;
@@ -16,6 +17,8 @@ namespace AnodyneSharp.Entities.Lights
             offset = new Vector2(frameWidth / 2, frameHeight / 2);
             scale = 3;
         }
+
+        public Light(Vector2 pos, AnimatedSpriteRenderer sprite) : base(pos,sprite,DrawOrder.ENTITIES) { }
 
         public override void Draw()
         {
@@ -38,10 +41,8 @@ namespace AnodyneSharp.Entities.Lights
 
     public class FiveFrameGlowLight : Light
     {
-        public FiveFrameGlowLight(Vector2 pos) : base(pos, "5-frame-glow", 48, 48)
+        public FiveFrameGlowLight(Vector2 pos) : base(pos, new("5-frame-glow", 48, 48, new Anim("glow",new int[] { 0, 0, 1, 2, 3, 4, 3, 2, 1, 0, 0, 0 },7)))
         {
-            AddAnimation("glow", CreateAnimFrameArray(0, 0, 1, 2, 3, 4, 3, 2, 1, 0, 0, 0), 7);
-            Play("glow");
         }
     }
 

@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Entities.Interactive;
 using AnodyneSharp.Registry;
 using Microsoft.Xna.Framework;
@@ -19,6 +20,16 @@ namespace AnodyneSharp.Entities
 
         public HealthDropper(EntityPreset p, Vector2 pos, string textureName, int frameWidth, int frameHeight, DrawOrder layer, float healthDropChance = 0.5f, bool dropBigHealth = false) 
             : base(pos, textureName, frameWidth, frameHeight, layer)
+        {
+            _health = new HealthPickup(pos, dropBigHealth);
+
+            _healthDropChance = healthDropChance;
+
+            _preset = p;
+        }
+
+        public HealthDropper(EntityPreset p, Vector2 pos, AnimatedSpriteRenderer sprite, DrawOrder layer, float healthDropChance = 0.5f, bool dropBigHealth = false)
+            : base(pos,sprite,layer)
         {
             _health = new HealthPickup(pos, dropBigHealth);
 

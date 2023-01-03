@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Entities.Gadget;
+﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Gadget;
 using AnodyneSharp.Registry;
 using Microsoft.Xna.Framework;
 using System;
@@ -23,15 +24,11 @@ namespace AnodyneSharp.Entities.Enemy.Circus
         private int health = 3;
 
         public Contort(EntityPreset preset, Player p)
-            : base(preset.Position, "contort_big", 16, 32, Drawing.DrawOrder.ENTITIES)
+            : base(preset.Position, new("contort_big", 16, 32, new Anim("move",new int[] {0,1,2,1},9)), DrawOrder.ENTITIES)
         {
             height = 12;
             width = 12;
             offset = new Vector2(2, 20);
-
-            AddAnimation("move", CreateAnimFrameArray(0, 1, 2, 1), 9, true);
-
-            Play("move");
 
             _preset = preset;
 
@@ -144,12 +141,8 @@ namespace AnodyneSharp.Entities.Enemy.Circus
             private Parabola_Thing _parabola;
 
             public ContortSmall(Vector2 pos, int i, int startFrame)
-            : base(null, pos, "contort_small", 16, 16, Drawing.DrawOrder.ENTITIES, 0.4f)
+            : base(null, pos, new("contort_small", 16, 16, new Anim("move",new int[] {startFrame,startFrame+1},9)), DrawOrder.ENTITIES, 0.4f)
             {
-                AddAnimation("move", CreateAnimFrameArray(startFrame, startFrame + 1), 9, true);
-
-                Play("move");
-
                 exists = false;
 
                 _parabola = new Parabola_Thing(this, 16 + 8 * i, 1.2f);
