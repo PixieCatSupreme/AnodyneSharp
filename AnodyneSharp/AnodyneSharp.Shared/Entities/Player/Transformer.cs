@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.GameEvents;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.GameEvents;
 using AnodyneSharp.Registry;
 using Microsoft.Xna.Framework;
 using System;
@@ -18,9 +19,7 @@ namespace AnodyneSharp.Entities
             visible = false;
             player = p;
             
-            selector = new(Vector2.Zero, "selector", 16, 16, Drawing.DrawOrder.ENTITIES);
-            selector.AddAnimation("a", CreateAnimFrameArray(0, 1), 4);
-            selector.Play("a");
+            selector = new(Vector2.Zero, new AnimatedSpriteRenderer("selector", 16, 16, new Anim("a", new int[] { 0, 1 }, 4)), Drawing.DrawOrder.ENTITIES);
             selector.exists = false;
 
             selected_tile = new(Vector2.Zero, "selector", 16, 16, Drawing.DrawOrder.BG_ENTITIES);
