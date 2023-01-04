@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Entities.Gadget;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
@@ -27,21 +28,19 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
         private int _health = 2;
         private float _hitTimer = 0;
 
+        public static AnimatedSpriteRenderer GetSprite() => new("shieldy", 16, 16,
+            new Anim("walk", new int[] { 1, 2, 1, 0 }, 5),
+            new Anim("front_hit", new int[] { 16, 17, 18, 1 }, 12, looped:false),
+            new Anim("back_hit", new int[] { 13, 1 }, 12));
+
         public Shieldy(EntityPreset preset, Player player)
-            : base(preset, preset.Position + new Vector2(2, 0), "shieldy", 16, 16, DrawOrder.ENTITIES)
+            : base(preset, preset.Position + new Vector2(2, 0), GetSprite(), DrawOrder.ENTITIES)
         {
             Solid = true;
             height = 10;
             width = 10;
 
             offset = new Vector2(3, 4);
-
-            AddAnimation("walk", CreateAnimFrameArray(1, 2, 1, 0), 5, true);
-            //addAnimation("unhurt", [4], 7, true);
-            AddAnimation("front_hit", CreateAnimFrameArray(16, 17, 18, 1), 12, false);
-            AddAnimation("back_hit", CreateAnimFrameArray(13, 1), 12);
-
-            Play("walk");
 
             State state = (State)preset.Frame;
 

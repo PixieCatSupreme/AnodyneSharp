@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Entities.Events;
 using AnodyneSharp.GameEvents;
 using AnodyneSharp.Registry;
@@ -18,7 +19,15 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
     {
         public bool damage_player = false;
 
-        public BaseSplitBoss(Vector2 position) : base(position, "splitboss", 24, 32, Drawing.DrawOrder.ENTITIES)
+        public static AnimatedSpriteRenderer GetSprite() => new("splitboss", 24, 32,
+            new Anim("float", new int[] { 0, 1, 2, 1 }, 5),
+            new Anim("idle_r", new int[] { 4, 5, 6, 5 }, 5),
+            new Anim("dash_r", new int[] { 10, 11 }, 8),
+            new Anim("dash_d", new int[] { 8, 9 }, 8),
+            new Anim("die", new int[] { 0, 3 }, 14)
+            );
+
+        public BaseSplitBoss(Vector2 position) : base(position, GetSprite(), Drawing.DrawOrder.ENTITIES)
         {
             width = 16;
             height = 20;
@@ -26,13 +35,6 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
 
             Solid = false;
             immovable = true;
-
-            AddAnimation("float", CreateAnimFrameArray(0, 1, 2, 1), 5); //facing downwards, idle
-            AddAnimation("idle_r", CreateAnimFrameArray(4, 5, 6, 5), 5);
-            AddAnimation("dash_r", CreateAnimFrameArray(10, 11), 8);
-            AddAnimation("dash_d", CreateAnimFrameArray(8, 9), 8);
-            AddAnimation("die", CreateAnimFrameArray(0, 3), 14);
-            Play("float");
         }
 
         public override void Collided(Entity other)
@@ -58,7 +60,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
         }
     }
 
-    [NamedEntity("Splitboss"), Enemy, Collision(typeof(Broom)), Events(typeof(StartScreenTransition),typeof(StartWarp))]
+    [NamedEntity("Splitboss"), Enemy, Collision(typeof(Broom)), Events(typeof(StartScreenTransition), typeof(StartWarp))]
     class SplitBoss : BaseSplitBoss
     {
         Player player;
@@ -219,14 +221,14 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
             damage_player = false;
             vulnerable = false;
 
-            foreach(Bullet b in bullets.Entities)
+            foreach (Bullet b in bullets.Entities)
             {
                 b.Deactivate();
             }
 
             GlobalState.Dialogue = DialogueManager.GetDialogue("splitboss", "after_fight");
 
-            while(!GlobalState.LastDialogueFinished)
+            while (!GlobalState.LastDialogueFinished)
             {
                 yield return null;
             }
@@ -236,18 +238,18 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
             float tm = 0;
             float tm_max = 5;
             GlobalState.gameScreenFade.fadeColor = Color.White;
-            
+
             Play("die");
             Flicker(tm_max);
 
-            while(tm < tm_max)
+            while (tm < tm_max)
             {
                 tm += GameTimes.DeltaTime;
                 SoundManager.SetSongVolume(SoundManager.GetVolume() - GameTimes.DeltaTime * 0.3f);
                 GlobalState.gameScreenFade.ForceAlpha(tm / tm_max);
                 int r = (int)(65 * tm / tm_max);
                 Position = tl + 40 * Vector2.One + new Vector2(GlobalState.RNG.Next(-r, r), GlobalState.RNG.Next(-r, r));
-                foreach(Entity e in bullets.Entities.Concat(copies))
+                foreach (Entity e in bullets.Entities.Concat(copies))
                 {
                     MathUtilities.MoveTo(ref e.opacity, 0, 6);
                 }
@@ -270,14 +272,14 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
 
             List<Bullet> spawned = new();
 
-            if(MapUtilities.GetRoomCoordinate(Position) != GlobalState.CurrentMapGrid)
+            if (MapUtilities.GetRoomCoordinate(Position) != GlobalState.CurrentMapGrid)
             {
                 //If done right after another dash, instantly start appearing on the left side of the screen
                 opacity = 0;
             }
 
             //Dash and place fires
-            for(int dash = 0; dash < num_dashes; ++dash)
+            for (int dash = 0; dash < num_dashes; ++dash)
             {
                 Play("idle_r");
 
@@ -286,14 +288,14 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
 
                 Position.X = tl.X - 32;
 
-                while(!MathUtilities.MoveTo(ref opacity, 1, 9))
+                while (!MathUtilities.MoveTo(ref opacity, 1, 9))
                 {
                     Position.Y = player.Position.Y;
                     yield return null;
                 }
 
                 float dash_timer = 0.5f;
-                while(dash_timer > 0)
+                while (dash_timer > 0)
                 {
                     Position.Y = player.Position.Y;
                     dash_timer -= GameTimes.DeltaTime;
@@ -314,11 +316,11 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
 
                 int max = num_drops;
 
-                while(!CheckDashEnd())
+                while (!CheckDashEnd())
                 {
                     offset.Y = player.offset.Y + 2;
 
-                    if(max > 0 && Position.X > next_drop && Position.X < tl.X + 6*16 && bullets.Entities.Count() > spawned.Count)
+                    if (max > 0 && Position.X > next_drop && Position.X < tl.X + 6 * 16 && bullets.Entities.Count() > spawned.Count)
                     {
                         max--;
                         bullets.Spawn(t => { t.Spawn(Position, false); t.Flicker(0.05f); spawned.Add(t); });
@@ -332,12 +334,12 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
 
 
             //unleash them
-            foreach(Bullet b in spawned)
+            foreach (Bullet b in spawned)
             {
                 b.Flicker(0);
             }
             float timer = 0.5f;
-            while(timer > 0)
+            while (timer > 0)
             {
                 timer -= GameTimes.DeltaTime;
                 yield return null;
@@ -348,11 +350,11 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
             foreach (Bullet b in spawned)
             {
                 Vector2 target = player.Position + new Vector2(GlobalState.RNG.Next(-10, 10), GlobalState.RNG.Next(-10, 10));
-                b.Activate((80+Phase*20)*Vector2.Normalize(target - b.Position));
+                b.Activate((80 + Phase * 20) * Vector2.Normalize(target - b.Position));
                 b.opacity = 0.99f;
             }
 
-            while(bullets.Alive > 0)
+            while (bullets.Alive > 0)
             {
                 yield return null;
             }
@@ -374,7 +376,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
             int num_bullets_per_round = new[] { 2, 1, 4 }[Phase];
             float wait_time = new[] { 0.7f, 0.2f, 0.8f }[Phase];
 
-            for(int round = 0; round < num_rounds; ++round)
+            for (int round = 0; round < num_rounds; ++round)
             {
                 SoundManager.PlaySoundEffect("sb_ball_appear");
 
@@ -382,25 +384,25 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
                 List<Bullet> spawned = new();
                 bullets.Spawn(b =>
                 {
-                    b.Spawn(tl + new Vector2((16-b.width)/2 + (start % 6)*16, -b.height),true);
+                    b.Spawn(tl + new Vector2((16 - b.width) / 2 + (start % 6) * 16, -b.height), true);
                     start++;
                     spawned.Add(b);
                 }, num_bullets_per_round);
 
                 float t = 0;
-                while(t < wait_time)
+                while (t < wait_time)
                 {
                     t += GameTimes.DeltaTime;
                     yield return null;
                 }
 
-                foreach(Bullet b in spawned)
+                foreach (Bullet b in spawned)
                 {
                     b.Activate(Vector2.UnitY * 40);
                 }
             }
 
-            while(bullets.Alive != 0)
+            while (bullets.Alive != 0)
             {
                 yield return null;
             }
@@ -502,7 +504,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
             opacity = 1f;
             velocity = Vector2.Zero;
 
-            if(Phase <= 1)
+            if (Phase <= 1)
             {
                 ChooseNextAttack(0.3, 0.3);
             }
@@ -518,11 +520,11 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
         void ChooseNextAttack(double dash_chance, double split_chance)
         {
             double r = GlobalState.RNG.NextDouble();
-            if(r < dash_chance)
+            if (r < dash_chance)
             {
                 state = Dash();
             }
-            else if(r < dash_chance + split_chance)
+            else if (r < dash_chance + split_chance)
             {
                 state = Split();
             }
@@ -537,10 +539,10 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
             return bullets.Entities.Concat(copies);
         }
 
-        [Events(typeof(StartWarp),typeof(StartScreenTransition))]
+        [Events(typeof(StartWarp), typeof(StartScreenTransition))]
         class FadeOutGameScreenFade : Entity
         {
-            public FadeOutGameScreenFade() : base(Vector2.Zero,Drawing.DrawOrder.BACKGROUND)
+            public FadeOutGameScreenFade() : base(Vector2.Zero, Drawing.DrawOrder.BACKGROUND)
             {
                 visible = false;
             }
@@ -563,33 +565,32 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
         {
             bool active = false;
 
-            public Bullet() : base(Vector2.Zero, "splitboss_fireball", 16, 16, Drawing.DrawOrder.BG_ENTITIES)
+            public Bullet() : base(Vector2.Zero, new AnimatedSpriteRenderer("splitboss_fireball", 16, 16,
+                new Anim("pulsate", new int[] { 0, 1, 2, 3 }, 12), new Anim("fizzle", new int[] { 4, 5, 6, 7 }, 12, false)), Drawing.DrawOrder.BG_ENTITIES)
             {
                 width = height = 6;
                 CenterOffset();
-                AddAnimation("pulsate", CreateAnimFrameArray(0, 1, 2, 3), 12);
-                AddAnimation("fizzle", CreateAnimFrameArray(4, 5, 6, 7), 12, false);
             }
 
             public override void Update()
             {
                 base.Update();
-                if(AnimFinished || opacity == 0)
+                if (AnimFinished || opacity == 0)
                 {
                     exists = false;
                 }
 
-                if(_flickering)
+                if (_flickering)
                 {
                     Flicker(0.05f);
                 }
 
-                if(opacity != 1f)
+                if (opacity != 1f)
                 {
                     MathUtilities.MoveTo(ref opacity, 0, 0.3f);
                 }
 
-                if(opacity == 1f && MapUtilities.GetInGridPosition(Position).Y > 8*16)
+                if (opacity == 1f && MapUtilities.GetInGridPosition(Position).Y > 8 * 16)
                 {
                     Play("fizzle");
                 }
@@ -598,7 +599,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
             public override void Collided(Entity other)
             {
                 base.Collided(other);
-                if(other is Player p && p.state != PlayerState.AIR && active)
+                if (other is Player p && p.state != PlayerState.AIR && active)
                 {
                     p.ReceiveDamage(1);
                 }

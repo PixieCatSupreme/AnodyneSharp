@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Registry;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 using Microsoft.Xna.Framework;
 using RSG;
@@ -13,24 +14,26 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
     {
         protected const float DashVel = 80;
 
-        public DashTrap(EntityPreset preset) : base(preset.Position, "dash_trap", 16, 16, Drawing.DrawOrder.ENTITIES)
+        public static AnimatedSpriteRenderer GetSprite()
         {
-            if (!GlobalState.BoiEaster)
+            if (GlobalState.BoiEaster)
             {
-                AddAnimation("idle", CreateAnimFrameArray(4), 12); //when still
-                AddAnimation("dash", CreateAnimFrameArray(5), 12, false); //when beginning to move 
-                AddAnimation("bounce", CreateAnimFrameArray(4, 5), 12, false); //when hitting anything
-
+                return new("dash_trap", 16, 16,
+                    new Anim("idle", new int[] { 6 }, 1),
+                    new Anim("dash", new int[] { 6 }, 1),
+                    new Anim("bounce", new int[] { 6 }, 1));
             }
             else
             {
-                AddAnimation("idle", CreateAnimFrameArray(6), 12); //when still
-                AddAnimation("dash", CreateAnimFrameArray(6), 12, false); //when beginning to move 
-                AddAnimation("bounce", CreateAnimFrameArray(6), 12, false); //when hitting anything
-
+                return new("dash_trap", 16, 16,
+                    new Anim("idle", new int[] { 4 }, 12),
+                    new Anim("dash", new int[] { 5 }, 12),
+                    new Anim("bounce", new int[] { 4,5 }, 12));
             }
+        }
 
-            Play("idle");
+        public DashTrap(EntityPreset preset) : base(preset.Position, GetSprite(), Drawing.DrawOrder.ENTITIES)
+        {
             width = height = 14;
             CenterOffset();
             MapInteraction = false;

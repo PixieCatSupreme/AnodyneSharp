@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using AnodyneSharp.Dialogue;
 using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Entities.Events;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
@@ -37,8 +38,24 @@ namespace AnodyneSharp.Entities.Enemy.Circus
 
         private int health;
 
+        public static AnimatedSpriteRenderer GetSprite()
+        {
+            return new("arthur_javiera", 16, 32,
+                new Anim("walk_l", new int[] { 4, 5 }, 12),
+                new Anim("walk_d", new int[] { 0, 1 }, 8),
+                new Anim("walk_u", new int[] { 2, 3 }, 12),
+                new Anim("walk_r", new int[] { 4, 5 }, 12),
+                new Anim("switch", new int[] { 6, 7 }, 6, false),
+                new Anim("throw_d", new int[] { 8, 8 }, 2, false), // The length of all frames minus last is how long the warning lasts.
+                new Anim("throw_r", new int[] { 10, 8 }, 2, false),
+                new Anim("throw_u", new int[] { 9, 8 }, 2, false),
+                new Anim("throw_l", new int[] { 10, 8 }, 2, false),
+                new Anim("dying", new int[] { 10, 10, 10 }, 1, false)
+                );
+        }
+
         public CircusFolks(EntityPreset preset, Player p)
-            : base(preset.Position, "arthur_javiera", 16, 32, Drawing.DrawOrder.ENTITIES)
+            : base(preset.Position, GetSprite(), Drawing.DrawOrder.ENTITIES)
         {
             _preset = preset;
             _player = p;
@@ -53,18 +70,7 @@ namespace AnodyneSharp.Entities.Enemy.Circus
             _arthur = new Arthur(_topLeft + new Vector2(64 - 8 - 16, 0));
             _javiera = new Javiera(_topLeft + new Vector2(64 + 8, 0));
 
-            AddAnimation("walk_d", CreateAnimFrameArray(0, 1), 8);
-            AddAnimation("walk_u", CreateAnimFrameArray(2, 3), 12);
-            AddAnimation("walk_r", CreateAnimFrameArray(4, 5), 12);
-            AddAnimation("walk_l", CreateAnimFrameArray(4, 5), 12);
-            AddAnimation("switch", CreateAnimFrameArray(6, 7), 6, false);
-            AddAnimation("throw_d", CreateAnimFrameArray(8, 8), 2, false); // The length of all frames minus last is how long the warning lasts.
-            AddAnimation("throw_r", CreateAnimFrameArray(10, 8), 2, false);
-            AddAnimation("throw_u", CreateAnimFrameArray(9, 8), 2, false);
-            AddAnimation("throw_l", CreateAnimFrameArray(10, 8), 2, false);
-            AddAnimation("dying", CreateAnimFrameArray(10, 10, 10), 1, false);
-            Play("walk_l");
-
+            
             visible = false;
 
             _parabolaThing = new Parabola_Thing(this, 48, 1);
@@ -504,18 +510,24 @@ namespace AnodyneSharp.Entities.Enemy.Circus
 
             public bool hurts;
 
-            public Arthur(Vector2 position)
-                : base(position, "arthur", 16, 16, DrawOrder.ENTITIES)
+            public static AnimatedSpriteRenderer GetSprite()
             {
-                AddAnimation("walk_d", CreateAnimFrameArray(0, 1), 8);
-                AddAnimation("walk_l", CreateAnimFrameArray(4, 5), 8);
-                AddAnimation("walk_u", CreateAnimFrameArray(2, 3), 8);
-                AddAnimation("walk_r", CreateAnimFrameArray(4, 5), 8);
-                AddAnimation("roll", CreateAnimFrameArray(6), 6); // For flying through the air
-                AddAnimation("stunned", CreateAnimFrameArray(8, 9), 6);
-                AddAnimation("wobble", CreateAnimFrameArray(16, 17), 8);
-                AddAnimation("fall_1", CreateAnimFrameArray(10), 8);
-                AddAnimation("fall", CreateAnimFrameArray(10, 11, 12, 13, 14, 15, 6), 2, false); // Should end on an empty frame
+                return new("arthur", 16, 16,
+                    new Anim("walk_d", new int[] { 0, 1 }, 8),
+                    new Anim("walk_l", new int[] { 4, 5 }, 8),
+                    new Anim("walk_u", new int[] { 2, 3 }, 8),
+                    new Anim("walk_r", new int[] { 4, 5 }, 8),
+                    new Anim("roll", new int[] { 6 }, 6), // For flying through the air
+                    new Anim("stunned", new int[] { 8, 9 }, 6),
+                    new Anim("wobble", new int[] { 16, 17 }, 8),
+                    new Anim("fall_1", new int[] { 10 }, 8),
+                    new Anim("fall", new int[] { 10, 11, 12, 13, 14, 15, 6 }, 2, false)
+                    );
+            }
+
+            public Arthur(Vector2 position)
+                : base(position, GetSprite(), DrawOrder.ENTITIES)
+            {
                 Play("wobble");
 
                 damage = 0;
@@ -638,16 +650,21 @@ namespace AnodyneSharp.Entities.Enemy.Circus
 
             private bool _touchedArthur;
 
+            public static AnimatedSpriteRenderer GetSprite()
+            {
+                return new("javiera", 16, 16,
+                    new Anim("walk_d", new int[] { 0, 1 }, 8),
+                    new Anim("walk_l", new int[] { 4, 5 }, 8),
+                    new Anim("walk_u", new int[] { 2, 3 }, 8),
+                    new Anim("walk_r", new int[] { 4, 5 }, 8),
+                    new Anim("juggle", new int[] { 0, 1 }, 8),
+                    new Anim("fall", new int[] { 6, 7, 8, 9, 10, 11, 12 }, 2, false)
+                    );
+            }
 
             public Javiera(Vector2 position)
-            : base(position, "javiera", 16, 16, Drawing.DrawOrder.ENTITIES)
+            : base(position, GetSprite(), Drawing.DrawOrder.ENTITIES)
             {
-                AddAnimation("walk_d", CreateAnimFrameArray(0, 1), 8);
-                AddAnimation("walk_l", CreateAnimFrameArray(4, 5), 8);
-                AddAnimation("walk_u", CreateAnimFrameArray(2, 3), 8);
-                AddAnimation("walk_r", CreateAnimFrameArray(4, 5), 8);
-                AddAnimation("juggle", CreateAnimFrameArray(0, 1), 8);
-                AddAnimation("fall", CreateAnimFrameArray(6, 7, 8, 9, 10, 11, 12), 2, false); // Should end on an empty frame
                 Play("juggle");
 
                 damage = 0;
@@ -734,12 +751,16 @@ namespace AnodyneSharp.Entities.Enemy.Circus
         {
             private const int swVel = 70;
 
-            public ShockWave()
-                : base(Vector2.Zero, "shockwave", 16, 16, Drawing.DrawOrder.ENTITIES)
+            public static AnimatedSpriteRenderer GetSprite()
             {
-                AddAnimation("move", CreateAnimFrameArray(0, 1, 2, 1), 8);
-                AddAnimation("evaporate", CreateAnimFrameArray(3, 4, 5, 6, 6), 8, false);
+                return new("shockwave", 16, 16, 
+                    new Anim("move", new int[] { 0, 1, 2, 1 }, 8),
+                    new Anim("evaporate", new int[] { 3, 4, 5, 6, 6 }, 8, false));
+            }
 
+            public ShockWave()
+                : base(Vector2.Zero, GetSprite(), Drawing.DrawOrder.ENTITIES)
+            {
                 visible = false;
             }
 
@@ -804,12 +825,10 @@ namespace AnodyneSharp.Entities.Enemy.Circus
             }
         }
     }
+
     class WalkAroundEntity : Entity
     {
-        public WalkAroundEntity(Vector2 pos, string textureName, int frameWidth, int frameHeight, DrawOrder layer)
-            : base(pos, textureName, frameWidth, frameHeight, layer)
-        {
-        }
+        public WalkAroundEntity(Vector2 pos, AnimatedSpriteRenderer render, DrawOrder layer) : base(pos, render, layer) { }
 
         protected void WalkAboutParameter(float speed, bool playAnim = true)
         {

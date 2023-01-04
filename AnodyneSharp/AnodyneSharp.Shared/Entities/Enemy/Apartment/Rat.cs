@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Entities.Gadget;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.Entities.Gadget;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 using Microsoft.Xna.Framework;
@@ -14,21 +15,20 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
     {
         Lookahead lookahead = new();
 
-        public Rat(EntityPreset preset, Player p) : base(preset, preset.Position,"rat",16,16,Drawing.DrawOrder.ENTITIES)
+        public static AnimatedSpriteRenderer GetSprite(int o) => new("rat", 16, 16,
+            new Anim("walk_d", new int[] { o + 0, o + 1 }, 5),
+            new Anim("walk_l", new int[] { o + 2, o + 3 }, 5),
+            new Anim("walk_r", new int[] { o + 2, o + 3 }, 5),
+            new Anim("walk_u", new int[] { o + 4, o + 5 }, 5));
+
+        public Rat(EntityPreset preset, Player p) : base(preset, preset.Position,GetSprite(GlobalState.IsCell ? 6 : 0),Drawing.DrawOrder.ENTITIES)
         {
             width = height = 12;
             CenterOffset();
             Position += offset;
 
-            int o = GlobalState.IsCell ? 6 : 0;
-            AddAnimation("walk_d", CreateAnimFrameArray(o + 0, o + 1), 5);
-            AddAnimation("walk_l", CreateAnimFrameArray(o + 2, o + 3), 5);
-            AddAnimation("walk_r", CreateAnimFrameArray(o + 2, o + 3), 5);
-            AddAnimation("walk_u", CreateAnimFrameArray(o + 4, o + 5), 5);
-
             facing = Facing.DOWN;
             velocity = Vector2.UnitY * 40;
-            Play("walk_d");
 
             lookahead.Position = Center + FacingDirection(facing) * 7;
         }

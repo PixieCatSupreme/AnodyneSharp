@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Entities.Gadget;
 using AnodyneSharp.FSM;
 using AnodyneSharp.Registry;
@@ -48,25 +49,20 @@ namespace AnodyneSharp.Entities.Enemy
 
         private Player target;
 
+        public static AnimatedSpriteRenderer GetSprite()
+        {
+            int o = GlobalState.IsCell ? 4 : (GlobalState.BoiEaster ? 2 : 0);
+            return new("slime", 16, 16,
+                new Anim("Move", new int[] { o, o+1 },3),
+                new Anim("Hurt", new int[] { o, 8, o, 8 }, 15, false),
+                new Anim("Dying", new int[] {o,8,o,8},12,false)
+                );
+        }
+
         public Slime(EntityPreset preset, Player player)
-            : base(preset, preset.Position, "slime", 16, 16, DrawOrder.ENTITIES)
+            : base(preset, preset.Position, GetSprite(), DrawOrder.ENTITIES)
         {
             _type = preset.Frame == 3 ? SlimeType.Bullet : SlimeType.Normal;
-
-            if (!GlobalState.BoiEaster)
-            {
-                int o = GlobalState.IsCell ? 4 : 0;
-
-                AddAnimation("Move", CreateAnimFrameArray(0 + o, 1 + o), 3);
-                AddAnimation("Hurt", CreateAnimFrameArray(0 + o, 8, 0 + o, 8), 15, false);
-                AddAnimation("Dying", CreateAnimFrameArray(0 + o, 8, 0 + o, 8), 12, false);
-            }
-            else
-            {
-                AddAnimation("Move", CreateAnimFrameArray(2, 3), 3);
-                AddAnimation("Hurt", CreateAnimFrameArray(2, 8), 15, false);
-                AddAnimation("Dead", CreateAnimFrameArray(2, 8, 2, 8, 15, 9, 9), 12, false);
-            }
 
             goos = new EntityPool<Goo>(8, () => new Goo());
             target = player;
@@ -192,22 +188,15 @@ namespace AnodyneSharp.Entities.Enemy
                 public Parabola_Thing parabola;
             }
 
-            public Goo() : base(Vector2.Zero, "slime_goo", 6, 6, DrawOrder.PARTICLES)
+            public static AnimatedSpriteRenderer GetSprite(int framerate)
             {
+                int o = GlobalState.IsCell || GlobalState.BoiEaster ? 4 : 0;
+                return new("slime_goo", 6, 6,
+                    new Anim("move",new int[] { 0 + o, 1 + o, 2 + o, 3 + o, 1 + o, 3 + o, 1 + o, 2 + o, 1 + o, 0 + o },framerate));
+            }
 
-
-                if (!GlobalState.BoiEaster)
-                {
-                    int o = GlobalState.IsCell ? 4 : 0;
-
-                    AddAnimation("move", CreateAnimFrameArray(0 + o, 1 + o, 2 + o, 3 + o, 1 + o, 3 + o, 1 + o, 2 + o, 1 + o, 0 + o), GlobalState.RNG.Next(5, 10));
-
-                }
-                else
-                {
-                    AddAnimation("move", CreateAnimFrameArray(4, 5, 6, 7, 5, 7, 5, 6, 5, 4), GlobalState.RNG.Next(5, 10));
-                }
-
+            public Goo() : base(Vector2.Zero, GetSprite(GlobalState.RNG.Next(5,10)), DrawOrder.PARTICLES)
+            {
                 shadow = new Shadow(this, Vector2.Zero, ShadowType.Tiny);
 
                 state = new StateMachineBuilder()
@@ -260,9 +249,8 @@ namespace AnodyneSharp.Entities.Enemy
         private class Bullet : Entity
         {
             public Bullet()
-                : base(Vector2.Zero, "slime_bullet", 8, 8, DrawOrder.PARTICLES)
+                : base(Vector2.Zero, new AnimatedSpriteRenderer("slime_bullet", 8, 8, new Anim("move",new int[] { 0, 1 },GlobalState.RNG.Next(5,10))), DrawOrder.PARTICLES)
             {
-                AddAnimation("move", CreateAnimFrameArray(0, 1), GlobalState.RNG.Next(5, 10));
             }
 
             public void Spawn(Slime parent, Player target)

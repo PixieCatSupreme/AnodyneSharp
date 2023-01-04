@@ -1,4 +1,6 @@
-﻿using AnodyneSharp.Entities.Lights;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.Entities.Lights;
+using AnodyneSharp.GameEvents;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 using AnodyneSharp.Utilities;
@@ -28,12 +30,10 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
 
         IEnumerator _state;
 
-        public Seer(EntityPreset preset, Player p) : base(preset.Position, "sun_guy", 16, 24, Drawing.DrawOrder.ENTITIES)
+        public Seer(EntityPreset preset, Player p) : base(preset.Position, new AnimatedSpriteRenderer("sun_guy", 16, 24, new Anim("float",new int[] { 0, 1, 2, 3, 4 },3)), Drawing.DrawOrder.ENTITIES)
         {
             _player = p;
             _preset = preset;
-            AddAnimation("float", CreateAnimFrameArray(0, 1, 2, 3, 4), 3);
-            Play("float");
             _orbs = new SeerOrb[]
             {
                 new(0,16,3f,this),
@@ -334,21 +334,17 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
     [Collision(typeof(Player))]
     class SeerOrb : Entity
     {
-        Seer _parent;
         public float radius;
         public float rotation_speed;
         public float angle = 0f;
 
-        public SeerOrb(int startframe, float radius, float speed, Seer parent) : base(parent.Position + Vector2.UnitX * radius, "light_orb", 16, 16, Drawing.DrawOrder.FG_SPRITES)
+        public SeerOrb(int startframe, float radius, float speed, Seer parent) : base(parent.Position + Vector2.UnitX * radius, 
+            new AnimatedSpriteRenderer("light_orb", 16, 16,new Anim("glow",new int[] { startframe, startframe + 1, startframe + 2, (startframe + 3) % 5, (startframe + 5) % 5 },10)), 
+            Drawing.DrawOrder.FG_SPRITES)
         {
-            _parent = parent;
             exists = false;
             this.radius = radius;
             rotation_speed = speed;
-
-            AddAnimation("glow", CreateAnimFrameArray(startframe, startframe + 1, startframe + 2, (startframe + 3) % 5, (startframe + 5) % 5), 10);
-            Play("glow");
-
         }
 
         public override void Collided(Entity other)
@@ -364,12 +360,12 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
     {
         public bool End = false;
 
-        public SeerWave() : base(Vector2.Zero, "sun_guy_wave", 128, 8, Drawing.DrawOrder.FG_SPRITES)
+        public SeerWave() : base(Vector2.Zero, 
+            new AnimatedSpriteRenderer("sun_guy_wave", 128, 8,
+                new Anim("play",new int[] { 3, 4, 5 },8),
+                new Anim("evaporate",new int[] { 2, 1, 0 },8,false)), Drawing.DrawOrder.FG_SPRITES)
         {
             exists = false;
-            AddAnimation("play", CreateAnimFrameArray(3, 4, 5), 8);
-            AddAnimation("evaporate", CreateAnimFrameArray(2, 1, 0), 8, false);
-            Play("play");
         }
 
         public override void Update()

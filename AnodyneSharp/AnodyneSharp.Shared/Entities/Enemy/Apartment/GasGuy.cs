@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Entities.Gadget;
 using AnodyneSharp.FSM;
 using AnodyneSharp.Registry;
@@ -17,6 +18,8 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
 
     public class GasGuy : HealthDropper
     {
+        public static AnimatedSpriteRenderer GetSprite() => new("gas_guy", 16, 24, new Anim("float", new int[] { 0, 1 }, 2), new Anim("release_gas", new int[] { 2 }, 20));
+
         private int _health = 3;
         private IState _state;
 
@@ -31,13 +34,9 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
         private EntityPool<Gas> gasClouds;
 
         public GasGuy(EntityPreset preset, Player player)
-            : base(preset, preset.Position, "gas_guy", 16, 24, DrawOrder.ENTITIES, 0.6f, true)
+            : base(preset, preset.Position, GetSprite(), DrawOrder.ENTITIES, 0.6f, true)
         {
             _player = player;
-
-            AddAnimation("float", CreateAnimFrameArray(0, 1), 2, true);
-            AddAnimation("release_gas", CreateAnimFrameArray(2), 20, true);
-            Play("float");
 
             drag = new Vector2(30);
 
@@ -154,13 +153,9 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
         private class Gas : Entity
         {
             public Gas()
-                : base(Vector2.Zero, "gas_guy_cloud", 24, 24, DrawOrder.FG_SPRITES)
+                : base(Vector2.Zero, new AnimatedSpriteRenderer("gas_guy_cloud", 24, 24, new Anim("move", new int[] { 0, 1 }, 3)), DrawOrder.FG_SPRITES)
             {
-                AddAnimation("gas_move", CreateAnimFrameArray(0, 1), 3);
-
                 offset = new Vector2(4);
-
-                Play("gas_move");
 
                 width = height = 16;
             }

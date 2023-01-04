@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Entities.Gadget;
 using AnodyneSharp.FSM;
 using AnodyneSharp.Registry;
@@ -68,8 +69,31 @@ namespace AnodyneSharp.Entities.Enemy.Circus
 
         private Player _player;
 
+        public static AnimatedSpriteRenderer GetSprite()
+        {
+            return new("lion", 32, 32,
+                new Anim("walk_r", new int[] { 0, 1 }, 5),
+                new Anim("walk_l", new int[] { 0, 1 }, 5),
+                new Anim("walk_d", new int[] { 10, 11 }, 5),
+                new Anim("walk_u", new int[] { 5, 6 }, 5),
+
+                new Anim("warn_l", new int[] { 3 }, 5, true),
+                new Anim("warn_r", new int[] { 3 }, 5, true),
+
+                new Anim("shoot_l", new int[] { 2 }, 15, true),
+                new Anim("shoot_r", new int[] { 2 }, 15, true),
+                new Anim("shoot_d", new int[] { 12 }, 15, true),
+                new Anim("shoot_u", new int[] { 7 }, 15, true),
+
+                new Anim("pounce_r", new int[] { 4 },1),
+                new Anim("pounce_l", new int[] { 4 },1),
+                new Anim("pounce_u", new int[] { 9 },1),
+                new Anim("pounce_d", new int[] { 14 }, 1)
+             );
+        }
+
         public Lion(EntityPreset preset, Player player)
-            : base(preset.Position, "lion", 32, 32, DrawOrder.ENTITIES)
+            : base(preset.Position, GetSprite(), DrawOrder.ENTITIES)
         {
             _player = player;
 
@@ -78,26 +102,6 @@ namespace AnodyneSharp.Entities.Enemy.Circus
 
             _shadowV = new Shadow(this, new Vector2(8, -6), ShadowType.BigVertical);
             _shadowH = new Shadow(this, new Vector2(8, -6), ShadowType.Big);
-
-            AddAnimation("walk_l", CreateAnimFrameArray(0, 1), 5);
-            AddAnimation("walk_r", CreateAnimFrameArray(0, 1), 5);
-            AddAnimation("walk_d", CreateAnimFrameArray(10, 11), 5);
-            AddAnimation("walk_u", CreateAnimFrameArray(5, 6), 5);
-
-            AddAnimation("warn_l", CreateAnimFrameArray(3), 5, true);
-            AddAnimation("warn_r", CreateAnimFrameArray(3), 5, true);
-
-            AddAnimation("shoot_l", CreateAnimFrameArray(2), 15, true);
-            AddAnimation("shoot_r", CreateAnimFrameArray(2), 15, true);
-            AddAnimation("shoot_d", CreateAnimFrameArray(12), 15, true);
-            AddAnimation("shoot_u", CreateAnimFrameArray(7), 15, true);
-
-            AddAnimation("pounce_r", CreateAnimFrameArray(4));
-            AddAnimation("pounce_l", CreateAnimFrameArray(4));
-            AddAnimation("pounce_u", CreateAnimFrameArray(9));
-            AddAnimation("pounce_d", CreateAnimFrameArray(14));
-
-            Play("walk_r");
 
             _state = new StateMachineBuilder()
                 .State<PaceState>("Pace")
@@ -121,7 +125,7 @@ namespace AnodyneSharp.Entities.Enemy.Circus
                             {
                                 facing = paceR switch
                                 {
-                                    0 =>  Facing.RIGHT,
+                                    0 => Facing.RIGHT,
                                     1 => Facing.DOWN,
                                     2 => Facing.LEFT,
                                     _ => Facing.UP,
@@ -231,7 +235,7 @@ namespace AnodyneSharp.Entities.Enemy.Circus
                     })
                     .Update((state, time) =>
                     {
-                        if (_parabola.Tick() || (touching !=  Touching.NONE && offset.Y > 4))
+                        if (_parabola.Tick() || (touching != Touching.NONE && offset.Y > 4))
                         {
                             offset.Y = 0;
                             _parabola.ResetTime();
@@ -344,22 +348,21 @@ namespace AnodyneSharp.Entities.Enemy.Circus
         }
 
 
-            [Collision(typeof(Player), typeof(Broom), typeof(Dust), MapCollision = false)]
-        class Fireball : Entity
+        [Collision(typeof(Player), typeof(Broom), typeof(Dust), MapCollision = false)]
+        public class Fireball : Entity
         {
+            public static AnimatedSpriteRenderer GetSprite(int framerate) => new("lion_fireballs", 16, 16, new Anim("shoot", new int[] { 0, 1 }, framerate), new Anim("poof", new int[] { 2, 3, 4, 5 }, framerate, false));
+
             private const int MaxDistance = 80;
             private const int ParentSize = 32;
             private const float FirebalVelocity = 88f;
 
             private Vector2 _startPos;
 
-            public Fireball() : base(Vector2.Zero, "lion_fireballs", 16, 16, DrawOrder.FG_SPRITES)
+            public Fireball() : base(Vector2.Zero, GetSprite(10), DrawOrder.FG_SPRITES)
             {
                 width = height = 8;
                 CenterOffset();
-
-                AddAnimation("shoot", CreateAnimFrameArray(0, 1), 10);
-                AddAnimation("poof", CreateAnimFrameArray(2, 3, 4, 5), 10, false);
             }
 
             public void Spawn(Entity parent)
@@ -381,7 +384,7 @@ namespace AnodyneSharp.Entities.Enemy.Circus
                         velocity.Y = ParentSize;
                         break;
                     case Facing.RIGHT:
-                        Position = new Vector2(parent.Position.X + ParentSize -2, parent.Position.Y + 2);
+                        Position = new Vector2(parent.Position.X + ParentSize - 2, parent.Position.Y + 2);
 
                         velocity.X = ParentSize;
                         velocity.Y = GlobalState.RNG.Next(-26, 27);

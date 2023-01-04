@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Entities.Gadget;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.Entities.Gadget;
 using AnodyneSharp.FSM;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
@@ -21,23 +22,23 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
 
         private Vector2 atkPoint;
 
+        public static AnimatedSpriteRenderer GetSprite() => new("teleport_guy", 16, 24,
+            new Anim("idle_d", new int[] { 0, 1 }, 3),
+            new Anim("idle_r", new int[] { 2, 3 }, 3), //DEFAULT: RIGHT
+            new Anim("idle_u", new int[] { 4, 5 }, 3),
+            new Anim("idle_l", new int[] { 2, 3 }, 3),
+            new Anim("poof", new int[] { 6, 7, 8, 9 }, 12, false),
+            new Anim("unpoof", new int[] { 8, 7, 6 }, 12, false),
+            new Anim("dying", new int[] { 0 }, 1)
+            );
+
         public TeleGuy(EntityPreset preset, Player p)
-            : base(preset, preset.Position, "teleport_guy", 16, 24, Drawing.DrawOrder.ENTITIES, 0.7f)
+            : base(preset, preset.Position, GetSprite(), Drawing.DrawOrder.ENTITIES, 0.7f)
         {
             _player = p;
 
             offset.Y = 6;
             height = 16;
-
-            AddAnimation("idle_d", CreateAnimFrameArray(0, 1), 3);
-            AddAnimation("idle_r", CreateAnimFrameArray(2, 3), 3); //DEFAULT: RIGHT
-            AddAnimation("idle_u", CreateAnimFrameArray(4, 5), 3);
-            AddAnimation("idle_l", CreateAnimFrameArray(2, 3), 3);
-            AddAnimation("poof", CreateAnimFrameArray(6, 7, 8, 9), 12, false);
-            AddAnimation("unpoof", CreateAnimFrameArray(8, 7, 6), 12, false);
-            AddAnimation("dying", CreateAnimFrameArray(0));
-
-            Play("idle_d");
 
             immovable = true;
 

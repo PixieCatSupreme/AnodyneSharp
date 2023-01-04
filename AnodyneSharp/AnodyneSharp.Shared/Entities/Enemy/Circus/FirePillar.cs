@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Entities.Enemy.Crowd;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.Entities.Enemy.Crowd;
 using AnodyneSharp.FSM;
 using AnodyneSharp.Sounds;
 using Microsoft.Xna.Framework;
@@ -46,19 +47,21 @@ namespace AnodyneSharp.Entities.Enemy.Circus
 
         Entity _base;
 
+        public static AnimatedSpriteRenderer GetSprite()
+        {
+            return new("fire_pillar", 16, 32,
+                new Anim("idle", new int[] { 0 }, 1),
+                new Anim("emerge", new int[] { 1, 2, 3, 4 }, 8, false),
+                new Anim("flame", new int[] { 3, 4 }, 10),
+                new Anim("recede", new int[] { 5, 6, 0 }, 8, false)
+                );
+        }
+
         public FirePillar(EntityPreset preset, Player p)
-            : base(preset.Position, "fire_pillar", 16, 32, Drawing.DrawOrder.ENTITIES)
+            : base(preset.Position, GetSprite(), Drawing.DrawOrder.ENTITIES)
         {
 
-            _base = new Entity(preset.Position + new Vector2(0, 16), "fire_pillar_base", 16, 16, Drawing.DrawOrder.VERY_BG_ENTITIES);
-            _base.AddAnimation("dormant", CreateAnimFrameArray(0, 1), 6);
-            _base.Play("dormant");
-
-            AddAnimation("idle", CreateAnimFrameArray(0), 15);
-            AddAnimation("emerge", CreateAnimFrameArray(1, 2, 3, 4), 8, false);
-            AddAnimation("flame", CreateAnimFrameArray(3, 4), 10);
-            AddAnimation("recede", CreateAnimFrameArray(5, 6, 0), 8, false);
-            Play("idle");
+            _base = new Entity(preset.Position + new Vector2(0, 16), new AnimatedSpriteRenderer("fire_pillar_base", 16, 16, new Anim("dormant", new int[] { 0, 1 }, 6)), Drawing.DrawOrder.VERY_BG_ENTITIES);
 
             height = 9;
             offset.Y += 16;

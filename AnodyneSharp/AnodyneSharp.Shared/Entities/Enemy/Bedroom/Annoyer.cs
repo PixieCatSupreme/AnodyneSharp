@@ -1,4 +1,6 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.Entities.Enemy.Circus;
 using AnodyneSharp.FSM;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
@@ -15,6 +17,27 @@ namespace AnodyneSharp.Entities.Enemy
     [NamedEntity, Enemy, Collision(typeof(Player), typeof(Broom), MapCollision = true, KeepOnScreen = true)]
     public class Annoyer : Entity
     {
+        public static AnimatedSpriteRenderer GetSprite(int frame)
+        {
+            int[] frames;
+            int framerate = 4;
+            if(GlobalState.IsCell)
+            {
+                frames = new int[] { 6, 7 };
+            }
+            else if(GlobalState.BoiEaster)
+            {
+                frames = new int[] { 8, 9 };
+            }
+            else
+            {
+                int i = frame == T_SUPER ? 12 : 0;
+                frames = new int[] { i, i + 1, i + 2, i + 3, i + 4, i + 5 };
+                framerate = 8;
+            }
+            return new("annoyer", 16, 16, new Anim("flap", frames, framerate));
+        }
+
         private int _health = 1;
 
         private IState _state;
@@ -70,7 +93,7 @@ namespace AnodyneSharp.Entities.Enemy
         }
 
         public Annoyer(EntityPreset preset, Player player) 
-            : base(preset.Position, "annoyer", 16,16, DrawOrder.ENTITIES)
+            : base(preset.Position, GetSprite(preset.Frame), DrawOrder.ENTITIES)
         {
             MapInteraction = false;
             _preset = preset;
@@ -85,21 +108,6 @@ namespace AnodyneSharp.Entities.Enemy
             {
                 exists = false
             };
-
-            if (GlobalState.IsCell)
-            {
-                AddAnimation("flap", CreateAnimFrameArray(6, 7), 4, true);
-            }
-            else if (GlobalState.BoiEaster)
-            {
-                AddAnimation("flap", CreateAnimFrameArray(8, 9), 4, true);
-            }
-            else
-            {
-                int i = preset.Frame == T_SUPER ? 12 : 0;
-                AddAnimation("flap", CreateAnimFrameArray(i,i+1,i+2,i+3,i+4,i+5), 8, true);
-            }
-            Play("flap");
 
             if (preset.Frame == T_SUPER)
                 _health = 2;
@@ -221,11 +229,9 @@ namespace AnodyneSharp.Entities.Enemy
 
         class Explosion : HealthDropper
         {
-            public Explosion(Vector2 pos) : base(null, pos, "enemy_explode_2", 24, 24, DrawOrder.ENTITIES)
+            public static AnimatedSpriteRenderer GetSprite(int o) => new AnimatedSpriteRenderer("enemy_explode_2", 24, 24, new Anim("explode", new int[] { o, o + 1, o + 2, o + 3, o + 4 }, GlobalState.IsCell ? 10 : 12, false));
+            public Explosion(Vector2 pos) : base(null, pos, GetSprite(GlobalState.IsCell ? 5 : 0), DrawOrder.ENTITIES)
             {
-                int i = GlobalState.IsCell ? 5 : 0;
-                AddAnimation("explode", CreateAnimFrameArray(i, i + 1, i + 2, i + 3, i + 4), GlobalState.IsCell ? 10 : 12, false);
-                Play("explode");
             }
 
             public override void Update()
@@ -245,13 +251,10 @@ namespace AnodyneSharp.Entities.Enemy
 
             private IState _state;
 
-            public Fireball() : base(Vector2.Zero, "lion_fireballs", 16,16,DrawOrder.FG_SPRITES)
+            public Fireball() : base(Vector2.Zero, Lion.Fireball.GetSprite(8), DrawOrder.FG_SPRITES)
             {
                 width = height = 8;
                 offset = new Vector2(4, 4);
-
-                AddAnimation("shoot", CreateAnimFrameArray(0, 1), 8);
-                AddAnimation("poof", CreateAnimFrameArray(2, 3, 4, 5), 8, looped:false);
 
                 _state = new StateMachineBuilder()
                     .State("Shoot")

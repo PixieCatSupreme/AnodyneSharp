@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Entities.Gadget;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
@@ -16,21 +17,20 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
         private Player _player;
         private IEnumerator _stateLogic;
 
+        public static AnimatedSpriteRenderer GetSprite(int o) => new("silverfish", 16, 16,
+            new Anim("move_l", new int[] { 6 + o, 7 + o }, 7),
+            new Anim("move_d", new int[] { 4 + o, 5 + o }, 7),
+            new Anim("move_r", new int[] { 6 + o, 7 + o }, 7), // DEFAULT: RIGHT
+            new Anim("move_u", new int[] { 8 + o, 9 + o }, 7),
+            new Anim("idle_r", new int[] { 6 + o }, 12), // DEFAULT: RIGHT
+            new Anim("idle_d", new int[] { 4 + o }, 12),
+            new Anim("idle_u", new int[] { 8 + o }, 12),
+            new Anim("idle_l", new int[] { 6 + o }, 12));
+
         public Silverfish(EntityPreset preset, Player player)
-            : base(preset, preset.Position, "silverfish", 16, 16, DrawOrder.ENTITIES)
+            : base(preset, preset.Position, GetSprite(GlobalState.IsCell ? 6 : 0), DrawOrder.ENTITIES)
         {
             _player = player;
-
-            int o = GlobalState.IsCell ? 6 : 0;
-
-            AddAnimation("move_l", CreateAnimFrameArray(6 + o, 7 + o), 7, true);
-            AddAnimation("move_d", CreateAnimFrameArray(4 + o, 5 + o), 7, true);
-            AddAnimation("move_r", CreateAnimFrameArray(6 + o, 7 + o), 7, true); // DEFAULT: RIGHT
-            AddAnimation("move_u", CreateAnimFrameArray(8 + o, 9 + o), 7, true);
-            AddAnimation("idle_d", CreateAnimFrameArray(4 + o), 12, true);
-            AddAnimation("idle_u", CreateAnimFrameArray(8 + o), 12, true);
-            AddAnimation("idle_r", CreateAnimFrameArray(6 + o), 12, true); // DEFAULT: RIGHT
-            AddAnimation("idle_l", CreateAnimFrameArray(6 + o), 12, true);
 
             facing = preset.Frame switch
             {
