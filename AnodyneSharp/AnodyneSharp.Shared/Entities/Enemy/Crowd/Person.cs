@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Registry;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 using Microsoft.Xna.Framework;
 using System;
@@ -17,8 +18,15 @@ namespace AnodyneSharp.Entities.Enemy
 
         private float talk_timer;
 
+        public static AnimatedSpriteRenderer GetSprite() => new("person", 16, 16,
+            new Anim("walk_d",new int[] { 0, 1 }, 5),
+            new Anim("walk_r", new int[] { 2, 3 }, 5),
+            new Anim("walk_u", new int[] { 4, 5 }, 5),
+            new Anim("walk_l", new int[] { 6, 7 }, 5)
+            );
+
         public Person(EntityPreset preset, Player p)
-            : base(preset.Position, "person", 16, 16, Drawing.DrawOrder.ENTITIES)
+            : base(preset.Position, GetSprite(), Drawing.DrawOrder.ENTITIES)
         {
             height = 4;
             width = 6;
@@ -28,11 +36,6 @@ namespace AnodyneSharp.Entities.Enemy
             offset.Y += 4;
 
             talk_timer = (float)(0.5 + GlobalState.RNG.NextDouble());
-
-            AddAnimation("walk_d", CreateAnimFrameArray(0, 1), 5);
-            AddAnimation("walk_r", CreateAnimFrameArray(2, 3), 5);
-            AddAnimation("walk_u", CreateAnimFrameArray(4, 5), 5);
-            AddAnimation("walk_l", CreateAnimFrameArray(2, 3), 5);
 
             switch (preset.Frame)
             {
@@ -103,7 +106,8 @@ namespace AnodyneSharp.Entities.Enemy
 
         private void FaceDirection(Facing direction)
         {
-            Play($"walk_{Enum.GetName(direction.GetType(), direction).ToLower()[0]}");
+            facing = direction;
+            PlayFacing("walk");
 
             velocity = FacingDirection(direction) * speed;
 

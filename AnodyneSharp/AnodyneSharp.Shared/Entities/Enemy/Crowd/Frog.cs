@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Entities.Gadget;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.Entities.Gadget;
 using AnodyneSharp.FSM;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
@@ -12,9 +13,37 @@ using System.Text;
 
 namespace AnodyneSharp.Entities.Enemy.Crowd
 {
-    [NamedEntity, Enemy, Collision(typeof(Player),typeof(Broom))]
+    [NamedEntity, Enemy, Collision(typeof(Player), typeof(Broom))]
     class Frog : HealthDropper
     {
+        public static AnimatedSpriteRenderer GetSprite()
+        {
+            Anim[] anims;
+            if (GlobalState.BoiEaster)
+            {
+                anims = new Anim[]
+                {
+                    new("idle", new int[]{ 6, 7 }, 2),
+                    new("shoot_d", new int[]{8}, 3, false),
+                    new("shoot_r", new int[]{8}, 3, false),
+                    new("shoot_l", new int[]{8}, 3, false),
+                    new("shoot_u", new int[]{8}, 3, false)
+            };
+            }
+            else
+            {
+                anims = new Anim[]
+                {
+                    new("idle", new int[]{ 0,1 }, 2),
+                    new("shoot_d", new int[]{3}, 3, false),
+                    new("shoot_r", new int[]{4}, 3, false),
+                    new("shoot_l", new int[]{4}, 3, false),
+                    new("shoot_u", new int[]{5}, 3, false)
+                };
+            }
+            return new("frog", 16, 16, anims);
+        }
+
         int _health = 2;
         IState _state;
 
@@ -22,27 +51,8 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
 
         EntityPool<BurstBullet> _bullets;
 
-        public Frog(EntityPreset preset, Player p) : base(preset, preset.Position, "frog", 16, 16, Drawing.DrawOrder.ENTITIES, 0.7f)
+        public Frog(EntityPreset preset, Player p) : base(preset, preset.Position, GetSprite(), Drawing.DrawOrder.ENTITIES, 0.7f)
         {
-            if (!GlobalState.BoiEaster)
-            {
-                AddAnimation("idle", CreateAnimFrameArray(0, 1), 2, true);
-                AddAnimation("shoot_d", CreateAnimFrameArray(3), 3, false);
-                AddAnimation("shoot_r", CreateAnimFrameArray(4), 3, false);
-                AddAnimation("shoot_l", CreateAnimFrameArray(4), 3, false);
-                AddAnimation("shoot_u", CreateAnimFrameArray(5), 3, false);
-            }
-            else
-            {
-                AddAnimation("idle", CreateAnimFrameArray(6, 7), 2, true);
-                AddAnimation("shoot_d", CreateAnimFrameArray(8), 3, false);
-                AddAnimation("shoot_r", CreateAnimFrameArray(8), 3, false);
-                AddAnimation("shoot_l", CreateAnimFrameArray(8), 3, false);
-                AddAnimation("shoot_u", CreateAnimFrameArray(8), 3, false);
-            }
-
-
-            Play("idle");
             immovable = true;
             _player = p;
 
@@ -51,10 +61,10 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
 
             _state = new StateMachineBuilder()
                 .State<TimerState>("Initial")
-                    .Enter((s) => 
+                    .Enter((s) =>
                     {
                         s.Reset();
-                        s.AddTimer(0.8f, "goToIdle"); 
+                        s.AddTimer(0.8f, "goToIdle");
                     })
                     .Event("goToIdle", (s) => _state.ChangeState("Idle"))
                 .End()
@@ -63,7 +73,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
                     {
                         Play("idle");
                     })
-                    .Condition(()=>(Center - _player.Center).LengthSquared() < 64 * 64, (s) =>
+                    .Condition(() => (Center - _player.Center).LengthSquared() < 64 * 64, (s) =>
                     {
                         _bullets.Spawn((b) => b.Spawn(this, _player), 3);
                         FaceTowards(_player.Center);
@@ -103,7 +113,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
                     }
                 }
             }
-            else if(other is Player p && p.state != PlayerState.AIR)
+            else if (other is Player p && p.state != PlayerState.AIR)
             {
                 p.ReceiveDamage(1);
             }
@@ -111,7 +121,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
 
         protected override void AnimationChanged(string name)
         {
-            if(name == "shoot_l")
+            if (name == "shoot_l")
             {
                 _flip = Microsoft.Xna.Framework.Graphics.SpriteEffects.FlipHorizontally;
             }
@@ -134,24 +144,19 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
 
             IState _state;
 
-            public BurstBullet(int speed_multiplier) : base(Vector2.Zero, "frog_bullet", 8, 8, Drawing.DrawOrder.FG_SPRITES)
+            public static AnimatedSpriteRenderer GetSprite()
             {
-                _multiplier = speed_multiplier+1;
-                
+                if (GlobalState.BoiEaster) return new("frog_bullet", 8, 8, new Anim("move", new int[] { 4, 5 }, 12), new Anim("explode", new int[] { 2, 3, 3 }, 10, false));
+                return new("frog_bullet", 8, 8, new Anim("move", new int[] { 0, 1 }, 12), new Anim("explode", new int[] { 2, 3, 3 },10, false));
+            }
+
+            public BurstBullet(int speed_multiplier) : base(Vector2.Zero, GetSprite(), Drawing.DrawOrder.FG_SPRITES)
+            {
+                _multiplier = speed_multiplier + 1;
+
                 parabola = new(this, 16, (float)(0.8 + GlobalState.RNG.NextDouble()));
 
                 shadow = new Shadow(this, new Vector2(3, 2), ShadowType.Normal);
-
-                if (!GlobalState.BoiEaster)
-                {
-                    AddAnimation("move", CreateAnimFrameArray(0, 1), 12);
-                    AddAnimation("explode", CreateAnimFrameArray(2, 3, 3), 10, false);
-                }
-                else
-                {
-                    AddAnimation("move", CreateAnimFrameArray(4, 5), 12);
-                    AddAnimation("explode", CreateAnimFrameArray(2, 3, 3), 10, false);
-                }
 
                 _state = new StateMachineBuilder()
                     .State("Move")
@@ -179,7 +184,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
                         .Condition(() => AnimFinished, (state) =>
                         {
                             exists = false;
-                            SoundManager.PlaySoundEffect("bubble_1","bubble_1","bubble_2","bubble_3");
+                            SoundManager.PlaySoundEffect("bubble_1", "bubble_1", "bubble_2", "bubble_3");
                         })
                     .End()
                     .Build();
@@ -194,7 +199,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
             public void Spawn(Frog parent, Player target)
             {
                 Position = parent.Position;
-                MoveTowards(target.Center,15*_multiplier);
+                MoveTowards(target.Center, 15 * _multiplier);
                 _state.ChangeState("Move");
                 parabola.ResetTime();
             }

@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Entities.Events;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
@@ -213,19 +214,19 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
             rhand.Play("stomp");
             lhand.state = null;
             rhand.state = rhand.GoTo(rhand.init_pt, 30);
-            while(rhand.state != null)
+            while (rhand.state != null)
             {
                 yield return null;
             }
             rhand.state = rhand.Stomp();
             lhand.state = lhand.Stomp(Phase, player);
-            while(lhand.state != null)
+            while (lhand.state != null)
             {
                 yield return null;
             }
             rhand.state = rhand.Reset(180);
             lhand.state = lhand.Reset(180);
-            while(rhand.state != null || lhand.state != null)
+            while (rhand.state != null || lhand.state != null)
             {
                 yield return null;
             }
@@ -339,9 +340,8 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
 
     class DeathExplosion : Entity
     {
-        public DeathExplosion() : base(Vector2.Zero, "enemy_explode_2", 24, 24, Drawing.DrawOrder.FG_SPRITES)
+        public DeathExplosion() : base(Vector2.Zero, new AnimatedSpriteRenderer("enemy_explode_2", 24, 24, new Anim("explode", new int[] { 0, 1, 2, 3, 4 }, 14, false)), Drawing.DrawOrder.FG_SPRITES)
         {
-            AddAnimation("explode", CreateAnimFrameArray(0, 1, 2, 3, 4), 14, false);
             exists = false;
         }
 
@@ -369,10 +369,13 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
 
         public IEnumerator state;
 
-        public Laser() : base(Vector2.Zero, "wallboss_laser", 64, 10, Drawing.DrawOrder.BG_ENTITIES)
+        public static AnimatedSpriteRenderer GetSprite() => new("wallboss_laser", 64, 10,
+            new Anim("charge", new int[] { 0 }, 1),
+            new Anim("attack", new int[] { 1, 2 }, 12)
+            );
+
+        public Laser() : base(Vector2.Zero, GetSprite(), Drawing.DrawOrder.BG_ENTITIES)
         {
-            AddAnimation("charge", CreateAnimFrameArray(0));
-            AddAnimation("attack", CreateAnimFrameArray(1, 2), 12);
             exists = false;
             visible = false;
             start_loc = Position = MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid) + new Vector2(48, 32 + 11);
@@ -449,7 +452,14 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
 
         public IEnumerator state;
 
-        public Hand(bool right) : base(Vector2.Zero, "f_wallboss_l_hand", 32, 32, Drawing.DrawOrder.ENTITIES)
+        public static AnimatedSpriteRenderer GetSprite() => new("f_wallboss_l_hand", 32, 32,
+            new Anim("idle", new int[] { 0 }, 1),
+            new Anim("stomp", new int[] { 1 }, 1),
+            new Anim("shoot", new int[] { 2 }, 1),
+            new Anim("push", new int[] { 3 }, 1)
+            );
+
+        public Hand(bool right) : base(Vector2.Zero, GetSprite(), Drawing.DrawOrder.ENTITIES)
         {
             Vector2 tl = MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid);
             if (right)
@@ -462,16 +472,10 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
                 Position = tl + new Vector2(16, 32);
             }
 
-            AddAnimation("idle", CreateAnimFrameArray(0));
-            AddAnimation("stomp", CreateAnimFrameArray(1));
-            AddAnimation("shoot", CreateAnimFrameArray(2));
-            AddAnimation("push", CreateAnimFrameArray(3));
-            Play("idle");
-
             stomp_parabola = new(this, right ? 32 : 64, right ? 1 : 2);
             is_right_hand = right;
             init_pt = Position;
-            shadow = new(this, new(8,-12), ShadowType.Big);
+            shadow = new(this, new(8, -12), ShadowType.Big);
             shadow.visible = false;
             shadow.HasVisibleHitbox = true;
 
@@ -530,7 +534,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
             velocity = Vector2.Zero;
             shadow.visible = false;
             IEnumerator reset = GoTo(init_pt, speed);
-            while (reset.MoveNext() | !MathUtilities.MoveTo(ref offset.Y,0,120))
+            while (reset.MoveNext() | !MathUtilities.MoveTo(ref offset.Y, 0, 120))
             {
                 yield return null;
             }
@@ -542,7 +546,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
         {
             explosion.exists = true;
             explosion.Position = Position;
-            explosion.Play("explode",true);
+            explosion.Play("explode", true);
         }
 
         public override void Collided(Entity other)
@@ -605,7 +609,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
             while (nr_stomps-- > 0)
             {
                 stomp_parabola.ResetTime();
-                while(stomp_parabola.Progress() < 0.5f)
+                while (stomp_parabola.Progress() < 0.5f)
                 {
                     MathUtilities.MoveTo(ref Position.X, p.Position.X, 60);
                     MathUtilities.MoveTo(ref Position.Y, p.Position.Y - 16, 60);
@@ -614,12 +618,12 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
                 }
                 SoundManager.PlaySoundEffect("fall_1");
                 float wait_time = 0f;
-                while(wait_time < 0.7f)
+                while (wait_time < 0.7f)
                 {
                     wait_time += GameTimes.DeltaTime;
                     yield return null;
                 }
-                while(!stomp_parabola.Tick())
+                while (!stomp_parabola.Tick())
                 {
                     yield return null;
                 }
@@ -627,14 +631,14 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
                 SpawnExplosion();
                 SoundManager.PlaySoundEffect("wb_hit_ground");
 
-                if(phase != 0 && ground_state != GroundPhase.Full)
+                if (phase != 0 && ground_state != GroundPhase.Full)
                 {
                     GlobalState.screenShake.Shake(0.02f, 0.5f);
                     SoundManager.PlaySoundEffect("floor_crack");
 
                     int next_tile = ground_state == GroundPhase.None ? 71 : 81;
                     Point tl = GlobalState.TopLeftTile;
-                    for(int x = 2; x < 8; ++x)
+                    for (int x = 2; x < 8; ++x)
                     {
                         GlobalState.Map.ChangeTile(MapData.Layer.BG, new(tl.X + x, tl.Y + 6), next_tile);
                     }
@@ -662,7 +666,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
                 {
                     velocity *= -1;
                 }
-                if(stomp_parabola.Tick())
+                if (stomp_parabola.Tick())
                 {
                     SoundManager.PlaySoundEffect("wb_tap_ground");
                     SpawnExplosion();
@@ -685,14 +689,15 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
 
         EntityPool<Bullet> bullets;
 
-        public Face() : base(MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid) + Vector2.UnitX * (160 - 64) / 2, "f_wallboss_face", 64, 32, Drawing.DrawOrder.ENTITIES)
-        {
-            AddAnimation("normal", CreateAnimFrameArray(0, 2), 5);
-            AddAnimation("hurt", CreateAnimFrameArray(3, 5), 14);
-            AddAnimation("charge", CreateAnimFrameArray(1), 5);
-            AddAnimation("shoot", CreateAnimFrameArray(4), 10);
-            Play("normal");
+        public static AnimatedSpriteRenderer GetSprite() => new("f_wallboss_face", 64, 32,
+            new Anim("normal", new int[] { 0, 2 }, 5),
+            new Anim("hurt", new int[] { 3, 5 }, 14),
+            new Anim("charge", new int[] { 1 }, 1),
+            new Anim("shoot", new int[] { 4 }, 1)
+            );
 
+        public Face() : base(MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid) + Vector2.UnitX * (160 - 64) / 2, GetSprite(), Drawing.DrawOrder.ENTITIES)
+        {
             state = StateLogic();
 
             bullets = new(8, () => new(this));
@@ -782,10 +787,13 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
 
             Parabola_Thing parabola;
 
-            public Bullet(Face parent) : base(parent.Center, "wallboss_bullet", 8, 8, Drawing.DrawOrder.FG_SPRITES)
+            public static AnimatedSpriteRenderer GetSprite() => new("wallboss_bullet", 8, 8,
+                new Anim("move", new int[] { 0, 1 }, 12),
+                new Anim("explode", new int[] { 2, 3, 4 }, 10, false)
+                );
+
+            public Bullet(Face parent) : base(parent.Center, GetSprite(), Drawing.DrawOrder.FG_SPRITES)
             {
-                AddAnimation("move", CreateAnimFrameArray(0, 1), 12);
-                AddAnimation("explode", CreateAnimFrameArray(2, 3, 4), 10, false);
 
                 shadow = new(this, Vector2.Zero);
 
@@ -829,10 +837,8 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
     [Collision(PartOfMap = true)]
     class Wall : Entity
     {
-        public Wall() : base(MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid), "wallboss_wall", 160, 32, Drawing.DrawOrder.VERY_BG_ENTITIES)
+        public Wall() : base(MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid), new AnimatedSpriteRenderer("wallboss_wall", 160, 32, new Anim("move", new int[] { 0, 1 }, 4)), Drawing.DrawOrder.VERY_BG_ENTITIES)
         {
-            AddAnimation("move", CreateAnimFrameArray(0, 1), 4);
-            Play("move");
             immovable = true;
         }
 

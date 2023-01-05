@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Utilities;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,8 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
     {
         RotatorBullet bullet;
 
-        public Rotator(EntityPreset preset, Player p) : base(preset.Position,"f_rotator",16,16,Drawing.DrawOrder.ENTITIES)
+        public Rotator(EntityPreset preset, Player p) : base(preset.Position, new AnimatedSpriteRenderer("f_rotator", 16, 16, new Anim("pulse", new int[] { 0, 1 }, 10)), Drawing.DrawOrder.ENTITIES)
         {
-            AddAnimation("pulse", CreateAnimFrameArray(0, 1), 10);
-            Play("pulse");
             immovable = true;
 
             width = 6;
@@ -46,14 +45,12 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
 
         Rotator parent;
 
-        public RotatorBullet(Rotator parent) : base(parent.Position,"f_rotator_ball",8,8,Drawing.DrawOrder.ENTITIES)
+        public RotatorBullet(Rotator parent) : base(parent.Position, new AnimatedSpriteRenderer("f_rotator_ball", 8, 8, new Anim("pulse", new int[] { 0, 1 }, 10)), Drawing.DrawOrder.ENTITIES)
         {
             width = height = 4;
             CenterOffset();
             immovable = true;
 
-            AddAnimation("pulse", CreateAnimFrameArray(0, 1), 10);
-            Play("pulse");
             this.parent = parent;
         }
 

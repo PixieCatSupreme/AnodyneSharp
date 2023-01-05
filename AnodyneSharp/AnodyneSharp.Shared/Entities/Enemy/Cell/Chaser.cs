@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.GameEvents;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.GameEvents;
 using AnodyneSharp.Sounds;
 using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
@@ -17,8 +18,17 @@ namespace AnodyneSharp.Entities.Enemy.Cell
 
         float _targetVel;
 
+        public static AnimatedSpriteRenderer GetSprite() => new("chaser", 16, 32,
+            new Anim("face_d", new int[] { 4 },1),
+            new Anim("face_r", new int[] { 6 },1),
+            new Anim("walking_d", new int[] { 4, 5 }, 8),
+            new Anim("walking_r", new int[] { 6, 7 }, 8),
+            new Anim("walking_u", new int[] { 8, 9 }, 8),
+            new Anim("walking_l", new int[] { 10, 11 }, 8)
+            );
+
         public Chaser(EntityPreset preset, Player p)
-            : base(preset.Position, "chaser", 16, 32, Drawing.DrawOrder.ENTITIES)
+            : base(preset.Position, GetSprite(), Drawing.DrawOrder.ENTITIES)
         {
             _player = p;
 
@@ -26,22 +36,17 @@ namespace AnodyneSharp.Entities.Enemy.Cell
 
             offset = new Vector2(4, 20);
 
-            Position += new Vector2(4,20);
-
-            AddAnimation("walking_d", CreateAnimFrameArray(4, 5), 8, true);
-            AddAnimation("walking_r", CreateAnimFrameArray(6, 7), 8, true);
-            AddAnimation("walking_u", CreateAnimFrameArray(8, 9), 8, true);
-            AddAnimation("walking_l", CreateAnimFrameArray(10, 11), 8, true);
+            Position += offset;
 
             _isHorizontal = preset.Frame == 0;
 
             if (_isHorizontal)
             {
-                SetFrame(6);
+                Play("face_r");
             }
             else
             {
-                SetFrame(4);
+                Play("face_d");
             }
         }
 

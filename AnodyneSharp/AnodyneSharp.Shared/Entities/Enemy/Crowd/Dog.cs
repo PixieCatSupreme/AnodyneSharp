@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Entities.Gadget;
 using AnodyneSharp.FSM;
 using AnodyneSharp.Registry;
@@ -27,17 +28,19 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
 
         private float _hitTimer;
 
+        public static AnimatedSpriteRenderer GetSprite() => new("dog", 16, 16,
+            new Anim("stop", new int[] { 0 }, 1),
+            new Anim("walk", new int[] { 2, 3 }, 4),
+            new Anim("alert", new int[] { 4, 5 }, 4),
+            new Anim("attack", new int[] { 6, 7 }, 6)
+            );
+
         public Dog(EntityPreset preset, Player p)
-            : base(preset, preset.Position, "dog", 16, 16, Drawing.DrawOrder.ENTITIES, 1)
+            : base(preset, preset.Position, GetSprite(), Drawing.DrawOrder.ENTITIES, 1)
         {
             width = height = 12;
             offset = new Vector2(2);
             drag.X = 20;
-
-            AddAnimation("stop", CreateAnimFrameArray(0));
-            AddAnimation("walk", CreateAnimFrameArray(2, 3), 4);
-            AddAnimation("alert", CreateAnimFrameArray(4, 5), 4);
-            AddAnimation("attack", CreateAnimFrameArray(6, 7), 6);
 
             _activeRegion = new DogRegion(this);
             _target = p;

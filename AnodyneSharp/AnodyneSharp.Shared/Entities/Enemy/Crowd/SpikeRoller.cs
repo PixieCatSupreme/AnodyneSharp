@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Sounds;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.Sounds;
 using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -173,14 +174,20 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
 
         protected bool playerCollides;
 
+        public static AnimatedSpriteRenderer GetSprite(int frame)
+        {
+            bool horiz = frame == 0 || frame == 3;
+            return new(horiz ? "spike_roller_horizontal" : "spike_roller", horiz ? 128 : 16, horiz ? 16: 128,
+                new Anim("idle", new int[] { 0 }, 1),
+                new Anim("roll", new int[] { 0, 1 }, 5)
+                );
+        }
         public BaseSpikeRoller(EntityPreset preset, int frame)
-            : base(preset.Position, "spike_roller", 16, 128, Drawing.DrawOrder.ENTITIES)
+            : base(preset.Position, GetSprite(frame), Drawing.DrawOrder.ENTITIES)
         {
             switch (frame)
             {
                 case 0:
-                    SetTexture("spike_roller_horizontal", 128, 16);
-
                     width = 128;
                     height = 12;
                     vel = new Vector2(0, -20);
@@ -194,8 +201,6 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
                     vel = new Vector2(-20, 0);
                     break;
                 case 3:
-                    SetTexture("spike_roller_horizontal", 128, 16);
-
                     width = 128;
                     height = 12;
                     vel = new Vector2(0, 20);
@@ -205,12 +210,6 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
             CenterOffset();
 
             Position += offset;
-
-            AddAnimation("roll", CreateAnimFrameArray(0, 1), 5);
-
-            AddAnimation("idle", CreateAnimFrameArray(0));
-
-            Play("idle");
 
             CollisionOn = false;
             immovable = true;
