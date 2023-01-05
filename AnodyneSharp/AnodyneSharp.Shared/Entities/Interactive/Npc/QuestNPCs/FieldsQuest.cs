@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Registry;
 using Microsoft.Xna.Framework;
 using System;
@@ -14,10 +15,9 @@ namespace AnodyneSharp.Entities.Interactive.Npc.QuestNPCs
         Bush _bush;
         bool _played_quest = false;
 
-        public FieldsQuest(EntityPreset preset, Player p) : base(preset.Position, "fields_npcs", 32, 32, Drawing.DrawOrder.ENTITIES)
+        public FieldsQuest(EntityPreset preset, Player p) 
+            : base(preset.Position, new AnimatedSpriteRenderer("fields_npcs", 32, 32, new Anim("a", new int[] { 15, 15, 15, 15, 15, 15, 15, 15, 16, 17, 17, 18, 18 }, 18, true)), Drawing.DrawOrder.ENTITIES)
         {
-            AddAnimation("a", CreateAnimFrameArray(15, 15, 15, 15, 15, 15, 15, 15, 16, 17, 17, 18, 18), 18, true);
-            Play("a");
             immovable = true;
             width = height = 16;
             Position.Y += 16;

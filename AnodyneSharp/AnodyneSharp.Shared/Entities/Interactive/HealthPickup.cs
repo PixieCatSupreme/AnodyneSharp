@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Registry;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 using Microsoft.Xna.Framework;
 using System;
@@ -14,22 +15,30 @@ namespace AnodyneSharp.Entities.Interactive
 
         private float _latency = 0.5f;
 
-        public HealthPickup(Vector2 position, bool isBigHealth)
-            : base(position, Drawing.DrawOrder.ENTITIES)
+        private static AnimatedSpriteRenderer GetSprite(bool isBigHealth)
         {
+            int o = GlobalState.IsCell ? 4 : 0;
+            Anim anim = new("float", new int[] { 0 + o, 1 + o, 2 + o, 3 + o }, 5);
+
             if (isBigHealth)
             {
-                SetTexture("big_health_pickup", 16, 16);
-                healingFactor = 3;
+                return new AnimatedSpriteRenderer("big_health_pickup", 16, 16, anim);
+
             }
             else
             {
-                SetTexture("small_health_pickup", 10, 16);
+                return new AnimatedSpriteRenderer("small_health_pickup", 10, 16, anim);
+            }
+        }
+
+        public HealthPickup(Vector2 position, bool isBigHealth)
+            : base(position, GetSprite(isBigHealth), Drawing.DrawOrder.ENTITIES)
+        {
+            if (isBigHealth)
+            {
+                healingFactor = 3;
             }
 
-            int o = GlobalState.IsCell ? 4 : 0;
-
-            AddAnimation("float", CreateAnimFrameArray(0 + o, 1 + o, 2 + o, 3 + o), 5);
             height = sprite.Height;
             width = sprite.Width;
 

@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Registry;
 using System;
 using System.Collections.Generic;
@@ -10,12 +11,8 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Blank
     class BlankConsole : Entity, Interactable
     {
         public BlankConsole(EntityPreset preset, Player p)
-            : base(preset.Position, "console", 16, 16, Drawing.DrawOrder.ENTITIES)
+            : base(preset.Position, new AnimatedSpriteRenderer("console", 16, 16, new Anim("flicker", new int[] { 0, 1, 2 }, 10)), Drawing.DrawOrder.ENTITIES)
         {
-            AddAnimation("flicker", CreateAnimFrameArray(0, 1, 2), 10);
-
-            Play("flicker");
-
             immovable = true;
         }
 

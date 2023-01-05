@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Input;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Resources;
@@ -18,20 +19,14 @@ namespace AnodyneSharp.Entities.Gadget
     [NamedEntity(xmlName: "Console", type: null, frames: 1), Collision(typeof(Player))]
     public class SoundTestConsole : Entity, Interactable
     {
-        EntityPreset _preset;
-        SoundTest menu;
+        private SoundTest menu;
 
         public SoundTestConsole(EntityPreset preset, Player p) 
-            : base(preset.Position, "console", 16, 16, DrawOrder.ENTITIES)
+            : base(preset.Position, new AnimatedSpriteRenderer( "console", 16, 16, new Anim("spaz", new int[] { 0, 1, 2 }, 20)), DrawOrder.ENTITIES)
         {
             menu = new(preset);
 
-            _preset = preset;
             immovable = true;
-
-            AddAnimation("spaz", CreateAnimFrameArray(0, 1, 2), 20);
-
-            Play("spaz");
         }
 
         public override void Collided(Entity other)

@@ -12,9 +12,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.EasterEggs
         public RedCaveEaster(EntityPreset preset, Player p)
             : base(preset.Position, "smoke_red", 32, 32, Drawing.DrawOrder.ENTITIES)
         {
-            AddAnimation("RC", CreateAnimFrameArray(0));
-
-            Play("RC");
+            SetFrame(0);
 
             immovable = true;
         }

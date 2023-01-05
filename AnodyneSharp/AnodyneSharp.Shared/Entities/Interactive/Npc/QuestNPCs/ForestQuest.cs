@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Registry;
 using System;
 using System.Collections.Generic;
@@ -12,11 +13,8 @@ namespace AnodyneSharp.Entities.Interactive.Npc.QuestNPCs
         bool _played_quest = false;
 
         public ForestQuest(EntityPreset preset, Player p) 
-            : base(preset.Position, "forest_npcs", 16, 16, Drawing.DrawOrder.ENTITIES)
+            : base(preset.Position, new AnimatedSpriteRenderer( "forest_npcs", 16, 16, new Anim("a", new int[] { 10, 10, 10, 11, 10, 10, 10, 12 }, 3)), Drawing.DrawOrder.ENTITIES)
         {
-            AddAnimation("a", CreateAnimFrameArray(10, 10, 10, 11, 10, 10, 10, 12), 3);
-
-            Play("a");
             immovable = true;
         }
 

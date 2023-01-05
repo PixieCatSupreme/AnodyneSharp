@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Registry;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.Registry;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -14,22 +15,24 @@ namespace AnodyneSharp.Entities.Enemy.Etc
 
         Player _player;
 
-        public SpaceFace(EntityPreset preset, Player p)
-            : base(preset.Position, "space_npcs", 16, 16, Drawing.DrawOrder.BG_ENTITIES)
+        public static AnimatedSpriteRenderer GetSprite(int frame)
         {
             int[] anim;
-            if (preset.Frame == 0)
+            if (frame == 0)
             {
-                anim = CreateAnimFrameArray(22, 23);
+                anim = new int[] { 22, 23 };
             }
             else
             {
-                anim = CreateAnimFrameArray(20, 21);
+                anim = new int[] { 20, 21 };
             }
 
-            AddAnimation("a", anim, 6);
-            Play("a");
+            return new AnimatedSpriteRenderer("space_npcs", 16, 16, new Anim("a", anim, 6));
+        }
 
+        public SpaceFace(EntityPreset preset, Player p)
+            : base(preset.Position, GetSprite(preset.Frame), Drawing.DrawOrder.BG_ENTITIES)
+        {
             waitTimer = 0f;
             waitTimerMax = (float)(0.5 + 1.5 * GlobalState.RNG.NextDouble());
 

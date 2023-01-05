@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Registry;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -10,15 +11,18 @@ namespace AnodyneSharp.Entities.Interactive.Npc.RedSea
     [NamedEntity("Red_Walker"), Collision(typeof(Player), KeepOnScreen = true)]
     public class RedWalker : Entity
     {
-
-        public RedWalker(EntityPreset preset, Player p)
-            : base(preset.Position, "redwalker", 32, 48, DrawOrder.ENTITIES)
+        private static AnimatedSpriteRenderer GetSprite()
         {
             int startFrame = GlobalState.RNG.Next(0, 5);
 
-            AddAnimation("walk", CreateAnimFrameArray(startFrame, (startFrame + 1) % 5, (startFrame + 2) % 5, (startFrame + 3) % 5, (startFrame + 4) % 5), 5);
-            Play("walk");
+            Anim anim = new("walk", new int[] { startFrame, (startFrame + 1) % 5, (startFrame + 2) % 5, (startFrame + 3) % 5, (startFrame + 4) % 5 }, 5);
 
+            return new AnimatedSpriteRenderer("redwalker", 32, 48, anim);
+        }
+
+        public RedWalker(EntityPreset preset, Player p)
+            : base(preset.Position, GetSprite(), DrawOrder.ENTITIES)
+        {
             velocity.X = 5 + GlobalState.RNG.Next(0, 15);
 
             width = 20;

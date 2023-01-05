@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Registry;
 
 namespace AnodyneSharp.Entities.Gadget
@@ -10,7 +11,7 @@ namespace AnodyneSharp.Entities.Gadget
     internal class GoHappyBlocker : Entity
     {
         public GoHappyBlocker(EntityPreset preset, Player p)
-            : base(preset.Position, "briar_ground_thorn", 16, 16, DrawOrder.ENTITIES)
+            : base(preset.Position, new AnimatedSpriteRenderer( "briar_ground_thorn", 16, 16, new Anim("a", new int[] { 9, 10 }, 8)), DrawOrder.ENTITIES)
         {
             if (GlobalState.events.GetEvent("BlueDone") == 1)
             {
@@ -24,9 +25,6 @@ namespace AnodyneSharp.Entities.Gadget
             height = 20;
 
             Position.Y += 2;
-
-            AddAnimation("a", CreateAnimFrameArray(9, 10), 8);
-            Play("a");
         }
 
         public override void Collided(Entity other)

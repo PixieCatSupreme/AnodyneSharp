@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Registry;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.Registry;
 
 namespace AnodyneSharp.Entities.Interactive.Npc
 {
@@ -7,11 +8,18 @@ namespace AnodyneSharp.Entities.Interactive.Npc
     {
         string scene;
 
-        public FieldsEaster(EntityPreset preset, Player p) : base(preset.Position, "fields_npcs", 16, 16, Drawing.DrawOrder.ENTITIES)
+        private static AnimatedSpriteRenderer GetSprite(int frame)
         {
-            int base_frame = preset.Frame * 2 + 80 - 26;
-            AddAnimation("a", CreateAnimFrameArray(base_frame, base_frame + 1), 4);
-            Play("a");
+            int baseFrame = frame * 2 + 80 - 26;
+
+            Anim anim = new("a", new int[] { baseFrame, baseFrame + 1 }, 4);
+
+                return new AnimatedSpriteRenderer("fields_npcs", 16, 16, anim);
+        }
+
+        public FieldsEaster(EntityPreset preset, Player p) 
+            : base(preset.Position, GetSprite(preset.Frame), Drawing.DrawOrder.ENTITIES)
+        {
             scene = preset.Frame switch
             {
                 13 => "hamster",
@@ -20,6 +28,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc
                 16 => "marvin",
                 _ => "ERROR"
             };
+
             immovable = true;
         }
 

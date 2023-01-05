@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Registry;
 using System;
 using System.Collections.Generic;
@@ -17,12 +18,14 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Blue
 
         private bool _talked;
 
-        public Snowman(EntityPreset preset, Player p)
-            : base(preset.Position, "blue_npcs", 16, 16, Drawing.DrawOrder.ENTITIES)
-        {
-            AddAnimation("melt", CreateAnimFrameArray(2, 3, 4, 5, 6), 7, false);
-            SetFrame(0);
+        private static AnimatedSpriteRenderer GetSprite() => new("blue_npcs", 16, 16,
+            new Anim("normal", new int[] { 0}, 0, false),
+            new Anim("melt", new int[] { 2, 3, 4, 5, 6 }, 7, false)
+        );
 
+        public Snowman(EntityPreset preset, Player p)
+            : base(preset.Position, GetSprite(), Drawing.DrawOrder.ENTITIES)
+        {
             _dialogue = 2 * preset.Frame;
 
             if (!preset.Alive)

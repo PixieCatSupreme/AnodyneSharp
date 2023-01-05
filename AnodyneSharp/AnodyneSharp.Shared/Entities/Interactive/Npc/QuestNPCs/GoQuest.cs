@@ -14,9 +14,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.QuestNPCs
         public GoQuest(EntityPreset preset, Player p)
             : base(preset.Position, "note_rock", 16, 16, Drawing.DrawOrder.ENTITIES)
         {
-            AddAnimation("a", CreateAnimFrameArray(0));
-
-            Play("a");
+            SetFrame(0);
             immovable = true;
         }
 

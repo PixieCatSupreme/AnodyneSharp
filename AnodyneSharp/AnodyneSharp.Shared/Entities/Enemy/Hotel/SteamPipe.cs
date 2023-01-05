@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 using Microsoft.Xna.Framework;
@@ -145,12 +146,9 @@ namespace AnodyneSharp.Entities.Enemy.Hotel
             private SteamPipe _parent;
 
             public Steam(Vector2 startPos, SteamPipe parent)
-                : base(Vector2.Zero, "steam", 16, 16, DrawOrder.FG_SPRITES)
+                : base(Vector2.Zero, new AnimatedSpriteRenderer ("steam", 16, 16, new Anim("s", new int[] { 0, 1 }, 10)), DrawOrder.FG_SPRITES)
             {
                 _startPos = startPos;
-
-                AddAnimation("s", CreateAnimFrameArray(0, 1), 10);
-
 
                 scale = GlobalState.RNG.Next(8, 10) / 10f;
                 width = height = (int)(width * scale);
@@ -194,8 +192,6 @@ namespace AnodyneSharp.Entities.Enemy.Hotel
                 }
 
                 _startPos = Position;
-
-                Play("s");
 
                 SoundManager.PlaySoundEffect("fireball");
             }

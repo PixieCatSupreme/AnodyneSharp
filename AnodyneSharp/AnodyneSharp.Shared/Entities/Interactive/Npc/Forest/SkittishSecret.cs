@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.FSM;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.FSM;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 using AnodyneSharp.Utilities;
@@ -19,11 +20,9 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Forest
 
         Player player;
 
-        public SkittishSecret(EntityPreset preset, Player p) : base(preset.Position, "forest_npcs", 16, 16, Drawing.DrawOrder.ENTITIES)
+        public SkittishSecret(EntityPreset preset, Player p) 
+            : base(preset.Position, new AnimatedSpriteRenderer( "forest_npcs", 16, 16, new Anim("walk_r", new int[] { 32, 33 }, 4, true)), Drawing.DrawOrder.ENTITIES)
         {
-            AddAnimation("walk_r", CreateAnimFrameArray(32, 33), 4, true);
-            Play("walk_r");
-
             Position.X = initial_pos = MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid).X;
 
             player = p;

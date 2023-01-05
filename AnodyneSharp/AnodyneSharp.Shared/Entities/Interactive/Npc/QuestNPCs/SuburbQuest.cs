@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Registry;
 using System;
 using System.Collections.Generic;
@@ -12,11 +13,8 @@ namespace AnodyneSharp.Entities.Interactive.Npc.QuestNPCs
         bool _played_quest = false;
 
         public SuburbQuest(EntityPreset preset, Player p)
-            : base(preset.Position, "suburb_walkers", 16, 16, Drawing.DrawOrder.ENTITIES)
+            : base(preset.Position, new AnimatedSpriteRenderer( "suburb_walkers", 16, 16, new Anim("a", new int[] { 0, 1 }, 4, true)), Drawing.DrawOrder.ENTITIES)
         {
-            AddAnimation("a", CreateAnimFrameArray(0, 1), 4, true);
-
-            Play("a");
             immovable = true;
         }
 

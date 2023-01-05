@@ -1,5 +1,6 @@
 ﻿using AnodyneSharp.Dialogue;
 using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Entities.Gadget;
 using AnodyneSharp.Registry;
 using System;
@@ -15,11 +16,8 @@ namespace AnodyneSharp.Entities.Interactive.Npc.RedSea
         private Player _player;
 
         public BombDude(EntityPreset preset, Player p)
-            : base(preset.Position, "redsea_npcs", 16, 16, DrawOrder.ENTITIES)
+            : base(preset.Position, new AnimatedSpriteRenderer("redsea_npcs", 16, 16, new Anim("walk", new int[] { 10, 11 }, 4)), DrawOrder.ENTITIES)
         {
-            AddAnimation("walk", CreateAnimFrameArray(10, 11), 4);
-            Play("walk");
-
             _preset = preset;
             _player = p;
 
