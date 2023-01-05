@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.FSM;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.FSM;
 using Microsoft.Xna.Framework;
 using RSG;
 using System;
@@ -15,14 +16,17 @@ namespace AnodyneSharp.Entities.Enemy.Etc
 
         private IState _state;
 
+        public static AnimatedSpriteRenderer GetSprite() => new("follower_bro", 16, 24,
+            new Anim("wait", new int[] { 0 },1),
+            new Anim("walk", new int[] { 1, 2, 1, 0 },4)
+            );
+
         public FollowerBro(EntityPreset preset, Player p)
-        : base(preset.Position, "follower_bro", 16, 24, Drawing.DrawOrder.ENTITIES)
+        : base(preset.Position, GetSprite(), Drawing.DrawOrder.ENTITIES)
         {
             _preset = preset;
             _player = p;
 
-            AddAnimation("walk", CreateAnimFrameArray(1, 2, 1, 0), 4, true);
-            SetFrame(0);
             opacity = 0;
 
             _state = new StateMachineBuilder()

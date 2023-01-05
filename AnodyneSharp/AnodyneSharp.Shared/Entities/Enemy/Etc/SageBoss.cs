@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AnodyneSharp.Dialogue;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Entities.Events;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
@@ -31,17 +32,18 @@ namespace AnodyneSharp.Entities.Enemy.Etc
         private bool _canHurt;
         private float _flickerLength;
 
+        public static AnimatedSpriteRenderer GetSprite() => new("sage_boss", 16, 24,
+            new Anim("idle", new int[] { 4 },1),
+            new Anim("idle_d", new int[] { 0, 1, 2, 3 },5),
+            new Anim("dash_d", new int[] { 0, 1, 2, 3 }, 5),
+            new Anim("dash_u", new int[] { 0, 1, 2, 3 }, 5),
+            new Anim("walk_u", new int[] { 0, 1, 2, 3 }, 5)
+            );
+
         public SageBoss(EntityPreset preset, Player p)
             : base(preset.Position, "sage_boss", 16, 24, Drawing.DrawOrder.ENTITIES)
         {
             _topLeft = MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid);
-
-            AddAnimation("idle", CreateAnimFrameArray(4));
-            AddAnimation("idle_d", CreateAnimFrameArray(0, 1, 2, 3), 5, true);
-            AddAnimation("dash_d", CreateAnimFrameArray(0, 1, 2, 3), 5, true);
-            AddAnimation("dash_u", CreateAnimFrameArray(0, 1, 2, 3), 5, true);
-            AddAnimation("walk_u", CreateAnimFrameArray(0, 1, 2, 3), 5, true);
-            Play("idle");
 
             width = height = 10;
             offset.X = 3;
@@ -610,8 +612,13 @@ namespace AnodyneSharp.Entities.Enemy.Etc
         {
             public bool IsFlickering => _flickering;
 
+            public static AnimatedSpriteRenderer GetSprite() => new("sage_fight_long_dust", 64, 16,
+                new Anim("spin", new int[] { 0, 1 },24),
+                new Anim("poof", new int[] { 0, 1, 2 },12,false)
+                );
+
             public LongAttack()
-                : base("sage_fight_long_dust", 64, 16)
+                : base(GetSprite())
             {
                 width = 56;
                 height = 10;
@@ -660,11 +667,15 @@ namespace AnodyneSharp.Entities.Enemy.Etc
             public bool MapColission { get; set; }
             public bool IsFlickering => _flickering;
 
-            public ShortAttack()
-                : base("sage_attacks", 16, 16)
-            {
-                AddAnimation("shoot", CreateAnimFrameArray(4, 5), 12);
+            public static AnimatedSpriteRenderer GetSprite() => new("sage_attacks", 16, 16,
+                new Anim("spin", new int[] { 0, 1 }, 24),
+                new Anim("poof", new int[] { 0, 1, 2 }, 12, false),
+                new Anim("shoot", new int[] { 4, 5 },12)
+                );
 
+            public ShortAttack()
+                : base(GetSprite())
+            {
                 width = height = 8;
                 offset.X = offset.Y = 4;
             }
@@ -708,12 +719,9 @@ namespace AnodyneSharp.Entities.Enemy.Etc
         {
             public bool IsHurting { get; set; }
 
-            public HurtingEntity(string texture, int w, int h)
-                : base(Vector2.Zero, texture, w, h, Drawing.DrawOrder.ENTITIES)
+            public HurtingEntity(AnimatedSpriteRenderer sprite)
+                : base(Vector2.Zero, sprite, Drawing.DrawOrder.ENTITIES)
             {
-                AddAnimation("spin", CreateAnimFrameArray(0, 1), 24, true);
-                AddAnimation("poof", CreateAnimFrameArray(0, 1, 2), 12, false);
-
                 visible = false;
                 IsHurting = false;
             }
