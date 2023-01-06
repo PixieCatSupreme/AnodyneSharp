@@ -13,13 +13,20 @@ namespace AnodyneSharp.Entities.Enemy.Go
 
         public IEnumerator state;
 
-        public BigThorn(Vector2 pos, string tex, ILayerType layer) : base(pos, tex, 64, 80, layer)
+        public static AnimatedSpriteRenderer GetSprite(string tex, int offset, ILayerType layer)
+        {
+            return new(tex, 64, 80, layer,
+                new Anim("off", new int[] { offset, offset + 1, offset + 2, (offset + 3) % 4 }, 4),
+                new Anim("hit", new int[] { 4, 6, 4, 6, 4, 6, 4, 6, 4, 6, 4, 6 }, 15, false),
+                new Anim("hitloop", new int[] { 4, 6 }, 15),
+                new Anim("hurt", new int[] { 7, 8 }, 4),
+                new Anim("active", new int[] { 4, 5 }, 5)
+                );
+        }
+
+        public BigThorn(Vector2 pos, string tex, int offset, ILayerType layer) : base(pos, GetSprite(tex,offset,layer))
         {
             immovable = true;
-            AddAnimation("hit", CreateAnimFrameArray(4, 6, 4, 6, 4, 6, 4, 6, 4, 6, 4, 6), 15, false);
-            AddAnimation("hitloop", CreateAnimFrameArray(4, 6), 15);
-            AddAnimation("hurt", CreateAnimFrameArray(7, 8), 4);
-            AddAnimation("active", CreateAnimFrameArray(4, 5), 5);
 
             height = 63;
             width = 24;

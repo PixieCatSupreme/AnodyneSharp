@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Sounds;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.Sounds;
 using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using System;
@@ -116,11 +117,10 @@ namespace AnodyneSharp.Entities.Enemy.Go
         class Thorn : Entity
         {
             const int harmful_frame = 9;
-            public Thorn() : base(Vector2.Zero, "briar_ground_thorn", 16, 16, Drawing.DrawOrder.ENTITIES)
+            public Thorn() : base(Vector2.Zero, new AnimatedSpriteRenderer("briar_ground_thorn", 16, 16, new Anim("attack", new int[] { 0, 1, 2, 0, 3, 3, 3, 6, 7, 8, 9, 10, 9, 10, 9, 10, 8, 7, 6 }, 8, false)), Drawing.DrawOrder.ENTITIES)
             {
                 width = height = 6;
                 offset = new(5, 4);
-                AddAnimation("attack", CreateAnimFrameArray(0, 1, 2, 0, 3, 3, 3, 6, 7, 8, 9, 10, 9, 10, 9, 10, 8, 7, 6), 8, false);
             }
 
             public void Spawn(Vector2 pos, int phase)
@@ -148,12 +148,10 @@ namespace AnodyneSharp.Entities.Enemy.Go
         [Collision(typeof(Player))]
         class Bullet : Entity
         {
-            public Bullet() : base(Vector2.Zero, "briar_thorn_bullet", 16, 16, Drawing.DrawOrder.ENTITIES)
+            public Bullet() : base(Vector2.Zero, new AnimatedSpriteRenderer("briar_thorn_bullet", 16, 16, new Anim("move", new int[] { 0, 1 }, 10)), Drawing.DrawOrder.ENTITIES)
             {
                 width = height = 6;
                 offset = Vector2.One * 5;
-                AddAnimation("move", CreateAnimFrameArray(0, 1), 10);
-                Play("move");
             }
 
             public void Spawn(Vector2 pos, Vector2 vel, Vector2 acc)

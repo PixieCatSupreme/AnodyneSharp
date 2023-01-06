@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Entities.Events;
 using AnodyneSharp.Entities.Gadget;
 using AnodyneSharp.MapData;
@@ -33,12 +34,15 @@ namespace AnodyneSharp.Entities.Enemy.Go
 
         Player player;
 
-        public BriarBossMain(EntityPreset preset, Player p) : base(Vector2.Zero, "briar", 16, 16, Drawing.DrawOrder.ENTITIES)
+        public static AnimatedSpriteRenderer GetSprite() => new("briar", 16, 16,
+            new Anim("idle", new int[] { 0 }, 1),
+            new Anim("walk_u", new int[] { 4, 5 }, 4),
+            new Anim("oh_no", new int[] { 10 }, 1)
+            );
+
+        public BriarBossMain(EntityPreset preset, Player p) : base(Vector2.Zero, GetSprite(), Drawing.DrawOrder.ENTITIES)
         {
             tl = MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid);
-            AddAnimation("idle", CreateAnimFrameArray(0));
-            AddAnimation("walk_u", CreateAnimFrameArray(4, 5), 4);
-            AddAnimation("oh_no", CreateAnimFrameArray(10));
             Position = tl + new Vector2(80 - width / 2, 32);
             gate = new(tl + Vector2.UnitX * 64);
             volume = new(0, 0.6f);
@@ -65,7 +69,7 @@ namespace AnodyneSharp.Entities.Enemy.Go
                     }
                     break;
                 case State.Fight:
-                    if(!fightStage?.exists ?? false)
+                    if (!fightStage?.exists ?? false)
                     {
                         state = State.Post;
                         gate.exists = false;
@@ -75,7 +79,7 @@ namespace AnodyneSharp.Entities.Enemy.Go
                     break;
                 case State.Post:
                     player.Position.Y = Math.Min(player.Position.Y, tl.Y + 120);
-                    if(Position.Y < tl.Y - 16)
+                    if (Position.Y < tl.Y - 16)
                     {
                         visible = false;
                         velocity = Vector2.Zero;
@@ -104,7 +108,7 @@ namespace AnodyneSharp.Entities.Enemy.Go
             bool flash_active = false;
             GlobalState.flash.Flash(1, Color.White, () => flash_active = true);
             while (!flash_active) yield return null;
-            
+
             SoundManager.PlaySong("briar-fight");
             visible = false;
             (GlobalState.Map as Map).offset.X = 160 * 2;
@@ -124,7 +128,7 @@ namespace AnodyneSharp.Entities.Enemy.Go
                 while (!MathUtilities.MoveTo(ref t, 1.5f, 1)) yield return null;
             }
 
-            yield return new DialogueEvent(DialogueManager.GetDialogue("briar","after_fight"));
+            yield return new DialogueEvent(DialogueManager.GetDialogue("briar", "after_fight"));
 
             {
                 float t = 0;
@@ -147,11 +151,11 @@ namespace AnodyneSharp.Entities.Enemy.Go
             var blue_anim = WaterAnim.DoWaterAnim(tl + new Vector2(16 * 9, 16 * 4));
             while (blue_anim.MoveNext())
                 yield return null;
-            
+
             Point tl_p = GlobalState.Map.ToMapLoc(tl);
-            
+
             void Set(Point p) => GlobalState.Map.ChangeTile(Layer.BG, tl_p + p, 194);
-            
+
             Set(new Point(5, 1));
             yield return null;
             Set(new Point(5, 0));
@@ -171,11 +175,9 @@ namespace AnodyneSharp.Entities.Enemy.Go
     [Collision(typeof(Player))]
     internal class ThornGate : Entity
     {
-        public ThornGate(Vector2 pos) : base(pos, "briar_ground_thorn", 32, 16, Drawing.DrawOrder.ENTITIES)
+        public ThornGate(Vector2 pos) : base(pos, new AnimatedSpriteRenderer("briar_ground_thorn", 32, 16, new Anim("move", new int[] { 6, 7, 8 }, 6)), Drawing.DrawOrder.ENTITIES)
         {
             immovable = true;
-            AddAnimation("move", CreateAnimFrameArray(6, 7, 8), 6);
-            Play("move");
         }
 
         public override void Collided(Entity other)

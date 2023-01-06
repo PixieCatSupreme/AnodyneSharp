@@ -13,12 +13,10 @@ namespace AnodyneSharp.Entities.Enemy.Go
     {
         IceCrystal crystal;
 
-        public HappyThorn(Vector2 pos, ILayerType layer) : base(pos, "briar_arm_left", layer)
+        public HappyThorn(Vector2 pos, ILayerType layer) : base(pos, "briar_arm_left", 0, layer)
         {
             offset = new(4, 4);
             Position += offset;
-            AddAnimation("off", CreateAnimFrameArray(0, 1, 2, 3), 4);
-            Play("off");
             crystal = new(this);
         }
 
@@ -51,10 +49,8 @@ namespace AnodyneSharp.Entities.Enemy.Go
 
             bool hit_player, hit_broom;
 
-            public IceCrystal(HappyThorn thorn) : base(Vector2.Zero, "briar_ice_crystal", 16, 16, Drawing.DrawOrder.ENTITIES)
+            public IceCrystal(HappyThorn thorn) : base(Vector2.Zero, new AnimatedSpriteRenderer("briar_ice_crystal", 16, 16, new Anim("move",new int[] { 0, 1 },6)), Drawing.DrawOrder.ENTITIES)
             {
-                AddAnimation("move", CreateAnimFrameArray(0, 1), 6);
-                Play("move");
                 parent = thorn;
                 exists = false;
             }
@@ -155,9 +151,8 @@ namespace AnodyneSharp.Entities.Enemy.Go
 
         public class IceExplosion : Entity
         {
-            public IceExplosion() : base(Vector2.Zero, "briar_ice_explosion", 24, 24, Drawing.DrawOrder.FG_SPRITES)
+            public IceExplosion() : base(Vector2.Zero, new AnimatedSpriteRenderer("briar_ice_explosion", 24, 24, new Anim("explode",new int[] { 0, 1, 2, 3 },15,false)), Drawing.DrawOrder.FG_SPRITES)
             {
-                AddAnimation("explode", CreateAnimFrameArray(0, 1, 2, 3), 15, false);
             }
 
             public override void Update()

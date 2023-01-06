@@ -32,10 +32,10 @@ namespace AnodyneSharp.Entities.Enemy.Go
         {
             body = new(Position + Vector2.UnitX * 16, p);
 
-            core = new(Position + new Vector2(64, 32), "briar_core", 32, 18, new RefLayer(body.layer_def, 1));
-            core.AddAnimation("glow", CreateAnimFrameArray(0, 1, 2, 1), 4);
-            core.AddAnimation("flash", CreateAnimFrameArray(3, 4), 12);
-            core.Play("glow");
+            core = new(Position + new Vector2(64, 32), new AnimatedSpriteRenderer("briar_core", 32, 18, new RefLayer(body.layer_def, 1),
+                new Anim("glow", new int[] { 0, 1, 2, 1 }, 4),
+                new Anim("flash", new int[] { 3, 4 },12)
+                ));
 
 
             blue = new(Position + new Vector2(5 * 16, 16), new RefLayer(body.layer_def, 1));
