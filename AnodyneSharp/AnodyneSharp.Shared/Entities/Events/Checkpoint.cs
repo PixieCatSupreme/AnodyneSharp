@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.FSM;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
@@ -34,16 +35,21 @@ namespace AnodyneSharp.Entities.Events
 
         SavingIcon saveIcon = new();
 
-        public Checkpoint(EntityPreset preset, Player p) : base(preset.Position, "checkpoint", 16, 16, DrawOrder.VERY_BG_ENTITIES)
+        public static AnimatedSpriteRenderer GetSprite(bool cell)
+        {
+            int i = cell ? 4 : 0;
+            return new("checkpoint", 16, 16,
+                new Anim("inactive", new int[] { i },1),
+                new Anim("active", new int[] { i + 1, i + 2, i + 3 },10,false),
+                new Anim("stepped_on", new int[] { i + 1, i + 2 },12)
+                );
+        }
+
+        public Checkpoint(EntityPreset preset, Player p) : base(preset.Position, GetSprite(GlobalState.IsCell), DrawOrder.VERY_BG_ENTITIES)
         {
             width = height = 8;
             offset = Vector2.One * 4;
             Position += offset;
-
-            int i = GlobalState.IsCell ? 4 : 0;
-            AddAnimation("inactive", CreateAnimFrameArray(i));
-            AddAnimation("active", CreateAnimFrameArray(i + 1, i + 2, i + 3), 10, false);
-            AddAnimation("stepped_on", CreateAnimFrameArray(i + 1, i + 2), 12);
 
             HasVisibleHitbox = true; //Isn't set to true by default bc it does its own collision detection
             bool playerOn() => p.Hitbox.Intersects(Hitbox);
@@ -118,11 +124,10 @@ namespace AnodyneSharp.Entities.Events
 
     class SavingIcon : UIEntity
     {
-        public SavingIcon() : base(new Vector2(GameConstants.SCREEN_WIDTH_IN_PIXELS / 2 - 32, 20), "autosave_icon", 64, 16, DrawOrder.TEXT)
+        public SavingIcon() : base(new Vector2(GameConstants.SCREEN_WIDTH_IN_PIXELS / 2 - 32, 20), new AnimatedSpriteRenderer("autosave_icon", 64, 16,
+            new Anim("a", new int[] { 0, 1, 2, 3, 4, 5 },8)), DrawOrder.TEXT)
         {
             visible = false;
-            AddAnimation("a", CreateAnimFrameArray(0, 1, 2, 3, 4, 5), 8);
-            Play("a");
         }
 
         public override void Update()

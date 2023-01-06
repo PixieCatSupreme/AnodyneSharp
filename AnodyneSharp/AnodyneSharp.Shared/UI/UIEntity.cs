@@ -32,6 +32,8 @@ namespace AnodyneSharp.UI
             HasVisibleHitbox = false;
         }
 
+        public UIEntity(Vector2 pos, AnimatedSpriteRenderer sprite, DrawOrder layer) : base(pos, sprite, layer) { HasVisibleHitbox = false; }
+
         public UIEntity(Vector2 pos, string textureName, int frame, int frameWidth, int frameHeight, DrawOrder layer)
             : base(pos, textureName, frameWidth, frameHeight, layer)
         {
