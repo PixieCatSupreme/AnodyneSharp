@@ -154,7 +154,7 @@ namespace AnodyneSharp.Entities.Enemy.Go
 
             Point tl_p = GlobalState.Map.ToMapLoc(tl);
 
-            void Set(Point p) => GlobalState.Map.ChangeTile(Layer.BG, tl_p + p, 194);
+            void Set(Point p) => GlobalState.Map.ChangeTile(MapData.Layer.BG, tl_p + p, 194);
 
             Set(new Point(5, 1));
             yield return null;
