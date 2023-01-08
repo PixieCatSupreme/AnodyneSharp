@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Entities.Events;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.Entities.Events;
 using AnodyneSharp.Entities.Interactive;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
@@ -25,7 +26,15 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
         IEnumerator state;
         EntityPool<Bullet> bullets;
 
-        public WaterPhase(EntityPreset preset, Player p) : base(preset.Position,"eye_boss_water",24,24,Drawing.DrawOrder.BG_ENTITIES)
+        public static AnimatedSpriteRenderer GetSprite() => new("eye_boss_water", 24,24,
+                new Anim("closed", new int[] { 3 },1),
+                new Anim("blink", new int[] { 0, 1, 2, 3, 2, 1, 0 }, 10, false),
+                new Anim("blink_fast", new int[] { 0, 1, 2, 3, 2, 1 }, 20, true),
+                new Anim("idle", new int[] { 0 },1),
+                new Anim("open", new int[] { 3, 2, 1, 0 }, 5)
+                );
+
+        public WaterPhase(EntityPreset preset, Player p) : base(preset.Position,GetSprite(),Drawing.DrawOrder.BG_ENTITIES)
         {
             if(GlobalState.events.BossDefeated.Contains(GlobalState.CURRENT_MAP_NAME))
             {
@@ -47,13 +56,6 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
             {
                 preset.Alive = true;
             }
-
-            AddAnimation("blink", CreateAnimFrameArray(0, 1, 2, 3, 2, 1, 0), 10, false);
-            AddAnimation("blink_fast", CreateAnimFrameArray(0, 1, 2, 3, 2, 1), 20, true);
-            AddAnimation("idle", CreateAnimFrameArray(0));
-            AddAnimation("closed", CreateAnimFrameArray(3));
-            AddAnimation("open", CreateAnimFrameArray(3, 2, 1, 0), 5);
-            Play("closed");
 
             Vector2 tl = MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid) + Vector2.One * 16;
 
@@ -242,10 +244,14 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
         class Bullet : Entity
         {
             Rectangle area;
-            public Bullet(Rectangle area) : base(Vector2.Zero,"eye_boss_bullet",16,16,Drawing.DrawOrder.FG_SPRITES)
+
+            public static AnimatedSpriteRenderer GetSprite() => new("eye_boss_bullet", 16, 16,
+                new Anim("move", new int[] { 0, 1 }, 12),
+                new Anim("pop", new int[] { 2, 3, 4, 5 }, 12, false)
+                );
+
+            public Bullet(Rectangle area) : base(Vector2.Zero,GetSprite(),Drawing.DrawOrder.FG_SPRITES)
             {
-                AddAnimation("move", CreateAnimFrameArray(0, 1), 12);
-                AddAnimation("pop",  CreateAnimFrameArray(2, 3, 4, 5), 12, false);
                 this.area = area;
 
                 width = height = 8;

@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Entities.Gadget;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
@@ -20,19 +21,19 @@ namespace AnodyneSharp.Entities.Enemy.Hotel
         private int _health;
         private bool _chasing;
 
+        public static AnimatedSpriteRenderer GetSprite() => new("dustmaid", 16, 24,
+            new Anim("idle", new int[] { 0 },1),
+            new Anim("turn_dark", new int[] { 1, 2, 1, 2 },12,false),
+            new Anim("move_r", new int[] { 5, 6 },5),
+            new Anim("move_l", new int[] { 5, 6 }, 5),
+            new Anim("move_d", new int[] { 3, 4 }, 5),
+            new Anim("move_u", new int[] { 7, 8 }, 5)
+            );
+
         public Dustmaid(EntityPreset preset, Player player)
-            : base(preset, preset.Position, "dustmaid", 16, 24, DrawOrder.ENTITIES, healthDropChance: 0.7f)
+            : base(preset, preset.Position, GetSprite(), DrawOrder.ENTITIES, healthDropChance: 0.7f)
         {
             _player = player;
-
-            AddAnimation("idle", CreateAnimFrameArray(0));
-            AddAnimation("turn_dark", CreateAnimFrameArray(1, 2, 1, 2), 12, false);
-            AddAnimation("move_r", CreateAnimFrameArray(5, 6), 5);
-            AddAnimation("move_l", CreateAnimFrameArray(5, 6), 5);
-            AddAnimation("move_d", CreateAnimFrameArray(3, 4), 5, true);
-            AddAnimation("move_u", CreateAnimFrameArray(7, 8), 5, true);
-
-            Play("idle");
 
             opacity = 0.7f;
 

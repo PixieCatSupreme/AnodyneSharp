@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Entities.Gadget;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
@@ -33,7 +34,13 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
         Player player;
         EntityPreset preset;
 
-        public LandPhase(EntityPreset preset, Player p) : base(preset.Position, "eye_boss_water", 24, 24, Drawing.DrawOrder.ENTITIES)
+        public static AnimatedSpriteRenderer GetSprite() => new("eye_boss_water", 24, 24,
+            new Anim("closed", new int[] { 3 },1),
+            new Anim("walk", new int[] { 4, 5 },6),
+            new Anim("blink_land", new int[] { 5, 6, 7, 6, 5 }, 6, false)
+            );
+
+        public LandPhase(EntityPreset preset, Player p) : base(preset.Position, GetSprite(), Drawing.DrawOrder.ENTITIES)
         {
             //Water phase is needed to start the boss song, which means it at least spawned this time through the map, and it sets its Alive back to true until that phase is done
             bool water_phase_dead = !EntityManager.GetLinkGroup(preset.LinkID).Where(e => e != preset).First().Alive;
@@ -43,10 +50,6 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
                 return;
             }
             (GlobalState.Map as MapData.Map).IgnoreMusicNextUpdate(); //Make sure music doesn't change back if player moves back up
-
-            AddAnimation("closed", CreateAnimFrameArray(3));
-            AddAnimation("walk", CreateAnimFrameArray(4, 5), 6);
-            AddAnimation("blink_land", CreateAnimFrameArray(5, 6, 7, 6, 5), 6, false);
 
             tl = MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid) + Vector2.One * 16;
 
@@ -312,11 +315,13 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
             const float duration = 1.5f;
             EntityPool<BulletSplash> splashes;
 
-            public Bullet(EntityPool<BulletSplash> s) : base(Vector2.Zero, "eye_boss_bullet", 16, 16, Drawing.DrawOrder.FG_SPRITES)
-            {
-                AddAnimation("move", CreateAnimFrameArray(6, 7), 12);
-                AddAnimation("pop", CreateAnimFrameArray(2, 3, 4, 5), 24, false);
+            public static AnimatedSpriteRenderer GetSprite() => new("eye_boss_bullet", 16, 16,
+                new Anim("move", new int[] { 6, 7 },12),
+                new Anim("pop", new int[] { 2, 3, 4, 5 },24,false)
+                );
 
+            public Bullet(EntityPool<BulletSplash> s) : base(Vector2.Zero, GetSprite(), Drawing.DrawOrder.FG_SPRITES)
+            {
                 width = height = 8;
                 CenterOffset();
 
@@ -371,11 +376,13 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
         {
             Parabola_Thing parabola;
 
-            public BulletSplash() : base(Vector2.Zero, "eye_boss_splash", 8, 8, Drawing.DrawOrder.FG_SPRITES)
-            {
-                AddAnimation("move", CreateAnimFrameArray(0, 1), 10);
-                AddAnimation("pop", CreateAnimFrameArray(2, 3), 12, false);
+            public static AnimatedSpriteRenderer GetSprite() => new("eye_boss_splash", 8, 8,
+                new Anim("move", new int[] { 0, 1 }, 10),
+                new Anim("pop", new int[] { 2, 3 }, 12, false)
+                );
 
+            public BulletSplash() : base(Vector2.Zero, GetSprite(), Drawing.DrawOrder.FG_SPRITES)
+            {
                 shadow = new(this, Vector2.Zero);
 
                 parabola = new(this, 36, 1 + 0.4f * GlobalState.RNG.NextSingle());

@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Entities.Gadget;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.Entities.Gadget;
 using AnodyneSharp.FSM;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
@@ -20,12 +21,14 @@ namespace AnodyneSharp.Entities.Enemy.Hotel
 
         EntityPool<BurstBullet> _bullets;
 
-        public Burst_Plant(EntityPreset preset, Player p) : base(preset, preset.Position, "burst_plant", 16, 16, Drawing.DrawOrder.ENTITIES, 0.7f)
+        public static AnimatedSpriteRenderer GetSprite() => new("burst_plant", 16, 16,
+            new Anim("idle", new int[] { 0 }, 1),
+            new Anim("charging", new int[] { 0, 1 }, 8),
+            new Anim("shoot", new int[] { 3 }, 1)
+            );
+
+        public Burst_Plant(EntityPreset preset, Player p) : base(preset, preset.Position, GetSprite(), Drawing.DrawOrder.ENTITIES, 0.7f)
         {
-            AddAnimation("idle", CreateAnimFrameArray(0));
-            AddAnimation("charging", CreateAnimFrameArray(0, 1), 8);
-            AddAnimation("shoot", CreateAnimFrameArray(3));
-            Play("idle");
             immovable = true;
 
             _bullets = new(8, () => new());
@@ -83,7 +86,7 @@ namespace AnodyneSharp.Entities.Enemy.Hotel
                 {
                     GlobalState.SpawnEntity(new Explosion(this));
                     Die();
-                    foreach(Entity b in _bullets.Entities)
+                    foreach (Entity b in _bullets.Entities)
                     {
                         b.exists = false;
                     }
@@ -111,12 +114,14 @@ namespace AnodyneSharp.Entities.Enemy.Hotel
 
             IState _state;
 
-            public BurstBullet() : base(Vector2.Zero, "burst_plant_bullet", 8, 8, Drawing.DrawOrder.FG_SPRITES)
-            {
-                shadow = new Shadow(this, new Vector2(3,2), ShadowType.Normal);
+            public static AnimatedSpriteRenderer GetSprite() => new("burst_plant_bullet", 8, 8,
+                new Anim("move", new int[] { 0, 1 },12),
+                new Anim("explode", new int[] { 2, 3, 4, 4 },10,false)
+                );
 
-                AddAnimation("move",    CreateAnimFrameArray(0, 1), 12);
-                AddAnimation("explode", CreateAnimFrameArray(2, 3, 4, 4), 10, false);
+            public BurstBullet() : base(Vector2.Zero, GetSprite(), Drawing.DrawOrder.FG_SPRITES)
+            {
+                shadow = new Shadow(this, new Vector2(3, 2), ShadowType.Normal);
 
                 _state = new StateMachineBuilder()
                     .State("Move")
@@ -175,7 +180,7 @@ namespace AnodyneSharp.Entities.Enemy.Hotel
 
             public override void Collided(Entity other)
             {
-                if(other is Player p && offset.Y <= 4 && velocity != Vector2.Zero)
+                if (other is Player p && offset.Y <= 4 && velocity != Vector2.Zero)
                 {
                     p.ReceiveDamage(1);
                 }
