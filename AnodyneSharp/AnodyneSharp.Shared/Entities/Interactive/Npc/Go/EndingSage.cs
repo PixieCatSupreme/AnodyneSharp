@@ -1,5 +1,6 @@
 ﻿using AnodyneSharp.Dialogue;
 using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Enemy.Go;
 using AnodyneSharp.Entities.Events;
 using AnodyneSharp.Registry;
 using AnodyneSharp.States;
@@ -56,20 +57,12 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Go
 
         bool started = false;
 
-        Entity briar = new(Vector2.Zero, "briar", 16, 16, Drawing.DrawOrder.ENTITIES);
+        Entity briar = new(Vector2.Zero, BriarBossMain.GetSprite(), Drawing.DrawOrder.ENTITIES);
 
-        public EndingSage(Player p) : base(Vector2.Zero, "sage", 16, 16, DrawOrder.UI_OBJECTS)
+        public EndingSage(Player p) : base(Vector2.Zero, SpriteSage.GetSprite(), DrawOrder.UI_OBJECTS)
         {
             _player = p;
 
-            AddAnimation("walk_r", CreateAnimFrameArray(2, 3), 6);
-            AddAnimation("walk_l", CreateAnimFrameArray(2, 3), 6);
-            AddAnimation("idle_l", CreateAnimFrameArray(7));
-
-            briar.AddAnimation("walk_d", CreateAnimFrameArray(0, 1), 4);
-            briar.AddAnimation("walk_r", CreateAnimFrameArray(2, 3), 4);
-            briar.AddAnimation("walk_u", CreateAnimFrameArray(4, 5), 4);
-            briar.AddAnimation("walk_l", CreateAnimFrameArray(6, 7), 4);
             briar.y_push = 8;
             briar.Position = tl + new Vector2(4 * 16, 60);
             briar.Play("walk_u");

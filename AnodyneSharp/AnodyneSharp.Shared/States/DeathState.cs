@@ -47,7 +47,7 @@ namespace AnodyneSharp.States
 
             player.Reset();
 
-            _dieDummy = new PlayerDieDummy(player.Position, GlobalState.IsCell ? Player.Cell_Player_Sprite : Player.Player_Sprite);
+            _dieDummy = new PlayerDieDummy(player.Position);
 
             _deathFade = new DeathFadeIn(GlobalState.IsCell ? Color.Black : Color.White);
 

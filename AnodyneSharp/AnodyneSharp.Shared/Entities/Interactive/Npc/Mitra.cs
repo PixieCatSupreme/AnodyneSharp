@@ -1,5 +1,6 @@
 ﻿using AnodyneSharp.Dialogue;
 using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Entities.Events;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
@@ -17,11 +18,9 @@ namespace AnodyneSharp.Entities.Interactive.Npc
     [Collision(typeof(Player))]
     public class Bike : Entity
     {
-        public Bike() : base(Vector2.Zero, "bike", 20, 20, DrawOrder.ENTITIES)
+        public Bike() : base(Vector2.Zero, new AnimatedSpriteRenderer("bike", 20, 20, new Anim("r", new int[] { 1 }, 1)), DrawOrder.ENTITIES)
         {
             immovable = true;
-            AddAnimation("r", CreateAnimFrameArray(1), 2);
-            Play("r");
             width = 16;
             height = 10;
             offset = new(2, 11);
@@ -41,7 +40,18 @@ namespace AnodyneSharp.Entities.Interactive.Npc
         protected EntityPreset _preset;
         protected bool _facePlayer = true;
 
-        public Mitra(EntityPreset preset, Player p, bool start_on_bike) : base(preset.Position, DrawOrder.ENTITIES)
+        public static AnimatedSpriteRenderer GetSprite() => new("mitra", 16, 16,
+            new Anim("walk_d", new int[] { 0, 1 }, 8),
+            new Anim("walk_l", new int[] { 2, 3 }, 8),
+            new Anim("walk_r", new int[] { 2, 3 }, 8),
+            new Anim("walk_u", new int[] { 4, 5 }, 8),
+            new Anim("idle_d", new int[] { 6 }, 8),
+            new Anim("idle_l", new int[] { 7 }, 8),
+            new Anim("idle_r", new int[] { 7 }, 8),
+            new Anim("idle_u", new int[] { 8 }, 8)
+            );
+
+        public Mitra(EntityPreset preset, Player p, bool start_on_bike) : base(preset.Position, GetSprite(), DrawOrder.ENTITIES)
         {
             _player = p;
             _preset = preset;
@@ -57,16 +67,6 @@ namespace AnodyneSharp.Entities.Interactive.Npc
             {
                 OffBike();
             }
-
-            AddAnimation("walk_d", CreateAnimFrameArray(0, 1), 8);
-            AddAnimation("walk_l", CreateAnimFrameArray(2, 3), 8);
-            AddAnimation("walk_r", CreateAnimFrameArray(2, 3), 8);
-            AddAnimation("walk_u", CreateAnimFrameArray(4, 5), 8);
-
-            AddAnimation("idle_d", CreateAnimFrameArray(6), 8);
-            AddAnimation("idle_l", CreateAnimFrameArray(7), 8);
-            AddAnimation("idle_r", CreateAnimFrameArray(7), 8);
-            AddAnimation("idle_u", CreateAnimFrameArray(8), 8);
         }
 
         protected abstract string GetInteractionText();
@@ -90,14 +90,14 @@ namespace AnodyneSharp.Entities.Interactive.Npc
 
         protected void OnBike()
         {
-            SetTexture("mitra_bike", 20, 20);
+            sprite.SetTexture("mitra_bike",20,20,false,false);
             width = height = 10;
             offset = Vector2.One * 5;
         }
 
         protected void OffBike()
         {
-            SetTexture("mitra", 16, 16);
+            sprite.SetTexture("mitra", 16, 16, false, false);
             width = height = 16;
             offset = Vector2.Zero;
         }
@@ -107,7 +107,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc
             base.Update();
             if (velocity == Vector2.Zero)
             {
-                if(_facePlayer)
+                if (_facePlayer)
                     FaceTowards(_player.Position);
                 PlayFacing("idle");
             }
@@ -145,7 +145,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc
         public MitraCliff(EntityPreset preset, Player p) : base(preset, p, true)
         {
             visible = false;
-            if(GlobalState.inventory.CanJump)
+            if (GlobalState.inventory.CanJump)
             {
                 _preset.Alive = exists = false;
             }
@@ -154,7 +154,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc
         public override void Update()
         {
             base.Update();
-            if(_player.state == PlayerState.AIR)
+            if (_player.state == PlayerState.AIR)
             {
                 player_jumped = true;
             }
@@ -167,7 +167,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc
                 visible = true;
                 GlobalState.StartCutscene = Entrance();
             }
-            else if(!exiting && visible && (player_grid_pos.X > 135 || player_grid_pos.Y < 49))
+            else if (!exiting && visible && (player_grid_pos.X > 135 || player_grid_pos.Y < 49))
             {
                 exiting = true;
                 GlobalState.StartCutscene = Exit();
@@ -181,7 +181,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc
 
             velocity.X = -37;
 
-            while(Position.X > _player.Position.X)
+            while (Position.X > _player.Position.X)
             {
                 yield return null;
             }
@@ -191,7 +191,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc
             bike.Position = Position - Vector2.One;
             bike.exists = true;
 
-            if(GlobalState.inventory.tradeState == InventoryManager.TradeState.SHOES)
+            if (GlobalState.inventory.tradeState == InventoryManager.TradeState.SHOES)
             {
                 yield return new DialogueEvent(DialogueManager.GetDialogue("misc", "any", "mitra", 1));
                 GlobalState.inventory.tradeState = InventoryManager.TradeState.NONE;
@@ -216,7 +216,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc
             velocity.X = 37;
             Solid = false; //disable collisions to not push player out of the screen
 
-            while(MapUtilities.GetInGridPosition(Position).X > 10) //until wrap around from exiting the screen
+            while (MapUtilities.GetInGridPosition(Position).X > 10) //until wrap around from exiting the screen
             {
                 yield return null;
             }
@@ -229,7 +229,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc
 
         protected override string GetInteractionText()
         {
-            if(player_jumped)
+            if (player_jumped)
             {
                 return DialogueManager.GetDialogue("misc", "any", "mitra", 5);
             }
@@ -262,10 +262,10 @@ namespace AnodyneSharp.Entities.Interactive.Npc
 
         public override void Update()
         {
-            switch(s)
+            switch (s)
             {
                 case State.InitialWait:
-                    if(Math.Abs(Position.Y - _player.Position.Y) < 48 && volume.ReachedTarget)
+                    if (Math.Abs(Position.Y - _player.Position.Y) < 48 && volume.ReachedTarget)
                     {
                         s = State.Entrance;
                         GlobalState.StartCutscene = Entrance();
@@ -377,7 +377,8 @@ namespace AnodyneSharp.Entities.Interactive.Npc
             yield break;
         }
 
-        IEnumerator<CutsceneEvent> Exit() {
+        IEnumerator<CutsceneEvent> Exit()
+        {
             yield return new DialogueEvent(DialogueManager.GetDialogue("mitra", "initial_overworld", 3));
 
             //back to bike
@@ -388,13 +389,13 @@ namespace AnodyneSharp.Entities.Interactive.Npc
 
             OnBike();
             bike.exists = false;
-            
+
             //go off-screen
             velocity = Vector2.UnitY * 50;
 
             Vector2 UL = MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid);
 
-            while ((Position-UL).Y < 190)
+            while ((Position - UL).Y < 190)
                 yield return null;
 
             volume.SetTarget(0.2f);
@@ -408,7 +409,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc
         }
     }
 
-    [NamedEntity("Mitra",map:"FIELDS")]
+    [NamedEntity("Mitra", map: "FIELDS")]
     public class MitraFields : Mitra
     {
         bool initial;
@@ -424,20 +425,20 @@ namespace AnodyneSharp.Entities.Interactive.Npc
 
         protected override string GetInteractionText()
         {
-            if(initial)
+            if (initial)
             {
                 GlobalState.events.IncEvent("mitra.fieldinit");
-                if(DialogueManager.IsSceneDirty("mitra","init"))
+                if (DialogueManager.IsSceneDirty("mitra", "init"))
                 {
                     return DialogueManager.GetDialogue("mitra", "init");
                 }
                 int talked_about_wares = GlobalState.events.GetEvent("mitra.wares");
-                string dialog = DialogueManager.GetDialogue("mitra", "init",1-talked_about_wares);
+                string dialog = DialogueManager.GetDialogue("mitra", "init", 1 - talked_about_wares);
                 DialogueManager.SetSceneProgress("mitra", "init", 2);
                 return dialog;
             }
-            
-            if(GlobalState.inventory.tradeState == InventoryManager.TradeState.SHOES)
+
+            if (GlobalState.inventory.tradeState == InventoryManager.TradeState.SHOES)
             {
                 GlobalState.inventory.tradeState = InventoryManager.TradeState.NONE;
                 GlobalState.inventory.CanJump = true;
@@ -449,20 +450,20 @@ namespace AnodyneSharp.Entities.Interactive.Npc
 
             if (GlobalState.inventory.CardCount < 36 && all_bosses_dead)
             {
-                if(!given_quest_hint && GlobalState.events.GetEvent("GoQuestProgress") == 0)
+                if (!given_quest_hint && GlobalState.events.GetEvent("GoQuestProgress") == 0)
                 {
                     given_quest_hint = true;
                     return DialogueManager.GetDialogue("mitra", "quest_event");
                 }
-                if(GlobalState.inventory.CardCount == 0)
+                if (GlobalState.inventory.CardCount == 0)
                 {
                     return DialogueManager.GetDialogue("mitra", "card_hints", 36);
                 }
-                List<int> missing_cards = GlobalState.inventory.CardStatus.Select((s, i) => !s && i < 36 ? i : -1).Where(i=>i >= 0).ToList();
+                List<int> missing_cards = GlobalState.inventory.CardStatus.Select((s, i) => !s && i < 36 ? i : -1).Where(i => i >= 0).ToList();
                 return DialogueManager.GetDialogue("mitra", "card_hints", missing_cards[GlobalState.RNG.Next(missing_cards.Count)]);
             }
 
-            if(!given_initial_hint)
+            if (!given_initial_hint)
             {
                 given_initial_hint = true;
 

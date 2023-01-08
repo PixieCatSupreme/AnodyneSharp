@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -10,19 +11,20 @@ namespace AnodyneSharp.Entities.Interactive.Npc
     {
         protected EntityPreset preset;
 
-        public ShadowBriar(EntityPreset preset, Player p)
-            : base(preset.Position, "briar", 16, 16, Drawing.DrawOrder.ENTITIES)
-        {
-            AddAnimation("idle_d", CreateAnimFrameArray(20), 12);
-            AddAnimation("idle_l", CreateAnimFrameArray(26), 12);
-            AddAnimation("idle_r", CreateAnimFrameArray(22), 12);
-            AddAnimation("idle_u", CreateAnimFrameArray(24), 12);
-            AddAnimation("walk_d", CreateAnimFrameArray(20, 21), 4);
-            AddAnimation("walk_l", CreateAnimFrameArray(26, 27), 4);
-            AddAnimation("walk_r", CreateAnimFrameArray(22, 23), 4);
-            AddAnimation("walk_u", CreateAnimFrameArray(24, 25), 4);
-            Play("idle_d");
+        public static AnimatedSpriteRenderer GetSprite() => new("briar", 16, 16,
+            new Anim("idle_d", new int[] { 20 }, 12),
+            new Anim("idle_l", new int[] { 26 }, 12),
+            new Anim("idle_r", new int[] { 22 }, 12),
+            new Anim("idle_u", new int[] { 24 }, 12),
+            new Anim("walk_d", new int[] { 20, 21 }, 4),
+            new Anim("walk_l", new int[] { 26, 27 }, 4),
+            new Anim("walk_r", new int[] { 22, 23 }, 4),
+            new Anim("walk_u", new int[] { 24, 25 }, 4)
+            );
 
+        public ShadowBriar(EntityPreset preset, Player p)
+            : base(preset.Position, GetSprite(), Drawing.DrawOrder.ENTITIES)
+        {
             this.preset = preset;
         }
     }

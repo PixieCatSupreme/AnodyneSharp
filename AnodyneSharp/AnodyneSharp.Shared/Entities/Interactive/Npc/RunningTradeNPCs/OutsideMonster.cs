@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
@@ -17,21 +18,20 @@ namespace AnodyneSharp.Entities.Interactive.Npc.RunningTradeNPCs
         Box b;
         Player player;
 
-        public OutsideMonster(EntityPreset preset, Player p) : base(preset.Position, "fields_npcs",16,16,Drawing.DrawOrder.ENTITIES)
+        public static AnimatedSpriteRenderer GetSprite() => new("fields_npcs", 16, 16,
+            new Anim("walk_d", new int[] { 20, 21 },4),
+            new Anim("walk_r", new int[] { 22, 23 }, 4),
+            new Anim("walk_u", new int[] { 24, 25 }, 4)
+            );
+
+        public OutsideMonster(EntityPreset preset, Player p) : base(preset.Position, GetSprite(), Drawing.DrawOrder.ENTITIES)
         {
             player = p;
             b = new(preset.Position - Vector2.UnitY * 20, preset, p);
+            immovable = true;
             if (GlobalState.events.SpookedMonster)
             {
                 exists = false;
-            }
-            else
-            {
-                AddAnimation("walk_d", CreateAnimFrameArray(20, 21), 4);
-                AddAnimation("walk_r", CreateAnimFrameArray(22, 23), 4);
-                AddAnimation("walk_u", CreateAnimFrameArray(24, 25), 4);
-                Play("walk_d");
-                immovable = true;
             }
         }
 
@@ -93,9 +93,13 @@ namespace AnodyneSharp.Entities.Interactive.Npc.RunningTradeNPCs
         EntityPreset preset;
         BoxIcky icky;
 
-        public Box(Vector2 position, EntityPreset preset, Player p) : base(position,"fields_npcs",16,16,Drawing.DrawOrder.ENTITIES)
+        public static AnimatedSpriteRenderer GetSprite() => new("fields_npcs", 16, 16,
+            new Anim("closed", new int[] { 31 },1),
+            new Anim("open", new int[] { 32 },1)
+            );
+
+        public Box(Vector2 position, EntityPreset preset, Player p) : base(position,GetSprite(),Drawing.DrawOrder.ENTITIES)
         {
-            SetFrame(closed);
             immovable = true;
             icky = new(position - Vector2.UnitY * 10, p);
             this.preset = preset;
@@ -116,7 +120,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.RunningTradeNPCs
         {
             if (GlobalState.events.SpookedMonster)
             {
-                SetFrame(open);
+                Play("open");
                 Sounds.SoundManager.PlaySoundEffect("broom_hit");
                 GlobalState.StartCutscene = OnOpened();
                 return true;
@@ -145,18 +149,12 @@ namespace AnodyneSharp.Entities.Interactive.Npc.RunningTradeNPCs
     [Collision(typeof(Player))]
     public class BoxIcky : Entity, Interactable
     {
-        Player _player;
         IEnumerator _state;
 
-        public BoxIcky(Vector2 pos, Player p) : base(pos, "fields_npcs", 16, 16, Drawing.DrawOrder.ENTITIES)
+        public BoxIcky(Vector2 pos, Player p) : base(pos, Icky.GetSprite(), Drawing.DrawOrder.ENTITIES)
         {
-            AddAnimation("walk_d", CreateAnimFrameArray(10, 11), 4);
-            AddAnimation("walk_r", CreateAnimFrameArray(12, 13), 4);
-            AddAnimation("walk_u", CreateAnimFrameArray(14, 15), 4);
-            AddAnimation("walk_l", CreateAnimFrameArray(16, 17), 4);
             Play("walk_r");
             exists = false;
-            _player = p;
             immovable = true;
         }
 

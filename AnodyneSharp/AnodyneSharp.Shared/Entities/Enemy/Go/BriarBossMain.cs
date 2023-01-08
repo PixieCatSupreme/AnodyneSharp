@@ -36,7 +36,10 @@ namespace AnodyneSharp.Entities.Enemy.Go
 
         public static AnimatedSpriteRenderer GetSprite() => new("briar", 16, 16,
             new Anim("idle", new int[] { 0 }, 1),
+            new Anim("walk_d", new int[] { 0, 1 }, 4),
+            new Anim("walk_r", new int[] { 2, 3 }, 4),
             new Anim("walk_u", new int[] { 4, 5 }, 4),
+            new Anim("walk_l", new int[] { 6, 7 }, 4),
             new Anim("oh_no", new int[] { 10 }, 1)
             );
 

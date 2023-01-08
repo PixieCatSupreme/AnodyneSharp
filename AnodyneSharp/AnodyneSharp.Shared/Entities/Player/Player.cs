@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Entities.Lights;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.Entities.Lights;
 using AnodyneSharp.Input;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
@@ -56,8 +57,6 @@ namespace AnodyneSharp.Entities
         public const int DEFAULT_Y_OFFSET = 4;
         public const string TRANSITION_IDLE = "idle_u";
 
-        private const int ORIGINAL_WIDTH = 16;
-        private const int ORIGINAL_HEIGHT = 16;
         private const int HITBOX_HEIGHT = 12;
         private const int HITBOX_WIDTH = 10;
 
@@ -121,36 +120,34 @@ namespace AnodyneSharp.Entities
         public Dust raft;
         public PlayerLight light;
 
+        public static AnimatedSpriteRenderer GetSprite(bool cell) => new(cell ? Cell_Player_Sprite : Player_Sprite, 16, 16,
+            new Anim("walk_d", new int[] { 1, 0 }, 6),
+            new Anim("walk_r", new int[] { 2, 3 }, 8),
+            new Anim("walk_u", new int[] { 4, 5 }, 6),
+            new Anim("walk_l", new int[] { 6, 7 }, 8),
+            new Anim("attack_d", new int[] { 8, 9 }, 10, false),
+            new Anim("attack_r", new int[] { 10, 11 }, 10, false),
+            new Anim("attack_u", new int[] { 12, 13 }, 10, false),
+            new Anim("attack_l", new int[] { 14, 15 }, 10, false),
+            new Anim("fall", new int[] { 28, 29, 30, 31 }, 5, false),
+            new Anim("slumped", new int[] { 32 }, 1),
+            new Anim("whirl", new int[] { 25, 26, 27, 24 }, 12),
+            new Anim("idle_d", new int[] { 24 }, 4),
+            new Anim("idle_r", new int[] { 25 }, 4),
+            new Anim("idle_u", new int[] { 26 }, 4),
+            new Anim("idle_l", new int[] { 27 }, 4),
+            new Anim("jump_d", new int[] { 16, 17 }, 4),
+            new Anim("jump_r", new int[] { 18, 19 }, 4),
+            new Anim("jump_u", new int[] { 20, 21 }, 4),
+            new Anim("jump_l", new int[] { 22, 23 }, 4),
+            new Anim("idle_climb", new int[] { 33 }, 1),
+            new Anim("climb", new int[] { 34, 35 }, 8),
+            new Anim("die", new int[] { 25, 26, 27, 24, 25, 26, 27, 24, 25, 26, 27, 32 },12, false)
+            );
+
         public Player()
-            : base(Vector2.Zero, Player_Sprite, ORIGINAL_WIDTH, ORIGINAL_HEIGHT, Drawing.DrawOrder.ENTITIES)
+            : base(Vector2.Zero, GetSprite(false), Drawing.DrawOrder.ENTITIES)
         {
-
-            AddAnimation("walk_d", CreateAnimFrameArray(1, 0), 6, true);
-            AddAnimation("walk_r", CreateAnimFrameArray(2, 3), 8, true);
-            AddAnimation("walk_u", CreateAnimFrameArray(4, 5), 6, true);
-            AddAnimation("walk_l", CreateAnimFrameArray(6, 7), 8, true);
-
-            AddAnimation("attack_d", CreateAnimFrameArray(8, 9), 10, false);
-            AddAnimation("attack_r", CreateAnimFrameArray(10, 11), 10, false);
-            AddAnimation("attack_u", CreateAnimFrameArray(12, 13), 10, false);
-            AddAnimation("attack_l", CreateAnimFrameArray(14, 15), 10, false);
-            AddAnimation("fall", CreateAnimFrameArray(28, 29, 30, 31), 5, false);
-            AddAnimation("slumped", CreateAnimFrameArray(32));
-
-            AddAnimation("whirl", CreateAnimFrameArray(25, 26, 27, 24), 12, true);
-
-            AddAnimation("idle_d", CreateAnimFrameArray(24), 4, true);
-            AddAnimation("idle_r", CreateAnimFrameArray(25), 4, true);
-            AddAnimation("idle_u", CreateAnimFrameArray(26), 4, true);
-            AddAnimation("idle_l", CreateAnimFrameArray(27), 4, true);
-
-            AddAnimation("jump_d", CreateAnimFrameArray(16, 17), 4, true);
-            AddAnimation("jump_r", CreateAnimFrameArray(18, 19), 4, true);
-            AddAnimation("jump_u", CreateAnimFrameArray(20, 21), 4, true);
-            AddAnimation("jump_l", CreateAnimFrameArray(22, 23), 4, true);
-            AddAnimation("idle_climb", CreateAnimFrameArray(33));
-            AddAnimation("climb", CreateAnimFrameArray(34, 35), 8, true);
-
             height = HITBOX_HEIGHT;
             offset = new Vector2(3, DEFAULT_Y_OFFSET);
             width = HITBOX_WIDTH;

@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Entities.Gadget;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
@@ -283,37 +284,16 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Go
 
     internal class SageBullet : Entity
     {
-        public SageBullet() : base(Vector2.Zero, "sage_attacks", 16, 16, Drawing.DrawOrder.ENTITIES)
+        public SageBullet() : base(Vector2.Zero, new AnimatedSpriteRenderer("sage_attacks", 16, 16, new Anim("a",new int[] { 0, 1 },8)), Drawing.DrawOrder.ENTITIES)
         {
-            AddAnimation("a", CreateAnimFrameArray(0, 1), 8);
-            Play("a");
         }
     }
 
     //Quick copy of player visual data to make for easier cutscene manipulation
     internal class PlayerStandin : Entity
     {
-        public PlayerStandin(Player p) : base(p.Position,"young_player",16,16,Drawing.DrawOrder.ENTITIES)
+        public PlayerStandin(Player p) : base(p.Position,Player.GetSprite(GlobalState.IsCell),Drawing.DrawOrder.ENTITIES)
         {
-            AddAnimation("walk_d", CreateAnimFrameArray(1, 0), 6, true);
-            AddAnimation("walk_r", CreateAnimFrameArray(2, 3), 8, true);
-            AddAnimation("walk_u", CreateAnimFrameArray(4, 5), 6, true);
-            AddAnimation("walk_l", CreateAnimFrameArray(6, 7), 8, true);
-
-            AddAnimation("attack_d", CreateAnimFrameArray(8, 9), 10, false);
-            AddAnimation("attack_r", CreateAnimFrameArray(10, 11), 10, false);
-            AddAnimation("attack_u", CreateAnimFrameArray(12, 13), 10, false);
-            AddAnimation("attack_l", CreateAnimFrameArray(14, 15), 10, false);
-            AddAnimation("fall", CreateAnimFrameArray(28, 29, 30, 31), 5, false);
-            AddAnimation("slumped", CreateAnimFrameArray(32));
-
-            AddAnimation("whirl", CreateAnimFrameArray(25, 26, 27, 24), 12, true);
-
-            AddAnimation("idle_d", CreateAnimFrameArray(24), 4, true);
-            AddAnimation("idle_r", CreateAnimFrameArray(25), 4, true);
-            AddAnimation("idle_u", CreateAnimFrameArray(26), 4, true);
-            AddAnimation("idle_l", CreateAnimFrameArray(27), 4, true);
-
             Play(p.CurAnimName);
 
             height = p.height;

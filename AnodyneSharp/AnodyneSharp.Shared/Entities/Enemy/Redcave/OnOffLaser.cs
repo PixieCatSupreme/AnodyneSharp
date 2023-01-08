@@ -27,7 +27,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
         }
 
         public OnOffLaser(EntityPreset preset, Player player)
-            : base(preset.Position, GetSprite(), DrawOrder.ENTITIES)
+            : base(preset.Position, GetSprite(preset.Frame), DrawOrder.ENTITIES)
         {
             immovable = true;
 

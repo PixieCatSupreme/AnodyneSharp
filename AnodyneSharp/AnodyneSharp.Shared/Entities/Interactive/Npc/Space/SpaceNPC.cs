@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Registry;
 using System;
 using System.Collections.Generic;
@@ -11,8 +12,17 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Space
     {
         private string _dialogue;
 
+        public static AnimatedSpriteRenderer GetSprite(int start) => new("space_npcs", 16, 16,
+            new Anim("walk_d", new int[] { start + 0, start + 1 }, 4),
+            new Anim("walk_d", new int[] { start + 2, start + 3 }, 4),
+            new Anim("walk_d", new int[] { start + 4, start + 5 }, 4),
+            new Anim("walk_d", new int[] { start + 6, start + 7 }, 4),
+            new Anim("spin", new int[] { start + 0, start + 2, start + 4, start + 6 }, 10),
+            new Anim("dead", new int[] { start + 8 }, 1)
+            );
+
         public SpaceNPC(EntityPreset preset, Player p)
-            : base(preset.Position, "space_npcs", 16, 16, Drawing.DrawOrder.ENTITIES)
+            : base(preset.Position, GetSprite(preset.Frame >= 10 ? 10 : 0), Drawing.DrawOrder.ENTITIES)
         {
             immovable = true;
 
@@ -20,50 +30,42 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Space
             {
                 case 0:
                     _dialogue = "gray1";
-                    SetWalkAnims(0);
                     break;
                 case 1:
                     _dialogue = "gray2";
-                    SetWalkAnims(0);
                     break;
                 case 3:
                     _dialogue = "gray3";
-                    SetWalkAnims(0);
                     break;
                 case 10:
                     _dialogue = "color1";
-                    SetWalkAnims(10);
                     break;
                 case 11:
                     _dialogue = "color2";
-                    SetWalkAnims(10);
                     break;
                 case 12:
                     _dialogue = "color3";
-                    SetWalkAnims(10);
                     break;
                 case 2:
                     _dialogue = "grayspin";
-
-                    AddAnimation("spin", CreateAnimFrameArray(0, 2, 4, 6), 10);
                     Play("spin");
                     break;
                 case 8:
                     _dialogue = "colordead";
 
-                    SetFrame(8);
+                    Play("dead");
                     break;
                 case 18:
                     _dialogue = "graydead";
 
-                    SetFrame(18);
+                    Play("dead");
                     break;
             }
         }
 
         public bool PlayerInteraction(Facing player_direction)
         {
-            if (CurAnimName != "forcedFrame" && CurAnimName != "spin")
+            if (CurAnimName.StartsWith("walk"))
             {
                 FaceTowards(Position - FacingDirection(player_direction));
 
@@ -79,16 +81,6 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Space
         {
             base.Collided(other);
             Separate(this, other);
-        }
-
-        private void SetWalkAnims(int start)
-        {
-            AddAnimation("walk_d", CreateAnimFrameArray(start +0, start +1), 4);
-            AddAnimation("walk_r", CreateAnimFrameArray(start +2, start +3), 4);
-            AddAnimation("walk_u", CreateAnimFrameArray(start +4, start +5), 4);
-            AddAnimation("walk_l", CreateAnimFrameArray(start +6, start +7), 4);
-
-            Play("walk_d");
         }
     }
 }

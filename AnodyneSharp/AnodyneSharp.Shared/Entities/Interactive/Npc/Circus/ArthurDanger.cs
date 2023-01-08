@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 using AnodyneSharp.Utilities;
@@ -30,25 +31,26 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Circus
 
         private bool _collided;
 
+        public static AnimatedSpriteRenderer GetSprite() => new("arthur", 16, 16,
+            new Anim("wobble", new int[] { 16, 17 }, 8),
+            new Anim("walk_d", new int[] { 0, 1 }, 8),
+            new Anim("walk_l", new int[] { 4, 5 }, 8),
+            new Anim("walk_u", new int[] { 2, 3 }, 8),
+            new Anim("walk_r", new int[] { 4, 5 }, 8),
+            new Anim("roll", new int[] { 6 }, 6), // For flying through the air
+            new Anim("stunned", new int[] { 8, 9 }, 6),
+            new Anim("fall_1", new int[] { 10 }, 8),
+            new Anim("fall", new int[] { 10, 11, 12, 13, 14, 15, 6 }, 2, false) // Should end on an empty frame
+            );
+
         public ArthurDanger(EntityPreset preset, Player p)
-            : base(preset.Position, "arthur", 16, 16, Drawing.DrawOrder.ENTITIES)
+            : base(preset.Position, GetSprite(), Drawing.DrawOrder.ENTITIES)
         {
             _preset = preset;
-
-            AddAnimation("walk_d", CreateAnimFrameArray(0, 1), 8);
-            AddAnimation("walk_l", CreateAnimFrameArray(4, 5), 8);
-            AddAnimation("walk_u", CreateAnimFrameArray(2, 3), 8);
-            AddAnimation("walk_r", CreateAnimFrameArray(4, 5), 8);
-            AddAnimation("roll", CreateAnimFrameArray(6), 6); // For flying through the air
-            AddAnimation("stunned", CreateAnimFrameArray(8, 9), 6);
-            AddAnimation("wobble", CreateAnimFrameArray(16, 17), 8);
-            AddAnimation("fall_1", CreateAnimFrameArray(10), 8);
-            AddAnimation("fall", CreateAnimFrameArray(10, 11, 12, 13, 14, 15, 6), 2, false); // Should end on an empty frame
 
             _parabola = new Parabola_Thing(this, 32, 1);
 
             shadow = new Shadow(this, new Vector2(0, -2), ShadowType.Normal);
-            Play("wobble");
 
             Position.Y -= 32;
             offset.Y = 5 * 16;
@@ -58,8 +60,6 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Circus
             _dustPillow = new Dust(MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid) + new Vector2(46, 16), p);
 
             _stateLogic = StateLogic();
-
-
         }
 
         public override void Update()

@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Registry;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.Registry;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -16,16 +17,20 @@ namespace AnodyneSharp.Entities
         public bool ON_CONVEYOR = false;
         public bool IS_RAFT = false;
 
+        public static AnimatedSpriteRenderer GetSprite() => new("dust", 16, 16,
+            new Anim("poofed", new int[] { 0 },1),
+            new Anim("unpoofed", new int[] { 4 },1),
+            new Anim("poof", new int[] { 0, 1, 2, 3, 4 },13,false),
+            new Anim("fallpoof", new int[] { 0, 1, 2, 3, 4 },13,false),
+            new Anim("unpoof", new int[] { 3, 2, 1, 0 },13,false)
+            );
+
         public Dust(EntityPreset preset, Player p) : this(preset.Position, p)
         {
         }
 
-        public Dust(Vector2 position, Player p) : base(position, "dust", 16, 16, Drawing.DrawOrder.BG_ENTITIES)
+        public Dust(Vector2 position, Player p) : base(position, GetSprite(), Drawing.DrawOrder.BG_ENTITIES)
         {
-            AddAnimation("poof", CreateAnimFrameArray(0, 1, 2, 3, 4), 13, false);
-            AddAnimation("fallpoof", CreateAnimFrameArray(0, 1, 2, 3, 4), 13, false);
-            AddAnimation("unpoof", CreateAnimFrameArray(3, 2, 1, 0), 13, false);
-            SetFrame(0);
             b = p?.broom;
         }
 

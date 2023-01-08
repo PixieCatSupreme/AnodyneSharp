@@ -15,11 +15,9 @@ namespace AnodyneSharp.Entities.Interactive.Npc.RunningTradeNPCs
         List<Dust> _extra_dust = new();
         int _dust_left = 12;
 
-        public InsideMonster(EntityPreset preset, Player p) : base(preset.Position, "fields_npcs", 16, 16, Drawing.DrawOrder.ENTITIES)
+        public InsideMonster(EntityPreset preset, Player p) : base(preset.Position, OutsideMonster.GetSprite(), Drawing.DrawOrder.ENTITIES)
         {
             _preset = preset;
-            AddAnimation("walk_d", CreateAnimFrameArray(20, 21), 4);
-            AddAnimation("walk_r", CreateAnimFrameArray(22, 23), 4);
             Play("walk_d");
             immovable = true;
 

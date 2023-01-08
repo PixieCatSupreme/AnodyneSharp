@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.GameEvents;
 using AnodyneSharp.Registry;
 using Microsoft.Xna.Framework;
@@ -11,15 +12,17 @@ namespace AnodyneSharp.Entities.Interactive.Npc.RunningTradeNPCs
 {
     public class MiaoGraphics : Entity
     {
-        public MiaoGraphics(Vector2 position) : base(position, "fields_npcs", 16, 16, Drawing.DrawOrder.ENTITIES)
+        public static AnimatedSpriteRenderer GetSprite() => new("fields_npcs", 16, 16,
+            new Anim("walk_d", new int[] { 0, 1 }, 4),
+            new Anim("walk_r", new int[] { 2, 3 }, 4),
+            new Anim("walk_u", new int[] { 4, 5 }, 4),
+            new Anim("walk_l", new int[] { 6, 7 }, 4)
+            );
+
+        public MiaoGraphics(Vector2 position) : base(position, GetSprite(), Drawing.DrawOrder.ENTITIES)
         {
-            AddAnimation("walk_d", CreateAnimFrameArray(0, 1), 4);
-            AddAnimation("walk_r", CreateAnimFrameArray(2, 3), 4);
-            AddAnimation("walk_u", CreateAnimFrameArray(4, 5), 4);
-            AddAnimation("walk_l", CreateAnimFrameArray(6, 7), 4);
             width = height = 12;
             offset.X = offset.Y = 2;
-            Play("walk_d");
         }
     }
 
@@ -87,7 +90,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.RunningTradeNPCs
 
         Player follow;
 
-        Entity dust = new(Vector2.Zero, "dust", 16, 16, Drawing.DrawOrder.BG_ENTITIES);
+        Entity dust = new(Vector2.Zero, Dust.GetSprite(), Drawing.DrawOrder.BG_ENTITIES);
 
         bool on_conveyor_this_frame = false;
 
@@ -97,10 +100,8 @@ namespace AnodyneSharp.Entities.Interactive.Npc.RunningTradeNPCs
         public MiaoXiaoFollower(Vector2 pos, Player p) : base(pos)
         {
             follow = p;
-            dust.AddAnimation("poof", CreateAnimFrameArray(0, 1, 2, 3, 4), 13, false);
-            dust.AddAnimation("unpoof", CreateAnimFrameArray(3, 2, 1, 0), 20, false);
             dust.exists = false;
-            dust.SetFrame(4);
+            dust.Play("poofed");
 
             exists = false;
 

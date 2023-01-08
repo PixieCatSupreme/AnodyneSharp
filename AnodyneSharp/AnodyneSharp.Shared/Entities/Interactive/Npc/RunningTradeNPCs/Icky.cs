@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Registry;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.Registry;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,18 +11,20 @@ namespace AnodyneSharp.Entities.Interactive.Npc.RunningTradeNPCs
     {
         Player _player;
 
-        public Icky(EntityPreset preset, Player p) : base(preset.Position, "fields_npcs", 16, 16, Drawing.DrawOrder.ENTITIES)
+        public static AnimatedSpriteRenderer GetSprite() => new("fields_npcs", 16, 16,
+            new Anim("walk_d", new int[] { 10, 11 }, 4),
+            new Anim("walk_r", new int[] { 12, 13 }, 4),
+            new Anim("walk_u", new int[] { 14, 15 }, 4),
+            new Anim("walk_l", new int[] { 16, 17 }, 4)
+            );
+
+        public Icky(EntityPreset preset, Player p) : base(preset.Position, GetSprite(), Drawing.DrawOrder.ENTITIES)
         {
             if(GlobalState.events.GetEvent("icky.rescued") == 0)
             {
                 exists = false;
                 return;
             }
-            AddAnimation("walk_d", CreateAnimFrameArray(10, 11), 4);
-            AddAnimation("walk_r", CreateAnimFrameArray(12, 13), 4);
-            AddAnimation("walk_u", CreateAnimFrameArray(14, 15), 4);
-            AddAnimation("walk_l", CreateAnimFrameArray(16, 17), 4);
-            Play("walk_d");
             immovable = true;
             _player = p;
         }

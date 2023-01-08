@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Registry;
 using System;
 using System.Collections.Generic;
@@ -26,36 +27,50 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Happy
 
         private bool _talking;
 
+        static int AnimOffset(int frame) => frame switch
+        {
+            0 => 9,
+            1 => 9,
+            2 => 0,
+            3 => 9,
+            _ => 0
+        };
+
+        public static AnimatedSpriteRenderer GetSprite(int start) => new("happy_npcs", 16, 16,
+            new Anim("idle_d", new int[] { start + 0 }, 4),
+            new Anim("idle_r", new int[] { start + 2 }, 4),
+            new Anim("idle_u", new int[] { start + 4 }, 4),
+            new Anim("idle_l", new int[] { start + 6 }, 4),
+            new Anim("walk_d", new int[] { start + 0, start + 1 }, 4),
+            new Anim("walk_r", new int[] { start + 2, start + 3 }, 4),
+            new Anim("walk_u", new int[] { start + 4, start + 5 }, 4),
+            new Anim("walk_l", new int[] { start + 6, start + 7 }, 4)
+            );
 
         public HappyNPC(EntityPreset preset, Player p)
-            : base(preset.Position, "happy_npcs", 16, 16, Drawing.DrawOrder.ENTITIES)
+            : base(preset.Position, GetSprite(AnimOffset(preset.Frame)), Drawing.DrawOrder.ENTITIES)
         {
             immovable = true;
 
             switch (preset.Frame)
             {
                 case 0:
-                    SetWalkAnims(9);
                     _dialogue = "hot";
                     _npcType = NpcType.Pace;
                     break;
                 case 1:
-                    SetWalkAnims(9);
                     _dialogue = "dump";
                     _npcType = NpcType.Run;
                     break;
                 case 2:
-                    SetWalkAnims(0);
                     _dialogue = "gold";
                     _npcType = NpcType.Run;
                     break;
                 case 3:
-                    SetWalkAnims(9);
                     _dialogue = "drink";
                     _npcType = NpcType.Run;
                     break;
                 case 4:
-                    SetWalkAnims(0);
                     _dialogue = "beautiful";
                     _npcType = NpcType.Pace;
                     break;
@@ -146,20 +161,6 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Happy
         {
             base.Collided(other);
             Separate(this, other);
-        }
-
-        private void SetWalkAnims(int start)
-        {
-            AddAnimation("walk_d", CreateAnimFrameArray(start + 0, start + 1), 4);
-            AddAnimation("walk_r", CreateAnimFrameArray(start + 2, start + 3), 4);
-            AddAnimation("walk_u", CreateAnimFrameArray(start + 4, start + 5), 4);
-            AddAnimation("walk_l", CreateAnimFrameArray(start + 6, start + 7), 4);
-            AddAnimation("idle_d", CreateAnimFrameArray(start + 0), 4);
-            AddAnimation("idle_r", CreateAnimFrameArray(start + 2), 4);
-            AddAnimation("idle_u", CreateAnimFrameArray(start + 4), 4);
-            AddAnimation("idle_l", CreateAnimFrameArray(start + 6), 4);
-
-            Play("idle_d");
         }
 
         private void RandomIdle()

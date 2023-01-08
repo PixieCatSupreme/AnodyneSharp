@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 using AnodyneSharp.Utilities;
@@ -20,30 +21,30 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Suburb
         float walk_t_max;
         float walk_t;
 
-        public SuburbWalker(EntityPreset preset, Player p) : base(preset.Position, "suburb_walkers", 16, 16, Drawing.DrawOrder.ENTITIES)
+        public static AnimatedSpriteRenderer GetSprite(int off) => new("suburb_walkers", 16, 16,
+            new Anim("walk_d", new int[] { 0 + off, 1 + off }, 4),
+            new Anim("walk_r", new int[] { 2 + off, 3 + off }, 4),
+            new Anim("walk_u", new int[] { 4 + off, 5 + off }, 4),
+            new Anim("walk_l", new int[] { 6 + off, 7 + off }, 4),
+            new Anim("die", new int[] { 0 + off, 2 + off, 4 + off, 6 + off, 0 + off, 2 + off, 4 + off, 6 + off, 8 + off }, 8, false),
+            new Anim("dead", new int[] { 8 + off }, 1)
+            );
+
+        public SuburbWalker(EntityPreset preset, Player p) : base(preset.Position, GetSprite(preset.Frame*9), Drawing.DrawOrder.ENTITIES)
         {
             _preset = preset;
 
-            int off = preset.Frame * 9;
-            AddAnimation("walk_d", CreateAnimFrameArray(0 + off, 1 + off), 4);
-            AddAnimation("walk_r", CreateAnimFrameArray(2 + off, 3 + off), 4);
-            AddAnimation("walk_u", CreateAnimFrameArray(4 + off, 5 + off), 4);
-            AddAnimation("walk_l", CreateAnimFrameArray(6 + off, 7 + off), 4);
-            AddAnimation("die", CreateAnimFrameArray(0 + off, 2 + off, 4 + off, 6 + off, 0 + off, 2 + off, 4 + off, 6 + off, 8 + off), 8, false);
-            AddAnimation("dead", CreateAnimFrameArray(8 + off));
-
             velocity = Vector2.UnitY * 20;
-            Play("walk_d");
-
+            
             walk_t_max = 1f + (float)GlobalState.RNG.NextDouble();
             walk_t = walk_t_max;
 
-            blood = new(Vector2.Zero, "suburb_walkers", 16, 16, Drawing.DrawOrder.BG_ENTITIES);
-            blood.AddAnimation("a", CreateAnimFrameArray(63, 64, 65, 66), 3, false);
-            blood.Play("a");
-            blood.exists = false;
+            blood = new(Vector2.Zero, new AnimatedSpriteRenderer("suburb_walkers", 16, 16, new Anim("a", new int[] { 63, 64, 65, 66 }, 3, false)), Drawing.DrawOrder.BG_ENTITIES)
+            {
+                exists = false
+            };
 
-            if(_preset.Alive == false)
+            if (_preset.Alive == false)
             {
                 velocity = Vector2.Zero;
                 Play("dead");

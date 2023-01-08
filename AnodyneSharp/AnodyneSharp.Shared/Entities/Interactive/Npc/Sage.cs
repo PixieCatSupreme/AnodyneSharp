@@ -1,5 +1,6 @@
 ﻿using AnodyneSharp.Dialogue;
 using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.GameEvents;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Resources;
@@ -18,7 +19,18 @@ namespace AnodyneSharp.Entities
         protected Player _player;
         protected bool _facePlayer = true;
 
-        public SpriteSage(Vector2 pos, Player p) : base(pos, "sage", 16, 16, DrawOrder.ENTITIES)
+        public static AnimatedSpriteRenderer GetSprite() => new("sage", 16, 16,
+            new Anim("idle_d", new int[] { 6 },1),
+            new Anim("idle_r", new int[] { 7 },1),
+            new Anim("idle_l", new int[] { 7 },1),
+            new Anim("idle_u", new int[] { 8 },1),
+            new Anim("walk_d", new int[] { 0, 1 }, 6),
+            new Anim("walk_r", new int[] { 2, 3 }, 6),
+            new Anim("walk_l", new int[] { 2, 3 }, 6),
+            new Anim("walk_u", new int[] { 4, 5 }, 6)
+            );
+
+        public SpriteSage(Vector2 pos, Player p) : base(pos, GetSprite(), DrawOrder.ENTITIES)
         {
             _player = p;
 
@@ -26,17 +38,6 @@ namespace AnodyneSharp.Entities
             offset = Vector2.One * 3;
             Position += offset;
             immovable = true;
-
-            AddAnimation("walk_d", CreateAnimFrameArray(0, 1), 6);
-            AddAnimation("walk_r", CreateAnimFrameArray(2, 3), 6);
-            AddAnimation("walk_l", CreateAnimFrameArray(2, 3), 6);
-            AddAnimation("walk_u", CreateAnimFrameArray(4, 5), 6);
-            AddAnimation("idle_d", CreateAnimFrameArray(6));
-            AddAnimation("idle_r", CreateAnimFrameArray(7));
-            AddAnimation("idle_l", CreateAnimFrameArray(7));
-            AddAnimation("idle_u", CreateAnimFrameArray(8));
-
-            Play("idle_d");
         }
 
         public override void Update()

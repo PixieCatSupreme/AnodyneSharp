@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 using AnodyneSharp.Utilities;
@@ -24,19 +25,19 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Circus
 
         private IEnumerator _stateLogic;
 
+        public static AnimatedSpriteRenderer GetSprite() => new("javiera_juggle", 16, 24,
+            new Anim("juggle", new int[] { 0, 1 }, 8),
+            new Anim("walk_d", new int[] { 0, 1 }, 8),
+            new Anim("walk_l", new int[] { 4, 5 }, 8),
+            new Anim("walk_u", new int[] { 2, 3 }, 8),
+            new Anim("walk_r", new int[] { 4, 5 }, 8),
+            new Anim("fall", new int[] { 6, 7, 8, 9, 10, 11, 12 }, 2, false) // Should end on an empty frame
+            );
+
         public JavieraDanger(EntityPreset preset, Player p)
             : base(preset.Position, "javiera_juggle", 16, 24, Drawing.DrawOrder.ENTITIES)
         {
             _preset = preset;
-
-            AddAnimation("walk_d", CreateAnimFrameArray(0, 1), 8);
-            AddAnimation("walk_l", CreateAnimFrameArray(4, 5), 8);
-            AddAnimation("walk_u", CreateAnimFrameArray(2, 3), 8);
-            AddAnimation("walk_r", CreateAnimFrameArray(4, 5), 8);
-            AddAnimation("juggle", CreateAnimFrameArray(0, 1), 8);
-            AddAnimation("fall", CreateAnimFrameArray(6, 7, 8, 9, 10, 11, 12), 2, false); // Should end on an empty frame
-            Play("juggle");
-
 
             _initPos = Position;
 

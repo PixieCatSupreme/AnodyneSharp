@@ -13,11 +13,10 @@ namespace AnodyneSharp.Entities
     {
         public bool MovementDone { get; private set; }
 
-        public PlayerDieDummy(Vector2 pos, string textureName) 
-            : base(MapUtilities.GetInGridPosition(pos), textureName, 16,16, DrawOrder.PLAYER_DIE_DUMMY)
+        public PlayerDieDummy(Vector2 pos) 
+            : base(MapUtilities.GetInGridPosition(pos), Player.GetSprite(GlobalState.IsCell), DrawOrder.PLAYER_DIE_DUMMY)
         {
             Position.Y += 20;
-            AddAnimation("die", CreateAnimFrameArray(25, 26, 27, 24, 25, 26, 27, 24, 25, 26, 27, 32), 12, false);
 
             Play("die");
         }

@@ -27,12 +27,12 @@ namespace AnodyneSharp.Entities
         private const int LATK_W = 12;
         private const int LATK_H = 22;
 
-        public static string Broom_Sprite = "broom";
-        public static string Knife_Sprite = "knife";
-        public static string Cell_Sprite = "broom_cell";
-        public static string Icon_Broom_Sprite = "broom-icon";
-        public static string Wide_Attack_v = "wide_attack_v";
-        public static string Long_Attack_v = "long_attack_h";
+        public static readonly string Broom_Sprite = "broom";
+        public static readonly string Knife_Sprite = "knife";
+        public static readonly string Cell_Sprite = "broom_cell";
+        public static readonly string Icon_Broom_Sprite = "broom-icon";
+        public static readonly string Wide_Attack_v = "wide_attack_v";
+        public static readonly string Long_Attack_v = "long_attack_h";
 
         public Dust dust;
         public bool just_released_dust;
@@ -50,24 +50,20 @@ namespace AnodyneSharp.Entities
 
 
         public Broom(Player root)
-            : base(new Vector2(root.Position.X - 10, root.Position.Y), "broom", 16, 16, Drawing.DrawOrder.ENTITIES)
+            : base(new Vector2(root.Position.X - 10, root.Position.Y), new AnimatedSpriteRenderer(Broom_Sprite, 16, 16, new RefLayer(root.layer_def,1), new Anim("stab", new int[] { 1, 2, 2, 1, 0, 0 }, 20, false)))
         {
             _root = root;
             exists = false;
             immovable = true;
 
-            AddAnimation("stab", CreateAnimFrameArray(1, 2, 2, 1, 0, 0), 20, false);
-
-            wide_attack = new Entity(Position, Wide_Attack_v, WATK_H, WATK_W, Drawing.DrawOrder.PARTICLES);
-            long_attack = new Entity(Position, Long_Attack_v, LATK_H, LATK_W, Drawing.DrawOrder.PARTICLES);
-
-            wide_attack.AddAnimation("a", CreateAnimFrameArray(0, 1, 2, 3, 4), 14, false);
-            long_attack.AddAnimation("a", CreateAnimFrameArray(0, 1, 2, 3, 4), 14, false);
-
-            layer_def = new RefLayer(root.layer_def, 1);
-
-            long_attack.visible = false;
-            wide_attack.visible = false;
+            wide_attack = new Entity(Position, new AnimatedSpriteRenderer(Wide_Attack_v, WATK_H, WATK_W, new Anim("a", new int[] { 0, 1, 2, 3, 4 }, 14, false)), Drawing.DrawOrder.PARTICLES)
+            {
+                visible = false
+            };
+            long_attack = new Entity(Position, new AnimatedSpriteRenderer(Long_Attack_v, LATK_H, LATK_W, new Anim("a", new int[] { 0, 1, 2, 3, 4 }, 14, false)), Drawing.DrawOrder.PARTICLES)
+            {
+                visible = false
+            };
         }
 
         public override IEnumerable<Entity> SubEntities()
@@ -157,7 +153,7 @@ namespace AnodyneSharp.Entities
 
         public override void Draw()
         {
-            if(visible && exists)
+            if (visible && exists)
                 base.Draw();
         }
 
@@ -330,7 +326,7 @@ namespace AnodyneSharp.Entities
             if (dust != null)
             {
                 dust.Position = (_root.Center / 16 + FacingDirection(_root.facing)).ToPoint().ToVector2() * 16;
-                
+
                 if (GlobalState.Map.GetCollisionData(dust.Position) == Touching.NONE)
                 {
                     dust.exists = true;
@@ -346,12 +342,12 @@ namespace AnodyneSharp.Entities
             //Strategy: try to pick up dust furthest away in the direction the player if facing, ties are broken by choosing the dust that is closer to that line
             Vector2 dist = d.Center - _root.Center;
             Vector2 root_facing = FacingDirection(_root.facing);
-            
-            float dist_facing = Vector2.Dot(dist,root_facing); //distance in direction player is facing
 
-            float dist_other_dir = Math.Abs(Vector2.Dot(dist,new(root_facing.Y,root_facing.X))); //distance along other axis
+            float dist_facing = Vector2.Dot(dist, root_facing); //distance in direction player is facing
 
-            return 50*dist_facing - dist_other_dir;
+            float dist_other_dir = Math.Abs(Vector2.Dot(dist, new(root_facing.Y, root_facing.X))); //distance along other axis
+
+            return 50 * dist_facing - dist_other_dir;
         }
 
         public override void Collided(Entity other)
