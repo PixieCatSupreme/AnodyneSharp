@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Entities.Events;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.Entities.Events;
 using AnodyneSharp.FSM;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
@@ -64,18 +65,18 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
             public IEnumerator stateLogic;
         }
 
-        public Red_Boss(EntityPreset preset, Player p) : base(preset.Position, "red_boss", 32, 32, Drawing.DrawOrder.ENTITIES)
+        public static AnimatedSpriteRenderer GetSprite() => new("red_boss", 32, 32,
+            new Anim("close_eyes", new int[] { 1 },1),
+            new Anim("bob", new int[] { 0 },1),
+            new Anim("warn", new int[] { 2 },1),
+            new Anim("die", new int[] { 0, 1, 2, 1 },3,false)
+            );
+
+        public Red_Boss(EntityPreset preset, Player p) : base(preset.Position, GetSprite(), Drawing.DrawOrder.ENTITIES)
         {
             height = 19;
             width = 26;
             offset = new Vector2(3, 13);
-
-            AddAnimation("bob", CreateAnimFrameArray(0), 20);
-            AddAnimation("close_eyes", CreateAnimFrameArray(1), 10, false);
-            AddAnimation("warn", CreateAnimFrameArray(2), 24);
-            AddAnimation("die", CreateAnimFrameArray(0, 1, 2, 1), 3, false);
-
-            Play("close_eyes");
 
             ripple = new(this);
             Vector2 tl = MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid);
@@ -392,12 +393,15 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
     {
         Vector2 spawn_point;
 
-        public SmallWave(Red_Boss parent) : base(Vector2.Zero, "red_boss_small_wave", 16, 64, Drawing.DrawOrder.BG_ENTITIES)
+        public static AnimatedSpriteRenderer GetSprite() => new("red_boss_small_wave", 16, 64,
+            new Anim("move", new int[] { 0, 1 },8),
+            new Anim("rise", new int[] { 2, 3 },8),
+            new Anim("fall", new int[] { 1, 2, 3, 4 },8,false)
+            );
+
+        public SmallWave(Red_Boss parent) : base(Vector2.Zero, GetSprite(), Drawing.DrawOrder.BG_ENTITIES)
         {
             spawn_point = MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid) + new Vector2(96,48);
-            AddAnimation("move", CreateAnimFrameArray(0, 1), 8);
-            AddAnimation("rise", CreateAnimFrameArray(2, 3), 8);
-            AddAnimation("fall", CreateAnimFrameArray(1, 2, 3, 4), 8, false);
 
             exists = false;
             immovable = true;
@@ -446,13 +450,15 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
         Vector2 spawn_point;
         bool disable_player_hit = true;
 
-        public BigWave(Red_Boss parent) : base(Vector2.Zero, "red_boss_big_wave", 32, 80, Drawing.DrawOrder.BG_ENTITIES)
+        public static AnimatedSpriteRenderer GetSprite() => new("red_boss_big_wave", 32, 80,
+            new Anim("move", new int[] { 0, 1 }, 8),
+            new Anim("rise", new int[] { 2,1,0 }, 8, false),
+            new Anim("fall", new int[] { 1, 2, 3 }, 8, false)
+            );
+
+        public BigWave(Red_Boss parent) : base(Vector2.Zero, GetSprite(), Drawing.DrawOrder.BG_ENTITIES)
         {
             spawn_point = MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid) + new Vector2(80, 48);
-
-            AddAnimation("move", CreateAnimFrameArray(0, 1), 8);
-            AddAnimation("rise", CreateAnimFrameArray(2, 1, 0), 8, false);
-            AddAnimation("fall", CreateAnimFrameArray(1, 2, 3), 8, false);
 
             exists = false;
             immovable = true;
@@ -521,17 +527,15 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
 
         IEnumerator state;
 
-        public Tentacle(int index) : base(Vector2.Zero, "red_boss_warning", 10, 10, Drawing.DrawOrder.ENTITIES)
+        public Tentacle(int index) : base(Vector2.Zero, new AnimatedSpriteRenderer("red_boss_warning", 10, 10, new Anim("move",new int[] { 0, 1 },8)), Drawing.DrawOrder.ENTITIES)
         {
-            AddAnimation("move", CreateAnimFrameArray(0, 1), 8);
-            Play("move");
             t_index = index;
             immovable = true;
 
-            tentacle = new(Vector2.Zero, "red_boss_tentacle", 10, 64, Drawing.DrawOrder.ENTITIES);
-            tentacle.AddAnimation("move", CreateAnimFrameArray(0, 1), 8);
-            tentacle.Play("move");
-            tentacle.exists = false;
+            tentacle = new(Vector2.Zero, new AnimatedSpriteRenderer("red_boss_tentacle", 10, 64, new Anim("move", new int[] { 0, 1 }, 8)), Drawing.DrawOrder.ENTITIES)
+            {
+                exists = false
+            };
         }
 
         public void Spawn(Touching dir, Red_Boss parent)
@@ -634,10 +638,8 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
     {
         Red_Boss parent;
 
-        public Ripple(Red_Boss parent) : base(parent.Position, "red_boss_ripple", 48, 8, Drawing.DrawOrder.BG_ENTITIES)
+        public Ripple(Red_Boss parent) : base(parent.Position, new AnimatedSpriteRenderer("red_boss_ripple", 48, 8, new Anim("a", new int[] { 0, 1 },12)), Drawing.DrawOrder.BG_ENTITIES)
         {
-            AddAnimation("a", CreateAnimFrameArray(0, 1), 12);
-            Play("a");
             this.parent = parent;
         }
 
@@ -656,11 +658,14 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
 
         IEnumerator state;
 
-        public SplashBullet(Vector2 startPos) : base(startPos, "red_boss_bullet", 8, 8, Drawing.DrawOrder.FG_SPRITES)
+        public static AnimatedSpriteRenderer GetSprite() => new("red_boss_bullet", 8, 8,
+            new Anim("move", new int[] { 0, 1 },12),
+            new Anim("explode",new int[] { 2, 3, 4 },14,false)
+            );
+
+        public SplashBullet(Vector2 startPos) : base(startPos, GetSprite(), Drawing.DrawOrder.FG_SPRITES)
         {
             shadow = new Shadow(this, Vector2.Zero);
-            AddAnimation("move", CreateAnimFrameArray(0, 1), 12);
-            AddAnimation("explode", CreateAnimFrameArray(2, 3, 4), 14, false);
             this.startPos = startPos;
             parabola = new(this, 48, 1.2f + (float)GlobalState.RNG.NextDouble());
         }

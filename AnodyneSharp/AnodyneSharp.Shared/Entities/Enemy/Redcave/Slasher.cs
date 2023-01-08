@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Entities.Gadget;
 using AnodyneSharp.FSM;
 using AnodyneSharp.Registry;
@@ -29,22 +30,23 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
 
         int _health = 3;
 
+        public static AnimatedSpriteRenderer GetSprite() => new("f_slasher", 24, 24,
+            new Anim("float_d", new int[] { 0, 1 }, 3),
+            new Anim("float_l", new int[] { 2, 3 }, 3),
+            new Anim("float_u", new int[] { 4, 5 }, 3),
+            new Anim("warning_d", new int[] { 6, 6 }, 10, false), //Duplicate the last frame
+            new Anim("warning_l", new int[] { 7, 7 }, 10, false),
+            new Anim("warning_u", new int[] { 8, 8 }, 10, false),
+            new Anim("attack_d", new int[] { 9, 9 }, 10, false),
+            new Anim("attack_l", new int[] { 10, 10 }, 10, false),
+            new Anim("attack_u", new int[] { 11, 11 }, 10, false),
+            new Anim("die", new int[] { 9, 10, 11, 11 }, 3, false)
+            );
+
         public Slasher(EntityPreset preset, Player p)
-            : base(preset, preset.Position, "f_slasher", 24, 24, Drawing.DrawOrder.ENTITIES, 1, true)
+            : base(preset, preset.Position, GetSprite(), Drawing.DrawOrder.ENTITIES, 1, true)
         {
-            AddAnimation("float_d", CreateAnimFrameArray(0, 1), 3);
-            AddAnimation("float_l", CreateAnimFrameArray(2, 3), 3);
-            AddAnimation("float_u", CreateAnimFrameArray(4, 5), 3);
-            AddAnimation("warning_d", CreateAnimFrameArray(6, 6), 10, false); //Duplicate the last frame
-            AddAnimation("warning_l", CreateAnimFrameArray(7, 7), 10, false);
-            AddAnimation("warning_u", CreateAnimFrameArray(8, 8), 10, false);
-            AddAnimation("attack_d", CreateAnimFrameArray(9, 9), 10, false);
-            AddAnimation("attack_l", CreateAnimFrameArray(10, 10), 10, false);
-            AddAnimation("attack_u", CreateAnimFrameArray(11, 11), 10, false);
-            AddAnimation("die", CreateAnimFrameArray(9, 10, 11, 11), 3, false);
-
-            Play("float_d");
-
+            
             width = height = 16;
 
             MapInteraction = false;
@@ -238,8 +240,8 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
         [Collision(typeof(Player))]
         private class Slash : Entity
         {
-            public Slash(Vector2 pos, string textureName, int frameWidth, int frameHeight, DrawOrder layer)
-                : base(pos, textureName, frameWidth, frameHeight, layer)
+            public Slash(Vector2 pos, AnimatedSpriteRenderer sprite, DrawOrder layer)
+                : base(pos, sprite, layer)
             {
                 exists = false;
             }
@@ -278,12 +280,14 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
 
         private class HorizontalSlash : Slash
         {
-            public HorizontalSlash()
-                : base(Vector2.Zero, "f_slasher_wide", 48, 16, DrawOrder.ENTITIES)
-            {
-                AddAnimation("wide", CreateAnimFrameArray(0, 1, 2), 12, false);
-                AddAnimation("tall", CreateAnimFrameArray(3, 4, 5), 12, false);
+            public static AnimatedSpriteRenderer GetSprite() => new("f_slasher_wide", 48, 16,
+                new Anim("wide", new int[] { 0, 1, 2 },12,false),
+                new Anim("tall", new int[] { 3, 4, 5 },12,false)
+                );
 
+            public HorizontalSlash()
+                : base(Vector2.Zero, GetSprite(), DrawOrder.ENTITIES)
+            {
                 width = 36;
                 height = 10;
             }
@@ -344,13 +348,14 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
 
         private class VerticalSlash : Slash
         {
+            public static AnimatedSpriteRenderer GetSprite() => new("f_slasher_long", 16, 48,
+                new Anim("wide", new int[] { 0, 1, 2 }, 12, false),
+                new Anim("tall", new int[] { 3, 4, 5 }, 12, false)
+                );
+
             public VerticalSlash()
-                : base(Vector2.Zero, "f_slasher_long", 16, 48, DrawOrder.ENTITIES)
+                : base(Vector2.Zero, GetSprite(), DrawOrder.ENTITIES)
             {
-
-                AddAnimation("wide", CreateAnimFrameArray(0, 1, 2), 12, false);
-                AddAnimation("tall", CreateAnimFrameArray(3, 4, 5), 12, false);
-
                 width = 10;
                 height = 36;
             }

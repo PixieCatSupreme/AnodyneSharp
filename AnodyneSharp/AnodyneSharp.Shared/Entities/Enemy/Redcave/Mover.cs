@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Entities.Gadget;
 using AnodyneSharp.FSM;
 using AnodyneSharp.Registry;
@@ -27,17 +28,17 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
 
         private IState _state;
 
+        public static AnimatedSpriteRenderer GetSprite() => new("f_mover", 16, 16,
+            new Anim("Foom", new int[] { 0, 1 },4, false),
+            new Anim("Die", new int[] { 0, 1, 2, 1, 2, 1, 2 },12,false)
+            );
+
         public Mover(EntityPreset preset, Player player)
-             : base(preset.Position, "f_mover", 16, 16, DrawOrder.ENTITIES)
+             : base(preset.Position, GetSprite(), DrawOrder.ENTITIES)
         {
             _preset = preset;
 
             _player = player;
-
-            AddAnimation("Foom", CreateAnimFrameArray(0, 1), 4, false);
-            AddAnimation("Die", CreateAnimFrameArray(0, 1, 2, 1, 2, 1, 2), 12, false);
-
-            Play("Foom");
 
             drag = new Vector2(100);
 

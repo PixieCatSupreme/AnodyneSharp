@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.FSM;
 using AnodyneSharp.Sounds;
 using Microsoft.Xna.Framework;
@@ -17,12 +18,17 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
         private IState _state;
         private Laser _laser;
 
-        public OnOffLaser(EntityPreset preset, Player player)
-            : base(preset.Position, "on_off_shooter", 16, 16, DrawOrder.ENTITIES)
+        public static AnimatedSpriteRenderer GetSprite(int frame)
         {
-            int[] shooter_closed;
-            int[] shooter_open;
+            int[] shooter_closed = frame == 3 || frame == 4 ? new int[] { 3, 4 } : new int[] { 0, 1 };
+            int[] shooter_open = frame == 3 || frame == 4 ? new int[] { 5 } : new int[] { 2 };
 
+            return new("on_off_shooter", 16, 16, new Anim("shooter_closed", shooter_closed, 2), new Anim("shooter_open", shooter_open, 1));
+        }
+
+        public OnOffLaser(EntityPreset preset, Player player)
+            : base(preset.Position, GetSprite(), DrawOrder.ENTITIES)
+        {
             immovable = true;
 
             facing = (preset.Frame) switch
@@ -33,34 +39,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
                 _ => Facing.UP,
             };
 
-            switch (facing)
-            {
-                case Facing.LEFT:
-                    rotation = MathHelper.ToRadians(-90);
-
-                    shooter_closed = CreateAnimFrameArray(3, 4);
-                    shooter_open = CreateAnimFrameArray(5);
-                    break;
-                case Facing.UP:
-                    shooter_closed = CreateAnimFrameArray(3, 4);
-                    shooter_open = CreateAnimFrameArray(5);
-                    break;
-                case Facing.RIGHT:
-                    rotation = MathHelper.ToRadians(-90);
-
-                    shooter_closed = CreateAnimFrameArray(0, 1);
-                    shooter_open = CreateAnimFrameArray(2);
-                    break;
-                default:
-                    shooter_closed = CreateAnimFrameArray(0, 1);
-                    shooter_open = CreateAnimFrameArray(2);
-                    break;
-            }
-
-            AddAnimation("shooter_closed", shooter_closed, 2);
-            AddAnimation("shooter_open", shooter_open);
-
-            
+            rotation = facing == Facing.RIGHT || facing == Facing.LEFT ? MathHelper.ToRadians(-90) : 0;            
 
             _laser = new Laser(Position, facing);
 
@@ -140,8 +119,15 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
         [Collision(typeof(Player), typeof(Mover))]
         class Laser : Entity
         {
+            public static AnimatedSpriteRenderer GetSprite(bool horiz) => new(horiz ? "f_on_off_h" : "f_on_off_v", horiz ? 144 : 16, horiz ? 16 : 144,
+                new Anim("idle", new int[] { 0 },1),
+                new Anim("steam_is_harmful",new int[] { 3, 4, 5, 6 }, 15),
+                new Anim("recede", new int[] { 0, 1, 2 },5,false),
+                new Anim("emerge", new int[] { 2, 1, 0 },5,false)
+                );
+
             public Laser(Vector2 pos, Facing direction)
-                : base(pos, "f_on_off_h", 144, 16, DrawOrder.ENTITIES)
+                : base(pos, GetSprite(direction == Facing.LEFT || direction == Facing.RIGHT), DrawOrder.ENTITIES)
             {
                 switch (direction)
                 {
@@ -153,7 +139,6 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
                         offset = new Vector2(16, 4);
                         break;
                     case Facing.UP:
-                        SetTexture("f_on_off_v", 16, 144);
 
                         _flip = SpriteEffects.FlipVertically;
 
@@ -174,7 +159,6 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
                         break;
                     default:
                     case Facing.DOWN:
-                        SetTexture("f_on_off_v", 16, 144);
 
                         width = 8;
                         height = 112;
@@ -183,12 +167,6 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
                         offset = new Vector2(4, 16);
                         break;
                 }
-
-                AddAnimation("steam_is_harmful", CreateAnimFrameArray(3, 4, 5, 6), 15, true);
-                AddAnimation("recede", CreateAnimFrameArray(0, 1, 2), 5, false);
-                AddAnimation("emerge", CreateAnimFrameArray(2, 1, 0), 5, false);
-
-                SetFrame(0);
 
                 visible = false;
             }

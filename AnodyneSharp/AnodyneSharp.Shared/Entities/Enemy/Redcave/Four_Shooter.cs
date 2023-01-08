@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,11 +14,14 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
 
         EntityPool<Bullet> bullets = new(12, () => new());
 
-        public Four_Shooter(EntityPreset preset, Player p) : base(preset.Position, "f_four_shooter", 16,16,Drawing.DrawOrder.ENTITIES)
+        public static AnimatedSpriteRenderer GetSprite() => new("f_four_shooter", 16, 16,
+            new Anim("idle",new int[] { 0 },1),
+            new Anim("axis_to_diag", new int[] { 0, 1, 2 },3,false),
+            new Anim("diag_to_axis",new int[] { 2, 1, 0 },3,false)
+            );
+
+        public Four_Shooter(EntityPreset preset, Player p) : base(preset.Position, GetSprite(), Drawing.DrawOrder.ENTITIES)
         {
-            AddAnimation("axis_to_diag", CreateAnimFrameArray(0, 1, 2), 3, false);
-            AddAnimation("diag_to_axis", CreateAnimFrameArray(2, 1, 0), 3, false);
-            SetFrame(0);
             immovable = true;
         }
 
@@ -62,10 +66,13 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
         [Collision(typeof(Player),MapCollision = true)]
         class Bullet : Entity
         {
-            public Bullet() : base(Vector2.Zero, "f_four_shooter_bullet", 8,8,Drawing.DrawOrder.FG_SPRITES)
+            public static AnimatedSpriteRenderer GetSprite() => new("f_four_shooter_bullet", 8, 8,
+                new Anim("move", new int[] { 0, 1 },12),
+                new Anim("explode", new int[] { 2, 3 },10,false)
+                );
+
+            public Bullet() : base(Vector2.Zero, GetSprite(), Drawing.DrawOrder.FG_SPRITES)
             {
-                AddAnimation("move",    CreateAnimFrameArray(0, 1), 12, true);
-                AddAnimation("explode", CreateAnimFrameArray(2, 3), 10, false);
                 MapInteraction = false;
 
                 width = height = 4;
