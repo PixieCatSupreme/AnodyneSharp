@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Registry;
 using Microsoft.Xna.Framework;
 using System;
@@ -16,9 +17,8 @@ namespace AnodyneSharp.Entities.Interactive
             _ => Facing.RIGHT
         };
 
-        public DungeonStatue(Vector2 pos, int frame) : base(pos, "big_statue", 32, 48, Drawing.DrawOrder.ENTITIES)
+        public DungeonStatue(Vector2 pos, int frame) : base(pos, new StaticSpriteRenderer("big_statue", 32, 48, frame), Drawing.DrawOrder.ENTITIES)
         {
-            SetFrame(frame);
             immovable = true;
             width = 30;
             height = 16;

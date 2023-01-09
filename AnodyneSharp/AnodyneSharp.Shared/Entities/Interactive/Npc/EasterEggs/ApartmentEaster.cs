@@ -12,8 +12,6 @@ namespace AnodyneSharp.Entities.Interactive.Npc.EasterEggs
         public ApartmentEaster(EntityPreset preset, Player p)
             : base(preset.Position, "randoms", 16, 16, Drawing.DrawOrder.ENTITIES)
         {
-            SetFrame(0);
-
             immovable = true;
         }
 

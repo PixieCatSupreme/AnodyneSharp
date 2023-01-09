@@ -140,6 +140,7 @@ namespace AnodyneSharp.Entities
             new Anim("jump_r", new int[] { 18, 19 }, 4),
             new Anim("jump_u", new int[] { 20, 21 }, 4),
             new Anim("jump_l", new int[] { 22, 23 }, 4),
+            new Anim("enter_fall", new int[] { 2 },1),
             new Anim("idle_climb", new int[] { 33 }, 1),
             new Anim("climb", new int[] { 34, 35 }, 8),
             new Anim("die", new int[] { 25, 26, 27, 24, 25, 26, 27, 24, 25, 26, 27, 32 },12, false)
@@ -206,7 +207,7 @@ namespace AnodyneSharp.Entities
                     offset.Y = 150;
                     SoundManager.PlaySoundEffect("fall_1");
                     angularVelocity = 400;
-                    SetFrame(2);
+                    Play("enter_fall");
                 }
                 enter_fall = false;
             }

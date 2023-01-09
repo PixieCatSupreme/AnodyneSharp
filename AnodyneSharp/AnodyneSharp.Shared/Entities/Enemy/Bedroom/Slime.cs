@@ -192,7 +192,8 @@ namespace AnodyneSharp.Entities.Enemy
             {
                 int o = GlobalState.IsCell || GlobalState.BoiEaster ? 4 : 0;
                 return new("slime_goo", 6, 6,
-                    new Anim("move",new int[] { 0 + o, 1 + o, 2 + o, 3 + o, 1 + o, 3 + o, 1 + o, 2 + o, 1 + o, 0 + o },framerate));
+                    new Anim("move",new int[] { 0 + o, 1 + o, 2 + o, 3 + o, 1 + o, 3 + o, 1 + o, 2 + o, 1 + o, 0 + o },framerate),
+                    new Anim("splash", new int[] { o },1));
             }
 
             public Goo() : base(Vector2.Zero, GetSprite(GlobalState.RNG.Next(5,10)), DrawOrder.PARTICLES)
@@ -223,7 +224,7 @@ namespace AnodyneSharp.Entities.Enemy
                         {
                             SoundManager.PlaySoundEffect("slime_splash");
                             shadow.exists = false;
-                            SetFrame(Frame);
+                            Play("splash");
                             velocity = Vector2.Zero;
                         })
                         .Update((state, time) => opacity -= 0.05f)

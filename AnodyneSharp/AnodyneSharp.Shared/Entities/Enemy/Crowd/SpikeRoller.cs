@@ -126,8 +126,6 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
                         break;
                 }
 
-                SetFrame(0);
-
                 visible = false;
             }
         }

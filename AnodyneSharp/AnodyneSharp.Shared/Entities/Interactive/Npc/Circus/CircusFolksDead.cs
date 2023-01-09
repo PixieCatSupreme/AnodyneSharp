@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,9 +9,8 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Circus
     class ArthurDead : Entity
     {
         public ArthurDead(EntityPreset preset, Player p)
-            : base(preset.Position, "arthur", 16, 16, Drawing.DrawOrder.ENTITIES)
+            : base(preset.Position, new StaticSpriteRenderer("arthur", 16, 16, 18), Drawing.DrawOrder.ENTITIES)
         {
-            SetFrame(18);
         }
     }
 
@@ -18,9 +18,8 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Circus
     class JavieraDead : Entity
     {
         public JavieraDead(EntityPreset preset, Player p)
-            : base(preset.Position, "javiera", 16, 16, Drawing.DrawOrder.ENTITIES)
+            : base(preset.Position, new StaticSpriteRenderer("javiera", 16, 16, 12), Drawing.DrawOrder.ENTITIES)
         {
-            SetFrame(12);
         }
     }
 }

@@ -45,6 +45,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Windmill
             Vector2 _center;
 
             public static AnimatedSpriteRenderer GetSprite(int start) => new("windmill_blade", 192, 192,
+                new Anim("idle", new int[] { start },1),
                 new Anim("rotate", Enumerable.Range(0, 32).Select(i => (start + i) % 24).ToArray(), 20)
                 );
 
@@ -54,8 +55,6 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Windmill
                 baseAngle = angle;
 
                 _center = center;
-
-                SetFrame(startFrame);
 
                 swapIndex = 24 - startFrame;
 

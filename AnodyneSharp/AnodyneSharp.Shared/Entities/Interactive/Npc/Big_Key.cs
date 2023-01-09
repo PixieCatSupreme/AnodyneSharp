@@ -25,19 +25,20 @@ namespace AnodyneSharp.Entities.Interactive
         Player _player;
         float radius;
 
-        public Big_Key(EntityPreset preset, Player p) : base(preset.Position, "key_green", 16, 16, Drawing.DrawOrder.ENTITIES)
+        public Big_Key(EntityPreset preset, Player p) : base(preset.Position, new StaticSpriteRenderer("key_green", 16, 16, preset.Frame), Drawing.DrawOrder.ENTITIES)
         {
             _preset = preset;
             _player = p;
-            SetFrame(preset.Frame);
             immovable = true;
 
             width = 9;
             offset.X = 4;
             Position.X += 4;
 
-            shadow = new(this, Vector2.One * 4);
-            shadow.visible = false;
+            shadow = new(this, Vector2.One * 4)
+            {
+                visible = false
+            };
 
             _sparkles = new(3, () => new());
         }

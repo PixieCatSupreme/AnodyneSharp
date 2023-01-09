@@ -10,19 +10,19 @@ using System.Linq;
 
 namespace AnodyneSharp.Entities.Base.Rendering
 {
-    public class AnimatedSpriteRenderer
+    public class AnimatedSpriteRenderer : ISpriteRenderer
     {
-        private string textureName;
-        private Spritesheet sprite;
-        private Dictionary<string,Anim> animations;
-        private Anim _curAnim;
+        string textureName;
+        Spritesheet sprite;
+        Dictionary<string,Anim> animations;
+        Anim _curAnim;
 
-        public Color color = Color.White;
+        public Color Color { get; set; } = Color.White;
 
         public int Width => sprite.Width;
         public int Height => sprite.Height;
 
-        public ILayerType layer;
+        public ILayerType Layer { get; set; }
 
         public string CurAnimName => _curAnim.name;
         public bool AnimFinished => _curAnim.Finished;
@@ -35,7 +35,7 @@ namespace AnodyneSharp.Entities.Base.Rendering
             sprite = new(ResourceManager.GetTexture(textureName),frameWidth,frameHeight);
             this.animations = animations.ToDictionary(a => a.name);
             _curAnim = animations[0];
-            this.layer = layer;
+            this.Layer = layer;
         }
         public AnimatedSpriteRenderer(string textureName, int frameWidth, int frameHeight, params Anim[] animations)
         {
@@ -43,11 +43,6 @@ namespace AnodyneSharp.Entities.Base.Rendering
             sprite = new(ResourceManager.GetTexture(textureName), frameWidth, frameHeight);
             this.animations = animations.ToDictionary(a => a.name);
             _curAnim = animations[0];
-        }
-
-        public void AddAnimation(Anim anim)
-        {
-            animations.TryAdd(anim.name, anim);
         }
 
         public bool PlayAnim(string name, bool force = false, int? newFramerate = null)
@@ -92,10 +87,15 @@ namespace AnodyneSharp.Entities.Base.Rendering
             SpriteDrawer.DrawSprite(sprite.Tex,
                 MathUtilities.CreateRectangle(position.X, position.Y + y_push, srect.Width * scale, srect.Height * scale),
                 srect,
-                color * opacity,
+                Color * opacity,
                 rotation,
                 flip,
-                layer.Z);
+                Layer.Z);
+        }
+
+        public void SetFrame(int index)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

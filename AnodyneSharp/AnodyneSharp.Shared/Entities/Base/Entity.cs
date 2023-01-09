@@ -27,7 +27,7 @@ namespace AnodyneSharp.Entities
 
         public Facing facing;
 
-        public AnimatedSpriteRenderer sprite;
+        public ISpriteRenderer sprite;
         
         public string CurAnimName => sprite.CurAnimName;
         public bool AnimFinished => sprite.AnimFinished;
@@ -36,7 +36,7 @@ namespace AnodyneSharp.Entities
 
         private ILayerType layer_cache; //TODO: remove cache when layer setting is fully moved to sprite init
         public DrawOrder layer { set { layer_def = new Layer(value, this); } }
-        public ILayerType layer_def { get { return sprite?.layer ?? layer_cache; } set { if (sprite is null) layer_cache = value; else sprite.layer = value; } }
+        public ILayerType layer_def { get { return sprite?.Layer ?? layer_cache; } set { if (sprite is null) layer_cache = value; else sprite.Layer = value; } }
 
         public Vector2 offset = Vector2.Zero;
         public float opacity = 1f;
@@ -74,24 +74,24 @@ namespace AnodyneSharp.Entities
         public Entity(Vector2 pos, string textureName, int frameWidth, int frameHeight, DrawOrder layer)
             : base(pos, frameWidth, frameHeight)
         {
-            sprite = new(textureName, frameWidth, frameHeight, new Layer(layer, this), ForcedFrame(0));
+            sprite = new StaticSpriteRenderer(textureName, frameWidth, frameHeight, 0, new Layer(layer, this));
         }
 
         public Entity(Vector2 pos, string textureName, int frameWidth, int frameHeight, ILayerType layer) 
             : base(pos,frameWidth, frameHeight)
         {
-            sprite = new(textureName,frameWidth, frameHeight, layer, ForcedFrame(0));
+            sprite = new StaticSpriteRenderer(textureName,frameWidth, frameHeight, 0, layer);
         }
 
-        public Entity(Vector2 pos, AnimatedSpriteRenderer sprite) : base(pos,sprite.Width,sprite.Height)
+        public Entity(Vector2 pos, ISpriteRenderer sprite) : base(pos,sprite.Width,sprite.Height)
         {
             this.sprite = sprite;
         }
 
-        public Entity(Vector2 pos, AnimatedSpriteRenderer sprite, DrawOrder layer) : base(pos,sprite.Width,sprite.Height)
+        public Entity(Vector2 pos, ISpriteRenderer sprite, DrawOrder layer) : base(pos,sprite.Width,sprite.Height)
         {
             this.sprite = sprite;
-            sprite.layer = new Layer(layer, this);
+            sprite.Layer = new Layer(layer, this);
         }
 
         protected virtual void AnimationChanged(string name) { }
@@ -141,28 +141,16 @@ namespace AnodyneSharp.Entities
             }
         }
 
-        private static Anim ForcedFrame(int frame)
-        {
-            return new Anim($"forcedframe{frame}", new int[] { frame }, 1);
-        }
-
         public void SetFrame(int frame)
         {
-            var anim = ForcedFrame(frame);
-            sprite.AddAnimation(anim);
-            sprite.PlayAnim(anim.name);
-        }
-
-        protected int[] CreateAnimFrameArray(params int[] frames)
-        {
-            return frames;
+            sprite.SetFrame(frame);
         }
 
         protected virtual bool SetTexture(string textureName, int frameWidth, int frameHeight, bool ignoreChaos = false, bool allowFailure = false)
         {
             if (sprite is null)
             {
-                sprite = new(textureName, frameWidth, frameHeight, layer_cache, ForcedFrame(0));
+                sprite = new StaticSpriteRenderer(textureName, frameWidth, frameHeight, 0, layer_cache);
                 return true;
             }
             return sprite.SetTexture(textureName, frameWidth, frameHeight, ignoreChaos, allowFailure);
@@ -197,7 +185,6 @@ namespace AnodyneSharp.Entities
                 _ => Facing.UP,
             };
         }
-
 
         public void FaceTowards(Vector2 target)
         {

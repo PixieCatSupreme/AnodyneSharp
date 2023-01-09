@@ -20,7 +20,8 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Blue
 
         private static AnimatedSpriteRenderer GetSprite() => new("blue_npcs", 16, 16,
             new Anim("normal", new int[] { 0}, 0, false),
-            new Anim("melt", new int[] { 2, 3, 4, 5, 6 }, 7, false)
+            new Anim("melt", new int[] { 2, 3, 4, 5, 6 }, 7, false),
+            new Anim("melted", new int[] { 6 },1)
         );
 
         public Snowman(EntityPreset preset, Player p)
@@ -30,7 +31,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Blue
 
             if (!preset.Alive)
             {
-                SetFrame(6);
+                Play("melted");
             }
 
             immovable = true;

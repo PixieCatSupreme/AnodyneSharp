@@ -35,12 +35,10 @@ namespace AnodyneSharp.Entities.Interactive
             new Anim("close", new int[] { 3, 2, 1, 0 }, 12, false)
             );
 
-        public Elevator(EntityPreset preset, Player p) : base(preset.Position, GetSprite(), Drawing.DrawOrder.ENTITIES)
+        public Elevator(EntityPreset preset, Player p) : base(preset.Position, GetSprite(), DrawOrder.ENTITIES)
         {
             menu = new(preset);
-
-            elevator_frame = new(preset.Position, "elevator", 32, 32, DrawOrder.ENTITIES);
-            elevator_frame.SetFrame(preset.Frame);
+            elevator_frame = new(preset.Position, new StaticSpriteRenderer("elevator", 32, 32, preset.Frame), DrawOrder.ENTITIES);
 
             openDetector = new(new((Position + Vector2.UnitY * 32).ToPoint(), new(width, height)));
             menuDetector = new(new(Position.ToPoint(), new(32, 20)));

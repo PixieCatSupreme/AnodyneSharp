@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -14,12 +15,10 @@ namespace AnodyneSharp.Entities.Gadget.Holes
         { }
 
         public Hole(Vector2 position, int frame)
-            : base(position, "hole", 16, 16, DrawOrder.MAP_BG2)
+            : base(position, new StaticSpriteRenderer("hole", 16, 16, frame), DrawOrder.MAP_BG2)
         {
             immovable = true;
             Solid = false;
-
-            SetFrame(frame);
         }
 
         public override void Collided(Entity other)

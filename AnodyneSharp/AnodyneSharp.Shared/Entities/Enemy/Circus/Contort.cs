@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Entities.Gadget;
 using AnodyneSharp.Registry;
 using Microsoft.Xna.Framework;
@@ -16,7 +17,6 @@ namespace AnodyneSharp.Entities.Enemy.Circus
 
         private float DeathTimer = 1;
 
-
         private List<ContortSmall> _smalls;
 
         private EntityPreset _preset;
@@ -24,7 +24,7 @@ namespace AnodyneSharp.Entities.Enemy.Circus
         private int health = 3;
 
         public Contort(EntityPreset preset, Player p)
-            : base(preset.Position, new("contort_big", 16, 32, new Anim("move",new int[] {0,1,2,1},9)), DrawOrder.ENTITIES)
+            : base(preset.Position, new AnimatedSpriteRenderer("contort_big", 16, 32, new Anim("move",new int[] {0,1,2,1},9)), DrawOrder.ENTITIES)
         {
             height = 12;
             width = 12;

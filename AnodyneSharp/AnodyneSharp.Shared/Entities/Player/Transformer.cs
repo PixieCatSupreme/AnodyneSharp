@@ -18,13 +18,16 @@ namespace AnodyneSharp.Entities
         {
             visible = false;
             player = p;
-            
-            selector = new(Vector2.Zero, new AnimatedSpriteRenderer("selector", 16, 16, new Anim("a", new int[] { 0, 1 }, 4)), Drawing.DrawOrder.ENTITIES);
-            selector.exists = false;
 
-            selected_tile = new(Vector2.Zero, "selector", 16, 16, Drawing.DrawOrder.BG_ENTITIES);
-            selected_tile.SetFrame(1);
-            selected_tile.exists = false;
+            selector = new(Vector2.Zero, new AnimatedSpriteRenderer("selector", 16, 16, new Anim("a", new int[] { 0, 1 }, 4)), Drawing.DrawOrder.ENTITIES)
+            {
+                exists = false
+            };
+
+            selected_tile = new(Vector2.Zero, new StaticSpriteRenderer("selector", 16, 16, 1), Drawing.DrawOrder.BG_ENTITIES)
+            {
+                exists = false
+            };
         }
 
         public void Reset()

@@ -402,8 +402,8 @@ namespace AnodyneSharp.Entities.Enemy.Circus
             _arthur.parabolaThing = new Parabola_Thing(_arthur, 24, 1.0f);
             _javiera.parabolaThing = new Parabola_Thing(_javiera, 18, 0.8f);
 
-            _arthur.SetFrame(1);
-            _javiera.SetFrame(1);
+            _arthur.Play("pre-fall");
+            _javiera.Play("pre-fall");
 
             float fallTimer = 0;
 
@@ -521,7 +521,8 @@ namespace AnodyneSharp.Entities.Enemy.Circus
                     new Anim("stunned", new int[] { 8, 9 }, 6),
                     new Anim("wobble", new int[] { 16, 17 }, 8),
                     new Anim("fall_1", new int[] { 10 }, 8),
-                    new Anim("fall", new int[] { 10, 11, 12, 13, 14, 15, 6 }, 2, false)
+                    new Anim("fall", new int[] { 10, 11, 12, 13, 14, 15, 6 }, 2, false),
+                    new Anim("pre-fall", new int[] { 1 }, 1)
                     );
             }
 
@@ -658,7 +659,8 @@ namespace AnodyneSharp.Entities.Enemy.Circus
                     new Anim("walk_u", new int[] { 2, 3 }, 8),
                     new Anim("walk_r", new int[] { 4, 5 }, 8),
                     new Anim("juggle", new int[] { 0, 1 }, 8),
-                    new Anim("fall", new int[] { 6, 7, 8, 9, 10, 11, 12 }, 2, false)
+                    new Anim("fall", new int[] { 6, 7, 8, 9, 10, 11, 12 }, 2, false),
+                    new Anim("pre-fall", new int[] { 1 },1)
                     );
             }
 

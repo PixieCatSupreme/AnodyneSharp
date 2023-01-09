@@ -1,12 +1,8 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Registry;
-using AnodyneSharp.Resources;
 using AnodyneSharp.Sounds;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace AnodyneSharp.Entities.Gadget.Treasures
 {
@@ -15,11 +11,9 @@ namespace AnodyneSharp.Entities.Gadget.Treasures
         protected int _dialogueID;
 
         public BaseTreasure(string textureName, Vector2 pos, int frameWidth, int frameHeight, int frame, int dialogueID = -1)
-            : base(pos, textureName, frameWidth, frameHeight, DrawOrder.FG_SPRITES)
+            : base(pos, new StaticSpriteRenderer(textureName, frameWidth, frameHeight, frame), DrawOrder.FG_SPRITES)
         {
             _dialogueID = dialogueID;
-
-            SetFrame(frame);
         }
 
         public BaseTreasure(string textureName, Vector2 pos, int frame, int dialogueID = -1)

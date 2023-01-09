@@ -34,7 +34,6 @@ namespace AnodyneSharp.Entities.Gadget.Doors
             _preview = new NexusPreview(preset.Position, LinkedMapName, player);
 
             _nexusGem = new Entity(new Vector2(Position.X, Position.Y - 4), "nexus_cardgem", 32, 16, DrawOrder.ENTITIES);
-            _nexusGem.SetFrame(0);
             _nexusGem.visible = CardDataManager.GotAllNormalCards(LinkedMapName);
         }
 
@@ -103,7 +102,7 @@ namespace AnodyneSharp.Entities.Gadget.Doors
 
                 _player = player;
 
-                sprite.color = target = start = new Color(0.5f, 0.5f, 0.5f, 1f);
+                sprite.Color = target = start = new Color(0.5f, 0.5f, 0.5f, 1f);
             }
 
             public void SetActive(bool active)
@@ -112,7 +111,7 @@ namespace AnodyneSharp.Entities.Gadget.Doors
 
                 _playerInArea = active;
 
-                start = sprite.color;
+                start = sprite.Color;
                 progress = 0;
 
                 if (active)
@@ -129,11 +128,11 @@ namespace AnodyneSharp.Entities.Gadget.Doors
 
             public override void Update()
             {
-                if (sprite.color != target)
+                if (sprite.Color != target)
                 {
                     progress = Math.Min(progress + 1.2f * GameTimes.DeltaTime, 1f);
 
-                    sprite.color = Color.Lerp(start, target, progress);
+                    sprite.Color = Color.Lerp(start, target, progress);
                 }
 
                 if (_playerInArea && !_player.Hitbox.Intersects(Hitbox))

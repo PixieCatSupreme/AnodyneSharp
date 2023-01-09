@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Registry;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.Registry;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,9 +10,8 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Cell
     class CellBody : Entity
     {
         public CellBody(EntityPreset preset, Player p) 
-            : base(preset.Position, "cell_bodies", 16, 16, Drawing.DrawOrder.ENTITIES)
+            : base(preset.Position, new StaticSpriteRenderer("cell_bodies", 16, 16, preset.Frame), Drawing.DrawOrder.ENTITIES)
         {
-            SetFrame(preset.Frame);
         }
     }
 }

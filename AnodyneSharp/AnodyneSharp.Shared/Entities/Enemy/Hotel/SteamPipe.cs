@@ -20,13 +20,11 @@ namespace AnodyneSharp.Entities.Enemy.Hotel
         public bool PlayerCollided;
 
         public SteamPipe(EntityPreset preset, Player player)
-            : base(preset.Position, "steam_pipe", 16, 16, DrawOrder.ENTITIES)
+            : base(preset.Position, new StaticSpriteRenderer("steam_pipe", 16, 16, preset.Frame), DrawOrder.ENTITIES)
         {
             _player = player;
 
             Vector2 startPos = Vector2.Zero;
-
-            SetFrame(preset.Frame);
 
             switch (Frame)
             {
