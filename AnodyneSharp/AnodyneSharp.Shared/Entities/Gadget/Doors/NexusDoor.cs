@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Resources;
 using Microsoft.Xna.Framework;
@@ -79,8 +80,19 @@ namespace AnodyneSharp.Entities.Gadget.Doors
             Player _player;
             bool _playerInArea;
 
+            static int AnimStart(string map)
+            {
+                int mapID = (int)Enum.Parse(typeof(GameConstants.MapOrder), map);
+                return mapID * 4;
+            }
+
+            public static AnimatedSpriteRenderer GetSprite(int start) => new("nexus_door_preview_overlay", 32, 32,
+                    new Anim("stop",new int[] { start },1),
+                    new Anim("preview", new int[] { start, start + 1, start + 2, start + 3 },10)
+                );
+
             public NexusPreview(Vector2 position, string map, Player player)
-                : base(position, "nexus_door_preview_overlay", 32, 32, DrawOrder.BG_ENTITIES)
+                : base(position, GetSprite(AnimStart(map)), DrawOrder.BG_ENTITIES)
             {
                 height += 25;
 
@@ -89,17 +101,9 @@ namespace AnodyneSharp.Entities.Gadget.Doors
                     exists = false;
                 }
 
-                int mapID = (int)Enum.Parse(typeof(GameConstants.MapOrder), map);
-                int animStart = mapID * 4;
-
-                AddAnimation("preview", CreateAnimFrameArray(animStart, animStart + 1, animStart + 2, animStart + 3), 10);
-                AddAnimation("stop", CreateAnimFrameArray(animStart), 10);
-
                 _player = player;
 
                 sprite.color = target = start = new Color(0.5f, 0.5f, 0.5f, 1f);
-
-                Play("stop");
             }
 
             public void SetActive(bool active)

@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Registry;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
@@ -13,8 +14,13 @@ namespace AnodyneSharp.Entities.Gadget.Doors
     {
         bool playerCollission;
 
+        public static AnimatedSpriteRenderer GetSprite(int off_frame) => new("nexus_pad", 32, 32,
+                new Anim("off",new int[] { off_frame },1),
+                new Anim("on", new int[] { off_frame + 1 },1)
+            );
+
         public NexusPad(EntityPreset preset, Player player)
-            : base(preset, player, "nexus_pad", 32, 32, null)
+            : base(preset, player, GetSprite(GlobalState.IsCell ? 2 : 0), null)
         {
             width = 22;
             height = 18;
@@ -22,18 +28,6 @@ namespace AnodyneSharp.Entities.Gadget.Doors
 
             Position += new Vector2(6, 6);
             teleportOffset = new Vector2(10, 34);
-
-            if (GlobalState.IsCell)
-            {
-                AddAnimation("on", CreateAnimFrameArray(3), 12, false);
-                AddAnimation("off", CreateAnimFrameArray(2), 12, false);
-            }
-            else
-            {
-                AddAnimation("on", CreateAnimFrameArray(1), 12, false);
-                AddAnimation("off", CreateAnimFrameArray(0), 12, false);
-            }
-            Play("off");
 
             GlobalState.events.ActivatedNexusPortals.Add(GlobalState.CURRENT_MAP_NAME);
         }

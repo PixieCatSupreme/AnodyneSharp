@@ -60,6 +60,11 @@ namespace AnodyneSharp.Entities
             }
         }
 
+        public Entity(Vector2 pos, int w=0, int h=0) : base(pos,w,h)
+        {
+            visible = false;
+        }
+
         public Entity(Vector2 pos, DrawOrder layer)
             : base(pos)
         {

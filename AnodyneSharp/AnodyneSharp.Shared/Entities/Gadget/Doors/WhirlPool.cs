@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Entities.Interactive.Npc;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.Entities.Interactive.Npc;
 using AnodyneSharp.Registry;
 using Microsoft.Xna.Framework;
 using System;
@@ -12,13 +13,15 @@ namespace AnodyneSharp.Entities.Gadget.Doors
     {
         private EntityPreset _preset;
 
-        public WhirlPool(EntityPreset preset, Player player)
-            : base(preset, player, "whirlpool", 16, 16, null)
-        {
-            AddAnimation("whirl", CreateAnimFrameArray(0, 1), 6, true);
-            AddAnimation("transition", CreateAnimFrameArray(3, 4, 4), 6, false);
-            AddAnimation("whirl_red", CreateAnimFrameArray(4, 5), 6, true);
+        public static AnimatedSpriteRenderer GetSprite() => new("whirlpool", 16, 16,
+            new Anim("whirl", new int[] { 0, 1 }, 6),
+            new Anim("transition", new int[] { 3, 4, 4 },6,false),
+            new Anim("whirl_red", new int[] { 4, 5 },6)
+            );
 
+        public WhirlPool(EntityPreset preset, Player player)
+            : base(preset, player, GetSprite(), null)
+        {
             _preset = preset;
 
             if (GlobalState.events.GetEvent("fisherman.dead") != 0)

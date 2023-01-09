@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Logging;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
@@ -34,11 +35,7 @@ namespace AnodyneSharp.Entities.Gadget
         public bool Active = true;
 
         public Door(EntityPreset preset, Player player, string? sfx = "enter_door")
-            : this(preset, player, "doors", 16, 16, sfx)
-        { }
-
-        public Door(EntityPreset preset, Player player, string textureName, int width, int height, string? sfx = "enter_door")
-            : base(preset.Position, textureName, width, height, DrawOrder.BG_ENTITIES)
+            : base(preset.Position,16,16)
         {
             _linkedDoor = EntityManager.GetLinkedDoor(preset);
             teleportOffset = Vector2.Zero;
@@ -46,7 +43,20 @@ namespace AnodyneSharp.Entities.Gadget
             immovable = true;
 
             _player = player;
-            player_on_door = player.Hitbox.Intersects(this.Hitbox);
+            player_on_door = player.Hitbox.Intersects(Hitbox);
+
+            _sfx = sfx;
+        }
+
+        public Door(EntityPreset preset, Player p, AnimatedSpriteRenderer sprite, string? sfx = "enter_door") : base(preset.Position, sprite, DrawOrder.BG_ENTITIES)
+        {
+            _linkedDoor = EntityManager.GetLinkedDoor(preset);
+            teleportOffset = Vector2.Zero;
+
+            immovable = true;
+
+            _player = p;
+            player_on_door = p.Hitbox.Intersects(Hitbox);
 
             _sfx = sfx;
         }
@@ -54,13 +64,13 @@ namespace AnodyneSharp.Entities.Gadget
         protected override void CenterOffset(bool updatePos = true)
         {
             base.CenterOffset(updatePos);
-            player_on_door = _player.Hitbox.Intersects(this.Hitbox);
+            player_on_door = _player.Hitbox.Intersects(Hitbox);
         }
 
         public override void Update()
         {
             base.Update();
-            if(!_player.Hitbox.Intersects(this.Hitbox))
+            if(!_player.Hitbox.Intersects(Hitbox))
             {
                 player_on_door = false;
             }
