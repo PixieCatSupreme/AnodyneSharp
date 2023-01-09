@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.FSM;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.FSM;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 using AnodyneSharp.Utilities;
@@ -15,12 +16,19 @@ namespace AnodyneSharp.Entities.Gadget
     {
         protected Player _player;
 
-        public BigGate(EntityPreset preset, Player p) : base(preset, "gate_green", 32, 16, Drawing.DrawOrder.ENTITIES)
+        public static AnimatedSpriteRenderer GetSprite() => new("gate_green", 32, 16,
+            new Anim("0", new int[] { 0 },1),
+            new Anim("1", new int[] { 1 }, 1),
+            new Anim("2", new int[] { 2 }, 1),
+            new Anim("3", new int[] { 3 }, 1),
+            new Anim("4", new int[] { 4 }, 1)
+            );
+
+        public BigGate(EntityPreset preset, Player p) : base(preset, GetSprite(), Drawing.DrawOrder.ENTITIES)
         {
             _sentinel.Position = Position + new Vector2(11, -3);
             _sentinel.width = 10;
             _player = p;
-            SetFrame(0);
         }
 
         protected IEnumerator<CutsceneEvent> OpeningSequence()
@@ -34,7 +42,7 @@ namespace AnodyneSharp.Entities.Gadget
                 GlobalState.screenShake.Shake(0.02f, 0.3f);
                 SoundManager.PlaySoundEffect("hit_ground_1");
                 if (i == 0) BreakLock();
-                SetFrame(i);
+                Play(i.ToString());
             }
             while (!MathUtilities.MoveTo(ref t, 0.8f, 1f)) yield return null;
             SoundManager.PlaySoundEffect("open");

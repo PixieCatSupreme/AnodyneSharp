@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Registry;
 using System;
 using System.Collections.Generic;
@@ -9,13 +10,16 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Hotel
     [NamedEntity("NPC", "generic", 12), Collision(typeof(Player))]
     class HotelGuy : Entity, Interactable
     {
+        public static AnimatedSpriteRenderer GetSprite() => new("hotel_npcs", 16, 16,
+            new Anim("idle_d", new int[] { 0 },1),
+            new Anim("idle_r", new int[] { 1 }, 1),
+            new Anim("idle_u", new int[] { 2 }, 1),
+            new Anim("idle_l", new int[] { 3 }, 1)
+            );
+
         public HotelGuy(EntityPreset preset, Player p)
-            : base(preset.Position, "hotel_npcs", 16, 16, Drawing.DrawOrder.ENTITIES)
+            : base(preset.Position, GetSprite(), Drawing.DrawOrder.ENTITIES)
         {
-            AddAnimation("idle_d", CreateAnimFrameArray(0), 8);
-            AddAnimation("idle_r", CreateAnimFrameArray(1), 8);
-            AddAnimation("idle_u", CreateAnimFrameArray(2), 8);
-            AddAnimation("idle_l", CreateAnimFrameArray(3), 8);
             Play("idle_u");
 
             immovable = true;

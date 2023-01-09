@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Registry;
 using System;
 using System.Collections.Generic;
@@ -11,12 +12,14 @@ namespace AnodyneSharp.Entities.Interactive.Npc.QuestNPCs
     {
         bool _played_quest = false;
 
+        public static AnimatedSpriteRenderer GetSprite() => new("beach_npcs", 16, 16,
+            new Anim("a", new int[] { 0 },1),
+            new Anim("turn", new int[] { 1 },1)
+            );
+
         public BeachQuest(EntityPreset preset, Player p) 
-            : base(preset.Position, "beach_npcs", 16, 16, Drawing.DrawOrder.ENTITIES)
+            : base(preset.Position, GetSprite(), Drawing.DrawOrder.ENTITIES)
         {
-            AddAnimation("a", CreateAnimFrameArray(0), 2, true);
-            AddAnimation("turn", CreateAnimFrameArray(1), 2, true);
-            Play("a");
             immovable = true;
         }
 

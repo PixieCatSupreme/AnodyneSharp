@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 using AnodyneSharp.UI;
@@ -29,8 +30,14 @@ namespace AnodyneSharp.Entities.Interactive
 
         private bool _chirp;
 
+        public static AnimatedSpriteRenderer GetSprite(int f) => new("life_cicada", 16, 16,
+            new Anim("idle", new int[] { f + 2, f + 3, f + 2, f + 3, f + 2, f + 2, f + 2, f + 2 },8),
+            new Anim("fly", new int[] { f, f + 1 },14),
+            new Anim("gnaw", new int[] { f + 2, f + 3 },14)
+            );
+
         public HealthCicada(HealthCicadaSentinel parent, EntityPreset preset, Player player)
-            : base(new Vector2(-16, 30), "life_cicada", 16, 16, DrawOrder.FG_SPRITES)
+            : base(new Vector2(-16, 30), GetSprite(preset.Frame), DrawOrder.FG_SPRITES)
         {
             _sentinel = parent;
 
@@ -39,12 +46,6 @@ namespace AnodyneSharp.Entities.Interactive
             _player = player;
 
             _chirp = false;
-
-            int f = preset.Frame;
-
-            AddAnimation("idle", CreateAnimFrameArray(f + 2, f + 3, f + 2, f + 3, f + 2, f + 2, f + 2, f + 2), 8);
-            AddAnimation("fly", CreateAnimFrameArray(f, f + 1), 14);
-            AddAnimation("gnaw", CreateAnimFrameArray(f + 2, f + 3), 14);
 
             _state = StateLogic();
 

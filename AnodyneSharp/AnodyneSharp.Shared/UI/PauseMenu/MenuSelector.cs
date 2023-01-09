@@ -1,5 +1,6 @@
 ﻿using AnodyneSharp.Drawing;
 using AnodyneSharp.Entities;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Resources;
 using Microsoft.Xna.Framework;
 using System;
@@ -10,15 +11,16 @@ namespace AnodyneSharp.UI.PauseMenu
 {
     public class MenuSelector : UIEntity
     {
-        public MenuSelector(DrawOrder layer = DrawOrder.SUBMENU_SELECTOR)
-            : base(Vector2.Zero, "arrows", 7, 7, layer)
-        {
-            AddAnimation("disabledLeft", CreateAnimFrameArray(0), 0, false);
-            AddAnimation("disabledRight", CreateAnimFrameArray(2), 0, false);
-            AddAnimation("enabledLeft", CreateAnimFrameArray(0, 1), 6, true);
-            AddAnimation("enabledRight", CreateAnimFrameArray(3, 2), 6, true);
+        public static AnimatedSpriteRenderer GetSprite() => new("arrows", 7, 7,
+            new Anim("disabledRight", new int[] { 2 },1),
+            new Anim("disabledLeft", new int[] { 0 },1),
+            new Anim("enabledLeft", new int[] { 0, 1 },6),
+            new Anim("enabledRight", new int[] { 3, 2 },6)
+            );
 
-            Play("disabledRight");
+        public MenuSelector(DrawOrder layer = DrawOrder.SUBMENU_SELECTOR)
+            : base(Vector2.Zero, GetSprite(), layer)
+        {
         }
     }
 }

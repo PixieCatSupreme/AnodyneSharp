@@ -100,19 +100,6 @@ namespace AnodyneSharp.Entities
             sprite.layer = new Layer(layer, this);
         }
 
-        /**
-         * Adds a new animation to the sprite.
-         * 
-         * @param	Name		What this animation should be called (e.g. "run").
-         * @param	Frames		An array of numbers indicating what frames to play in what order (e.g. 1, 2, 3).
-         * @param	FrameRate	The speed in frames per second that the animation should play at (e.g. 40 fps).
-         * @param	Looped		Whether or not the animation is looped or just plays once.
-         */
-        public void AddAnimation(string name, int[] frames, float frameRate = 0, bool looped = true)
-        {
-            sprite.AddAnimation(new Anim(name, frames, frameRate, looped));
-        }
-
         protected virtual void AnimationChanged(string name) { }
 
         /**

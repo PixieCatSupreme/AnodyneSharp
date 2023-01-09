@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Registry;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.Registry;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -11,13 +12,17 @@ namespace AnodyneSharp.Entities
     {
         Player follow;
         bool activated = true;
-        public Foot_Overlay(Player p) : base(p.Position, "overlay_water", 24, 24, Drawing.DrawOrder.FOOT_OVERLAY)
+
+        public static AnimatedSpriteRenderer GetSprite() => new("overlay_water", 24, 24,
+            new Anim("water", new int[] { 0, 1 },5),
+            new Anim("grass_go", new int[] { 4, 5 },8),
+            new Anim("grass_stop", new int[] { 5 },1)
+            );
+
+        public Foot_Overlay(Player p) : base(p.Position, GetSprite(), Drawing.DrawOrder.FOOT_OVERLAY)
         {
             follow = p;
             visible = false;
-            AddAnimation("water", CreateAnimFrameArray(0, 1), 5);
-            AddAnimation("grass_go", CreateAnimFrameArray(4, 5), 8);
-            AddAnimation("grass_stop", CreateAnimFrameArray(5), 8);
         }
 
         public void OnMapChange()

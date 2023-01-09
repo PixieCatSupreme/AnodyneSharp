@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Registry;
 using System;
 using System.Collections.Generic;
@@ -11,21 +12,21 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Space
     {
         private string _dialogue;
 
+        public static AnimatedSpriteRenderer GetSprite(int frame) => new("space_npcs", 32, 32,
+            new Anim("a",new int[] { frame, frame + 1 },4)
+            );
+
         public CubeKing(EntityPreset preset, Player p)
-            : base(preset.Position, "space_npcs", 32, 32, Drawing.DrawOrder.ENTITIES)
+            : base(preset.Position, GetSprite(preset.Frame), Drawing.DrawOrder.ENTITIES)
         {
             if (preset.Frame == 10)
             {
-                AddAnimation("a", CreateAnimFrameArray(10, 11), 4);
                 _dialogue = "gray";
             }
             else
             {
-                AddAnimation("a", CreateAnimFrameArray(12, 13), 4);
                 _dialogue = "color";
             }
-
-            Play("a");
 
             immovable = true;
         }

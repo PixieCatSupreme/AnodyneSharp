@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Registry;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.Registry;
 using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using System;
@@ -15,10 +16,8 @@ namespace AnodyneSharp.Entities.Interactive.Npc.RunningTradeNPCs
 
         List<ShopItem> _items;
 
-        public ShopKeep(EntityPreset preset, Player p) : base(preset.Position, "fields_npcs", 16, 16, Drawing.DrawOrder.ENTITIES)
+        public ShopKeep(EntityPreset preset, Player p) : base(preset.Position, new AnimatedSpriteRenderer("fields_npcs", 16, 16, new Anim("a",new int[] { 50, 51 },4)), Drawing.DrawOrder.ENTITIES)
         {
-            AddAnimation("a", CreateAnimFrameArray(50, 51), 4);
-            Play("a");
             immovable = true;
             _preset = preset;
 
@@ -97,10 +96,9 @@ namespace AnodyneSharp.Entities.Interactive.Npc.RunningTradeNPCs
         bool _checked = false;
         Vector2 _startPos;
 
-        public ShopItem(Vector2 pos, int frame) : base(pos,"fields_npcs",16,16,Drawing.DrawOrder.BG_ENTITIES)
+        public ShopItem(Vector2 pos, int frame) : base(pos,new AnimatedSpriteRenderer("fields_npcs",16,16, new Anim("a",new int[] { frame },1)),Drawing.DrawOrder.BG_ENTITIES)
         {
             _startPos = pos;
-            SetFrame(frame);
             immovable = true;
         }
 

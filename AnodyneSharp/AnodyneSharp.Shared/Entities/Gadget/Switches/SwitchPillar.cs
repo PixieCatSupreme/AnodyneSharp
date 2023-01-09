@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Registry;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 using System;
 using System.Collections.Generic;
@@ -15,15 +16,20 @@ namespace AnodyneSharp.Entities.Gadget.Switches
         const int upFrame = 0;
         const int downFrame = 1;
 
-        public SwitchPillar(EntityPreset preset, Player p) : base(preset.Position,"dame-switch-pillar",16,16,Drawing.DrawOrder.BG_ENTITIES)
+        public static AnimatedSpriteRenderer GetSprite() => new("dame-switch-pillar", 16, 16,
+            new Anim("up", new int[] { upFrame },1,false),
+            new Anim("down",new int[] { downFrame },1,false),
+            new Anim("dissolve",new int[] { upFrame, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, downFrame },15,false),
+            new Anim("solidify", new int[] { downFrame, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, upFrame },15,false)
+            );
+
+        public SwitchPillar(EntityPreset preset, Player p) : base(preset.Position,GetSprite(),Drawing.DrawOrder.BG_ENTITIES)
         {
             immovable = true;
             defaultFrame = 1 - preset.Frame; //Inverse of what the level editor suggests
             immovable = true;
 
-            AddAnimation("dissolve", CreateAnimFrameArray(upFrame, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, downFrame), 15, false);
-            AddAnimation("solidify", CreateAnimFrameArray(downFrame, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, upFrame), 15, false);
-            SetFrame(TargetFrame());
+            Play(TargetFrame() == upFrame ? "up" : "down");
             current = TargetFrame();
         }
 

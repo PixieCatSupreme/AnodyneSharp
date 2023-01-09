@@ -1,5 +1,6 @@
 ﻿using AnodyneSharp.Drawing;
 using AnodyneSharp.Entities;
+using AnodyneSharp.Entities.Base.Rendering;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -11,15 +12,15 @@ namespace AnodyneSharp.UI
     {
         private Broom _broom;
 
+        public static AnimatedSpriteRenderer GetSprite() => new("DustUI", 9, 9,
+            new Anim("default", new int[] { 4 },1),
+            new Anim("empty", new int[] { 0, 1, 2, 3, 4 },13,false),
+            new Anim("full", new int[] { 4, 3, 2, 1, 0 },13,false)
+            );
+
         public DustIcon(Vector2 pos, Broom broom)
-            : base(pos, "DustUI", 9, 9, DrawOrder.DUST_ICON)
+            : base(pos, GetSprite(), DrawOrder.DUST_ICON)
         {
-            AddAnimation("empty", CreateAnimFrameArray(0, 1, 2, 3, 4), 13, false);
-            AddAnimation("full", CreateAnimFrameArray(4, 3, 2, 1, 0), 13, false);
-            AddAnimation("default", CreateAnimFrameArray(4), 0, false);
-
-            Play("default");
-
             _broom = broom;
         }
 

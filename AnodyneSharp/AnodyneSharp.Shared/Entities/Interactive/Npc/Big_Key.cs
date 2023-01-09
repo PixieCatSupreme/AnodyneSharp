@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Logging;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.Logging;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 using AnodyneSharp.Utilities;
@@ -114,9 +115,8 @@ namespace AnodyneSharp.Entities.Interactive
 
         class Sparkle : Entity
         {
-            public Sparkle() : base(Vector2.Zero, "key_sparkle", 7, 7, Drawing.DrawOrder.FG_SPRITES)
+            public Sparkle() : base(Vector2.Zero, new AnimatedSpriteRenderer("key_sparkle", 7, 7, new Anim("sparkle",new int[] { 3, 2, 1, 0 },8,false)), Drawing.DrawOrder.FG_SPRITES)
             {
-                AddAnimation("sparkle", CreateAnimFrameArray(3, 2, 1, 0), 8, false);
             }
 
             public override void PostUpdate()

@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Sounds;
 using Microsoft.Xna.Framework;
 using System;
@@ -16,15 +17,15 @@ namespace AnodyneSharp.Entities.Gadget
         private bool playerCollision;
         private bool activated;
 
+        public static AnimatedSpriteRenderer GetSprite() => new("spring_pad", 16, 16,
+            new Anim("still", new int[] { 0 },1),
+            new Anim("pressed", new int[] { 1 },1),
+            new Anim("wobble", new int[] { 0, 2, 0, 1, 0, 2, 0, 1, 0, 0 },10,false)
+            );
+
         public SpringPad(EntityPreset preset, Player p)
-            : base(preset.Position, "spring_pad", 16, 16, DrawOrder.BG_ENTITIES)
+            : base(preset.Position, GetSprite(), DrawOrder.BG_ENTITIES)
         {
-            AddAnimation("still", CreateAnimFrameArray(0), 0, false);
-            AddAnimation("pressed", CreateAnimFrameArray(1), 0, false);
-            AddAnimation("wobble", CreateAnimFrameArray(0, 2, 0, 1, 0, 2, 0, 1, 0, 0), 10, false);
-
-            Play("still");
-
             switch (preset.Frame)
             {
                 case 1:

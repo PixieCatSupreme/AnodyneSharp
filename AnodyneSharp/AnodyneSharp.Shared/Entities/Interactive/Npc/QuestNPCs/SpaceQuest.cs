@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Registry;
 using System;
 using System.Collections.Generic;
@@ -12,11 +13,8 @@ namespace AnodyneSharp.Entities.Interactive.Npc.QuestNPCs
         bool _played_quest = false;
 
         public SpaceQuest(EntityPreset preset, Player p)
-            : base(preset.Position, "space_npcs", 16, 16, Drawing.DrawOrder.ENTITIES)
+            : base(preset.Position, new AnimatedSpriteRenderer("space_npcs", 16, 16, new Anim("a",new int[] { 0, 10, 1, 11 },10)), Drawing.DrawOrder.ENTITIES)
         {
-            AddAnimation("a", CreateAnimFrameArray(0, 10,1,11), 10, true);
-
-            Play("a");
             immovable = true;
         }
 

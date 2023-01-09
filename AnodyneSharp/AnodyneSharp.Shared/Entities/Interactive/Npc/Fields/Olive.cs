@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Registry;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.Registry;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections;
@@ -12,10 +13,13 @@ namespace AnodyneSharp.Entities.Interactive.Npc
     {
         IEnumerator _state;
 
-        public Olive(EntityPreset preset, Player p) : base(preset.Position, "forest_npcs", 16,16,Drawing.DrawOrder.ENTITIES)
+        public static AnimatedSpriteRenderer GetSprite() => new("forest_npcs", 16, 16,
+            new Anim("idle", new int[] { 30 },1),
+            new Anim("hop",new int[] { 32, 33, 34 },4,false)
+            );
+
+        public Olive(EntityPreset preset, Player p) : base(preset.Position, GetSprite(),Drawing.DrawOrder.ENTITIES)
         {
-            AddAnimation("idle", CreateAnimFrameArray(30), 4, true);
-            AddAnimation("hop", CreateAnimFrameArray(32, 33, 32), 4, false);
             _state = UpdateFunc();
             immovable = true;
         }

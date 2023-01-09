@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 
@@ -9,30 +10,28 @@ namespace AnodyneSharp.Entities.Gadget
     {
         private EntityPreset _preset;
         private bool IsTemp { get { return _preset.Frame >= 10; } }
-        private int ClosedFrame;
 
         private bool HeldDown;
         private Player _player;
 
-        public Gate(EntityPreset preset, Player p) : base(preset.Position, "gates", 16, 16, DrawOrder.ENTITIES)
+        public static AnimatedSpriteRenderer GetSprite(int closed) => new("gates", 16, 16,
+            new Anim("still", new int[] { closed },1),
+            new Anim("opened", new int[] { closed + 3 },1),
+            new Anim("close", new int[] { closed + 3, closed + 2, closed + 1, closed }, closed == 0 ? 10 : 8, false),
+            new Anim("open", new int[] { closed, closed + 1, closed + 2, closed + 3 }, closed == 0 ? 10 : 4, false)
+            );
+
+        public Gate(EntityPreset preset, Player p) : base(preset.Position, GetSprite(int.Parse(preset.TypeValue)), DrawOrder.ENTITIES)
         {
             _preset = preset;
             _player = p;
             immovable = true;
-
-            ClosedFrame = int.Parse(preset.TypeValue);
-            bool fast = ClosedFrame == 0;
             
-            AddAnimation("still", CreateAnimFrameArray(ClosedFrame));
-            AddAnimation("close", CreateAnimFrameArray(ClosedFrame + 3, ClosedFrame + 2, ClosedFrame + 1, ClosedFrame), fast ? 10 : 8, false);
-            AddAnimation("open", CreateAnimFrameArray(ClosedFrame, ClosedFrame + 1, ClosedFrame + 2, ClosedFrame + 3), fast ? 10 : 4, false);
-
-
             //Player holds down the gate when they stand on it on entering the screen
             HeldDown = p.Hitbox.Intersects(Hitbox);
             if(HeldDown && !ConditionSatisfied())
             {
-                SetFrame(ClosedFrame+3);
+                Play("opened");
                 Solid = false;
             }
             else

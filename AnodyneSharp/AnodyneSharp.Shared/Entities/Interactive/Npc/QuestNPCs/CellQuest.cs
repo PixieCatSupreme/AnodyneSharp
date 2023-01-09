@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Registry;
 using System;
 using System.Collections.Generic;
@@ -11,15 +12,16 @@ namespace AnodyneSharp.Entities.Interactive.Npc.QuestNPCs
     {
         bool _played_quest = false;
 
-        public CellQuest(EntityPreset preset, Player p)
-            : base(preset.Position, "cell_bodies", 16, 16, Drawing.DrawOrder.ENTITIES)
-        {
-            AddAnimation("idle_d", CreateAnimFrameArray(8));
-            AddAnimation("idle_r", CreateAnimFrameArray(9));
-            AddAnimation("idle_u", CreateAnimFrameArray(10));
-            AddAnimation("idle_l", CreateAnimFrameArray(11));
+        public static AnimatedSpriteRenderer GetSprite() => new("cell_bodies", 16, 16,
+            new Anim("idle_d", new int[] { 8 }, 1),
+            new Anim("idle_r", new int[] { 9 }, 1),
+            new Anim("idle_u", new int[] { 10 }, 1),
+            new Anim("idle_l", new int[] { 11 }, 1)
+            );
 
-            Play("idle_d");
+        public CellQuest(EntityPreset preset, Player p)
+            : base(preset.Position, GetSprite(), Drawing.DrawOrder.ENTITIES)
+        {
             immovable = true;
         }
 

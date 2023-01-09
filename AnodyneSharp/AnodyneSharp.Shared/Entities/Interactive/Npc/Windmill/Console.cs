@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Entities.Events;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.Entities.Events;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 using AnodyneSharp.Utilities;
@@ -13,16 +14,16 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Windmill
     [NamedEntity("Console", map: "WINDMILL", frames:0)]
     class Console : Entity, Interactable
     {
-        public Console(EntityPreset preset, Player p) : base(preset.Position, "windmill_inside", 48, 48, Drawing.DrawOrder.BG_ENTITIES)
+        public static AnimatedSpriteRenderer GetSprite() => new("windmill_inside", 48, 48,
+            new Anim("idle", new int[] { 1 },1),
+            new Anim("active", new int[] { 0, 1 },5)
+            );
+
+        public Console(EntityPreset preset, Player p) : base(preset.Position, GetSprite(), Drawing.DrawOrder.BG_ENTITIES)
         {
-            AddAnimation("active", CreateAnimFrameArray(0, 1), 5);
             if (GlobalState.events.GetEvent("WindmillOpened") == 0)
             {
                 Play("active");
-            }
-            else
-            {
-                SetFrame(1);
             }
             offset = Vector2.One * 16;
             Position += offset;
@@ -34,7 +35,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Windmill
             if (CurAnimName == "active")
             {
                 GlobalState.StartCutscene = WindmillCutscene();
-                SetFrame(1);
+                Play("idle");
             }
             SoundManager.PlaySoundEffect("get_small_health");
             return true;

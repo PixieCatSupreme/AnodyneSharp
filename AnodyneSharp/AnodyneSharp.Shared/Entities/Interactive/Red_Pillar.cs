@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Registry;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.Registry;
 using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using System;
@@ -15,10 +16,13 @@ namespace AnodyneSharp.Entities
         Chain collider;
         EntityPreset _preset;
 
-        public Red_Pillar(EntityPreset preset, Player p) : base(preset.Position, "red_pillar", 16, 80, Drawing.DrawOrder.BG_ENTITIES)
+        public static AnimatedSpriteRenderer GetSprite() => new("red_pillar", 16, 80,
+            new Anim("idle", new int[] { 0 },1),
+            new Anim("move", new int[] { 1, 2 },8)
+            );
+
+        public Red_Pillar(EntityPreset preset, Player p) : base(preset.Position, GetSprite(), Drawing.DrawOrder.BG_ENTITIES)
         {
-            AddAnimation("move", CreateAnimFrameArray(1, 2), 8);
-            SetFrame(0);
             immovable = true;
             _preset = preset;
             collider = new(this);
@@ -37,9 +41,7 @@ namespace AnodyneSharp.Entities
         IEnumerator<CutsceneEvent> Cutscene()
         {
             Play("move");
-            Entity ripple = new(Position + Vector2.UnitY * (height - 15), "red_pillar_ripple", 16, 16, Drawing.DrawOrder.ENTITIES);
-            ripple.AddAnimation("move", CreateAnimFrameArray(0, 1), 8);
-            ripple.Play("move");
+            Entity ripple = new(Position + Vector2.UnitY * (height - 15), new AnimatedSpriteRenderer("red_pillar_ripple", 16, 16, new Anim("move",new int[] { 0, 1 },8)), Drawing.DrawOrder.ENTITIES);
             GlobalState.SpawnEntity(ripple);
 
             Flicker(1.5f);
@@ -116,9 +118,8 @@ namespace AnodyneSharp.Entities
         {
             Red_Pillar _parent;
 
-            public Chain(Red_Pillar parent) : base(parent.Position + Vector2.UnitY * 16, 16, 16, Drawing.DrawOrder.ENTITIES)
+            public Chain(Red_Pillar parent) : base(parent.Position + Vector2.UnitY * 16, 16, 16)
             {
-                visible = false;
                 _parent = parent;
             }
 

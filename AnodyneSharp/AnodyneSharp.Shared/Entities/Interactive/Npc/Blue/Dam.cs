@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Registry;
 using System;
 using System.Collections.Generic;
@@ -11,20 +12,14 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Blue
     {
         private EntityPreset _preset;
 
-        public Dam(EntityPreset preset, Player p)
-            : base(preset.Position, GlobalState.CURRENT_MAP_NAME == "BLUE" ? "blue_npcs" : "happy_npcs", 16, 16, Drawing.DrawOrder.ENTITIES)
-        {
-            if (GlobalState.CURRENT_MAP_NAME == "BLUE")
-            {
-                AddAnimation("fall", CreateAnimFrameArray(10, 11, 12, 13, 14), 7, false);
-                SetFrame(10);
-            }
-            else
-            {
-                AddAnimation("fall", CreateAnimFrameArray(18, 19, 20, 21, 22), 7, false);
-                SetFrame(18);
-            }
+        public static AnimatedSpriteRenderer GetSprite(int o) => new(o == 8 ? "blue_npcs" : "happy_npcs", 16, 16,
+            new Anim("idle", new int[] { 10 + o },1),
+            new Anim("fall", new int[] { 10 + o, 11 + o, 12 + o, 13 + o, 14 + o },7,false)
+            );
 
+        public Dam(EntityPreset preset, Player p)
+            : base(preset.Position, GetSprite(GlobalState.CURRENT_MAP_NAME == "BLUE" ? 8 : 0), Drawing.DrawOrder.ENTITIES)
+        {
             immovable = true;
 
             _preset = preset;

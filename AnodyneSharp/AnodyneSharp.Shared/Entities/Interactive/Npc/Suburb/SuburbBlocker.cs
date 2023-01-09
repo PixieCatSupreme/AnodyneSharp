@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Utilities;
 using System;
@@ -15,16 +16,17 @@ namespace AnodyneSharp.Entities.Interactive.Npc.QuestNPCs
 
         bool dying;
 
+        public static AnimatedSpriteRenderer GetSprite() => new("suburb_walkers", 16, 16,
+            new Anim("walk_d", new int[] { 0, 1 }, 4),
+            new Anim("walk_r", new int[] { 2, 3 }, 4),
+            new Anim("walk_u", new int[] { 4, 5 }, 4),
+            new Anim("walk_l", new int[] { 6, 7 }, 4)
+            );
+
         public SuburbBlocker(EntityPreset preset, Player p)
-            : base(preset.Position, "suburb_walkers", 16, 16, Drawing.DrawOrder.ENTITIES)
+            : base(preset.Position, GetSprite(), Drawing.DrawOrder.ENTITIES)
         {
             _preset = preset;
-
-            AddAnimation("walk_d", CreateAnimFrameArray(0, 1), 4, true);
-            AddAnimation("walk_r", CreateAnimFrameArray(2, 3), 4, true);
-            AddAnimation("walk_u", CreateAnimFrameArray(4, 5), 4, true);
-            AddAnimation("walk_l", CreateAnimFrameArray(6, 7), 4, true);
-            Play("walk_d");
 
             immovable = true;
         }

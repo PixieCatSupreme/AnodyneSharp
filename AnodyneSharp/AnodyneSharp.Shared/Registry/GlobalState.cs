@@ -51,7 +51,7 @@ namespace AnodyneSharp.Registry
 
             public static Save GetSave(string path)
             {
-                string save = null;
+                string save;
                 try
                 {
                     save = File.ReadAllText(path);

@@ -1,4 +1,6 @@
-﻿using AnodyneSharp.Registry;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.Entities.Enemy.Hotel.Boss;
+using AnodyneSharp.Registry;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,11 +14,8 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Hotel
         private IEnumerator _stateLogic;
 
         public EyebossPreview(EntityPreset preset, Player p)
-            : base(preset.Position, "eye_boss_water", 24, 24, Drawing.DrawOrder.ENTITIES)
+            : base(preset.Position, WaterPhase.GetSprite(), Drawing.DrawOrder.ENTITIES)
         {
-            AddAnimation("blink", CreateAnimFrameArray( 0, 1, 2, 3, 2, 1, 0), 10, false);
-            AddAnimation("open", CreateAnimFrameArray(3, 2, 1, 0), 5, false);
-            AddAnimation("closed", CreateAnimFrameArray(3));
             Play("closed");
 
             immovable = true;

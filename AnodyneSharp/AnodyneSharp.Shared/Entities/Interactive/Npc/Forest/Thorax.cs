@@ -1,5 +1,6 @@
 ﻿using AnodyneSharp.Dialogue;
 using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Registry;
 using System;
 using System.Collections.Generic;
@@ -12,14 +13,15 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Forest
     {
         private Player _player;
 
-        public Thorax(EntityPreset preset, Player p)
-            : base(preset.Position, "forest_npcs", 16, 16, DrawOrder.ENTITIES)
-        {
-            AddAnimation("move", CreateAnimFrameArray(0, 1), 4);
-            AddAnimation("stand", CreateAnimFrameArray(1), 0);
-            AddAnimation("squat", CreateAnimFrameArray(0), 0);
-            Play("move");
+        public static AnimatedSpriteRenderer GetSprite() => new("forest_npcs", 16, 16,
+            new Anim("move", new int[] { 0, 1 },4),
+            new Anim("stand", new int[] { 1 },1),
+            new Anim("squat", new int[] { 0 },1)
+            );
 
+        public Thorax(EntityPreset preset, Player p)
+            : base(preset.Position, GetSprite(), DrawOrder.ENTITIES)
+        {
             _player = p;
 
             immovable = true;

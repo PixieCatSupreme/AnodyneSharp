@@ -1,5 +1,6 @@
 ﻿using AnodyneSharp.Dialogue;
 using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 using System;
@@ -11,13 +12,14 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Forest
     [NamedEntity("Forest_NPC", null, 20), Collision(typeof(Player), typeof(Broom))]
     class Mushroom : Entity
     {
-        public Mushroom(EntityPreset preset, Player p)
-            : base(preset.Position, "forest_npcs", 16, 16, DrawOrder.ENTITIES)
-        {
-            AddAnimation("idle", CreateAnimFrameArray(20), 4);
-            AddAnimation("move", CreateAnimFrameArray(20, 21, 20, 22, 20, 21, 20, 22, 20), 8, false);
-            Play("idle");
+        public static AnimatedSpriteRenderer GetSprite() => new("forest_npcs", 16, 16,
+            new Anim("idle", new int[] { 20 },1),
+            new Anim("move", new int[] { 20, 21, 20, 22, 20, 21, 20, 22, 20 },8,false)
+            );
 
+        public Mushroom(EntityPreset preset, Player p)
+            : base(preset.Position, GetSprite(), DrawOrder.ENTITIES)
+        {
             immovable = true;
         }
 

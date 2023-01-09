@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace AnodyneSharp.Entities.Gadget
         public EntityPreset _preset;
         protected KeyBlockSentinel _sentinel;
 
-        public KeyCardGate(EntityPreset preset, string textureName, int frameWidth, int frameHeight, DrawOrder layer) : base(preset.Position, textureName, frameWidth, frameHeight, layer)
+        public KeyCardGate(EntityPreset preset, AnimatedSpriteRenderer sprite, DrawOrder layer) : base(preset.Position, sprite, layer)
         {
             _preset = preset;
             _sentinel = new(this);

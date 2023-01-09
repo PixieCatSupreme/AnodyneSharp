@@ -1,5 +1,6 @@
 ﻿using AnodyneSharp.Drawing;
 using AnodyneSharp.Entities;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Resources;
 using Microsoft.Xna.Framework;
 using System;
@@ -10,13 +11,14 @@ namespace AnodyneSharp.UI.PauseMenu
 {
     public class PauseMenuSelector : UIEntity
     {
-        public PauseMenuSelector(Vector2 pos)
-            : base(pos, "menu_select_active", 61, 15, DrawOrder.PAUSE_SELECTOR)
-        {
-            AddAnimation("flash", CreateAnimFrameArray(0, 1), 4, true);
-            AddAnimation("inactive", CreateAnimFrameArray(2), 0, false);
+        public static AnimatedSpriteRenderer GetSprite() => new("menu_select_active", 61, 15,
+            new Anim("flash", new int[] { 0, 1 },4),
+            new Anim("inactive", new int[] { 2 },1)
+            );
 
-            Play("flash");
+        public PauseMenuSelector(Vector2 pos)
+            : base(pos, GetSprite(), DrawOrder.PAUSE_SELECTOR)
+        {
         }
     }
 }

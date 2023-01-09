@@ -1,5 +1,6 @@
 ﻿using AnodyneSharp.Dialogue;
 using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Registry;
 using System;
 using System.Collections.Generic;
@@ -13,12 +14,10 @@ namespace AnodyneSharp.Entities.Interactive.Npc
         EntityPreset preset;
 
         public Sadbro(EntityPreset preset, Player p)
-            : base(preset.Position, "sadman", 16, 16, DrawOrder.ENTITIES)
+            : base(preset.Position, new AnimatedSpriteRenderer("sadman", 16, 16, new Anim("a",new int[] { 0, 1 },2)), DrawOrder.ENTITIES)
         {
             immovable = true;
             this.preset = preset;
-            AddAnimation("a", CreateAnimFrameArray(0, 1), 2);
-            Play("a");
         }
 
         public override void Collided(Entity other)

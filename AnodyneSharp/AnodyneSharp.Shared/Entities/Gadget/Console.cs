@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 
@@ -9,13 +10,15 @@ namespace AnodyneSharp.Entities
     {
         EntityPreset _preset;
 
-        public Console(EntityPreset preset, Player p) : base(preset.Position, "console", 16,16,DrawOrder.ENTITIES)
+        public static AnimatedSpriteRenderer GetSprite() => new("console", 16, 16,
+            new Anim("active", new int[] { 0, 1 },5),
+            new Anim("green",new int[] { 2 },1)
+            );
+
+        public Console(EntityPreset preset, Player p) : base(preset.Position, GetSprite(), DrawOrder.ENTITIES)
         {
             _preset = preset;
             immovable = true;
-
-            AddAnimation("active", CreateAnimFrameArray(0, 1), 5);
-            AddAnimation("green", CreateAnimFrameArray(2), 3);
 
             if(preset.Activated)
             {

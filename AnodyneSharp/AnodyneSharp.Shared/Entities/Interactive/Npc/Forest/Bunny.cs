@@ -1,5 +1,6 @@
 ﻿using AnodyneSharp.Dialogue;
 using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 using AnodyneSharp.Utilities;
@@ -10,31 +11,22 @@ using System.Text;
 
 namespace AnodyneSharp.Entities.Interactive.Npc.Forest
 {
-    class BaseBunny : Entity
-    {
-
-        public BaseBunny(EntityPreset preset, Player p)
-            : base(preset.Position, "forest_npcs", 16, 16, DrawOrder.ENTITIES)
-        {
-            AddAnimation("walk_d", CreateAnimFrameArray(30, 31), 4, true);
-            AddAnimation("walk_r", CreateAnimFrameArray(32, 33), 4, true);
-            AddAnimation("walk_u", CreateAnimFrameArray(34, 35), 4, true);
-            AddAnimation("walk_l", CreateAnimFrameArray(36, 37), 4, true);
-            Play("walk_d");
-
-            immovable = true;
-        }
-    }
-
     [NamedEntity("Forest_NPC", null, 30), Collision(typeof(Player))]
-
-    class Bunny : BaseBunny, Interactable
+    class Bunny : Entity, Interactable
     {
         private Player _player;
 
+        public static AnimatedSpriteRenderer GetSprite() => new("forest_npcs", 16, 16,
+            new Anim("walk_d", new int[] { 30, 31 }, 4),
+            new Anim("walk_r", new int[] { 32, 33 }, 4),
+            new Anim("walk_u", new int[] { 34, 35 }, 4),
+            new Anim("walk_l", new int[] { 36, 37 }, 4)
+            );
+
         public Bunny(EntityPreset preset, Player p)
-            : base(preset, p)
+            : base(preset.Position, GetSprite(), DrawOrder.ENTITIES)
         {
+            immovable = true;
             _player = p;
         }
 
@@ -63,14 +55,13 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Forest
     }
 
     [NamedEntity("Forest_NPC", null, 34), Collision(typeof(Player))]
-
-    class BunnyRun : BaseBunny
+    class BunnyRun : Entity
     {
 
         private Player _player;
 
         public BunnyRun(EntityPreset preset, Player p)
-            : base(preset, p)
+            : base(preset.Position,Bunny.GetSprite(),DrawOrder.ENTITIES)
         {
             if (GlobalState.RNG.NextDouble() < 0.25)
             {

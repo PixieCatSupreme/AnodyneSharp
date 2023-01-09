@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Entities.Gadget.Doors;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.Entities.Gadget.Doors;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
@@ -19,14 +20,15 @@ namespace AnodyneSharp.Entities.Interactive.Npc
 
         private bool dead;
 
-        public Fisherman(EntityPreset preset, Player p) : base(preset.Position, "beach_npcs", 16, 16, Drawing.DrawOrder.ENTITIES)
+        public static AnimatedSpriteRenderer GetSprite() => new("beach_npcs", 16, 16,
+            new Anim("idle", new int[] { 10, 11 },3),
+            new Anim("dead", new int[] { 12 },1)
+            );
+
+        public Fisherman(EntityPreset preset, Player p) : base(preset.Position, GetSprite(), Drawing.DrawOrder.ENTITIES)
         {
             player = p;
 
-            AddAnimation("idle", CreateAnimFrameArray(10, 11), 3, true);
-            AddAnimation("dead", CreateAnimFrameArray(12), 3, true);
-
-            Play("idle");
             immovable = true;
             _preset = preset;
 

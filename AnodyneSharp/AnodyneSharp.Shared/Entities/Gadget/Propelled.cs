@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Sounds;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.Sounds;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -19,15 +20,24 @@ namespace AnodyneSharp.Entities.Gadget
         bool active;
         bool startDir = true;
 
-        public Propelled(EntityPreset preset, Player p) : base(preset.Position, "moving_platform", 16, 16, Drawing.DrawOrder.VERY_BG_ENTITIES)
+        public static AnimatedSpriteRenderer GetSprite(int vert) => new("moving_platform", 16, 16,
+            new Anim("unpressed-inactive", new int[] { vert+0 },1),
+            new Anim("unpressed-active", new int[] { vert+1 }, 1),
+            new Anim("pressed-inactive", new int[] { vert + 2 }, 1),
+            new Anim("pressed-active", new int[] { vert + 3 }, 1)
+            );
+
+        public Propelled(EntityPreset preset, Player p) : base(preset.Position, GetSprite(preset.Frame % 2 == 0 ? 4 : 0), Drawing.DrawOrder.VERY_BG_ENTITIES)
         {
             width = height = 10;
             CenterOffset();
             initial_pos = preset.Position;
 
-            poof = new(Vector2.Zero, "moving_platform_poof", 16, 16, Drawing.DrawOrder.BG_ENTITIES);
-            poof.AddAnimation("play", CreateAnimFrameArray(0, 1, 2, 3, 4), 12, false);
-            poof.SetFrame(4);
+            poof = new(Vector2.Zero, new AnimatedSpriteRenderer("moving_platform_poof", 16, 16,
+                new Anim("play", new int[] { 0, 1, 2, 3, 4 }, 12, false)), Drawing.DrawOrder.BG_ENTITIES)
+            {
+                exists = false
+            };
 
             facing = (preset.Frame % 4) switch
             {
@@ -75,7 +85,7 @@ namespace AnodyneSharp.Entities.Gadget
 
         void UpdateFrame()
         {
-            SetFrame(((FacingDirection(facing).Y != 0) ? 4 : 0) + (pressed ? 2 : 0) + (active ? 1 : 0));
+            Play((pressed ? "pressed" : "unpressed") + "-" + (active ? "active" : "inactive"));
         }
 
         public override void Collided(Entity other)
@@ -92,6 +102,7 @@ namespace AnodyneSharp.Entities.Gadget
                         {
                             velocity = FacingDirection(facing) * 33;
                             active = false;
+                            poof.exists = true;
                             poof.Play("play");
                             Vector2 poofCenter = VisualCenter - FacingDirection(facing) * 16;
                             poof.Position = poofCenter - new Vector2(poof.width / 2, poof.height / 2);

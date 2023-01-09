@@ -1,5 +1,6 @@
 ﻿using AnodyneSharp.Dialogue;
 using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Registry;
 using System;
 using System.Collections.Generic;
@@ -12,15 +13,16 @@ namespace AnodyneSharp.Entities.Interactive.Npc.RedSea
     {
         private Player _player;
 
-        public HairDude(EntityPreset preset, Player p)
-            : base(preset.Position, "redsea_npcs", 16, 16, DrawOrder.ENTITIES)
-        {
-            AddAnimation("walk_d", CreateAnimFrameArray(0, 1), 4);
-            AddAnimation("walk_r", CreateAnimFrameArray(2, 3), 4);
-            AddAnimation("walk_u", CreateAnimFrameArray(4, 5), 4);
-            AddAnimation("walk_l", CreateAnimFrameArray(6, 7), 4);
-            Play("walk_d");
+        public static AnimatedSpriteRenderer GetSprite() => new("redsea_npcs", 16, 16,
+            new Anim("walk_d", new int[] { 0, 1 }, 4),
+            new Anim("walk_r", new int[] { 2, 3 }, 4),
+            new Anim("walk_u", new int[] { 4, 5 }, 4),
+            new Anim("walk_l", new int[] { 6, 7 }, 4)
+            );
 
+        public HairDude(EntityPreset preset, Player p)
+            : base(preset.Position, GetSprite(), DrawOrder.ENTITIES)
+        {
             _player = p;
 
             immovable = true;

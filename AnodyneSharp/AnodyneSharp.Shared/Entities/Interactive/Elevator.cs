@@ -1,5 +1,6 @@
 ﻿using AnodyneSharp.Dialogue;
 using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Resources;
 using AnodyneSharp.Sounds;
@@ -28,7 +29,13 @@ namespace AnodyneSharp.Entities.Interactive
 
         IState _state;
 
-        public Elevator(EntityPreset preset, Player p) : base(preset.Position, "elevator_doors", 32, 32, Drawing.DrawOrder.ENTITIES)
+        public static AnimatedSpriteRenderer GetSprite() => new("elevator_doors", 32, 32,
+            new Anim("default", new int[] { 0 }, 1),
+            new Anim("open", new int[] { 0, 1, 2, 3 }, 12, false),
+            new Anim("close", new int[] { 3, 2, 1, 0 }, 12, false)
+            );
+
+        public Elevator(EntityPreset preset, Player p) : base(preset.Position, GetSprite(), Drawing.DrawOrder.ENTITIES)
         {
             menu = new(preset);
 
@@ -37,10 +44,6 @@ namespace AnodyneSharp.Entities.Interactive
 
             openDetector = new(new((Position + Vector2.UnitY * 32).ToPoint(), new(width, height)));
             menuDetector = new(new(Position.ToPoint(), new(32, 20)));
-
-            AddAnimation("open", CreateAnimFrameArray(0, 1, 2, 3), 12, false);
-            AddAnimation("close", CreateAnimFrameArray(3, 2, 1, 0), 12, false);
-            SetFrame(0);
 
             _state = new StateMachineBuilder()
                 .State("Close")
@@ -120,7 +123,7 @@ namespace AnodyneSharp.Entities.Interactive
                 others.Sort((a, b) => a.Frame.CompareTo(b.Frame));
 
                 float lineHeight = GameConstants.FONT_LINE_HEIGHT * 1.3f;
-                float yOffset = background.Height/2 - (lineHeight*(others.Count+2))/2;
+                float yOffset = background.Height / 2 - (lineHeight * (others.Count + 2)) / 2;
 
                 title = CenterLabel(new(Vector2.UnitY * yOffset, true, DialogueManager.GetDialogue("misc", "any", "elevator", 0)));
                 options = new();
@@ -160,7 +163,7 @@ namespace AnodyneSharp.Entities.Interactive
         {
             public bool Hit = false;
 
-            public PlayerDetector(Rectangle r) : base(new(r.X, r.Y), r.Width, r.Height, Drawing.DrawOrder.BACKGROUND)
+            public PlayerDetector(Rectangle r) : base(new(r.X, r.Y), r.Width, r.Height)
             {
                 visible = false;
             }

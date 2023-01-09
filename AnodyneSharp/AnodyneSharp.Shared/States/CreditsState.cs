@@ -367,11 +367,9 @@ namespace AnodyneSharp.States
 
         private void CreateEntity(Vector2 pos, string texture, Point size, int framerate, bool flipped, bool inFront, params int[] frames)
         {
-            UIEntity e = new(pos, texture, size.X, size.Y, inFront ? DrawOrder.SUBMENU_SLIDER : DrawOrder.TEXT, flipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None);
-            e.AddAnimation("a", frames, framerate);
-            e.Play("a");
-
-            e.velocity.Y = -15;
+            UIEntity e = new(pos, new AnimatedSpriteRenderer(texture, size.X, size.Y, new Anim("a", frames, framerate)), inFront ? DrawOrder.SUBMENU_SLIDER : DrawOrder.TEXT, flipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None) { 
+                velocity = Vector2.UnitY*-15
+            };
 
             _entities.Add(e);
         }

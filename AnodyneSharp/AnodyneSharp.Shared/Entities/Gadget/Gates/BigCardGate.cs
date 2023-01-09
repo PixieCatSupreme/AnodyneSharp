@@ -16,20 +16,21 @@ namespace AnodyneSharp.Entities.Gadget
         Entity keyhole;
         Entity[] digits;
 
+        public static Anim[] DigitAnims() => Enumerable.Range(0, 10).Select(i => new Anim(i.ToString(), new int[] { i }, 1)).ToArray();
+
         public BigCardGate(EntityPreset preset, Player p) : base(preset,p)
         {
             _sentinel.OpensOnInteract = true;
 
-            keyhole = new(Position, "gate_green_slots", 32, 16, new RefLayer(layer_def, 1));
-            keyhole.SetFrame(3);
+            keyhole = new(Position, new AnimatedSpriteRenderer("gate_green_slots", 32, 16, new RefLayer(layer_def, 1), new Anim("key",new int[] { 3 },1)));
 
             digits = new Entity[2]
             {
-                new(Position + new Vector2(12,6),"gate_green_digits",3,5,new RefLayer(layer_def, 2)),
-                new(Position + new Vector2(17,6),"gate_green_digits",3,5,new RefLayer(layer_def, 2))
+                new(Position + new Vector2(12,6),new AnimatedSpriteRenderer("gate_green_digits",3,5,new RefLayer(layer_def, 2), DigitAnims())),
+                new(Position + new Vector2(17,6),new AnimatedSpriteRenderer("gate_green_digits",3,5,new RefLayer(layer_def, 2), DigitAnims()))
             };
-            digits[0].SetFrame(_preset.Frame / 10);
-            digits[1].SetFrame(_preset.Frame % 10);
+            digits[0].Play((_preset.Frame / 10).ToString());
+            digits[1].Play((_preset.Frame % 10).ToString());
         }
 
         public override bool TryUnlock()
@@ -75,8 +76,8 @@ namespace AnodyneSharp.Entities.Gadget
         {
             GlobalState.SpawnEntity(new Explosion(keyhole) { Position = keyhole.Position + new Vector2(5,-4) });
             int newCount = ((ChangeCardCount)e).Count;
-            digits[0].SetFrame(newCount / 10);
-            digits[1].SetFrame(newCount % 10);
+            digits[0].Play((newCount / 10).ToString());
+            digits[1].Play((newCount % 10).ToString());
         }
     }
 }

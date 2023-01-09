@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Registry;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 using System;
 using System.Collections.Generic;
@@ -11,11 +12,16 @@ namespace AnodyneSharp.Entities.Gadget.Switches
     {
         float hit_tm = 0;
 
-        public PillarSwitch(EntityPreset preset, Player p) : base(preset.Position, "pillar_switch", 16,16, Drawing.DrawOrder.ENTITIES)
+        public static AnimatedSpriteRenderer GetSprite() => new("pillar_switch", 16, 16,
+            new Anim("up", new int[] { 0 }, 1),
+            new Anim("down", new int[]{1},1),
+            new Anim("hit", new int[] { 2, 3 },12)
+            );
+
+        public PillarSwitch(EntityPreset preset, Player p) : base(preset.Position, GetSprite(), Drawing.DrawOrder.ENTITIES)
         {
-            AddAnimation("hit", CreateAnimFrameArray(2, 3), 12);
             immovable = true;
-            SetFrame(GlobalState.PillarSwitchOn);
+            Play(GlobalState.PillarSwitchOn == 0 ? "up" : "down");
         }
 
         public override void Update()
@@ -26,7 +32,7 @@ namespace AnodyneSharp.Entities.Gadget.Switches
                 hit_tm -= GameTimes.DeltaTime;
                 if(hit_tm <= 0)
                 {
-                    SetFrame(GlobalState.PillarSwitchOn);
+                    Play(GlobalState.PillarSwitchOn == 0 ? "up" : "down");
                 }
             }
         }

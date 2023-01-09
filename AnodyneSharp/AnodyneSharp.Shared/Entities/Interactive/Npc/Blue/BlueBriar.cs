@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AnodyneSharp.Dialogue;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Entities.Events;
 using AnodyneSharp.Entities.Gadget;
 using AnodyneSharp.Registry;
@@ -119,14 +120,15 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Blue
         {
             private BlueBriar _parent;
 
-            public BlueMitra(Vector2 position, BlueBriar parent)
-                : base(position, "mitra_bike", 20, 20, Drawing.DrawOrder.ENTITIES)
-            {
-                AddAnimation("bike_r", CreateAnimFrameArray(2, 3), 8);
-                AddAnimation("bike_l", CreateAnimFrameArray(2, 3), 8);
-                AddAnimation("idle", CreateAnimFrameArray(22), 12);
-                Play("bike_l");
+            public static AnimatedSpriteRenderer GetSprite() => new("mitra_bike", 20, 20,
+                new Anim("bike_l", new int[] { 2, 3 },8),
+                new Anim("bike_r", new int[] { 2, 3 },8),
+                new Anim("idle", new int[] { 22 },1)
+                );
 
+            public BlueMitra(Vector2 position, BlueBriar parent)
+                : base(position, GetSprite(), Drawing.DrawOrder.ENTITIES)
+            {
                 visible = false;
 
                 _parent = parent;

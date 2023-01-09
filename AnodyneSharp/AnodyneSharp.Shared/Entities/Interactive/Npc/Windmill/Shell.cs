@@ -1,9 +1,11 @@
 ﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.GameEvents;
 using AnodyneSharp.Registry;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -42,8 +44,12 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Windmill
 
             Vector2 _center;
 
+            public static AnimatedSpriteRenderer GetSprite(int start) => new("windmill_blade", 192, 192,
+                new Anim("rotate", Enumerable.Range(0, 32).Select(i => (start + i) % 24).ToArray(), 20)
+                );
+
             public Blade(Vector2 center, int angle, int startFrame)
-                : base(center, "windmill_blade", 192, 192, DrawOrder.FOOT_OVERLAY)
+                : base(center, GetSprite(startFrame), DrawOrder.FOOT_OVERLAY)
             {
                 baseAngle = angle;
 
@@ -52,7 +58,6 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Windmill
                 SetFrame(startFrame);
 
                 swapIndex = 24 - startFrame;
-                AddAnimation("rotate", Enumerable.Range(0, 32).Select(i => (startFrame + i) % 24).ToArray(), 20);
 
                 visible = false;
 

@@ -1,4 +1,6 @@
-﻿using AnodyneSharp.Registry;
+﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.Entities.Enemy.Crowd;
+using AnodyneSharp.Registry;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -11,10 +13,8 @@ namespace AnodyneSharp.Entities.Interactive.Npc
     {
         float timer = 0;
 
-        public CliffDog(EntityPreset preset, Player p) : base(preset.Position, "dog", 16, 16, Drawing.DrawOrder.ENTITIES)
+        public CliffDog(EntityPreset preset, Player p) : base(preset.Position, Dog.GetSprite(), Drawing.DrawOrder.ENTITIES)
         {
-            AddAnimation("walk", CreateAnimFrameArray(2, 3), 8, true);
-            AddAnimation("stop", CreateAnimFrameArray(0), 12, true);
             immovable = true;
             Play("stop");
             facing = Facing.RIGHT;
@@ -35,7 +35,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc
                 else if (GlobalState.RNG.NextDouble() > 0.6)
                 {
                     velocity = FacingDirection(facing) * 15;
-                    Play("walk");
+                    Play("walk",newFramerate:8);
                     if(facing == Facing.LEFT)
                     {
                         _flip = Microsoft.Xna.Framework.Graphics.SpriteEffects.FlipHorizontally;

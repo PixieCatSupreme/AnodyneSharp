@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Dialogue;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Registry;
 using System;
 using System.Collections.Generic;
@@ -11,12 +12,14 @@ namespace AnodyneSharp.Entities.Interactive.Npc.QuestNPCs
     {
         bool played_quest = false;
 
+        public static AnimatedSpriteRenderer GetSprite() => new("cliffs_npcs", 16, 16,
+            new Anim("a", new int[] { 0 },1),
+            new Anim("move", new int[] { 1, 3, 1, 5, 1, 1, 1, 0, 2, 0, 4, 0, 0, 1 }, 3,false)
+            );
+
         public CliffQuest(EntityPreset preset, Player p)
-                        : base(preset.Position, "cliffs_npcs", 16, 16, Drawing.DrawOrder.ENTITIES)
+                        : base(preset.Position, GetSprite(), Drawing.DrawOrder.ENTITIES)
         {
-            AddAnimation("a", CreateAnimFrameArray(0), 2, true);
-            AddAnimation("move", CreateAnimFrameArray(1, 3, 1, 5, 1, 1, 1, 0, 2, 0, 4, 0, 0, 1), 3, false);
-            Play("a");
             immovable = true;
         }
 

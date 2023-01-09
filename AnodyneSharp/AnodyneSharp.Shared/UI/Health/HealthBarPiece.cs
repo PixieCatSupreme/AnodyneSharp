@@ -1,5 +1,6 @@
 ﻿using AnodyneSharp.Drawing;
 using AnodyneSharp.Entities;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Resources;
 using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
@@ -19,13 +20,15 @@ namespace AnodyneSharp.UI
         public const int FULL_FRAME = 0;
         public const int EMPTY_FRAME = 1;
 
-        public HealthBarPiece(Vector2 pos, bool full)
-            :base(pos, "health_piece", BOX_WIDTH, BOX_HEIGHT, DrawOrder.UI_OBJECTS)
-        {
-            AddAnimation("flash", CreateAnimFrameArray(0, 2), 7, true);
-            AddAnimation("full", CreateAnimFrameArray(0), 0, false);
-            AddAnimation("empty", CreateAnimFrameArray(1), 0, false);
+        public static AnimatedSpriteRenderer GetSprite() => new("health_piece", BOX_WIDTH, BOX_HEIGHT,
+            new Anim("full", new int[] { 0 }, 1),
+            new Anim("empty", new int[] { 1 },1),
+            new Anim("flash",new int[] { 0, 2 },7)
+            );
 
+        public HealthBarPiece(Vector2 pos, bool full)
+            :base(pos, GetSprite(), DrawOrder.UI_OBJECTS)
+        {
             Play(full ? "full" : "empty");
         }
     }
