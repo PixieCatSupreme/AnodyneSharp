@@ -21,7 +21,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Go
     {
         EndingSage sage;
 
-        public SageSentinel(EntityPreset preset, Player p) : base(Vector2.Zero,DrawOrder.BACKGROUND)
+        public SageSentinel(EntityPreset preset, Player p) : base(Vector2.Zero)
         {
             sage = new(p);
             visible = false;

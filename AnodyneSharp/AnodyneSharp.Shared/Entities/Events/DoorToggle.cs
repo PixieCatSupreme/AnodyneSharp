@@ -12,9 +12,8 @@ namespace AnodyneSharp.Entities.Events
     {
         bool hitDoor = false;
 
-        public DoorToggle(Vector2 pos, int w, int h) : base(pos, w, h, Drawing.DrawOrder.ENTITIES)
+        public DoorToggle(Vector2 pos, int w, int h) : base(pos, w, h)
         {
-            visible = false;
         }
 
         public override void Update()

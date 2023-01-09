@@ -14,7 +14,7 @@ namespace AnodyneSharp.Entities
         Entity selector, selected_tile;
         Player player;
 
-        public Transformer(Player p) : base(p.Position, Drawing.DrawOrder.ENTITIES)
+        public Transformer(Player p) : base(p.Position)
         {
             visible = false;
             player = p;

@@ -13,7 +13,7 @@ namespace AnodyneSharp.Entities.Gadget
         private float time;
 
         public JumpTrigger(EntityPreset preset, Player p)
-            : base(preset.Position, DrawOrder.ENTITIES)
+            : base(preset.Position)
         {
             visible = false;
             immovable = true;

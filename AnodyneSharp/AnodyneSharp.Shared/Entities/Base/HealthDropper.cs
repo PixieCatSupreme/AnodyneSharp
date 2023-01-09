@@ -18,16 +18,6 @@ namespace AnodyneSharp.Entities
 
         private EntityPreset _preset;
 
-        public HealthDropper(EntityPreset p, Vector2 pos, string textureName, int frameWidth, int frameHeight, DrawOrder layer, float healthDropChance = 0.5f, bool dropBigHealth = false) 
-            : base(pos, textureName, frameWidth, frameHeight, layer)
-        {
-            _health = new HealthPickup(pos, dropBigHealth);
-
-            _healthDropChance = healthDropChance;
-
-            _preset = p;
-        }
-
         public HealthDropper(EntityPreset p, Vector2 pos, AnimatedSpriteRenderer sprite, DrawOrder layer, float healthDropChance = 0.5f, bool dropBigHealth = false)
             : base(pos,sprite,layer)
         {

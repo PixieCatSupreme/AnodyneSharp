@@ -22,7 +22,7 @@ namespace AnodyneSharp.Entities.Interactive
         private float _flyDistance;
 
         public HealthCicadaSentinel(EntityPreset preset, Player player)
-            : base(preset.Position, 16, 16, DrawOrder.ENTITIES)
+            : base(preset.Position, 16, 16)
         {
             Activated = false;
             visible = false;

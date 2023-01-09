@@ -12,7 +12,7 @@ namespace AnodyneSharp.Entities.Gadget
     {
         List<Point> checks;
         EntityPreset _preset;
-        public GoDetector(EntityPreset preset, Player p) : base(preset.Position,Drawing.DrawOrder.BACKGROUND)
+        public GoDetector(EntityPreset preset, Player p) : base(preset.Position)
         {
             visible = false;
             _preset = preset;

@@ -19,7 +19,7 @@ namespace AnodyneSharp.Entities.Gadget
         private KeyCardGate _gate;
 
         public KeyBlockSentinel(KeyCardGate gate) : 
-            base(gate.Position - new Vector2(2,2), 20, 20, DrawOrder.ENTITIES)
+            base(gate.Position - new Vector2(2,2), 20, 20)
         {
             visible = false;
 

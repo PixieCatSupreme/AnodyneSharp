@@ -16,7 +16,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Happy
         IEnumerator<string> _state;
         VolumeEvent volume;
 
-        public HappyEventTrigger(EntityPreset preset, Player p) : base(preset.Position,Drawing.DrawOrder.BACKGROUND)
+        public HappyEventTrigger(EntityPreset preset, Player p) : base(preset.Position)
         {
             visible = false;
             if(GlobalState.events.GetEvent("HappyStarted") != 0)

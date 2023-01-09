@@ -246,12 +246,10 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
             private Dog _parent;
 
             public DogRegion(Dog parent)
-                : base(Vector2.Zero, DrawOrder.ENTITIES)
+                : base(Vector2.Zero,96,96)
             {
                 visible = false;
                 _parent = parent;
-
-                width = height = 96;
             }
 
             public override void Collided(Entity other)

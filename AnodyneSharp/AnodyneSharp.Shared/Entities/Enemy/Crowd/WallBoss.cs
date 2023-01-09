@@ -37,7 +37,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
             _ => 2
         };
 
-        public WallBoss(EntityPreset preset, Player p) : base(preset.Position, Drawing.DrawOrder.ENTITIES)
+        public WallBoss(EntityPreset preset, Player p) : base(preset.Position)
         {
             visible = false;
             player = p;

@@ -22,20 +22,20 @@ namespace AnodyneSharp.Entities.Gadget
             //big key gates activate instantly
             _sentinel._maxActivationTime = 0f;
 
-            keyhole = new(Position, "gate_green_slots", 32, 16, new RefLayer(layer_def, 1));
-            keyhole.SetFrame(preset.Frame switch
+            int keyholeframe = preset.Frame switch
             {
                 1 => 2,
                 2 => 0,
                 3 => 1,
                 _ => throw new NotImplementedException()
-            });
+            };
+
+            keyhole = new(Position, new AnimatedSpriteRenderer("gate_green_slots", 32, 16, new RefLayer(layer_def, 1), new Anim("a",new int[] { keyholeframe },1)));
         }
 
         IEnumerator<CutsceneEvent> keyAnim()
         {
-            Entity _keyAnimSprite = new(_player.Position - new Vector2(0, 16), "key_green", 16, 16, Drawing.DrawOrder.FG_SPRITES);
-            _keyAnimSprite.SetFrame(keyhole.Frame * 2);
+            Entity _keyAnimSprite = new(_player.Position - new Vector2(0, 16), new AnimatedSpriteRenderer("key_green", 16, 16, new Anim("a",new int[] { keyhole.Frame * 2 },1)), Drawing.DrawOrder.FG_SPRITES);
             _keyAnimSprite.opacity = 0f;
 
             yield return new EntityEvent(Enumerable.Repeat(_keyAnimSprite, 1));

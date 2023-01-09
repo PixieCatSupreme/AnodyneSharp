@@ -1,5 +1,6 @@
 ﻿using AnodyneSharp.Dialogue;
 using AnodyneSharp.Drawing;
+using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Utilities;
 using System;
@@ -13,11 +14,8 @@ namespace AnodyneSharp.Entities.Interactive.Npc
     {
         string scene;
 
-        public Rock(EntityPreset preset, Player p) 
-            : base(preset.Position, 16, 16, DrawOrder.ENTITIES)
+        public static AnimatedSpriteRenderer GetSprite()
         {
-            immovable = true;
-
             string texName = "note_rock";
             int f = 0;
 
@@ -25,16 +23,20 @@ namespace AnodyneSharp.Entities.Interactive.Npc
             {
                 texName = "space_npcs";
 
-                f = MapUtilities.GetRoomCoordinate(Position).X > 5 ? 31 : 30;
+                f = GlobalState.CURRENT_GRID_X > 5 ? 31 : 30;
             }
             else if (GlobalState.IsCell)
             {
                 f = 1;
             }
 
-            SetTexture(texName, 16, 16);
+            return new(texName, 16, 16, new Anim("a", new int[] { f }, 1));
+        }
 
-            SetFrame(f);
+        public Rock(EntityPreset preset, Player p) 
+            : base(preset.Position, GetSprite(), DrawOrder.ENTITIES)
+        {
+            immovable = true;
 
             scene = MathUtilities.IntToString(preset.Frame + 1);
         }

@@ -41,7 +41,7 @@ namespace AnodyneSharp.Entities.Enemy.Etc
             );
 
         public SageBoss(EntityPreset preset, Player p)
-            : base(preset.Position, "sage_boss", 16, 24, Drawing.DrawOrder.ENTITIES)
+            : base(preset.Position, GetSprite(), Drawing.DrawOrder.ENTITIES)
         {
             _topLeft = MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid);
 

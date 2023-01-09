@@ -11,7 +11,7 @@ namespace AnodyneSharp.Entities
     [NamedEntity("Event", "entrance", 5)]
     public class DungeonEntrance : Entity
     {
-        public DungeonEntrance(EntityPreset preset, Player p) : base(preset.Position, DrawOrder.ENTITIES)
+        public DungeonEntrance(EntityPreset preset, Player p) : base(preset.Position)
         {
             exists = false;
 
@@ -24,7 +24,7 @@ namespace AnodyneSharp.Entities
     [NamedEntity("Event", "entrance_ref", 5)]
     public class DungeonEntranceRef : Entity
     {
-        public DungeonEntranceRef(EntityPreset preset, Player p) : base(preset.Position, DrawOrder.ENTITIES)
+        public DungeonEntranceRef(EntityPreset preset, Player p) : base(preset.Position)
         {
             exists = false;
 

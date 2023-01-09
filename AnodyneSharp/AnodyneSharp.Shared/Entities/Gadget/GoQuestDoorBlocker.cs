@@ -10,7 +10,7 @@ namespace AnodyneSharp.Entities.Gadget
     {
         Events.DoorToggle doorBlocker;
 
-        public GoQuestDoorBlocker(EntityPreset preset, Player p) : base(preset.Position,Drawing.DrawOrder.BACKGROUND)
+        public GoQuestDoorBlocker(EntityPreset preset, Player p) : base(preset.Position)
         {
             visible = false;
             doorBlocker = new(preset.Position, 16, 16);

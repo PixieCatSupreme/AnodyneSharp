@@ -71,12 +71,6 @@ namespace AnodyneSharp.Entities
             this.layer = layer;
         }
 
-        public Entity(Vector2 pos, int frameWidth, int frameHeight, DrawOrder layer)
-            : base(pos, frameWidth, frameHeight)
-        {
-            this.layer = layer;
-        }
-
         public Entity(Vector2 pos, string textureName, int frameWidth, int frameHeight, DrawOrder layer)
             : base(pos, frameWidth, frameHeight)
         {

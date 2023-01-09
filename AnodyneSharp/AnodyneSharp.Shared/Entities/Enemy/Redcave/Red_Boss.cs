@@ -728,7 +728,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
         Touching direction;
         Vector2 offset_from_parent = Vector2.Zero;
 
-        public ProximitySensor(Touching dir, Red_Boss parent) : base(Vector2.Zero, Drawing.DrawOrder.ENTITIES)
+        public ProximitySensor(Touching dir, Red_Boss parent) : base(Vector2.Zero)
         {
             visible = false;
             this.parent = parent;

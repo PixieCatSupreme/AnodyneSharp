@@ -542,7 +542,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
         [Events(typeof(StartWarp), typeof(StartScreenTransition))]
         class FadeOutGameScreenFade : Entity
         {
-            public FadeOutGameScreenFade() : base(Vector2.Zero, Drawing.DrawOrder.BACKGROUND)
+            public FadeOutGameScreenFade() : base(Vector2.Zero)
             {
                 visible = false;
             }

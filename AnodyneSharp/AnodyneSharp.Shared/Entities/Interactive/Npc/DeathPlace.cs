@@ -16,7 +16,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc
         Player _player;
 
         public DeathPlace(EntityPreset preset, Player p) 
-            : base(preset.Position, DrawOrder.ENTITIES)
+            : base(preset.Position)
         {
             exists = GlobalState.InDeathRoom;
             immovable = true;

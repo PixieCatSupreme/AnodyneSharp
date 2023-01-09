@@ -143,7 +143,7 @@ namespace AnodyneSharp.Entities.Gadget
     [NamedEntity]
     public class Stop_Marker : Entity
     {
-        public Stop_Marker(EntityPreset preset, Player p) : base(preset.Position, 16, 16, Drawing.DrawOrder.BG_ENTITIES)
+        public Stop_Marker(EntityPreset preset, Player p) : base(preset.Position, 16, 16)
         {
             visible = false;
         }

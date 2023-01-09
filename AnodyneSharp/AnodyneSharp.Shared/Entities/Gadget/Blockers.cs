@@ -9,7 +9,7 @@ namespace AnodyneSharp.Entities.Gadget
     [NamedEntity("solid_tile"), Collision(PartOfMap = true)]
     public class SolidTile : Entity
     {
-        public SolidTile(EntityPreset preset, Player p) : base(preset.Position,16,16,Drawing.DrawOrder.MAP_BG)
+        public SolidTile(EntityPreset preset, Player p) : base(preset.Position,16,16)
         {
             visible = false;
             immovable = true;
@@ -28,7 +28,7 @@ namespace AnodyneSharp.Entities.Gadget
     public class Blocker : Entity
     {
         Player _player;
-        public Blocker(EntityPreset preset, Player p) : base(preset.Position,64,4,Drawing.DrawOrder.MAP_BG)
+        public Blocker(EntityPreset preset, Player p) : base(preset.Position,64,4)
         {
             _player = p;
             visible = false;
@@ -57,7 +57,7 @@ namespace AnodyneSharp.Entities.Gadget
     public class VerticalBlocker : Entity
     {
         Player _player;
-        public VerticalBlocker(EntityPreset preset, Player p) : base(preset.Position, 4, 16, Drawing.DrawOrder.MAP_BG)
+        public VerticalBlocker(EntityPreset preset, Player p) : base(preset.Position, 4, 16)
         {
             _player = p;
             visible = false;

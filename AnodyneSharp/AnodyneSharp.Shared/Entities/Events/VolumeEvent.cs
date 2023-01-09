@@ -17,7 +17,7 @@ namespace AnodyneSharp.Entities.Events
         {
         }
 
-        public VolumeEvent(float target, float speed = 0.4f) : base(Vector2.Zero,Drawing.DrawOrder.ENTITIES)
+        public VolumeEvent(float target, float speed = 0.4f) : base(Vector2.Zero)
         {
             SetTarget(target);
             this.speed = speed;

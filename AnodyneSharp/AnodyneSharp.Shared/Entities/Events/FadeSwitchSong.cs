@@ -12,7 +12,7 @@ namespace AnodyneSharp.Entities.Events
         VolumeEvent volumeChanger = new(0, 1.6f);
         string next;
 
-        public FadeSwitchSong(string nextSong) : base(Vector2.Zero,Drawing.DrawOrder.ENTITIES)
+        public FadeSwitchSong(string nextSong) : base(Vector2.Zero)
         {
             visible = false;
             next = nextSong;

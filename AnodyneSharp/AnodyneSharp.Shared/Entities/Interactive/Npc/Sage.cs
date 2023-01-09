@@ -310,7 +310,7 @@ namespace AnodyneSharp.Entities
     class SageBlank : Entity
     {
         EntityPreset _preset;
-        public SageBlank(EntityPreset preset, Player p) : base(preset.Position, DrawOrder.ENTITIES)
+        public SageBlank(EntityPreset preset, Player p) : base(preset.Position)
         {
             visible = false;
             _preset = preset;

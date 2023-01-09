@@ -9,7 +9,7 @@ namespace AnodyneSharp.Entities.Gadget
     [NamedEntity("Water_Anim")]
     public class WaterAnim : Entity
     {
-        public WaterAnim(EntityPreset preset, Player p) : base(preset.Position,Drawing.DrawOrder.BACKGROUND)
+        public WaterAnim(EntityPreset preset, Player p) : base(preset.Position)
         {
             if(GlobalState.events.GetEvent(preset.TypeValue) != 0)
             {
