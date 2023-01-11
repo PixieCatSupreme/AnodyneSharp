@@ -24,7 +24,7 @@ namespace AnodyneSharp.Entities.Base.Rendering
         public int FrameIndex => 0;
         public int Frame => curFrame;
 
-        public Color Color { get; set; }
+        public Color Color { get; set; } = Color.White;
         public ILayerType Layer { get; set; }
 
         public StaticSpriteRenderer(string textureName, int frameWidth, int frameHeight, int frame = 0, ILayerType layer = null) {
