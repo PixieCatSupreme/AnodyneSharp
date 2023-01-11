@@ -18,7 +18,10 @@ namespace AnodyneSharp.Entities.Lights
             scale = 3;
         }
 
-        public Light(Vector2 pos, AnimatedSpriteRenderer sprite) : base(pos,sprite,DrawOrder.ENTITIES) { }
+        public Light(Vector2 pos, AnimatedSpriteRenderer sprite) : base(pos,sprite,DrawOrder.ENTITIES) {
+            offset = new Vector2(sprite.Width / 2, sprite.Height / 2);
+            scale = 3;
+        }
 
         public override void Draw()
         {

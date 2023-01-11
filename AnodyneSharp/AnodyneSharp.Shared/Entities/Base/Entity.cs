@@ -208,7 +208,7 @@ namespace AnodyneSharp.Entities
 
         protected virtual void CenterOffset(bool updatePos = true)
         {
-            offset = (new Vector2(sprite.Width, sprite.Height) - new Vector2(width, height)) / 2;
+            offset = (new Vector2(sprite?.Width ?? 16, sprite?.Height ?? 16) - new Vector2(width, height)) / 2;
             if (updatePos)
                 Position += offset;
         }

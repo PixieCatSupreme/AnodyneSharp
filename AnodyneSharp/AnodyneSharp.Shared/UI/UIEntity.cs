@@ -25,17 +25,17 @@ namespace AnodyneSharp.UI
             HasVisibleHitbox = false;
         }
 
-        public UIEntity(Vector2 pos, AnimatedSpriteRenderer sprite, DrawOrder layer, SpriteEffects flip) 
+        public UIEntity(Vector2 pos, ISpriteRenderer sprite, DrawOrder layer, SpriteEffects flip) 
             : base(pos, sprite, layer)
         {
             _flip = flip;
             HasVisibleHitbox = false;
         }
 
-        public UIEntity(Vector2 pos, AnimatedSpriteRenderer sprite, DrawOrder layer) : base(pos, sprite, layer) { HasVisibleHitbox = false; }
+        public UIEntity(Vector2 pos, ISpriteRenderer sprite, DrawOrder layer) : base(pos, sprite, layer) { HasVisibleHitbox = false; }
 
         public UIEntity(Vector2 pos, string textureName, int frame, int frameWidth, int frameHeight, DrawOrder layer)
-            : base(pos, new AnimatedSpriteRenderer(textureName, frameWidth, frameHeight, new Anim("a",new int[] { frame },1)), layer)
+            : base(pos, new StaticSpriteRenderer(textureName, frameWidth, frameHeight, frame), layer)
         {
             HasVisibleHitbox = false;
         }
