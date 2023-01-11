@@ -10,12 +10,19 @@ namespace AnodyneSharp.Entities.Decorations
     [NamedEntity]
     public class Eye_Light : Entity
     {
-        FiveFrameGlowLight light;
+        Light light;
 
         public Eye_Light(EntityPreset preset, Player p) 
             : base(preset.Position, new AnimatedSpriteRenderer("eyelight",16,16, new Anim("glow",new int[] { 0, 1, 2 },5)), DrawOrder.ENTITIES )
         {
-            light = new FiveFrameGlowLight(Position + new Vector2(8,6));
+            if (preset.TypeValue == "bright")
+            {
+                light = new BrightGlowLight(Position + new Vector2(8, 6));
+            }
+            else
+            {
+                light = new FiveFrameGlowLight(Position + new Vector2(8, 6));
+            }
         }
 
         public override IEnumerable<Entity> SubEntities()

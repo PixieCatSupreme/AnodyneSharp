@@ -6,6 +6,7 @@ using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace AnodyneSharp.Entities.Lights
@@ -45,6 +46,13 @@ namespace AnodyneSharp.Entities.Lights
     public class FiveFrameGlowLight : Light
     {
         public FiveFrameGlowLight(Vector2 pos) : base(pos, new("5-frame-glow", 48, 48, new Anim("glow",new int[] { 0, 0, 1, 2, 3, 4, 3, 2, 1, 0, 0, 0 },7)))
+        {
+        }
+    }
+
+    public class BrightGlowLight : Light
+    {
+        public BrightGlowLight(Vector2 pos) : base(pos, new("5-frame-glow-bright", 48, 48, new Anim("glow", Enumerable.Range(0, 20).ToArray(), 7, false)))
         {
         }
     }

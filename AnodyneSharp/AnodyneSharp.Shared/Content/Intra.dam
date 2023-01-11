@@ -2,7 +2,7 @@
 <project>
   <version/>
   <bgColor>0xcccccc</bgColor>
-  <viewPos x="-72" y="-984"/>
+  <viewPos x="99" y="159"/>
   <firstLayersTop>false</firstLayersTop>
   <spriteEntries currentId="174">
     <group name="Events SL" idx="1" open="false">
@@ -6397,7 +6397,7 @@
         </properties>
       </shapelayer>
     </group>
-    <group name="GO" id="54" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
+    <group name="GO" id="54" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
       <maplayer name="BG" id="54" xScroll="1" yScroll="1" x="0" y="0" width="50" height="60" tileset="textures/tilemaps/go_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>6,80,81,81,81,81,81,81,82,6,0,0,0,0,0,0,0,0,0,0,130,130,130,130,130,130,130,130,130,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>6,80,91,91,91,91,91,91,82,6,0,0,0,0,0,0,0,0,0,0,130,130,130,130,130,130,130,130,130,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
@@ -6522,7 +6522,7 @@
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,41,0,0,0,0,0,0,0,0,0,0,0,0,0,0,41,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,41,0,0,0,0,0,0,0,0,0,0,0,0,0,0,41,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
       </maplayer>
-      <spritelayer name="Stateful" id="56" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateful" id="56" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false" selected="true">
         <sprite guid="ED2195E9-9798-B9B3-3C15-105C40F7C501" x="352" y="512" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="82">
           <properties>
             <type typeof="String" name="type" value="0,4;5,3;4,1;1,1" hidden="false"/>
@@ -6610,8 +6610,16 @@
         <sprite guid="55B464F3-1B79-AFFC-FF58-96B4E306E18C" x="327" y="403" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="40" frame="11">
           <properties/>
         </sprite>
-        <sprite guid="44E62E73-3867-A133-1873-BA528E8F4830" x="48" y="0" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="96" frame="0"/>
-        <sprite guid="26838530-AAAD-3559-D900-AEEDB07AF4DC" x="96" y="0" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="96" frame="0"/>
+        <sprite guid="44E62E73-3867-A133-1873-BA528E8F4830" x="48" y="0" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="96" frame="0">
+          <properties>
+            <type typeof="String" name="type" value="bright" hidden="false"/>
+          </properties>
+        </sprite>
+        <sprite guid="26838530-AAAD-3559-D900-AEEDB07AF4DC" x="96" y="0" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="96" frame="0">
+          <properties>
+            <type typeof="String" name="type" value="bright" hidden="false"/>
+          </properties>
+        </sprite>
         <sprite guid="AEBA9AA2-0E34-91D2-6E5C-4FAD59E6B400" x="784" y="368" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="81">
           <properties>
             <type typeof="String" name="type" value="BlueDone" hidden="false"/>
@@ -8593,7 +8601,7 @@
         </properties>
       </shapelayer>
     </group>
-    <group name="REDCAVE" id="21" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
+    <group name="REDCAVE" id="21" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
       <maplayer name="BG" id="76" xScroll="1" yScroll="1" x="0" y="0" width="70" height="100" tileset="textures/tilemaps/redcave_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="true" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>14,6,15,6,6,6,6,6,6,13,14,6,6,6,6,6,6,6,6,13,14,6,6,6,6,6,6,6,6,13,14,6,6,6,6,6,6,6,6,13,14,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,13,14,6,6,6,6,6,6,6,6,13</row>
         <row>14,27,6,36,45,17,18,44,38,13,14,60,36,37,37,37,37,37,37,6,6,37,37,37,37,38,20,20,20,13,14,27,27,27,27,27,27,27,27,13,14,10,10,27,27,27,27,27,27,27,27,27,27,27,27,27,27,40,42,13,14,27,36,45,28,28,44,38,27,13</row>
@@ -9383,7 +9391,7 @@
           <properties/>
         </sprite>
       </spritelayer>
-      <shapelayer name="Settings" id="79" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false" selected="true">
+      <shapelayer name="Settings" id="79" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <properties>
           <type typeof="String" name="Music" value="redcave" hidden="false"/>
           <type typeof="String" name="Darkness" value="redcave_overlay" hidden="false"/>

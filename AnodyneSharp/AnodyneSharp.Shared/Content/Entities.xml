@@ -1958,8 +1958,8 @@
     <Gate x="384" y="480" guid="DCC4812C-0201-4869-B933-8ABEF2AF96C9" frame="5" p="2" alive="true" type="0" />
     <Gate x="400" y="480" guid="C6F00341-C41A-9EA2-D2B6-A70A723BD2EC" frame="5" p="2" alive="true" type="0" />
     <NPC x="327" y="403" guid="55B464F3-1B79-AFFC-FF58-96B4E306E18C" frame="11" type="generic" />
-    <Eye_Light x="48" y="0." guid="44E62E73-3867-A133-1873-BA528E8F4830" frame="0"/>
-    <Eye_Light x="96" y="0." guid="26838530-AAAD-3559-D900-AEEDB07AF4DC" frame="0"/>
+    <Eye_Light x="48" y="0." guid="44E62E73-3867-A133-1873-BA528E8F4830" frame="0" type="bright" />
+    <Eye_Light x="96" y="0." guid="26838530-AAAD-3559-D900-AEEDB07AF4DC" frame="0" type="bright" />
     <Water_Anim x="784" y="368" guid="AEBA9AA2-0E34-91D2-6E5C-4FAD59E6B400" frame="32" p="2" type="BlueDone" />
     <Water_Anim x="624" y="368" guid="E4CC6CC9-FA27-167D-A685-3F1E731CBED1" frame="32" p="2" type="BlueDone" />
     <Water_Anim x="160" y="368" guid="88DF7E80-A9FF-9B4D-AB07-8C1965369BD4" frame="32" p="2" type="HappyDone" />

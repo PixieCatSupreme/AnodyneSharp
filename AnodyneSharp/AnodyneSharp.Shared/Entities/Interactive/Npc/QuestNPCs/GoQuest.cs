@@ -31,6 +31,10 @@ namespace AnodyneSharp.Entities.Interactive.Npc.QuestNPCs
                 _played_quest = true;
                 GlobalState.Dialogue = DialogueManager.GetDialogue("generic_npc", "quest_event");
             }
+            else
+            {
+                GlobalState.Dialogue = DialogueManager.GetDialogue("generic_npc", "quest_normal");
+            }
 
             return true;
         }
