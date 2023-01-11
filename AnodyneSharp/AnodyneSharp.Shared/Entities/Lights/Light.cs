@@ -52,7 +52,7 @@ namespace AnodyneSharp.Entities.Lights
 
     public class BrightGlowLight : Light
     {
-        public BrightGlowLight(Vector2 pos) : base(pos, new("5-frame-glow-bright", 48, 48, new Anim("glow", Enumerable.Range(0, 20).ToArray(), 7, false)))
+        public BrightGlowLight(Vector2 pos) : base(pos, new("5-frame-glow-bright", 48, 48, new Anim("glow", Enumerable.Range(1, 19).ToArray(), 7, false)))
         {
         }
     }

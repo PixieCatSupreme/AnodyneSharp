@@ -209,8 +209,6 @@ namespace AnodyneSharp.States.MainMenu
                             label.IsVisible = false;
                         }
 
-
-
                         GlobalState.TitleScreenFinish.Darkness = ResourceManager.GetTexture("title_overlay2");
 
                         nexusImage.Position.Y = 180 - nexusImage.height;
