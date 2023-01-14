@@ -44,6 +44,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\Rendering\AnimatedSpriteRenderer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\Rendering\ISpriteRenderer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\Rendering\LayerType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\Rendering\SolidColorRenderer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\Rendering\StaticSpriteRenderer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\Shadow.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\CollisionGroups.cs" />
@@ -108,6 +109,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Circus\JavieraDanger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Circus\ArthurDanger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Circus\CircusFolksDead.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Debug\Black_Thing.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Debug\TestNPC.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Go\EndingSage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Go\PostBlue.cs" />

@@ -14,6 +14,7 @@ namespace AnodyneSharp.Drawing
         public static Color BackColor;
         public static SamplerState SamplerState;
         public static Color FullScreenFade = Color.White;
+        public static Texture2D SolidTex;
 
         private static GraphicsDevice _graphicsDevice;
         private static SpriteBatch _spriteBatch;
@@ -41,6 +42,9 @@ namespace AnodyneSharp.Drawing
             _depth = new RenderTarget2D(_graphicsDevice, 160, 160);
             _render = new RenderTarget2D(_graphicsDevice, 160, 180);
             _render2 = new RenderTarget2D(_graphicsDevice, 160, 180);
+
+            SolidTex = new(_graphicsDevice, 2, 2);
+            SolidTex.SetData(new Color[] {Color.White,Color.White,Color.White,Color.White});
         }
 
         public static void Load(ContentManager c)
