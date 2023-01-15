@@ -61,7 +61,7 @@ namespace AnodyneSharp.States
                 string text = DialogueManager.GetDialogue("misc", "any", "ending", i);
                 var label = new UILabel(new Vector2(0, y), true, text, layer: DrawOrder.TEXT, centerText: true);
                 _labels.Add(label);
-                y += Math.Min(180, (int)label.Writer.WriteAreaSize.Y + 5);
+                y += Math.Max(180, (int)label.Writer.WriteAreaSize.Y + 5);
             }
 
             _endLabel = new UILabel(new Vector2(0), false, DialogueManager.GetDialogue("misc", "any", "ending", 25 + 4), layer: DrawOrder.TEXT, centerText: true)

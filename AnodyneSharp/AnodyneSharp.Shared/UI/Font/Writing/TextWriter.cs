@@ -6,6 +6,7 @@ using AnodyneSharp.Registry;
 using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -259,6 +260,17 @@ namespace AnodyneSharp.UI.Text
             return lines[line].Length * spriteFont.spaceWidth;
         }
 
+        public float MaxLineWidth()
+        {
+            string[] lines = Text.Split(LineBreaks);
+            return lines.Select(l => l.Length).Max() * spriteFont.spaceWidth;
+        }
+
+        public int TotalTextHeight()
+        {
+            string[] lines = Text.Split(LineBreaks);
+            return lines.Length * spriteFont.lineSeparation;
+        }
 
         public float GetWordLength()
         {

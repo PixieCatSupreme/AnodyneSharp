@@ -139,9 +139,7 @@ namespace AnodyneSharp.UI
 
             Writer.Text = text;
 
-            int lines = 6 + Writer.Text.Count(c => TextWriter.LineBreaks.Any(character => character == c));
-
-            Writer.SetWriteArea((int)Writer.GetTextLength(), Writer.GetLineHeight() * lines);
+            Writer.SetWriteArea((int)Writer.MaxLineWidth(), Writer.TotalTextHeight());
             Writer.ProgressTextToEnd();
         }
     }
