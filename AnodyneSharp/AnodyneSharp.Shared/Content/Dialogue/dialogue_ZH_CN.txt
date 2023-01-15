@@ -2673,7 +2673,7 @@ Marina想感谢\n\nColin Meloy，\n扩展了我的词汇量\n\nTsugumo，问我\
 Mo，给予我充分的信任。\n\nTina，\n介绍我与Melos认识。\n\nMelos，和我一同制作游戏\n并且给予我信任。
 #New credits
 Anodyne 粉丝重置\n-------\n\n\n\nCynthia\nSteenvoorden 和\nSeph\nDe Busser 制\n\n-------------
-Remake testers\n-------\n\n\nXXX, XXX, XXX\nXXX, XXX, XXX\n\n\nAdditional\ntranslations\n-------\n\n\nXXX
+#Remake testers\n-------\n\n\nNoelle Suplex\nholocene.scenes\nsaladplainzone\ndaffodilian\n\n\nAdditional\ntranslations\n-------\n\n\nLisandro Johnston\nAntonio Natilla\nMichelle Caldeira (Talking-Translation)\nLyndon Ang
 感谢\n\nMelos 和 Marina\n的鼎立支持\n\nCynthia 感谢,\n父母\n支持我的Noelle\n和Lilly,\n还有小猫 Nixie
 Seph 感谢\n一直听我诉苦的\nGhlyffe,\n忠实的Twitch\n观众和期待这个重置的\nAnalgesic\nDiscord 观众
 #end of new credits

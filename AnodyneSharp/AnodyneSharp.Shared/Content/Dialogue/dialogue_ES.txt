@@ -2664,7 +2664,7 @@ Agradecimientos de\nMarina a...\n\nColin Meloy, por\nexpandir mi\nvocabulario\n\
 Mo, por creer\n en mí.\n\nTina, por\npresentarme\na Melos.\n\nMelos, por hacer\nun juego y confiar\nen mí para que\nformara una parte\nimportante de él.
 #New credits
 Remake por fans de Anodyne\n-------\n\n\n\nCortesía de\n\nCynthia Steenvoorden\n\ny\n\nSeph De Busser\n\n-------------
-Testers del remake\n-------\n\n\nXXX, XXX, XXX\nXXX, XXX, XXX\n\n\nTraducciones\nadicionales\n-------\n\n\nXXX
+Testers del remake\n-------\n\n\nNoelle Suplex\nholocene.scenes\nsaladplainzone\ndaffodilian\n\n\nTraducciones\nadicionales\n-------\n\n\nLisandro Johnston\nAntonio Natilla\nMichelle Caldeira (Talking-Translation)\nLyndon Ang
 Quisiéramos\nagradecer a:\n\nMelos y Marina\npor hacer posible\npeste proyecto.\n\nCynthia quisiera\nagradecerle a:\n\nMamá y papá(qepd),\n\na Noelle y Lilly por\nsiempre apoyarle,\n\ny a Nixie la gata. 
 Seph quisiera\nagradecerle a:\n\nGhlyffe, por soportar\nmis infodumps sobre\neste proyecto,\n\na mis regulares de\nTwitch, quienes me\nmantuvieron motivada\npara stremearme a mi misma\ntrabajando en este remake.\n\nA la comunidad de\ndiscord de Analgesic,\nque siempre se\nemocionaban por nuevas\nadiciones al remake.
 #end of new credits

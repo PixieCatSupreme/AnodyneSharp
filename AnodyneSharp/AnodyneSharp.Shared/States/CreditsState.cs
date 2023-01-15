@@ -44,7 +44,7 @@ namespace AnodyneSharp.States
 
             int bgHeight = 480;
 
-            _dimOverlay = new UIEntity(Vector2.Zero, "dim_overlay", 160, 180, DrawOrder.PAUSE_SELECTOR)
+            _dimOverlay = new UIEntity(Vector2.Zero, "dim_overlay", 160, 180, DrawOrder.CREDITS_OVERLAY)
             {
                 opacity = 0.2f
             };

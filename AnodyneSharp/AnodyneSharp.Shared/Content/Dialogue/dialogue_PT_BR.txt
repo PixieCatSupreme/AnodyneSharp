@@ -2391,7 +2391,8 @@ Marina gostaria de\nagradecer...\n\nColin Meloy, por\nexpandir\nmeu vocabulário
 Mo, por acreditar\n em mim.\n\nTina, por me\napresentar ao Melos.\n\nMelos, por fazer\num jogo\ne confiar em mim\ncomo grande parte\ndo processo.
 #New credits
 Remake de fã de Anodyne\n-------\n\n\n\nFeito por\nCynthia Steenvoorden\ne Seph De Busser\n\n-------------
-Testers do Remake\n-------\n\n\nXXX, XXX, XXX\nXXX, XXX, XXX\n\n\nTraduções\nAdicionais:\n-------\n\n\nXXX
+#Remake testers\n-------\n\n\nNoelle Suplex\nholocene.scenes\nsaladplainzone\ndaffodilian\n\n\nAdditional\ntranslations\n-------\n\n\nLisandro Johnston\nAntonio Natilla\nMichelle Caldeira (Talking-Translation)\nLyndon Ang
+Testers do Remake\n-------\n\n\nNoelle Suplex\nholocene.scenes\nsaladplainzone\ndaffodilian\n\n\nTraduções\nAdicionais\n-------\n\n\nLisandro Johnston\nAntonio Natilla\nMichelle Caldeira (Talking-Translation)\nLyndon Ang
 Gostariamos de\nagradecer\n\nao Melos e à Marina\npor possibilitarem\neste projeto\n\nCynthia gostaria de\nagradecer\n\nà sua mãe ao seu\npai (descansem em Paz),\n\na Noelle e a Lilly por\nestarem sempre cá.\n\nÀ Nixie a gata.
 A Seph gostaria de\nagradecer:\n\n à Ghlyffe por ouvir\nsempre os seus infodumps\nsobre este projeto,\n\n Quem a vê regularmente no\nTwitch e quea manteve\nmotivada enquanto\ntransmitia o seu trabalho\nno remake,\n\nÀ Comunidade de Discord de\nAnalgesic e ao quão\nexcitada estava por\nqualquer nova coisa\nque adicionasse.
 #end of new credits
