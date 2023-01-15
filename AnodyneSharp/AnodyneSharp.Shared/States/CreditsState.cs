@@ -8,6 +8,7 @@ using AnodyneSharp.Drawing;
 using AnodyneSharp.Entities;
 using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Input;
+using AnodyneSharp.Logging;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 using AnodyneSharp.UI;
@@ -53,23 +54,14 @@ namespace AnodyneSharp.States
 
             _screenie = new Screenie();
 
-            int y = 0;
+            int y = 180;
 
             for (int i = 0; i < maxLabels; i++)
             {
-                if (i != 0 && i % 2 == 0)
-                {
-                    y += 195;
-                }
-                else
-                {
-                    y += 180;
-                }
-
-
                 string text = DialogueManager.GetDialogue("misc", "any", "ending", i);
-
-                _labels.Add(new UILabel(new Vector2(0, y), true, text, layer: DrawOrder.TEXT, centerText: true));
+                var label = new UILabel(new Vector2(0, y), true, text, layer: DrawOrder.TEXT, centerText: true);
+                _labels.Add(label);
+                y += Math.Min(180, (int)label.Writer.WriteAreaSize.Y + 5);
             }
 
             _endLabel = new UILabel(new Vector2(0), false, DialogueManager.GetDialogue("misc", "any", "ending", 25 + 4), layer: DrawOrder.TEXT, centerText: true)
