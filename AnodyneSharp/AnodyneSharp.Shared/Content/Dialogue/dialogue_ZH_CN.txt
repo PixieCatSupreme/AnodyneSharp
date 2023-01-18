@@ -2665,15 +2665,15 @@ Anodyne 镇痛\n-------\n\n\n\n游戏由\n\nMelos Han-Tani\n\n和\n\nMarina Kitt
 程序\n-----------\nMelos，使用\nFlixel库来制作\n动作脚本 3.\n\n\n\n美术\n---\nMarina\n
 音乐和音效\n---------\nMelos，使用REAPER\n和一系列免费音色库。\n\n\n\n对话\n--------------\n大部分由Marina制作\n
 故事\n-----\n两人协同\n中文本地化：\n一只小雨
-特别感谢\n我们辛勤工作的测试员！\n--------------\n\nMarina，辛勤地为游戏排错。\n\nEtan，一直以来给予的支持，\n并且帮忙找到许多错漏。
-O——\n谢谢你，姐姐！\n\nRunnan、Nick\nReineke、\nEmmett、Poe、\nAD1337、\n Dennis、Andrew、\nAndrew MM\n Carl、Max、Amidos、\nLyndsey、Nathan\n
-Melos想感谢：\n\n母亲和父亲的长期支持。\n\nSandy\n\n许多TIGSourcers以及\n其他与我们交流过的开发者！\n\nMarina，\n为整个游戏的开发作出了\n不可估量的付出。
-Adobe、Adam\nSaltsman、\nFlashDevelop开发者、\nREAPER开发者、\nDAME制作者\nDesura、\nGamersgate\nIndieDB、\nTIGSource\n\n\n以及其他支持我的朋友们\n感谢你们！！\n\n最后，我想感谢\nTina Chen\n我一直以来的朋友\n她不仅给予我长期支持\n还介绍我与Marina相识。
-Marina想感谢\n\nColin Meloy，\n扩展了我的词汇量\n\nTsugumo，问我\n“你想要成为一位像素艺术家吗”？\n\n我的家人，\n给予我支持与食物。\n\nDaniel，作为一名\n"独立游戏开发者"\n，一直伴随着我成长。
+特别感谢\n我们辛勤工作的测试员！\n--------------\n\nMarina，\n辛勤地为游戏排错。\n\nEtan，\n一直以来给予的支持，\n并且帮忙找到许多错漏。
+O——\n谢谢你，姐姐！\n\nRunnan、Nick\nReineke、\nEmmett、Poe、\nAD1337、\n Dennis、\nAndrew、\nAndrew MM\n Carl、Max、\nAmidos、\nLyndsey、Nathan\n
+Melos想感谢：\n\n母亲和父亲的长期支持。\n\nSandy\n\n许多TIGSourcers\n以及\n其他与我们交流过的开发者！\n\nMarina，\n为整个游戏的开发作出了\n不可估量的付出。
+Adobe、Adam\nSaltsman、\nFlashDevelop\n开发者、\nREAPER开发者、\nDAME制作者\nDesura、\nGamersgate\nIndieDB、\nTIGSource\n\n\n以及其他支持我的朋友们\n感谢你们！！\n\n最后，我想感谢\nTina Chen\n我一直以来的朋友\n她不仅给予我长期支持\n还介绍我与Marina相识。
+Marina想感谢\n\nColin Meloy，\n扩展了我的词汇量\n\nTsugumo，问我\n“你想要成为一\n位像素艺术家吗”？\n\n我的家人，\n给予我支持与食物。\n\nDaniel，作为一名\n"独立游戏开发者"\n，一直伴随着我成长。
 Mo，给予我充分的信任。\n\nTina，\n介绍我与Melos认识。\n\nMelos，和我一同制作游戏\n并且给予我信任。
 #New credits
 Anodyne 粉丝重置\n-------\n\n\n\nCynthia\nSteenvoorden 和\nSeph\nDe Busser 制\n\n-------------
-#Remake testers\n-------\n\n\nNoelle Suplex\nholocene.scenes\nsaladplainzone\ndaffodilian\n\n\nAdditional\ntranslations\n-------\n\n\nLisandro Johnston\nAntonio Natilla\nMichelle Caldeira (Talking-Translation)\nLyndon Ang
+Remake testers\n-------\n\n\nNoelle Suplex\nholocene.scenes\nsaladplainzone\ndaffodilian\n\n\nAdditional\ntranslations\n-------\n\n\nLisandro\nJohnston,\nAntonio\nNatilla,\nMichelle\nCaldeira,\nLyndon Ang\n\n
 感谢\n\nMelos 和 Marina\n的鼎立支持\n\nCynthia 感谢,\n父母\n支持我的Noelle\n和Lilly,\n还有小猫 Nixie
 Seph 感谢\n一直听我诉苦的\nGhlyffe,\n忠实的Twitch\n观众和期待这个重置的\nAnalgesic\nDiscord 观众
 #end of new credits

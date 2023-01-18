@@ -2460,10 +2460,10 @@ Adobe, Adam Saltsman,\nFlashDevelop devs,\nREAPER devs,\nDAME creator,\nDesura, 
 Marina would like\nto thank...\n\nColin Meloy, for\nexpanding\nmy vocabulary\n\nTsugumo, for\n"So You Want to\nBe a Pixel Artist?"\n\nMy family,\nfor support and food.\n\nDaniel, for being an\n"indie game dev"\nwith me growing up.
 Molly, for believing\n in me.\n\nTina, for introducing\nme\nto Melos.\n\nMelos, for making\na game\nand trusting me to\nbe a big part of it.
 #New credits
-Anodyne Fan Remake\n-------\n\n\n\nMade by\n\nCynthia Steenvoorden\n\nand\n\nSeph De Busser\n\n-------------
-#Remake testers\n-------\n\n\nNoelle Suplex\nholocene.scenes\nsaladplainzone\ndaffodilian\n\n\nAdditional\ntranslations\n-------\n\n\nLisandro Johnston\nAntonio Natilla\nMichelle Caldeira (Talking-Translation)\nLyndon Ang
-We would like\nto thank:\n\nMelos and Marina\nfor making this\nproject possible\n\nCynthia would like\nto thank:\n\nMom and dad(rip),\n\nNoelle and Lilly for\nalways being\nsupportive,\n\nNixie the cat.
-Seph would like\n to thank:\n\nGhlyffe, for always\nlistening to my\ninfodumps about this\nproject,\n\nMy Twitch regulars, who\nkept me motivated\nto stream myself\nworking on this remake.\n\nThe Analgesic discord\ncommunity, who were\nalways hyped for new\nremake features.
+Anodyne Fan Remake\n-------\n\n\n\nMade by\n\nCynthia\nSteenvoorden\n\nand\n\nSeph De Busser\n\n-------------
+Remake testers\n-------\n\n\nNoelle Suplex,\nholocene.scenes,\nsaladplainzone,\ndaffodilian\n\n\nAdditional\ntranslations\n-------\n\n\nLisandro Johnston,\nAntonio Natilla,\nMichelle Caldeira,\nLyndon Ang\n\n
+We would like\nto thank:\n\nMelos and Marina\nfor making this\nproject possible\n\nCynthia would like\nto thank:\n\nMom and dad(rip),\n\nNoelle and\nLilly for\nalways being\nsupportive,\n\nNixie the cat.
+Seph would like\n to thank:\n\nGhlyffe, for always\nlistening to my\ninfodumps about\nthis project,\n\nMy Twitch regulars,\nwho kept me\nmotivated to\nstream myself\nworking on this\nremake.\n\nThe Analgesic\ndiscord community,\nwho were always\nhyped for new\nremake features.\n\n
 #end of new credits
 # CAST\n----\n\n\nSlime\n\n\nAnnoyer\n\n\nPew Pew\n\n\nShieldy\n\n\nSeer
 캐스트\n---\n\n\n슬라임\n\n\n짜증나는 놈\n\n\n퓨 퓨\n\n\n방패지기\n\n\n탐구자

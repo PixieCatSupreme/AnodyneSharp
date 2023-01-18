@@ -2383,7 +2383,7 @@ DESIGN\n------\nAmbos
 PROGRAMAÇÃO\n-----------\nMelos, usando\nFlixel para\nActionscript 3.\n\n\n\nARTE\n---\nMarina\n
 MÚSICA/EFEITOS\n---------\nMelos, usando REAPER\ne algumas\nsoundfonts livres.\n\n\n\nDIÁLOGO\n--------------\nPrincipalmente Marina\n
 HISTÓRIA\n-----\nAmbos\nLocalização\nJaponesa:\nKakehashi Games
-Um grande obrigado\npara nossos testers\nque sofreram\npor você!\n--------------\n\nMarina, por sobreviver\natravés dos bugs\niniciais.\n\nEtan, pelo\nconstante suporte\ndesde o início, pelos\nmuitos bugs,\ndescobertos e por\nser o terceiro\na jogar a maioria/n do jogo.
+Um grande obrigado\npara nossos testers\nque sofreram\npor você!\n--------------\n\nMarina, por sobreviver\natravés dos bugs\niniciais.\n\nEtan, pelo\nconstante suporte\ndesde o início, pelos\nmuitos bugs,\ndescobertos e por\nser o terceiro\na jogar a maioria\n do jogo.
 O - valeu,\nmana!\n\nRunnan, Nick Reineke,\nEmmett, Poe, AD1337,\n Dennis, Andrew,\nAndrew MM\n Carl, Max, Amidos,\nLyndsey, Nathan\n
 Melos gostaria de\nagradecer a:\n\nMãe e Pai, pelo\nsuporte contínuo\nnessa empreitada.\n\nS\n\nMuitos TIGSourcers\ne outros devs\nconhecidos pelo\ncaminho!\n\nMarina, por tornar\nesse jogo possível,\ne por melhora-lo\nde formas incontáveis.
 Adobe, Adam Saltsman,\ndevs do FlashDevelop,\ndevs do REAPER,\ncriador do DAME,\nDesura, Gamersgate,\nIndieDB, TIGSource\n\n\nE meus outros\namigos\nque mostraram\nseu apoio.\n(Obrigado!)\n\nE por último, mas\nnão menos\nimportante,\nTina Chen,\namiga de longa\ndata, pelo suporte\ne por me apresentar\nao Marina.
@@ -2392,9 +2392,9 @@ Mo, por acreditar\n em mim.\n\nTina, por me\napresentar ao Melos.\n\nMelos, por 
 #New credits
 Remake de fã de Anodyne\n-------\n\n\n\nFeito por\nCynthia Steenvoorden\ne Seph De Busser\n\n-------------
 #Remake testers\n-------\n\n\nNoelle Suplex\nholocene.scenes\nsaladplainzone\ndaffodilian\n\n\nAdditional\ntranslations\n-------\n\n\nLisandro Johnston\nAntonio Natilla\nMichelle Caldeira (Talking-Translation)\nLyndon Ang
-Testers do Remake\n-------\n\n\nNoelle Suplex\nholocene.scenes\nsaladplainzone\ndaffodilian\n\n\nTraduções\nAdicionais\n-------\n\n\nLisandro Johnston\nAntonio Natilla\nMichelle Caldeira (Talking-Translation)\nLyndon Ang
+Testers do Remake\n-------\n\n\nNoelle Suplex,\nAa (holocene.scenes),\nMaddy (saladplainzone),\ndaffodilian\n\n\nTraduções\nAdicionais\n-------\n\n\nLisandro Johnston,\nAntonio Natilla,\nMichelle Caldeira\n(Talking-Translation),\nLyndon Ang\n\n
 Gostariamos de\nagradecer\n\nao Melos e à Marina\npor possibilitarem\neste projeto\n\nCynthia gostaria de\nagradecer\n\nà sua mãe ao seu\npai (descansem em Paz),\n\na Noelle e a Lilly por\nestarem sempre cá.\n\nÀ Nixie a gata.
-A Seph gostaria de\nagradecer:\n\n à Ghlyffe por ouvir\nsempre os seus infodumps\nsobre este projeto,\n\n Quem a vê regularmente no\nTwitch e quea manteve\nmotivada enquanto\ntransmitia o seu trabalho\nno remake,\n\nÀ Comunidade de Discord de\nAnalgesic e ao quão\nexcitada estava por\nqualquer nova coisa\nque adicionasse.
+A Seph gostaria de\nagradecer:\n\n à Ghlyffe por ouvir\nsempre os seus infodumps\nsobre este projeto,\n\n Quem a vê\nregularmente no\nTwitch e quea manteve\nmotivada enquanto\ntransmitia o seu trabalho\nno remake,\n\nÀ Comunidade\nde Discord de\nAnalgesic e ao quão\nexcitada estava por\nqualquer nova coisa\nque adicionasse.
 #end of new credits
 ELENCO\n----\n\n\nGosma\n\n\nChato\n\n\nPei Pei\n\n\nEscudito\n\n\nVisionário
 Movedor\n\n\nLiga Desliga\n\n\nQuatro Tiros\n\n\nCortador\n\n\nRogue\n

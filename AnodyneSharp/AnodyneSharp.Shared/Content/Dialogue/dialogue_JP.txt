@@ -2383,7 +2383,7 @@ Anodyne\n-------\n\n\n\nせいさくしゃ:\n\nMelos Han-Tani\n\n\n\nMarina Kitt
 #Created from\n\nMarch, 2012\n\nto\n\nJanuary, 2013
 ゲームデザイン\n------\nふたりとも
 #DESIGN\n------\nBoth
-プログラミング\n-----------\nMelos:Actionscript 3\nと Flixel ライブラリ\nを使用\n\n\n\nアート\n---\nMarina\n
+プログラミング\n-----------\nMelos:Action-\nscript 3\nと Flixel ライブラリ\nを使用\n\n\n\nアート\n---\nMarina\n
 #PROGRAMMING\n-----------\nMelos, using the\nFlixel library for\nActionscript 3.\n\n\n\nART\n---\nMarina\n
 おんがく/SFX\n---------\nMelos:REAPER と\n無料のサウンドフォント\nを使用\n\n\n\n会話文\n--------------\nだいたい Marina\n
 #MUSIC/SFX\n---------\nMelos, using REAPER\nand number of free\nsoundfonts.\n\n\n\nDIALOGUE\n--------------\nMostly Marina\n
@@ -2391,11 +2391,11 @@ Anodyne\n-------\n\n\n\nせいさくしゃ:\n\nMelos Han-Tani\n\n\n\nMarina Kitt
 #STORY\n-----\nBoth\nJapanese Localization:\nKakehashi Games
 テスターのみんなに\nありがとう\nちょうタイヘン\nだったよね!\n--------------\n\nMarina,初期のバグ\n対応 すごくタイヘン\nだったよね\n\nEtan,さいしょから\nずっと支えてくれて\nバグもたくさん\n見つけてくれて\nさいごまで手伝って\nくれて ありがとう\n 
 #Massive thanks to\nour testers, who\nsuffered so you\ndon't have to!\n--------------\n\nMarina, for suffering\nthrough most of the\ninitial bugs.\n\nEtan, for constant\nsupport since the\nbeginning, with\nmany bugs found,\nand the third human\nto play through most\nof the game.
-それから妹の Olivia も!\n\nRunnan, Nick Reineke,\nEmmett, Poe, AD1337,\n Dennis, Andrew,\nAndrew MM\n Carl, Max, Amidos,\nLyndsey, Nathan\n
-#O - thanks, sis!\n\nRunnan, Nick Reineke,\nEmmett, Poe, AD1337,\n Dennis, Andrew,\nAndrew MM\n Carl, Max, Amidos,\nLyndsey, Nathan\n
+それから妹の Olivia も!\n\nRunnan,\nNick Reineke,\nEmmett, Poe,\nAD1337,\n Dennis, Andrew,\nAndrew MM\n Carl, Max, Amidos,\nLyndsey, Nathan\n
+#O - thanks, sis!\n\nRunnan,\nNick Reineke,\nEmmett, Poe,\nAD1337,\n Dennis, Andrew,\nAndrew MM\n Carl, Max, Amidos,\nLyndsey, Nathan\n
 Melos からの謝辞:\n\n父と母へ - ずっと\n支えてくれてありがとう\n\nS\n\nTIGSource のみんな\n開発者の仲間たちに\nありがとう\n\nそして Marina キミが\nいなければ完成\nしなかったよ
 #Melos would like\nto thank:\n\nMom and Dad, for\ntheir constant support\nin this endeavor.\n\nS\n\nMany TIGSourcers and\nother devs met\nalong the way!\n\nMarina, for making\nthis game possible,\nand improving it in\ncountless ways.
-Adobe,Adam Saltsman氏\nFlashDevelop の人たち\nREAPER の人たち\nDAME 開発者さん\nDesura,Gamersgate,\nIndieDB,TIGSource\n\n\nそれから友だちみんな\n支えてくれて ホントに\nありがとう\n\nさいごに... 親友の\nTina Chen へ\n\nいつも 支えてくれて\nそして Marina を紹介して\nくれて ありがとう
+Adobe,Adam\nSaltsman氏\nFlashDevelop の人たち\nREAPER の人たち\nDAME 開発者さん\nDesura,Gamersgate,\nIndieDB,TIGSource\n\n\nそれから友だちみんな\n支えてくれて ホントに\nありがとう\n\nさいごに... 親友の\nTina Chen へ\n\nいつも 支えてくれて\nそして Marina を紹介して\nくれて ありがとう
 #Adobe, Adam Saltsman,\nFlashDevelop devs,\nREAPER devs,\nDAME creator,\nDesura, Gamersgate,\nIndieDB, TIGSource\n\n\nAnd my other friends\nwho have shown their\nsupport. (Thanks!)\n\nAnd last, but\nnot least,\nTina Chen,\nlongtime friend,\nfor both support and\nintroducing me to Marina.
 Marina からの謝辞:\n\nColin Meloy へ\n僕の表現力を高めて\nくれて ありがとう\n\nTsugumo へ\n"え,オマエ ドット絵\nアーティストやるの?"\n\n家族のみんな\n支えてくれて \nご飯食わせてくれて\nありがとうでした\n\nDaniel へ\n小さな頃から\n僕と一緒に\n"インディー開発者"\nでいてくれてありがとう
 #Marina would like\nto thank...\n\nColin Meloy, for\nexpanding\nmy vocabulary\n\nTsugumo, for\n"So You Want to\nBe a Pixel Artist?"\n\nMy family,\nfor support and food.\n\nDaniel, for being an\n"indie game dev"\nwith me growing up.
@@ -2403,10 +2403,10 @@ Molly へ\n信じてくれてありがとう\n\nTina へ\nMelos を紹介して�
 #Molly, for believing\n in me.\n\nTina, for introducing\nme\nto Melos.\n\nMelos, for making\na game\nand trusting me to\nbe a big part of it.
 出演\n----\n\n\nスライム\n\n\nじゃまなアレ\n\n\nポウポウ\n\n\nシールディ\n\n\n見通せし者
 #New credits
-Anodyne Fan Remake\n-------\n\n\n\nMade by\n\nCynthia Steenvoorden\n\nand\n\nSeph De Busser\n\n-------------
-Remake testers\n-------\n\n\nNoelle Suplex\nholocene.scenes\nsaladplainzone\ndaffodilian\n\n\nAdditional\ntranslations\n-------\n\n\nLisandro Johnston\nAntonio Natilla\nMichelle Caldeira (Talking-Translation)\nLyndon Ang
-We would like\nto thank:\n\nMelos and Marina\nfor making this\nproject possible\n\nCynthia would like\nto thank:\n\nMom and dad(rip),\n\nNoelle and Lilly for\nalways being\nsupportive,\n\nNixie the cat.
-Seph would like\n to thank:\n\nGhlyffe, for always\nlistening to my\ninfodumps about this\nproject,\n\nMy Twitch regulars, who\nkept me motivated\nto stream myself\nworking on this remake.\n\nThe Analgesic discord\ncommunity, who were\nalways hyped for new\nremake features.
+Anodyne Fan Remake\n-------\n\n\n\nMade by\n\nCynthia\nSteenvoorden\n\nand\n\nSeph De Busser\n\n-------------
+Remake testers\n-------\n\n\nNoelle Suplex,\nholocene.scenes,\nsaladplainzone,\ndaffodilian\n\n\nAdditional\ntranslations\n-------\n\n\nLisandro Johnston,\nAntonio Natilla,\nMichelle Caldeira,\nLyndon Ang\n\n
+We would like\nto thank:\n\nMelos and Marina\nfor making this\nproject possible\n\nCynthia would like\nto thank:\n\nMom and dad(rip),\n\nNoelle and\nLilly for\nalways being\nsupportive,\n\nNixie the cat.
+Seph would like\n to thank:\n\nGhlyffe, for always\nlistening to my\ninfodumps about\nthis project,\n\nMy Twitch regulars,\nwho kept me\nmotivated to\nstream myself\nworking on this\nremake.\n\nThe Analgesic\ndiscord community,\nwho were always\nhyped for new\nremake features.\n\n
 #end of new credits
 #CAST\n----\n\n\nSlime\n\n\nAnnoyer\n\n\nPew Pew\n\n\nShieldy\n\n\nSeer
 押してくるアレ\n\n\nオン オフ\n\n\nフォーシューター\n\n\nスラッシャー\n\n\nローグ\n

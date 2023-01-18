@@ -2678,12 +2678,12 @@ Mo, per aver creduto\n in me.\n\nTina, per\navermi presentato\na Melos.\n\nMelos
 #New credits
 #Anodyne Fan Remake\n-------\n\n\n\nMade by\n\nCynthia Steenvoorden\n\nand\n\nSeph De Busser\n\n-------------
 Fan Remake di Anodyne\n-------\n\n\n\nProdotto da\n\nCynthia Steenvoorden\n\nand\n\nSeph De Busser\n\n-------------
-#Remake testers\n-------\n\n\nNoelle Suplex\nholocene.scenes\nsaladplainzone\ndaffodilian\n\n\nAdditional\ntranslations\n-------\n\n\nLisandro Johnston\nAntonio Natilla\nMichelle Caldeira (Talking-Translation)\nLyndon Ang
-Tester del remake\n-------\n\n\nNoelle Suplex\nholocene.scenes\nsaladplainzone\ndaffodilian\n\n\nTraduzioni\naggiuntive\n-------\n\n\nLisandro Johnston\nAntonio Natilla\nMichelle Caldeira (Talking-Translation)\nLyndon Ang
+#Remake testers\n-------\n\n\nNoelle Suplex\nholocene.scenes\nsaladplainzone\ndaffodilian\n\n\nAdditional\ntranslations\n-------\n\n\nLisandro Johnston\nAntonio Natilla\nMichelle Caldeira (Talking-Translation)\nLyndon Ang\n\n
+Tester del remake\n-------\n\n\nNoelle Suplex,\nAa (holocene.scenes),\nMaddy (saladplainzone),\ndaffodilian\n\n\nTraduzioni\naggiuntive\n-------\n\n\nLisandro Johnston,\nAntonio Natilla,\nMichelle Caldeira\n(Talking-Translation),\nLyndon Ang
 #We would like\nto thank:\n\nMelos and Marina\nfor making this\nproject possible\n\nCynthia would like\nto thank:\n\nMom and dad(rip),\n\nNoelle and Lilly for\nalways being\nsupportive,\n\nNixie the cat.
 Ringraziamo:\n\nMelos e Marina\nper rendere\npossibile questo\nprogetto\n\nCynthia ringrazia:\n\nla mamma e\nil papà (RIP),\n\nNoelle e Lilly per\nil loro supporto,\nla gatta Nixie
 #Seph would like\n to thank:\n\nGhlyffe, for always\nlistening to my\ninfodumps about this\nproject,\n\nMy Twitch regulars, who\nkept me motivated\nto stream myself\nworking on this remake.\n\nThe Analgesic discord\ncommunity, who were\nalways hyped for new\nremake features.
-Seph ringrazia:\n\nGhlyffe, per aver\nsempre ascoltato i miei\n"infodump" riguardo\nil progetto,\n\ni frequentatori della\nchat su Twitch,\n\nper avermi tenuta motivata\n nello streammare il\nmio lavoro\nsu questo remake,\nla community\ndiscord Analgesic,\nche è stata sempre\nentusiasta per le nuove\nfeature del remake
+Seph ringrazia:\n\nGhlyffe, per aver\nsempre ascoltato i miei\n"infodump" riguardo\nil progetto,\n\ni frequentatori della\nchat su Twitch,\n\nper avermi\ntenuta motivata\n nello streammare il\nmio lavoro\nsu questo remake,\n\nla community\ndiscord Analgesic,\nche è stata sempre\nentusiasta per le nuove\nfeature del remake.\n\n
 #end of new credits
 CAST\n----\n\n\nSlime\n\n\nAnnoyer\n\n\nPew Pew\n\n\nShieldy\n\n\nSeer
 Mover\n\n\nOn Off\n\n\nFour Shooter\n\n\nSlasher\n\n\nRogue\n

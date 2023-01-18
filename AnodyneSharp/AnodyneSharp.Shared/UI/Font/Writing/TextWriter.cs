@@ -272,6 +272,12 @@ namespace AnodyneSharp.UI.Text
             return lines.Length * spriteFont.lineSeparation;
         }
 
+        public string[] LinesOverLength(int length)
+        {
+            string[] lines = Text.Split(LineBreaks);
+            return lines.Where(l=>l.Length*spriteFont.spaceWidth > length).ToArray();
+        }
+
         public float GetWordLength()
         {
             int index = Text.IndexOfAny(WordBreaks, letterProgress);
