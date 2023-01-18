@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace AnodyneSharp.Registry
 {
@@ -23,6 +24,7 @@ namespace AnodyneSharp.Registry
 
     public class Settings
     {
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         public Language language { get; set; } = Language.EN;
         
         public float music_volume_scale { get; set; } = 1.0f;
