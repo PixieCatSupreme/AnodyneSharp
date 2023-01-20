@@ -14,8 +14,6 @@ namespace AnodyneSharp.UI
         public bool IsEnabled { get; protected set; }
         public bool IsVisible { get; set; }
 
-        public float Z { get; set; }
-
         public Vector2 Position
         {
             get

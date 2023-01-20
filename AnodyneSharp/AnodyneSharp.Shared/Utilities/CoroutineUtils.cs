@@ -8,7 +8,7 @@ namespace AnodyneSharp.Utilities
 {
     public static class CoroutineUtils
     {
-        public static IEnumerator<string> OnceEvery(IEnumerator<string> adapted, float tm)
+        public static IEnumerator OnceEvery(IEnumerator adapted, float tm)
         {
             while(adapted.MoveNext())
             {
@@ -26,6 +26,15 @@ namespace AnodyneSharp.Utilities
                 float t = 0;
                 while (!MathUtilities.MoveTo(ref t, tm, 1)) yield return null;
                 func();
+            }
+        }
+
+        public static IEnumerator ForEach<T>(IEnumerable<T> values, Action<T> action)
+        {
+            foreach(T item in values)
+            {
+                action(item);
+                yield return null;
             }
         }
 

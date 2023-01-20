@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Blue
         const float appearance_vel = 0.24f;
 
         IEnumerator<string> state;
-        IEnumerator<string> water_anim;
+        IEnumerator water_anim;
 
         private BlueMitra _mitra;
         private Player _player;

@@ -104,7 +104,7 @@ namespace AnodyneSharp.UI.Text
             }
         }
 
-        public float Opacity { get; set; }
+        public float Opacity;
 
         private int letterProgress;
 

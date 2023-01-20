@@ -388,6 +388,6 @@ namespace AnodyneSharp.Registry
 
         private static string _dialogue;
 
-        public static List<UIEntity> UIEntities = new List<UIEntity>();
+        public static List<Entity> UIEntities = new List<Entity>();
     }
 }

@@ -109,6 +109,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Circus\JavieraDanger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Circus\ArthurDanger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Circus\CircusFolksDead.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Debug\Big_Door.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Debug\Black_Thing.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Debug\TestNPC.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Go\EndingSage.cs" />

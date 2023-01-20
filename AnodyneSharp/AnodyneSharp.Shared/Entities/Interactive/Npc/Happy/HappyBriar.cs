@@ -4,6 +4,7 @@ using AnodyneSharp.Registry;
 using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +18,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Happy
         const float appearance_vel = 0.24f;
 
         IEnumerator<string> state;
-        IEnumerator<string> water_anim;
+        IEnumerator water_anim;
 
         public HappyBriar(EntityPreset preset, Player p) : base(preset,p)
         {
