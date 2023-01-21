@@ -39,7 +39,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
                 _ => Facing.UP,
             };
 
-            rotation = facing == Facing.RIGHT || facing == Facing.LEFT ? MathHelper.ToRadians(-90) : 0;            
+            rotation = facing == Facing.RIGHT || facing == Facing.LEFT ? MathHelper.ToRadians(-90) : facing == Facing.UP ? MathHelper.ToRadians(-180) : 0;            
 
             _laser = new Laser(Position, facing);
 

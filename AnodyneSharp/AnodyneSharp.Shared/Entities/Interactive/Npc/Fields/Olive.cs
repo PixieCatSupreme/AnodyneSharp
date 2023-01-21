@@ -8,17 +8,17 @@ using System.Text;
 
 namespace AnodyneSharp.Entities.Interactive.Npc
 {
-    [NamedEntity("NPC", type: "generic", map:"FIELDS", 8), Collision(typeof(Player), MapCollision = true)]
+    [NamedEntity("NPC", type: "generic", map: "FIELDS", 8), Collision(typeof(Player), MapCollision = true)]
     public class Olive : Entity, Interactable
     {
         IEnumerator _state;
 
         public static AnimatedSpriteRenderer GetSprite() => new("forest_npcs", 16, 16,
-            new Anim("idle", new int[] { 30 },1),
-            new Anim("hop",new int[] { 32, 33, 34 },4,false)
+            new Anim("idle", new int[] { 30 }, 1),
+            new Anim("hop", new int[] { 32, 33 }, 4, false)
             );
 
-        public Olive(EntityPreset preset, Player p) : base(preset.Position, GetSprite(),Drawing.DrawOrder.ENTITIES)
+        public Olive(EntityPreset preset, Player p) : base(preset.Position, GetSprite(), Drawing.DrawOrder.ENTITIES)
         {
             _state = UpdateFunc();
             immovable = true;
@@ -38,26 +38,27 @@ namespace AnodyneSharp.Entities.Interactive.Npc
 
         IEnumerator UpdateFunc()
         {
-            while (true) {
+            while (true)
+            {
                 float t = 0;
                 velocity = Vector2.Zero;
                 Play("idle");
                 _flip = Microsoft.Xna.Framework.Graphics.SpriteEffects.None;
-                while(t < 1.4f)
+                while (t < 1.4f)
                 {
                     t += GameTimes.DeltaTime;
                     yield return "idle_left";
                 }
                 Play("hop");
                 velocity.X = 25;
-                while(!AnimFinished)
+                while (!AnimFinished)
                 {
                     yield return "hopping_right";
                 }
                 velocity = Vector2.Zero;
                 Play("idle");
                 t = 0;
-                while(t < 1.6f)
+                while (t < 1.6f)
                 {
                     t += GameTimes.DeltaTime;
                     yield return "idle_right";

@@ -101,6 +101,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.RunningTradeNPCs
         {
             follow = p;
             dust.exists = false;
+            dust.visible = false;
             dust.Play("poofed");
 
             exists = false;
@@ -220,6 +221,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.RunningTradeNPCs
             if(dust.CurAnimName != "unpoof")
             {
                 dust.Play("unpoof");
+                dust.visible = true;
             }
             on_conveyor_this_frame = true;
         }

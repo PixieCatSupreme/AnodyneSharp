@@ -284,6 +284,20 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
             GlobalState.screenShake.Shake(0.05f, 0.1f);
             GlobalState.flash.Flash(1f, Color.Red);
 
+            small_wave.exists = false;
+
+            foreach (Entity bullet in splash_bullets.Entities)
+            {
+                bullet.exists = false;
+            }
+            foreach (Entity tentacle in tentacles.Entities)
+            {
+                tentacle.exists = false;
+            }
+
+            small_wave.exists = false;
+            big_wave.exists = false;
+
             while (!GlobalState.LastDialogueFinished)
             {
                 yield return null;

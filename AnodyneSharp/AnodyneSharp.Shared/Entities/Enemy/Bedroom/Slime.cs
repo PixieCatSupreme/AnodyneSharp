@@ -53,9 +53,9 @@ namespace AnodyneSharp.Entities.Enemy
         {
             int o = GlobalState.IsCell ? 4 : (GlobalState.BoiEaster ? 2 : 0);
             return new("slime", 16, 16,
-                new Anim("Move", new int[] { o, o+1 },3),
-                new Anim("Hurt", new int[] { o, 8, o, 8 }, 15, false),
-                new Anim("Dying", new int[] {o,8,o,8},12,false)
+                new Anim("Move", new int[] { o, o + 1 }, 3),
+                new Anim("Hurt", new int[] { o, 6, o, 6 }, 15, false),
+                new Anim("Dying", new int[] { o, 6, o, 6 }, 12, false)
                 );
         }
 
@@ -192,11 +192,11 @@ namespace AnodyneSharp.Entities.Enemy
             {
                 int o = GlobalState.IsCell || GlobalState.BoiEaster ? 4 : 0;
                 return new("slime_goo", 6, 6,
-                    new Anim("move",new int[] { 0 + o, 1 + o, 2 + o, 3 + o, 1 + o, 3 + o, 1 + o, 2 + o, 1 + o, 0 + o },framerate),
-                    new Anim("splash", new int[] { o },1));
+                    new Anim("move", new int[] { 0 + o, 1 + o, 2 + o, 3 + o, 1 + o, 3 + o, 1 + o, 2 + o, 1 + o, 0 + o }, framerate),
+                    new Anim("splash", new int[] { o }, 1));
             }
 
-            public Goo() : base(Vector2.Zero, GetSprite(GlobalState.RNG.Next(5,10)), DrawOrder.PARTICLES)
+            public Goo() : base(Vector2.Zero, GetSprite(GlobalState.RNG.Next(5, 10)), DrawOrder.PARTICLES)
             {
                 shadow = new Shadow(this, Vector2.Zero, ShadowType.Tiny);
 
@@ -250,7 +250,7 @@ namespace AnodyneSharp.Entities.Enemy
         private class Bullet : Entity
         {
             public Bullet()
-                : base(Vector2.Zero, new AnimatedSpriteRenderer("slime_bullet", 8, 8, new Anim("move",new int[] { 0, 1 },GlobalState.RNG.Next(5,10))), DrawOrder.PARTICLES)
+                : base(Vector2.Zero, new AnimatedSpriteRenderer("slime_bullet", 8, 8, new Anim("move", new int[] { 0, 1 }, GlobalState.RNG.Next(5, 10))), DrawOrder.PARTICLES)
             {
             }
 
