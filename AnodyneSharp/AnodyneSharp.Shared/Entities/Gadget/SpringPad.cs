@@ -18,9 +18,9 @@ namespace AnodyneSharp.Entities.Gadget
         private bool activated;
 
         public static AnimatedSpriteRenderer GetSprite() => new("spring_pad", 16, 16,
-            new Anim("still", new int[] { 0 },1),
-            new Anim("pressed", new int[] { 1 },1),
-            new Anim("wobble", new int[] { 0, 2, 0, 1, 0, 2, 0, 1, 0, 0 },10,false)
+            new Anim("still", new int[] { 0 }, 1),
+            new Anim("pressed", new int[] { 1 }, 1),
+            new Anim("wobble", new int[] { 0, 2, 0, 1, 0, 2, 0, 1, 0, 0 }, 10, false)
             );
 
         public SpringPad(EntityPreset preset, Player p)
@@ -62,7 +62,7 @@ namespace AnodyneSharp.Entities.Gadget
 
                     p.facing = Facing.DOWN;
 
-                    p.AutoJump(time, p.Position + new Vector2(0, distance));
+                    p.AutoJump(time, p.Position + new Vector2(0, distance), 10);
                 }
                 else
                 {
