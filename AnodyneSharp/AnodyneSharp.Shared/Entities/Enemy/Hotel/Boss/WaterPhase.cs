@@ -31,7 +31,7 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
                 new Anim("blink", new int[] { 0, 1, 2, 3, 2, 1, 0 }, 10, false),
                 new Anim("blink_fast", new int[] { 0, 1, 2, 3, 2, 1 }, 20, true),
                 new Anim("idle", new int[] { 0 },1),
-                new Anim("open", new int[] { 3, 2, 1, 0 }, 5)
+                new Anim("open", new int[] { 3, 2, 1, 0 }, 5, false)
                 );
 
         public WaterPhase(EntityPreset preset, Player p) : base(preset.Position,GetSprite(),Drawing.DrawOrder.BG_ENTITIES)
