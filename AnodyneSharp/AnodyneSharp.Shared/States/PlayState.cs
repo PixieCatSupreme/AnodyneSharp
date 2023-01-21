@@ -392,8 +392,13 @@ namespace AnodyneSharp.States
             if (GlobalState.inventory.EquippedBroomChanged)
             {
                 GlobalState.inventory.EquippedBroomChanged = false;
-
                 UpdateBroomIcon();
+                _player.broom.UpdateBroomType();
+
+                if (GlobalState.inventory.EquippedBroom != BroomType.Transformer)
+                {
+                    _player.transformer.Reset();
+                }
             }
 
             if (GlobalState.RefreshLabels)
@@ -797,13 +802,6 @@ namespace AnodyneSharp.States
             if (GlobalState.inventory.EquippedBroomChanged)
             {
                 SoundManager.PlaySoundEffect("menu_move");
-                UpdateBroomIcon();
-                _player.broom.UpdateBroomType();
-
-                if (broom != BroomType.Transformer)
-                {
-                    _player.transformer.Reset();
-                }
             }
         }
 
