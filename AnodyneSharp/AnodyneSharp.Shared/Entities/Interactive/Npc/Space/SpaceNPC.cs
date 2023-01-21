@@ -14,9 +14,9 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Space
 
         public static AnimatedSpriteRenderer GetSprite(int start) => new("space_npcs", 16, 16,
             new Anim("walk_d", new int[] { start + 0, start + 1 }, 4),
-            new Anim("walk_d", new int[] { start + 2, start + 3 }, 4),
-            new Anim("walk_d", new int[] { start + 4, start + 5 }, 4),
-            new Anim("walk_d", new int[] { start + 6, start + 7 }, 4),
+            new Anim("walk_r", new int[] { start + 2, start + 3 }, 4),
+            new Anim("walk_u", new int[] { start + 4, start + 5 }, 4),
+            new Anim("walk_l", new int[] { start + 6, start + 7 }, 4),
             new Anim("spin", new int[] { start + 0, start + 2, start + 4, start + 6 }, 10),
             new Anim("dead", new int[] { start + 8 }, 1)
             );

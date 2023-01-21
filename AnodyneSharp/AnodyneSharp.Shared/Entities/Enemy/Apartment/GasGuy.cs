@@ -84,7 +84,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
                     })
                     .Event("ShootTimer", (state) =>
                     {
-                        Play("shoot");
+                        Play("float");
                         _state.ChangeState("Normal");
                         SoundManager.PlaySoundEffect("gasguy_shoot");
                         gasClouds.Spawn((s) => s.Spawn(this, _player), 3, true);
