@@ -180,7 +180,7 @@ namespace AnodyneSharp.Entities.Enemy.Go
         [Collision(typeof(BlueThorn))]
         public class DustExplosion : Entity
         {
-            public DustExplosion() : base(Vector2.Zero, new AnimatedSpriteRenderer("briar_dust_explosion", 48, 48, new Anim("explode", new int[] { 0, 1, 2, 3, 4 }, 12)), Drawing.DrawOrder.ENTITIES)
+            public DustExplosion() : base(Vector2.Zero, new AnimatedSpriteRenderer("briar_dust_explosion", 48, 48, new Anim("explode", new int[] { 0, 1, 2, 3, 4 }, 12, false)), Drawing.DrawOrder.ENTITIES)
             {
             }
 
