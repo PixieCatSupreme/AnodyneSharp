@@ -35,7 +35,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Circus
             );
 
         public JavieraDanger(EntityPreset preset, Player p)
-            : base(preset.Position, "javiera_juggle", 16, 24, Drawing.DrawOrder.ENTITIES)
+            : base(preset.Position, GetSprite(), Drawing.DrawOrder.ENTITIES)
         {
             _preset = preset;
 
