@@ -16,6 +16,7 @@ namespace AnodyneSharp.Drawing
         BG_ENTITIES,                //Background entities, animated tiles,...
         SHADOWS,                    //Shadows
         PARTICLES,                  //Things like particles, keys, blood etc
+        ROLLERS,                    //Spike rollers behave weirdly with the ENTITIES layer otherwise
         ENTITIES,                   //Enemies, the player and other npcs
         FG_SPRITES,                 //Bullets and other things that have to be drawn over entities
         MAP_FG,                     //Foreground layer of the map

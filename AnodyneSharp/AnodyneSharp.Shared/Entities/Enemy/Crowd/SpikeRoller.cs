@@ -181,7 +181,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
                 );
         }
         public BaseSpikeRoller(EntityPreset preset, int frame)
-            : base(preset.Position, GetSprite(frame), Drawing.DrawOrder.ENTITIES)
+            : base(preset.Position, GetSprite(frame), Drawing.DrawOrder.ROLLERS)
         {
             switch (frame)
             {
