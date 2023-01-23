@@ -41,8 +41,6 @@ namespace AnodyneSharp.Entities.Gadget
                     time = 0.3f;
                     break;
             }
-
-            distance -= 14;
         }
 
         public override void Collided(Entity other)
@@ -82,7 +80,7 @@ namespace AnodyneSharp.Entities.Gadget
         {
             base.Update();
 
-            if (AnimFinished && !playerCollision)
+            if ((activated && AnimFinished) || !playerCollision)
             {
                 activated = false;
                 Play("still");

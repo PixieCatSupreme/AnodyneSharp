@@ -224,6 +224,7 @@ namespace AnodyneSharp.Entities
 
         public override void Update()
         {
+            JustLanded = false;
             if (invincibility_time > 0)
             {
                 invincibility_time -= GameTimes.DeltaTime;
@@ -311,7 +312,7 @@ namespace AnodyneSharp.Entities
             if (state != PlayerState.AIR && !isSlipping && !hasFallen && !GlobalState.FUCK_IT_MODE_ON)
             {
                 isSlipping = true;
-                fallTimer = FALL_TIMER_DEFAULT;
+                fallTimer = JustLanded ? -1 : FALL_TIMER_DEFAULT;
             }
             this.fallPoint = fallPoint;
             ON_HOLE = true;
@@ -487,9 +488,6 @@ namespace AnodyneSharp.Entities
                         Update_actions();
                     }
                     GroundAnimation();
-
-                    JustLanded = false;
-
                     break;
                 case PlayerState.AIR:
                     if (dontMove)
@@ -626,11 +624,6 @@ namespace AnodyneSharp.Entities
             }
             
             fallTimer -= GameTimes.DeltaTime;
-            if (JustLanded)
-            {
-                fallTimer = -1;
-                JustLanded = false;
-            }
 
             if ((Dashing && fallTimer < FALL_TIMER_DEFAULT / 2) || fallTimer < 0)
             {
@@ -796,6 +789,11 @@ namespace AnodyneSharp.Entities
                 yield return null;
             }
 
+            if (target_pos.HasValue)
+            {
+                Position = target_pos.Value;
+            }
+
             if (ON_CONVEYOR)
             {
                 SoundManager.PlaySoundEffect("puddle_down");
@@ -806,10 +804,10 @@ namespace AnodyneSharp.Entities
             }
 
             offset.Y = DEFAULT_Y_OFFSET;
-            JustLanded = true;
 
             yield return null;
 
+            JustLanded = true;
             state = PlayerState.GROUND;
             Solid = true;
             rotation = 0;
