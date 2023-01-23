@@ -489,7 +489,6 @@ namespace AnodyneSharp.Entities
                     GroundAnimation();
 
                     JustLanded = false;
-                    DashLogic();
 
                     break;
                 case PlayerState.AIR:
@@ -869,6 +868,7 @@ namespace AnodyneSharp.Entities
 
             velocity += additionalVel;
             velocity *= slowMul;
+            DashLogic();
         }
 
         private void AirMovement()
