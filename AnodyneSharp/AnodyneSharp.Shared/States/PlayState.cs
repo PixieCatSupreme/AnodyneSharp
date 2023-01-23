@@ -639,6 +639,7 @@ namespace AnodyneSharp.States
             //delete old objects
             _map.OnTransitionEnd();
             _oldEntities.Clear();
+            _player.transformer.Reset();
         }
 
         private void CreateKeyLabel()
