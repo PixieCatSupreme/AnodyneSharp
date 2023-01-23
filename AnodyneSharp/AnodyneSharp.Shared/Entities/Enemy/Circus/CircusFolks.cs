@@ -41,10 +41,10 @@ namespace AnodyneSharp.Entities.Enemy.Circus
         public static AnimatedSpriteRenderer GetSprite()
         {
             return new("arthur_javiera", 16, 32,
-                new Anim("walk_l", new int[] { 4, 5 }, 12),
                 new Anim("walk_d", new int[] { 0, 1 }, 8),
                 new Anim("walk_u", new int[] { 2, 3 }, 12),
                 new Anim("walk_r", new int[] { 4, 5 }, 12),
+                new Anim("walk_l", new int[] { 4, 5 }, 12),
                 new Anim("switch", new int[] { 6, 7 }, 6, false),
                 new Anim("throw_d", new int[] { 8, 8 }, 2, false), // The length of all frames minus last is how long the warning lasts.
                 new Anim("throw_r", new int[] { 10, 8 }, 2, false),

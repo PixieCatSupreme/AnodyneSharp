@@ -122,8 +122,8 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Blue
             private BlueBriar _parent;
 
             public static AnimatedSpriteRenderer GetSprite() => new("mitra_bike", 20, 20,
-                new Anim("bike_l", new int[] { 2, 3 },8),
                 new Anim("bike_r", new int[] { 2, 3 },8),
+                new Anim("bike_l", new int[] { 2, 3 },8),
                 new Anim("idle", new int[] { 22 },1)
                 );
 
@@ -133,6 +133,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Blue
                 visible = false;
 
                 _parent = parent;
+                Play("bike_l");
             }
 
             public void StartEvent()

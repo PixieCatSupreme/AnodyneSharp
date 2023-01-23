@@ -12,13 +12,13 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Blue
     {
         private EntityPreset _preset;
 
-        public static AnimatedSpriteRenderer GetSprite(int o) => new(o == 8 ? "blue_npcs" : "happy_npcs", 16, 16,
+        public static AnimatedSpriteRenderer GetSprite(int o) => new(o == 0 ? "blue_npcs" : "happy_npcs", 16, 16,
             new Anim("idle", new int[] { 10 + o },1),
             new Anim("fall", new int[] { 10 + o, 11 + o, 12 + o, 13 + o, 14 + o },7,false)
             );
 
         public Dam(EntityPreset preset, Player p)
-            : base(preset.Position, GetSprite(GlobalState.CURRENT_MAP_NAME == "BLUE" ? 8 : 0), Drawing.DrawOrder.ENTITIES)
+            : base(preset.Position, GetSprite(GlobalState.CURRENT_MAP_NAME == "BLUE" ? 0 : 8), Drawing.DrawOrder.ENTITIES)
         {
             immovable = true;
 
