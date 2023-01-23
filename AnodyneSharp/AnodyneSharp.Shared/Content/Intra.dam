@@ -2,7 +2,7 @@
 <project>
   <version/>
   <bgColor>0xcccccc</bgColor>
-  <viewPos x="99" y="159"/>
+  <viewPos x="262" y="-167"/>
   <firstLayersTop>false</firstLayersTop>
   <spriteEntries currentId="174">
     <group name="Events SL" idx="1" open="false">
@@ -6397,7 +6397,7 @@
         </properties>
       </shapelayer>
     </group>
-    <group name="GO" id="54" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
+    <group name="GO" id="54" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
       <maplayer name="BG" id="54" xScroll="1" yScroll="1" x="0" y="0" width="50" height="60" tileset="textures/tilemaps/go_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>6,80,81,81,81,81,81,81,82,6,0,0,0,0,0,0,0,0,0,0,130,130,130,130,130,130,130,130,130,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>6,80,91,91,91,91,91,91,82,6,0,0,0,0,0,0,0,0,0,0,130,130,130,130,130,130,130,130,130,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
@@ -6522,7 +6522,7 @@
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,41,0,0,0,0,0,0,0,0,0,0,0,0,0,0,41,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,41,0,0,0,0,0,0,0,0,0,0,0,0,0,0,41,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
       </maplayer>
-      <spritelayer name="Stateful" id="56" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false" selected="true">
+      <spritelayer name="Stateful" id="56" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="ED2195E9-9798-B9B3-3C15-105C40F7C501" x="352" y="512" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="82">
           <properties>
             <type typeof="String" name="type" value="0,4;5,3;4,1;1,1" hidden="false"/>
@@ -9741,7 +9741,7 @@
         </properties>
       </shapelayer>
     </group>
-    <group name="SUBURB" id="70" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
+    <group name="SUBURB" id="70" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
       <maplayer name="BG" id="84" xScroll="1" yScroll="1" x="0" y="0" width="60" height="80" tileset="textures/tilemaps/suburb_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>18,34,36,36,36,36,36,36,37,18,18,34,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,37,34,111,100,100,115,37,34,35,35,35,35,35,35,35,35,35,37,18,0,0,0,0,0,0,0,0,0,0</row>
         <row>18,34,1,2,1,2,1,2,35,35,35,35,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,35,35,13,100,100,14,35,35,90,11,90,90,90,90,90,90,90,35,37,0,0,0,0,0,0,0,0,0,0</row>
@@ -10075,23 +10075,16 @@
           </properties>
         </shape>
       </shapelayer>
-      <shapelayer name="Settings" id="87" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <shapelayer name="Settings" id="87" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false" selected="true">
         <properties>
           <type typeof="String" name="Music" value="suburb" hidden="false"/>
           <type typeof="String" name="FG_Blend" value="suburb_fg_overlay" hidden="false"/>
           <type typeof="String" name="ExtraBlend" value="suburb_extra_overlay" hidden="false"/>
           <type typeof="Boolean" name="Static" value="true" hidden="false"/>
         </properties>
-        <shape guid="23A4A0C2-958F-9C05-2FEA-D82FF39E0AC9" type="square" x="0" y="960" Z="0" angle="0" width="160.00" height="160.00" scaleX="3.200" scaleY="3.200" fillColor="0xc8ff66" alpha="0.50">
-          <properties>
-            <type typeof="String" name="Music" value="suburb_alt" hidden="false"/>
-            <type typeof="Boolean" name="Static" value="false" hidden="false"/>
-          </properties>
-        </shape>
         <shape guid="BCBF3908-A658-6266-8AE2-E71CC67E4736" type="square" x="480" y="800" Z="0" angle="0" width="320.00" height="160.00" scaleX="6.400" scaleY="3.200" fillColor="0x86ff66" alpha="0.50">
           <properties>
             <type typeof="String" name="Music" value="suburb_alt" hidden="false"/>
-            <type typeof="Boolean" name="Static" value="false" hidden="false"/>
           </properties>
         </shape>
         <shape guid="03AB3457-2F04-47F6-E8CE-E9ED0F2CE78D" type="square" x="0" y="800" Z="0" angle="0" width="320.00" height="160.00" scaleX="6.400" scaleY="3.200">
@@ -10110,6 +10103,11 @@
           <properties>
             <type typeof="Float" name="DarknessAlpha" value="0.91" hidden="false"/>
             <type typeof="Boolean" name="PlayerLight" value="true" hidden="false"/>
+          </properties>
+        </shape>
+        <shape guid="23A4A0C2-958F-9C05-2FEA-D82FF39E0AC9" type="square" x="0" y="960" Z="0" angle="0" width="160.00" height="160.00" scaleX="3.200" scaleY="3.200" fillColor="0xc8ff66" alpha="0.50">
+          <properties>
+            <type typeof="String" name="Music" value="suburb_alt" hidden="false"/>
           </properties>
         </shape>
       </shapelayer>
