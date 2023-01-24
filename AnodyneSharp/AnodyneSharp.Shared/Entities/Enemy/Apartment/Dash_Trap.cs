@@ -37,6 +37,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
             width = height = 14;
             CenterOffset();
             MapInteraction = false;
+            HoleAsWall = true;
         }
 
         public override void Collided(Entity other)

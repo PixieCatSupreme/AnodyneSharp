@@ -51,6 +51,7 @@ namespace AnodyneSharp.Entities
         public Shadow shadow;
 
         public bool MapInteraction = true;
+        public bool HoleAsWall = false;
 
         public Vector2 VisualCenter
         {

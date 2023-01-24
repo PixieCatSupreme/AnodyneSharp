@@ -272,6 +272,14 @@ namespace AnodyneSharp.MapData
         {
             t.lastPosition = t.Position = TileToWorld(tilePos);
 
+            if(ent.HoleAsWall && t.collisionEventType == CollisionEventType.HOLE)
+            {
+                t.allowCollisions = Touching.ANY;
+                GameObject.Separate(ent, t);
+                t.allowCollisions = Touching.NONE;
+                return;
+            }
+
             if (t.allowCollisions == Touching.NONE || GameObject.Separate(ent, t))
             {
                 if (t.collisionEventType != CollisionEventType.NONE && ent.MapInteraction)
