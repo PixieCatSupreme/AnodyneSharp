@@ -13,7 +13,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
     {
         RotatorBullet bullet;
 
-        public Rotator(EntityPreset preset, Player p) : base(preset.Position, new AnimatedSpriteRenderer("f_rotator", 16, 16, new Anim("pulse", new int[] { 0, 1 }, 10)), Drawing.DrawOrder.ENTITIES)
+        public Rotator(EntityPreset preset, Player p) : base(preset.Position, new AnimatedSpriteRenderer("f_rotator", 16, 16, new Anim("pulse", new int[] { 0, 1 }, 10)), Drawing.DrawOrder.BG_ENTITIES)
         {
             immovable = true;
 
