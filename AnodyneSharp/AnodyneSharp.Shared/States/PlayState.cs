@@ -95,6 +95,8 @@ namespace AnodyneSharp.States
 
         private bool DoQuickLoad = false;
 
+        private float QuickSaveTimer = 5f; //Prevents quick-save from being spammed after loading
+
         public PlayState(Camera camera)
         {
             _gridEntities = new List<Entity>();
@@ -121,6 +123,11 @@ namespace AnodyneSharp.States
 
         private void QuickSave()
         {
+            if(QuickSaveTimer > 0)
+            {
+                SoundManager.PlaySoundEffect("noise_step_1");
+                return;
+            }
             SoundManager.PlaySoundEffect("menu_select");
 
             GlobalState.serialized_quicksave = new GlobalState.Save().ToString();
@@ -244,6 +251,8 @@ namespace AnodyneSharp.States
         public override void Update()
         {
             base.Update();
+
+            QuickSaveTimer -= GameTimes.DeltaTime;
 
             if (_background != null) _background.Update();
             if (_dec_over != null) _dec_over.Update();
@@ -384,6 +393,7 @@ namespace AnodyneSharp.States
             if (DoQuickLoad)
             {
                 QuickLoad();
+                DoQuickLoad = false;
             }
         }
 
