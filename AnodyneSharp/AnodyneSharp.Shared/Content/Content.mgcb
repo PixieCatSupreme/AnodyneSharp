@@ -2893,6 +2893,42 @@
 /processorParam:TextureFormat=Color
 /build:textures/sprites/enemies/hotel/eye_boss_bullet.png
 
+#begin textures/sprites/enemies/hotel/eye_boss_parts/eyelids.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:textures/sprites/enemies/hotel/eye_boss_parts/eyelids.png
+
+#begin textures/sprites/enemies/hotel/eye_boss_parts/pupil.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:textures/sprites/enemies/hotel/eye_boss_parts/pupil.png
+
+#begin textures/sprites/enemies/hotel/eye_boss_parts/sclera.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:textures/sprites/enemies/hotel/eye_boss_parts/sclera.png
+
 #begin textures/sprites/enemies/hotel/eye_boss_splash.png
 /importer:TextureImporter
 /processor:TextureProcessor

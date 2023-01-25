@@ -132,7 +132,7 @@ namespace AnodyneSharp.Entities
             {
                 if (visible)
                 {
-                    sprite.Draw(Position - offset * scale, scale, (int)y_push, rotation, opacity, _flip);
+                    sprite.Draw(SpriteDrawer._spriteBatch, Position - offset * scale, scale, (int)y_push, rotation, opacity, _flip);
                 }
                 shadow?.Draw();
                 if (GlobalState.draw_hitboxes && HasVisibleHitbox)

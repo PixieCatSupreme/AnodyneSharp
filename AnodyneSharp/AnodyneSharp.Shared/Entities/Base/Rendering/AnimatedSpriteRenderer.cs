@@ -14,7 +14,7 @@ namespace AnodyneSharp.Entities.Base.Rendering
     {
         string textureName;
         Spritesheet sprite;
-        Dictionary<string,Anim> animations;
+        Dictionary<string, Anim> animations;
         Anim _curAnim;
 
         public Color Color { get; set; } = Color.White;
@@ -32,7 +32,7 @@ namespace AnodyneSharp.Entities.Base.Rendering
         public AnimatedSpriteRenderer(string textureName, int frameWidth, int frameHeight, ILayerType layer, params Anim[] animations)
         {
             this.textureName = textureName;
-            sprite = new(ResourceManager.GetTexture(textureName),frameWidth,frameHeight);
+            sprite = new(ResourceManager.GetTexture(textureName), frameWidth, frameHeight);
             this.animations = animations.ToDictionary(a => a.name);
             _curAnim = animations[0];
             this.Layer = layer;
@@ -47,12 +47,12 @@ namespace AnodyneSharp.Entities.Base.Rendering
 
         public bool PlayAnim(string name, bool force = false, int? newFramerate = null)
         {
-            if(!animations.TryGetValue(name,out Anim anim))
+            if (!animations.TryGetValue(name, out Anim anim))
             {
                 DebugLogger.AddWarning($"No animation called {name}");
                 return false;
             }
-            else if(!force && _curAnim == anim && !_curAnim.Finished)
+            else if (!force && _curAnim == anim && !_curAnim.Finished)
             {
                 return false;
             }
@@ -76,19 +76,22 @@ namespace AnodyneSharp.Entities.Base.Rendering
 
         public void ReloadTexture(bool ignoreChaos = false)
         {
-            sprite = new(ResourceManager.GetTexture(textureName,ignoreChaos), sprite.Width, sprite.Height);
+            sprite = new(ResourceManager.GetTexture(textureName, ignoreChaos), sprite.Width, sprite.Height);
         }
 
-        public void Draw(Vector2 position, float scale, int y_push, float rotation, float opacity, SpriteEffects flip)
+        public void Draw(SpriteBatch batch, Vector2 position, float scale, int y_push, float rotation, float opacity, SpriteEffects flip)
         {
             Rectangle srect = sprite.GetRect(_curAnim.Frame);
             srect.Height -= y_push;
 
-            SpriteDrawer.DrawSprite(sprite.Tex,
-                MathUtilities.CreateRectangle(position.X, position.Y + y_push, srect.Width * scale, srect.Height * scale),
+            Point size = (srect.Size.ToVector2() * scale).ToPoint();
+
+            batch.Draw(sprite.Tex,
+                MathUtilities.CreateRectangle(position.X + size.X / 2, position.Y + y_push + size.Y / 2, size.X, size.Y),
                 srect,
                 Color * opacity,
                 rotation,
+                new Vector2(srect.Width/2,srect.Height/2),
                 flip,
                 Layer.Z);
         }

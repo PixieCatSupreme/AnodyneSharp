@@ -42,8 +42,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\Interactable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\Parabola_Thing.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\Rendering\AnimatedSpriteRenderer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\Rendering\CompositeSpriteRenderer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\Rendering\ISpriteRenderer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\Rendering\LayerType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\Rendering\RenderProperties.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\Rendering\SolidColorRenderer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\Rendering\StaticSpriteRenderer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Base\Shadow.cs" />
@@ -163,6 +165,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\ShadowBriar.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\CreditsState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\CoroutineUtils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\GrowableResourceList.cs" />
     <Compile Include="..\AnodyneSharp.Shared\Entities\Interactive\Npc\Space\CubeKing.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Space\SpaceNPC.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Suburb\SuburbBlocker.cs" />

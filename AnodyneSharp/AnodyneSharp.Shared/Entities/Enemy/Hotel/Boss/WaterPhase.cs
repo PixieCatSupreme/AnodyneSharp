@@ -1,6 +1,7 @@
 ﻿using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Entities.Events;
 using AnodyneSharp.Entities.Interactive;
+using AnodyneSharp.Entities.Interactive.Npc.Hotel;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 using AnodyneSharp.Utilities;
@@ -26,16 +27,14 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
         IEnumerator state;
         EntityPool<Bullet> bullets;
 
-        public static AnimatedSpriteRenderer GetSprite() => new("eye_boss_water", 24,24,
-                new Anim("closed", new int[] { 3 },1),
-                new Anim("blink", new int[] { 0, 1, 2, 3, 2, 1, 0 }, 10, false),
-                new Anim("blink_fast", new int[] { 0, 1, 2, 3, 2, 1 }, 20, true),
-                new Anim("idle", new int[] { 0 },1),
-                new Anim("open", new int[] { 3, 2, 1, 0 }, 5, false)
-                );
+        CompositeSpriteRenderer renderer => sprite as CompositeSpriteRenderer;
+        ISpriteRenderer eyelid => renderer.Renderers[2];
 
-        public WaterPhase(EntityPreset preset, Player p) : base(preset.Position,GetSprite(),Drawing.DrawOrder.BG_ENTITIES)
+        Player player;
+
+        public WaterPhase(EntityPreset preset, Player p) : base(preset.Position,EyebossPreview.GetSprite(),Drawing.DrawOrder.BG_ENTITIES)
         {
+            player = p;
             if(GlobalState.events.BossDefeated.Contains(GlobalState.CURRENT_MAP_NAME))
             {
                 //Full boss is defeated, open both gates and do nothing beyond that
@@ -103,7 +102,7 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
             quiet.exists = false;
             SoundManager.PlaySong("hotel-boss");
             (GlobalState.Map as MapData.Map).IgnoreMusicNextUpdate();
-            Play("open");
+            eyelid.PlayAnim("open");
 
             //Time for fight
 
@@ -174,13 +173,13 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
                     t = 0;
                     if(bullets.Spawn(b=>b.Spawn(Position)))
                     {
-                        Play("blink");
+                        eyelid.PlayAnim("blink");
                     }
                 }
                 yield return null;
             }
 
-            Play("closed");
+            eyelid.PlayAnim("closed");
             velocity.X = MathF.Min(20, GlobalState.RNG.Next(0, 100));
             velocity.Y = MathF.Sqrt(100 * 100 - velocity.X * velocity.X);
             if (p.facing == Facing.UP) velocity.Y *= -1;
@@ -203,7 +202,7 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
                 }
                 yield return null;
             }
-            Play("blink");
+            eyelid.PlayAnim("blink");
             velocity = Vector2.One * (6 - health) * 15;
             yield break;
         }
@@ -213,6 +212,9 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
             base.Update();
             state.MoveNext();
             broom_hit = player_hit = false;
+            Vector2 dir = (player.VisualCenter - VisualCenter);
+            dir.Normalize();
+            renderer.RenderProperties[1].Position = EyebossPreview.Eye_Center + dir * 2;
         }
 
         public override void Collided(Entity other)

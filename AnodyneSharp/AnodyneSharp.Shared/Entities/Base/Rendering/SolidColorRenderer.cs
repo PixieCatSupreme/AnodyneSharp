@@ -33,8 +33,9 @@ namespace AnodyneSharp.Entities.Base.Rendering
             Width = width;
         }
 
-        public void Draw(Vector2 position, float scale, int y_push, float rotation, float opacity, SpriteEffects flip)
+        public void Draw(SpriteBatch batch, Vector2 position, float scale, int y_push, float rotation, float opacity, SpriteEffects flip)
         {
+            //TODO? make it use the batch directly, not necessary for current project
             SpriteDrawer.DrawSprite(SpriteDrawer.SolidTex,
                 new Rectangle((int)(position.X + Width*(1-scale)/2), (int)(position.Y + y_push + (Height-y_push)*(1-scale)/2), (int)(Width * scale), (int)((Height - y_push) * scale)),
                 null,

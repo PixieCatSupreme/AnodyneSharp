@@ -34,16 +34,19 @@ namespace AnodyneSharp.Entities.Base.Rendering
             Layer = layer;
         }
 
-        public void Draw(Vector2 position, float scale, int y_push, float rotation, float opacity, SpriteEffects flip)
+        public void Draw(SpriteBatch batch, Vector2 position, float scale, int y_push, float rotation, float opacity, SpriteEffects flip)
         {
             Rectangle srect = sprite.GetRect(curFrame);
             srect.Height -= y_push;
 
-            SpriteDrawer.DrawSprite(sprite.Tex,
-                MathUtilities.CreateRectangle(position.X, position.Y + y_push, srect.Width * scale, srect.Height * scale),
+            Point size = new Vector2(srect.Width * scale, srect.Height * scale).ToPoint();
+
+            batch.Draw(sprite.Tex,
+                MathUtilities.CreateRectangle(position.X + size.X / 2, position.Y + y_push + size.Y / 2, size.X, size.Y),
                 srect,
                 Color * opacity,
                 rotation,
+                new Vector2(srect.Width/2,srect.Height/2),
                 flip,
                 Layer.Z);
         }

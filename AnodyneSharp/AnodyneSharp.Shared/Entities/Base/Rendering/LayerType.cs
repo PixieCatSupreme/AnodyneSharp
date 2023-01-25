@@ -23,6 +23,18 @@ namespace AnodyneSharp.Entities.Base.Rendering
         public float Z { get { return DrawingUtilities.GetDrawingZ(layer, MapUtilities.GetInGridPosition(parent.Position).Y + parent.height); } }
     }
 
+    public class NonEntityLayer : ILayerType
+    {
+        public static readonly NonEntityLayer Zero = new(DrawOrder.BACKGROUND);
+
+        public DrawOrder layer;
+        public NonEntityLayer(DrawOrder layer) { 
+            this.layer = layer;
+        }
+
+        public float Z => DrawingUtilities.GetDrawingZ(layer, 0);
+    }
+
     public class RefLayer : ILayerType
     {
         ILayerType parent;

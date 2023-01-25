@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace AnodyneSharp.Drawing
@@ -17,7 +18,7 @@ namespace AnodyneSharp.Drawing
         public static Texture2D SolidTex;
 
         private static GraphicsDevice _graphicsDevice;
-        private static SpriteBatch _spriteBatch;
+        public static SpriteBatch _spriteBatch;
 
         private static RenderTarget2D _game;
         private static RenderTarget2D _game2;
@@ -27,6 +28,9 @@ namespace AnodyneSharp.Drawing
         private static Effect blend; //To be able to set the depth
         private static Effect _depthrender;
 
+        private static SpriteBatch _secondary; //To be used for entity-specific drawing to a custom target
+        private static Dictionary<Point, GrowableResourceList<RenderTarget2D>> customTargets = new();
+
         public static int MaxScale => Math.Min(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / 160, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height / 180);
 
         public static void Initialize(GraphicsDevice graphicsDevice)
@@ -35,7 +39,8 @@ namespace AnodyneSharp.Drawing
             SamplerState = SamplerState.PointWrap;
 
             _graphicsDevice = graphicsDevice;
-            _spriteBatch = new SpriteBatch(_graphicsDevice);
+            _spriteBatch = new(_graphicsDevice);
+            _secondary = new(_graphicsDevice);
 
             _game = new RenderTarget2D(_graphicsDevice, 160, 160);
             _game2 = new RenderTarget2D(_graphicsDevice, 160, 160);
@@ -45,6 +50,17 @@ namespace AnodyneSharp.Drawing
 
             SolidTex = new(_graphicsDevice, 2, 2);
             SolidTex.SetData(new Color[] {Color.White,Color.White,Color.White,Color.White});
+        }
+
+        public static (SpriteBatch,RenderTarget2D) GetRenderTarget(Point size)
+        {
+            if(customTargets.TryGetValue(size,out var value))
+            {
+                return (_secondary, value.GetNext());
+            }
+            GrowableResourceList<RenderTarget2D> res = new(() => new(_graphicsDevice, size.X, size.Y));
+            customTargets.Add(size, res);
+            return (_secondary, res.GetNext());
         }
 
         public static void Load(ContentManager c)
@@ -57,6 +73,10 @@ namespace AnodyneSharp.Drawing
 
         public static void BeginDraw(Camera camera)
         {
+            foreach(var cache in customTargets.Values)
+            {
+                cache.Reset();
+            }
             _graphicsDevice.SetRenderTargets(_game,_depth);
             _depthrender.Parameters["View"].SetValue(camera.Transform);
             _graphicsDevice.Clear(BackColor);
@@ -65,6 +85,10 @@ namespace AnodyneSharp.Drawing
 
         public static void BeginGUIDraw()
         {
+            foreach (var cache in customTargets.Values)
+            {
+                cache.Reset();
+            }
             _graphicsDevice.SetRenderTarget(_render);
             _graphicsDevice.Clear(BackColor);
 
