@@ -186,6 +186,8 @@ namespace AnodyneSharp.MapData
                 //TODO: make music fade in/out
                 Sounds.SoundManager.PlaySong(GlobalState.InDeathRoom ? "" : MapSettings.Get(s => s.Music, priorities, ""), MapSettings.Get(s => s.MusicVolume, priorities, 1f));
                 Sounds.SoundManager.PlayAmbience(GlobalState.InDeathRoom ? "" : MapSettings.Get(s => s.Ambience, priorities, ""), MapSettings.Get(s => s.AmbienceVolume, priorities, 1f));
+
+                offset = Vector2.Zero;
             }
             ignore_music = false;
             string darkness = MapSettings.Get(s => s.Darkness, priorities, "");
