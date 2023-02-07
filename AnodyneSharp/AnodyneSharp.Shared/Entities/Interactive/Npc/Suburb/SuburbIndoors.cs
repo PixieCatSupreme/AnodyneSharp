@@ -1,5 +1,6 @@
 ﻿using AnodyneSharp.Dialogue;
 using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.Logging;
 using AnodyneSharp.Registry;
 using Microsoft.Xna.Framework;
 using System;
@@ -106,6 +107,12 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Suburb
                     break;
                 case 3:
                     _dialogue = "older_kid";
+                    break;
+                case 5:
+                    _dialogue = "festive";
+                    break;
+                default:
+                    DebugLogger.AddWarning($"Missing dialog for npc with frame {preset.Frame}.");
                     break;
             }
         }
