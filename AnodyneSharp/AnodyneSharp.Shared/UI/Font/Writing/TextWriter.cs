@@ -341,7 +341,13 @@ namespace AnodyneSharp.UI.Text
                 int spaceWidth = GameConstants.BUTTON_WIDTH;
                 int lineHeight = GameConstants.BUTTON_HEIGHT;
 
+                int buttonOffset = 4;
+
+                currentLineWidth += buttonOffset;
+
                 characterLines[_line].Add(new TextCharacter(null, currentLineWidth, new Rectangle(pos % spaceWidth * spaceWidth, pos / spaceWidth * lineHeight, spaceWidth, lineHeight)));
+
+                currentLineWidth += buttonOffset;
 
                 output = true;
             }

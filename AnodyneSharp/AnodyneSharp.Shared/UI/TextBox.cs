@@ -144,7 +144,7 @@ namespace AnodyneSharp.UI
             }
             else
             {
-                introPrompt.Position = new Vector2(pos.X + Width - GameConstants.BUTTON_WIDTH -2, pos.Y + Height - GameConstants.BUTTON_HEIGHT - 1);
+                introPrompt.Position = new Vector2(pos.X + Width - GameConstants.BUTTON_WIDTH -6, pos.Y + Height - GameConstants.BUTTON_HEIGHT - 1);
             }
         }
     }

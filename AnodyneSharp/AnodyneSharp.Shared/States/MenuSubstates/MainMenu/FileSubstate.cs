@@ -472,7 +472,7 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
 
             _showHealth = false;
 
-            File.Delete(Path.GetFullPath($"Save_{_saveID + 1}.dat"));
+            File.Delete($"{GameConstants.SavePath}Saves/Save_{_saveID + 1}.dat");
 
             Save = null;
         }

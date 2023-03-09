@@ -22,7 +22,7 @@ namespace AnodyneSharp.Entities.Enemy
             new Anim("walk_d",new int[] { 0, 1 }, 5),
             new Anim("walk_r", new int[] { 2, 3 }, 5),
             new Anim("walk_u", new int[] { 4, 5 }, 5),
-            new Anim("walk_l", new int[] { 6, 7 }, 5)
+            new Anim("walk_l", new int[] { 2, 3 }, 5)
             );
 
         public Person(EntityPreset preset, Player p)
