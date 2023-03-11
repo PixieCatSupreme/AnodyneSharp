@@ -2478,6 +2478,7 @@ Screen shake:
 这是蓝色的。
 #It's white.
 这是白色的。
+CONGRATULATION!!!!!!
 #[SOMEKEY-C]
 #:Select
 [SOMEKEY-C]：选择

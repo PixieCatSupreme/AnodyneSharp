@@ -35,6 +35,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
 
             Solid = false;
             immovable = true;
+
         }
 
         public override void Collided(Entity other)
@@ -67,6 +68,8 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
         EntityPreset _preset;
 
         EntityPool<Bullet> bullets = new(12, () => new());
+
+        bool bossRush;
 
         Copy[] copies = new Copy[2]
         {
@@ -102,6 +105,8 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
             p.grid_entrance = tl + new Vector2(42, 40);
 
             state = Intro();
+
+            bossRush = preset.TypeValue == "boss_rush";
         }
 
         public override void Update()
@@ -151,11 +156,14 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
                 yield return null;
             }
 
-            GlobalState.Dialogue = DialogueManager.GetDialogue("splitboss", "before_fight");
-
-            while (!GlobalState.LastDialogueFinished)
+            if (!bossRush)
             {
-                yield return null;
+                GlobalState.Dialogue = DialogueManager.GetDialogue("splitboss", "before_fight");
+
+                while (!GlobalState.LastDialogueFinished)
+                {
+                    yield return null;
+                }
             }
 
             volume.exists = false;
@@ -226,11 +234,14 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
                 b.Deactivate();
             }
 
-            GlobalState.Dialogue = DialogueManager.GetDialogue("splitboss", "after_fight");
-
-            while (!GlobalState.LastDialogueFinished)
+            if (!bossRush)
             {
-                yield return null;
+                GlobalState.Dialogue = DialogueManager.GetDialogue("splitboss", "after_fight");
+
+                while (!GlobalState.LastDialogueFinished)
+                {
+                    yield return null;
+                }
             }
 
             SoundManager.PlaySoundEffect("big_door_locked");
@@ -256,9 +267,17 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
                 yield return null;
             }
 
-            SoundManager.PlaySong("apartment");
             _preset.Alive = exists = false;
-            GlobalState.events.BossDefeated.Add(GlobalState.CURRENT_MAP_NAME);
+
+            if (!bossRush)
+            {
+                GlobalState.events.BossDefeated.Add(GlobalState.CURRENT_MAP_NAME);
+                SoundManager.PlaySong("apartment");
+            }
+            else
+            {
+                SoundManager.PlaySong("bedroom");
+            }
 
             GlobalState.SpawnEntity(new FadeOutGameScreenFade());
 

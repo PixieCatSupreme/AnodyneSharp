@@ -116,7 +116,7 @@ namespace AnodyneSharp.Entities.Lights
                 velocity.Y *= -1;
             }
             
-            if (GlobalState.events.BossDefeated.Contains("BEDROOM"))
+            if (GlobalState.CURRENT_MAP_NAME == "BEDROOM" && GlobalState.events.BossDefeated.Contains("BEDROOM"))
             {
                 preset.Alive = exists = false;
                 return;

@@ -32,6 +32,8 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
 
         Player player;
 
+        bool bossRush;
+
         public WaterPhase(EntityPreset preset, Player p) : base(preset.Position,EyebossPreview.GetSprite(),Drawing.DrawOrder.BG_ENTITIES)
         {
             player = p;
@@ -63,6 +65,8 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
             bullets = new(8, () => new Bullet(new Rectangle(tl.ToPoint(), new Point(16 * 8, 16 * 9))));
 
             state = State(tl, preset, p);
+
+            bossRush = preset.TypeValue == "boss_rush";
         }
 
         public static bool KeepInRect(Entity e, Rectangle r)
@@ -92,7 +96,7 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
                 yield return null;
             }
             
-            if(!Dialogue.DialogueManager.IsSceneDirty("eyeboss","before_fight"))
+            if(!bossRush && !Dialogue.DialogueManager.IsSceneDirty("eyeboss","before_fight"))
             {
                 GlobalState.Dialogue = Dialogue.DialogueManager.GetDialogue("eyeboss", "before_fight");
                 while (!GlobalState.LastDialogueFinished)

@@ -3,6 +3,7 @@ using AnodyneSharp.Registry;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace AnodyneSharp.Entities.Gadget.Treasures
@@ -20,6 +21,12 @@ namespace AnodyneSharp.Entities.Gadget.Treasures
         public override void GetTreasure()
         {
             base.GetTreasure();
+
+            int secretLength = GlobalState.inventory.SecretStatus.Length;
+            if (_secretID >= secretLength)
+            {
+                GlobalState.inventory.SecretStatus = GlobalState.inventory.SecretStatus.Concat(Enumerable.Repeat(false, _secretID - secretLength + 1)).ToArray();
+            }
 
             GlobalState.inventory.SecretStatus[_secretID] = true;
 

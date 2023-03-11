@@ -107,7 +107,7 @@ namespace AnodyneSharp.Registry
         public TradeState tradeState = TradeState.NONE;
 
         public bool[] CardStatus = Enumerable.Repeat(false, 49).ToArray();
-        public bool[] SecretStatus = Enumerable.Repeat(false, 13).ToArray();
+        public bool[] SecretStatus = Enumerable.Repeat(false, 14).ToArray();
         public bool[] BigKeyStatus = Enumerable.Repeat(false, 3).ToArray();
 
         public Dictionary<string, int> _mapKeys = new();
@@ -126,6 +126,17 @@ namespace AnodyneSharp.Registry
             }
 
             return _mapKeys[mapName];
+        }
+
+        public bool SetMapKeys(string mapName, int count)
+        {
+            if (!_mapKeys.ContainsKey(mapName))
+            {
+                return false;
+            }
+
+            _mapKeys[mapName] = count;
+            return true;
         }
 
         public int AddCurrentMapKey()

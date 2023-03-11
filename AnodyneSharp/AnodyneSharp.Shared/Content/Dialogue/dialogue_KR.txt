@@ -2279,6 +2279,7 @@ Screen shake:
 파란색이군.
 # It's white.
 하얀색이군.
+CONGRATULATION!!!!!!
 #[SOMEKEY-C] 
 # :Select
 [SOMEKEY-C] :선택

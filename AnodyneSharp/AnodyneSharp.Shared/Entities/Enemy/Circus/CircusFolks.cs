@@ -38,6 +38,8 @@ namespace AnodyneSharp.Entities.Enemy.Circus
 
         private int health;
 
+        private bool bossRush;
+
         public static AnimatedSpriteRenderer GetSprite()
         {
             return new("arthur_javiera", 16, 32,
@@ -82,6 +84,8 @@ namespace AnodyneSharp.Entities.Enemy.Circus
             health = 7;
 
             _stateLogic = Intro();
+
+            bossRush = preset.TypeValue == "boss_rush";
         }
 
         public override IEnumerable<Entity> SubEntities()
@@ -147,11 +151,21 @@ namespace AnodyneSharp.Entities.Enemy.Circus
 
             GlobalState.SpawnEntity(volumeEvent);
 
-            GlobalState.Dialogue = DialogueManager.GetDialogue("circus_folks", "before_fight");
-
-            while (!volumeEvent.ReachedTarget || !GlobalState.LastDialogueFinished)
+            if (!bossRush)
             {
-                yield return null;
+                GlobalState.Dialogue = DialogueManager.GetDialogue("circus_folks", "before_fight");
+
+                while (!volumeEvent.ReachedTarget || !GlobalState.LastDialogueFinished)
+                {
+                    yield return null;
+                }
+            }
+            else
+            {
+                while (!volumeEvent.ReachedTarget)
+                {
+                    yield return null;
+                }
             }
 
             SoundManager.PlaySong("circus-boss");
@@ -378,8 +392,6 @@ namespace AnodyneSharp.Entities.Enemy.Circus
                 shockWave.Play("evaporate");
             }
 
-            GlobalState.Dialogue = DialogueManager.GetDialogue("circus_folks", "after_fight");
-
             _arthur.Flicker(0);
             _javiera.Flicker(0);
 
@@ -387,10 +399,17 @@ namespace AnodyneSharp.Entities.Enemy.Circus
             _javiera.hurts = false;
             _javiera.layer = DrawOrder.FG_SPRITES;
 
-            while (!GlobalState.LastDialogueFinished)
+            if (!bossRush)
             {
-                yield return null;
+                GlobalState.Dialogue = DialogueManager.GetDialogue("circus_folks", "after_fight");
+
+                while (!GlobalState.LastDialogueFinished)
+                {
+                    yield return null;
+                }
             }
+
+            Flicker(0);
 
             visible = false;
 
@@ -466,9 +485,15 @@ namespace AnodyneSharp.Entities.Enemy.Circus
             _preset.Alive = false;
             exists = _arthur.exists = _javiera.exists = false;
 
-            SoundManager.PlaySong("circus");
-
-            GlobalState.events.BossDefeated.Add(GlobalState.CURRENT_MAP_NAME);
+            if (!bossRush)
+            {
+                GlobalState.events.BossDefeated.Add(GlobalState.CURRENT_MAP_NAME);
+                SoundManager.PlaySong("circus");
+            }
+            else
+            {
+                SoundManager.PlaySong("bedroom");
+            }
 
             yield break;
         }

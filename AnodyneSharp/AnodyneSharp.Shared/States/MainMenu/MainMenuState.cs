@@ -140,7 +140,7 @@ namespace AnodyneSharp.States.MainMenu
 
             if (KeyInput.ControllerModeChanged)
             {
-                _inputLabel.SetText($"{DialogueManager.GetDialogue("misc", "any", "secrets", 13)} {DialogueManager.GetDialogue("misc", "any", "secrets", 14)}");
+                _inputLabel.SetText($"{DialogueManager.GetDialogue("misc", "any", "secrets", 14)} {DialogueManager.GetDialogue("misc", "any", "secrets", 15)}");
             }
 
             _selector.Update();
@@ -253,7 +253,7 @@ namespace AnodyneSharp.States.MainMenu
                     inputPos.Y -= 1;
                 }
             }
-            _inputLabel = new UILabel(inputPos, false, $"{DialogueManager.GetDialogue("misc", "any", "secrets", 13)} {DialogueManager.GetDialogue("misc", "any", "secrets", 14)}", color);
+            _inputLabel = new UILabel(inputPos, false, $"{DialogueManager.GetDialogue("misc", "any", "secrets", 14)} {DialogueManager.GetDialogue("misc", "any", "secrets", 15)}", color);
         }
     }
 }

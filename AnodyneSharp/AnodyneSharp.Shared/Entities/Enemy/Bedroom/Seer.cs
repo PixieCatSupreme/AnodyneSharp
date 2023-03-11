@@ -1,4 +1,5 @@
 ﻿using AnodyneSharp.Entities.Base.Rendering;
+using AnodyneSharp.Entities.Gadget;
 using AnodyneSharp.Entities.Lights;
 using AnodyneSharp.GameEvents;
 using AnodyneSharp.Registry;
@@ -30,7 +31,9 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
 
         IEnumerator _state;
 
-        public Seer(EntityPreset preset, Player p) : base(preset.Position, new AnimatedSpriteRenderer("sun_guy", 16, 24, new Anim("float",new int[] { 0, 1, 2, 3, 4 },3)), Drawing.DrawOrder.ENTITIES)
+        bool bossRush;
+
+        public Seer(EntityPreset preset, Player p) : base(preset.Position, new AnimatedSpriteRenderer("sun_guy", 16, 24, new Anim("float", new int[] { 0, 1, 2, 3, 4 }, 3)), Drawing.DrawOrder.ENTITIES)
         {
             _player = p;
             _preset = preset;
@@ -48,6 +51,7 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
             _state = StateLogic();
             opacity = 0f;
 
+            bossRush = preset.TypeValue == "boss_rush";
         }
 
         public override void Update()
@@ -58,22 +62,37 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
 
         IEnumerator StateLogic()
         {
-            GlobalState.darkness.TargetAlpha(0.9f, 0.36f);
-            SoundManager.StopSong();
-
-            while (_player.Position.Y > Position.Y + 48)
+            if (!bossRush)
             {
-                MathUtilities.MoveTo(ref GlobalState.PlayerLight.scale, 1.7f, 1.2f);
-                yield return null;
+                GlobalState.darkness.TargetAlpha(0.9f, 0.36f);
+                SoundManager.StopSong();
+
+                while (_player.Position.Y > Position.Y + 48)
+                {
+                    MathUtilities.MoveTo(ref GlobalState.PlayerLight.scale, 1.7f, 1.2f);
+                    yield return null;
+                }
+
+                GlobalState.Dialogue = Dialogue.DialogueManager.GetDialogue("sun_guy", "before_fight");
+
+                while (!GlobalState.LastDialogueFinished)
+                {
+                    MathUtilities.MoveTo(ref GlobalState.PlayerLight.scale, 1.7f, 1.2f);
+                    MathUtilities.MoveTo(ref opacity, 1.0f, 0.42f);
+                    yield return null;
+                }
+
+                opacity = 1.0f;
             }
-
-            GlobalState.Dialogue = Dialogue.DialogueManager.GetDialogue("sun_guy", "before_fight");
-
-            while (!GlobalState.LastDialogueFinished)
+            else
             {
-                MathUtilities.MoveTo(ref GlobalState.PlayerLight.scale, 1.7f, 1.2f);
-                MathUtilities.MoveTo(ref opacity, 1.0f, 0.42f);
-                yield return null;
+                opacity = 1.0f;
+
+                while (_player.Position.Y > Position.Y + 48)
+                {
+                    MathUtilities.MoveTo(ref GlobalState.PlayerLight.scale, 1.7f, 1.2f);
+                    yield return null;
+                }
             }
 
             SoundManager.PlaySong("bedroom-boss");
@@ -119,17 +138,20 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
                 yield return null;
             }
 
-            GlobalState.Dialogue = Dialogue.DialogueManager.GetDialogue("sun_guy", "after_fight");
-
-            while(!GlobalState.LastDialogueFinished)
+            if (!bossRush)
             {
-                FadeEverything();
-                yield return null;
+                GlobalState.Dialogue = Dialogue.DialogueManager.GetDialogue("sun_guy", "after_fight");
+
+                while (!GlobalState.LastDialogueFinished)
+                {
+                    FadeEverything();
+                    yield return null;
+                }
             }
 
-            for(int i = 0; i < 3; ++i)
+            for (int i = 0; i < 3; ++i)
             {
-                GlobalState.flash.Flash(2.38f,Color.White);
+                GlobalState.flash.Flash(2.38f, Color.White);
                 GlobalState.screenShake.Shake(0.01f, 1f);
                 SoundManager.PlaySoundEffect("sun_guy_death_short");
                 while (GlobalState.flash.Active())
@@ -147,12 +169,22 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
             while (!MathUtilities.MoveTo(ref GlobalState.PlayerLight.scale, 4f, 3.6f))
                 yield return null;
 
-            GlobalState.darkness.ForceAlpha(0.5f);
-            GlobalState.events.BossDefeated.Add("BEDROOM");
+
+
+            if (!bossRush)
+            {
+                GlobalState.events.BossDefeated.Add("BEDROOM");
+
+                GlobalState.darkness.ForceAlpha(0.5f);
+            }
+            else
+            {
+                GlobalState.darkness.ForceAlpha(0);
+            }
 
             _preset.Alive = exists = false;
 
-            foreach(var e in SubEntities())
+            foreach (var e in SubEntities())
             {
                 e.exists = false;
             }
@@ -161,11 +193,11 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
 
             yield break;
         }
-
+        
         void FadeEverything()
         {
             MathUtilities.MoveTo(ref opacity, 0, 3f);
-            foreach(var orb in _orbs)
+            foreach (var orb in _orbs)
             {
                 MathUtilities.MoveTo(ref orb.opacity, 0, 2f);
             }
@@ -338,8 +370,8 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
         public float rotation_speed;
         public float angle = 0f;
 
-        public SeerOrb(int startframe, float radius, float speed, Seer parent) : base(parent.Position + Vector2.UnitX * radius, 
-            new AnimatedSpriteRenderer("light_orb", 16, 16,new Anim("glow",new int[] { startframe, startframe + 1, startframe + 2, (startframe + 3) % 5, (startframe + 5) % 5 },10)), 
+        public SeerOrb(int startframe, float radius, float speed, Seer parent) : base(parent.Position + Vector2.UnitX * radius,
+            new AnimatedSpriteRenderer("light_orb", 16, 16, new Anim("glow", new int[] { startframe, startframe + 1, startframe + 2, (startframe + 3) % 5, (startframe + 5) % 5 }, 10)),
             Drawing.DrawOrder.FG_SPRITES)
         {
             exists = false;
@@ -349,7 +381,7 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
 
         public override void Collided(Entity other)
         {
-            if(opacity == 1f)
+            if (opacity == 1f)
                 (other as Player).ReceiveDamage(1);
         }
 
@@ -360,10 +392,10 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
     {
         public bool End = false;
 
-        public SeerWave() : base(Vector2.Zero, 
+        public SeerWave() : base(Vector2.Zero,
             new AnimatedSpriteRenderer("sun_guy_wave", 128, 8,
-                new Anim("play",new int[] { 3, 4, 5 },8),
-                new Anim("evaporate",new int[] { 2, 1, 0 },8,false)), Drawing.DrawOrder.FG_SPRITES)
+                new Anim("play", new int[] { 3, 4, 5 }, 8),
+                new Anim("evaporate", new int[] { 2, 1, 0 }, 8, false)), Drawing.DrawOrder.FG_SPRITES)
         {
             exists = false;
         }

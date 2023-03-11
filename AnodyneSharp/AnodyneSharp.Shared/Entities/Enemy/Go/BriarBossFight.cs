@@ -28,7 +28,10 @@ namespace AnodyneSharp.Entities.Enemy.Go
 
         Player player;
 
-        public BriarBossFight(Player p) : base(MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid), "briar_overhang", 160, 48, Drawing.DrawOrder.BG_ENTITIES)
+        bool bossRush;
+
+        public BriarBossFight(Player p, bool bossRush) 
+            : base(MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid), "briar_overhang", 160, 48, Drawing.DrawOrder.BG_ENTITIES)
         {
             body = new(Position + Vector2.UnitX * 16, p);
 
@@ -43,12 +46,26 @@ namespace AnodyneSharp.Entities.Enemy.Go
 
             state = StateLogic();
             player = p;
+
+            this.bossRush = bossRush;
         }
 
         IEnumerator StateLogic()
         {
-            GlobalState.Dialogue = DialogueManager.GetDialogue("briar", "before_fight");
-            while (!GlobalState.LastDialogueFinished) yield return null;
+            if (!bossRush)
+            {
+                GlobalState.Dialogue = DialogueManager.GetDialogue("briar", "before_fight");
+                while (!GlobalState.LastDialogueFinished) yield return null;
+            }
+            else
+            {
+                float t = 0;
+
+                while (!MathUtilities.MoveTo(ref t, 1, 1))
+                {
+                    yield return null;
+                }
+            }
 
             while (happy.Health + blue.Health > 0)
             {

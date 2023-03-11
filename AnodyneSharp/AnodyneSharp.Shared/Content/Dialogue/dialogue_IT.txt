@@ -1,4 +1,5 @@
 ﻿### ENGLISH DIALOGUE - ITALIAN TRANSLATION - by Francesco D'Aucelli ###
+### ENGLISH DIALOGUE - ITALIAN TRANSLATION - by Francesco D'Aucelli ###
 
 ####################
 ### INSTRUCTIONS ###
@@ -2485,6 +2486,7 @@ Oh no!!!!
 È blu.
 #It's white.
 È bianco.
+CONGRATULATION!!!!!!
 #SOMEKEY-C
 #:Select
 [SOMEKEY-C] :Seleziona

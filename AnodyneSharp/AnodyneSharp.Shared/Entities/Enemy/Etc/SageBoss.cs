@@ -32,9 +32,11 @@ namespace AnodyneSharp.Entities.Enemy.Etc
         private bool _canHurt;
         private float _flickerLength;
 
+        private bool bossRush;
+
         public static AnimatedSpriteRenderer GetSprite() => new("sage_boss", 16, 24,
-            new Anim("idle", new int[] { 4 },1),
-            new Anim("idle_d", new int[] { 0, 1, 2, 3 },5),
+            new Anim("idle", new int[] { 4 }, 1),
+            new Anim("idle_d", new int[] { 0, 1, 2, 3 }, 5),
             new Anim("dash_d", new int[] { 0, 1, 2, 3 }, 5),
             new Anim("dash_u", new int[] { 0, 1, 2, 3 }, 5),
             new Anim("walk_u", new int[] { 0, 1, 2, 3 }, 5)
@@ -60,6 +62,8 @@ namespace AnodyneSharp.Entities.Enemy.Etc
 
             _stateLogic = Intro();
             immovable = true;
+
+            bossRush = preset.TypeValue == "boss_rush";
 
 #if DEBUG
             int dVal = 0;
@@ -161,15 +165,18 @@ namespace AnodyneSharp.Entities.Enemy.Etc
                 yield return null;
             }
 
-            GlobalState.Dialogue = DialogueManager.GetDialogue("sage", "before_fight");
-
-            while (!GlobalState.LastDialogueFinished)
-            {
-                yield return null;
-            }
-
             Play("idle_d");
             SoundManager.PlaySoundEffect("teleguy_up");
+
+            if (!bossRush)
+            {
+                GlobalState.Dialogue = DialogueManager.GetDialogue("sage", "before_fight");
+
+                while (!GlobalState.LastDialogueFinished)
+                {
+                    yield return null;
+                }
+            }
 
             visible = false;
             opacity = 0;
@@ -508,7 +515,7 @@ namespace AnodyneSharp.Entities.Enemy.Etc
 
             _canHurt = false;
 
-            StartCutscene =  DyingState();
+            StartCutscene = DyingState();
 
             yield break;
         }
@@ -530,7 +537,11 @@ namespace AnodyneSharp.Entities.Enemy.Etc
             SoundManager.StopSong();
             Play("idle_d");
 
-            yield return new DialogueEvent(DialogueManager.GetDialogue("sage", "after_fight"));
+            if (!bossRush)
+            {
+                yield return new DialogueEvent(DialogueManager.GetDialogue("sage", "after_fight"));
+            }
+
 
             Play("walk_u");
             velocity.Y = -20;
@@ -613,8 +624,8 @@ namespace AnodyneSharp.Entities.Enemy.Etc
             public bool IsFlickering => _flickering;
 
             public static AnimatedSpriteRenderer GetSprite() => new("sage_fight_long_dust", 64, 16,
-                new Anim("spin", new int[] { 0, 1 },24),
-                new Anim("poof", new int[] { 0, 1, 2 },12,false)
+                new Anim("spin", new int[] { 0, 1 }, 24),
+                new Anim("poof", new int[] { 0, 1, 2 }, 12, false)
                 );
 
             public LongAttack()
@@ -670,7 +681,7 @@ namespace AnodyneSharp.Entities.Enemy.Etc
             public static AnimatedSpriteRenderer GetSprite() => new("sage_attacks", 16, 16,
                 new Anim("spin", new int[] { 0, 1 }, 24),
                 new Anim("poof", new int[] { 0, 1, 2 }, 12, false),
-                new Anim("shoot", new int[] { 4, 5 },12)
+                new Anim("shoot", new int[] { 4, 5 }, 12)
                 );
 
             public ShortAttack()

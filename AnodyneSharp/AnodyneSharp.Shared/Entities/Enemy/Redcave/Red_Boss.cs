@@ -1,5 +1,6 @@
 ﻿using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Entities.Events;
+using AnodyneSharp.Entities.Gadget;
 using AnodyneSharp.FSM;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
@@ -40,6 +41,8 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
 
         bool loopSFX = false;
 
+        bool bossRush;
+
         class SplashState : TimerState
         {
             public int got_too_close = 0;
@@ -66,10 +69,10 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
         }
 
         public static AnimatedSpriteRenderer GetSprite() => new("red_boss", 32, 32,
-            new Anim("close_eyes", new int[] { 1 },1),
-            new Anim("bob", new int[] { 0 },1),
-            new Anim("warn", new int[] { 2 },1),
-            new Anim("die", new int[] { 0, 1, 2, 1 },3,false)
+            new Anim("close_eyes", new int[] { 1 }, 1),
+            new Anim("bob", new int[] { 0 }, 1),
+            new Anim("warn", new int[] { 2 }, 1),
+            new Anim("die", new int[] { 0, 1, 2, 1 }, 3, false)
             );
 
         public Red_Boss(EntityPreset preset, Player p) : base(preset.Position, GetSprite(), Drawing.DrawOrder.ENTITIES)
@@ -100,12 +103,13 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
 
             small_wave = new(this);
             big_wave = new(this);
-            
+
             player = p;
             this.preset = preset;
 
             state = State();
 
+            bossRush = preset.TypeValue == "boss_rush";
         }
 
         public override IEnumerable<Entity> SubEntities()
@@ -120,7 +124,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
             state.MoveNext();
             proximity_hits = Touching.NONE;
 
-            if(loopSFX)
+            if (loopSFX)
             {
                 SoundManager.PlaySoundEffect("bubble_loop"); //Call each frame to get looping behavior out of a sound effect
             }
@@ -145,6 +149,8 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
 
         IEnumerator State()
         {
+            float push_timer = 0f;
+
             y_push = sprite.Height;
             player.grid_entrance = MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid) + Vector2.One * 20;
 
@@ -155,24 +161,47 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
                 yield return null;
             }
 
-            GlobalState.Dialogue = Dialogue.DialogueManager.GetDialogue("redboss", "before_fight");
-
-            float push_timer = 0f;
             loopSFX = true;
-            while (!GlobalState.LastDialogueFinished)
+
+            if (!bossRush)
             {
-                push_timer += GameTimes.DeltaTime;
-                if (push_timer >= push_tick_max)
+                GlobalState.Dialogue = Dialogue.DialogueManager.GetDialogue("redboss", "before_fight");
+
+
+                while (!GlobalState.LastDialogueFinished)
                 {
-                    push_timer = 0f;
-                    if (y_push > 0)
+                    push_timer += GameTimes.DeltaTime;
+                    if (push_timer >= push_tick_max)
                     {
-                        GlobalState.screenShake.Shake(0.021f, 0.1f);
-                        y_push--;
+                        push_timer = 0f;
+                        if (y_push > 0)
+                        {
+                            GlobalState.screenShake.Shake(0.021f, 0.1f);
+                            y_push--;
+                        }
                     }
+                    yield return null;
                 }
-                yield return null;
+
             }
+            else
+            {
+                while (y_push > 0)
+                {
+                    push_timer += GameTimes.DeltaTime;
+                    if (push_timer >= push_tick_max)
+                    {
+                        push_timer = 0f;
+                        if (y_push > 0)
+                        {
+                            GlobalState.screenShake.Shake(0.021f, 0.1f);
+                            y_push--;
+                        }
+                    }
+                    yield return null;
+                }
+            }
+
             loopSFX = false;
 
             SoundManager.PlaySong("redcave-boss");
@@ -206,28 +235,28 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
                         velocity = new Vector2(30, 20);
                         Play("bob");
                     })
-                    .Update((s,_) =>
+                    .Update((s, _) =>
                        {
                            Drawing.Effects.ScreenShake.Directions dirs = new();
                            Vector2 tl = MapUtilities.GetInGridPosition(Position);
                            Vector2 br = MapUtilities.GetInGridPosition(Position + new Vector2(width, height));
-                           if (tl.Y < 2*16)
+                           if (tl.Y < 2 * 16)
                            {
                                velocity.Y = 60;
                                dirs |= Drawing.Effects.ScreenShake.Directions.Vertical;
                            }
-                           else if (br.Y > 16*8)
+                           else if (br.Y > 16 * 8)
                            {
                                velocity.Y = -60;
                                dirs |= Drawing.Effects.ScreenShake.Directions.Vertical;
                            }
 
-                           if (tl.X < 2*16)
+                           if (tl.X < 2 * 16)
                            {
                                velocity.X = 60;
                                dirs |= Drawing.Effects.ScreenShake.Directions.Horizontal;
                            }
-                           else if (br.X > 16*8)
+                           else if (br.X > 16 * 8)
                            {
                                velocity.X = -60;
                                dirs |= Drawing.Effects.ScreenShake.Directions.Horizontal;
@@ -255,7 +284,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
                 .End()
                 .State<StunState>("Stun")
                     .Enter((s) => s.stateLogic = StunStateLogic())
-                    .Update((s,_) =>
+                    .Update((s, _) =>
                     {
                         if (!s.stateLogic.MoveNext())
                         {
@@ -280,7 +309,12 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
             velocity = Vector2.Zero;
 
             SoundManager.StopSong();
-            GlobalState.Dialogue = Dialogue.DialogueManager.GetDialogue("redboss", "after_fight");
+
+            if (!bossRush)
+            {
+                GlobalState.Dialogue = Dialogue.DialogueManager.GetDialogue("redboss", "after_fight");
+            }
+
             GlobalState.screenShake.Shake(0.05f, 0.1f);
             GlobalState.flash.Flash(1f, Color.Red);
 
@@ -290,17 +324,20 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
             {
                 bullet.exists = false;
             }
-            foreach (Entity tentacle in tentacles.Entities)
+            foreach (Tentacle tentacle in tentacles.Entities)
             {
-                tentacle.exists = false;
+                tentacle.Despawn();
             }
 
             small_wave.exists = false;
             big_wave.exists = false;
 
-            while (!GlobalState.LastDialogueFinished)
+            if (!bossRush)
             {
-                yield return null;
+                while (!GlobalState.LastDialogueFinished)
+                {
+                    yield return null;
+                }
             }
 
             Play("die");
@@ -331,8 +368,18 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
 
             preset.Alive = exists = false;
             GlobalState.wave.active = false;
-            SoundManager.PlaySong("redcave");
-            GlobalState.events.BossDefeated.Add("REDCAVE");
+
+
+            if (!bossRush)
+            {
+                GlobalState.events.BossDefeated.Add("REDCAVE");
+                SoundManager.PlaySong("redcave");
+            }
+            else
+            {
+                SoundManager.PlaySong("bedroom");
+            }
+
             yield break;
         }
 
@@ -350,20 +397,20 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
 
             amp = 5;
 
-            Vector2 target = MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid) + new Vector2(6,4)*16;
+            Vector2 target = MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid) + new Vector2(6, 4) * 16;
 
             small_wave.Rise();
 
-            while(!(MathUtilities.MoveTo(ref Position.X,target.X,30) & MathUtilities.MoveTo(ref Position.Y,target.Y,30)))
+            while (!(MathUtilities.MoveTo(ref Position.X, target.X, 30) & MathUtilities.MoveTo(ref Position.Y, target.Y, 30)))
                 yield return null;
 
-            while(y_push != 0)
+            while (y_push != 0)
                 yield return null;
 
             loopSFX = true;
             amp = 13;
 
-            while(y_push < amp)
+            while (y_push < amp)
                 yield return null;
 
             small_wave.Launch();
@@ -408,14 +455,14 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
         Vector2 spawn_point;
 
         public static AnimatedSpriteRenderer GetSprite() => new("red_boss_small_wave", 16, 64,
-            new Anim("move", new int[] { 0, 1 },8),
-            new Anim("rise", new int[] { 2, 3 },8),
-            new Anim("fall", new int[] { 1, 2, 3, 4 },8,false)
+            new Anim("move", new int[] { 0, 1 }, 8),
+            new Anim("rise", new int[] { 2, 3 }, 8),
+            new Anim("fall", new int[] { 1, 2, 3, 4 }, 8, false)
             );
 
         public SmallWave(Red_Boss parent) : base(Vector2.Zero, GetSprite(), Drawing.DrawOrder.BG_ENTITIES)
         {
-            spawn_point = MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid) + new Vector2(96,48);
+            spawn_point = MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid) + new Vector2(96, 48);
 
             exists = false;
             immovable = true;
@@ -444,7 +491,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
         public override void Update()
         {
             base.Update();
-            if(AnimFinished)
+            if (AnimFinished)
             {
                 velocity = Vector2.Zero;
                 exists = false;
@@ -466,7 +513,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
 
         public static AnimatedSpriteRenderer GetSprite() => new("red_boss_big_wave", 32, 80,
             new Anim("move", new int[] { 0, 1 }, 8),
-            new Anim("rise", new int[] { 2,1,0 }, 8, false),
+            new Anim("rise", new int[] { 2, 1, 0 }, 8, false),
             new Anim("fall", new int[] { 1, 2, 3 }, 8, false)
             );
 
@@ -496,10 +543,10 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
 
         public override void Collided(Entity other)
         {
-            if(other is Player p && !disable_player_hit)
+            if (other is Player p && !disable_player_hit)
             {
                 SoundManager.PlaySoundEffect("player_hit_1");
-                Vector2 targetInGrid = new(16, 8*16);
+                Vector2 targetInGrid = new(16, 8 * 16);
                 Vector2 target = p.Position + (targetInGrid - MapUtilities.GetInGridPosition(p.Position));
                 p.AutoJump(1, target, 50, -500);
                 disable_player_hit = true;
@@ -511,7 +558,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
             base.Update();
             if (AnimFinished)
             {
-                if(CurAnimName == "fall")
+                if (CurAnimName == "fall")
                 {
                     velocity = Vector2.Zero;
                     exists = false;
@@ -541,7 +588,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
 
         IEnumerator state;
 
-        public Tentacle(int index) : base(Vector2.Zero, new AnimatedSpriteRenderer("red_boss_warning", 10, 10, new Anim("move",new int[] { 0, 1 },8)), Drawing.DrawOrder.ENTITIES)
+        public Tentacle(int index) : base(Vector2.Zero, new AnimatedSpriteRenderer("red_boss_warning", 10, 10, new Anim("move", new int[] { 0, 1 }, 8)), Drawing.DrawOrder.ENTITIES)
         {
             t_index = index;
             immovable = true;
@@ -580,7 +627,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
 
             tentacle.Position = Position + Vector2.UnitY * (height - 3 - tentacle.height);
             tentacle.y_push = tentacle.height;
-            
+
             Flicker(0.7f + (float)GlobalState.RNG.NextDouble());
             state = StateLogic();
         }
@@ -599,15 +646,21 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
         public override void Collided(Entity other)
         {
             base.Collided(other);
-            if(!_flickering && other is Player p)
+            if (!_flickering && other is Player p)
             {
                 p.ReceiveDamage(1);
             }
         }
 
+        public void Despawn()
+        {
+            exists = false;
+            tentacle.exists = false;
+        }
+
         IEnumerator StateLogic()
         {
-            while(_flickering)
+            while (_flickering)
             {
                 yield return null;
             }
@@ -617,26 +670,26 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
 
             float tentacle_drop_timer = 1f;
 
-            while(!MathUtilities.MoveTo(ref tentacle.y_push,0,120))
+            while (!MathUtilities.MoveTo(ref tentacle.y_push, 0, 120))
             {
                 tentacle_drop_timer -= GameTimes.DeltaTime;
                 yield return null;
             }
 
-            while(tentacle_drop_timer > 0)
+            while (tentacle_drop_timer > 0)
             {
                 tentacle_drop_timer -= GameTimes.DeltaTime;
                 yield return null;
             }
 
             float end_timer = 0.3f;
-            while(!MathUtilities.MoveTo(ref tentacle.y_push,tentacle.height,180))
+            while (!MathUtilities.MoveTo(ref tentacle.y_push, tentacle.height, 180))
             {
                 end_timer -= GameTimes.DeltaTime;
                 yield return null;
             }
 
-            while(end_timer > 0)
+            while (end_timer > 0)
             {
                 end_timer -= GameTimes.DeltaTime;
                 yield return null;
@@ -652,7 +705,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
     {
         Red_Boss parent;
 
-        public Ripple(Red_Boss parent) : base(parent.Position, new AnimatedSpriteRenderer("red_boss_ripple", 48, 8, new Anim("a", new int[] { 0, 1 },12)), Drawing.DrawOrder.BG_ENTITIES)
+        public Ripple(Red_Boss parent) : base(parent.Position, new AnimatedSpriteRenderer("red_boss_ripple", 48, 8, new Anim("a", new int[] { 0, 1 }, 12)), Drawing.DrawOrder.BG_ENTITIES)
         {
             this.parent = parent;
         }
@@ -673,8 +726,8 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
         IEnumerator state;
 
         public static AnimatedSpriteRenderer GetSprite() => new("red_boss_bullet", 8, 8,
-            new Anim("move", new int[] { 0, 1 },12),
-            new Anim("explode",new int[] { 2, 3, 4 },14,false)
+            new Anim("move", new int[] { 0, 1 }, 12),
+            new Anim("explode", new int[] { 2, 3, 4 }, 14, false)
             );
 
         public SplashBullet(Vector2 startPos) : base(startPos, GetSprite(), Drawing.DrawOrder.FG_SPRITES)

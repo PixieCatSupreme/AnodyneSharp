@@ -82,7 +82,7 @@ namespace AnodyneSharp.States
 
             if (KeyInput.ControllerModeChanged)
             {
-                _inputLabel.SetText($"{DialogueManager.GetDialogue("misc", "any", "secrets", 13)} {DialogueManager.GetDialogue("misc", "any", "secrets", 14)}");
+                _inputLabel.SetText($"{DialogueManager.GetDialogue("misc", "any", "secrets", 14)} {DialogueManager.GetDialogue("misc", "any", "secrets", 15)}");
             }
 
             _selector.Update();
@@ -225,7 +225,7 @@ namespace AnodyneSharp.States
                 (new UILabel(new Vector2(x, startY + yStep * 4), true, DialogueManager.GetDialogue("misc", "any", "config", 0)), typeof(ConfigSubstate)),
             };
 
-            if(GlobalState.inventory.UnlockedSecretz)
+            if (GlobalState.inventory.UnlockedSecretz)
             {
                 substates.Add((new UILabel(new Vector2(x, startY + yStep * 5), true, "???"), typeof(SecretSubstate)));
             }
@@ -245,7 +245,7 @@ namespace AnodyneSharp.States
                     inputPos.Y -= 1;
                 }
             }
-            _inputLabel = new UILabel(inputPos, false, $"{DialogueManager.GetDialogue("misc", "any", "secrets", 13)} {DialogueManager.GetDialogue("misc", "any", "secrets", 14)}", new Color(143, 153, 176, 255));
+            _inputLabel = new UILabel(inputPos, false, $"{DialogueManager.GetDialogue("misc", "any", "secrets", 14)} {DialogueManager.GetDialogue("misc", "any", "secrets", 15)}", new Color(143, 153, 176, 255));
         }
     }
 }

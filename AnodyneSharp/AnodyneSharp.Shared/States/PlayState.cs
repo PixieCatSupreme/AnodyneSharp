@@ -681,12 +681,6 @@ namespace AnodyneSharp.States
 #if DEBUG
         private void DebugKeyInput()
         {
-            if (KeyInput.JustPressedKey(Keys.T))
-            {
-                GlobalState.Dialogue = FontManager.LanguageString;
-                //GlobalState.Dialogue = "Hello^\nYes, this is slime";
-            }
-
             if (KeyInput.JustPressedKey(Keys.F6))
             {
                 Cheatz.Cheatz.GiveKey();
@@ -941,6 +935,7 @@ namespace AnodyneSharp.States
                 "SPACE" => new ScrollingTex("SPACE_BG", new Vector2(-15, 0), DrawOrder.BACKGROUND),
                 "GO" => new ScrollingTex("briar_BG", new Vector2(0, 15), DrawOrder.BACKGROUND),
                 "NEXUS" => new ScrollingTex("nexus_bg", new Vector2(0, 15), DrawOrder.BACKGROUND),
+                "BOSSRUSH" => new ScrollingTex("briar_BG", new Vector2(0, 15), DrawOrder.BACKGROUND),
                 _ => null,
             };
         }

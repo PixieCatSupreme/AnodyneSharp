@@ -2232,6 +2232,7 @@ Ah não!!!
 #It's blue.
 É branco.
 #It's white.
+CONGRATULATION!!!!!!
 #[SOMEKEY-C]
 [SOMEKEY-C] :Selecionar
 #:Select

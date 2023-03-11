@@ -16,7 +16,7 @@ using static AnodyneSharp.States.CutsceneState;
 
 namespace AnodyneSharp.Entities.Enemy.Go
 {
-    [NamedEntity("Shadow_Briar", map: "GO")]
+    [NamedEntity("Shadow_Briar", null, 5)]
     public class BriarBossMain : Entity
     {
         Vector2 tl;
@@ -33,6 +33,9 @@ namespace AnodyneSharp.Entities.Enemy.Go
         State state = State.Intro;
 
         Player player;
+        EntityPreset preset;
+
+        bool bossRush;
 
         public static AnimatedSpriteRenderer GetSprite() => new("briar", 16, 16,
             new Anim("idle", new int[] { 0 }, 1),
@@ -51,7 +54,9 @@ namespace AnodyneSharp.Entities.Enemy.Go
             volume = new(0, 0.6f);
             player = p;
 
-            if (GlobalState.events.GetEvent("HappyDone") == 0 || GlobalState.events.GetEvent("BlueDone") == 0)
+            bossRush = preset.TypeValue == "boss_rush";
+
+            if (!bossRush && (GlobalState.events.GetEvent("HappyDone") == 0 || GlobalState.events.GetEvent("BlueDone") == 0))
             {
                 exists = false;
                 volume.exists = false;
@@ -93,12 +98,15 @@ namespace AnodyneSharp.Entities.Enemy.Go
 
         IEnumerator<CutsceneEvent> Intro()
         {
-            yield return new DialogueEvent(DialogueManager.GetDialogue("briar", "before_fight"));
+            if (!bossRush)
+            {
+                yield return new DialogueEvent(DialogueManager.GetDialogue("briar", "before_fight"));
+            }
 
             SoundManager.PlaySoundEffect("stream");
             SoundManager.StopSong();
 
-            var water_anim = CoroutineUtils.OnceEvery(DoWaterAnim(), 0.2f);
+            var water_anim = CoroutineUtils.OnceEvery(DoWaterAnim(!bossRush ? 194 : 267), 0.2f);
             while (water_anim.MoveNext())
             {
                 GlobalState.screenShake.Shake(0.01f, 0.1f);
@@ -106,7 +114,19 @@ namespace AnodyneSharp.Entities.Enemy.Go
             }
 
             Play("oh_no");
-            yield return new DialogueEvent(DialogueManager.GetDialogue("briar", "before_fight"));
+            if (!bossRush)
+            {
+                yield return new DialogueEvent(DialogueManager.GetDialogue("briar", "before_fight"));
+            }
+            else
+            {
+                float t = 0;
+
+                while (!MathUtilities.MoveTo(ref t, 0.5f, 1))
+                {
+                    yield return null;
+                }
+            }
 
             bool flash_active = false;
             GlobalState.flash.Flash(1, Color.White, () => flash_active = true);
@@ -118,7 +138,7 @@ namespace AnodyneSharp.Entities.Enemy.Go
 
             gate.Position.Y += 9 * 16;
 
-            fightStage = new(player);
+            fightStage = new(player, bossRush);
             GlobalState.SpawnEntity(fightStage);
 
             yield break;
@@ -131,7 +151,10 @@ namespace AnodyneSharp.Entities.Enemy.Go
                 while (!MathUtilities.MoveTo(ref t, 1.5f, 1)) yield return null;
             }
 
-            yield return new DialogueEvent(DialogueManager.GetDialogue("briar", "after_fight"));
+            if (!bossRush)
+            {
+                yield return new DialogueEvent(DialogueManager.GetDialogue("briar", "after_fight"));
+            }
 
             {
                 float t = 0;
@@ -140,13 +163,23 @@ namespace AnodyneSharp.Entities.Enemy.Go
 
             velocity = Vector2.UnitY * -20;
             Play("walk_u");
-            SoundManager.PlaySong("go");
-            GlobalState.events.BossDefeated.Add(GlobalState.CURRENT_MAP_NAME);
+
+            if (!bossRush)
+            {
+                GlobalState.events.BossDefeated.Add(GlobalState.CURRENT_MAP_NAME);
+                SoundManager.PlaySong("go");
+            }
+            else
+            {
+                SoundManager.PlaySong("bedroom");
+                preset.Alive = false;
+            }
+
 
             yield break;
         }
 
-        IEnumerator<string> DoWaterAnim()
+        IEnumerator<string> DoWaterAnim(int tile)
         {
             var happy_anim = WaterAnim.DoWaterAnim(tl + new Vector2(0, 16 * 4));
             while (happy_anim.MoveNext())
@@ -157,7 +190,7 @@ namespace AnodyneSharp.Entities.Enemy.Go
 
             Point tl_p = GlobalState.Map.ToMapLoc(tl);
 
-            void Set(Point p) => GlobalState.Map.ChangeTile(MapData.Layer.BG, tl_p + p, 194);
+            void Set(Point p) => GlobalState.Map.ChangeTile(MapData.Layer.BG, tl_p + p, tile);
 
             Set(new Point(5, 1));
             yield return null;

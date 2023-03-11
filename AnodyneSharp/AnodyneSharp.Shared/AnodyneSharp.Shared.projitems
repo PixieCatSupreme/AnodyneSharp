@@ -99,11 +99,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Redcave\Slasher.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Redcave\Red_Boss.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy\Suburb\SuburbKiller.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\BossKeyReset.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\DoorToggle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\FadeSwitchSong.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\GoDetector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\GoHappyBlocker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\GoQuestDoorBlocker.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\HealthEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\SoundTestConsole.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Elevator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Blank\BlankConsole.cs" />
@@ -335,6 +337,10 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\BLUE\BG.csv" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\BLUE\BG2.csv" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\BLUE\TileAnims\go_anims.dat" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\BOSSRUSH\TileAnims\conveyer_anim_tiles.dat" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\BOSSRUSH\TileAnims\go_anims.dat" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\BOSSRUSH\TileAnims\water_edges.dat" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\BOSSRUSH\TileData.col" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\CELL\TileAnims\cell_anims.dat" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\CIRCUS\BG.csv" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\CIRCUS\TileAnims\conveyer_anim_tiles.dat" />
@@ -448,12 +454,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Content\effects\blackwhite.fx" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\BOSSRUSH\Settings.json" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\animtiles\flame_anims.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\decoration\shadows\10x28_shadow.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\gadgets\elevator_doors.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\gadgets\gate_green_digits.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\gadgets\gate_green_slots.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\textures\sprites\hitbox.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Content\textures\tilemaps\bossrush_tilemap.png" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\WINDMILL\Settings.json" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\TERMINAL\Settings.json" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\SUBURB\Settings.json" />
@@ -553,7 +561,6 @@
     <Content Include="$(MSBuildThisFileDirectory)Content\sfx\1\wb_moan_2.mp3" />
     <Content Include="$(MSBuildThisFileDirectory)Content\sfx\1\wb_shoot.mp3" />
     <Content Include="$(MSBuildThisFileDirectory)Content\sfx\1\wb_tap_ground.mp3" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\sfx\1\woof.wav" />
     <Content Include="$(MSBuildThisFileDirectory)Content\sfx\2\4sht_shoot.mp3" />
     <Content Include="$(MSBuildThisFileDirectory)Content\sfx\2\bubble_1.mp3" />
     <Content Include="$(MSBuildThisFileDirectory)Content\sfx\2\dog_bark.mp3" />
@@ -1203,5 +1210,8 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\SPACE\Swapper.dat" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\HOTEL\Swapper.dat" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\NEXUS\Swapper.dat" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\BOSSRUSH\BG.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\BOSSRUSH\BG2.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\BOSSRUSH\Swapper.dat" />
   </ItemGroup>
 </Project>

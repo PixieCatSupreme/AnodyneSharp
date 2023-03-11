@@ -34,9 +34,11 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
         Player player;
         EntityPreset preset;
 
+        bool bossRush;
+
         public static AnimatedSpriteRenderer GetSprite() => new("eye_boss_water", 24, 24,
-            new Anim("closed", new int[] { 3 },1),
-            new Anim("walk", new int[] { 4, 5 },6),
+            new Anim("closed", new int[] { 3 }, 1),
+            new Anim("walk", new int[] { 4, 5 }, 6),
             new Anim("blink_land", new int[] { 5, 6, 7, 6, 5 }, 6, false)
             );
 
@@ -74,6 +76,8 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
                 state = ToLand(preset, p, tl);
                 state.MoveNext(); //initial setup
             }
+
+            bossRush = preset.TypeValue == "boss_rush";
         }
 
         IEnumerator ToLand(EntityPreset preset, Player p, Vector2 tl)
@@ -222,17 +226,21 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
 
             GlobalState.StartCutscene = DeathCutscene();
 
-            GlobalState.Dialogue = DialogueManager.GetDialogue("eyeboss", "after_fight");
             SoundManager.StopSong();
             SoundManager.PlaySoundEffect("sun_guy_death_long");
             GlobalState.flash.Flash(1, Color.White);
             velocity = Vector2.Zero;
 
-            while (!GlobalState.LastDialogueFinished) yield return null;
+            if (!bossRush)
+            {
+                GlobalState.Dialogue = DialogueManager.GetDialogue("eyeboss", "after_fight");
+
+                while (!GlobalState.LastDialogueFinished) yield return null;
+            }
 
             offset = Vector2.One * 5;
 
-            for(int i = 0; i < 10; ++i)
+            for (int i = 0; i < 10; ++i)
             {
                 float t = 0;
                 while (!MathUtilities.MoveTo(ref t, 0.3f, 1)) yield return null;
@@ -259,7 +267,7 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
         IEnumerator<CutsceneEvent> DeathCutscene()
         {
             //Make sure player can move around but not be hit by remaining bullets
-            while(exists)
+            while (exists)
             {
                 player.dontMove = false;
                 player.actions_disabled = false;
@@ -302,7 +310,7 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
 
         public override IEnumerable<Entity> SubEntities()
         {
-            if(exists)
+            if (exists)
                 return new List<Entity>() { death_marker }.Concat(bullets.Entities).Concat(splashes.Entities);
             return Enumerable.Empty<Entity>();
         }
@@ -316,8 +324,8 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
             EntityPool<BulletSplash> splashes;
 
             public static AnimatedSpriteRenderer GetSprite() => new("eye_boss_bullet", 16, 16,
-                new Anim("move", new int[] { 6, 7 },12),
-                new Anim("pop", new int[] { 2, 3, 4, 5 },24,false)
+                new Anim("move", new int[] { 6, 7 }, 12),
+                new Anim("pop", new int[] { 2, 3, 4, 5 }, 24, false)
                 );
 
             public Bullet(EntityPool<BulletSplash> s) : base(Vector2.Zero, GetSprite(), Drawing.DrawOrder.FG_SPRITES)
@@ -401,13 +409,13 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
             public override void Update()
             {
                 base.Update();
-                if(CurAnimName == "move" && parabola.Tick())
+                if (CurAnimName == "move" && parabola.Tick())
                 {
                     Play("pop");
                 }
                 else
                 {
-                    if(AnimFinished)
+                    if (AnimFinished)
                     {
                         exists = false;
                         SoundManager.PlaySoundEffect("4sht_pop");
@@ -419,7 +427,7 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
             {
                 base.Collided(other);
                 Player p = (Player)other;
-                if(offset.Y < 9 && !p.invincible)
+                if (offset.Y < 9 && !p.invincible)
                 {
                     p.slowMul = 0.3f;
                     p.slowTicks = 100;

@@ -2232,6 +2232,7 @@ Screen shake:
 #It's blue.
 白色だ
 #It's white.
+CONGRATULATION!!!!!!
 #[SOMEKEY-C]
 [SOMEKEY-C] :決定
 #:Select

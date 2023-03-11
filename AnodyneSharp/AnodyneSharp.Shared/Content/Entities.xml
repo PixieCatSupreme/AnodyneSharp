@@ -1927,7 +1927,7 @@
   <map name="GO" type="Stateful">
     <Go_Detector x="352" y="512" guid="ED2195E9-9798-B9B3-3C15-105C40F7C501" frame="0" p="2" type="0,4;5,3;4,1;1,1" />
     <Sage x="432" y="80" guid="070C9F3D-0EB1-859C-C7E7-7439FEFF5EA8" frame="0" p="2"/>
-    <Shadow_Briar x="352" y="176" guid="4C1F729B-85D2-B0A8-BCBB-749329FF03EC" frame="4" p="2" alive="true"/>
+    <Shadow_Briar x="352" y="176" guid="4C1F729B-85D2-B0A8-BCBB-749329FF03EC" frame="5" p="2" alive="true"/>
     <Door x="777" y="400" guid="207B47BA-6E22-AF7E-90AF-DAF5F775CE0F" frame="44" type="11" />
     <Door x="608" y="496" guid="07E5F055-C4FD-767E-3D3E-30B9105A76DF" frame="71" type="5" />
     <NPC x="73" y="16" guid="140F8437-C364-777E-24AF-962A2252EF42" frame="7" type="generic" />
@@ -2417,6 +2417,8 @@
     <Solid_Sprite x="566" y="649" guid="8B9B720A-8AC0-EBE7-7334-551074A73406" frame="5" type="blocker" />
     <Event x="703" y="1099" guid="A9204E29-823C-1A2E-2962-351434E57D44" frame="5" type="entrance" />
     <CardGate x="704" y="384" guid="1B5C72F8-5151-CAD4-946C-EF6739759D57" frame="49" p="2"/>
+    <Event x="800" y="496" guid="53506A93-ABF3-9455-15FB-4CF59A5664B8" frame="8"/>
+    <Door x="872" y="558" guid="1E9CCC6C-32E4-7AB7-0609-841F65A5F53A" frame="100" type="4" />
   </map>
   <map name="OVERWORLD" type="Stateful">
     <Slime x="85" y="1141" guid="6413F630-8BC5-2E55-DC0E-D4C2D463D4AC" frame="0" p="1" alive="true"/>
@@ -3124,5 +3126,74 @@
     <NPC x="368" y="832" guid="739CB88C-54A7-27D9-40E0-F3A7B6937BC8" frame="1" type="rock" />
     <NPC x="256" y="816" guid="0FF5EA69-7481-5A23-F7E2-4AE9700CBF4A" frame="0" type="rock" />
     <Solid_Sprite x="211" y="1277" guid="427B4D56-32E6-CC10-7CEE-301464B6F916" frame="5" type="blocker" />
+  </map>
+  <map name="BOSSRUSH" type="Stateless">
+    <Eye_Boss x="64" y="1008" guid="37491C17-B615-79C3-87D7-629582F43B2F" frame="4" p="1" type="boss_rush"  linkid="16"/>
+    <Eye_Boss x="64" y="864" guid="B32AE049-1795-E8C9-6C95-0EB200F31365" frame="0" p="1" type="boss_rush"  linkid="15" linkgroup="15,16"/>
+    <Shadow_Briar x="352" y="176" guid="B127940C-F7DB-6973-B7C2-75372A991414" frame="5" p="1" alive="true" type="boss_rush" />
+    <Sage_Boss x="368" y="352" guid="15EE8E11-3909-1665-54E1-190E5C70AE17" frame="5" p="1" alive="true" type="boss_rush" />
+    <Circus_Folks x="544" y="544" guid="81BB5F24-4C28-E536-C8EB-D2E7E9DDE709" frame="2" p="1" alive="true" type="boss_rush" />
+    <Splitboss x="224" y="496" guid="F8277C92-6BAE-C1E7-4F7B-0E9A3B13A8D7" frame="0" p="1" alive="true" type="boss_rush" />
+    <Key x="224" y="816" guid="8F1CDFAE-9110-13ED-95D1-7BC97C1DD262" frame="0" p="1" type="boss_rush" />
+    <Red_Boss x="720" y="1024" guid="1490DC0D-8AC1-BE5C-BF55-7F81DB99A50C" frame="0" p="1" alive="true" type="boss_rush" />
+    <WallBoss x="544" y="816" guid="3926829D-C24C-64B2-96AE-D073823F6891" frame="0" p="1" alive="true" type="boss_rush" />
+    <Sun_Guy x="224" y="848" guid="BA066594-5289-CD96-2443-174B1299CF80" frame="0" p="1" alive="true" type="boss_rush" />
+    <Door x="384" y="1184" guid="E9FD2C74-CD83-BAC0-6FE8-35246074A619" frame="100" type="4" />
+    <Event x="160" y="864" guid="8EAC0DF7-EDD1-DF88-D874-DB7EF42F6E43" frame="6" type="bedroom_bounce" />
+    <KeyBlock x="384" y="992" guid="119D0E7C-E307-3C0D-93AF-9BE886F241BB" frame="0" p="1" alive="true"/>
+    <KeyBlock x="384" y="960" guid="EADBC54B-4C71-42A2-0060-C79333B4F8F8" frame="0" p="1" alive="true"/>
+    <KeyBlock x="384" y="976" guid="53F0B166-7FDB-54B0-4A5F-2B04BAE5EF6E" frame="0" p="1" alive="true"/>
+    <Dust x="560" y="1040" guid="4BEBEF47-ED97-866A-6425-D834D80422A0" frame="0"/>
+    <Gate x="240" y="944" guid="462C2C4D-AA6C-4A05-8899-713E90068AC6" frame="0" p="1" alive="true" type="0" />
+    <Gate x="544" y="944" guid="3BD98FAF-73FC-1DBC-FE84-F6EA81F942D2" frame="0" p="1" alive="true" type="0" />
+    <Gate x="560" y="944" guid="AC85A1FD-6E45-6990-30CD-831FE8AA852F" frame="0" p="1" alive="true" type="0" />
+    <Gate x="640" y="1024" guid="F6F279D9-877E-9B1D-A68D-A2AAED3CB655" frame="0" p="1" alive="true" type="0" />
+    <Gate x="640" y="1040" guid="F68F4015-1BE1-B5A2-BE30-BCEE0A0C6C31" frame="0" p="1" alive="true" type="0" />
+    <Dust x="656" y="976" guid="E16F8508-D128-FB8A-1A67-15107B534007" frame="0"/>
+    <Dust x="656" y="1088" guid="BA0EBA50-03D1-9C62-D095-99C1F147F110" frame="0"/>
+    <Dust x="768" y="1088" guid="278E69CF-9771-C822-AEC8-C3B315FE7BA9" frame="0"/>
+    <Dust x="768" y="976" guid="0FB4339E-7742-B339-3798-FBF4F7A172AB" frame="0"/>
+    <Key x="560" y="816" guid="94ED3437-CCC9-6345-093F-16CD63FA9FC5" frame="0" p="1" type="boss_rush" />
+    <Key x="672" y="976" guid="F4C9DD5A-F3F6-7624-415D-1EF72D29EEBA" frame="0" p="1" type="boss_rush" />
+    <Health_Dropper x="352" y="1008" guid="E21785AB-AB6F-F6E7-F993-59CE508679A0" frame="0" p="1"/>
+    <Health_Dropper x="352" y="1088" guid="C137CDF1-A2EC-7AC7-20A5-E0699249427F" frame="0" p="1"/>
+    <Health_Dropper x="432" y="1008" guid="F2B8E46F-CC5C-A1C5-F768-B2CB25722E91" frame="0" p="1"/>
+    <Health_Dropper x="432" y="1088" guid="FB44CD96-0C7E-982E-4653-9BD0277BC502" frame="0" p="1"/>
+    <KeyBlock x="384" y="672" guid="2965C556-3136-8D77-FDD2-DC2B6CD1E36E" frame="0" p="1" alive="true"/>
+    <KeyBlock x="384" y="656" guid="B252BF77-6C57-80AB-543C-04BFB545104D" frame="0" p="1" alive="true"/>
+    <KeyBlock x="384" y="640" guid="905041BA-54FC-6CEE-4BCE-C74C9B84A907" frame="0" p="1" alive="true"/>
+    <Health_Dropper x="352" y="768" guid="130384EB-D6F5-1CE8-E2CB-FF091D1A3B29" frame="0" p="1"/>
+    <Health_Dropper x="352" y="688" guid="5CAB4355-CD52-667A-0E55-0D30D10E1A96" frame="0" p="1"/>
+    <Health_Dropper x="432" y="768" guid="3F8831CC-A336-3D35-4247-F9D0E489E6E1" frame="0" p="1"/>
+    <Dash_Pad x="528" y="608" guid="3AD5821F-94E2-6384-A496-2D46427FF0E3" frame="1"/>
+    <Dash_Pad x="576" y="608" guid="89967885-32F2-CC40-FB7C-CC8511BE000B" frame="1"/>
+    <Dash_Pad x="608" y="576" guid="AC93803A-04E4-5B78-B987-BC1E6102E003" frame="0"/>
+    <Dash_Pad x="608" y="528" guid="8006182E-B899-ED6F-7DA5-E8F6E029DDFF" frame="0"/>
+    <Dash_Pad x="576" y="496" guid="48A62F51-B448-BC35-F2D4-5EB7F997282C" frame="3"/>
+    <Dash_Pad x="528" y="496" guid="8317D252-504E-4948-524C-04D6B89F180F" frame="3"/>
+    <Dash_Pad x="496" y="528" guid="B6BD8473-623B-8D01-E529-26B3DD0BA0A2" frame="2"/>
+    <Dash_Pad x="496" y="576" guid="12387E3D-FCB3-18A1-799E-C80430C1ADA0" frame="2"/>
+    <Key x="256" y="608" guid="D1E48533-2F1B-7DE0-847D-F75FB6BB224E" frame="0" p="1" type="boss_rush" />
+    <Key x="560" y="496" guid="837768D4-DD49-0849-B98B-1A972B595FD5" frame="0" p="1" type="boss_rush" />
+    <Gate x="208" y="624" guid="A69FFAA2-D597-129D-ADA0-77BD73820508" frame="0" p="1" alive="true" type="0" />
+    <Gate x="544" y="624" guid="347935BA-9AAE-0211-35CF-77E977B3A2BB" frame="0" p="1" alive="true" type="0" />
+    <Gate x="384" y="320" guid="CF901697-EBB0-9250-A58B-CD8DF598D33F" frame="0" p="1" alive="true" type="0" />
+    <Gate x="400" y="320" guid="7B79C8B6-0B49-EBB4-F633-85E33383775A" frame="0" p="1" alive="true" type="0" />
+    <Gate x="384" y="464" guid="9B0D2424-54F2-B5EE-4B98-677A87248575" frame="0" p="1" alive="true" type="0" />
+    <Gate x="400" y="464" guid="5C69DF93-6A82-8175-4743-917EF7012E87" frame="0" p="1" alive="true" type="0" />
+    <Health_Dropper x="432" y="688" guid="54132CE0-8862-2776-90F3-59CEE522B28E" frame="0" p="1"/>
+    <Health_Dropper x="352" y="560" guid="91F5F5E5-C16B-392D-73C1-ADA3ADD5E3EB" frame="0" p="1"/>
+    <Health_Dropper x="432" y="560" guid="BBDADE26-51D7-7B89-8217-CB6A1D786C03" frame="0" p="1"/>
+    <Door x="400" y="48" guid="534EE73C-26C7-871C-56C8-F5D5CC6C16F0" frame="101" type="4" />
+    <Gate x="80" y="800" guid="805D2322-31C0-08AE-84F7-4312046D9F59" frame="0" p="1" alive="true" type="0" />
+    <Gate x="64" y="800" guid="BF13B252-70FB-B981-D312-F2A10B98A921" frame="0" p="1" alive="true" type="0" />
+    <Gate x="64" y="960" guid="474FD4FB-315D-494C-4903-ED3422D78DF5" frame="0" p="1" alive="true" type="0" />
+    <Gate x="80" y="960" guid="C0366AD8-23E2-685F-5AD5-D83EEBF379B2" frame="0" p="1" alive="true" type="0" />
+    <Gate x="64" y="944" guid="4201C5C4-9CDE-8F71-02F3-E23B0E207E15" frame="15" p="2" alive="true" type="0" />
+    <Gate x="80" y="944" guid="5FC5E502-950D-8F46-F896-B378E30C5B24" frame="15" p="2" alive="true" type="0" />
+    <Dust x="32" y="816" guid="A9282642-ECD0-AF2C-7A53-962CCE28A064" frame="0"/>
+    <Dust x="32" y="992" guid="ACE76242-06B8-20E4-DBD3-3DFC11828C8E" frame="0"/>
+    <Treasure x="368" y="96" guid="5E3C28CB-3972-4B4A-C750-203236536AA3" frame="20" alive="true"/>
+    <Key x="112" y="1040" guid="3780F44B-5FA8-4668-7D1F-1E6B8463DCB5" frame="0" p="1" type="boss_rush" />
   </map>
 </root>

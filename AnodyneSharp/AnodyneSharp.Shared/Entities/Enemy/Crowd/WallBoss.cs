@@ -1,6 +1,7 @@
 ﻿using AnodyneSharp.Dialogue;
 using AnodyneSharp.Entities.Base.Rendering;
 using AnodyneSharp.Entities.Events;
+using AnodyneSharp.Entities.Gadget;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
 using AnodyneSharp.Utilities;
@@ -18,7 +19,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
     {
         Wall wall = new();
         Face face = new();
-        LHand lhand = new();
+        LHand lhand;
         RHand rhand = new();
         Laser laser = new();
 
@@ -29,6 +30,8 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
         Player player;
 
         EntityPreset preset;
+
+        bool bossRush;
 
         int Phase => face.Health switch
         {
@@ -42,6 +45,10 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
             visible = false;
             player = p;
             this.preset = preset;
+
+            bossRush = preset.TypeValue == "boss_rush";
+
+            lhand = new(bossRush);
 
             wall.opacity = rhand.opacity = lhand.opacity = face.opacity = 0;
 
@@ -66,12 +73,16 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
                 yield return null;
             }
 
-            GlobalState.Dialogue = DialogueManager.GetDialogue("wallboss", "before_fight");
-
-            while (!GlobalState.LastDialogueFinished)
+            if (!bossRush)
             {
-                yield return null;
+                GlobalState.Dialogue = DialogueManager.GetDialogue("wallboss", "before_fight");
+
+                while (!GlobalState.LastDialogueFinished)
+                {
+                    yield return null;
+                }
             }
+
 
             volume.exists = false;
             SoundManager.PlaySong("crowd_boss");
@@ -103,12 +114,15 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
                 yield return null;
             }
 
-            GlobalState.Dialogue = DialogueManager.GetDialogue("wallboss", "after_fight");
-            SoundManager.PlaySoundEffect("talk_death");
-
-            while (!GlobalState.LastDialogueFinished)
+            if (!bossRush)
             {
-                yield return null;
+                GlobalState.Dialogue = DialogueManager.GetDialogue("wallboss", "after_fight");
+                SoundManager.PlaySoundEffect("talk_death");
+
+                while (!GlobalState.LastDialogueFinished)
+                {
+                    yield return null;
+                }
             }
 
             float explosion_timer = 0f;
@@ -133,14 +147,24 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
                 yield return null;
             }
 
+            if (!bossRush)
+            {
+                GlobalState.events.BossDefeated.Add("CROWD");
+                SoundManager.PlaySong("crowd");
+            }
+            else
+            {
+                SoundManager.PlaySong("bedroom");
+            }
+
             preset.Alive = exists = false;
             foreach (Entity e in SubEntities())
             {
                 e.exists = false;
             }
 
-            SoundManager.PlaySong("crowd");
-            GlobalState.events.BossDefeated.Add("CROWD");
+
+
 
             yield break;
         }
@@ -592,6 +616,9 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
 
     class LHand : Hand
     {
+        private readonly int crackedTile;
+        private readonly int holeTile;
+
         enum GroundPhase
         {
             None,
@@ -600,7 +627,19 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
         }
         GroundPhase ground_state = GroundPhase.None;
 
-        public LHand() : base(false) { }
+        public LHand(bool bossRush) : base(false) 
+        {
+            if (!bossRush)
+            {
+                crackedTile = 71;
+                holeTile = 81;
+            }
+            else
+            {
+                crackedTile = 78;
+                holeTile = 91;
+            }
+        }
 
         public IEnumerator Stomp(int phase, Player p)
         {
@@ -636,7 +675,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
                     GlobalState.screenShake.Shake(0.02f, 0.5f);
                     SoundManager.PlaySoundEffect("floor_crack");
 
-                    int next_tile = ground_state == GroundPhase.None ? 71 : 81;
+                    int next_tile = ground_state == GroundPhase.None ? crackedTile : holeTile;
                     Point tl = GlobalState.TopLeftTile;
                     for (int x = 2; x < 8; ++x)
                     {
