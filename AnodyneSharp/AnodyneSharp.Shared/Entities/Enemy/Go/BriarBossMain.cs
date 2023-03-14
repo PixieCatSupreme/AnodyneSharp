@@ -54,6 +54,8 @@ namespace AnodyneSharp.Entities.Enemy.Go
             volume = new(0, 0.6f);
             player = p;
 
+            this.preset = preset;
+
             bossRush = preset.TypeValue == "boss_rush";
 
             if (!bossRush && (GlobalState.events.GetEvent("HappyDone") == 0 || GlobalState.events.GetEvent("BlueDone") == 0))

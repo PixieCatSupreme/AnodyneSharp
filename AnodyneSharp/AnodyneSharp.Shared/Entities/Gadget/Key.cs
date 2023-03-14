@@ -12,7 +12,7 @@ namespace AnodyneSharp.Entities.Gadget
     [NamedEntity, Collision(typeof(Player))]
     public class Key : Entity
     {
-        EntityPreset? _preset;
+        EntityPreset _preset;
 
         bool bossRush;
 
