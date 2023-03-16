@@ -33,7 +33,9 @@ namespace AnodyneSharp.Resources
             DirectoryInfo[] directories = GetDirectories?.Invoke("Content");
 
             LoadTextures(content, directories.First(d => d.Name == "textures"));
-            //LoadMusic(content, directories.First(d => d.Name == "bgm"));
+#if !ANDROID
+            LoadMusic(content, directories.First(d => d.Name == "bgm"));
+#endif
             LoadAmbience(content, directories.First(d => d.Name == "ambience"));
             LoadSFX(content, directories.First(d => d.Name == "sfx"));
 
