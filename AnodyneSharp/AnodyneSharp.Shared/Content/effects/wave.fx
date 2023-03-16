@@ -22,6 +22,24 @@ struct VertexShaderOutput
 	float2 Tex : TEXCOORD0;
 };
 
+matrix Projection;
+
+struct VsInput
+{
+    float4 Position : POSITION0;
+    float4 Color : COLOR0;
+    float2 TexureCoordinateA : TEXCOORD0;
+};
+
+VertexShaderOutput MainVS(VsInput input)
+{
+    VertexShaderOutput output;
+    output.Position = mul(input.Position, Projection); // Transform by WorldViewProjection
+    output.Color = input.Color;
+    output.Tex = input.TexureCoordinateA;
+    return output;
+}
+
 float4 MainPS(VertexShaderOutput input) : COLOR
 {
 	int yloc = ((int)input.Position.y - phase_offset + 180) % 180;
@@ -35,6 +53,7 @@ technique Wave
 {
 	pass P0
 	{
+        VertexShader = compile VS_SHADERMODEL MainVS();
 		PixelShader = compile PS_SHADERMODEL MainPS();
 	}
 };

@@ -9,7 +9,6 @@
 
 sampler2D TextureSampler : register(s0);
 
-matrix World;
 matrix View;
 matrix Projection;
 
@@ -36,7 +35,7 @@ struct Vs2Ps
 Vs2Ps MainVS(VsInput input)
 {
     Vs2Ps output;
-    float4x4 wvp = mul(World, mul(View, Projection));
+    float4x4 wvp = mul(View, Projection);
     output.Position = mul(input.Position, wvp); // Transform by WorldViewProjection
     output.Color = input.Color;
     output.TexCoord = input.TexureCoordinateA;

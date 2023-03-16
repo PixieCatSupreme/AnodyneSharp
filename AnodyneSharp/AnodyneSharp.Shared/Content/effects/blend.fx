@@ -17,10 +17,6 @@ float3 blendOverlay(float3 base, float3 blend) {
 
 sampler2D TextureSampler : register(s0);
 
-matrix World;
-matrix View;
-matrix Projection;
-
 texture OverlayTex;
 sampler2D OverlaySampler = sampler_state {
 	Texture = <OverlayTex>;
@@ -35,12 +31,6 @@ sampler2D DepthSampler = sampler_state {
 
 float DepthCutoff;
 
-struct VsInput
-{
-	float4 Position : POSITION0;
-	float4 Color : COLOR0;
-	float2 TexureCoordinateA : TEXCOORD0;
-};
 
 struct VertexShaderOutput
 {
@@ -49,11 +39,19 @@ struct VertexShaderOutput
 	float2 Tex : TEXCOORD0;
 };
 
+matrix Projection;
+
+struct VsInput
+{
+	float4 Position : POSITION0;
+	float4 Color : COLOR0;
+	float2 TexureCoordinateA : TEXCOORD0;
+};
+
 VertexShaderOutput MainVS(VsInput input)
 {
 	VertexShaderOutput output;
-	float4x4 wvp = mul(World, mul(View, Projection));
-	output.Position = mul(input.Position, wvp); // Transform by WorldViewProjection
+	output.Position = mul(input.Position, Projection); // Transform by WorldViewProjection
 	output.Color = input.Color;
 	output.Tex = input.TexureCoordinateA;
 	return output;

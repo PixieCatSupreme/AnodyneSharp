@@ -55,10 +55,10 @@ namespace AnodyneSharp.Drawing.Effects
             blend.Parameters["OverlayTex"].SetValue(Darkness);
             blend.Parameters["HardLight"].SetValue(false);
             blend.Parameters["DepthCutoff"].SetValue(1f);
+            blend.Parameters["Projection"].SetValue(SpriteDrawer.Projection(screen.Bounds.Size));
             batch.Begin(samplerState: SamplerState.PointClamp, effect: blend);
             batch.Draw(screen, screen.Bounds, Color.White);
             batch.End();
-
             //Deal with darkness-wide alpha, blend darkness-applied screen with original
             if (alpha != 1f)
             {

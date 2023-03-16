@@ -37,6 +37,7 @@ namespace AnodyneSharp.Drawing.Effects
         public void Render(SpriteBatch batch, Texture2D screen)
         {
             effect.Parameters["phase_offset"].SetValue((int)(timer*180));
+            effect.Parameters["Projection"].SetValue(SpriteDrawer.Projection(screen.Bounds.Size));
             batch.Begin(effect: effect);
             batch.Draw(screen, screen.Bounds, Color.White);
             batch.End();

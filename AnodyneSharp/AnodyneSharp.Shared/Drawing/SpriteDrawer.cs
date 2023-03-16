@@ -20,6 +20,8 @@ namespace AnodyneSharp.Drawing
         private static GraphicsDevice _graphicsDevice;
         public static SpriteBatch _spriteBatch;
 
+        public static Matrix Projection(Point screenSize) => Matrix.CreateOrthographicOffCenter(0, screenSize.X, screenSize.Y, 0, 0, -1);
+
         private static RenderTarget2D _game;
         private static RenderTarget2D _game2;
         private static RenderTarget2D _render;
@@ -66,8 +68,7 @@ namespace AnodyneSharp.Drawing
         public static void Load(ContentManager c)
         {
             _depthrender = c.Load<Effect>("effects/render_depth");
-            _depthrender.Parameters["World"].SetValue(Matrix.Identity);
-            _depthrender.Parameters["Projection"].SetValue(Matrix.CreateOrthographicOffCenter(0, 160, 160, 0, 0, -1));
+            _depthrender.Parameters["Projection"].SetValue(Projection(new(160)));
             blend = c.Load<Effect>("effects/blend");
         }
 
@@ -80,7 +81,7 @@ namespace AnodyneSharp.Drawing
             _graphicsDevice.SetRenderTargets(_game,_depth);
             _depthrender.Parameters["View"].SetValue(camera.Transform);
             _graphicsDevice.Clear(BackColor);
-            _spriteBatch.Begin(sortMode: SpriteSortMode.BackToFront, blendState: BlendState.AlphaBlend, samplerState: SamplerState, effect: _depthrender, transformMatrix: camera.Transform);
+            _spriteBatch.Begin(sortMode: SpriteSortMode.BackToFront, blendState: BlendState.AlphaBlend, samplerState: SamplerState, effect: _depthrender);
         }
 
         public static void BeginGUIDraw()
