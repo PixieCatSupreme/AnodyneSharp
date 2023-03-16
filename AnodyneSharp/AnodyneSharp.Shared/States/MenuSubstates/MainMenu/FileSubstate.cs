@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace AnodyneSharp.States.MenuSubstates.MainMenu
@@ -65,6 +66,7 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
 
         private Entity _briar;
         private Entity _young;
+        private Entity _mitra;
 
         private bool _showHealth;
         private bool _copyMode;
@@ -79,11 +81,18 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
 
             confirmState = 0;
 
+            if (Save != null)
+            {
+                int secretLength = Save.inventory.SecretStatus.Length;
+                if (14 >= secretLength)
+                {
+                    Save.inventory.SecretStatus = Save.inventory.SecretStatus.Concat(Enumerable.Repeat(false, 14 - secretLength + 1)).ToArray();
+                }
+            }
+
             SetLabels();
 
             _showHealth = SaveExists;
-
-
         }
 
         public override void DrawUI()
@@ -117,6 +126,7 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
 
             _briar.Draw();
             _young.Draw();
+            _mitra.Draw();
         }
 
         public override void Update()
@@ -586,6 +596,11 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
             _young = new UIEntity(new Vector2(x + 16 + 2, eY), "young_player", 16, 16, Drawing.DrawOrder.UI_OBJECTS)
             {
                 visible = SaveExists && Save.inventory.CardCount > 48
+            };
+
+            _mitra = new UIEntity(new Vector2(x + 32 + 4, eY), "mitra", 16, 16, Drawing.DrawOrder.UI_OBJECTS)
+            {
+                visible = SaveExists && Save.inventory.SecretStatus[13]
             };
 
             Color color = new Color(116, 140, 144);

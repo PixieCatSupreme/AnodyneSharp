@@ -2419,6 +2419,7 @@
     <CardGate x="704" y="384" guid="1B5C72F8-5151-CAD4-946C-EF6739759D57" frame="49" p="2"/>
     <Event x="800" y="496" guid="53506A93-ABF3-9455-15FB-4CF59A5664B8" frame="8"/>
     <Door x="872" y="558" guid="1E9CCC6C-32E4-7AB7-0609-841F65A5F53A" frame="100" type="4" />
+    <Door x="871" y="557" guid="F4CE7438-E4F1-42DB-8AB2-9C3096D69B10" frame="101" type="6" />
   </map>
   <map name="OVERWORLD" type="Stateful">
     <Slime x="85" y="1141" guid="6413F630-8BC5-2E55-DC0E-D4C2D463D4AC" frame="0" p="1" alive="true"/>
@@ -3156,15 +3157,15 @@
     <Key x="560" y="816" guid="94ED3437-CCC9-6345-093F-16CD63FA9FC5" frame="0" p="1" type="boss_rush" />
     <Key x="672" y="976" guid="F4C9DD5A-F3F6-7624-415D-1EF72D29EEBA" frame="0" p="1" type="boss_rush" />
     <Health_Dropper x="352" y="1008" guid="E21785AB-AB6F-F6E7-F993-59CE508679A0" frame="0" p="1"/>
-    <Health_Dropper x="352" y="1088" guid="C137CDF1-A2EC-7AC7-20A5-E0699249427F" frame="0" p="1"/>
+    <Health_Dropper x="352" y="1088" guid="C137CDF1-A2EC-7AC7-20A5-E0699249427F" frame="4" p="1"/>
     <Health_Dropper x="432" y="1008" guid="F2B8E46F-CC5C-A1C5-F768-B2CB25722E91" frame="0" p="1"/>
-    <Health_Dropper x="432" y="1088" guid="FB44CD96-0C7E-982E-4653-9BD0277BC502" frame="0" p="1"/>
+    <Health_Dropper x="432" y="1088" guid="FB44CD96-0C7E-982E-4653-9BD0277BC502" frame="4" p="1"/>
     <KeyBlock x="384" y="672" guid="2965C556-3136-8D77-FDD2-DC2B6CD1E36E" frame="0" p="1" alive="true"/>
     <KeyBlock x="384" y="656" guid="B252BF77-6C57-80AB-543C-04BFB545104D" frame="0" p="1" alive="true"/>
     <KeyBlock x="384" y="640" guid="905041BA-54FC-6CEE-4BCE-C74C9B84A907" frame="0" p="1" alive="true"/>
-    <Health_Dropper x="352" y="768" guid="130384EB-D6F5-1CE8-E2CB-FF091D1A3B29" frame="0" p="1"/>
+    <Health_Dropper x="352" y="768" guid="130384EB-D6F5-1CE8-E2CB-FF091D1A3B29" frame="4" p="1"/>
     <Health_Dropper x="352" y="688" guid="5CAB4355-CD52-667A-0E55-0D30D10E1A96" frame="0" p="1"/>
-    <Health_Dropper x="432" y="768" guid="3F8831CC-A336-3D35-4247-F9D0E489E6E1" frame="0" p="1"/>
+    <Health_Dropper x="432" y="768" guid="3F8831CC-A336-3D35-4247-F9D0E489E6E1" frame="4" p="1"/>
     <Dash_Pad x="528" y="608" guid="3AD5821F-94E2-6384-A496-2D46427FF0E3" frame="1"/>
     <Dash_Pad x="576" y="608" guid="89967885-32F2-CC40-FB7C-CC8511BE000B" frame="1"/>
     <Dash_Pad x="608" y="576" guid="AC93803A-04E4-5B78-B987-BC1E6102E003" frame="0"/>
@@ -3182,8 +3183,8 @@
     <Gate x="384" y="464" guid="9B0D2424-54F2-B5EE-4B98-677A87248575" frame="0" p="1" alive="true" type="0" />
     <Gate x="400" y="464" guid="5C69DF93-6A82-8175-4743-917EF7012E87" frame="0" p="1" alive="true" type="0" />
     <Health_Dropper x="432" y="688" guid="54132CE0-8862-2776-90F3-59CEE522B28E" frame="0" p="1"/>
-    <Health_Dropper x="352" y="560" guid="91F5F5E5-C16B-392D-73C1-ADA3ADD5E3EB" frame="0" p="1"/>
-    <Health_Dropper x="432" y="560" guid="BBDADE26-51D7-7B89-8217-CB6A1D786C03" frame="0" p="1"/>
+    <Health_Dropper x="352" y="528" guid="91F5F5E5-C16B-392D-73C1-ADA3ADD5E3EB" frame="0" p="1"/>
+    <Health_Dropper x="432" y="528" guid="BBDADE26-51D7-7B89-8217-CB6A1D786C03" frame="0" p="1"/>
     <Door x="400" y="48" guid="534EE73C-26C7-871C-56C8-F5D5CC6C16F0" frame="101" type="4" />
     <Gate x="80" y="800" guid="805D2322-31C0-08AE-84F7-4312046D9F59" frame="0" p="1" alive="true" type="0" />
     <Gate x="64" y="800" guid="BF13B252-70FB-B981-D312-F2A10B98A921" frame="0" p="1" alive="true" type="0" />
@@ -3195,5 +3196,7 @@
     <Dust x="32" y="992" guid="ACE76242-06B8-20E4-DBD3-3DFC11828C8E" frame="0"/>
     <Treasure x="368" y="96" guid="5E3C28CB-3972-4B4A-C750-203236536AA3" frame="20" alive="true"/>
     <Key x="112" y="1040" guid="3780F44B-5FA8-4668-7D1F-1E6B8463DCB5" frame="0" p="1" type="boss_rush" />
+    <Health_Dropper x="352" y="608" guid="A630A6D6-AFE2-F01B-8059-5EBF9A3DB866" frame="4" p="1"/>
+    <Health_Dropper x="432" y="608" guid="13843B70-1F88-3BB2-A2AE-0CB8982C0220" frame="4" p="1"/>
   </map>
 </root>

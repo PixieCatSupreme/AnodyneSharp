@@ -551,10 +551,18 @@ namespace AnodyneSharp.Entities.Enemy.Etc
                 yield return null;
             }
 
-            SoundManager.PlaySong("terminal_alt");
+            if (!bossRush)
+            {
+                SoundManager.PlaySong("terminal_alt");
 
-            events.BossDefeated.Add("TERMINAL");
-            events.SetEvent("SageDied", 1);
+                events.BossDefeated.Add("TERMINAL");
+                events.SetEvent("SageDied", 1);
+
+            }
+            else
+            {
+                SoundManager.PlaySong("bedroom");
+            }
 
             _preset.Alive = false;
             exists = false;

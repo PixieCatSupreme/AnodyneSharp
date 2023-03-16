@@ -11,7 +11,7 @@ namespace AnodyneSharp.Entities.Gadget
     {
         private EntityPreset _preset;
         public HealthEntity(EntityPreset preset, Player p)
-            : base(preset.Position, true)
+            : base(preset.Position, preset.Frame == 0)
         {
             _preset = preset;
 

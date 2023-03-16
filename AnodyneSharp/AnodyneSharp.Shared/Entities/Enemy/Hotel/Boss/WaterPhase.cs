@@ -125,7 +125,11 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
             }
 
             velocity = Vector2.UnitY * 40;
-            GlobalState.SpawnEntity(new HealthPickup(Position, true) { exists = true });
+
+            if (!bossRush)
+            {
+                GlobalState.SpawnEntity(new HealthPickup(Position, true) { exists = true });
+            }
 
             foreach(Bullet b in bullets.Entities)
             {

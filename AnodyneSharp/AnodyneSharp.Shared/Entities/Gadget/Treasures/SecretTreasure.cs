@@ -22,12 +22,6 @@ namespace AnodyneSharp.Entities.Gadget.Treasures
         {
             base.GetTreasure();
 
-            int secretLength = GlobalState.inventory.SecretStatus.Length;
-            if (_secretID >= secretLength)
-            {
-                GlobalState.inventory.SecretStatus = GlobalState.inventory.SecretStatus.Concat(Enumerable.Repeat(false, _secretID - secretLength + 1)).ToArray();
-            }
-
             GlobalState.inventory.SecretStatus[_secretID] = true;
 
             DebugLogger.AddInfo($"Got secret {_secretID}");

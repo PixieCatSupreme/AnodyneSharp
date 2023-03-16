@@ -10,6 +10,9 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
     <AssemblyName>AnodyneSharp</AssemblyName>
     <RootNamespace>AnodyneSharp</RootNamespace>
+    <Version>1.2.0</Version>
+    <AssemblyVersion>1.2.0</AssemblyVersion>
+    <FileVersion>1.2.0</FileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>TRACE;WINDOWS</DefineConstants>

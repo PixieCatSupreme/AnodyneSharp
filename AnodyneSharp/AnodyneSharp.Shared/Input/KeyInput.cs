@@ -65,7 +65,7 @@ namespace AnodyneSharp.Input
 
         public static int ControllerButtonOffset { get; private set; }
 
-        private static bool _faceButtonsSwitched;
+        public static bool FaceButtonsSwitched { get; private set; }
 
         private static Dictionary<Keys, InputState> KeyState;
         private static Dictionary<Buttons, InputState>[] ControllerState;
@@ -130,7 +130,7 @@ namespace AnodyneSharp.Input
                 if (displayName.Contains("nintendo"))
                 {
                     ControllerButtonOffset = 26;
-                    if (!_faceButtonsSwitched)
+                    if (!FaceButtonsSwitched)
                     {
                         SwapFaceButtons();
                     }
@@ -139,7 +139,7 @@ namespace AnodyneSharp.Input
                     displayName.Contains("ps3") || displayName.Contains("ps4") || displayName.Contains("ps5"))
                 {
                     ControllerButtonOffset = 52;
-                    if (_faceButtonsSwitched)
+                    if (FaceButtonsSwitched)
                     {
                         SwapFaceButtons();
                     }
@@ -147,7 +147,7 @@ namespace AnodyneSharp.Input
                 else
                 {
                     ControllerButtonOffset = 0;
-                    if (_faceButtonsSwitched)
+                    if (FaceButtonsSwitched)
                     {
                         SwapFaceButtons();
                     }
@@ -264,7 +264,7 @@ namespace AnodyneSharp.Input
 
         public static void SwapFaceButtons()
         {
-            _faceButtonsSwitched = !_faceButtonsSwitched;
+            FaceButtonsSwitched = !FaceButtonsSwitched;
 
             var aList = RebindableKeys.Where(k => k.Value.Buttons.Contains(Buttons.A)).ToList();
             var bList = RebindableKeys.Where(k => k.Value.Buttons.Contains(Buttons.B)).ToList();

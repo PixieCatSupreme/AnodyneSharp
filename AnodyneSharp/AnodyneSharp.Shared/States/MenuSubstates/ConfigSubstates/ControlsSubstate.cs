@@ -236,6 +236,11 @@ namespace AnodyneSharp.States.MenuSubstates
 
         private void SetKeyRebinds()
         {
+            if (KeyInput.FaceButtonsSwitched)
+            {
+                KeyInput.SwapFaceButtons();
+            }
+
             foreach (var (keyFunction, change) in _changes)
             {
                 var keyValue = KeyInput.RebindableKeys[keyFunction];
@@ -294,6 +299,11 @@ namespace AnodyneSharp.States.MenuSubstates
 
             using InputConfigWriter inputConfigWriter = new($"{GameConstants.SavePath}InputConfig.dat");
             inputConfigWriter.WriteInputConfig();
+
+            if (KeyInput.FaceButtonsSwitched)
+            {
+                KeyInput.SwapFaceButtons();
+            }
         }
 
         private void KeyRebind(Keys key)
@@ -423,7 +433,7 @@ namespace AnodyneSharp.States.MenuSubstates
 
             int controlsYOffset = 0;
             int controlsOffset = 70;
-            int buttonSpacing = 44;
+            int buttonSpacing = 44-4;
 
             if (GlobalState.CurrentLanguage == Language.ZH_CN)
             {

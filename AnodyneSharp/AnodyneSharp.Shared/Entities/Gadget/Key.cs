@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework;
 
 namespace AnodyneSharp.Entities.Gadget
 {
-    [NamedEntity, Collision(typeof(Player))]
+    [NamedEntity, Collision(typeof(Player), typeof(Broom))]
     public class Key : Entity
     {
         EntityPreset _preset;

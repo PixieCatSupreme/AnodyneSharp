@@ -2,7 +2,7 @@
 <project>
   <version/>
   <bgColor>0xcccccc</bgColor>
-  <viewPos x="623" y="782"/>
+  <viewPos x="-136" y="-318"/>
   <firstLayersTop>false</firstLayersTop>
   <spriteEntries currentId="176">
     <group name="Events SL" idx="1" open="false">
@@ -213,7 +213,7 @@
       </sprite>
       <sprite name="CubeKing" idx="54" className="CubeKing" image="textures/sprites/npcs/space_npcs.png" width="32" height="32" preview="10" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="32" boundsHeight="32" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="12" canEditFrames="true" lockRotation="false"/>
     </group>
-    <group name="Gadgets" idx="55" open="false">
+    <group name="Gadgets" idx="55" open="true">
       <group name="Gates" idx="56" open="true">
         <sprite name="Gate S" idx="57" className="Gate" image="textures/sprites/dame/dame-gates.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="15" canEditFrames="true" lockRotation="false">
           <properties>
@@ -308,7 +308,7 @@
           <type typeof="Int" name="p" value="2" hidden="false"/>
         </properties>
       </sprite>
-      <sprite name="Health_Dropper" idx="86" className="Health_Dropper" image="textures/sprites/inventory/big_health_pickup.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="-1" canEditFrames="true" lockRotation="false">
+      <sprite name="Health_Dropper" idx="86" className="Health_Dropper" image="textures/sprites/inventory/big_health_pickup.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" centerAnchor="false" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="4" canEditFrames="true" lockRotation="false" selected="true">
         <properties>
           <type typeof="Int" name="p" value="1" hidden="false"/>
         </properties>
@@ -7880,7 +7880,7 @@
         </shape>
       </shapelayer>
     </group>
-    <group name="NEXUS" id="27" xScroll="1" yScroll="1" visible="false" open="false" locked="false" exports="true">
+    <group name="NEXUS" id="27" xScroll="1" yScroll="1" visible="false" open="true" locked="false" exports="true">
       <maplayer name="BG" id="68" xScroll="1" yScroll="1" x="0" y="0" width="100" height="100" tileset="textures/tilemaps/nexus_tilemap.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
@@ -8140,6 +8140,9 @@
         </sprite>
         <sprite guid="53506A93-ABF3-9455-15FB-4CF59A5664B8" x="800" y="496" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="26"/>
         <sprite guid="1E9CCC6C-32E4-7AB7-0609-841F65A5F53A" x="872" y="558" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="162" frame="100">
+          <properties/>
+        </sprite>
+        <sprite guid="F4CE7438-E4F1-42DB-8AB2-9C3096D69B10" x="871" y="557" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="164" frame="101">
           <properties/>
         </sprite>
       </spritelayer>
@@ -11314,9 +11317,9 @@
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,231,232,233,228,228,232,232,245,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,231,233,228,228,238,238,228,228,234,235,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,240,228,228,215,215,215,215,228,228,245,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
-        <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,234,228,215,215,217,219,215,215,228,234,0,0,0,0,0,0,0,0,0,0,0,0,0,251,252,252,253,0,0,0</row>
-        <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,228,215,217,228,228,219,215,228,228,0,0,0,0,0,0,0,0,0,0,0,251,252,261,250,250,260,252,253,0</row>
-        <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,242,215,215,237,228,228,239,215,215,243,0,0,0,0,0,0,0,0,0,0,0,257,250,250,250,250,250,250,258,0</row>
+        <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,234,228,215,215,217,219,215,215,228,234,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
+        <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,228,215,217,228,228,219,215,228,228,0,0,0,0,0,0,0,0,0,0,0,0,0,251,252,252,253,0,0,0</row>
+        <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,242,215,215,237,228,228,239,215,215,243,0,0,0,0,0,0,0,0,0,0,0,251,252,261,250,250,260,252,253,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,240,215,215,215,227,229,215,215,215,245,0,0,0,0,0,0,0,0,0,0,0,257,250,250,250,250,250,250,258,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,240,215,215,215,227,229,215,215,215,245,0,0,0,0,0,0,0,0,0,0,0,257,250,250,250,250,250,250,258,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,240,215,215,215,227,229,215,215,215,245,0,0,0,0,0,0,0,0,0,0,0,254,255,255,250,250,255,255,256,0</row>
@@ -11464,7 +11467,7 @@
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
       </maplayer>
-      <spritelayer name="Stateless" id="109" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stateless" id="109" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false" selected="true">
         <sprite guid="37491C17-B615-79C3-87D7-629582F43B2F" x="64" y="1008" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="129" frame="4">
           <properties>
             <type typeof="Int" name="p" value="1" hidden="false"/>
@@ -11591,13 +11594,13 @@
         <sprite guid="E21785AB-AB6F-F6E7-F993-59CE508679A0" x="352" y="1008" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="86">
           <properties/>
         </sprite>
-        <sprite guid="C137CDF1-A2EC-7AC7-20A5-E0699249427F" x="352" y="1088" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="86">
+        <sprite guid="C137CDF1-A2EC-7AC7-20A5-E0699249427F" x="352" y="1088" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="86" frame="4">
           <properties/>
         </sprite>
         <sprite guid="F2B8E46F-CC5C-A1C5-F768-B2CB25722E91" x="432" y="1008" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="86">
           <properties/>
         </sprite>
-        <sprite guid="FB44CD96-0C7E-982E-4653-9BD0277BC502" x="432" y="1088" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="86">
+        <sprite guid="FB44CD96-0C7E-982E-4653-9BD0277BC502" x="432" y="1088" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="86" frame="4">
           <properties/>
         </sprite>
         <sprite guid="2965C556-3136-8D77-FDD2-DC2B6CD1E36E" x="384" y="672" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="65" frame="0">
@@ -11615,13 +11618,13 @@
             <dataOverride name="p" typeof="Int" value="1" idx="1"/>
           </properties>
         </sprite>
-        <sprite guid="130384EB-D6F5-1CE8-E2CB-FF091D1A3B29" x="352" y="768" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="86">
+        <sprite guid="130384EB-D6F5-1CE8-E2CB-FF091D1A3B29" x="352" y="768" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="86" frame="4">
           <properties/>
         </sprite>
         <sprite guid="5CAB4355-CD52-667A-0E55-0D30D10E1A96" x="352" y="688" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="86">
           <properties/>
         </sprite>
-        <sprite guid="3F8831CC-A336-3D35-4247-F9D0E489E6E1" x="432" y="768" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="86">
+        <sprite guid="3F8831CC-A336-3D35-4247-F9D0E489E6E1" x="432" y="768" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="86" frame="4">
           <properties/>
         </sprite>
         <sprite guid="3AD5821F-94E2-6384-A496-2D46427FF0E3" x="528" y="608" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="80" frame="1"/>
@@ -11677,10 +11680,10 @@
         <sprite guid="54132CE0-8862-2776-90F3-59CEE522B28E" x="432" y="688" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="86">
           <properties/>
         </sprite>
-        <sprite guid="91F5F5E5-C16B-392D-73C1-ADA3ADD5E3EB" x="352" y="560" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="86">
+        <sprite guid="91F5F5E5-C16B-392D-73C1-ADA3ADD5E3EB" x="352" y="528" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="86">
           <properties/>
         </sprite>
-        <sprite guid="BBDADE26-51D7-7B89-8217-CB6A1D786C03" x="432" y="560" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="86">
+        <sprite guid="BBDADE26-51D7-7B89-8217-CB6A1D786C03" x="432" y="528" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="86">
           <properties/>
         </sprite>
         <sprite guid="534EE73C-26C7-871C-56C8-F5D5CC6C16F0" x="400" y="48" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="162" frame="101">
@@ -11723,8 +11726,14 @@
             <type typeof="Int" name="p" value="1" hidden="false"/>
           </properties>
         </sprite>
+        <sprite guid="A630A6D6-AFE2-F01B-8059-5EBF9A3DB866" x="352" y="608" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="86" frame="4">
+          <properties/>
+        </sprite>
+        <sprite guid="13843B70-1F88-3BB2-A2AE-0CB8982C0220" x="432" y="608" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="86" frame="4">
+          <properties/>
+        </sprite>
       </spritelayer>
-      <shapelayer name="Swapper" id="110" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false" selected="true">
+      <shapelayer name="Swapper" id="110" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <shape guid="0C0F7358-7A06-F45F-AB76-6482C0123C28" type="square" x="-80" y="-240" Z="0" angle="0" width="964.77" height="1601.48" scaleX="19.295" scaleY="32.030" fillColor="0xff0000" alpha="0.50">
           <properties>
             <type typeof="String" name="type" value="DisallowSilently" hidden="false"/>
