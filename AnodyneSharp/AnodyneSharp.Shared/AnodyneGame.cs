@@ -58,7 +58,6 @@ namespace AnodyneSharp
 
             _currentState = null;
 
-            GlobalState.settings.scale = Math.Min(GlobalState.settings.scale, SpriteDrawer.MaxScale);
 
             if (!Directory.Exists(GameConstants.SavePath))
             {
@@ -84,7 +83,7 @@ namespace AnodyneSharp
         /// </summary>
         protected override void Initialize()
         {
-#if OPENGL
+#if OPENGL || ANDROID
             InitGraphics();
 #endif
 
@@ -250,6 +249,13 @@ namespace AnodyneSharp
 
         private void InitGraphics()
         {
+#if ANDROID
+            GlobalState.settings.resolution = Resolution.Scaled;
+            GlobalState.settings.scale = SpriteDrawer.MaxScale;
+#else
+            GlobalState.settings.scale = Math.Min(GlobalState.settings.scale, SpriteDrawer.MaxScale);
+#endif
+
             graphics.GraphicsProfile = GraphicsProfile.HiDef;
             graphics.IsFullScreen = false;
             switch (GlobalState.settings.resolution)

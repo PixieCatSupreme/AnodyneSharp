@@ -52,7 +52,9 @@ namespace AnodyneSharp.Registry
         static GameConstants()
         {
             SavePath =
-#if DEBUG
+#if ANDROID
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData,Environment.SpecialFolderOption.Create),"AnodyneFanRemake/");
+#elif DEBUG
                 "./";
 #else
                 Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData,Environment.SpecialFolderOption.Create),"AnodyneFanRemake/");

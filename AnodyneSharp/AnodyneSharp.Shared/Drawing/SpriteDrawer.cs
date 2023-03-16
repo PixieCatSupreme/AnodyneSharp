@@ -153,7 +153,11 @@ namespace AnodyneSharp.Drawing
                     _spriteBatch.Draw(_render, new Rectangle(0, 0, _graphicsDevice.PresentationParameters.BackBufferWidth, _graphicsDevice.PresentationParameters.BackBufferHeight), FullScreenFade);
                     break;
                 case Resolution.Scaled:
+#if ANDROID
+                    _spriteBatch.Draw(_render, new Rectangle(_graphicsDevice.PresentationParameters.BackBufferWidth / 2 - 160 * GlobalState.settings.scale/2, 0, 160 * GlobalState.settings.scale, 180 * GlobalState.settings.scale), FullScreenFade);
+#else
                     _spriteBatch.Draw(_render, new Rectangle(_graphicsDevice.PresentationParameters.BackBufferWidth / 2 - 160 * GlobalState.settings.scale/2, _graphicsDevice.PresentationParameters.BackBufferHeight / 2 - 180 * GlobalState.settings.scale / 2, 160 * GlobalState.settings.scale, 180 * GlobalState.settings.scale), FullScreenFade);
+#endif
                     break;
                 case Resolution.Stretch:
                     float scale = _graphicsDevice.PresentationParameters.BackBufferHeight / 180.0f;

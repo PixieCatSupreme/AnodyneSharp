@@ -10,12 +10,18 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace AnodyneSharp.Resources
 {
+    public delegate DirectoryInfo[] GetDirectories(string path);
+    public delegate List<FileInfo> GetFiles(string path);
     public static class ResourceManager
     {
+        public static GetDirectories GetDirectories;
+        public static GetFiles GetFiles;
+
         private static Dictionary<string, Texture2D> _textures = new();
         private static Dictionary<string, string> _music = new();
         private static Dictionary<string, string> _ambience = new();
@@ -23,17 +29,11 @@ namespace AnodyneSharp.Resources
 
         public static bool LoadResources(ContentManager content)
         {
-            DirectoryInfo dir = new(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,content.RootDirectory));
-            if (!dir.Exists)
-            {
-                DebugLogger.AddCritical($"Tried loading from {dir.FullName} but failed!", false);
-                return false;
-            }
 
-            DirectoryInfo[] directories = dir.GetDirectories();
+            DirectoryInfo[] directories = GetDirectories?.Invoke("Content");
 
             LoadTextures(content, directories.First(d => d.Name == "textures"));
-            LoadMusic(content, directories.First(d => d.Name == "bgm"));
+            //LoadMusic(content, directories.First(d => d.Name == "bgm"));
             LoadAmbience(content, directories.First(d => d.Name == "ambience"));
             LoadSFX(content, directories.First(d => d.Name == "sfx"));
 
@@ -72,7 +72,7 @@ namespace AnodyneSharp.Resources
 
         public static string GetAmbiencePath(string ambienceName)
         {
-            if(!_ambience.ContainsKey(ambienceName))
+            if (!_ambience.ContainsKey(ambienceName))
             {
                 return null;
             }
@@ -153,9 +153,9 @@ namespace AnodyneSharp.Resources
                 return new List<FileInfo>();
             }
 
-            List<FileInfo> files = directory.GetFiles().ToList();
+            List<FileInfo> files = GetFiles(directory.FullName);
 
-            foreach (var child in directory.GetDirectories())
+            foreach (var child in GetDirectories(directory.FullName))
             {
                 files.AddRange(GetChildFiles(child));
             }
