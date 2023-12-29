@@ -46,8 +46,11 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
         {
             //Water phase is needed to start the boss song, which means it at least spawned this time through the map, and it sets its Alive back to true until that phase is done
             bool water_phase_dead = !EntityManager.GetLinkGroup(preset.LinkID).Where(e => e != preset).First().Alive;
-            if ((SoundManager.CurrentSongName != "hotel-boss" || !water_phase_dead) && !TEST_LAND)
+            if ((SoundManager.CurrentSongName != "hotel-boss" || !water_phase_dead || GlobalState.events.GetEvent("BossRushLandDefeated") == 1) && !TEST_LAND)
             {
+                //Death marker being set to exists false does not increment this value here for some reason. Explicitly setting it makes the key spawn
+                GlobalState.ENEMIES_KILLED = 1;
+                death_marker.exists = false;
                 exists = false;
                 return;
             }
@@ -256,10 +259,20 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
 
             while (bullets.Alive > 0 || splashes.Alive > 0) yield return null;
 
-            preset.Alive = exists = false;
+            if (bossRush)
+            {
+                exists = false;
+                SoundManager.PlaySong("bedroom");
+                GlobalState.events.SetEvent("BossRushLandDefeated", 1);
+            }
+            else
+            {
+                preset.Alive = exists = false;
+                GlobalState.events.BossDefeated.Add(GlobalState.CURRENT_MAP_NAME);
+                SoundManager.PlaySong("hotel");
+            }
+
             death_marker.exists = false;
-            GlobalState.events.BossDefeated.Add(GlobalState.CURRENT_MAP_NAME);
-            SoundManager.PlaySong("hotel");
 
             yield break;
         }

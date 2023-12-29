@@ -37,7 +37,8 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
         public WaterPhase(EntityPreset preset, Player p) : base(preset.Position,EyebossPreview.GetSprite(),Drawing.DrawOrder.BG_ENTITIES)
         {
             player = p;
-            if(GlobalState.events.BossDefeated.Contains(GlobalState.CURRENT_MAP_NAME))
+            if(GlobalState.events.BossDefeated.Contains(GlobalState.CURRENT_MAP_NAME) ||
+               GlobalState.events.GetEvent("BossRushLandDefeated") == 1)
             {
                 //Full boss is defeated, open both gates and do nothing beyond that
                 exists = false;

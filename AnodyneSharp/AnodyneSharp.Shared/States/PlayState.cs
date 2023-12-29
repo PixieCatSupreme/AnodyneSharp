@@ -857,6 +857,7 @@ namespace AnodyneSharp.States
         {
             if (GlobalState.CURRENT_MAP_NAME != GlobalState.NEXT_MAP_NAME)
             {
+                GlobalState.events.SetEvent("BossRushLandDefeated", 0);
 
                 GlobalState.events.VisitedMaps.Add(GlobalState.NEXT_MAP_NAME);
                 if (GlobalState.events.BossDefeated.Contains(GlobalState.CURRENT_MAP_NAME))

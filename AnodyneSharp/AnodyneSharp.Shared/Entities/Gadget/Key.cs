@@ -39,7 +39,7 @@ namespace AnodyneSharp.Entities.Gadget
         {
             base.Update();
             
-            if (bossRush && GlobalState.ENEMIES_KILLED > 0)
+            if (visible == false && bossRush && GlobalState.ENEMIES_KILLED > 0)
             {
                 visible = true;
             }
