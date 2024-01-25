@@ -41,11 +41,11 @@ namespace AnodyneSharp.Entities.Gadget
             base.Update();
             if(_player.Hitbox.Intersects(Hitbox))
             {
-                if(_player.velocity.Y > 0)
+                if(_player.velocity.Y > 0 && _player.Position.Y < Position.Y)
                 {
                     _player.Position.Y = Position.Y - _player.height;
                 }
-                else
+                else if(_player.velocity.Y < 0 && _player.Position.Y > Position.Y)
                 {
                     _player.Position.Y = Position.Y + height;
                 }
@@ -70,13 +70,13 @@ namespace AnodyneSharp.Entities.Gadget
             base.Update();
             if (_player.Hitbox.Intersects(Hitbox))
             {
-                if (_player.velocity.X > 0)
+                if (_player.velocity.X < 0)
                 {
-                    _player.Position.X = Position.X - _player.width;
+                    _player.Position.X = Position.X + width;
                 }
                 else
                 {
-                    _player.Position.X = Position.X + width;
+                    _player.Position.X = Position.X - _player.width;
                 }
             }
         }
