@@ -2327,6 +2327,8 @@ CONGRATULATION!!!!!!
 #10
 # Goldman: What? It's not there? That shopkeeper must have stolen it!		
 골드만: 뭐? 거기 없다고? 분명히 그 가게 주인이 훔쳤다고!		
+You found {0}'s {1}.
+You found a key for {0}.
 		end scene
 		
 		scene dust

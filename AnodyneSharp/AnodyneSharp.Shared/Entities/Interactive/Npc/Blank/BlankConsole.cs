@@ -27,6 +27,8 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Blank
         {
             GlobalState.Dialogue = DialogueManager.GetDialogue("rock", "NEXUS", "five");
 
+            //TODO count as card ending
+
             return true;
         }
     }

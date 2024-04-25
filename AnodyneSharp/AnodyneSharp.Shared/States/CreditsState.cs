@@ -83,6 +83,8 @@ namespace AnodyneSharp.States
             CreateEntities();
 
             _stateLogic = StateLogic();
+
+            //TODO count as Brair ending
         }
 
         public override void Update()

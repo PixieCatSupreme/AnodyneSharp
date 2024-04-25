@@ -2524,6 +2524,8 @@ Una nota fijada en el accesorio para la escoba: "Hola, Young. Usa esta mejora SW
 #10
 #Goldman: What? It's not there? That shopkeeper must have stolen it!	
 Goldman: ¿Qué? ¿No está ahí? ¡Ese tendero debe haberlo robado!
+You found {0}'s {1}.
+You found a key for {0}.
 		end scene
 		
 		scene dust

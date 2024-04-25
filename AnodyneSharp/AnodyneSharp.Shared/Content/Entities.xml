@@ -22,13 +22,13 @@
     <Silverfish x="528" y="656" guid="383EEB85-4BB9-58B2-E098-48C899CB955C" frame="0" p="0" alive="true"/>
     <Switch_Pillar x="544" y="816" guid="8597B608-DE91-275D-3686-B7B59425F45F" frame="0"/>
     <Pillar_Switch x="512" y="928" guid="67F6915C-CA70-512C-129D-FBB0891AC2B3" frame="0"/>
-    <Treasure x="592" y="912" guid="BB72229F-0FFC-F0BA-2678-6E79F29DBDCC" frame="2" alive="true"/>
+    <Treasure x="592" y="912" guid="BB72229F-0FFC-F0BA-2678-6E79F29DBDCC" frame="2" alive="true" type="8" />
     <Gasguy x="240" y="176" guid="F6A8C41D-C1C8-B8C5-569D-89087DFFC820" frame="0" p="1" alive="true"/>
     <Rat x="16" y="400" guid="784F44BA-C043-0A84-0D43-632E57C8BCCC" frame="0" p="0" alive="true"/>
     <Gate x="384" y="432" guid="41886086-E971-8E31-0D6A-FDFD71311459" frame="6" p="2" alive="true" type="0" />
     <Gate x="400" y="432" guid="84999CB9-4620-0248-29F2-BBDA36FDFF69" frame="6" p="2" alive="true" type="0" />
     <Teleguy x="224" y="704" guid="7C0D4665-6EFD-1DF2-EA13-1CC46ED20164" frame="0" p="1" alive="true"/>
-    <Treasure x="128" y="64" guid="C46DD225-39D7-72AC-C48D-4A7E4E56BE81" frame="2" alive="true"/>
+    <Treasure x="128" y="64" guid="C46DD225-39D7-72AC-C48D-4A7E4E56BE81" frame="2" alive="true" type="9" />
     <Rat x="1168" y="128" guid="D4465BC2-4688-C401-5439-7EBCE7D85D0A" frame="0" p="0" alive="true"/>
     <Rat x="1184" y="256" guid="59136367-FA73-F8AB-E049-E53152140B7F" frame="0" p="0" alive="true"/>
     <Gate x="1216" y="144" guid="D99AD801-FD53-7AE3-AE1E-8928C910D80D" frame="5" p="2" alive="true" type="0" />
@@ -113,7 +113,7 @@
     <Gate x="1088" y="1136" guid="E5788DC9-A548-5D41-F824-C468D272B9C5" frame="6" p="2" alive="true" type="0" />
     <Gate x="944" y="1024" guid="D2F855E5-D922-F510-8D67-D39F96EF7386" frame="2" p="2" alive="true" type="0" />
     <Splitboss x="1184" y="976" guid="51CA077A-8851-DA77-3DAA-1944F0D9C1C7" frame="0" p="2" alive="true"/>
-    <Treasure x="1376" y="1168" guid="0C163884-EC62-1FF3-40B9-5A0B1865E347" frame="2" alive="true"/>
+    <Treasure x="1376" y="1168" guid="0C163884-EC62-1FF3-40B9-5A0B1865E347" frame="2" alive="true" type="7" />
     <Door x="1200" y="400" guid="D90FF01D-637B-1872-7C2D-45D96B61B69B" frame="19" type="1" />
     <Door x="400" y="400" guid="306ABBFE-D5E4-8910-9A07-060EE37B01AE" frame="19" type="1" />
     <Door x="768" y="1136" guid="8608FBA8-32AE-E45F-F7B4-A0063E563AF8" frame="24" type="1" />
@@ -302,7 +302,7 @@
     <Jump_Trigger x="64" y="528" guid="86B4A80E-6F1D-9FAD-96EC-E80E36EFCDF3" frame="0"/>
   </map>
   <map name="BEACH" type="Stateful">
-    <Treasure x="703" y="496" guid="72D94F08-9DAE-685C-D024-9ED620329A87" frame="2" alive="true"/>
+    <Treasure x="703" y="496" guid="72D94F08-9DAE-685C-D024-9ED620329A87" frame="2" alive="true" type="16" />
     <Event x="1039" y="224" guid="D764F51B-245F-D0DF-CD08-63A71E0FD875" frame="2"/>
     <Door x="1200" y="608" guid="C27BEA2C-587D-88FD-79DF-AE1C03F0B732" frame="11" type="7" />
     <Fisherman x="1200" y="576" guid="3309A42C-170F-2A4D-1006-F20A79C8A296" frame="0" p="2" alive="true"/>
@@ -384,8 +384,8 @@
     <Slime x="224" y="16" guid="FB05634B-E19A-4D00-542B-018F26CB69C2" frame="0" p="1" alive="true"/>
     <Shieldy x="16" y="768" guid="0550FF41-198A-A993-FB19-111DCA32BDFB" frame="6"/>
     <Treasure x="16" y="656" guid="40DE36CF-9238-F8B0-7A57-C6C8CA465CC2" frame="1" alive="true"/>
-    <Treasure x="176" y="16" guid="88D0A7B8-EEAB-C45F-324E-F1C7885C41CE" frame="2" alive="true"/>
-    <Treasure x="448" y="592" guid="621C284F-CBD0-74C3-F51B-2A9FDDE8D4D7" frame="2" alive="true"/>
+    <Treasure x="176" y="16" guid="88D0A7B8-EEAB-C45F-324E-F1C7885C41CE" frame="2" alive="true" type="3" />
+    <Treasure x="448" y="592" guid="621C284F-CBD0-74C3-F51B-2A9FDDE8D4D7" frame="2" alive="true" type="4" />
     <Annoyer x="560" y="384" guid="BF228047-1ADD-5376-0FB2-E10FE2FBC9D0" frame="0" alive="true"/>
     <Annoyer x="560" y="416" guid="2892CD21-0923-1474-3041-9F7F6D9EE086" frame="0" alive="true"/>
     <Shieldy x="608" y="384" guid="EE91DABD-E170-76F4-F7B3-60A034B8A374" frame="7"/>
@@ -403,13 +403,13 @@
     <Pew_Laser x="496" y="160" guid="9B997103-4BC9-C277-8828-84CF860AB196" frame="0"/>
     <Pew_Laser x="608" y="160" guid="CC816F25-6AB2-2C5B-5229-29C6DA9B95DC" frame="0"/>
     <Gate x="480" y="192" guid="80F73FAA-E149-C3D6-BC1C-5D7F92CB2246" frame="1" p="2" alive="true" type="0" />
-    <Treasure x="544" y="32" guid="0BCE5346-48A2-47F9-89CB-3F59D9D0B7D2" frame="2" alive="true"/>
+    <Treasure x="544" y="32" guid="0BCE5346-48A2-47F9-89CB-3F59D9D0B7D2" frame="2" alive="true" type="2" />
     <Gate x="144" y="224" guid="D081FC45-466A-7897-1051-496C6A42365E" frame="6" p="2" alive="true" type="0" />
     <Pew_Laser x="400" y="576" guid="4A813FD0-4FE1-EA05-7E29-B119623084D1" frame="2"/>
     <Door x="392" y="791" guid="F65B753D-C967-4272-7C32-37FA7E955F5D" frame="1" type="1" />
     <KeyBlock x="720" y="496" guid="21C5A4B5-7013-A2E4-CADF-9251D9CB4864" frame="0" p="2" alive="true"/>
     <Treasure x="912" y="16" guid="D41F2750-E3C7-BBB4-D650-FAFC190EBD32" frame="1" alive="true"/>
-    <Treasure x="928" y="16" guid="3167924E-5D52-1CD6-D6F4-B8E0E328215B" frame="2" alive="true"/>
+    <Treasure x="928" y="16" guid="3167924E-5D52-1CD6-D6F4-B8E0E328215B" frame="2" alive="true" type="5" />
     <Slime x="720" y="208" guid="B6B3B74A-BCDF-3536-AF1B-DF69F0A95B78" frame="0" p="1" alive="true"/>
     <Slime x="720" y="368" guid="A8C69E5D-C16E-173C-A6F6-ADAFC7EEC238" frame="0" p="1" alive="true"/>
     <Shieldy x="832" y="192" guid="D93B44E9-5810-9949-7B6F-65B80EBDFE57" frame="7"/>
@@ -605,7 +605,7 @@
     <Solid_Sprite x="324" y="934" guid="AD6F2767-0068-51F0-3647-5208E521318E" frame="5" type="blocker" />
     <Door x="232" y="1223" guid="09EEE254-0B0C-833B-FE5C-9CEBC07EF13C" frame="91" type="4" />
     <Event x="704" y="992" guid="4D6810AB-5602-414E-31DC-46AF65D72334" frame="2"/>
-    <Treasure x="912" y="256" guid="2A73F27F-1B41-F1A2-1B16-525F9F57AE10" frame="2" alive="true"/>
+    <Treasure x="912" y="256" guid="2A73F27F-1B41-F1A2-1B16-525F9F57AE10" frame="2" alive="true" type="44" />
     <Gate x="240" y="912" guid="E418C812-60B1-F4BC-5195-5B6C39604CAC" frame="5" p="2" alive="true" type="8" />
     <CardGate x="224" y="864" guid="DF7510BB-4682-F475-4D70-5BFB0F75FBBA" frame="47" p="2"/>
     <CardGate x="224" y="1120" guid="EEC30352-7D44-FB77-7FEA-EFFA55C8DE42" frame="50" p="2" type="unopenable" />
@@ -701,7 +701,7 @@
   </map>
   <map name="CELL" type="Stateful">
     <NPC x="592" y="496" guid="445C736A-7BF9-8856-6F4B-E9C4C6675770" frame="1" type="rock" />
-    <Treasure x="96" y="48" guid="021A2AC3-4FED-13ED-A0FA-88FB641C50F1" frame="2" alive="true"/>
+    <Treasure x="96" y="48" guid="021A2AC3-4FED-13ED-A0FA-88FB641C50F1" frame="2" alive="true" type="21" />
     <NPC x="992" y="1024" guid="A7192061-5A14-1E53-6A8F-44151E833597" frame="2" type="rock" />
     <NPC x="1168" y="1168" guid="752CBD82-1FAB-3237-DF9D-C24D87BEA2CB" frame="3" type="rock" />
     <Door x="112" y="1137" guid="BB916AAE-ED42-1EB8-A8AC-FF602FB2CAC5" frame="41" type="4" />
@@ -732,7 +732,7 @@
     <Silverfish x="560" y="1392" guid="37CB30C2-0D5A-ED3B-28D1-4BFCDC84EE57" frame="0" p="0" alive="true"/>
     <Silverfish x="528" y="1360" guid="1FBC65FA-164D-EB76-69E3-7D763C45D086" frame="0" p="0" alive="true"/>
     <Silverfish x="544" y="1408" guid="D15A391C-2029-552E-0476-84FAEC6EB561" frame="0" p="0" alive="true"/>
-    <Treasure x="896" y="1344" guid="EBABD989-126B-A804-01CD-158EFD5D1EE8" frame="2" alive="true"/>
+    <Treasure x="896" y="1344" guid="EBABD989-126B-A804-01CD-158EFD5D1EE8" frame="2" alive="true" type="40" />
     <Silverfish x="512" y="1376" guid="F0A3C22E-DFC6-4BE0-17C9-670F27DFF3EE" frame="0" p="0" alive="true"/>
     <Gate x="656" y="1376" guid="E6E3024C-FAD0-19BC-8162-95948A37156F" frame="5" p="2" alive="true" type="16" />
     <Button x="768" y="1296" guid="F2A47D16-76E6-6276-89ED-09C3F019ACF1" frame="0"/>
@@ -859,7 +859,7 @@
     <Treasure x="352" y="816" guid="75C2D434-4AE8-BCD0-DBEB-8E6CDA67BF45" frame="1" alive="true"/>
     <Contort x="32" y="576" guid="7BD49006-E057-B59F-F25F-23FBDDF3253D" frame="0" p="1" alive="true"/>
     <Gate x="80" y="512" guid="88C63200-B9B9-3F6A-FE76-A4650BF1E8E7" frame="0" p="2" alive="true" type="0" />
-    <Treasure x="80" y="496" guid="13572273-945D-DE9E-7758-1CE5890D7FCD" frame="2" alive="true"/>
+    <Treasure x="80" y="496" guid="13572273-945D-DE9E-7758-1CE5890D7FCD" frame="2" alive="true" type="23" />
     <Annoyer x="32" y="720" guid="7156A655-4223-7E3F-28DE-E8222785C2E5" frame="2" p="1" alive="true" type="1" />
     <Annoyer x="96" y="672" guid="38E79CE8-4B7C-77F9-809D-5AF51E0F392F" frame="2" p="1" alive="true" type="1" />
     <Annoyer x="112" y="768" guid="D5EB9AA4-5675-2433-6829-910002630FFB" frame="2" p="1" alive="true" type="1" />
@@ -867,7 +867,7 @@
     <Gate x="80" y="640" guid="C9D38909-3F65-46EB-7440-63101806AE72" frame="12" p="2" alive="true" type="0" />
     <Spike_Roller x="928" y="1136" guid="D79128C1-7575-283E-AC78-CA4DD107F615" frame="6"/>
     <Lion x="688" y="848" guid="1C419A05-EAB0-73B6-8D90-ECF1382691C8" frame="0" p="1" alive="true"/>
-    <Treasure x="528" y="1072" guid="302BF614-753A-F18B-AB2F-5BA3B3798F00" frame="2" alive="true"/>
+    <Treasure x="528" y="1072" guid="302BF614-753A-F18B-AB2F-5BA3B3798F00" frame="2" alive="true" type="22" />
     <Slime x="672" y="976" guid="BD84DF52-9B7B-8761-D868-A3D27A504679" frame="3" p="1" alive="true"/>
     <Slime x="768" y="976" guid="B40CEE57-B153-DEF7-6049-2A31E75AF756" frame="3" p="1" alive="true"/>
     <Gate x="720" y="960" guid="C8CAEB55-38D6-9FE9-3736-EFC17615E4C3" frame="1" p="2" alive="true" type="0" />
@@ -902,7 +902,7 @@
     <Circus_Folks x="1168" y="336" guid="AF55220B-1789-7A78-080F-9F07B7303449" frame="1" p="2" alive="true" type="danger" />
     <Gate x="224" y="352" guid="B4145830-56B4-98E7-E2FA-C0297EF5DC86" frame="1" p="2" alive="true" type="0" />
     <Treasure x="224" y="336" guid="A2479A02-9B0D-751F-71A4-DB15C4982DF5" frame="1" alive="true"/>
-    <Treasure x="608" y="416" guid="F37E7952-28D0-74EC-0D54-AEFF7A9A31AE" frame="2" alive="true"/>
+    <Treasure x="608" y="416" guid="F37E7952-28D0-74EC-0D54-AEFF7A9A31AE" frame="2" alive="true" type="24" />
     <Contort x="496" y="432" guid="F872A940-DAAE-E2CE-D5BD-2009D87A0E66" frame="0" p="1" alive="true"/>
     <Contort x="560" y="368" guid="B3A4B8F3-AA5E-8AB0-AC39-211532EA012D" frame="0" p="1" alive="true"/>
     <Gate x="608" y="432" guid="A4415EA3-B89C-A6A4-9D7E-081B46F7EE6F" frame="11" p="2" alive="true" type="0" />
@@ -936,7 +936,7 @@
     <Annoyer x="1008" y="720" guid="A83EFE6E-F1BB-DC0C-05CB-E07E32E82638" frame="0" p="1" alive="true" type="1" />
     <Annoyer x="1056" y="736" guid="D603CB75-2DD2-B784-1B8F-40F11294F554" frame="0" p="1" alive="true" type="1" />
     <Annoyer x="1056" y="672" guid="14569546-E950-9C9F-5505-E1813E25C09B" frame="0" p="1" alive="true" type="1" />
-    <Treasure x="1184" y="16" guid="63182228-F827-7266-50E2-F3BECACBF818" frame="2" alive="true"/>
+    <Treasure x="1184" y="16" guid="63182228-F827-7266-50E2-F3BECACBF818" frame="2" alive="true" type="25" />
     <Door x="736" y="112" guid="AE0CA672-4E7B-9CCD-7545-F9112AF0C0F3" frame="32" type="9" />
     <Door x="1376" y="112" guid="31F70C4D-B5B5-D0D1-49EF-2C77E19DAB52" frame="32" type="9" />
     <Health_Cicada x="704" y="176" guid="5A2CDA3E-1E41-628C-60FE-91FCB2A0A479" frame="0" p="2" alive="true"/>
@@ -1206,9 +1206,9 @@
     <Event x="688" y="1392" guid="A6AB46CD-8F0D-099E-A3FD-E8E1E7A45FA9" frame="2"/>
   </map>
   <map name="CLIFF" type="Stateful">
-    <Treasure x="736" y="384" guid="B81260FD-281E-8C9C-4FC7-C0600306F1F7" frame="2" alive="true"/>
+    <Treasure x="736" y="384" guid="B81260FD-281E-8C9C-4FC7-C0600306F1F7" frame="2" alive="true" type="14" />
     <Door x="912" y="912" guid="3422A493-3E74-EB1F-705A-EC6938E869C9" frame="69" type="1" />
-    <Treasure x="432" y="1216" guid="3418E5ED-84ED-F56B-C39C-ADA7E4BE80D4" frame="2" alive="true"/>
+    <Treasure x="432" y="1216" guid="3418E5ED-84ED-F56B-C39C-ADA7E4BE80D4" frame="2" alive="true" type="15" />
     <NPC x="1168" y="208" guid="AEFEC742-FAC9-64FA-8930-0DE610FF8ECF" frame="0" type="rock" />
     <NPC x="912" y="371" guid="D7E38EF7-6257-8024-9A3B-BB3FB7D10912" frame="1" type="rock" />
     <NPC x="528" y="848" guid="EFF40350-3680-189C-F760-0FC69B170349" frame="2" type="rock" />
@@ -1254,7 +1254,7 @@
     <Event x="272" y="736" guid="5FA9FE38-750A-1DC5-F919-09B39E963263" frame="2"/>
   </map>
   <map name="CROWD" type="Stateful">
-    <Treasure x="352" y="336" guid="CAAB4970-64BC-E3E7-506B-BA822F0BEB81" frame="2" alive="true"/>
+    <Treasure x="352" y="336" guid="CAAB4970-64BC-E3E7-506B-BA822F0BEB81" frame="2" alive="true" type="26" />
     <KeyBlock x="144" y="608" guid="8C95463C-602A-D44A-4C09-1F60D3BBD15E" frame="0" p="2" alive="true"/>
     <Person x="592" y="656" guid="038A67FE-D904-F746-C66F-CECCFFB18678" frame="4"/>
     <Person x="608" y="672" guid="0F53B3DC-BC5F-0C8A-D255-D1DE29626D42" frame="4"/>
@@ -1329,7 +1329,7 @@
     <KeyBlock x="1264" y="240" guid="895D7E44-BF7B-5231-8412-F140F1436001" frame="0" p="2" alive="true"/>
     <Dog x="1296" y="272" guid="3748D50D-C674-583E-37F7-6EECBC9DC7BB" frame="0" p="1"/>
     <Dog x="1344" y="176" guid="4B5E8AFC-15D3-D2BC-0E83-7588B357CB08" frame="0" p="1"/>
-    <Treasure x="1408" y="432" guid="E281B455-4842-B1CE-4130-C09D7D5FAF21" frame="2" alive="true"/>
+    <Treasure x="1408" y="432" guid="E281B455-4842-B1CE-4130-C09D7D5FAF21" frame="2" alive="true" type="27" />
     <Gate x="1360" y="304" guid="B38C2A33-70D8-5DD2-5A37-DCF0999EA402" frame="1" p="2" alive="true" type="0" />
     <Gate x="1344" y="304" guid="76BF8063-E894-F496-19EF-C4329407B534" frame="1" p="2" alive="true" type="0" />
     <Person x="1184" y="272" guid="24FF240C-CB7D-142B-C426-C15E08BA4550" frame="2"/>
@@ -1359,7 +1359,7 @@
     <Person x="1512" y="1140" guid="9D830929-FE7D-F2E2-2243-3C89D01F2106" frame="4"/>
     <Person x="1523" y="1138" guid="4483E8F6-02C0-9AD0-CA93-4F220B9AF54A" frame="4"/>
     <WallBoss x="1507" y="981" guid="D1E23614-5958-8D2F-0DA6-1DDFED1CB0F3" frame="0" p="2" alive="true"/>
-    <Treasure x="1488" y="832" guid="04E39B10-28E6-B032-C0EE-0E187FD3ED7C" frame="2" alive="true"/>
+    <Treasure x="1488" y="832" guid="04E39B10-28E6-B032-C0EE-0E187FD3ED7C" frame="2" alive="true" type="28" />
     <Health_Cicada x="1504" y="1008" guid="E2F6A4D0-1A25-4AE6-132C-B8EDC2E0126D" frame="0" p="2" alive="true"/>
     <Dungeon_Statue x="1504" y="672" guid="A2CD3467-AAD6-8BE4-30AE-61591F96D3D1" frame="2"/>
     <NPC x="1536" y="864" guid="8A32F53B-312A-96BB-9921-D21312423738" frame="4" p="2" alive="true" type="big_key" />
@@ -1577,7 +1577,7 @@
     <Annoyer x="432" y="528" guid="7AB56607-C8FC-D571-04AA-2BF8F3DE8334" frame="0" alive="true"/>
     <Spike_Roller x="560" y="496" guid="3FA93EA9-7625-A53F-0060-8A0102150857" frame="5"/>
     <Spike_Roller x="512" y="496" guid="B3E94100-D2A6-D07A-5DC5-EF5DD9EE13E3" frame="5"/>
-    <Treasure x="720" y="592" guid="707A740C-4B1B-76B1-B1C2-0A78AC43DE76" frame="2" alive="true"/>
+    <Treasure x="720" y="592" guid="707A740C-4B1B-76B1-B1C2-0A78AC43DE76" frame="2" alive="true" type="39" />
     <Jump_Trigger x="720" y="656" guid="43E15A98-65CF-AF88-7EC4-C43F4DE97352" frame="0"/>
     <Annoyer x="400" y="608" guid="5A2AB8BE-438F-55CC-F3F9-4B66916B2382" frame="0" alive="true"/>
     <Big_Door x="704" y="32" guid="06272BBE-90F8-A7D2-31F6-613E8493DFA0" frame="0" alive="true"/>
@@ -1670,10 +1670,10 @@
   </map>
   <map name="DRAWER" type="Stateful">
     <Door x="70" y="624" guid="6B1AC13B-CF0B-7FD1-6786-2F6575467599" frame="79" type="1" />
-    <Treasure x="432" y="192" guid="34CA70FD-F8D3-6CF8-5408-6C3EB4F9342C" frame="2" alive="true"/>
+    <Treasure x="432" y="192" guid="34CA70FD-F8D3-6CF8-5408-6C3EB4F9342C" frame="2" alive="true" type="36" />
     <NPC x="64" y="96" guid="FED55AF0-98B3-DC64-299D-E607C99D6E3A" frame="4" type="rock" />
     <NPC x="832" y="192" guid="B9F840F3-4242-8850-1BB1-50FFC12FFE8E" frame="3" type="rock" />
-    <Treasure x="768" y="1232" guid="BECE469B-E0E5-7D07-D702-751FB24FBC8D" frame="2" alive="true"/>
+    <Treasure x="768" y="1232" guid="BECE469B-E0E5-7D07-D702-751FB24FBC8D" frame="2" alive="true" type="37" />
     <NPC x="384" y="1184" guid="C81B0FEC-3D7E-65CA-3F44-127C394AD9EB" frame="2" type="rock" />
     <Door x="176" y="1088" guid="C6A8DEF0-8B4D-6FA0-5115-832F6BE52F75" frame="83" type="4" />
     <Door x="176" y="32" guid="B798FC6C-50C5-EA89-AC46-51280795A6F0" frame="83" type="4" />
@@ -1689,8 +1689,8 @@
     <Door x="1741" y="871" guid="073E9867-C02D-DAC7-0F70-DCF08543A9B1" frame="35" type="11" />
     <Door x="1736" y="1360" guid="DB96D6E5-6A56-D9B1-57E6-36F4529D33C7" frame="34" type="5" />
     <NPC x="1024" y="1216" guid="8C7562BB-D8FF-AC90-C4B2-EC95BFD0E90E" frame="8" type="generic" />
-    <Treasure x="1024" y="1456" guid="1D4E36D9-0057-FEAE-C69A-1E30A072CD30" frame="2" alive="true"/>
-    <Treasure x="528" y="1344" guid="1AA4FA12-92B4-1CD2-C1C7-694B226576B0" frame="2" alive="true"/>
+    <Treasure x="1024" y="1456" guid="1D4E36D9-0057-FEAE-C69A-1E30A072CD30" frame="2" alive="true" type="11" />
+    <Treasure x="464" y="1472" guid="1AA4FA12-92B4-1CD2-C1C7-694B226576B0" frame="2" alive="true" type="10" />
     <Trade_NPC x="672" y="528" guid="048B9FEA-DBA4-8EC4-5279-540FD894B83E" frame="0" p="2"/>
     <Trade_NPC x="1360" y="64" guid="7A90D722-B095-7C14-9CB6-0D0E8C79387D" frame="1" p="2"/>
     <Trade_NPC x="1152" y="432" guid="404A2732-2833-8825-3336-497302FA4D4C" frame="2" p="2"/>
@@ -1739,7 +1739,7 @@
     <Shieldy x="272" y="1184" guid="D028E97F-41E1-0919-5785-B961D699802F" frame="4"/>
     <Frog x="544" y="1056" guid="A030D497-3B6E-E7AD-F629-08B13E3566A3" frame="2" p="1" alive="true"/>
     <Trade_NPC x="736" y="544" guid="6120DE2B-3295-CCE0-AF71-229A495FFADE" frame="4" p="2"/>
-    <Treasure x="1360" y="16" guid="34ECE95D-B0F8-5A83-6179-E73D9ECF7C0E" frame="2" alive="true"/>
+    <Treasure x="1360" y="16" guid="34ECE95D-B0F8-5A83-6179-E73D9ECF7C0E" frame="2" alive="true" type="43" />
     <Gate x="1344" y="448" guid="4EBEE6BD-E1CC-1F81-082A-FB9D18DC63F1" frame="5" p="2" alive="true" type="0" />
     <Gate x="1328" y="432" guid="C831F966-B983-40C2-9C95-76F447DD1525" frame="5" p="2" alive="true" type="0" />
     <Event x="912" y="752" guid="A7EAF066-2099-A005-6412-E0DB5B11341D" frame="2"/>
@@ -1752,7 +1752,7 @@
     <Dust x="1296" y="112" guid="02D1ABD5-DB79-F2E9-FDD4-D75A6CFEE751" frame="0"/>
     <Dust x="1360" y="96" guid="B68415E6-F903-1B03-50FF-73FABA7A459B" frame="0"/>
     <Dust x="1392" y="112" guid="138DB5DB-3AA7-6C29-7E00-4BBBC3DD78F4" frame="0"/>
-    <Treasure x="1856" y="1504" guid="B84FDE8E-2A92-F323-0436-F8905875651C" frame="2" alive="true"/>
+    <Treasure x="1856" y="1504" guid="B84FDE8E-2A92-F323-0436-F8905875651C" frame="2" alive="true" type="45" />
     <Door x="169" y="720" guid="276C526E-7BD0-72F6-1C5F-BB11C9A2628B" frame="93" type="13" />
     <Solid_Sprite x="224" y="848" guid="249FEC92-3EA4-EEBB-0675-30871F8226D5" frame="3" type="sign" />
     <Solid_Sprite x="240" y="208" guid="F73398DA-B89B-C2E8-A13A-42D7DFE6A09F" frame="4" type="sign" />
@@ -1846,7 +1846,7 @@
     <Shadow_Briar x="560" y="416" guid="091DB408-8B51-4C3E-140E-B1A15BADEFF0" frame="1" p="2" alive="true"/>
     <NPC x="384" y="768" guid="3CD52BF1-7B84-AF7A-1362-202DF76C777A" frame="1" type="rock" />
     <NPC x="32" y="1392" guid="8065BF19-B931-C88F-6880-62A5A7913535" frame="2" type="rock" />
-    <Treasure x="528" y="384" guid="962A7C3D-0AD7-D501-8750-5734235598EE" frame="2" alive="true"/>
+    <Treasure x="528" y="384" guid="962A7C3D-0AD7-D501-8750-5734235598EE" frame="2" alive="true" type="13" />
     <NPC x="256" y="992" guid="65901D94-F060-0250-2653-C509EE5A57A7" frame="0" type="rock" />
     <NPC x="736" y="1152" guid="F7A1B210-78C9-E51A-5CE7-72E405A374D2" frame="3" type="rock" />
     <solid_tile x="784" y="1168" guid="1C8F14F1-86C0-7A93-7AE7-777682482810" frame="0"/>
@@ -2023,7 +2023,7 @@
     <Gate x="384" y="816" guid="E31BF4C1-DED3-2B45-F788-E650DEFC7621" frame="5" p="2" alive="true" type="0" />
     <Gate x="400" y="816" guid="2FA6B918-4BB7-AF97-A7D8-98C7C80A2FA5" frame="5" p="2" alive="true" type="0" />
     <Treasure x="768" y="496" guid="6C8870D4-7600-6FFD-B425-2D951E65E160" frame="1" alive="true"/>
-    <Treasure x="608" y="976" guid="0DD083DF-D8AF-30B8-B874-4A08DA7C8386" frame="2" alive="true"/>
+    <Treasure x="608" y="976" guid="0DD083DF-D8AF-30B8-B874-4A08DA7C8386" frame="2" alive="true" type="31" />
     <Slime x="192" y="576" guid="3D89C2C1-FEAB-1A70-9A44-5BA405DA7788" frame="3" p="1" alive="true"/>
     <Slime x="224" y="528" guid="A3DC24D7-3380-3960-29D5-2874F8C19F0F" frame="3" p="1" alive="true"/>
     <Gate x="304" y="560" guid="390685DE-9D6D-9912-C7F4-212EAC3C512D" frame="1" p="2" alive="true" type="0" />
@@ -2047,10 +2047,10 @@
     <KeyBlock x="320" y="1664" guid="67067E90-8F38-B785-3011-7898871AB89D" frame="0" p="2" alive="true"/>
     <KeyBlock x="464" y="1504" guid="B97DC37C-15B7-811E-E5E4-3F9D814009B9" frame="0" p="2" alive="true"/>
     <KeyBlock x="320" y="1456" guid="9C884D0B-5773-85A4-D3AA-1681C01B0DC1" frame="0" p="2" alive="true"/>
-    <Treasure x="288" y="1296" guid="1A91BEB9-C4F8-E893-BB62-3B6961D75DD4" frame="2" alive="true"/>
+    <Treasure x="288" y="1296" guid="1A91BEB9-C4F8-E893-BB62-3B6961D75DD4" frame="2" alive="true" type="32" />
     <Treasure x="608" y="1776" guid="64EE884F-EA96-FB09-8A9E-F75ABDB6DC0D" frame="1" alive="true"/>
     <Treasure x="608" y="1616" guid="075E6024-FE2D-9C4A-1D2B-D627655FD31A" frame="1" alive="true"/>
-    <Treasure x="1568" y="496" guid="31B00E25-F8B2-1424-F1B5-48810B00D3E6" frame="2" alive="true"/>
+    <Treasure x="1568" y="496" guid="31B00E25-F8B2-1424-F1B5-48810B00D3E6" frame="2" alive="true" type="33" />
     <Treasure x="1408" y="336" guid="1990B3A2-DBF8-85DA-C372-ADAFAA75744C" frame="1" alive="true"/>
     <Treasure x="1024" y="544" guid="D2392D8D-0633-2640-09FA-4B921720BFC4" frame="1" alive="true"/>
     <KeyBlock x="1200" y="1264" guid="EA5B5EC6-4C60-7C03-E9A0-90D23988974D" frame="0" p="2" alive="true"/>
@@ -2114,7 +2114,7 @@
     <Annoyer x="1392" y="992" guid="D2DCF338-E6D6-6BC0-1B1A-79C16C9B7205" frame="0" alive="true"/>
     <Gasguy x="1296" y="1072" guid="4B0BD7BD-6220-A95B-4B9A-B105669B54BF" frame="0" p="1" alive="true"/>
     <Gasguy x="1392" y="1232" guid="9167E029-D45B-7EAB-EDB9-9B2055533CEA" frame="0" p="1" alive="true"/>
-    <Treasure x="1344" y="1824" guid="BD084553-9EEE-A478-3D78-4A630725D30E" frame="2" alive="true"/>
+    <Treasure x="1344" y="1824" guid="BD084553-9EEE-A478-3D78-4A630725D30E" frame="2" alive="true" type="34" />
     <Burst_Plant x="1456" y="1136" guid="1B2A05F6-C984-472D-5794-93C7294C4B0F" frame="0" p="1" alive="true"/>
     <Burst_Plant x="1568" y="1232" guid="2D4B8E36-3903-3E10-F775-8D5B2FCB6414" frame="0" p="1" alive="true"/>
     <Gate x="1536" y="1264" guid="E5F6D9AE-072A-D864-3861-4EC3461374BE" frame="1" p="2" alive="true" type="0" />
@@ -2158,7 +2158,7 @@
     <Door x="552" y="138" guid="81BA2E33-7820-A233-8CD6-F4F13E754EEE" frame="25" type="1" />
     <solid_tile x="544" y="144" guid="288B5742-25AD-C154-BC2D-C45B37C5BCF5" frame="0"/>
     <solid_tile x="560" y="144" guid="CAC469C8-078E-5154-742B-7C68509F9012" frame="0"/>
-    <Treasure x="928" y="80" guid="84A1B247-E79D-83A8-4BD5-5B02B1725BE5" frame="2" alive="true"/>
+    <Treasure x="928" y="80" guid="84A1B247-E79D-83A8-4BD5-5B02B1725BE5" frame="2" alive="true" type="38" />
     <Teleguy x="704" y="80" guid="EDFACA8D-2558-78BE-5642-2C3CD1F91A9C" frame="0" p="1" alive="true"/>
     <Teleguy x="816" y="64" guid="70C7F1A0-1625-2997-5F56-0542315594A9" frame="0" p="1" alive="true"/>
     <Teleguy x="864" y="80" guid="136B70D9-9083-4021-1527-39CE5848B963" frame="0" p="1" alive="true"/>
@@ -2394,7 +2394,7 @@
     <Gate x="864" y="1216" guid="335DD556-D1EF-06D5-24B4-DFACCCD59A28" frame="5" p="2" alive="true" type="0" />
     <Button x="864" y="1168" guid="11A9CA9D-6C34-948B-5B1A-A83A6F034E08" frame="0"/>
     <Door x="560" y="1200" guid="49657318-F48E-55E6-053F-3A78109685BB" frame="13" type="17" />
-    <Treasure x="832" y="400" guid="D3498803-D92D-4A88-83B1-B0E5EC6D38A8" frame="2" alive="true"/>
+    <Treasure x="832" y="400" guid="D3498803-D92D-4A88-83B1-B0E5EC6D38A8" frame="2" alive="true" type="48" />
     <NPC x="720" y="432" guid="67D0F47F-52A4-3227-C299-B916569252BD" frame="1" type="rock" />
     <NPC x="720" y="368" guid="88D07CAD-A3BE-63EA-8E6A-A434C8BD8267" frame="2" type="rock" />
     <NPC x="832" y="544" guid="FA367578-2673-E999-0820-7EF5E97ED010" frame="3" type="rock" />
@@ -2434,13 +2434,13 @@
     <Slime x="202" y="1483" guid="F4634D08-9180-1C4E-534E-46E6D1F508BF" frame="0" p="1" alive="true"/>
     <Slime x="269" y="1468" guid="AB8C3B02-E11B-D195-C7F7-D93309584A56" frame="0" p="1" alive="true"/>
     <Annoyer x="241" y="1519" guid="5C185D3F-2EC0-75AD-B5E6-9E0123D98330" frame="0" alive="true"/>
-    <Treasure x="176" y="1536" guid="1BCDDFFB-5F98-4787-3A81-D1CE8FDECA29" frame="2" alive="true"/>
+    <Treasure x="176" y="1536" guid="1BCDDFFB-5F98-4787-3A81-D1CE8FDECA29" frame="2" alive="true" type="0" />
     <Mitra x="324" y="1135" guid="99CF42FE-A643-A89B-96D9-7C42A773CA2A" frame="0" p="2"/>
     <NPC x="752" y="1040" guid="0630E838-D68E-F285-05D1-CC99856436B0" frame="0" type="statue" />
     <Sage x="720" y="1040" guid="D1D6D2A0-9BF0-18A6-BE7A-571CD670E225" frame="0" p="2"/>
     <NPC x="288" y="1184" guid="E3569AF1-DC07-8000-D5F4-8F8F6C5F0B40" frame="0" type="rock" />
     <KeyBlock x="64" y="1536" guid="E1941545-20E6-0257-551B-CEB77783F62B" frame="2" p="2" alive="true"/>
-    <Treasure x="912" y="1232" guid="A4FFDA64-6373-F561-1484-FD30AED00A87" frame="2" alive="true"/>
+    <Treasure x="912" y="1232" guid="A4FFDA64-6373-F561-1484-FD30AED00A87" frame="2" alive="true" type="1" />
     <Slime x="224" y="976" guid="C9B34E59-A1A2-1513-2C16-00576823ADB1" frame="0" p="1" alive="true"/>
     <Annoyer x="16" y="1008" guid="B86F5057-2499-3F74-9560-5F0EDCD306B9" frame="0" alive="true"/>
     <Annoyer x="96" y="992" guid="E06A5A1B-BD05-3230-E6CC-2192A7C50267" frame="0" alive="true"/>
@@ -2519,7 +2519,7 @@
     <On_Off_Laser x="848" y="16" guid="AAC431C9-70E7-0520-6C04-BC682BB8E7B5" frame="2" p="1"/>
     <Dust x="64" y="16" guid="9FFAD1B8-E208-961D-4297-565727141A09" frame="0"/>
     <Annoyer x="816" y="16" guid="A81D463F-4F42-4715-0C71-C6352E5B171C" frame="0" alive="true"/>
-    <Treasure x="16" y="16" guid="0504F29A-042A-BBC7-9FD4-5559E8EC64D0" frame="2" alive="true"/>
+    <Treasure x="16" y="16" guid="0504F29A-042A-BBC7-9FD4-5559E8EC64D0" frame="2" alive="true" type="19" />
     <Gate x="32" y="32" guid="3DCC50F8-1D70-9035-4A58-3C462E8668C8" frame="0" p="2" alive="true" type="0" />
     <Mover x="672" y="48" guid="EF142D93-B571-8123-EA2B-5654A81E1779" frame="0" p="0"/>
     <Slasher x="64" y="48" guid="7F3FECEE-7AB8-F865-058A-5B73AC1672D0" frame="0" p="1"/>
@@ -2543,7 +2543,7 @@
     <Slasher x="256" y="176" guid="CB4518BE-AF71-465B-AA7A-F07663030529" frame="0" p="1"/>
     <Treasure x="592" y="176" guid="72BAD10E-598F-F238-0103-60E1B36F6240" frame="1" alive="true"/>
     <Treasure x="512" y="176" guid="AE87F1D5-57E0-1749-7E1E-1D0BCC1BCAB4" frame="1" alive="true"/>
-    <Treasure x="544" y="176" guid="ED7D4D0F-C29D-D5AA-289A-B6C6AB8A041E" frame="2" alive="true"/>
+    <Treasure x="544" y="176" guid="ED7D4D0F-C29D-D5AA-289A-B6C6AB8A041E" frame="2" alive="true" type="18" />
     <Sage x="1072" y="192" guid="2FC4548F-C973-0327-9900-E33480E53E41" frame="0" p="2"/>
     <Slasher x="416" y="192" guid="4484BB10-8431-E095-BDD8-904E2D5C6672" frame="0" p="1"/>
     <Red_Pillar x="832" y="192" guid="95D6CF28-66DF-54A5-0AEC-6B54F56A2EDC" frame="4" p="2" alive="true"/>
@@ -2558,7 +2558,7 @@
     <Four_Shooter x="864" y="240" guid="B57AB49A-A148-9271-5F44-D872A21FFA29" frame="0" p="2"/>
     <NPC x="1072" y="240" guid="E2F9FBA9-732E-BDFF-B43E-6A7639C6AFDA" frame="0" type="statue" />
     <KeyBlock x="544" y="240" guid="09C6FBC7-A9D8-2D5C-55C0-FDF8BDF077B5" frame="0" p="2" alive="true"/>
-    <Treasure x="976" y="256" guid="622180EB-BC49-C327-D598-AF9714B5ECB3" frame="2" alive="true"/>
+    <Treasure x="976" y="256" guid="622180EB-BC49-C327-D598-AF9714B5ECB3" frame="2" alive="true" type="20" />
     <Door x="113" y="276" guid="53409290-2C19-0B94-F4E6-31E601C41508" frame="72" type="9" />
     <NPC x="1088" y="288" guid="AAD148EF-FF74-8219-66CD-D0640686E652" frame="2" p="2" alive="true" type="big_key" />
     <Four_Shooter x="416" y="288" guid="7B8552E5-E44B-0EE4-1973-9690B4FACC07" frame="0" p="2"/>
@@ -2739,11 +2739,11 @@
     <NPC x="560" y="96" guid="9EA28B42-692D-3CCB-D7A6-47A9A1581090" frame="1" type="rock" />
     <NPC x="1008" y="96" guid="B293BC62-EDDA-E478-FCF1-A08EA5DE949C" frame="2" type="rock" />
     <NPC x="496" y="976" guid="554B4CE5-5E79-113B-F89B-A36937C38014" frame="3" type="rock" />
-    <Treasure x="384" y="432" guid="21B8A756-9B48-3857-D285-A3E66B31F60A" frame="2" alive="true"/>
+    <Treasure x="384" y="432" guid="21B8A756-9B48-3857-D285-A3E66B31F60A" frame="2" alive="true" type="17" />
     <Door x="544" y="368" guid="2158A162-3172-75E8-277C-79CF4EC04DB2" frame="53" type="16" />
     <Redsea_NPC x="720" y="368" guid="6BC0AF03-0F8B-B9BB-3BB7-DBD557B00EAD" frame="0" p="2"/>
     <Redsea_NPC x="416" y="576" guid="2C44F72A-84D6-5892-C761-C2A10F8B45E7" frame="10" p="2"/>
-    <Treasure x="32" y="1024" guid="87802506-447B-55C9-B01E-702A3C02480A" frame="2" alive="true"/>
+    <Treasure x="32" y="1024" guid="87802506-447B-55C9-B01E-702A3C02480A" frame="2" alive="true" type="47" />
     <Gate x="752" y="272" guid="0A123C3A-35B5-C94A-7EA9-2A07ACD31C5B" frame="5" p="2" alive="true" type="0" />
     <Gate x="288" y="336" guid="118AB26E-95DE-D567-FD53-21D240AF9BB7" frame="5" p="2" alive="true" type="0" />
     <Gate x="608" y="896" guid="48AEABF4-5A04-0B78-A1FB-E3759DC83A89" frame="5" p="2" alive="true" type="0" />
@@ -2832,7 +2832,7 @@
     <solid_tile x="0." y="80" guid="62A19EA1-2569-A31C-1CB4-1491628A56DD" frame="0"/>
     <solid_tile x="0." y="96" guid="BB39288A-FF78-640B-6F5F-B891E4E88794" frame="0"/>
     <Door x="4" y="80" guid="808B0053-D39B-27A3-2C4C-A9F7270A42F0" frame="37" type="13" />
-    <Treasure x="256" y="1184" guid="A78BD187-A359-243D-9321-5B034B6B3C3C" frame="2" alive="true"/>
+    <Treasure x="256" y="1184" guid="A78BD187-A359-243D-9321-5B034B6B3C3C" frame="2" alive="true" type="6" />
     <Suburb_Killer x="16" y="1152" guid="8AF6D032-64EA-466E-5891-F8985F95BA27" frame="0"/>
     <Suburb_Killer x="128" y="1152" guid="932ADA48-93BD-C836-3FCD-E697FF13330E" frame="0"/>
     <Suburb_Killer x="16" y="864" guid="937E56E7-A9D1-25CA-4D47-D8581123901D" frame="0"/>
@@ -2862,7 +2862,7 @@
     <Dog x="392" y="1039" guid="9DD8B6CF-3E3C-C861-8FA0-89F3BE1F95E0" frame="0" p="1"/>
     <Suburb_Killer x="352" y="1040" guid="52CF982C-EABD-BE71-1801-A7820B501940" frame="0"/>
     <Suburb_Killer x="432" y="1040" guid="D5240874-EF57-01C1-C165-D5CB0B695BCE" frame="0"/>
-    <Treasure x="384" y="1232" guid="EA27D83B-97AE-B379-FBC6-A45FFCC6C40B" frame="2" alive="true"/>
+    <Treasure x="384" y="1232" guid="EA27D83B-97AE-B379-FBC6-A45FFCC6C40B" frame="2" alive="true" type="42" />
     <Gate x="384" y="1248" guid="D8EAAB76-BC22-ECF9-395B-FC96156C33FF" frame="12" p="2" alive="true" type="0" />
     <Burst_Plant x="448" y="1248" guid="95805883-0072-0E96-F38B-EC9C6FAE1188" frame="0" p="1" alive="true"/>
     <Burst_Plant x="448" y="1136" guid="25DCFFD5-502D-D20A-2EC4-CB35FC60BEE5" frame="0" p="1" alive="true"/>
@@ -2929,8 +2929,8 @@
     <Space_NPC x="448" y="272" guid="088FFA28-DC66-DCAF-8739-CD268303D9A1" frame="8"/>
     <Door x="644" y="576" guid="A4D8C2C5-1003-8CC4-688C-A635EF377EB0" frame="39" type="10" />
     <solid_tile x="640" y="576" guid="86B7CB56-2610-6C4B-18B3-8643C44246B5" frame="0"/>
-    <Treasure x="80" y="48" guid="3A8AD9F5-37F2-FDC7-B721-1466F9493C61" frame="2" alive="true"/>
-    <Treasure x="1520" y="32" guid="6BCDCF54-F0C4-8044-ADC1-92EF3559351C" frame="2" alive="true"/>
+    <Treasure x="80" y="48" guid="3A8AD9F5-37F2-FDC7-B721-1466F9493C61" frame="2" alive="true" type="29" />
+    <Treasure x="1520" y="32" guid="6BCDCF54-F0C4-8044-ADC1-92EF3559351C" frame="2" alive="true" type="30" />
     <NPC x="368" y="240" guid="C4782157-BEF5-452F-6D63-2B39B021F28C" frame="2" type="rock" />
     <NPC x="432" y="224" guid="EA85A402-804C-B55A-D14E-DC9AC0F7B9D5" frame="3" type="rock" />
     <NPC x="1328" y="208" guid="5AC831D8-2A18-9045-9130-4E26FEA228C3" frame="4" type="rock" />
@@ -2940,7 +2940,7 @@
     <Space_NPC x="576" y="384" guid="129B3859-FAD4-934C-5864-3BAA8E8ACFD9" frame="2"/>
     <Space_NPC x="384" y="384" guid="9BACEAE1-EB21-641B-AC59-B69E15F33ED6" frame="1"/>
     <Space_NPC x="576" y="240" guid="C9AB0E00-BD36-EE84-C0D2-6EB9CB8E0F63" frame="3"/>
-    <Treasure x="872" y="1202" guid="D1DD46BE-7478-5CAD-CA3B-1F7A72142AB8" frame="2" alive="true"/>
+    <Treasure x="872" y="1202" guid="D1DD46BE-7478-5CAD-CA3B-1F7A72142AB8" frame="2" alive="true" type="41" />
     <Gate x="864" y="1008" guid="925D3959-0656-DF41-1025-571D2B3D242C" frame="0" p="2" alive="true" type="0" />
     <Gate x="880" y="1008" guid="9830C24F-C82F-4B2B-B18D-C7CA76B9C2B7" frame="0" p="2" alive="true" type="0" />
     <Gate x="864" y="1072" guid="4D881E3C-E54E-8466-27B4-1B9B01150D5C" frame="5" p="2" alive="true" type="0" />
@@ -3081,7 +3081,7 @@
     <Event x="224" y="848" guid="B80B0EA6-8FB7-7BB6-2FCA-27792A6884E9" frame="2"/>
     <Event x="224" y="870" guid="C6FF79C4-4354-C7AD-C213-F8FBB8BCCA6C" frame="5" type="entrance" />
     <Door x="224" y="896" guid="F1B87342-BAFC-591C-6D54-6C5E8653AA03" frame="13" type="16" />
-    <Treasure x="272" y="1008" guid="C11E4AAB-C8B9-F7CB-BD10-8BF41B98BDC9" frame="2" alive="true"/>
+    <Treasure x="272" y="1008" guid="C11E4AAB-C8B9-F7CB-BD10-8BF41B98BDC9" frame="2" alive="true" type="46" />
   </map>
   <map name="TERMINAL" type="Stateful">
     <Gate x="400" y="480" guid="D6498F36-DB8F-1494-48CE-D5A5A25EF7FA" frame="0" p="2" alive="true" type="0" />
@@ -3090,7 +3090,7 @@
     <Door x="392" y="779" guid="4F275437-CCD5-8DC1-A5B6-8BAB6E0A4526" frame="36" type="1" />
     <Gate x="384" y="624" guid="9E99BC1E-ADCE-0EBE-7864-9CD2FA5B0A16" frame="0" p="2" alive="true" type="0" />
     <Gate x="400" y="624" guid="6FB45F65-5E53-8902-6CEF-D2941CB2AED0" frame="0" p="2" alive="true" type="0" />
-    <Treasure x="736" y="384" guid="F5FE33C0-272A-D6D2-367B-C54C5CAA4A63" frame="2" alive="true"/>
+    <Treasure x="736" y="384" guid="F5FE33C0-272A-D6D2-367B-C54C5CAA4A63" frame="2" alive="true" type="35" />
     <Door x="432" y="720" guid="237BB65F-E0CC-7315-7F0A-E60BC8CD1C95" frame="51" type="16" />
     <solid_tile x="224" y="0." guid="15B7A9F8-C929-5D18-F4FD-A9918A4BE1AA" frame="0"/>
     <solid_tile x="240" y="0." guid="46D82ABB-1B3C-5EE3-D333-8A4A9F125D8E" frame="0"/>
@@ -3118,7 +3118,7 @@
     <KeyBlock x="224" y="992" guid="53C592D0-E5AE-418C-A2AA-CCEAAF46F96A" frame="3" p="2" alive="true"/>
     <Console x="192" y="368" guid="4B7B2E7A-D501-7C49-28F2-AEE29B618498" frame="0"/>
     <NPC x="176" y="336" guid="06BFA7D6-7E1B-65F4-5E7C-3E6C462E1BFA" frame="3" type="generic" />
-    <Treasure x="176" y="832" guid="8AE5911F-7AAC-DC0A-ED27-8090CE0CC045" frame="2" alive="true"/>
+    <Treasure x="176" y="832" guid="8AE5911F-7AAC-DC0A-ED27-8090CE0CC045" frame="2" alive="true" type="12" />
     <NPC x="160" y="480" guid="706A108A-E9E0-96BD-E907-DD31C277A9DA" frame="3" type="generic" />
     <Door x="256" y="1024" guid="1B55F571-701A-51DF-8F4F-7C8DEB2AD831" frame="64" type="16" />
     <Door x="400" y="16" guid="6504368E-1505-807F-B1FE-B8F6279061C0" frame="82" type="5" />

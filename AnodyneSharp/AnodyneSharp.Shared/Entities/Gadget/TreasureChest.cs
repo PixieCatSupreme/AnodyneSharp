@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Entities.Gadget.Treasures;
+﻿using AnodyneSharp.Archipelago;
+using AnodyneSharp.Entities.Gadget.Treasures;
 using AnodyneSharp.Input;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Resources;
@@ -23,7 +24,8 @@ namespace AnodyneSharp.Entities.Gadget
             WIDE,
             LONG,
             SWAP,
-            SECRET
+            SECRET,
+            ARCHIPELAGO = 21
         }
 
         EntityPreset _preset;
@@ -123,6 +125,9 @@ namespace AnodyneSharp.Entities.Gadget
                 case 2:
                     _treasureType = TreasureType.GROWTH;
                     break;
+                case 21:
+                    _treasureType = TreasureType.ARCHIPELAGO;
+                    break;
                 default:
                     if (_preset.Frame >= 7 && _preset.Frame <= 20)
                     {
@@ -137,26 +142,19 @@ namespace AnodyneSharp.Entities.Gadget
         {
             SetTreasureType();
 
+            if (_treasureType == TreasureType.GROWTH && int.TryParse(_preset.TypeValue, out int cardID))
+            {
+                _treasure = new CardTreasure(Position, cardID);
+                return;
+            }
+
             switch (_treasureType)
             {
                 case TreasureType.BROOM:
                     _treasure = new BroomTreasure("broom-icon", Position, BroomType.Normal);
                     break;
                 case TreasureType.KEY:
-                    _treasure = new KeyTreasure(Position);
-                    break;
-                case TreasureType.GROWTH:
-                    int id = CardDataManager.GetCardId();
-
-                    if (id != -1)
-                    {
-                        _treasure = new CardTreasure(Position, id);
-                    }
-                    else
-                    {
-                        FailsafeTreasure();
-                    }
-
+                    _treasure = new KeyTreasure(Position, _preset.TypeValue);
                     break;
                 case TreasureType.JUMP:
                     _treasure = new BootsTreasure(Position);
@@ -172,6 +170,10 @@ namespace AnodyneSharp.Entities.Gadget
                     break;
                 case TreasureType.SECRET:
                     _treasure = new SecretTreasure(Position, _preset.Frame - 7, _preset.Frame == 10 ? 7 : -1);
+                    break;
+                case TreasureType.ARCHIPELAGO:
+                    var t = new ArchipelagoItem("Seph", "Sword", true);
+                    _treasure = new ArchipelagoTreasure(Position, t);
                     break;
                 default:
                     FailsafeTreasure();

@@ -2275,6 +2275,8 @@ CONGRATULATION!!!!!!
 #YOU FOUND A HEART!!! Maximum Health increased by...zero.
 ゴールドマン:ええ? ない?! きっとあの商人がぬすんだんだ!
 #Goldman:What? It's not there? That shopkeeper must have stolen it!		
+You found {0}'s {1}.
+You found a key for {0}.
 		end scene
 		scene dust
 ホウキはほこりまみれになった!もう一度ふれば ほこりを置けそうだ

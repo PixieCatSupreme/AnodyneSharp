@@ -10,6 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)AnodyneGame.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Archipelago\ArchipelagoItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Cheatz\CheatAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Cheatz\CheatzManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Effects\Darkness.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\GoQuestDoorBlocker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\HealthEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\SoundTestConsole.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Gadget\Treasures\ArchipelagoTreasure.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Elevator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Blank\BlankConsole.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Blue\BlueBriar.cs" />

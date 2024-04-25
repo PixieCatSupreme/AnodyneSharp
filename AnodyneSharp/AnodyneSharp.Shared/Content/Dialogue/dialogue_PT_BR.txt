@@ -2273,7 +2273,9 @@ As poucas palavras gravadas nesse artefato dizem: "Olá, Young. Use esse aparelh
 VOCÊ ACHOU UM CORAÇÃO!!! Saúde aumentou em...zero.
 #YOU FOUND A HEART!!! Maximum Health increased by...zero.
 Ourudo:O que? Não está aqui? Aquele vendedor deve ter roubado!
-#Goldman:What? It's not there? That shopkeeper must have stolen it!		
+#Goldman:What? It's not there? That shopkeeper must have stolen it!	
+You found {0}'s {1}.
+You found a key for {0}.
 		end scene
 		scene dust
 Sua vassoura está cheia de poeira! Ataque novamente para colocá-la.
