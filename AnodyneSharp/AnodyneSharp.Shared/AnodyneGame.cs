@@ -1,9 +1,8 @@
 ﻿#region Using Statements
+using AnodyneSharp.Archipelago;
 using AnodyneSharp.Dialogue;
 using AnodyneSharp.Drawing;
-using AnodyneSharp.Drawing.Effects;
 using AnodyneSharp.Entities;
-using AnodyneSharp.Entities.Gadget;
 using AnodyneSharp.Input;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Resources;
@@ -12,8 +11,6 @@ using AnodyneSharp.Resources.Writing;
 using AnodyneSharp.States;
 using AnodyneSharp.States.MainMenu;
 using AnodyneSharp.UI;
-using AnodyneSharp.UI.Font;
-using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -104,6 +101,18 @@ namespace AnodyneSharp
             Window.Title = "Anodyne Fan Remake";
 
             SetState(GameState.TitleScreen);
+
+            if (File.Exists("./Session.dat"))
+            {
+                string[] lines = File.ReadAllLines("./Session.dat");
+
+                if (lines.Length >= 3 &&
+                    int.TryParse(lines[1], out int port))
+                {
+                    ArchipelagoSessionHandler.Initialize(lines[0], port, lines[2], lines.Length == 4 ? lines[3] : null);
+                }
+            }
+
         }
 
         /// <summary>

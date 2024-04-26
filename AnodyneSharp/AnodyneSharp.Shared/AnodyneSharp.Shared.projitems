@@ -11,6 +11,8 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)AnodyneGame.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Archipelago\ArchipelagoItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Archipelago\ArchipelagoSessionHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Archipelago\Item.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Cheatz\CheatAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Cheatz\CheatzManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Effects\Darkness.cs" />
@@ -167,6 +169,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\RunningTradeNPCs\MiaoXiao.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\RunningTradeNPCs\ShopKeep.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\ShadowBriar.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Resources\Loading\ItemListLoader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Resources\Loading\LocationListLoader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\CreditsState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\CoroutineUtils.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\GrowableResourceList.cs" />
@@ -1047,6 +1051,12 @@
     <None Include="$(MSBuildThisFileDirectory)Content\ambience\windmill.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\Archipelago\Items.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\Archipelago\Locations.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="$(MSBuildThisFileDirectory)Content\bgm\drawer.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -1215,5 +1225,8 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\BOSSRUSH\BG.csv" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\BOSSRUSH\BG2.csv" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Maps\BOSSRUSH\Swapper.dat" />
+    <None Include="$(MSBuildThisFileDirectory)Session.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>

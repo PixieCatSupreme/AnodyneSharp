@@ -14,7 +14,7 @@ namespace AnodyneSharp.Entities.Gadget
     [NamedEntity("Treasure"), Collision(typeof(Player))]
     public class TreasureChest : Entity, Interactable
     {
-        private enum TreasureType
+        public enum TreasureType
         {
             NONE = -1,
             BROOM,
@@ -28,9 +28,14 @@ namespace AnodyneSharp.Entities.Gadget
             ARCHIPELAGO = 21
         }
 
-        EntityPreset _preset;
-        BaseTreasure _treasure;
-        TreasureType _treasureType;
+        private int _frame;
+        private string _typeValue;
+        private int? _locationID;
+
+        private EntityPreset _preset;
+        private BaseTreasure _treasure;
+
+        private TreasureType _treasureType;
 
         public bool opened;
 
@@ -40,6 +45,9 @@ namespace AnodyneSharp.Entities.Gadget
             int frame = 0;
 
             _preset = preset;
+            _frame = preset.Frame;
+            _typeValue = preset.TypeValue;
+
             immovable = true;
 
             if (GlobalState.IsCell)
@@ -105,7 +113,20 @@ namespace AnodyneSharp.Entities.Gadget
         {
             _treasureType = TreasureType.NONE;
 
-            switch (_preset.Frame)
+            if (ArchipelagoSessionHandler.IsConnected)
+            {
+                int? locationID = GlobalState.GetLocationID(_preset.EntityID);
+
+                if (locationID != null)
+                {
+                    Item item = ArchipelagoSessionHandler.GetItemAtLocation(locationID.Value);
+
+                    _frame = item.Frame;
+                    _typeValue = item.TypeValue;
+                }
+            }
+
+            switch (_frame)
             {
                 case 0:
                     _treasureType = TreasureType.BROOM;
@@ -134,7 +155,6 @@ namespace AnodyneSharp.Entities.Gadget
                         _treasureType = TreasureType.SECRET;
                     }
                     break;
-
             }
         }
 
@@ -154,7 +174,7 @@ namespace AnodyneSharp.Entities.Gadget
                     _treasure = new BroomTreasure("broom-icon", Position, BroomType.Normal);
                     break;
                 case TreasureType.KEY:
-                    _treasure = new KeyTreasure(Position, _preset.TypeValue);
+                    _treasure = new KeyTreasure(Position, _typeValue);
                     break;
                 case TreasureType.JUMP:
                     _treasure = new BootsTreasure(Position);
@@ -169,11 +189,16 @@ namespace AnodyneSharp.Entities.Gadget
                     _treasure = new BroomTreasure("item_tranformer", Position, BroomType.Transformer);
                     break;
                 case TreasureType.SECRET:
-                    _treasure = new SecretTreasure(Position, _preset.Frame - 7, _preset.Frame == 10 ? 7 : -1);
+                    _treasure = new SecretTreasure(Position, _frame - 7, _frame == 10 ? 7 : -1);
                     break;
                 case TreasureType.ARCHIPELAGO:
-                    var t = new ArchipelagoItem("Seph", "Sword", true);
-                    _treasure = new ArchipelagoTreasure(Position, t);
+                    if (_locationID == null)
+                    {
+                        FailsafeTreasure();
+                        return;
+                    }
+
+                    _treasure = new ArchipelagoTreasure(Position, ArchipelagoSessionHandler.GetOutsideItemInfo(_locationID.Value));
                     break;
                 default:
                     FailsafeTreasure();

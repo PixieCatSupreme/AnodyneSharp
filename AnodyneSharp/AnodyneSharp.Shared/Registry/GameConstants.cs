@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using AnodyneSharp.Archipelago;
 using AnodyneSharp.Dialogue;
+using AnodyneSharp.Resources.Loading;
 
 namespace AnodyneSharp.Registry
 {
@@ -49,18 +52,11 @@ namespace AnodyneSharp.Registry
         public const int BUTTON_WIDTH = 13;
         public const int BUTTON_HEIGHT = 14;
 
+        public const int LOCATION_START_ID = 20130204;
+
         static GameConstants()
         {
-            SavePath =
-#if ANDROID
-                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData,Environment.SpecialFolderOption.Create),"AnodyneFanRemake/");
-#elif DEBUG
-                "./";
-#else
-                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData,Environment.SpecialFolderOption.Create),"AnodyneFanRemake/");
-#endif
-
-
+            SavePath = "./";
         }
 
         public static int FONT_LINE_HEIGHT

@@ -29,7 +29,7 @@ namespace AnodyneSharp.Entities.Gadget.Treasures
 
             GlobalState.Dialogue = string.Format(Dialogue.DialogueManager.GetDialogue("misc", "any", "treasure", 9), _item.Reciever, _item.ItemName);
 
-            //TODO item call to client
+            ArchipelagoSessionHandler.ReportCollected(_item.LocationID);
         }
     }
 }

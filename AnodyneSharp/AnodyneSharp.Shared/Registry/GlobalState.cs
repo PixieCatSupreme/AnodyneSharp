@@ -1,4 +1,5 @@
 ﻿
+using AnodyneSharp.Archipelago;
 using AnodyneSharp.Dialogue;
 using AnodyneSharp.Drawing.Effects;
 using AnodyneSharp.Entities;
@@ -6,6 +7,7 @@ using AnodyneSharp.Entities.Lights;
 using AnodyneSharp.GameEvents;
 using AnodyneSharp.Logging;
 using AnodyneSharp.MapData;
+using AnodyneSharp.Resources.Loading;
 using AnodyneSharp.States;
 using AnodyneSharp.UI;
 using Microsoft.Xna.Framework;
@@ -13,6 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -38,10 +41,13 @@ namespace AnodyneSharp.Registry
             public Dictionary<string, List<int>> minimap_state = GlobalState.minimaps.interest;
             public Dictionary<Guid, EntityState> entity_state = EntityManager.State;
             public Dictionary<string, DialogueNPC> dialogue_state = DialogueManager.SceneTree;
+
             public EventRegister events = GlobalState.events;
             public InventoryManager inventory = GlobalState.inventory;
+
             public CheckPoint checkpoint = GlobalState.checkpoint;
             public CheckPoint ReturnTarget = GlobalState.ReturnTarget;
+
             public int PillarSwitchOn = GlobalState.PillarSwitchOn;
 
             public long playtime = PlayTime.Ticks;
@@ -83,6 +89,22 @@ namespace AnodyneSharp.Registry
 
         public static string serialized_quicksave = null;
         public static CheckPoint quicksave_checkpoint = null;
+
+        private static Dictionary<int, Guid> Locations = new();
+        private static Dictionary<long, Item> Items = new();
+
+        static GlobalState()
+        {
+            using (LocationListLoader loader = new("./Content/Archipelago/Locations.dat"))
+            {
+                Locations = loader.LoadLocations();
+            }
+
+            using (ItemListLoader loader = new("./Content/Archipelago/Items.dat"))
+            {
+                Items = loader.LoadItems();
+            }
+        }
 
         public static void SaveGame(int? id = null)
         {
@@ -142,6 +164,41 @@ namespace AnodyneSharp.Registry
             PauseState.Reset();
 
             disable_menu = false;
+        }
+
+        public static int? GetLocationID(Guid entityID)
+        {
+            if (!Locations.Any(l => l.Value == entityID))
+            {
+                return null;
+            }
+
+            return Locations.First(l => l.Value == entityID).Key;
+        }
+
+        public static Guid? GetLocationEntityID(int locationID)
+        {
+            if (!Locations.TryGetValue(locationID, out Guid guid))
+            {
+                return null;
+            }
+
+            return guid;
+        }
+
+        public static bool HasItem(long itemID)
+        {
+            return Items.ContainsKey(itemID);
+        }
+
+        public static Item? GetItemValues(long itemID)
+        {
+            if (!Items.TryGetValue(itemID, out Item item))
+            {
+                return null;
+            }
+
+            return item;
         }
 
         private static TimeSpan _totalPreviously;
