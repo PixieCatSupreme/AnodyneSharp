@@ -166,5 +166,34 @@ namespace AnodyneSharp.Registry
 
             return _mapKeys[mapName];
         }
+
+        public void UnlockBroom(BroomType broom)
+        {
+            if (broom == BroomType.NONE)
+            {
+                return;
+            }
+
+            switch (broom)
+            {
+                case BroomType.Normal:
+                    HasBroom = true;
+                    break;
+                case BroomType.Wide:
+                    HasWiden = true;
+                    break;
+                case BroomType.Long:
+                    HasLengthen = true;
+                    break;
+                case BroomType.Transformer:
+                    HasTransformer = true;
+                    break;
+            }
+
+            if (EquippedBroom == BroomType.NONE)
+            {
+                EquippedBroom = broom;
+            }
+        }
     }
 }

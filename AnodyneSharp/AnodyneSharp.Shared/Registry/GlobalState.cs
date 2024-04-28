@@ -87,6 +87,8 @@ namespace AnodyneSharp.Registry
 
         static public int CurrentSaveGame = 0;
 
+        static public BroomType StartBroom = BroomType.NONE;
+
         public static string serialized_quicksave = null;
         public static CheckPoint quicksave_checkpoint = null;
 

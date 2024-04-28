@@ -55,6 +55,9 @@ namespace AnodyneSharp.States
 
                         GlobalState.events.ActivatedNexusPortals.Add("STREET");
 
+
+                        GlobalState.inventory.UnlockBroom(GlobalState.StartBroom);
+
                         ChangeStateEvent(AnodyneGame.GameState.Game);
                     })
                 .End()

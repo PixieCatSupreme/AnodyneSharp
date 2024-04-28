@@ -10,8 +10,8 @@ namespace AnodyneSharp.Entities.Gadget.Treasures
     {
         private BroomType _type;
 
-        public BroomTreasure(string textureName, Vector2 pos, BroomType broomType) 
-            :base(textureName, pos, 0, -1)
+        public BroomTreasure(string textureName, Vector2 pos, BroomType broomType)
+            : base(textureName, pos, 0, -1)
         {
             _type = broomType;
 
@@ -36,26 +36,7 @@ namespace AnodyneSharp.Entities.Gadget.Treasures
         {
             base.GetTreasure();
 
-            switch (_type)
-            {
-                case BroomType.Normal:
-                    GlobalState.inventory.HasBroom = true;
-                    break;
-                case BroomType.Wide:
-                    GlobalState.inventory.HasWiden = true;
-                    break;
-                case BroomType.Long:
-                    GlobalState.inventory.HasLengthen = true;
-                    break;
-                case BroomType.Transformer:
-                    GlobalState.inventory.HasTransformer = true;
-                    break;
-            }
-
-            if (GlobalState.inventory.EquippedBroom == BroomType.NONE)
-            {
-                GlobalState.inventory.EquippedBroom = _type;
-            }
+            GlobalState.inventory.UnlockBroom(_type);
         }
     }
 }

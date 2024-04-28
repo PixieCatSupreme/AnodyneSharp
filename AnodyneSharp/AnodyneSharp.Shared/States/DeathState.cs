@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Dialogue;
+﻿using AnodyneSharp.Archipelago;
+using AnodyneSharp.Dialogue;
 using AnodyneSharp.Drawing;
 using AnodyneSharp.Entities;
 using AnodyneSharp.Entities.Decorations;
@@ -76,6 +77,10 @@ namespace AnodyneSharp.States
             _player.dontMove = true;
             _player.exists = false;
             GlobalState.disable_menu = true;
+
+            string map = GlobalState.CURRENT_MAP_NAME[0] + GlobalState.CURRENT_MAP_NAME[1..].ToLower();
+
+            ArchipelagoSessionHandler.SendDeathLink($"Passed away in {map}");
         }
 
         public override void Update()

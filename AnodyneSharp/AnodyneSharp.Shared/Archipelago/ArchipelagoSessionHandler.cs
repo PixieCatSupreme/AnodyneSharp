@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using AnodyneSharp.Entities;
 using AnodyneSharp.Entities.Gadget;
 using AnodyneSharp.Entities.Gadget.Treasures;
 using AnodyneSharp.Logging;
 using AnodyneSharp.Registry;
 using Archipelago.MultiClient.Net;
+using Archipelago.MultiClient.Net.BounceFeatures.DeathLink;
 using Archipelago.MultiClient.Net.Enums;
 using Archipelago.MultiClient.Net.Models;
 using Archipelago.MultiClient.Net.Packets;
@@ -19,6 +21,9 @@ namespace AnodyneSharp.Archipelago
         public static bool IsConnected { get; private set; }
 
         private static ArchipelagoSession _session;
+        private static DeathLinkService _deathLink;
+
+        private static string _user;
 
         public static bool Initialize(string hostName, int port, string user, string pass)
         {
@@ -53,6 +58,21 @@ namespace AnodyneSharp.Archipelago
 
             // Successfully connected, `ArchipelagoSession` (assume statically defined as `session` from now on) can now be used to interact with the server and the returned `LoginSuccessful` contains some useful information about the initial connection (e.g. a copy of the slot data as `loginSuccess.SlotData`)
             var loginSuccess = (LoginSuccessful)result;
+
+            _user = user;
+
+            if (loginSuccess.SlotData.TryGetValue("death_link", out object dl) &&
+                dl.ToString() == "1")
+            {
+                EnableDeathLink();
+            }
+
+            if (loginSuccess.SlotData.TryGetValue("start_broom", out object sb) &&
+                Enum.TryParse(sb.ToString(), out BroomType broom))
+            {
+                GlobalState.StartBroom = broom;
+            }
+
 
             IsConnected = true;
 
@@ -122,6 +142,20 @@ namespace AnodyneSharp.Archipelago
         public static void ReportCollected(int locationID)
         {
             _session.Locations.CompleteLocationChecks(locationID);
+        }
+
+        private static void EnableDeathLink()
+        {
+            _deathLink = _session.CreateDeathLinkService();
+            _deathLink.EnableDeathLink();
+            _deathLink.OnDeathLinkReceived += (deathLinkObject) => {
+                GlobalState.CUR_HEALTH = 0;
+            };
+        }
+
+        internal static void SendDeathLink(string message)
+        {
+            _deathLink?.SendDeathLink(new DeathLink(_user, message));
         }
     }
 }
