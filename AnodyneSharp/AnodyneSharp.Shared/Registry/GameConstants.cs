@@ -56,7 +56,20 @@ namespace AnodyneSharp.Registry
 
         static GameConstants()
         {
-            SavePath = "./";
+#if ANDROID
+                SavePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData,Environment.SpecialFolderOption.Create),"AnodyneFanRemake/");
+#elif DEBUG
+                SavePath = "./";
+#else
+            if (ArchipelagoSessionHandler.IsConnected)
+            {
+                SavePath = "./";
+            }
+            else
+            {
+                SavePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData, Environment.SpecialFolderOption.Create), "AnodyneFanRemake/");
+            }
+#endif
         }
 
         public static int FONT_LINE_HEIGHT
