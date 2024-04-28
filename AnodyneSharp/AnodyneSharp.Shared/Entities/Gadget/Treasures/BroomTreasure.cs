@@ -40,7 +40,6 @@ namespace AnodyneSharp.Entities.Gadget.Treasures
             {
                 case BroomType.Normal:
                     GlobalState.inventory.HasBroom = true;
-                    GlobalState.inventory.EquippedBroom = BroomType.Normal;
                     break;
                 case BroomType.Wide:
                     GlobalState.inventory.HasWiden = true;
@@ -51,6 +50,11 @@ namespace AnodyneSharp.Entities.Gadget.Treasures
                 case BroomType.Transformer:
                     GlobalState.inventory.HasTransformer = true;
                     break;
+            }
+
+            if (GlobalState.inventory.EquippedBroom == BroomType.NONE)
+            {
+                GlobalState.inventory.EquippedBroom = _type;
             }
         }
     }

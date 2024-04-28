@@ -17,15 +17,17 @@ namespace AnodyneSharp.Resources.Loading
         {
             Dictionary<long, Item> items = new();
 
+            int id = GameConstants.ARCHIPELAGO_START_ID;
+
             while (!EndOfStream)
             {
                 string[] line = SplitNextLine();
 
-                if (line.Length == 3 &&
-                    long.TryParse(line[0], out long itemID) &&
-                    int.TryParse(line[1], out int frame))
+                if (int.TryParse(line[0], out int frame))
                 {
-                    items.Add(itemID, new(frame, line[2]));
+                    items.Add(id, new(frame, line.Length == 2 ? line[1] : ""));
+
+                    id++;
                 }
             }
 

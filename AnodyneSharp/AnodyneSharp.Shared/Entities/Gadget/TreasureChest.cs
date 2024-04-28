@@ -119,10 +119,13 @@ namespace AnodyneSharp.Entities.Gadget
 
                 if (locationID != null)
                 {
-                    Item item = ArchipelagoSessionHandler.GetItemAtLocation(locationID.Value);
+                    Item? item = ArchipelagoSessionHandler.GetItemAtLocation(locationID.Value);
 
-                    _frame = item.Frame;
-                    _typeValue = item.TypeValue;
+                    if (item != null)
+                    {
+                        _frame = item.Value.Frame;
+                        _typeValue = item.Value.TypeValue;
+                    }
                 }
             }
 
@@ -162,7 +165,7 @@ namespace AnodyneSharp.Entities.Gadget
         {
             SetTreasureType();
 
-            if (_treasureType == TreasureType.GROWTH && int.TryParse(_preset.TypeValue, out int cardID))
+            if (_treasureType == TreasureType.GROWTH && int.TryParse(_typeValue, out int cardID))
             {
                 _treasure = new CardTreasure(Position, cardID);
                 return;

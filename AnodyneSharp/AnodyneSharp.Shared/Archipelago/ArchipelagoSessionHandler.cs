@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using AnodyneSharp.Entities.Gadget;
 using AnodyneSharp.Entities.Gadget.Treasures;
 using AnodyneSharp.Registry;
 using Archipelago.MultiClient.Net;
 using Archipelago.MultiClient.Net.Enums;
+using Archipelago.MultiClient.Net.Models;
 using Archipelago.MultiClient.Net.Packets;
 using static System.Collections.Specialized.BitVector32;
 
@@ -25,7 +27,7 @@ namespace AnodyneSharp.Archipelago
 
             try
             {
-                result = _session.TryConnectAndLogin("Anodyne Fan Remake", user, ItemsHandlingFlags.AllItems, password: string.IsNullOrEmpty(pass) ? null : pass);
+                result = _session.TryConnectAndLogin("Anodyne", user, ItemsHandlingFlags.AllItems, password: string.IsNullOrEmpty(pass) ? null : pass);
             }
             catch (Exception e)
             {
@@ -56,13 +58,18 @@ namespace AnodyneSharp.Archipelago
             return loginSuccess.Successful;
         }
 
-        public static Item GetItemAtLocation(int locationID)
+        public static Item? GetItemAtLocation(int locationID)
         {
             LocationInfoPacket locInfo = _session.Locations.ScoutLocationsAsync(locationID).Result;
 
-            var itemID = locInfo.Locations[locationID].Item;
+            NetworkItem? networkItem = locInfo?.Locations.FirstOrDefault();
 
-            Item? item = GlobalState.GetItemValues(itemID);
+            if (networkItem == null)
+            {
+                return null;
+            }
+
+            Item? item = GlobalState.GetItemValues(networkItem.Value.Item);
 
             if (item != null)
             {

@@ -12,22 +12,19 @@ namespace AnodyneSharp.Entities.Gadget.Treasures
         private string _mapName;
 
         public KeyTreasure(Vector2 pos, string mapName)
-            : base("key", pos, 0, -1)
+            : base("key", pos, 0, (GlobalState.events.GetEvent("ReceivedKey") == 0) && string.IsNullOrEmpty(mapName) ? 2 : -1)
         {
             _mapName = mapName;
         }
 
         public override void GetTreasure()
         {
-            SoundManager.PlaySoundEffect("gettreasure");
-
-            Flicker(1);
-            exists = true;
-
-            GlobalState.events.IncEvent("ReceivedKey");
+            base.GetTreasure();
 
             if (string.IsNullOrEmpty(_mapName))
             {
+                GlobalState.events.IncEvent("ReceivedKey");
+
                 GlobalState.inventory.AddCurrentMapKey();
             }
             else
