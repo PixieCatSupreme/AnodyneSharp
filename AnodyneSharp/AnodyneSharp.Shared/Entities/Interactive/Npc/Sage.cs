@@ -173,7 +173,8 @@ namespace AnodyneSharp.Entities
     {
         public SageOverworld(EntityPreset preset, Player p) : base(preset, p, 56, 28, "bedroom_entrance")
         {
-            if (GlobalState.events.BossDefeated.Contains("BEDROOM"))
+            if (GlobalState.events.BossDefeated.Contains("BEDROOM") ||
+                !GlobalState.inventory.HasAnyBroom)
             {
                 preset.Alive = exists = false;
             }

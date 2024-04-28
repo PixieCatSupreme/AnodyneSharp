@@ -30,7 +30,6 @@ namespace AnodyneSharp.Entities.Gadget
 
         private int _frame;
         private string _typeValue;
-        private int? _locationID;
 
         private EntityPreset _preset;
         private BaseTreasure _treasure;
@@ -125,7 +124,7 @@ namespace AnodyneSharp.Entities.Gadget
                     {
                         _frame = item.Value.Frame;
                         _typeValue = item.Value.TypeValue;
-                    }
+    }
                 }
             }
 
@@ -195,13 +194,21 @@ namespace AnodyneSharp.Entities.Gadget
                     _treasure = new SecretTreasure(Position, _frame - 7, _frame == 10 ? 7 : -1);
                     break;
                 case TreasureType.ARCHIPELAGO:
-                    if (_locationID == null)
+                    if (!int.TryParse(_typeValue, out int locationID))
                     {
                         FailsafeTreasure();
                         return;
                     }
 
-                    _treasure = new ArchipelagoTreasure(Position, ArchipelagoSessionHandler.GetOutsideItemInfo(_locationID.Value));
+                    ArchipelagoItem? item = ArchipelagoSessionHandler.GetOutsideItemInfo(locationID);
+
+                    if (item == null)
+                    {
+                        FailsafeTreasure();
+                        return;
+                    }
+
+                    _treasure = new ArchipelagoTreasure(Position, item.Value);
                     break;
                 default:
                     FailsafeTreasure();

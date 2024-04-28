@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using AnodyneSharp.Entities.Gadget;
 using AnodyneSharp.Entities.Gadget.Treasures;
+using AnodyneSharp.Logging;
 using AnodyneSharp.Registry;
 using Archipelago.MultiClient.Net;
 using Archipelago.MultiClient.Net.Enums;
@@ -60,12 +61,24 @@ namespace AnodyneSharp.Archipelago
 
         public static Item? GetItemAtLocation(int locationID)
         {
-            LocationInfoPacket locInfo = _session.Locations.ScoutLocationsAsync(locationID).Result;
+            LocationInfoPacket locInfo;
+
+            try
+            {
+                locInfo = _session.Locations.ScoutLocationsAsync(locationID).Result;
+            }
+            catch (Exception)
+            {
+                DebugLogger.AddWarning($"Unable to get location {locationID}. Unable to connect.");
+                return null;
+            }
+
 
             NetworkItem? networkItem = locInfo?.Locations.FirstOrDefault();
 
             if (networkItem == null)
             {
+                DebugLogger.AddWarning($"Unable to get location {locationID}.");
                 return null;
             }
 
@@ -81,11 +94,21 @@ namespace AnodyneSharp.Archipelago
             }
         }
 
-        public static ArchipelagoItem GetOutsideItemInfo(int locationID)
+        public static ArchipelagoItem? GetOutsideItemInfo(int locationID)
         {
-            LocationInfoPacket locInfo = _session.Locations.ScoutLocationsAsync(locationID).Result;
+            LocationInfoPacket locInfo;
 
-            var itemID = locInfo.Locations[locationID].Item;
+            try
+            {
+                locInfo = _session.Locations.ScoutLocationsAsync(locationID).Result;
+            }
+            catch (Exception)
+            {
+                DebugLogger.AddWarning($"Unable to get location {locationID}. Unable to connect.");
+                return null;
+            }
+
+            var itemID = locInfo.Locations[0].Item;
 
             var playerID = locInfo.Locations[0].Player;
             var flag = locInfo.Locations[0].Flags;
@@ -98,7 +121,7 @@ namespace AnodyneSharp.Archipelago
 
         public static void ReportCollected(int locationID)
         {
-            _session.Locations.CompleteLocationChecks(3);
+            _session.Locations.CompleteLocationChecks(locationID);
         }
     }
 }
