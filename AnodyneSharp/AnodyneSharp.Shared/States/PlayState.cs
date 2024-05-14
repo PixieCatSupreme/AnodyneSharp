@@ -1,4 +1,5 @@
-﻿using AnodyneSharp.Cheatz;
+﻿using AnodyneSharp.Archipelago;
+using AnodyneSharp.Cheatz;
 using AnodyneSharp.Dialogue;
 using AnodyneSharp.Drawing;
 using AnodyneSharp.Drawing.Effects;
@@ -506,6 +507,8 @@ namespace AnodyneSharp.States
 
         private void StateNormal()
         {
+            ArchipelagoSessionHandler.Update();
+
             if (GlobalState.ToTitle)
             {
                 GlobalState.ToTitle = false;

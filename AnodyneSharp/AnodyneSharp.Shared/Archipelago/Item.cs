@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AnodyneSharp.Archipelago
 {
-    public struct Item
+    public class Item
     {
         public int Frame { get; private set; }
         public string TypeValue { get; private set; }

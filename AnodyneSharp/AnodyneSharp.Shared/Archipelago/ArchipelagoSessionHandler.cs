@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using AnodyneSharp.Entities;
@@ -7,12 +8,14 @@ using AnodyneSharp.Entities.Gadget;
 using AnodyneSharp.Entities.Gadget.Treasures;
 using AnodyneSharp.Logging;
 using AnodyneSharp.Registry;
+using AnodyneSharp.Sounds;
+using AnodyneSharp.Utilities;
 using Archipelago.MultiClient.Net;
 using Archipelago.MultiClient.Net.BounceFeatures.DeathLink;
 using Archipelago.MultiClient.Net.Enums;
 using Archipelago.MultiClient.Net.Models;
 using Archipelago.MultiClient.Net.Packets;
-using static System.Collections.Specialized.BitVector32;
+using Newtonsoft.Json.Linq;
 
 namespace AnodyneSharp.Archipelago
 {
@@ -25,8 +28,15 @@ namespace AnodyneSharp.Archipelago
 
         private static string _user;
 
+        private static int _lastCollectionSize;
+
+        private static Dictionary<long, Item> _locations;
+        private static Queue<string> _messages;
+
         public static bool Initialize(string hostName, int port, string user, string pass)
         {
+            _messages = new();
+
             _session = ArchipelagoSessionFactory.CreateSession(hostName, port);
 
             LoginResult result;
@@ -62,100 +72,196 @@ namespace AnodyneSharp.Archipelago
             _user = user;
 
             if (loginSuccess.SlotData.TryGetValue("death_link", out object dl) &&
-                dl.ToString() == "1")
+                dl.ToString() == "true")
             {
                 EnableDeathLink();
             }
 
-            if (loginSuccess.SlotData.TryGetValue("start_broom", out object sb) &&
-                Enum.TryParse(sb.ToString(), out BroomType broom))
+            if (loginSuccess.SlotData.TryGetValue("unlock_gates", out object ug) &&
+                ug.ToString() == "true")
             {
-                GlobalState.StartBroom = broom;
+
             }
 
+            if (loginSuccess.SlotData.TryGetValue("nexus_gates_unlocked", out object ngu) &&
+                ngu is JArray gates)
+            {
+
+            }
 
             IsConnected = true;
+
+            bool loadedLocations;
+
+            do
+            {
+                loadedLocations = GetLocations();
+            } while (!loadedLocations);
 
             return loginSuccess.Successful;
         }
 
-        public static Item? GetItemAtLocation(int locationID)
+        public static bool GetLocations()
         {
             LocationInfoPacket locInfo;
 
+            _locations = new();
+
             try
             {
-                locInfo = _session.Locations.ScoutLocationsAsync(locationID).Result;
+                locInfo = _session.Locations.ScoutLocationsAsync(false, GlobalState.GetLocationIDs()).Result;
             }
             catch (Exception)
             {
-                DebugLogger.AddWarning($"Unable to get location {locationID}. Unable to connect.");
-                return null;
+                DebugLogger.AddWarning($"Unable to get locations. Unable to connect.");
+                return false;
             }
 
-
-            NetworkItem? networkItem = locInfo?.Locations.FirstOrDefault();
-
-            if (networkItem == null)
+            foreach (var networkItem in locInfo?.Locations)
             {
-                DebugLogger.AddWarning($"Unable to get location {locationID}.");
-                return null;
+                long locationId = networkItem.Location;
+
+                Item? item = GlobalState.GetItemValues(networkItem.Item);
+
+                if (item == null)
+                {
+                    var playerID = networkItem.Player;
+                    var flag = networkItem.Flags;
+
+                    string playerName = _session.Players.GetPlayerName(playerID);
+                    string itemName = _session.Items.GetItemName(networkItem.Item);
+
+                    item = new ArchipelagoItem((int)TreasureChest.TreasureType.ARCHIPELAGO, "", playerName, itemName, locationId, flag.HasFlag(ItemFlags.Advancement));
+                }
+
+                _locations.Add(locationId, item);
             }
 
-            Item? item = GlobalState.GetItemValues(networkItem.Value.Item);
-
-            if (item != null)
-            {
-                return item.Value;
-            }
-            else
-            {
-                return new Item((int)TreasureChest.TreasureType.ARCHIPELAGO, $"{locationID}");
-            }
+            return true;
         }
 
-        public static ArchipelagoItem? GetOutsideItemInfo(int locationID)
+        public static Item? GetItemAtLocation(long locationID)
         {
-            LocationInfoPacket locInfo;
-
-            try
+            if (_locations.TryGetValue(locationID, out Item item))
             {
-                locInfo = _session.Locations.ScoutLocationsAsync(locationID).Result;
-            }
-            catch (Exception)
-            {
-                DebugLogger.AddWarning($"Unable to get location {locationID}. Unable to connect.");
-                return null;
+                return item;
             }
 
-            var itemID = locInfo.Locations[0].Item;
-
-            var playerID = locInfo.Locations[0].Player;
-            var flag = locInfo.Locations[0].Flags;
-
-            string playerName = _session.Players.GetPlayerName(playerID);
-            string itemName = _session.Items.GetItemName(itemID);
-
-            return new ArchipelagoItem(playerName, itemName, locationID, flag.HasFlag(ItemFlags.Advancement));
+            return null;
         }
 
-        public static void ReportCollected(int locationID)
+        public static void Update()
+        {
+            CheckItemCollection();
+
+            if (_messages.Count > 0 && string.IsNullOrEmpty(GlobalState.Dialogue))
+            {
+                SoundManager.PlaySoundEffect("gettreasure");
+                GlobalState.Dialogue = _messages.Dequeue();
+            }
+        }
+
+        public static void ReportCollected(long locationID)
         {
             _session.Locations.CompleteLocationChecks(locationID);
+        }
+
+        public static void SendDeathLink(string message)
+        {
+            _deathLink?.SendDeathLink(new DeathLink(_user, message));
+        }
+
+        private static void CheckItemCollection()
+        {
+            try
+            {
+                var allItemsRecieved = _session.Items.AllItemsReceived;
+
+                if (_lastCollectionSize == allItemsRecieved.Count)
+                {
+                    return;
+                }
+
+                for (int i = _lastCollectionSize; i < allItemsRecieved.Count; i++)
+                {
+                    NetworkItem networkItem = allItemsRecieved[i];
+
+                    Item item = GlobalState.GetItemValues(networkItem.Item);
+
+                    int dialogueID = -1;
+
+                    switch (TreasureUtilities.GetTreasureType(item.Frame))
+                    {
+                        case TreasureChest.TreasureType.BROOM:
+                            dialogueID = 1;
+                            GlobalState.inventory.UnlockBroom(BroomType.Normal);
+                            break;
+                        case TreasureChest.TreasureType.KEY:
+                            string mapName = item.TypeValue[0] + item.TypeValue[1..].ToLower();
+
+                            _messages.Enqueue(string.Format(Dialogue.DialogueManager.GetDialogue("misc", "any", "treasure", 10), mapName));
+                            GlobalState.inventory.AddMapKey(item.TypeValue, 1);
+                            break;
+                        case TreasureChest.TreasureType.GROWTH:
+                            if (int.TryParse(item.TypeValue, out int cardID))
+                            {
+                                GlobalState.inventory.CardStatus[cardID] = true;
+                            }
+                            else
+                            {
+                                DebugLogger.AddWarning("Unable to collect card!");
+                            }
+                            break;
+                        case TreasureChest.TreasureType.JUMP:
+                            dialogueID = 4;
+                            GlobalState.inventory.CanJump = true;
+                            break;
+                        case TreasureChest.TreasureType.WIDE:
+                            dialogueID = 4;
+                            GlobalState.inventory.UnlockBroom(BroomType.Wide);
+                            break;
+                        case TreasureChest.TreasureType.LONG:
+                            dialogueID = 5;
+                            GlobalState.inventory.UnlockBroom(BroomType.Long);
+                            break;
+                        case TreasureChest.TreasureType.SWAP:
+                            dialogueID = 6;
+                            GlobalState.inventory.UnlockBroom(BroomType.Transformer);
+                            break;
+                        case TreasureChest.TreasureType.SECRET:
+                            break;
+                        default:
+                            _messages.Enqueue($"Unable to collect treasure {item.Frame} of type '{item.TypeValue}'");
+                            break;
+                    }
+
+                    if (dialogueID == -1)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        _messages.Enqueue(Dialogue.DialogueManager.GetDialogue("misc", "any", "treasure", dialogueID));
+                    }
+                }
+
+                _lastCollectionSize = allItemsRecieved.Count;
+
+            }
+            catch (Exception)
+            {
+                DebugLogger.AddWarning("Unable to check collected items!");
+            }
         }
 
         private static void EnableDeathLink()
         {
             _deathLink = _session.CreateDeathLinkService();
             _deathLink.EnableDeathLink();
-            _deathLink.OnDeathLinkReceived += (deathLinkObject) => {
+            _deathLink.OnDeathLinkReceived += (deathLinkObject) =>
+            {
                 GlobalState.CUR_HEALTH = 0;
             };
-        }
-
-        internal static void SendDeathLink(string message)
-        {
-            _deathLink?.SendDeathLink(new DeathLink(_user, message));
         }
     }
 }

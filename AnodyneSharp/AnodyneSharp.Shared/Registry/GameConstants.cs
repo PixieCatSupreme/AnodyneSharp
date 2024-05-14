@@ -52,7 +52,7 @@ namespace AnodyneSharp.Registry
         public const int BUTTON_WIDTH = 13;
         public const int BUTTON_HEIGHT = 14;
 
-        public const int ARCHIPELAGO_START_ID = 20130204;
+        public const long ARCHIPELAGO_START_ID = 20130204;
 
         static GameConstants()
         {

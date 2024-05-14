@@ -13,11 +13,11 @@ namespace AnodyneSharp.Resources.Loading
         {
         }
 
-        public Dictionary<int, Guid> LoadLocations()
+        public Dictionary<long, Guid> LoadLocations()
         {
-            Dictionary<int, Guid> locations = new();
+            Dictionary<long, Guid> locations = new();
 
-            int id = GameConstants.ARCHIPELAGO_START_ID;
+            long id = GameConstants.ARCHIPELAGO_START_ID;
 
             while (!EndOfStream)
             {

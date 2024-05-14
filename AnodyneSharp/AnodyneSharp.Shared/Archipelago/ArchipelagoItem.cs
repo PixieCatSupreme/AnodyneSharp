@@ -4,14 +4,15 @@ using System.Text;
 
 namespace AnodyneSharp.Archipelago
 {
-    public struct ArchipelagoItem
+    public class ArchipelagoItem : Item
     {
         public string Reciever { get; set; }
         public string ItemName { get; set; }
-        public int LocationID { get; set; }
+        public long LocationID { get; set; }
         public bool IsImportant { get; set; }
 
-        public ArchipelagoItem(string reciever, string itemName, int locationID, bool isImportant)
+        public ArchipelagoItem(int frame, string typeValue, string reciever, string itemName, long locationID, bool isImportant)
+            :base(frame, typeValue)
         {
             Reciever = reciever;
             ItemName = itemName;

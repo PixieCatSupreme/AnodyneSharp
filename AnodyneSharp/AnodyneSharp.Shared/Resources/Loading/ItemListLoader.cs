@@ -17,7 +17,7 @@ namespace AnodyneSharp.Resources.Loading
         {
             Dictionary<long, Item> items = new();
 
-            int id = GameConstants.ARCHIPELAGO_START_ID;
+            long id = GameConstants.ARCHIPELAGO_START_ID;
 
             while (!EndOfStream)
             {

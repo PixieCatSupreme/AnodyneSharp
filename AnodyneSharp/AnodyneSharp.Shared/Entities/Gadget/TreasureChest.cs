@@ -3,6 +3,7 @@ using AnodyneSharp.Entities.Gadget.Treasures;
 using AnodyneSharp.Input;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Resources;
+using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -80,7 +81,7 @@ namespace AnodyneSharp.Entities.Gadget
 
         public virtual bool PlayerInteraction(Facing player_direction)
         {
-            if(opened || player_direction != Facing.UP)
+            if (opened || player_direction != Facing.UP)
             {
                 return false;
             }
@@ -114,7 +115,7 @@ namespace AnodyneSharp.Entities.Gadget
 
             if (ArchipelagoSessionHandler.IsConnected)
             {
-                int? locationID = GlobalState.GetLocationID(_preset.EntityID);
+                long? locationID = GlobalState.GetLocationID(_preset.EntityID);
 
                 if (locationID != null)
                 {
@@ -122,42 +123,13 @@ namespace AnodyneSharp.Entities.Gadget
 
                     if (item != null)
                     {
-                        _frame = item.Value.Frame;
-                        _typeValue = item.Value.TypeValue;
-    }
+                        _frame = item.Frame;
+                        _typeValue = item.TypeValue;
+                    }
                 }
             }
 
-            switch (_frame)
-            {
-                case 0:
-                    _treasureType = TreasureType.BROOM;
-                    break;
-                case 4:
-                    _treasureType = TreasureType.WIDE;
-                    break;
-                case 5:
-                    _treasureType = TreasureType.LONG;
-                    break;
-                case 6:
-                    _treasureType = TreasureType.SWAP;
-                    break;
-                case 1:
-                    _treasureType = TreasureType.KEY;
-                    break;
-                case 2:
-                    _treasureType = TreasureType.GROWTH;
-                    break;
-                case 21:
-                    _treasureType = TreasureType.ARCHIPELAGO;
-                    break;
-                default:
-                    if (_preset.Frame >= 7 && _preset.Frame <= 20)
-                    {
-                        _treasureType = TreasureType.SECRET;
-                    }
-                    break;
-            }
+            _treasureType = TreasureUtilities.GetTreasureType(_frame);
         }
 
         private void SetTreasure()
@@ -200,15 +172,15 @@ namespace AnodyneSharp.Entities.Gadget
                         return;
                     }
 
-                    ArchipelagoItem? item = ArchipelagoSessionHandler.GetOutsideItemInfo(locationID);
+                    Item? item = ArchipelagoSessionHandler.GetItemAtLocation(locationID);
 
-                    if (item == null)
+                    if (item is not ArchipelagoItem aItem)
                     {
                         FailsafeTreasure();
                         return;
                     }
 
-                    _treasure = new ArchipelagoTreasure(Position, item.Value);
+                    _treasure = new ArchipelagoTreasure(Position, aItem);
                     break;
                 default:
                     FailsafeTreasure();
@@ -222,17 +194,17 @@ namespace AnodyneSharp.Entities.Gadget
         }
     }
 
-    [NamedEntity("Treasure",map:"WINDMILL")]
+    [NamedEntity("Treasure", map: "WINDMILL")]
     class WindmillTreasureChest : TreasureChest
     {
-        public WindmillTreasureChest(EntityPreset preset, Player p) : base(preset,p)
+        public WindmillTreasureChest(EntityPreset preset, Player p) : base(preset, p)
         {
 
         }
 
         public override bool PlayerInteraction(Facing player_direction)
         {
-            if(GlobalState.events.GetEvent("WindmillOpened") == 0)
+            if (GlobalState.events.GetEvent("WindmillOpened") == 0)
             {
                 GlobalState.Dialogue = Dialogue.DialogueManager.GetDialogue("misc", "any", "treasure", 0);
                 return true;

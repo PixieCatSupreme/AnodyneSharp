@@ -31,9 +31,12 @@ namespace AnodyneSharp.Entities.Gadget.Treasures
             {
                 GlobalState.inventory.AddMapKey(_mapName, 1);
 
-                string name = _mapName[0] + _mapName[1..].ToLower();
+                if (_mapName != GlobalState.CURRENT_MAP_NAME)
+                {
+                    string name = _mapName[0] + _mapName[1..].ToLower();
 
-                GlobalState.Dialogue = string.Format(Dialogue.DialogueManager.GetDialogue("misc", "any", "treasure", 10), name);
+                    GlobalState.Dialogue = string.Format(Dialogue.DialogueManager.GetDialogue("misc", "any", "treasure", 10), name);
+                }
             }
         }
     }

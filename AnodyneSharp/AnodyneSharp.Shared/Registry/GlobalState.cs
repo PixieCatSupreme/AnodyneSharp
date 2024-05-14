@@ -92,7 +92,7 @@ namespace AnodyneSharp.Registry
         public static string serialized_quicksave = null;
         public static CheckPoint quicksave_checkpoint = null;
 
-        private static Dictionary<int, Guid> Locations = new();
+        private static Dictionary<long, Guid> Locations = new();
         private static Dictionary<long, Item> Items = new();
 
         static GlobalState()
@@ -167,8 +167,12 @@ namespace AnodyneSharp.Registry
 
             disable_menu = false;
         }
+        public static long[] GetLocationIDs()
+        {
+            return Locations.Keys.ToArray();
+        }
 
-        public static int? GetLocationID(Guid entityID)
+        public static long? GetLocationID(Guid entityID)
         {
             if (!Locations.Any(l => l.Value == entityID))
             {
