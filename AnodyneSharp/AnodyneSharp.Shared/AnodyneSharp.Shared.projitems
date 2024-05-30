@@ -165,8 +165,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\RunningTradeNPCs\MiaoXiao.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\RunningTradeNPCs\ShopKeep.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\ShadowBriar.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Modding\IMod.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Modding\ModLoader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\CreditsState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\CoroutineUtils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\EnumerableExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\GrowableResourceList.cs" />
     <Compile Include="..\AnodyneSharp.Shared\Entities\Interactive\Npc\Space\CubeKing.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Interactive\Npc\Space\SpaceNPC.cs" />

@@ -5,6 +5,7 @@ using AnodyneSharp.Drawing.Effects;
 using AnodyneSharp.Entities;
 using AnodyneSharp.Entities.Gadget;
 using AnodyneSharp.Input;
+using AnodyneSharp.Modding;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Resources;
 using AnodyneSharp.Resources.Loading;
@@ -58,6 +59,7 @@ namespace AnodyneSharp
 
             _currentState = null;
 
+            ModLoader.Initialize();
 
             if (!Directory.Exists(GameConstants.SavePath))
             {
