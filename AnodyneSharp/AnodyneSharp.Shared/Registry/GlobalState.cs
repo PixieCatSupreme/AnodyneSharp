@@ -70,7 +70,7 @@ namespace AnodyneSharp.Registry
 
             public override string ToString()
             {
-                return JsonSerializer.Serialize<Save>(this, serializerOptions);
+                return JsonSerializer.Serialize(this, serializerOptions);
             }
 
             public static Save FromString(string s)

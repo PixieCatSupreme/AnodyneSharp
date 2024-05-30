@@ -17,21 +17,12 @@ namespace AnodyneSharp.Entities
     //Decoupled from EntityPreset, saved separately so saving only this info for each entity is possible
     public class EntityState
     {
-        public bool Alive { get; set; } = true;
-        public bool Activated { get; set; } = false; //State-keeping for entities that need it beyond getting killed
+        public bool Alive = true;
+        public bool Activated = false; //State-keeping for entities that need it beyond getting killed
     }
 
     public class EntityPreset
     {
-
-        public Point GridPosition
-        {
-            get
-            {
-                return MapUtilities.GetRoomCoordinate(Position);
-            }
-        }
-
         public Type Type { get; private set; }
         public Vector2 Position { get; private set; }
         public Guid EntityID { get; private set; }
@@ -43,60 +34,22 @@ namespace AnodyneSharp.Entities
         {
             get
             {
-                return EntityManager.State.GetValueOrDefault(EntityID)?.Alive ?? true;
+                return EntityManager.State.GetValueOrDefault(EntityID)?.Alive ?? new EntityState().Alive;
             }
             set
             {
-                EntityState s = EntityManager.State.GetValueOrDefault(EntityID);
-                if (value && s != null)
-                {
-                    s.Alive = true;
-                    if (s.Activated == false)
-                    {
-                        EntityManager.State.Remove(EntityID);
-                    }
-                }
-                else if (!value)
-                {
-                    if (s != null)
-                    {
-                        s.Alive = false;
-                    }
-                    else
-                    {
-                        EntityManager.State.Add(EntityID, new() { Alive = false });
-                    }
-                }
+                EntityManager.SetAlive(EntityID, value);
             }
         }
         public bool Activated
         {
             get
             {
-                return EntityManager.State.GetValueOrDefault(EntityID)?.Activated ?? false;
+                return EntityManager.State.GetValueOrDefault(EntityID)?.Activated ?? new EntityState().Activated;
             }
             set
             {
-                EntityState s = EntityManager.State.GetValueOrDefault(EntityID);
-                if (!value && s != null)
-                {
-                    s.Activated = false;
-                    if (s.Alive)
-                    {
-                        EntityManager.State.Remove(EntityID);
-                    }
-                }
-                else if (value)
-                {
-                    if (s != null)
-                    {
-                        s.Activated = true;
-                    }
-                    else
-                    {
-                        EntityManager.State.Add(EntityID, new() { Activated = true });
-                    }
-                }
+                EntityManager.SetActive(EntityID, value);
             }
         }
 
