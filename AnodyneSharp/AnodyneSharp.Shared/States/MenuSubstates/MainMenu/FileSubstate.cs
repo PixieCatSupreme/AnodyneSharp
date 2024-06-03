@@ -70,6 +70,7 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
 
         private bool _showHealth;
         private bool _copyMode;
+        private bool _Loaded;
 
         private int copyFileId;
 
@@ -137,6 +138,18 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
                 SetSelectorPos();
             }
 
+            if(LoadedSave)
+            {
+                GlobalState.black_overlay.ChangeAlpha(0.72f);
+                if(GlobalState.black_overlay.alpha == 1)
+                {
+                    if (NewSave)
+                        GlobalState.GameState.SetState<IntroState>();
+                    else
+                        GlobalState.GameState.SetState<PlayState>();
+                }
+            }
+
             base.Update();
         }
 
@@ -150,6 +163,11 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
 
         public override void HandleInput()
         {
+            if(LoadedSave)
+            {
+                return;
+            }
+
             bool moved = false;
             bool selected = false;
 
@@ -174,9 +192,9 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
                             GlobalState.ResetValues();
                         }
 
-                        LoadedSave = true;
+                        SoundManager.PlaySoundEffect("menu_select");
 
-                        Exit = true;
+                        LoadedSave = true;
                     }
                     else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Up))
                     {

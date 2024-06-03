@@ -2,6 +2,7 @@
 using AnodyneSharp.Input;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
+using AnodyneSharp.States.MainMenu;
 using AnodyneSharp.UI;
 using AnodyneSharp.UI.PauseMenu;
 using Microsoft.Xna.Framework;
@@ -23,8 +24,6 @@ namespace AnodyneSharp.States.MenuSubstates
             SaveQuitLabel,
             QuitLabel
         }
-
-        public bool ReturnToTitle { get; private set; }
 
         private UILabel _quickSaveLabel;
         private UILabel _quickLoadLabel;
@@ -87,7 +86,6 @@ namespace AnodyneSharp.States.MenuSubstates
             }
             else if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept))
             {
-                bool save = true;
                 bool playSound = true;
 
                 switch (_state)
@@ -95,29 +93,28 @@ namespace AnodyneSharp.States.MenuSubstates
                     case SaveState.QuickSaveLabel:
                         GlobalState.DoQuickSave();
 
-                        save = false;
                         playSound = false;
 
                         _quickSaveLabel.SetText(DialogueManager.GetDialogue("misc", "any", "save", 1));
                         break;
                     case SaveState.QuickLoadLabel:
-                        save = false;
                         playSound = false;
 
                         GlobalState.DoQuickLoad();
                         break;
                     case SaveState.SaveLabel:
+                        GlobalState.SaveGame();
                         _saveLabel.SetText(DialogueManager.GetDialogue("misc", "any", "save", 1));
                         break;
                     case SaveState.SaveTitleLable:
-                        ReturnToTitle = true;
-                        ExitSubState();
+                        GlobalState.SaveGame();
+                        GlobalState.GameState.SetState<TitleState>();
                         break;
                     case SaveState.SaveQuitLabel:
+                        GlobalState.SaveGame();
                         GlobalState.ClosingGame = true;
                         break;
                     case SaveState.QuitLabel:
-                        save = false;
                         GlobalState.ClosingGame = true;
                         break;
                     default:
@@ -127,11 +124,6 @@ namespace AnodyneSharp.States.MenuSubstates
                 if (playSound)
                 {
                     SoundManager.PlaySoundEffect("menu_select");
-                }
-
-                if (save)
-                {
-                    GlobalState.SaveGame();
                 }
             }
             else
