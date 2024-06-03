@@ -11,6 +11,7 @@ using AnodyneSharp.Input;
 using AnodyneSharp.Logging;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
+using AnodyneSharp.States.MainMenu;
 using AnodyneSharp.UI;
 using AnodyneSharp.UI.PauseMenu;
 using AnodyneSharp.Utilities;
@@ -552,7 +553,7 @@ namespace AnodyneSharp.States
 
                     SoundManager.PlaySoundEffect("menu_select");
 
-                    _parent.ChangeStateEvent(AnodyneGame.GameState.TitleScreen);
+                    GlobalState.GameState.SetState<TitleState>();
                 }
             }
 

@@ -55,7 +55,7 @@ namespace AnodyneSharp.States
 
                         GlobalState.events.ActivatedNexusPortals.Add("STREET");
 
-                        ChangeStateEvent(AnodyneGame.GameState.Game);
+                        GlobalState.GameState.SetState<PlayState>();
                     })
                 .End()
             .Build();

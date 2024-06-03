@@ -229,6 +229,8 @@ namespace AnodyneSharp.Registry
         public static int ENEMIES_KILLED;
         public static int PUZZLES_SOLVED;
 
+        public static IStateSetter GameState;
+
         public static Action<Entity> SpawnEntity;
 
         public static Action<GameEvent> FireEvent;

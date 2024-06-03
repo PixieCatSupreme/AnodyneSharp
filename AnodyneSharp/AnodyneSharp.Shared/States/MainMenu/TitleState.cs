@@ -268,7 +268,7 @@ namespace AnodyneSharp.States.MainMenu
                         GlobalState.TitleScreenFinish.Entities.Clear();
                         GlobalState.TitleScreenFinish.Labels.Clear();
 
-                        ChangeStateEvent(AnodyneGame.GameState.MainMenu);
+                        GlobalState.GameState.SetState<MainMenuState>();
                     })
                 .End()
                 .Build();

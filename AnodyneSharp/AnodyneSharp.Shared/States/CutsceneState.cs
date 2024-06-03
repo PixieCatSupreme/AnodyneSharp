@@ -16,8 +16,6 @@ namespace AnodyneSharp.States
 {
     public class CutsceneState : State
     {
-        Camera _camera;
-
         Map _map;
 
         List<Entity> _entities = new();
@@ -28,9 +26,8 @@ namespace AnodyneSharp.States
 
         DialogueState _substate;
 
-        public CutsceneState(Camera camera, IEnumerator<CutsceneEvent> state)
+        public CutsceneState(IEnumerator<CutsceneEvent> state)
         {
-            _camera = camera;
             _state = state;
         }
 
@@ -66,10 +63,6 @@ namespace AnodyneSharp.States
                     {
                         _substate = new(d.Diag);
                     }
-                    else if(e is ChangeGameStateEvent g)
-                    {
-                        ChangeStateEvent(g.NewState);
-                    }
                 }
             }
             else
@@ -86,8 +79,8 @@ namespace AnodyneSharp.States
 
         public void Return()
         {
-            _camera.GoTo(MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid)); //reset camera
-            (GlobalState.Map as Map).ReloadSettings(_camera.Position2D, graphics_only:true, screen_transition: false);
+            SpriteDrawer.Camera.GoTo(MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid)); //reset camera
+            (GlobalState.Map as Map).ReloadSettings(SpriteDrawer.Camera.Position2D, graphics_only:true, screen_transition: false);
             GlobalState.darkness.ForceAlpha(oldDarkness);
             DrawPlayState = true;
             UpdateEntities = true;
@@ -97,19 +90,16 @@ namespace AnodyneSharp.States
         public void Warp(string map, Point grid)
         {
             _map = new(map);
-            _camera.GoTo(grid.ToVector2() * 160);
+            SpriteDrawer.Camera.GoTo(grid.ToVector2() * 160);
             DrawPlayState = false;
             UpdateEntities = false;
-            _map.ReloadSettings(_camera.Position2D, graphics_only:true, screen_transition: false);
+            _map.ReloadSettings(SpriteDrawer.Camera.Position2D, graphics_only:true, screen_transition: false);
         }
 
         public override void Draw()
         {
             base.Draw();
-            if (_map != null)
-            {
-                _map.Draw(_camera.Bounds);
-            }
+            _map?.Draw(SpriteDrawer.Camera.Bounds);
             foreach(Entity e in _entities)
             {
                 e.Draw();
@@ -119,10 +109,7 @@ namespace AnodyneSharp.States
         public override void DrawUI()
         {
             base.DrawUI();
-            if(_substate != null)
-            {
-                _substate.DrawUI();
-            }
+            _substate?.DrawUI();
         }
 
         public abstract record CutsceneEvent { };
@@ -130,7 +117,5 @@ namespace AnodyneSharp.States
         public sealed record WarpEvent(string Map, Point Grid) : CutsceneEvent { };
         public sealed record ReturnWarp() : CutsceneEvent { };
         public sealed record EntityEvent(IEnumerable<Entity> NewEntities) : CutsceneEvent { };
-
-        public sealed record ChangeGameStateEvent(AnodyneGame.GameState NewState) : CutsceneEvent { };
     }
 }

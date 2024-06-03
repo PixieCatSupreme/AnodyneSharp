@@ -20,6 +20,8 @@ namespace AnodyneSharp.Drawing
         private static GraphicsDevice _graphicsDevice;
         public static SpriteBatch _spriteBatch;
 
+        public static Camera Camera = new();
+
         public static Matrix Projection(Point screenSize) => Matrix.CreateOrthographicOffCenter(0, screenSize.X, screenSize.Y, 0, 0, -1);
 
         private static RenderTarget2D _game;
@@ -72,14 +74,15 @@ namespace AnodyneSharp.Drawing
             blend = c.Load<Effect>("effects/blend");
         }
 
-        public static void BeginDraw(Camera camera)
+        public static void BeginDraw()
         {
             foreach(var cache in customTargets.Values)
             {
                 cache.Reset();
             }
+            Camera.Recalc();
             _graphicsDevice.SetRenderTargets(_game,_depth);
-            _depthrender.Parameters["View"].SetValue(camera.Transform);
+            _depthrender.Parameters["View"].SetValue(Camera.Transform);
             _graphicsDevice.Clear(BackColor);
             _spriteBatch.Begin(sortMode: SpriteSortMode.BackToFront, blendState: BlendState.AlphaBlend, samplerState: SamplerState, effect: _depthrender);
         }

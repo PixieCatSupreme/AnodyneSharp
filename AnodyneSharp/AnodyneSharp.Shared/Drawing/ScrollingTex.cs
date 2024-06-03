@@ -32,9 +32,9 @@ namespace AnodyneSharp.Drawing
             SpriteDrawer.DrawSprite(Texture, pos, Z: DrawingUtilities.GetDrawingZ(_layer));
         }
 
-        public void Draw(Camera c)
+        public void Draw()
         {
-            Vector2 topleft = Position + c.Position2D;
+            Vector2 topleft = Position + SpriteDrawer.Camera.Position2D;
             Rectangle pos = new Rectangle((int)topleft.X, (int)topleft.Y, Texture.Width, Texture.Height);
             SpriteDrawer.DrawSprite(Texture,pos,Z:DrawingUtilities.GetDrawingZ(_layer,0));
         }

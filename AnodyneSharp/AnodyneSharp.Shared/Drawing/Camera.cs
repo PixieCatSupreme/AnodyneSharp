@@ -71,7 +71,7 @@ namespace AnodyneSharp.Drawing
         /// <summary>
         /// Updates the camera to simply looks in front of itself.
         /// </summary>
-        public void Update()
+        public void Recalc()
         {
             View = Matrix.CreateLookAt(Position, new Vector3(Position.X, Position.Y, -1), Vector3.Up);
 
@@ -96,7 +96,7 @@ namespace AnodyneSharp.Drawing
         {
             target += new Vector2(SCREEN_WIDTH_IN_PIXELS, SCREEN_HEIGHT_IN_PIXELS) / 2;
             actual_pos = new Vector3(target, actual_pos.Z);
-            Update();
+            Recalc();
         }
     }
 }

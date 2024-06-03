@@ -13,6 +13,7 @@ using AnodyneSharp.MapData.Tiles;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Resources;
 using AnodyneSharp.Sounds;
+using AnodyneSharp.States.MainMenu;
 using AnodyneSharp.UI;
 using AnodyneSharp.UI.Font;
 using AnodyneSharp.Utilities;
@@ -59,8 +60,6 @@ namespace AnodyneSharp.States
 
         private Player _player;
 
-        private Camera _camera;
-
         private Rectangle _gridBorders;
 
         private HealthBar _healthBar;
@@ -97,12 +96,10 @@ namespace AnodyneSharp.States
 
         private float QuickSaveTimer = 5f; //Prevents quick-save from being spammed after loading
 
-        public PlayState(Camera camera)
+        public PlayState()
         {
             _gridEntities = new List<Entity>();
             _oldEntities = new List<Entity>();
-
-            _camera = camera;
 
             _player = new Player();
             _healthBar = new HealthBar();
@@ -148,7 +145,7 @@ namespace AnodyneSharp.States
             GlobalState.LoadSave(s);
             GlobalState.PLAYER_WARP_TARGET = GlobalState.quicksave_checkpoint.Position;
             GlobalState.NEXT_MAP_NAME = GlobalState.quicksave_checkpoint.map;
-            ChangeStateEvent(AnodyneGame.GameState.Game);
+            GlobalState.GameState.SetState<PlayState>();
         }
 
         private void FireEvent(GameEvent e)
@@ -184,11 +181,11 @@ namespace AnodyneSharp.States
             if (_childStates.All(s => s.DrawPlayState))
             {
                 if (_background != null)
-                    _background.Draw(_camera);
+                    _background.Draw();
                 if (_dec_over != null)
-                    _dec_over.Draw(_camera);
+                    _dec_over.Draw();
 
-                _map.Draw(_camera.Bounds);
+                _map.Draw(SpriteDrawer.Camera.Bounds);
 
                 _player.Draw();
 
@@ -375,7 +372,7 @@ namespace AnodyneSharp.States
             }
             if (GlobalState.StartCutscene != null)
             {
-                _childStates.Add(new CutsceneState(_camera, GlobalState.StartCutscene) { ChangeStateEvent = ChangeStateEvent});
+                _childStates.Add(new CutsceneState(GlobalState.StartCutscene));
                 GlobalState.StartCutscene = null;
             }
 
@@ -509,7 +506,7 @@ namespace AnodyneSharp.States
             if (GlobalState.ToTitle)
             {
                 GlobalState.ToTitle = false;
-                ChangeStateEvent(AnodyneGame.GameState.TitleScreen);
+                GlobalState.GameState.SetState<TitleState>();
 
                 GlobalState.CURRENT_MAP_NAME = "";
                 return;
@@ -517,7 +514,7 @@ namespace AnodyneSharp.States
 
             if (KeyInput.JustPressedRebindableKey(KeyFunctions.Pause) && !GlobalState.disable_menu)
             {
-                _childStates.Add(new PauseState() { ChangeStateEvent = ChangeStateEvent });
+                _childStates.Add(new PauseState());
                 SoundManager.PlaySoundEffect("pause_sound");
                 return;
             }
@@ -671,11 +668,11 @@ namespace AnodyneSharp.States
         {
             if (GlobalState.FUCK_IT_MODE_ON)
             {
-                _camera.GoTo(_gridBorders.X, _gridBorders.Y);
+                SpriteDrawer.Camera.GoTo(_gridBorders.X, _gridBorders.Y);
                 return false;
             }
 
-            return !_camera.GoTowards(new(_gridBorders.X, _gridBorders.Y), Scroll_Speed);
+            return !SpriteDrawer.Camera.GoTowards(new(_gridBorders.X, _gridBorders.Y), Scroll_Speed);
         }
 
 #if DEBUG
@@ -735,11 +732,11 @@ namespace AnodyneSharp.States
 
             if (KeyInput.JustPressedKey(Keys.OemPlus))
             {
-                _camera.Zoom += 0.1f;
+                SpriteDrawer.Camera.Zoom += 0.1f;
             }
-            else if (KeyInput.JustPressedKey(Keys.OemMinus) && _camera.Zoom > 0)
+            else if (KeyInput.JustPressedKey(Keys.OemMinus) && SpriteDrawer.Camera.Zoom > 0)
             {
-                _camera.Zoom -= 0.1f;
+                SpriteDrawer.Camera.Zoom -= 0.1f;
             }
 
             if (GlobalState.MovingCamera)
@@ -915,7 +912,7 @@ namespace AnodyneSharp.States
 
             _player.Reset();
 
-            _camera.GoTo(roomPos);
+            SpriteDrawer.Camera.GoTo(roomPos);
 
             UpdateScreenBorders();
 

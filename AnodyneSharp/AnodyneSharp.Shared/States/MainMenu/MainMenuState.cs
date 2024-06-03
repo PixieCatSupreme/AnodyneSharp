@@ -72,7 +72,7 @@ namespace AnodyneSharp.States.MainMenu
                         if (!_inSubstate && KeyInput.JustPressedRebindableKey(KeyFunctions.Cancel))
                         {
                             SoundManager.PlayPitchedSoundEffect("pause_sound", -0.1f);
-                            ChangeStateEvent(AnodyneGame.GameState.TitleScreen);
+                            GlobalState.GameState.SetState<TitleState>();
                         }
                         else if (!_inSubstate)
                         {
@@ -115,7 +115,12 @@ namespace AnodyneSharp.States.MainMenu
                     .End()
                     .State("FadeOut")
                         .Update((state, t) => GlobalState.black_overlay.ChangeAlpha(0.72f))
-                        .Condition(() => GlobalState.black_overlay.alpha == 1, (state) => ChangeStateEvent(isNewSave ? AnodyneGame.GameState.Intro : AnodyneGame.GameState.Game))
+                        .Condition(() => GlobalState.black_overlay.alpha == 1, (state) => {
+                            if (isNewSave)
+                                GlobalState.GameState.SetState<IntroState>();
+                            else
+                                GlobalState.GameState.SetState<PlayState>();
+                            })
                     .End()
                 .Build();
 

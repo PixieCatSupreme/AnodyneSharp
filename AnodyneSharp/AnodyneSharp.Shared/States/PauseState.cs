@@ -4,6 +4,7 @@ using AnodyneSharp.Input;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Resources;
 using AnodyneSharp.Sounds;
+using AnodyneSharp.States.MainMenu;
 using AnodyneSharp.States.MenuSubstates;
 using AnodyneSharp.UI;
 using AnodyneSharp.UI.PauseMenu;
@@ -114,7 +115,7 @@ namespace AnodyneSharp.States
 
                     if (_substate is SaveSubstate s && s.ReturnToTitle)
                     {
-                        ChangeStateEvent(AnodyneGame.GameState.TitleScreen);
+                        GlobalState.GameState.SetState<TitleState>();
                     }
                 }
             }

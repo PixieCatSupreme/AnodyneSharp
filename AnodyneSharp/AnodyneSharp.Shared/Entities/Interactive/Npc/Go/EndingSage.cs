@@ -206,7 +206,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.Go
 
             while (!volume.ReachedTarget) yield return null;
 
-            yield return new ChangeGameStateEvent(AnodyneGame.GameState.Credits);
+            GlobalState.GameState.SetState<CreditsState>();
 
             yield break;
         }

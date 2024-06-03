@@ -32,21 +32,11 @@ namespace AnodyneSharp
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class AnodyneGame : Game
+    public class AnodyneGame : Game, IStateSetter
     {
-        public enum GameState
-        {
-            TitleScreen,
-            MainMenu,
-            Intro,
-            Game,
-            Credits
-        }
-
         GraphicsDeviceManager graphics;
 
         State _currentState;
-        Camera _camera;
 
         private UILabel _fpsLabel;
 
@@ -58,6 +48,8 @@ namespace AnodyneSharp
             Content.RootDirectory = "Content";
 
             _currentState = null;
+
+            GlobalState.GameState = this;
 
             ModLoader.Initialize();
 
@@ -89,8 +81,6 @@ namespace AnodyneSharp
             InitGraphics();
 #endif
 
-            _camera = new Camera();
-
             SpriteDrawer.Initialize(graphics.GraphicsDevice);
 
             GlobalState.ResetValues();
@@ -101,11 +91,9 @@ namespace AnodyneSharp
 
             _fpsLabel = new UILabel(new Vector2(0, GameConstants.HEADER_HEIGHT), false, "", Color.LightBlue);
 
-            GlobalState.darkness.SetCamera(_camera);
-
             Window.Title = "Anodyne Fan Remake";
 
-            SetState(GameState.TitleScreen);
+            SetState<TitleState>();
         }
 
         /// <summary>
@@ -135,7 +123,6 @@ namespace AnodyneSharp
             {
                 effect.Load(Content, graphics.GraphicsDevice);
             }
-
         }
 
         /// <summary>
@@ -158,8 +145,6 @@ namespace AnodyneSharp
             }
 
             _currentState.Update();
-
-            _camera.Update();
 
             foreach (var effect in GlobalState.AllEffects.Where(e => e.Active()))
             {
@@ -204,11 +189,11 @@ namespace AnodyneSharp
 
             if (KeyInput.JustPressedKey(Keys.P))
             {
-                SetState(GameState.Credits);
+                SetState<CreditsState>();
             }
 #endif
 
-            SpriteDrawer.BeginDraw(_camera);
+            SpriteDrawer.BeginDraw();
             _currentState.Draw();
             SpriteDrawer.EndDraw();
 
@@ -225,28 +210,16 @@ namespace AnodyneSharp
             SpriteDrawer.Render();
         }
 
-        private void SetState(GameState state)
+        public void SetState<T>() where T : State, new()
         {
             foreach (var effect in GlobalState.AllEffects)
             {
                 effect.Deactivate();
             }
 
-            _currentState = state switch
-            {
-                GameState.TitleScreen => new TitleState(),
-                GameState.MainMenu => new MainMenuState(),
-                GameState.Intro => new IntroState(),
-                GameState.Game => new PlayState(_camera),
-                GameState.Credits => new CreditsState(),
-                _ => null
-            };
+            _currentState = new T();
 
-            if (_currentState != null)
-            {
-                _currentState.Create();
-                _currentState.ChangeStateEvent = SetState;
-            }
+            _currentState.Create();
         }
 
         private void InitGraphics()
