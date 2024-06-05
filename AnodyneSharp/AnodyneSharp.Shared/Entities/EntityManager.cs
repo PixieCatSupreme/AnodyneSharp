@@ -27,7 +27,7 @@ namespace AnodyneSharp.Entities
         /// </summary>
         public static void Initialize()
         {
-            var assembly = Assembly.GetExecutingAssembly();
+            var assembly = Assembly.GetEntryAssembly();
 
             string path = $"{assembly.GetName().Name}.{EntityFilePath}";
             string xml = "";
@@ -127,7 +127,7 @@ namespace AnodyneSharp.Entities
 
         private static void ReadEntities(string xml)
         {
-            var type_lookup = (from t in Assembly.GetExecutingAssembly().GetTypes()
+            var type_lookup = (from t in Assembly.GetEntryAssembly().GetTypes()
                                where t.IsDefined(typeof(NamedEntity), false)
                                group new { type = t, check = t.GetCustomAttribute<NamedEntity>() } by t.GetCustomAttribute<NamedEntity>().GetName(t)
                                ).ToDictionary(t => t.Key, t => t.ToList());

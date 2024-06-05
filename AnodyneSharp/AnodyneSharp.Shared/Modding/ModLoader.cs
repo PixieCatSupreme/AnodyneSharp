@@ -32,7 +32,7 @@ namespace AnodyneSharp.Modding
 
         private static IEnumerable<string> DLLFiles()
         {
-            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!, "Mods");
+            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)!, "Mods");
             if(!Directory.Exists(path))
             {
                 return Enumerable.Empty<string>();

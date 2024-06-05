@@ -118,7 +118,7 @@ namespace AnodyneSharp.Dialogue
 
         public static void Reload()
         {
-            var assembly = Assembly.GetExecutingAssembly();
+            var assembly = Assembly.GetEntryAssembly();
 
             string path = $"{assembly.GetName().Name}.{DialogueFilePath}_{Enum.GetName(GlobalState.CurrentLanguage.GetType(), GlobalState.CurrentLanguage)}.txt";
 

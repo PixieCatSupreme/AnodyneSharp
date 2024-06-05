@@ -53,7 +53,7 @@ namespace AnodyneSharp.MapData.Tiles
         {
             SortedList<int, AnimatedTile> animTiles = new SortedList<int, AnimatedTile>();
 
-            var assembly = Assembly.GetExecutingAssembly();
+            var assembly = Assembly.GetEntryAssembly();
 
             foreach (var path in assembly.GetManifestResourceNames().Where(p => p.StartsWith($"{ assembly.GetName().Name}.Content.Maps.{map}.TileAnims")))
             {
@@ -85,7 +85,7 @@ namespace AnodyneSharp.MapData.Tiles
         {
             List<CollissionData> data = new List<CollissionData>();
 
-            var assembly = Assembly.GetExecutingAssembly();
+            var assembly = Assembly.GetEntryAssembly();
 
             string path = $"{assembly.GetName().Name}.Content.Maps.{map}.TileData.col";
 
