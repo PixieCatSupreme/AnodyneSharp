@@ -24,7 +24,8 @@ namespace AnodyneSharp.Modding
         {
             AssemblyLoadContext loadContext = AssemblyLoadContext.Default;
             var assemblies = DLLFiles().ToList();
-            return assemblies.Select(s => loadContext.LoadFromAssemblyPath(s)).SelectMany(assembly=>assembly.GetTypes())
+            var loadedAssemblies = assemblies.Select(s => loadContext.LoadFromAssemblyPath(s)).ToList();
+            return loadedAssemblies.SelectMany(assembly=>assembly.GetTypes())
                 .Where(t=>typeof(IMod).IsAssignableFrom(t) && !t.IsAbstract)
                 .Select(t=>(IMod?)Activator.CreateInstance(t))
                 .NotNull();
@@ -32,7 +33,7 @@ namespace AnodyneSharp.Modding
 
         private static IEnumerable<string> DLLFiles()
         {
-            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!, "Mods");
+            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)!, "Mods");
             if(!Directory.Exists(path))
             {
                 return Enumerable.Empty<string>();

@@ -28,7 +28,7 @@ namespace AnodyneSharp.MapData
 
         public SwapperControl(string mapName)
         {
-            var assembly = Assembly.GetExecutingAssembly();
+            var assembly = Assembly.GetEntryAssembly();
 
             string path = $"{assembly.GetName().Name}.Content.Maps.{mapName}.Swapper.dat";
 
