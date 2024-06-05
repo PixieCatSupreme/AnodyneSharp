@@ -24,7 +24,8 @@ namespace AnodyneSharp.Modding
         {
             AssemblyLoadContext loadContext = AssemblyLoadContext.Default;
             var assemblies = DLLFiles().ToList();
-            return assemblies.Select(s => loadContext.LoadFromAssemblyPath(s)).SelectMany(assembly=>assembly.GetTypes())
+            var loadedAssemblies = assemblies.Select(s => loadContext.LoadFromAssemblyPath(s)).ToList();
+            return loadedAssemblies.SelectMany(assembly=>assembly.GetTypes())
                 .Where(t=>typeof(IMod).IsAssignableFrom(t) && !t.IsAbstract)
                 .Select(t=>(IMod?)Activator.CreateInstance(t))
                 .NotNull();
