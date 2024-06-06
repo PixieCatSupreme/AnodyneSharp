@@ -192,7 +192,7 @@ namespace AnodyneSharp.States.MainMenu
                 (DialogueManager.GetDialogue("misc", "any", "config", 0), () => new ConfigSubstate(true)),
             };
 
-            //TODO: allow for modding
+            Modding.ModLoader.mods.ForEach(mod => mod.ChangeMainMenu(ref ret));
 
             return ret;
         }
