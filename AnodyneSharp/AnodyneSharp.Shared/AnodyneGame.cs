@@ -186,11 +186,6 @@ namespace AnodyneSharp
             {
                 Cheatz.Cheatz.ToggleFuckItMode();
             }
-
-            if (KeyInput.JustPressedKey(Keys.P))
-            {
-                SetState<CreditsState>();
-            }
 #endif
 
             SpriteDrawer.BeginDraw();
