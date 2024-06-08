@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using AnodyneSharp.Utilities;
+using Microsoft.Extensions.FileSystemGlobbing;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,7 +12,7 @@ using System.Text;
 
 namespace AnodyneSharp.Modding
 {
-    internal static class ModLoader
+    public static class ModLoader
     {
         public static List<IMod> mods = new();
 
@@ -33,14 +34,12 @@ namespace AnodyneSharp.Modding
 
         private static IEnumerable<string> DLLFiles()
         {
-            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)!, "Mods");
-            if(!Directory.Exists(path))
-            {
-                return Enumerable.Empty<string>();
-            }
-            var paths = Directory.GetDirectories(path).SelectMany(p => Directory.GetFiles(p, "Assemblies/*.dll", System.IO.SearchOption.AllDirectories));
+            Matcher matcher = new();
+            matcher.AddInclude("Mods/*/Assemblies/*.dll");
 
-            return paths;
+            string searchDir = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)!;
+
+            return matcher.GetResultsInFullPath(searchDir);
         }
     }
 }

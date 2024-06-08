@@ -1,6 +1,8 @@
-﻿using AnodyneSharp.Logging;
+﻿using AnodyneSharp.Drawing;
+using AnodyneSharp.Logging;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Sounds;
+using Microsoft.Extensions.FileSystemGlobbing;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -19,8 +21,7 @@ namespace AnodyneSharp.Resources
     public delegate List<FileInfo> GetFiles(string path);
     public static class ResourceManager
     {
-        public static GetDirectories GetDirectories;
-        public static GetFiles GetFiles;
+        public static string BaseDir;
 
         private static Dictionary<string, Texture2D> _textures = new();
         private static Dictionary<string, string> _music = new();
@@ -29,15 +30,12 @@ namespace AnodyneSharp.Resources
 
         public static bool LoadResources(ContentManager content)
         {
-
-            DirectoryInfo[] directories = GetDirectories?.Invoke("Content");
-
-            LoadTextures(content, directories.First(d => d.Name == "textures"));
+            LoadTextures(content);
 #if !ANDROID
-            LoadMusic(content, directories.First(d => d.Name == "bgm"));
+            LoadMusic(content);
 #endif
-            LoadAmbience(content, directories.First(d => d.Name == "ambience"));
-            LoadSFX(content, directories.First(d => d.Name == "sfx"));
+            LoadAmbience(content);
+            LoadSFX(content);
 
             return true;
         }
@@ -98,23 +96,26 @@ namespace AnodyneSharp.Resources
             return _sfx;
         }
 
-        private static void LoadTextures(ContentManager content, DirectoryInfo directory)
+        private static void LoadTextures(ContentManager content)
         {
-            List<FileInfo> files = GetChildFiles(directory);
-
-            foreach (FileInfo file in files)
+            foreach (FileInfo file in GetFiles("textures"))
             {
                 string key = Path.GetFileNameWithoutExtension(file.Name);
 
-                _textures[key] = content.Load<Texture2D>(GetFolderTree(file) + key);
+                try
+                {
+                    _textures[key] = content.Load<Texture2D>(GetFolderTree(file) + key);
+                }
+                catch (Exception)
+                {
+                    _textures[key] = Texture2D.FromFile(SpriteDrawer._spriteBatch.GraphicsDevice, file.FullName);
+                }
             }
         }
 
-        private static void LoadMusic(ContentManager content, DirectoryInfo directory)
+        private static void LoadMusic(ContentManager content)
         {
-            List<FileInfo> files = GetChildFiles(directory);
-
-            foreach (FileInfo file in files)
+            foreach (FileInfo file in GetFiles("bgm"))
             {
                 string key = Path.GetFileNameWithoutExtension(file.Name);
 
@@ -122,11 +123,9 @@ namespace AnodyneSharp.Resources
             }
         }
 
-        private static void LoadAmbience(ContentManager content, DirectoryInfo directory)
+        private static void LoadAmbience(ContentManager content)
         {
-            List<FileInfo> files = GetChildFiles(directory);
-
-            foreach (FileInfo file in files)
+            foreach (FileInfo file in GetFiles("ambience"))
             {
                 string key = Path.GetFileNameWithoutExtension(file.Name);
 
@@ -134,35 +133,23 @@ namespace AnodyneSharp.Resources
             }
         }
 
-        private static void LoadSFX(ContentManager content, DirectoryInfo directory)
+        private static void LoadSFX(ContentManager content)
         {
-            List<FileInfo> files = GetChildFiles(directory);
-
-            foreach (FileInfo file in files)
+            foreach (FileInfo file in GetFiles("sfx"))
             {
                 string key = Path.GetFileNameWithoutExtension(file.Name);
 
                 _ = int.TryParse(file.Directory.Name, out int limit);
 
-                _sfx[key] = new(content.Load<SoundEffect>(GetFolderTree(file) + key), limit);
+                try
+                {
+                    _sfx[key] = new(content.Load<SoundEffect>(GetFolderTree(file) + key), limit);
+                }
+                catch (Exception)
+                {
+                    _sfx[key] = new(SoundEffect.FromFile(file.FullName), limit);
+                }
             }
-        }
-
-        private static List<FileInfo> GetChildFiles(DirectoryInfo directory)
-        {
-            if (directory.Name.ToLower() == "old")
-            {
-                return new List<FileInfo>();
-            }
-
-            List<FileInfo> files = GetFiles(directory.FullName);
-
-            foreach (var child in GetDirectories(directory.FullName))
-            {
-                files.AddRange(GetChildFiles(child));
-            }
-
-            return files;
         }
 
         private static string GetFolderTree(FileInfo file)
@@ -177,6 +164,16 @@ namespace AnodyneSharp.Resources
             } while (curFolder.Name != "Content");
 
             return path;
+        }
+
+        private static IEnumerable<FileInfo> GetFiles(string dirName)
+        {
+            Matcher matcher = new();
+            matcher.AddInclude($"./Content/{dirName}/**");
+            matcher.AddExclude("./Content/**/old/");
+            matcher.AddInclude($"./Mods/*/Content/{dirName}/**");
+
+            return matcher.GetResultsInFullPath(BaseDir).Select(s => new FileInfo(s));
         }
     }
 }
