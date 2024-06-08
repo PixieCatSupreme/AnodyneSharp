@@ -36,7 +36,7 @@ namespace AnodyneSharp
     {
         GraphicsDeviceManager graphics;
 
-        State _currentState;
+        public State CurrentState { get; private set; }
 
         private UILabel _fpsLabel;
 
@@ -47,7 +47,7 @@ namespace AnodyneSharp
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            _currentState = null;
+            CurrentState = null;
 
             GlobalState.GameState = this;
 
@@ -144,7 +144,7 @@ namespace AnodyneSharp
                 return;
             }
 
-            _currentState.Update();
+            CurrentState.Update();
 
             foreach (var effect in GlobalState.AllEffects.Where(e => e.Active()))
             {
@@ -194,11 +194,11 @@ namespace AnodyneSharp
 #endif
 
             SpriteDrawer.BeginDraw();
-            _currentState.Draw();
+            CurrentState.Draw();
             SpriteDrawer.EndDraw();
 
             SpriteDrawer.BeginGUIDraw();
-            _currentState.DrawUI();
+            CurrentState.DrawUI();
 
             if (GlobalState.ShowFPS)
             {
@@ -217,9 +217,9 @@ namespace AnodyneSharp
                 effect.Deactivate();
             }
 
-            _currentState = new T();
+            CurrentState = new T();
 
-            _currentState.Create();
+            CurrentState.Create();
         }
 
         private void InitGraphics()
