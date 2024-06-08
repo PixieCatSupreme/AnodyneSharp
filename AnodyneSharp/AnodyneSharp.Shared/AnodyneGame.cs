@@ -166,6 +166,11 @@ namespace AnodyneSharp
                 InitGraphics();
                 GlobalState.ResolutionDirty = false;
             }
+
+            foreach (IMod mod in ModLoader.mods)
+            {
+                mod.Update();
+            }
         }
 
         /// <summary>

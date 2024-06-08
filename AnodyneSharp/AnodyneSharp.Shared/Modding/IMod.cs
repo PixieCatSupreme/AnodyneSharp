@@ -8,5 +8,7 @@ namespace AnodyneSharp.Modding
     public interface IMod
     {
         void ChangeMainMenu(ref List<(string name, Func<Substate> create)> menuEntries) { }
+
+        void Update() { }
     }
 }
