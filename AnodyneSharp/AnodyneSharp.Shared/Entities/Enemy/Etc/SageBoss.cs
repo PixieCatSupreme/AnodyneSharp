@@ -16,8 +16,14 @@ using static AnodyneSharp.States.CutsceneState;
 namespace AnodyneSharp.Entities.Enemy.Etc
 {
     [NamedEntity("Sage_Boss"), Collision(typeof(Player), typeof(Broom), MapCollision = true), Enemy]
-    internal class SageBoss : Entity
+    public class SageBoss : Entity
     {
+        public const string DamageDealer = "Sage";
+        public const string BulletDamageDealer = "Sage bullet";
+        public const string OrbDamageDealer = "Sage orb";
+        public const string EdgeDamageDealer = "Sage edge";
+        public const string LaserDamageDealer = "Sage laser";
+
         private Vector2 _topLeft;
 
         private EntityPool<ShortAttack> _sBullets;
@@ -130,7 +136,7 @@ namespace AnodyneSharp.Entities.Enemy.Etc
 
             if (other is Player p)
             {
-                p.ReceiveDamage(1);
+                p.ReceiveDamage(1, DamageDealer);
             }
             else if (!_flickering && other is Broom)
             {
@@ -656,6 +662,8 @@ namespace AnodyneSharp.Entities.Enemy.Etc
                 IsHurting = true;
 
                 Flicker(1);
+
+                DamageType = EdgeDamageDealer;
             }
 
             public void Spawn(Vector2 pos, Vector2 velocity)
@@ -667,6 +675,8 @@ namespace AnodyneSharp.Entities.Enemy.Etc
 
                 visible = true;
                 IsHurting = true;
+
+                DamageType = LaserDamageDealer;
             }
 
             public override void Update()
@@ -707,6 +717,8 @@ namespace AnodyneSharp.Entities.Enemy.Etc
                 IsHurting = true;
 
                 MapColission = false;
+
+                DamageType = OrbDamageDealer;
             }
 
             public void Spawn(Vector2 pos, float yVel)
@@ -721,6 +733,8 @@ namespace AnodyneSharp.Entities.Enemy.Etc
                 velocity.Y = yVel;
 
                 MapColission = true;
+
+                DamageType = BulletDamageDealer;
             }
 
             public override void Update()
@@ -737,6 +751,8 @@ namespace AnodyneSharp.Entities.Enemy.Etc
         class HurtingEntity : Entity
         {
             public bool IsHurting { get; set; }
+
+            protected string DamageType = null;
 
             public HurtingEntity(AnimatedSpriteRenderer sprite)
                 : base(Vector2.Zero, sprite, Drawing.DrawOrder.ENTITIES)
@@ -766,7 +782,7 @@ namespace AnodyneSharp.Entities.Enemy.Etc
 
                 if (other is Player p && p.state == PlayerState.GROUND)
                 {
-                    p.ReceiveDamage(1);
+                    p.ReceiveDamage(1, DamageType);
                 }
             }
 

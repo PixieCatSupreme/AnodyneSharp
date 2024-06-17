@@ -11,7 +11,7 @@ using System.Text;
 namespace AnodyneSharp.Entities.Enemy.Circus
 {
     [NamedEntity(), Enemy, Collision(typeof(Player), typeof(Broom), KeepOnScreen = true, MapCollision = true)]
-    class Contort : Entity
+    public class Contort : Entity
     {
         private const float _startVel = 35;
 
@@ -22,6 +22,9 @@ namespace AnodyneSharp.Entities.Enemy.Circus
         private EntityPreset _preset;
 
         private int health = 3;
+
+        public const string DamageDealer = "Contort";
+        public const string SmallDamageDealer = "Small Contort";
 
         public Contort(EntityPreset preset, Player p)
             : base(preset.Position, new AnimatedSpriteRenderer("contort_big", 16, 32, new Anim("move",new int[] {0,1,2,1},9)), DrawOrder.ENTITIES)
@@ -104,7 +107,7 @@ namespace AnodyneSharp.Entities.Enemy.Circus
             }
             else if (other is Player p)
             {
-                p.ReceiveDamage(1);
+                p.ReceiveDamage(1,DamageDealer);
             }
         }
 
@@ -197,7 +200,7 @@ namespace AnodyneSharp.Entities.Enemy.Circus
                 }
                 else if (other is Player p)
                 {
-                    p.ReceiveDamage(1);
+                    p.ReceiveDamage(1, SmallDamageDealer);
                 }
             }
 

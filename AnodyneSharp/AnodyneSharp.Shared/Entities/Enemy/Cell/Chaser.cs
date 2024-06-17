@@ -12,6 +12,7 @@ namespace AnodyneSharp.Entities.Enemy.Cell
     [NamedEntity("Chaser"), Collision(typeof(Player), KeepOnScreen = true, MapCollision = true), Events(typeof(BroomUsed))]
     class Chaser : Entity
     {
+        public const string DamageDealer = "Chaser";
         Player _player;
 
         bool _isHorizontal;
@@ -82,7 +83,7 @@ namespace AnodyneSharp.Entities.Enemy.Cell
 
             if (other is Player p)
             {
-                p.ReceiveDamage(6);
+                p.ReceiveDamage(6, DamageDealer);
             }
         }
 

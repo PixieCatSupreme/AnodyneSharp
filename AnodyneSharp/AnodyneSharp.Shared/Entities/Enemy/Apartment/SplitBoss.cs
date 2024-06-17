@@ -17,6 +17,8 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
     [Collision(typeof(Player))]
     class BaseSplitBoss : Entity
     {
+        public const string DamageDealer = "Watcher";
+        public const string BulletDamageDealer = "Watcher bullet";
         public bool damage_player = false;
 
         public static AnimatedSpriteRenderer GetSprite() => new("splitboss", 24, 32,
@@ -43,7 +45,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
             base.Collided(other);
             if (other is Player p && damage_player)
             {
-                p.ReceiveDamage(1);
+                p.ReceiveDamage(1, DamageDealer);
             }
         }
 
@@ -620,7 +622,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
                 base.Collided(other);
                 if (other is Player p && p.state != PlayerState.AIR && active)
                 {
-                    p.ReceiveDamage(1);
+                    p.ReceiveDamage(1, BulletDamageDealer);
                 }
             }
 

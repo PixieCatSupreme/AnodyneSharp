@@ -43,6 +43,10 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
 
         bool bossRush;
 
+        public const string DamageDealer = "Red Boss";
+        public const string TentacleDamageDealer = "Red Boss tentacle";
+        public const string BulletDamageDealer = "Red Boss bullet";
+
         class SplashState : TimerState
         {
             public int got_too_close = 0;
@@ -136,7 +140,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
 
             if (other is Player p)
             {
-                p.ReceiveDamage(1);
+                p.ReceiveDamage(1, DamageDealer);
             }
             else if (other is Broom && invincible_timer < 0)
             {
@@ -648,7 +652,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
             base.Collided(other);
             if (!_flickering && other is Player p)
             {
-                p.ReceiveDamage(1);
+                p.ReceiveDamage(1, Red_Boss.TentacleDamageDealer);
             }
         }
 
@@ -783,7 +787,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
             base.Collided(other);
             if (visible && offset.Y < 10)
             {
-                ((Player)other).ReceiveDamage(1);
+                ((Player)other).ReceiveDamage(1, Red_Boss.BulletDamageDealer);
             }
         }
     }

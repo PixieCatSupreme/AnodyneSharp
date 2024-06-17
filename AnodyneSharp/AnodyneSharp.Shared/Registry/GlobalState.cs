@@ -324,6 +324,8 @@ namespace AnodyneSharp.Registry
             }
         }
 
+        public static string DamageDealer = "";
+
         private static int _curHealth = 6;
         private static int _maxHealth = 6;
 

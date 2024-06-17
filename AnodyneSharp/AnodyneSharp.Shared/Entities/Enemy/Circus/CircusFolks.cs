@@ -18,12 +18,16 @@ namespace AnodyneSharp.Entities.Enemy.Circus
     [NamedEntity("Circus_Folks", null, 2), Collision(typeof(Player), typeof(Broom), MapCollision = true), Enemy]
     internal class CircusFolks : WalkAroundEntity
     {
+        public const string DamageDealer = "CircusFolks";
+        public const string ArthurDamageDealer = "Arthur";
+        public const string JavieraDamageDealer = "Javiera";
+        public const string FlameDamageDealer = "CircusFolksFlame";
+
         private const int walkVel = 90;
         private const float walkTimerMax = 3.0f;
         private const int jumpVel = 100;
 
         private const int fallTimerMax = 2;
-
         private EntityPreset _preset;
         private Player _player;
         private Parabola_Thing _parabolaThing;
@@ -117,7 +121,7 @@ namespace AnodyneSharp.Entities.Enemy.Circus
 
             if (other is Player p)
             {
-                p.ReceiveDamage(1);
+                p.ReceiveDamage(1, DamageDealer);
             }
             else if (!_flickering && other is Broom)
             {
@@ -638,7 +642,7 @@ namespace AnodyneSharp.Entities.Enemy.Circus
                     }
                     else if (other is Player p && p.state == PlayerState.GROUND)
                     {
-                        p.ReceiveDamage(1);
+                        p.ReceiveDamage(1, ArthurDamageDealer);
                     }
                 }
             }
@@ -754,7 +758,7 @@ namespace AnodyneSharp.Entities.Enemy.Circus
                     }
                     else if (other is Player p && p.state == PlayerState.GROUND)
                     {
-                        p.ReceiveDamage(1);
+                        p.ReceiveDamage(1, JavieraDamageDealer);
                     }
                 }
             }
@@ -833,7 +837,7 @@ namespace AnodyneSharp.Entities.Enemy.Circus
 
                 if (other is Player p && p.state == PlayerState.GROUND)
                 {
-                    p.ReceiveDamage(1);
+                    p.ReceiveDamage(1, FlameDamageDealer);
 
                     disappear = true;
                 }

@@ -22,9 +22,9 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
             DOWN
         }
 
+        public const string DamageDealer = "Shieldy";
         private const int _velocityMax = 30;
         private const float hitTimerMax = 0.4f;
-
         private int _health = 2;
         private float _hitTimer = 0;
 
@@ -97,7 +97,7 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
         {
             if (other is Player p)
             {
-                p.ReceiveDamage(1);
+                p.ReceiveDamage(1, DamageDealer);
             }
             else if (other is Broom b)
             {

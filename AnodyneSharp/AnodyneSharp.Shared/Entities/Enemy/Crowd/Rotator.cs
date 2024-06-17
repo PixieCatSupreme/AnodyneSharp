@@ -11,6 +11,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
     [NamedEntity, Collision(typeof(Player))]
     public class Rotator : Entity
     {
+        public const string DamageDealer = "Rotator";
         RotatorBullet bullet;
 
         public Rotator(EntityPreset preset, Player p) : base(preset.Position, new AnimatedSpriteRenderer("f_rotator", 16, 16, new Anim("pulse", new int[] { 0, 1 }, 10)), Drawing.DrawOrder.BG_ENTITIES)
@@ -71,7 +72,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
             base.Collided(other);
             if (other is Player p && p.state != PlayerState.AIR)
             {
-                p.ReceiveDamage(1);
+                p.ReceiveDamage(1, Rotator.DamageDealer);
             }
         }
     }

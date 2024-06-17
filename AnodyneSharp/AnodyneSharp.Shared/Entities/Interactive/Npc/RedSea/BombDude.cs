@@ -10,10 +10,12 @@ using System.Text;
 namespace AnodyneSharp.Entities.Interactive.Npc.RedSea
 {
     [NamedEntity("Redsea_NPC", null, 10), Collision(typeof(Player))]
-    class BombDude : Entity, Interactable
+    public class BombDude : Entity, Interactable
     {
         private EntityPreset _preset;
         private Player _player;
+
+        public const string DamageDealer = "Bomb dude";
 
         public BombDude(EntityPreset preset, Player p)
             : base(preset.Position, new AnimatedSpriteRenderer("redsea_npcs", 16, 16, new Anim("walk", new int[] { 10, 11 }, 4)), DrawOrder.ENTITIES)
@@ -32,7 +34,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.RedSea
             {
                 GlobalState.SpawnEntity(new Explosion(this));
 
-                _player.ReceiveDamage(1);
+                _player.ReceiveDamage(1, DamageDealer);
 
                 exists = _preset.Alive = false;
             }

@@ -69,6 +69,9 @@ namespace AnodyneSharp.Entities.Enemy.Circus
 
         private Player _player;
 
+        public const string DamageDealer = "Lion";
+        public const string FireDamageDealer = "Lion fireball";
+
         public static AnimatedSpriteRenderer GetSprite()
         {
             return new("lion", 32, 32,
@@ -137,7 +140,7 @@ namespace AnodyneSharp.Entities.Enemy.Circus
                             }
                         }
                     })
-                    .Event<CollisionEvent<Player>>("Player", (state, p) => p.entity.ReceiveDamage(1))
+                    .Event<CollisionEvent<Player>>("Player", (state, p) => p.entity.ReceiveDamage(1, DamageDealer))
                     .Event<CollisionEvent<Broom>>("Hit", (state, b) => GetHit())
                 .End()
                 .State<ShootWarningState>("ShootWarning")
@@ -150,7 +153,7 @@ namespace AnodyneSharp.Entities.Enemy.Circus
                         PlayFacing("warn");
                     })
                     .Event("WarningTimer", (state) => _state.ChangeState("Shoot"))
-                    .Event<CollisionEvent<Player>>("Player", (state, p) => p.entity.ReceiveDamage(1))
+                    .Event<CollisionEvent<Player>>("Player", (state, p) => p.entity.ReceiveDamage(1, DamageDealer))
                     .Event<CollisionEvent<Broom>>("Hit", (state, b) => GetHit())
                 .End()
                 .State<ShootState>("Shoot")
@@ -175,7 +178,7 @@ namespace AnodyneSharp.Entities.Enemy.Circus
                             _state.ChangeState("Pace");
                         }
                     })
-                    .Event<CollisionEvent<Player>>("Player", (state, p) => p.entity.ReceiveDamage(1))
+                    .Event<CollisionEvent<Player>>("Player", (state, p) => p.entity.ReceiveDamage(1, DamageDealer))
                     .Event<CollisionEvent<Broom>>("Hit", (state, b) =>
                     {
                         GetHit();
@@ -202,7 +205,7 @@ namespace AnodyneSharp.Entities.Enemy.Circus
                         PlayFacing("walk");
                     })
                     .Event("WalkTimer", (state) => _state.ChangeState("ChargeWarn"))
-                    .Event<CollisionEvent<Player>>("Player", (state, p) => p.entity.ReceiveDamage(1))
+                    .Event<CollisionEvent<Player>>("Player", (state, p) => p.entity.ReceiveDamage(1, DamageDealer))
                     .Event<CollisionEvent<Broom>>("Hit", (state, b) => GetHit())
                 .End()
                 .State<ChargeWarnState>("ChargeWarn")
@@ -219,7 +222,7 @@ namespace AnodyneSharp.Entities.Enemy.Circus
                         PlayFacing("warn");
                     })
                     .Event("WarnTimer", (state) => _state.ChangeState("Charge"))
-                    .Event<CollisionEvent<Player>>("Player", (state, p) => p.entity.ReceiveDamage(1))
+                    .Event<CollisionEvent<Player>>("Player", (state, p) => p.entity.ReceiveDamage(1, DamageDealer))
                     .Event<CollisionEvent<Broom>>("Hit", (state, b) => GetHit())
                 .End()
                 .State<ChargeWarnState>("Charge")
@@ -248,7 +251,7 @@ namespace AnodyneSharp.Entities.Enemy.Circus
                         }
                     })
                     .Exit((state) => velocity = Vector2.Zero)
-                    .Event<CollisionEvent<Player>>("Player", (state, p) => p.entity.ReceiveDamage(1))
+                    .Event<CollisionEvent<Player>>("Player", (state, p) => p.entity.ReceiveDamage(1, DamageDealer))
                     .Event<CollisionEvent<Broom>>("Hit", (state, b) => GetHit())
                 .End()
                 .State<State>("Dying")
@@ -414,7 +417,7 @@ namespace AnodyneSharp.Entities.Enemy.Circus
 
                 if (other is Player p)
                 {
-                    p.ReceiveDamage(1);
+                    p.ReceiveDamage(1, FireDamageDealer);
                 }
 
                 Play("poof");

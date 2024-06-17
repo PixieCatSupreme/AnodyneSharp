@@ -166,6 +166,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
 
     public class BaseSpikeRoller : Entity
     {
+        public const string DamageDealer = "Spike roller";
         protected Vector2 vel;
 
         public bool CollisionOn { get; protected set; }
@@ -219,7 +220,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
 
             if (CollisionOn && other is Player p && p.state != PlayerState.AIR)
             {
-                p.ReceiveDamage(1);
+                p.ReceiveDamage(1, DamageDealer);
             }
         }
 

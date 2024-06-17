@@ -13,8 +13,9 @@ using System.Text;
 namespace AnodyneSharp.Entities.Enemy.Hotel
 {
     [NamedEntity(), Enemy, Collision(typeof(Player), typeof(Broom), KeepOnScreen = true, MapCollision = true)]
-    class Dustmaid : HealthDropper
+    public class Dustmaid : HealthDropper
     {
+        public const string DamageDealer = "Dustmaid";
         private Player _player;
         private IEnumerator _stateLogic;
 
@@ -94,7 +95,7 @@ namespace AnodyneSharp.Entities.Enemy.Hotel
 
             if (other is Player p)
             {
-                p.ReceiveDamage(1);
+                p.ReceiveDamage(1, DamageDealer);
             }
             else if (other is Broom && _chasing && !_flickering)
             {

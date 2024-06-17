@@ -20,6 +20,9 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
     {
         private const int WIDE_ATK_DISTANCE = 36;
 
+        public const string WideDamageDealer = "Slasher wide attack";
+        public const string LongDamageDealer = "Slasher long attack";
+
         private IState _state;
         private Facing _oldFacing;
 
@@ -240,6 +243,8 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
         [Collision(typeof(Player))]
         private class Slash : Entity
         {
+            string DamageType;
+
             public Slash(Vector2 pos, AnimatedSpriteRenderer sprite, DrawOrder layer)
                 : base(pos, sprite, layer)
             {
@@ -256,8 +261,9 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
                 }
             }
 
-            protected void Reset(Vector2 pos)
+            protected void Reset(Vector2 pos, string damageType)
             {
+                DamageType = damageType;
                 exists = true;
 
                 Position = pos;
@@ -273,7 +279,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
 
                 if (visible && other is Player p)
                 {
-                    p.ReceiveDamage(1);
+                    p.ReceiveDamage(1, DamageType);
                 }
             }
         }
@@ -294,7 +300,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
 
             public void UpdateLongPosHorizontal(Vector2 pos, Facing facing)
             {
-                Reset(pos);
+                Reset(pos,LongDamageDealer);
 
                 Position.Y += -height / 2 + 8;
 
@@ -320,7 +326,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
 
             public void UpdateWidePosVertical(Vector2 pos, Facing facing)
             {
-                Reset(pos);
+                Reset(pos, WideDamageDealer);
 
                 Position.X += -width / 2 + 8;
 
@@ -363,7 +369,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
             //For long up and down
             public void UpdateLongPosVertical(Vector2 pos, Facing facing)
             {
-                Reset(pos);
+                Reset(pos, LongDamageDealer);
 
                 Position.X += -width / 2 + 8;
 
@@ -389,7 +395,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
 
             public void UpdateWidePosHorizontal(Vector2 pos, Facing facing)
             {
-                Reset(pos);
+                Reset(pos, WideDamageDealer);
 
                 Position.Y += -height / 2 + 8;
 

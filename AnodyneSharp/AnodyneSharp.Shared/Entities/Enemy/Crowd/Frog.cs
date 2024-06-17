@@ -16,6 +16,8 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
     [NamedEntity, Enemy, Collision(typeof(Player), typeof(Broom))]
     class Frog : HealthDropper
     {
+        public static string DamageDealer = "Frog";
+        public static string BulletDamageDealer = "Frog bullet";
         public static AnimatedSpriteRenderer GetSprite()
         {
             Anim[] anims;
@@ -115,7 +117,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
             }
             else if (other is Player p && p.state != PlayerState.AIR)
             {
-                p.ReceiveDamage(1);
+                p.ReceiveDamage(1, DamageDealer);
             }
         }
 
@@ -208,7 +210,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
             {
                 if (other is Player p && offset.Y <= 8 && velocity != Vector2.Zero)
                 {
-                    p.ReceiveDamage(1);
+                    p.ReceiveDamage(1, BulletDamageDealer);
                 }
             }
         }

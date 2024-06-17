@@ -16,6 +16,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
     [NamedEntity("Teleguy"), Enemy, Collision(typeof(Player), typeof(Broom))]
     class TeleGuy : HealthDropper
     {
+        public const string DamageDealer = "TeleGuy";
         Player _player;
 
         private IState _state;
@@ -44,7 +45,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
 
             _state = new StateMachineBuilder()
                 .State("Idle")
-                    .Event<CollisionEvent<Player>>("Player", (state, p) => p.entity.ReceiveDamage(1))
+                    .Event<CollisionEvent<Player>>("Player", (state, p) => p.entity.ReceiveDamage(1, DamageDealer))
                     .Event<CollisionEvent<Broom>>("Broom", (state, b) =>
                     {
                         _state.ChangeState("Teleporting");
@@ -113,7 +114,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
                             velocity = Vector2.Zero;
                         }
                     })
-                    .Event<CollisionEvent<Player>>("Player", (state, p) => p.entity.ReceiveDamage(1))
+                    .Event<CollisionEvent<Player>>("Player", (state, p) => p.entity.ReceiveDamage(1, DamageDealer))
                     .Event<CollisionEvent<Broom>>("Broom", (state, b) =>
                     {
                         if (GlobalState.RNG.NextDouble() < 0.5f)

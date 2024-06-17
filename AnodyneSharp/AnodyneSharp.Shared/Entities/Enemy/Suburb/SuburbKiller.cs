@@ -8,10 +8,12 @@ using System.Text;
 namespace AnodyneSharp.Entities.Enemy.Suburb
 {
     [NamedEntity("Suburb_Killer"), Collision(typeof(Player))]
-    class SuburbKiller : Entity
+    public class SuburbKiller : Entity
     {
         private bool moving;
         private float moveTimer;
+
+        public const string DamageDealer = "Suburb killer";
 
         private Player _player;
 
@@ -72,7 +74,7 @@ namespace AnodyneSharp.Entities.Enemy.Suburb
 
             if (other is Player p)
             {
-                p.ReceiveDamage(6);
+                p.ReceiveDamage(6, DamageDealer);
             }
         }
     }

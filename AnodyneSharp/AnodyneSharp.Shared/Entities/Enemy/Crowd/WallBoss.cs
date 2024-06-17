@@ -17,6 +17,10 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
     [NamedEntity, Enemy]
     public class WallBoss : Entity
     {
+        public const string LaserDamageDealer = "WallBoss laser";
+        public const string HandDamageDealer = "WallBoss hand";
+        public const string BulletDamageDealer = "WallBoss bullet";
+
         Wall wall = new();
         Face face = new();
         LHand lhand;
@@ -460,7 +464,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
             base.Collided(other);
             if (!_flickering && other is Player p && p.state != PlayerState.AIR)
             {
-                p.ReceiveDamage(1);
+                p.ReceiveDamage(1, WallBoss.LaserDamageDealer);
             }
         }
     }
@@ -582,7 +586,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
             }
             else if (shadow.Hitbox.Intersects(other.Hitbox) && offset.Y < 8 && other is Player p)
             {
-                p.ReceiveDamage(1);
+                p.ReceiveDamage(1, WallBoss.HandDamageDealer);
             }
         }
 
@@ -867,7 +871,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
                 base.Collided(other);
                 if (other is Player p && CurAnimName == "move")
                 {
-                    p.ReceiveDamage(1);
+                    p.ReceiveDamage(1, WallBoss.BulletDamageDealer);
                 }
             }
         }

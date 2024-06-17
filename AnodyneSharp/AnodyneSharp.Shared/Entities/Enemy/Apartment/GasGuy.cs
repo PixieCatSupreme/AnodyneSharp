@@ -20,6 +20,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
     {
         public static AnimatedSpriteRenderer GetSprite() => new("gas_guy", 16, 24, new Anim("float", new int[] { 0, 1 }, 2), new Anim("release_gas", new int[] { 2 }, 20));
 
+        public const string DamageDealer = "Gas Guy";
         private int _health = 3;
         private IState _state;
 
@@ -120,7 +121,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
         {
             if (other is Player p)
             {
-                p.ReceiveDamage(1);
+                p.ReceiveDamage(1, DamageDealer);
             }
             else if (other is Broom)
             {

@@ -16,6 +16,8 @@ namespace AnodyneSharp.Entities.Enemy.Hotel
     [NamedEntity, Enemy, Collision(typeof(Broom))]
     public class Burst_Plant : HealthDropper
     {
+        public const string DamageDealer = "Burst plant bullet";
+
         int _health = 2;
         IState _state;
 
@@ -182,7 +184,7 @@ namespace AnodyneSharp.Entities.Enemy.Hotel
             {
                 if (other is Player p && offset.Y <= 4 && velocity != Vector2.Zero)
                 {
-                    p.ReceiveDamage(1);
+                    p.ReceiveDamage(1, DamageDealer);
                 }
             }
         }

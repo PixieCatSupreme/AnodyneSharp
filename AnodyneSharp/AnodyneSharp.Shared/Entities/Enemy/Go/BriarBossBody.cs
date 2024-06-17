@@ -105,7 +105,7 @@ namespace AnodyneSharp.Entities.Enemy.Go
         public override void Collided(Entity other)
         {
             other.Position.Y = Hitbox.Bottom;
-            (other as Player).ReceiveDamage(1);
+            (other as Player).ReceiveDamage(1, BriarBossMain.BodyDamageDealer);
         }
 
         public override IEnumerable<Entity> SubEntities()
@@ -141,7 +141,7 @@ namespace AnodyneSharp.Entities.Enemy.Go
                 base.Collided(other);
                 Player p = other as Player;
                 if (p.state == PlayerState.GROUND && Frame >= harmful_frame)
-                    p.ReceiveDamage(1);
+                    p.ReceiveDamage(1, BriarBossMain.ThornDamageDealer);
             }
         }
 
@@ -173,7 +173,7 @@ namespace AnodyneSharp.Entities.Enemy.Go
                 base.Collided(other);
                 Player p = other as Player;
                 if (p.state == PlayerState.GROUND)
-                    p.ReceiveDamage(1);
+                    p.ReceiveDamage(1, BriarBossMain.BulletDamageDealer);
             }
         }
     }

@@ -35,6 +35,8 @@ namespace AnodyneSharp.MapData
     {
         TileMap[] mapLayers;
 
+        public const string SpikeDamageDealer = "Ground spikes";
+
         public int WidthInTiles => mapLayers[0].Width;
         public int HeightInTiles => mapLayers[0].Height;
 
@@ -328,7 +330,7 @@ namespace AnodyneSharp.MapData
                                 Rectangle actualHitbox = t.Hitbox;
                                 actualHitbox.Y += 6; actualHitbox.Height = 6;
                                 actualHitbox.X += 6; actualHitbox.Width = 5;
-                                if (ent is Player p && p.state != PlayerState.AIR && actualHitbox.Intersects(p.Hitbox)) p.ReceiveDamage(1, false);
+                                if (ent is Player p && p.state != PlayerState.AIR && actualHitbox.Intersects(p.Hitbox)) p.ReceiveDamage(1, SpikeDamageDealer, false);
                             }
                             break;
                         case CollisionEventType.LADDER:

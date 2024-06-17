@@ -89,7 +89,7 @@ namespace AnodyneSharp.Entities.Enemy.Go
                     GlobalState.screenShake.Shake(0.01f, 0.2f);
                     if (hit_player)
                     {
-                        player.ReceiveDamage(1);
+                        player.ReceiveDamage(1, BriarBossMain.IceDamageDealer);
                         state = Wait();
                         yield return null; //yield break would set state to null
                     }

@@ -15,6 +15,7 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
     public class PewLaser : Entity
     {
         private const float _bulletTimerMax = 0.5f;
+        public const string DamageDealer = "Pew Laser";
 
 
         private EntityPool<Laser> lasers;
@@ -75,7 +76,6 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
 
             public const float BULLET_VELOCITY = 40;
 		    public const float BULLET_FAST_VELOCITY = 70;
-
             private IState _state;
             private bool _isFast;
             //timer to re-enable being solid to avoid being inside the wall
@@ -121,7 +121,7 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
                         .Enter((state) => Play("shoot"))
                         .Update((state, time) => opacity -= 0.06f * time)
                         .Condition(() => touching != Touching.NONE, (s) => _state.ChangeState("Poof"))
-                        .Event<CollisionEvent<Player>>("Player", (s, p) => { p.entity.ReceiveDamage(1); _state.ChangeState("Poof"); })
+                        .Event<CollisionEvent<Player>>("Player", (s, p) => { p.entity.ReceiveDamage(1, DamageDealer); _state.ChangeState("Poof"); })
                         .Event<CollisionEvent<Shieldy>>("Shieldy", (s, p) => { p.entity.ReceiveDamage(5); _state.ChangeState("Poof"); })
                         .Event("Dust", (s) => { _state.ChangeState("Poof"); })
                     .End()

@@ -17,6 +17,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
     [NamedEntity, Enemy, Collision(typeof(Player), typeof(Broom), KeepOnScreen = true, MapCollision = true )]
     public class Dog : HealthDropper
     {
+        public const string DamageDealer = "Dog";
         private int _health = 3;
         private IState _state;
 
@@ -182,7 +183,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
         {
             if (other is Player p && p.state != PlayerState.AIR)
             {
-                p.ReceiveDamage(1);
+                p.ReceiveDamage(1, DamageDealer);
             }
             else if (other is Broom)
             {

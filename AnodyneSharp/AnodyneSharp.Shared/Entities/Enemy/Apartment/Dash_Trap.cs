@@ -14,6 +14,8 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
     {
         protected const float DashVel = 80;
 
+        public const string DamageDealer = "Dash Trap";
+
         public static AnimatedSpriteRenderer GetSprite()
         {
             if (GlobalState.BoiEaster)
@@ -46,7 +48,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
             {
                 if (p.state != PlayerState.AIR)
                 {
-                    p.ReceiveDamage(1);
+                    p.ReceiveDamage(1,DamageDealer);
                     OnPlayer();
                 }
             }

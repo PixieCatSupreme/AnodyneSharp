@@ -43,6 +43,7 @@ namespace AnodyneSharp.Entities.Enemy.Circus
             }
         }
 
+        public const string DamageDealer = "Fire Pillar";
         IState _state;
 
         Entity _base;
@@ -102,7 +103,7 @@ namespace AnodyneSharp.Entities.Enemy.Circus
                     {
                         _state.ChangeState("Recede");
                     })
-                    .Event<CollisionEvent<Player>>("Player", (s, p) => p.entity.ReceiveDamage(1))
+                    .Event<CollisionEvent<Player>>("Player", (s, p) => p.entity.ReceiveDamage(1, DamageDealer))
                 .End()
                 .State<RecedeState>("Recede")
                     .Enter((s) =>

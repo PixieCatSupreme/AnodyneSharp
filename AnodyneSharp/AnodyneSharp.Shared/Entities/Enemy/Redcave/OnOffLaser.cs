@@ -18,6 +18,8 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
         private IState _state;
         private Laser _laser;
 
+        public const string DamageDealer = "On-Off Laser";
+
         public static AnimatedSpriteRenderer GetSprite(int frame)
         {
             int[] shooter_closed = frame == 3 || frame == 4 ? new int[] { 3, 4 } : new int[] { 0, 1 };
@@ -177,7 +179,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
                 {
                     if (other is Player p)
                     {
-                        p.ReceiveDamage(1);
+                        p.ReceiveDamage(1, DamageDealer);
                     }
                     else if (other is Mover m)
                     {

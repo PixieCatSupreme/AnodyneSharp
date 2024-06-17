@@ -9,6 +9,8 @@ namespace AnodyneSharp.Cheatz
 {
     public static class CheatzManager
     {
+        public const string DamageDealer = "Cheats menu";
+
         private static Dictionary<string, MethodInfo> cheatz;
         static CheatzManager()
         {
@@ -31,6 +33,7 @@ namespace AnodyneSharp.Cheatz
         public static void Default()
         {
             GlobalState.CUR_HEALTH -= 2;
+            GlobalState.DamageDealer = DamageDealer;
             SoundManager.PlaySoundEffect("sb_hurt");
         }
 

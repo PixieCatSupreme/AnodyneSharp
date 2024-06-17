@@ -18,6 +18,9 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
     [NamedEntity("Eye_Boss",null,0), Collision(typeof(Player),typeof(Broom)), AlwaysSpawn]
     public class WaterPhase : Entity
     {
+        public const string DamageDealer = "Manager Water Phase";
+        public const string BulletDamageDealer = "Manager Water bullet";
+
         EnemyMarker death_marker = new();
 
         int health = 6;
@@ -203,7 +206,7 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
             {
                 tm += GameTimes.DeltaTime;
 
-                if (player_hit) p.ReceiveDamage(1);
+                if (player_hit) p.ReceiveDamage(1, DamageDealer);
                 if(broom_hit)
                 {
                     tm = 0;
@@ -296,7 +299,7 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
                 SoundManager.PlaySoundEffect("dustpoof");
                 if(other is Player p)
                 {
-                    p.ReceiveDamage(1);
+                    p.ReceiveDamage(1, BulletDamageDealer);
                 }
             }
         }

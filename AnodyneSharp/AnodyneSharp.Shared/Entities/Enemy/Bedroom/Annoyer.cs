@@ -46,10 +46,12 @@ namespace AnodyneSharp.Entities.Enemy
 
         private Player _target;
 
+        public const string DamageDealer = "Annoyer";
+        public const string FireballDamageDealer = "Annoyer fireball";
+
         private const int T_SUPER = 2;
 
         private const float rotation_radius = 20f;
-
         private string start_state = "Wait";
 
         private Explosion explosion;
@@ -121,7 +123,7 @@ namespace AnodyneSharp.Entities.Enemy
                         state.ChangeState(start_state);
                         start_state = "Approach"; //TODO: Add way of entering nested states(see ChangeState in Hit, needs to go to Approach, not Wait)
                     })
-                    .Event<CollisionEvent<Player>>("Player", (state, p) => p.entity.ReceiveDamage(1))
+                    .Event<CollisionEvent<Player>>("Player", (state, p) => p.entity.ReceiveDamage(1, DamageDealer))
                     .Event<CollisionEvent<Broom>>("Hit", (state,b) => {
                         velocity = FacingDirection(b.entity.facing) * 150;
                         if (velocity.Y < 0)
@@ -248,7 +250,6 @@ namespace AnodyneSharp.Entities.Enemy
         class Fireball : Entity
         {
             private const float speed = 30f;
-
             private IState _state;
 
             public Fireball() : base(Vector2.Zero, Lion.Fireball.GetSprite(8), DrawOrder.FG_SPRITES)
@@ -262,7 +263,7 @@ namespace AnodyneSharp.Entities.Enemy
                         .Update((state,time) => opacity -= 0.06f * time)
                         .Condition(()=>opacity <= 0.6f, (s) => _state.ChangeState("Poof"))
                         .Event<CollisionEvent<Broom>>("Hit",(s,b) => _state.ChangeState("Poof"))
-                        .Event<CollisionEvent<Player>>("Player",(s,p) => { p.entity.ReceiveDamage(1); _state.ChangeState("Poof"); })
+                        .Event<CollisionEvent<Player>>("Player",(s,p) => { p.entity.ReceiveDamage(1, FireballDamageDealer); _state.ChangeState("Poof"); })
                     .End()
                     .State("Poof")
                         .Enter((state) => Play("poof"))

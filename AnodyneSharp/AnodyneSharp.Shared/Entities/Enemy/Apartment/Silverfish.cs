@@ -14,6 +14,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
     [NamedEntity("Silverfish"), Enemy, Collision(typeof(Player), typeof(Broom), KeepOnScreen = true, MapCollision = true)]
     public class Silverfish : HealthDropper
     {
+        public const string DamageDealer = "Silverfish";
         private Player _player;
         private IEnumerator _stateLogic;
 
@@ -58,7 +59,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
 
             if (other is Player p)
             {
-                p.ReceiveDamage(1);
+                p.ReceiveDamage(1, DamageDealer);
             }
             else if (other is Broom)
             {

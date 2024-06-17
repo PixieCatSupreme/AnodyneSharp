@@ -25,6 +25,8 @@ namespace AnodyneSharp.Entities.Enemy
             Bullet = 3
         }
 
+        public const string DamageDealer = "Slime";
+        public const string BulletDamageDealer = "Slime bullet";
         private SlimeType _type;
 
         private int _health = 2;
@@ -87,7 +89,7 @@ namespace AnodyneSharp.Entities.Enemy
                     .Update((state, time) => SyncSplash(state))
                     .Event("ShootTimer", (state) => bullets.Spawn(b => b.Spawn(this, target)))
                     .Event("MoveTimer", (state) => ChangeDir())
-                    .Event<CollisionEvent<Player>>("Player", (state, p) => p.entity.ReceiveDamage(1))
+                    .Event<CollisionEvent<Player>>("Player", (state, p) => p.entity.ReceiveDamage(1, DamageDealer))
                     .Event<CollisionEvent<Broom>>("Hit", (state, b) => GetHit(b.entity))
                     .Exit((s) =>
                     {
@@ -96,7 +98,7 @@ namespace AnodyneSharp.Entities.Enemy
                 .End()
                 .State("Hurt")
                     .Enter((state) => Play("Hurt"))
-                    .Event<CollisionEvent<Player>>("Player", (state, p) => p.entity.ReceiveDamage(1))
+                    .Event<CollisionEvent<Player>>("Player", (state, p) => p.entity.ReceiveDamage(1, DamageDealer))
                     .Condition(() => _health <= 0, (state) => state.Parent.ChangeState("Dying"))
                     .Condition(() => AnimFinished, (state) => state.Parent.ChangeState("Move"))
                 .End()
@@ -249,6 +251,7 @@ namespace AnodyneSharp.Entities.Enemy
         [Collision(typeof(Player), MapCollision = true)]
         private class Bullet : Entity
         {
+
             public Bullet()
                 : base(Vector2.Zero, new AnimatedSpriteRenderer("slime_bullet", 8, 8, new Anim("move", new int[] { 0, 1 }, GlobalState.RNG.Next(5, 10))), DrawOrder.PARTICLES)
             {
@@ -281,7 +284,7 @@ namespace AnodyneSharp.Entities.Enemy
             {
                 if (other is Player p && p.state != PlayerState.AIR)
                 {
-                    p.ReceiveDamage(1);
+                    p.ReceiveDamage(1, BulletDamageDealer);
                     exists = false;
                 }
             }
