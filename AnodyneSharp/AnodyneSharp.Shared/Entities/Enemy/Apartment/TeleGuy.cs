@@ -14,7 +14,7 @@ using System.Text;
 namespace AnodyneSharp.Entities.Enemy.Apartment
 {
     [NamedEntity("Teleguy"), Enemy, Collision(typeof(Player), typeof(Broom))]
-    class TeleGuy : HealthDropper
+    public class TeleGuy : HealthDropper
     {
         public const string DamageDealer = "TeleGuy";
         Player _player;

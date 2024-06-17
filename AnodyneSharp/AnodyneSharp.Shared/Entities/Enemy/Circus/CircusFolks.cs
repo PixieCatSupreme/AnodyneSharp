@@ -16,7 +16,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace AnodyneSharp.Entities.Enemy.Circus
 {
     [NamedEntity("Circus_Folks", null, 2), Collision(typeof(Player), typeof(Broom), MapCollision = true), Enemy]
-    internal class CircusFolks : WalkAroundEntity
+    public class CircusFolks : WalkAroundEntity
     {
         public const string DamageDealer = "CircusFolks";
         public const string ArthurDamageDealer = "Arthur";
@@ -857,7 +857,7 @@ namespace AnodyneSharp.Entities.Enemy.Circus
         }
     }
 
-    class WalkAroundEntity : Entity
+    public class WalkAroundEntity : Entity
     {
         public WalkAroundEntity(Vector2 pos, AnimatedSpriteRenderer render, DrawOrder layer) : base(pos, render, layer) { }
 

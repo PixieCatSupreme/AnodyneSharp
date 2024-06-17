@@ -15,7 +15,7 @@ using System.Text;
 namespace AnodyneSharp.Entities.Enemy.Apartment
 {
     [Collision(typeof(Player))]
-    class BaseSplitBoss : Entity
+    public class BaseSplitBoss : Entity
     {
         public const string DamageDealer = "Watcher";
         public const string BulletDamageDealer = "Watcher bullet";

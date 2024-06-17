@@ -10,7 +10,7 @@ using System.Text;
 namespace AnodyneSharp.Entities.Enemy.Cell
 {
     [NamedEntity("Chaser"), Collision(typeof(Player), KeepOnScreen = true, MapCollision = true), Events(typeof(BroomUsed))]
-    class Chaser : Entity
+    public class Chaser : Entity
     {
         public const string DamageDealer = "Chaser";
         Player _player;

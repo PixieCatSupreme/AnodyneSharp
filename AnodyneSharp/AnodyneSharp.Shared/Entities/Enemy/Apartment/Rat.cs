@@ -11,7 +11,7 @@ using System.Text;
 namespace AnodyneSharp.Entities.Enemy.Apartment
 {
     [NamedEntity, Enemy, Collision(typeof(Player),typeof(Broom),typeof(DashTrap))]
-    class Rat : HealthDropper
+    public class Rat : HealthDropper
     {
         public const string DamageDealer = "Rat";
         Lookahead lookahead = new();

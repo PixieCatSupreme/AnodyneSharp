@@ -10,7 +10,7 @@ using System.Text;
 namespace AnodyneSharp.Entities.Enemy.Apartment
 {
     [Collision(typeof(Player), typeof(Dust), KeepOnScreen = true, MapCollision = true)]
-    abstract class DashTrap : Entity
+    public abstract class DashTrap : Entity
     {
         protected const float DashVel = 80;
 
