@@ -14,10 +14,10 @@ using System.Text;
 namespace AnodyneSharp.Entities.Enemy.Crowd
 {
     [NamedEntity, Enemy, Collision(typeof(Player), typeof(Broom))]
-    class Frog : HealthDropper
+    public class Frog : HealthDropper
     {
-        public static string DamageDealer = "Frog";
-        public static string BulletDamageDealer = "Frog bullet";
+        public const string DamageDealer = "Frog";
+        public const string BulletDamageDealer = "Frog bullet";
         public static AnimatedSpriteRenderer GetSprite()
         {
             Anim[] anims;
