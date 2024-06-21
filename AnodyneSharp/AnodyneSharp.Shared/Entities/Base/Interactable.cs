@@ -6,7 +6,7 @@ using System.Text;
 namespace AnodyneSharp.Entities
 {
 #pragma warning disable IDE1006 // Naming Styles, IInteractable is... ugh
-    interface Interactable
+    public interface Interactable
 #pragma warning restore IDE1006 // Naming Styles
     {
         bool PlayerInteraction(Facing player_direction);

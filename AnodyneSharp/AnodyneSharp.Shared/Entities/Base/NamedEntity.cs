@@ -5,7 +5,7 @@ using System.Linq;
 namespace AnodyneSharp.Entities
 {
     [AttributeUsage(System.AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
-    sealed class NamedEntity : Attribute
+    sealed public class NamedEntity : Attribute
     {
         readonly string xmlName;
         public readonly string type;

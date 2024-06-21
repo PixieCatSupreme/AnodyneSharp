@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AnodyneSharp.Utilities;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -30,9 +31,9 @@ namespace AnodyneSharp.MapData
         {
             var assembly = Assembly.GetEntryAssembly();
 
-            string path = $"{assembly.GetName().Name}.Content.Maps.{mapName}.Swapper.dat";
+            string path = $"Content.Maps.{mapName}.Swapper.dat";
 
-            using Stream stream = assembly.GetManifestResourceStream(path);
+            using Stream stream = AssemblyReaderUtil.GetStream(path);
 
             if (stream == null)
             {

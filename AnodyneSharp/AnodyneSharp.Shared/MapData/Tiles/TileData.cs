@@ -3,6 +3,7 @@ using AnodyneSharp.Entities;
 using AnodyneSharp.Logging;
 using AnodyneSharp.Registry;
 using AnodyneSharp.Resources;
+using AnodyneSharp.Utilities;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -53,13 +54,15 @@ namespace AnodyneSharp.MapData.Tiles
         {
             SortedList<int, AnimatedTile> animTiles = new SortedList<int, AnimatedTile>();
 
-            var assembly = Assembly.GetEntryAssembly();
+            var assemblies = AppDomain.CurrentDomain.GetAssemblies();
 
-            foreach (var path in assembly.GetManifestResourceNames().Where(p => p.StartsWith($"{ assembly.GetName().Name}.Content.Maps.{map}.TileAnims")))
+            var asmpaths = assemblies.SelectMany(asm => asm.GetManifestResourceNames().Where(p => p.StartsWith($"{asm.GetName().Name}.Content.Maps.{map}.TileAnims")).Select(p=>(asm,p)));
+
+            foreach (var (asm,path) in asmpaths)
             {
                 string texName = path.Split('.')[^2];
 
-                using (Stream stream = assembly.GetManifestResourceStream(path))
+                using (Stream stream = AssemblyReaderUtil.GetStream(path.Replace(asm.GetName().Name+".", ""),asm))
                 {
                     using StreamReader reader = new StreamReader(stream);
 
@@ -83,13 +86,11 @@ namespace AnodyneSharp.MapData.Tiles
 
         private static List<CollissionData> GetColData(string map)
         {
-            List<CollissionData> data = new List<CollissionData>();
+            List<CollissionData> data = new();
 
-            var assembly = Assembly.GetEntryAssembly();
+            string path = $"Content.Maps.{map}.TileData.col";
 
-            string path = $"{assembly.GetName().Name}.Content.Maps.{map}.TileData.col";
-
-            using (Stream stream = assembly.GetManifestResourceStream(path))
+            using (Stream stream = AssemblyReaderUtil.GetStream(path))
             {
                 if (stream == null)
                 {

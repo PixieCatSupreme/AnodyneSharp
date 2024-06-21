@@ -5,7 +5,7 @@ using System.Text;
 namespace AnodyneSharp.Entities
 {
     [AttributeUsage(AttributeTargets.Class, Inherited = true, AllowMultiple = true)]
-    sealed class CollisionAttribute : Attribute
+    sealed public class CollisionAttribute : Attribute
     {
         public CollisionAttribute(params Type[] types)
         {

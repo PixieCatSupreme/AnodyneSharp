@@ -9,11 +9,11 @@ namespace AnodyneSharp.Utilities
 #nullable enable
     public static class AssemblyReaderUtil
     {
-        public static Stream? GetStream(string path)
+        public static Stream? GetStream(string path, Assembly? assembly = null)
         {
-            Assembly asm = Assembly.GetCallingAssembly();
+            assembly ??= Assembly.GetEntryAssembly();
 
-            return asm.GetManifestResourceStream($"{asm.GetName().Name}.{path}");
+            return assembly?.GetManifestResourceStream($"{assembly.GetName().Name}.{path}") ?? null;
         }
     }
 #nullable restore

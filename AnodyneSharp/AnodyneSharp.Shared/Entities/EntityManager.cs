@@ -27,12 +27,9 @@ namespace AnodyneSharp.Entities
         /// </summary>
         public static void Initialize()
         {
-            var assembly = Assembly.GetEntryAssembly();
-
-            string path = $"{assembly.GetName().Name}.{EntityFilePath}";
             string xml = "";
 
-            using (Stream stream = assembly.GetManifestResourceStream(path))
+            using (Stream stream = AssemblyReaderUtil.GetStream(EntityFilePath))
             {
                 using StreamReader reader = new(stream);
                 xml = reader.ReadToEnd();
@@ -127,7 +124,7 @@ namespace AnodyneSharp.Entities
 
         private static void ReadEntities(string xml)
         {
-            var type_lookup = (from t in Assembly.GetEntryAssembly().GetTypes()
+            var type_lookup = (from t in AppDomain.CurrentDomain.GetAssemblies().SelectMany(asm =>asm.GetTypes())
                                where t.IsDefined(typeof(NamedEntity), false)
                                group new { type = t, check = t.GetCustomAttribute<NamedEntity>() } by t.GetCustomAttribute<NamedEntity>().GetName(t)
                                ).ToDictionary(t => t.Key, t => t.ToList());
