@@ -63,9 +63,14 @@ namespace AnodyneSharp.Registry
                 return FromString(save);
             }
 
-            public void SaveTo(int id)
+            public static string PathFromId(string id)
             {
-                File.WriteAllText($"{GameConstants.SavePath}Saves/Save_{id + 1}.dat", ToString());
+                return $"{GameConstants.SavePath}Saves/Save_{id}.dat";
+            }
+
+            public void SaveTo(string id)
+            {
+                File.WriteAllText(PathFromId(id), ToString());
             }
 
             public override string ToString()
@@ -79,12 +84,12 @@ namespace AnodyneSharp.Registry
             }
         }
 
-        static public int CurrentSaveGame = 0;
+        static public string CurrentSaveGame = "1";
 
         public static string serialized_quicksave = null;
         public static CheckPoint quicksave_checkpoint = null;
 
-        public static void SaveGame(int? id = null)
+        public static void SaveGame(string id = null)
         {
             new Save().SaveTo(id ?? CurrentSaveGame);
         }

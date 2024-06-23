@@ -78,7 +78,7 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
         {
             _saveID = saveID;
 
-            Save = GlobalState.Save.GetSave($"{GameConstants.SavePath}Saves/Save_{saveID + 1}.dat");
+            Save = GlobalState.Save.GetSave(GlobalState.Save.PathFromId($"{saveID + 1}"));
 
             confirmState = 0;
 
@@ -176,7 +176,7 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
                 case State.Game:
                     if (KeyInput.JustPressedRebindableKey(KeyFunctions.Accept))
                     {
-                        GlobalState.CurrentSaveGame = _saveID;
+                        GlobalState.CurrentSaveGame = $"{_saveID+1}";
 
                         selected = true;
 
@@ -500,7 +500,7 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
 
             _showHealth = false;
 
-            File.Delete($"{GameConstants.SavePath}Saves/Save_{_saveID + 1}.dat");
+            File.Delete(GlobalState.Save.PathFromId($"{_saveID+1}"));
 
             Save = null;
         }
@@ -559,7 +559,7 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
         {
             SoundManager.PlaySoundEffect("menu_select");
 
-            if (GlobalState.Save.GetSave($"{GameConstants.SavePath}Saves/Save_{copyFileId + 1}.dat") == null)
+            if (GlobalState.Save.GetSave(GlobalState.Save.PathFromId($"{copyFileId + 1}")) == null)
             {
                 DoCopy();
             }
@@ -583,7 +583,7 @@ namespace AnodyneSharp.States.MenuSubstates.MainMenu
 
         private void DoCopy()
         {
-            Save.SaveTo(copyFileId);
+            Save.SaveTo($"{copyFileId+1}");
 
             RefreshSaves = true;
 
