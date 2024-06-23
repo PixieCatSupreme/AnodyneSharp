@@ -366,13 +366,13 @@ namespace AnodyneSharp.States
 
             if (GlobalState.SetDialogueMode)
             {
-                _childStates.Add(new DialogueState(GlobalState.Dialogue));
+                GlobalState.SetSubstate(new DialogueState(GlobalState.Dialogue));
                 GlobalState.SetDialogueMode = false;
                 _player.BeIdle();
             }
             if (GlobalState.StartCutscene != null)
             {
-                _childStates.Add(new CutsceneState(GlobalState.StartCutscene));
+                GlobalState.SetSubstate(new CutsceneState(GlobalState.StartCutscene));
                 GlobalState.StartCutscene = null;
             }
 
@@ -514,7 +514,7 @@ namespace AnodyneSharp.States
 
             if (KeyInput.JustPressedRebindableKey(KeyFunctions.Pause) && !GlobalState.disable_menu)
             {
-                _childStates.Add(new PauseState());
+                GlobalState.SetSubstate(new PauseState());
                 SoundManager.PlaySoundEffect("pause_sound");
                 return;
             }
@@ -815,7 +815,7 @@ namespace AnodyneSharp.States
             {
                 SoundManager.StopSong();
 
-                _childStates.Add(new DeathState(_player));
+                GlobalState.SetSubstate(new DeathState(_player));
             }
         }
 
