@@ -249,7 +249,7 @@ namespace AnodyneSharp.States
                 ret.Add(("???", () => new SecretSubstate()));
             }
 
-            //TODO: allow for modding
+            Modding.ModLoader.mods.ForEach(mod => mod.ChangePauseMenu(ref ret));
 
             return ret;
         }

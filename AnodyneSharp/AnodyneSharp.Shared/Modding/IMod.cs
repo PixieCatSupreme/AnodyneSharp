@@ -9,6 +9,8 @@ namespace AnodyneSharp.Modding
     {
         void ChangeMainMenu(ref List<(string name, Func<Substate> create)> menuEntries) { }
 
+        void ChangePauseMenu(ref List<(string name, Func<Substate> create)> menuEntries) { }
+
         void Update() { }
     }
 }
