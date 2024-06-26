@@ -27,6 +27,10 @@ namespace AnodyneSharp.Entities
         /// </summary>
         public static void Initialize()
         {
+            _entities = new();
+            _doorPairs = new();
+            _linkGroups = new();
+
             string xml = "";
 
             using (Stream stream = AssemblyReaderUtil.GetStream(EntityFilePath))
