@@ -12,7 +12,7 @@ using System.Text;
 namespace AnodyneSharp.Entities.Interactive.Npc.Suburb
 {
     [NamedEntity("Suburb_Walker"), AlwaysSpawn, Collision(typeof(Player), typeof(Broom), MapCollision = true)]
-    class SuburbWalker : Entity, Interactable
+    public class SuburbWalker : Entity, Interactable
     {
         EntityPreset _preset;
 

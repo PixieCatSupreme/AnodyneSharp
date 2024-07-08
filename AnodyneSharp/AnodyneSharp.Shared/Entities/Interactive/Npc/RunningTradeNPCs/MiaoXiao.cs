@@ -71,7 +71,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.RunningTradeNPCs
 
     //Follower logic
     [Collision(MapCollision = true), Events(typeof(StartWarp),typeof(EndScreenTransition), typeof(StartScreenTransition))]
-    class MiaoXiaoFollower : MiaoGraphics
+    public class MiaoXiaoFollower : MiaoGraphics
     {
         static readonly Dictionary<Point, (string name, string eventCheck, int diagId)> DialogueScreens = new()
         {

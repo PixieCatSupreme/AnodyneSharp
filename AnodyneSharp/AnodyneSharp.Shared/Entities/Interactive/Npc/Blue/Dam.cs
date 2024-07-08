@@ -8,7 +8,7 @@ using System.Text;
 namespace AnodyneSharp.Entities.Interactive.Npc.Blue
 {
     [NamedEntity("Happy_NPC", null, 18), Collision(typeof(Player))]
-    class Dam : Entity
+    public class Dam : Entity
     {
         private EntityPreset _preset;
 

@@ -368,7 +368,7 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
     }
 
     [Collision(typeof(Player))]
-    class SeerOrb : Entity
+    public class SeerOrb : Entity
     {
         public float radius;
         public float rotation_speed;
@@ -392,7 +392,7 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
     }
 
     [Collision(typeof(Player), typeof(Dust))]
-    class SeerWave : Entity
+    public class SeerWave : Entity
     {
         public bool End = false;
 

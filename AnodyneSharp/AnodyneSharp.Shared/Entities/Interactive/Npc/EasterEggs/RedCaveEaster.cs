@@ -7,7 +7,7 @@ using System.Text;
 namespace AnodyneSharp.Entities.Interactive.Npc.EasterEggs
 {
     [NamedEntity("NPC", type: "generic", map: "REDCAVE", 8), Collision(typeof(Player))]
-    class RedCaveEaster : Entity, Interactable
+    public class RedCaveEaster : Entity, Interactable
     {
         public RedCaveEaster(EntityPreset preset, Player p)
             : base(preset.Position, "smoke_red", 32, 32, Drawing.DrawOrder.ENTITIES)

@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace AnodyneSharp.Entities
 {
-    class EntityPool<T> where T : Entity
+    public class EntityPool<T> where T : Entity
     {
         private List<T> _pool;
 

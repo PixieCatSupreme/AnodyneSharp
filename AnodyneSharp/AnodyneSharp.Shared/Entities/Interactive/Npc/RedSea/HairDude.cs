@@ -9,7 +9,7 @@ using System.Text;
 namespace AnodyneSharp.Entities.Interactive.Npc.RedSea
 {
     [NamedEntity("Redsea_NPC", null, 0), Collision(typeof(Player))]
-    class HairDude : Entity, Interactable
+    public class HairDude : Entity, Interactable
     {
         private Player _player;
 

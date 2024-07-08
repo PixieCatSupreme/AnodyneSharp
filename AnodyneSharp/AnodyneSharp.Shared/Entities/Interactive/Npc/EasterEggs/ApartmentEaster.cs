@@ -7,7 +7,7 @@ using System.Text;
 namespace AnodyneSharp.Entities.Interactive.Npc.EasterEggs
 {
     [NamedEntity("NPC", type: "generic", map: "APARTMENT", 8), Collision(typeof(Player))]
-    class ApartmentEaster : Entity, Interactable
+    public class ApartmentEaster : Entity, Interactable
     {
         public ApartmentEaster(EntityPreset preset, Player p)
             : base(preset.Position, "randoms", 16, 16, Drawing.DrawOrder.ENTITIES)

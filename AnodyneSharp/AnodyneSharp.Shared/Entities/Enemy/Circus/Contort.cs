@@ -133,7 +133,7 @@ namespace AnodyneSharp.Entities.Enemy.Circus
         { }
 
         [Collision(typeof(Player), typeof(Broom), KeepOnScreen = true, MapCollision = true)]
-        class ContortSmall : HealthDropper
+        public class ContortSmall : HealthDropper
         {
             private const float _startVel = 35;
             private const float SmallRollTimerMax = 0.8f;

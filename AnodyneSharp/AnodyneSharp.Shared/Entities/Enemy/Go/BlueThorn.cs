@@ -12,7 +12,7 @@ using System.Threading;
 
 namespace AnodyneSharp.Entities.Enemy.Go
 {
-    class BlueThorn : BigThorn
+    public class BlueThorn : BigThorn
     {
         FireEye shooter = new();
 

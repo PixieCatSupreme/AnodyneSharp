@@ -69,7 +69,7 @@ namespace AnodyneSharp.Entities.Gadget.Doors
         }
 
         [Collision(typeof(Player))]
-        private class NexusPreview : Entity
+        public class NexusPreview : Entity
         {
             Color target;
             Color start;

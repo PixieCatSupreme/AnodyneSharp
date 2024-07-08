@@ -10,7 +10,7 @@ using System.Text;
 namespace AnodyneSharp.Entities.Interactive.Npc.QuestNPCs
 {
     [NamedEntity("NPC", type: "generic", map: "FIELDS", 7), Collision(typeof(Player))]
-    class FieldsQuest : Entity, Interactable
+    public class FieldsQuest : Entity, Interactable
     {
         Bush _bush;
         bool _played_quest = false;

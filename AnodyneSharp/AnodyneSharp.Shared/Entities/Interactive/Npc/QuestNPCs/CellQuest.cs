@@ -8,7 +8,7 @@ using System.Text;
 namespace AnodyneSharp.Entities.Interactive.Npc.QuestNPCs
 {
     [NamedEntity("NPC", type: "generic", map: "CELL", 7), Collision(typeof(Player))]
-    class CellQuest : Entity, Interactable
+    public class CellQuest : Entity, Interactable
     {
         bool _played_quest = false;
 

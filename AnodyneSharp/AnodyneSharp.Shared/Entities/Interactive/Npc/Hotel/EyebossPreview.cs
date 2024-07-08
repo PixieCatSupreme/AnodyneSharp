@@ -10,7 +10,7 @@ using System.Text;
 namespace AnodyneSharp.Entities.Interactive.Npc.Hotel
 {
     [NamedEntity("NPC", "generic", 5)]
-    class EyebossPreview : Entity
+    public class EyebossPreview : Entity
     {
         private IEnumerator _stateLogic;
 

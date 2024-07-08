@@ -5,7 +5,7 @@ using System.Text;
 namespace AnodyneSharp.Cheatz
 {
     [AttributeUsage(AttributeTargets.Method, Inherited = false, AllowMultiple = false)]
-    sealed class CheatAttribute : Attribute
+    public sealed class CheatAttribute : Attribute
     {
         public readonly string cheatInput;
 

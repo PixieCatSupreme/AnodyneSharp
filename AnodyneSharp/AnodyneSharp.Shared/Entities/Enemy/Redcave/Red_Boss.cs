@@ -454,7 +454,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
     }
 
     [Collision(typeof(Player))]
-    class SmallWave : Entity
+    public class SmallWave : Entity
     {
         Vector2 spawn_point;
 
@@ -510,7 +510,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
     }
 
     [Collision(typeof(Player))]
-    class BigWave : Entity
+    public class BigWave : Entity
     {
         Vector2 spawn_point;
         bool disable_player_hit = true;
@@ -584,7 +584,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
 
     //Actually the tentacle's base for collision, the tentacle itself is just visual flair managed inside this entity
     [Collision(typeof(Player))]
-    class Tentacle : Entity
+    public class Tentacle : Entity
     {
         int t_index;
 
@@ -705,7 +705,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
         }
     }
 
-    class Ripple : Entity
+    public class Ripple : Entity
     {
         Red_Boss parent;
 
@@ -793,7 +793,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
     }
 
     [Collision(typeof(Player))]
-    class ProximitySensor : Entity
+    public class ProximitySensor : Entity
     {
         Red_Boss parent;
         Touching direction;

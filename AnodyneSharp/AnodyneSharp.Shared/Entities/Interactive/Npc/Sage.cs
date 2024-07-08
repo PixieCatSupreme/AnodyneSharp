@@ -75,7 +75,7 @@ namespace AnodyneSharp.Entities
         }
     }
 
-    abstract class Sage : SpriteSage, Interactable
+    public abstract class Sage : SpriteSage, Interactable
     {
         protected EntityPreset _preset;
 
@@ -126,7 +126,7 @@ namespace AnodyneSharp.Entities
     }
 
     [NamedEntity(xmlName: "Sage", map: "NEXUS")]
-    class SageNexus : Sage
+    public class SageNexus : Sage
     {
         public SageNexus(EntityPreset preset, Player p) : base(preset, p, 64, 20, "enter_nexus")
         {
@@ -169,7 +169,7 @@ namespace AnodyneSharp.Entities
     }
 
     [NamedEntity(xmlName: "Sage", map: "OVERWORLD")]
-    class SageOverworld : Sage
+    public class SageOverworld : Sage
     {
         public SageOverworld(EntityPreset preset, Player p) : base(preset, p, 56, 28, "bedroom_entrance")
         {
@@ -206,7 +206,7 @@ namespace AnodyneSharp.Entities
     }
 
     [NamedEntity(xmlName:"Sage",map:"TERMINAL")]
-    class SageTerminal : SpriteSage, Interactable
+    public class SageTerminal : SpriteSage, Interactable
     {
         IEnumerator state;
         EntityPreset _preset;
@@ -269,7 +269,7 @@ namespace AnodyneSharp.Entities
         }
     }
 
-    class DungeonSage : Sage
+    public class DungeonSage : Sage
     {
         public DungeonSage(EntityPreset preset, Player p, int initDistance, int stopDistance, string scene)
             : base(preset,p,initDistance,stopDistance,scene)
@@ -282,7 +282,7 @@ namespace AnodyneSharp.Entities
     }
 
     [NamedEntity(xmlName: "Sage", map: "BEDROOM")]
-    class SageBedroom : DungeonSage
+    public class SageBedroom : DungeonSage
     {
         public SageBedroom(EntityPreset preset, Player p)
             : base(preset, p, 48, 24, "after_boss")
@@ -290,7 +290,7 @@ namespace AnodyneSharp.Entities
     }
 
     [NamedEntity(xmlName: "Sage", map: "REDCAVE")]
-    class SageRedCave : DungeonSage
+    public class SageRedCave : DungeonSage
     {
         public SageRedCave(EntityPreset preset, Player p)
             : base(preset, p, 28, 16, "one")
@@ -298,7 +298,7 @@ namespace AnodyneSharp.Entities
     }
 
     [NamedEntity(xmlName: "Sage", map: "CROWD")]
-    class SageCrowd : DungeonSage
+    public class SageCrowd : DungeonSage
     {
         public SageCrowd(EntityPreset preset, Player p)
             : base(preset, p, 46, 24, "one")
@@ -307,7 +307,7 @@ namespace AnodyneSharp.Entities
 
 
     [NamedEntity(xmlName: "Sage", map: "BLANK"), Events(typeof(EndScreenTransition))]
-    class SageBlank : Entity
+    public class SageBlank : Entity
     {
         EntityPreset _preset;
         public SageBlank(EntityPreset preset, Player p) : base(preset.Position)

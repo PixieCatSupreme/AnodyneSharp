@@ -8,7 +8,7 @@ using System.Text;
 namespace AnodyneSharp.Entities.Gadget
 {
     [NamedEntity("Go_Detector")]
-    class GoDetector : Entity
+    public class GoDetector : Entity
     {
         List<Point> checks;
         EntityPreset _preset;

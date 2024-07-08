@@ -68,7 +68,7 @@ namespace AnodyneSharp.Entities.Enemy.Bedroom
         }
 
         [Collision(typeof(Player), typeof(Dust), typeof(Shieldy), MapCollision = true)]
-        class Laser : Entity
+        public class Laser : Entity
         {
             public static AnimatedSpriteRenderer GetSprite() => new("pew_laser_bullet", 16, 8,
                     new Anim("shoot", new int[] { 0, 1 }, 8),

@@ -229,7 +229,7 @@ namespace AnodyneSharp.Entities.Enemy
             }
         }
 
-        class Explosion : HealthDropper
+        public class Explosion : HealthDropper
         {
             public static AnimatedSpriteRenderer GetSprite(int o) => new AnimatedSpriteRenderer("enemy_explode_2", 24, 24, new Anim("explode", new int[] { o, o + 1, o + 2, o + 3, o + 4 }, GlobalState.IsCell ? 10 : 12, false));
             public Explosion(Vector2 pos) : base(null, pos, GetSprite(GlobalState.IsCell ? 5 : 0), DrawOrder.ENTITIES)
@@ -247,7 +247,7 @@ namespace AnodyneSharp.Entities.Enemy
         }
 
         [Collision(typeof(Player),typeof(Broom),MapCollision = false)]
-        class Fireball : Entity
+        public class Fireball : Entity
         {
             private const float speed = 30f;
             private IState _state;

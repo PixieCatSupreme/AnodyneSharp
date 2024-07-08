@@ -110,7 +110,7 @@ namespace AnodyneSharp.Entities.Enemy.Hotel
         }
 
         [Collision(typeof(Player))]
-        private class BurstBullet : Entity
+        public class BurstBullet : Entity
         {
             Parabola_Thing parabola;
 

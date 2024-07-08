@@ -527,7 +527,7 @@ namespace AnodyneSharp.Entities.Enemy.Circus
         }
 
         [Collision(typeof(Player), typeof(Broom), MapCollision = true)]
-        class Arthur : Entity
+        public class Arthur : Entity
         {
             private const int throwVel = 120;
 
@@ -666,7 +666,7 @@ namespace AnodyneSharp.Entities.Enemy.Circus
         }
 
         [Collision(typeof(Player), typeof(Broom), typeof(Arthur), MapCollision = true)]
-        class Javiera : WalkAroundEntity
+        public class Javiera : WalkAroundEntity
         {
             private const float walkVel = 90 * 1.3f;
 
@@ -778,7 +778,7 @@ namespace AnodyneSharp.Entities.Enemy.Circus
         }
 
         [Collision(typeof(Player), typeof(Broom), MapCollision = true)]
-        class ShockWave : WalkAroundEntity
+        public class ShockWave : WalkAroundEntity
         {
             private const int swVel = 70;
 

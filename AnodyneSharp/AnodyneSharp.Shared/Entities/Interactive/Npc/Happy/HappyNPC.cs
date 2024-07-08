@@ -8,7 +8,7 @@ using System.Text;
 namespace AnodyneSharp.Entities.Interactive.Npc.Happy
 {
     [NamedEntity("Happy_NPC"), Collision(typeof(Player), MapCollision = true)]
-    class HappyNPC : Entity, Interactable
+    public class HappyNPC : Entity, Interactable
     {
         private enum NpcType
         {

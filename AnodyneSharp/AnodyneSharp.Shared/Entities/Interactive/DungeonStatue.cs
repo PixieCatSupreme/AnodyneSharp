@@ -9,7 +9,7 @@ using System.Text;
 namespace AnodyneSharp.Entities.Interactive
 {
     [NamedEntity("Dungeon_Statue"),Collision(PartOfMap = true)]
-    class DungeonStatue : Entity, Interactable
+    public class DungeonStatue : Entity, Interactable
     {
         public static Facing MoveDir(int frame) => frame switch
         {

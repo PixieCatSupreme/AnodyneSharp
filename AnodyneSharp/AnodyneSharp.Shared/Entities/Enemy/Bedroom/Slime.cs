@@ -181,7 +181,7 @@ namespace AnodyneSharp.Entities.Enemy
         }
 
         [Collision(MapCollision = true)]
-        private class Goo : Entity
+        public class Goo : Entity
         {
             private IState state;
 
@@ -249,7 +249,7 @@ namespace AnodyneSharp.Entities.Enemy
         }
 
         [Collision(typeof(Player), MapCollision = true)]
-        private class Bullet : Entity
+        public class Bullet : Entity
         {
 
             public Bullet()

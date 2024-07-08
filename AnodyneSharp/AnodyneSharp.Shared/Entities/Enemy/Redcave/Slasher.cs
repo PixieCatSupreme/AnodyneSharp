@@ -241,7 +241,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
         }
 
         [Collision(typeof(Player))]
-        private class Slash : Entity
+        public class Slash : Entity
         {
             string DamageType;
 
@@ -284,7 +284,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
             }
         }
 
-        private class HorizontalSlash : Slash
+        public class HorizontalSlash : Slash
         {
             public static AnimatedSpriteRenderer GetSprite() => new("f_slasher_wide", 48, 16,
                 new Anim("wide", new int[] { 0, 1, 2 },12,false),
@@ -352,7 +352,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
             }
         }
 
-        private class VerticalSlash : Slash
+        public class VerticalSlash : Slash
         {
             public static AnimatedSpriteRenderer GetSprite() => new("f_slasher_long", 16, 48,
                 new Anim("wide", new int[] { 0, 1, 2 }, 12, false),

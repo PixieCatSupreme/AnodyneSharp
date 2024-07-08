@@ -157,7 +157,7 @@ namespace AnodyneSharp.Entities.Interactive
         }
 
         [Collision(typeof(Player))]
-        class PlayerDetector : Entity
+        public class PlayerDetector : Entity
         {
             public bool Hit = false;
 

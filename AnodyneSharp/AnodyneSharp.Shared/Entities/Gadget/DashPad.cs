@@ -6,7 +6,7 @@ using System.Text;
 namespace AnodyneSharp.Entities.Gadget
 {
     [NamedEntity("Dash_Pad"), Collision(typeof(Player))]
-    class DashPad : Entity
+    public class DashPad : Entity
     {
         float disabled_t = 0;
 

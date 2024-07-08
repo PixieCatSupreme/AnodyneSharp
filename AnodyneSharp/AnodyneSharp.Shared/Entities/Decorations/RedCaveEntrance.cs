@@ -8,7 +8,7 @@ using System.Text;
 namespace AnodyneSharp.Entities.Decorations
 {
     [Collision(PartOfMap = true)]
-    class RedCaveEntrance : Entity
+    public class RedCaveEntrance : Entity
     {
         public RedCaveEntrance(EntityPreset preset, int required_events) : base(preset.Position, "red_cave_left", 64,64,Drawing.DrawOrder.ENTITIES)
         {
@@ -33,25 +33,25 @@ namespace AnodyneSharp.Entities.Decorations
     }
 
     [NamedEntity("Solid_Sprite", "red_cave_l_ss")]
-    class RedCaveLeft : RedCaveEntrance
+    public class RedCaveLeft : RedCaveEntrance
     {
         public RedCaveLeft(EntityPreset preset, Player p) : base(preset, 1) { }
     }
 
     [NamedEntity("Solid_Sprite", "red_cave_r_ss")]
-    class RedCaveRight : RedCaveEntrance
+    public class RedCaveRight : RedCaveEntrance
     {
         public RedCaveRight(EntityPreset preset, Player p) : base(preset, 1) { }
     }
 
     [NamedEntity("Solid_Sprite", "red_cave_c_ss")]
-    class RedCaveCenter : RedCaveEntrance
+    public class RedCaveCenter : RedCaveEntrance
     {
         public RedCaveCenter(EntityPreset preset, Player p) : base(preset, 0) { }
     }
 
     [NamedEntity("Solid_Sprite", "red_cave_n_ss")]
-    class RedCaveNorth : RedCaveEntrance
+    public class RedCaveNorth : RedCaveEntrance
     {
         public RedCaveNorth(EntityPreset preset, Player p) : base(preset, 2) { }
     }

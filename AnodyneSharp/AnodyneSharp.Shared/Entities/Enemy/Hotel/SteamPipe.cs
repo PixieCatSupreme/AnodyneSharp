@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace AnodyneSharp.Entities.Enemy.Hotel
 {
     [NamedEntity("Steam_Pipe"), Collision(typeof(Player), typeof(Dust), MapCollision = false)]
-    class SteamPipe : Entity
+    public class SteamPipe : Entity
     {
         private const float EjectVel = 50;
 
@@ -133,7 +133,7 @@ namespace AnodyneSharp.Entities.Enemy.Hotel
         }
 
         [Collision(typeof(Player), MapCollision = false)]
-        private class Steam : Entity
+        public class Steam : Entity
         {
             private float _timer;
 

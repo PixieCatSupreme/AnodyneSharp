@@ -66,7 +66,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
         }
 
         [Collision(typeof(Player),MapCollision = true)]
-        class Bullet : Entity
+        public class Bullet : Entity
         {
             public static AnimatedSpriteRenderer GetSprite() => new("f_four_shooter_bullet", 8, 8,
                 new Anim("move", new int[] { 0, 1 },12),

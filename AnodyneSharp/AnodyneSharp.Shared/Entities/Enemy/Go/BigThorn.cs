@@ -7,7 +7,7 @@ using System.Collections;
 namespace AnodyneSharp.Entities.Enemy.Go
 {
     [Collision(typeof(Broom))]
-    abstract class BigThorn : Entity
+    public abstract class BigThorn : Entity
     {
         public int Health = 3;
 

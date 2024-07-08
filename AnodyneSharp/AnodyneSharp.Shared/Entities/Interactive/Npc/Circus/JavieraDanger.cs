@@ -13,7 +13,7 @@ using System.Text;
 namespace AnodyneSharp.Entities.Interactive.Npc.Circus
 {
     [NamedEntity("Circus_Folks", "danger", 1)]
-    class JavieraDanger : Entity
+    public class JavieraDanger : Entity
     {
         private const float WaitTimerMax = 1f;
 

@@ -91,7 +91,7 @@ namespace AnodyneSharp.Entities.Interactive.Npc.RunningTradeNPCs
     }
 
     [Collision(typeof(Player))]
-    class ShopItem : Entity, Interactable
+    public class ShopItem : Entity, Interactable
     {
         bool _checked = false;
         Vector2 _startPos;

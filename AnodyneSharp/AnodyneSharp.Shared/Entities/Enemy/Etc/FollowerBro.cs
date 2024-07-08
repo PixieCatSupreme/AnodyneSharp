@@ -9,7 +9,7 @@ using System.Text;
 namespace AnodyneSharp.Entities.Enemy.Etc
 {
     [NamedEntity("Follower_Bro"), Collision(typeof(Player))]
-    class FollowerBro : Entity
+    public class FollowerBro : Entity
     {
         private EntityPreset _preset;
         private Player _player;

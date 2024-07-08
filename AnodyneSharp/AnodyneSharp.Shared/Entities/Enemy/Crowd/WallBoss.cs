@@ -366,7 +366,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
 
     }
 
-    class DeathExplosion : Entity
+    public class DeathExplosion : Entity
     {
         public DeathExplosion() : base(Vector2.Zero, new AnimatedSpriteRenderer("enemy_explode_2", 24, 24, new Anim("explode", new int[] { 0, 1, 2, 3, 4 }, 14, false)), Drawing.DrawOrder.FG_SPRITES)
         {
@@ -391,7 +391,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
     }
 
     [Collision(typeof(Player))]
-    class Laser : Entity
+    public class Laser : Entity
     {
         Vector2 start_loc;
 
@@ -470,7 +470,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
     }
 
     [Collision(typeof(Player))]
-    class Hand : Entity
+    public class Hand : Entity
     {
         protected Parabola_Thing stomp_parabola;
         bool is_right_hand;
@@ -618,7 +618,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
         }
     }
 
-    class LHand : Hand
+    public class LHand : Hand
     {
         private readonly int crackedTile;
         private readonly int holeTile;
@@ -693,7 +693,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
         }
     }
 
-    class RHand : Hand
+    public class RHand : Hand
     {
         public RHand() : base(true) { }
 
@@ -721,7 +721,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
     }
 
     [Collision(typeof(Broom))]
-    class Face : Entity
+    public class Face : Entity
     {
         public int Health { get; private set; } = 12;
 
@@ -824,7 +824,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
         }
 
         [Collision(typeof(Player))]
-        class Bullet : Entity
+        public class Bullet : Entity
         {
             Face parent;
 
@@ -878,7 +878,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
     }
 
     [Collision(PartOfMap = true)]
-    class Wall : Entity
+    public class Wall : Entity
     {
         public Wall() : base(MapUtilities.GetRoomUpperLeftPos(GlobalState.CurrentMapGrid), new AnimatedSpriteRenderer("wallboss_wall", 160, 32, new Anim("move", new int[] { 0, 1 }, 4)), Drawing.DrawOrder.VERY_BG_ENTITIES)
         {

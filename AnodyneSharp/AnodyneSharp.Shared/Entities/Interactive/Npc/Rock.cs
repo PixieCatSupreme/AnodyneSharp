@@ -10,7 +10,7 @@ using System.Text;
 namespace AnodyneSharp.Entities.Interactive.Npc
 {
     [NamedEntity("NPC", "rock"), Collision(typeof(Player))]
-    class Rock : Entity, Interactable
+    public class Rock : Entity, Interactable
     {
         string scene;
 

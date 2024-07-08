@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 
 namespace AnodyneSharp.Entities.Gadget
 {
-    class Explosion : Entity
+    public class Explosion : Entity
     {
         private static AnimatedSpriteRenderer GetSprite()
         {

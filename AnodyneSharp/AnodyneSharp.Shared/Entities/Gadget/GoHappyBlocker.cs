@@ -8,7 +8,7 @@ using AnodyneSharp.Registry;
 namespace AnodyneSharp.Entities.Gadget
 {
     [NamedEntity("NPC", "generic", 11), Collision(PartOfMap = true)]
-    internal class GoHappyBlocker : Entity
+    public class GoHappyBlocker : Entity
     {
         public GoHappyBlocker(EntityPreset preset, Player p)
             : base(preset.Position, new AnimatedSpriteRenderer( "briar_ground_thorn", 16, 16, new Anim("a", new int[] { 9, 10 }, 8)), DrawOrder.ENTITIES)

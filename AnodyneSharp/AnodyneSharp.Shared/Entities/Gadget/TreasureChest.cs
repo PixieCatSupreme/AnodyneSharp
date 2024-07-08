@@ -186,7 +186,7 @@ namespace AnodyneSharp.Entities.Gadget
     }
 
     [NamedEntity("Treasure",map:"WINDMILL")]
-    class WindmillTreasureChest : TreasureChest
+    public class WindmillTreasureChest : TreasureChest
     {
         public WindmillTreasureChest(EntityPreset preset, Player p) : base(preset,p)
         {

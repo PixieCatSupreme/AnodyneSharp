@@ -114,7 +114,7 @@ namespace AnodyneSharp.Entities
         }
 
         [Collision(typeof(Broom))]
-        class Chain : Entity
+        public class Chain : Entity
         {
             Red_Pillar _parent;
 

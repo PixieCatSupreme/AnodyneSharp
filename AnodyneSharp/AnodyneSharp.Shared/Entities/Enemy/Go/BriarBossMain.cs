@@ -219,7 +219,7 @@ namespace AnodyneSharp.Entities.Enemy.Go
     }
 
     [Collision(typeof(Player))]
-    internal class ThornGate : Entity
+    public class ThornGate : Entity
     {
         public ThornGate(Vector2 pos) : base(pos, new AnimatedSpriteRenderer("briar_ground_thorn", 32, 16, new Anim("move", new int[] { 6, 7, 8 }, 6)), Drawing.DrawOrder.ENTITIES)
         {

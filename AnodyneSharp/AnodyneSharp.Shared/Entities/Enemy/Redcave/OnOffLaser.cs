@@ -119,7 +119,7 @@ namespace AnodyneSharp.Entities.Enemy.Redcave
         }
 
         [Collision(typeof(Player), typeof(Mover))]
-        class Laser : Entity
+        public class Laser : Entity
         {
             public static AnimatedSpriteRenderer GetSprite(bool horiz) => new(horiz ? "f_on_off_h" : "f_on_off_v", horiz ? 144 : 16, horiz ? 16 : 144,
                 new Anim("idle", new int[] { 0 },1),

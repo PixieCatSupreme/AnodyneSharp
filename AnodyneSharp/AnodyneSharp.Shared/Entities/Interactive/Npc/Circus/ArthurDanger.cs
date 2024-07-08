@@ -13,7 +13,7 @@ using System.Text;
 namespace AnodyneSharp.Entities.Interactive.Npc.Circus
 {
     [NamedEntity("Circus_Folks", "danger", 0), Collision(typeof(Dust))]
-    class ArthurDanger : Entity
+    public class ArthurDanger : Entity
     {
         private const float HurtTimerMax = 1.3f;
         private const float WaitTimerMax = 1f;

@@ -332,7 +332,7 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
         }
 
         [Collision(typeof(Player))]
-        private class Bullet : Entity
+        public class Bullet : Entity
         {
 
             Parabola_Thing parabola;
@@ -396,7 +396,7 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
         }
 
         [Collision(typeof(Player))]
-        private class BulletSplash : Entity
+        public class BulletSplash : Entity
         {
             Parabola_Thing parabola;
 

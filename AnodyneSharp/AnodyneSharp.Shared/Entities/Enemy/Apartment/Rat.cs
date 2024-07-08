@@ -85,7 +85,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
         }
 
         [Collision(typeof(Dust), MapCollision = true)]
-        class Lookahead : Entity
+        public class Lookahead : Entity
         {
             public Lookahead() : base(Vector2.Zero,1,1)
             {

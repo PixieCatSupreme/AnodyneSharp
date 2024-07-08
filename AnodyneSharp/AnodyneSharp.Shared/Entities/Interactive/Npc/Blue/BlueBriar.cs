@@ -16,7 +16,7 @@ using static AnodyneSharp.States.CutsceneState;
 namespace AnodyneSharp.Entities.Interactive.Npc.Blue
 {
     [NamedEntity("Shadow_Briar", map: "BLUE")]
-    internal class BlueBriar : ShadowBriar
+    public class BlueBriar : ShadowBriar
     {
         const float appearance_vel = 0.24f;
 

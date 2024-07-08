@@ -633,7 +633,7 @@ namespace AnodyneSharp.Entities.Enemy.Etc
         }
 
         [Collision(typeof(Player), typeof(Broom), KeepOnScreen = true)]
-        class LongAttack : HurtingEntity
+        public class LongAttack : HurtingEntity
         {
             public bool IsFlickering => _flickering;
 
@@ -691,7 +691,7 @@ namespace AnodyneSharp.Entities.Enemy.Etc
         }
 
         [Collision(typeof(Player), typeof(Broom), KeepOnScreen = true)]
-        class ShortAttack : HurtingEntity
+        public class ShortAttack : HurtingEntity
         {
             public bool MapColission { get; set; }
             public bool IsFlickering => _flickering;
@@ -748,7 +748,7 @@ namespace AnodyneSharp.Entities.Enemy.Etc
             }
         }
 
-        class HurtingEntity : Entity
+        public class HurtingEntity : Entity
         {
             public bool IsHurting { get; set; }
 

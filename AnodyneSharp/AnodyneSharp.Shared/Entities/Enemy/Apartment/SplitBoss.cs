@@ -64,7 +64,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
     }
 
     [NamedEntity("Splitboss"), Enemy, Collision(typeof(Broom)), Events(typeof(StartScreenTransition), typeof(StartWarp))]
-    class SplitBoss : BaseSplitBoss
+    public class SplitBoss : BaseSplitBoss
     {
         Player player;
         EntityPreset _preset;
@@ -561,7 +561,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
         }
 
         [Events(typeof(StartWarp), typeof(StartScreenTransition))]
-        class FadeOutGameScreenFade : Entity
+        public class FadeOutGameScreenFade : Entity
         {
             public FadeOutGameScreenFade() : base(Vector2.Zero)
             {
@@ -582,7 +582,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
         }
 
         [Collision(typeof(Player))]
-        class Bullet : Entity
+        public class Bullet : Entity
         {
             bool active = false;
 
@@ -648,7 +648,7 @@ namespace AnodyneSharp.Entities.Enemy.Apartment
         }
     }
 
-    class Copy : BaseSplitBoss
+    public class Copy : BaseSplitBoss
     {
         public Copy(bool right) : base(Vector2.Zero)
         {

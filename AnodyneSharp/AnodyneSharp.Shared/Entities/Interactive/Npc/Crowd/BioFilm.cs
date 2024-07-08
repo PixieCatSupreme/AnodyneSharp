@@ -7,7 +7,7 @@ using System.Text;
 namespace AnodyneSharp.Entities
 {
     [NamedEntity("NPC", "biofilm"), Collision(typeof(Player))]
-    class BioFilm : Entity
+    public class BioFilm : Entity
     {
         EntityPreset _preset;
 

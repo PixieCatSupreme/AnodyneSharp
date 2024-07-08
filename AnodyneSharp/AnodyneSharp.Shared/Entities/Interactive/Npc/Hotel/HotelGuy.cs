@@ -8,7 +8,7 @@ using System.Text;
 namespace AnodyneSharp.Entities.Interactive.Npc.Hotel
 {
     [NamedEntity("NPC", "generic", 12), Collision(typeof(Player))]
-    class HotelGuy : Entity, Interactable
+    public class HotelGuy : Entity, Interactable
     {
         public static AnimatedSpriteRenderer GetSprite() => new("hotel_npcs", 16, 16,
             new Anim("idle_d", new int[] { 0 },1),

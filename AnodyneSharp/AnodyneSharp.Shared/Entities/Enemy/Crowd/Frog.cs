@@ -139,7 +139,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
         }
 
         [Collision(typeof(Player))]
-        private class BurstBullet : Entity
+        public class BurstBullet : Entity
         {
             Parabola_Thing parabola;
             int _multiplier;

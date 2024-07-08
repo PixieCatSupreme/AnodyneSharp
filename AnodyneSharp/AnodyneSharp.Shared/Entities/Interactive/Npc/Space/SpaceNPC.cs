@@ -8,7 +8,7 @@ using System.Text;
 namespace AnodyneSharp.Entities.Interactive.Npc.Space
 {
     [NamedEntity("Space_NPC"), Collision(typeof(Player))]
-    class SpaceNPC : Entity, Interactable
+    public class SpaceNPC : Entity, Interactable
     {
         private string _dialogue;
 

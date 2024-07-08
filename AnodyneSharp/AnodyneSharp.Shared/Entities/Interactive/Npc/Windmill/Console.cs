@@ -12,7 +12,7 @@ using static AnodyneSharp.States.CutsceneState;
 namespace AnodyneSharp.Entities.Interactive.Npc.Windmill
 {
     [NamedEntity("Console", map: "WINDMILL", frames:0)]
-    class Console : Entity, Interactable
+    public class Console : Entity, Interactable
     {
         public static AnimatedSpriteRenderer GetSprite() => new("windmill_inside", 48, 48,
             new Anim("idle", new int[] { 1 },1),

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AnodyneSharp.Entities
 {
-    class Parabola_Thing
+    public class Parabola_Thing
     {
         private float t = 0;
         private float height;

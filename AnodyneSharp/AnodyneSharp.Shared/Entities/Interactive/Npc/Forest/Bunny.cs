@@ -12,7 +12,7 @@ using System.Text;
 namespace AnodyneSharp.Entities.Interactive.Npc.Forest
 {
     [NamedEntity("Forest_NPC", null, 30), Collision(typeof(Player))]
-    class Bunny : Entity, Interactable
+    public class Bunny : Entity, Interactable
     {
         private Player _player;
 

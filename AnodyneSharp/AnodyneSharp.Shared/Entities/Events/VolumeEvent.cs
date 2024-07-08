@@ -9,7 +9,7 @@ using System.Text;
 namespace AnodyneSharp.Entities.Events
 {
     [NamedEntity("Event",null,1)]
-    class VolumeEvent : Entity
+    public class VolumeEvent : Entity
     {
         float target;
         public float speed;

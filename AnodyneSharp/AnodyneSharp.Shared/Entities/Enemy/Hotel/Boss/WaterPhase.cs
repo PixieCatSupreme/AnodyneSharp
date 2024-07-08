@@ -255,7 +255,7 @@ namespace AnodyneSharp.Entities.Enemy.Hotel.Boss
         }
 
         [Collision(typeof(Player),typeof(Broom))]
-        class Bullet : Entity
+        public class Bullet : Entity
         {
             Rectangle area;
 

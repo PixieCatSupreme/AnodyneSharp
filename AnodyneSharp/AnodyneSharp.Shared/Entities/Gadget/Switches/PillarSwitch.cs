@@ -8,7 +8,7 @@ using System.Text;
 namespace AnodyneSharp.Entities.Gadget.Switches
 {
     [NamedEntity("Pillar_Switch"), Collision(typeof(Broom), PartOfMap = true)]
-    class PillarSwitch : Entity
+    public class PillarSwitch : Entity
     {
         float hit_tm = 0;
 

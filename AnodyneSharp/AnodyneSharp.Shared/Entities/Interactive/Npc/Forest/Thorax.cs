@@ -9,7 +9,7 @@ using System.Text;
 namespace AnodyneSharp.Entities.Interactive.Npc.Forest
 {
     [NamedEntity("Forest_NPC", null, 0), Collision(typeof(Player))]
-    class Thorax : Entity, Interactable
+    public class Thorax : Entity, Interactable
     {
         private Player _player;
 

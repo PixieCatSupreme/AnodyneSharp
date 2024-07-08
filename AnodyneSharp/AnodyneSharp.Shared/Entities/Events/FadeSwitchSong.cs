@@ -7,7 +7,7 @@ using System.Text;
 
 namespace AnodyneSharp.Entities.Events
 {
-    class FadeSwitchSong : Entity
+    public class FadeSwitchSong : Entity
     {
         VolumeEvent volumeChanger = new(0, 1.6f);
         string next;

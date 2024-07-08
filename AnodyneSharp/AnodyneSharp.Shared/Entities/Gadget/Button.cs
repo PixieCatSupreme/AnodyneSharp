@@ -9,7 +9,7 @@ using static AnodyneSharp.Entities.Interactive.Npc.Blue.BlueBriar;
 namespace AnodyneSharp.Entities.Gadget
 {
     [NamedEntity, Collision(typeof(Player), typeof(Shieldy), typeof(Mover), typeof(Rat), typeof(Silverfish), typeof(BlueMitra))]
-    class Button : Entity
+    public class Button : Entity
     {
         bool pressed = false;
         bool incremented = false;

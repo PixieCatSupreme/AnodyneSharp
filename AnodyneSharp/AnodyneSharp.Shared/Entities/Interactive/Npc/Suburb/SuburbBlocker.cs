@@ -10,7 +10,7 @@ using static AnodyneSharp.States.CutsceneState;
 namespace AnodyneSharp.Entities.Interactive.Npc.QuestNPCs
 {
     [NamedEntity("NPC", type: "generic", 0), Collision(typeof(Player))]
-    class SuburbBlocker : Entity, Interactable
+    public class SuburbBlocker : Entity, Interactable
     {
         EntityPreset _preset;
 

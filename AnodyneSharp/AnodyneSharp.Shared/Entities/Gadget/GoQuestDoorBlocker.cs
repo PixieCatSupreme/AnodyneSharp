@@ -6,7 +6,7 @@ using System.Text;
 namespace AnodyneSharp.Entities.Gadget
 {
     [NamedEntity]
-    class GoQuestDoorBlocker : Entity
+    public class GoQuestDoorBlocker : Entity
     {
         Events.DoorToggle doorBlocker;
 

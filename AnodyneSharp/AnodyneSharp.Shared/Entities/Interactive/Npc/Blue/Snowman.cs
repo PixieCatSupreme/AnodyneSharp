@@ -8,7 +8,7 @@ using System.Text;
 namespace AnodyneSharp.Entities.Interactive.Npc.Blue
 {
     [NamedEntity("Snowman"), AlwaysSpawn, Collision(typeof(Player))]
-    class Snowman : Entity, Interactable
+    public class Snowman : Entity, Interactable
     {
         private EntityPreset _preset;
 

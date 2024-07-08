@@ -104,7 +104,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
             _state.TriggerEvent("PlayerOverlaps");
         }
 
-        class RollerShadow : Entity
+        public class RollerShadow : Entity
         {
             public RollerShadow(Vector2 pos, int frame)
                 : base(pos, "spike_roller_shadow", 16, 128, Drawing.DrawOrder.ENTITIES)

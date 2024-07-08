@@ -10,7 +10,7 @@ using System.Text;
 namespace AnodyneSharp.Entities.Interactive.Npc.Forest
 {
     [NamedEntity("Forest_NPC", null, 20), Collision(typeof(Player), typeof(Broom))]
-    class Mushroom : Entity
+    public class Mushroom : Entity
     {
         public static AnimatedSpriteRenderer GetSprite() => new("forest_npcs", 16, 16,
             new Anim("idle", new int[] { 20 },1),

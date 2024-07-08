@@ -8,7 +8,7 @@ using System.Text;
 namespace AnodyneSharp.Entities.Interactive.Npc.Blank
 {
     [NamedEntity("Console", null, "BLANK", 1), Collision(typeof(Player))]
-    class BlankConsole : Entity, Interactable
+    public class BlankConsole : Entity, Interactable
     {
         public BlankConsole(EntityPreset preset, Player p)
             : base(preset.Position, new AnimatedSpriteRenderer("console", 16, 16, new Anim("flicker", new int[] { 0, 1, 2 }, 10)), Drawing.DrawOrder.ENTITIES)

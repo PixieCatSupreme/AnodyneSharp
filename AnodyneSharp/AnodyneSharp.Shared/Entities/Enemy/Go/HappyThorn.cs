@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace AnodyneSharp.Entities.Enemy.Go
 {
-    class HappyThorn : BigThorn
+    public class HappyThorn : BigThorn
     {
         IceCrystal crystal;
 

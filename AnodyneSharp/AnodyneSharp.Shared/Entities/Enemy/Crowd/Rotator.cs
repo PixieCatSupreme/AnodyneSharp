@@ -39,7 +39,7 @@ namespace AnodyneSharp.Entities.Enemy.Crowd
     }
 
     [Collision(typeof(Player))]
-    class RotatorBullet : Entity
+    public class RotatorBullet : Entity
     {
         float radius = 0;
         float angle = 0;
