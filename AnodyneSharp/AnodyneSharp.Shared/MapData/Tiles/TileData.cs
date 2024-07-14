@@ -56,7 +56,7 @@ namespace AnodyneSharp.MapData.Tiles
 
             var assemblies = AppDomain.CurrentDomain.GetAssemblies();
 
-            var asmpaths = assemblies.SelectMany(asm => asm.GetManifestResourceNames().Where(p => p.StartsWith($"{asm.GetName().Name}.Content.Maps.{map}.TileAnims")).Select(p=>(asm,p)));
+            var asmpaths = assemblies.Where(asm => !asm.IsDynamic).SelectMany(asm => asm.GetManifestResourceNames().Where(p => p.StartsWith($"{asm.GetName().Name}.Content.Maps.{map}.TileAnims")).Select(p=>(asm,p)));
 
             foreach (var (asm,path) in asmpaths)
             {
