@@ -37,7 +37,7 @@ namespace AnodyneSharp.Modding
             Matcher matcher = new();
             matcher.AddInclude("Mods/*/Assemblies/*.dll");
 
-            string searchDir = Path.GetDirectoryName(Assembly.GetEntryAssembly()!.Location)!;
+            string searchDir = Path.GetDirectoryName(AppContext.BaseDirectory)!;
 
             return matcher.GetResultsInFullPath(searchDir);
         }
