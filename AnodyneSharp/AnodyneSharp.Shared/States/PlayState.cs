@@ -774,7 +774,7 @@ namespace AnodyneSharp.States
 #endif
         private void SwitchBroom(bool nextBroom)
         {
-            if (!GlobalState.inventory.HasBroom)
+            if (!GlobalState.inventory.HasAnyBroom)
             {
                 return;
             }
