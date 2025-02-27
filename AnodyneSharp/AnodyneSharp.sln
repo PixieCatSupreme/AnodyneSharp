@@ -16,8 +16,6 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "AnodyneSharp.Shared", "Anod
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnodyneSharp.Multiplatform", "AnodyneSharp.Multiplatform\AnodyneSharp.Multiplatform.csproj", "{C3425B4E-EE0B-41B7-AA64-E4637EC6B299}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnodyneSharp.Android", "AnodyneSharp.Android\AnodyneSharp.Android.csproj", "{5F687C1F-66EE-413D-A037-3613CF9B6513}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,12 +34,6 @@ Global
 		{C3425B4E-EE0B-41B7-AA64-E4637EC6B299}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3425B4E-EE0B-41B7-AA64-E4637EC6B299}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3425B4E-EE0B-41B7-AA64-E4637EC6B299}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5F687C1F-66EE-413D-A037-3613CF9B6513}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5F687C1F-66EE-413D-A037-3613CF9B6513}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5F687C1F-66EE-413D-A037-3613CF9B6513}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{5F687C1F-66EE-413D-A037-3613CF9B6513}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5F687C1F-66EE-413D-A037-3613CF9B6513}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5F687C1F-66EE-413D-A037-3613CF9B6513}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,7 +42,6 @@ Global
 		SolutionGuid = {BD45C6FF-7C29-45B5-8CF8-37CC74A0DC6B}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		AnodyneSharp.Shared\AnodyneSharp.Shared.projitems*{5f687c1f-66ee-413d-a037-3613cf9b6513}*SharedItemsImports = 5
 		AnodyneSharp.Shared\AnodyneSharp.Shared.projitems*{9d4cd4fd-e304-4b61-908c-989a08b8d289}*SharedItemsImports = 5
 		AnodyneSharp.Shared\AnodyneSharp.Shared.projitems*{a0cdbd0e-3a41-42b7-9425-a838bc2c7383}*SharedItemsImports = 13
 		AnodyneSharp.Shared\AnodyneSharp.Shared.projitems*{c3425b4e-ee0b-41b7-aa64-e4637ec6b299}*SharedItemsImports = 5
