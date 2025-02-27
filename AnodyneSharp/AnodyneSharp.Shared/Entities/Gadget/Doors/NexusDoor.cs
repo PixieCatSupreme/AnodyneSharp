@@ -43,13 +43,12 @@ namespace AnodyneSharp.Entities.Gadget.Doors
             if(activated && _player.JustLanded)
             {
                 TeleportPlayer();
-                activated = false;
             }
         }
 
         public bool PlayerInteraction(Facing player_direction)
         {
-            if (_preview.exists && player_direction == Facing.UP)
+            if (_preview.exists && player_direction == Facing.UP && !activated)
             {
                 activated = true;
                 _player.AutoJump(0.4f,_player.Position - Vector2.UnitY*16);

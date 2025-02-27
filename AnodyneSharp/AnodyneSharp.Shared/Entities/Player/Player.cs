@@ -189,6 +189,7 @@ namespace AnodyneSharp.Entities
 
                 actions_disabled = false;
 
+                Solid = true;
                 isSlipping = false;
                 hasFallen = false;
                 justFell = false;

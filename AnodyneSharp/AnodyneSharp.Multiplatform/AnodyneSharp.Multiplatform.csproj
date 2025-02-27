@@ -15,9 +15,9 @@
     <AssemblyName>AnodyneSharp</AssemblyName>
     <RootNamespace>AnodyneSharp</RootNamespace>
     <PackageProjectUrl>https://pixiecatsupreme.itch.io/anodyne-sharp</PackageProjectUrl>
-    <Version>1.3.0</Version>
-    <AssemblyVersion>1.3.0</AssemblyVersion>
-    <FileVersion>1.3.0</FileVersion>
+    <Version>1.3.1</Version>
+    <AssemblyVersion>1.3.1</AssemblyVersion>
+    <FileVersion>1.3.1</FileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>TRACE;OPENGL</DefineConstants>
