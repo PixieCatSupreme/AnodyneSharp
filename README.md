@@ -1,4 +1,9 @@
 About the project
+
+This project aims to rewrite AnodyneSharp in a highly optimized way using C so that it can be ported to the original Playstation console, Game Boy Color and PC.
+
+Below is the original read me:
+
 -------------
 AnodyneSharp is a fan rewrite of the game Anodyne by Analgesic Productions in C# using MonoGame.
 
